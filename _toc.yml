@@ -1,0 +1,17 @@
+format: jb-book
+root: README
+defaults:
+    titlesonly: True
+parts:
+    - caption: Presentación
+      #numbered: true
+      chapters:
+      - file: contenidos/capitulo1/1.0-IntroduccionAyP2
+        title: De que va la materia
+    - caption: Taller de GO
+      chapters:
+      - file: contenidos/capitulo2/2.0-IntroduccionGO
+        title: Introducción a GO
+    - caption: Taller de Git y GitHub
+      chapters:
+      - file: contenidos/capitulo3/3.0-IntroduccionGIT
