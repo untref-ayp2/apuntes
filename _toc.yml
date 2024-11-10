@@ -2,16 +2,46 @@ format: jb-book
 root: README
 defaults:
     titlesonly: True
+    numbered: true
 parts:
     - caption: Presentación
-      #numbered: true
       chapters:
       - file: contenidos/capitulo1/1.0-IntroduccionAyP2
         title: De que va la materia
+      - file: contenidos/capitulo1/1.1-Memoria
+      - file: contenidos/capitulo1/1.2-AnalisisDeAlgoritmos
     - caption: Taller de GO
       chapters:
       - file: contenidos/capitulo2/2.0-IntroduccionGO
         title: Introducción a GO
+      - file: contenidos/capitulo2/2.1-ArreglosSlices
+      - file: contenidos/capitulo2/2.2-Mapas
+      - file: contenidos/capitulo2/2.3-EstructurasInterfaces
+      - file: contenidos/capitulo2/2.4-Punteros
+      - file: contenidos/capitulo2/2.5-Errores
+    - caption: Estructuras de Datos
+      chapters:
+      - file: contenidos/capitulo3/3.0-EstructurasDatos
+      - file: contenidos/capitulo3/3.1-PilasColas
+      - file: contenidos/capitulo3/3.2-Listas
+      - file: contenidos/capitulo3/3.3-Conjuntos
+      - file: contenidos/capitulo3/3.4-MapasBits
+      - file: contenidos/capitulo3/3.5-TablasHashing
+      - file: contenidos/capitulo3/3.6-Diccionarios
+      - file: contenidos/capitulo3/3.7-Arboles
+      - file: contenidos/capitulo3/3.8-ABB
+      - file: contenidos/capitulo3/3.9-ArbolesBalanceados
+      - file: contenidos/capitulo3/3.10-MonticuloBinario
+    - caption: Diseño de Algortimos
+      chapters:
+      - file: contenidos/capitulo4/4.0-RecursividadDyC
+      - file: contenidos/capitulo4/4.1-Patrones
+      - file: contenidos/capitulo4/4.2-AlgoritmosAvidos
+      - file: contenidos/capitulo4/4.3-Backtracking
+      - file: contenidos/capitulo4/4.4-ProgramacionDinamica
+      - file: contenidos/capitulo4/4.5-OrdenamientosRecursivos
+      - file: contenidos/capitulo4/4.6-OrdenamientosLineales
     - caption: Taller de Git y GitHub
       chapters:
-      - file: contenidos/capitulo3/3.0-IntroduccionGIT
+      - file: contenidos/anexo/A.0-IntroduccionGIT
+

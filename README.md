@@ -1,6 +1,4 @@
-
-<img src="./contenidos/assets/images/untref-logo-negro.svg" alt="Universidad Nacional de Tres de Febrero" width="200px" class="center"/>
-
+<img src="./contenidos/assets/images/untref-logo-negro.svg" alt="UNTREF" class="align-center" width="200px">
 
 # Apuntes de Algoritmos y Programación II
 
