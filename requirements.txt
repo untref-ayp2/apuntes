@@ -33,7 +33,7 @@ decorator @ file:///home/conda/feedstock_root/build_artifacts/decorator_16415556
 defusedxml @ file:///home/conda/feedstock_root/build_artifacts/defusedxml_1615232257335/work
 distro @ file:///home/conda/feedstock_root/build_artifacts/distro_1704321475663/work
 docopt==0.6.2
-docutils @ file:///work/perseverance-python-buildout/croot/docutils_1698846509640/work
+docutils==0.18.1
 entrypoints @ file:///home/conda/feedstock_root/build_artifacts/entrypoints_1643888246732/work
 exceptiongroup @ file:///home/conda/feedstock_root/build_artifacts/exceptiongroup_1720869315914/work
 executing @ file:///home/conda/feedstock_root/build_artifacts/executing_1698579936712/work
@@ -83,6 +83,7 @@ kiwisolver @ file:///home/conda/feedstock_root/build_artifacts/kiwisolver_169537
 latexcodec @ file:///home/conda/feedstock_root/build_artifacts/latexcodec_1592937263153/work
 libmambapy @ file:///home/conda/feedstock_root/build_artifacts/mamba-split_1711394305528/work/libmambapy
 linkify-it-py @ file:///work/perseverance-python-buildout/croot/linkify-it-py_1698889355052/work
+lxml==5.3.0
 markdown-it-py @ file:///home/conda/feedstock_root/build_artifacts/markdown-it-py_1686175045316/work
 MarkupSafe @ file:///home/conda/feedstock_root/build_artifacts/markupsafe_1706899920239/work
 matplotlib==3.9.2
@@ -151,6 +152,7 @@ sphinx-comments @ file:///home/conda/feedstock_root/build_artifacts/sphinx-comme
 sphinx-copybutton @ file:///home/conda/feedstock_root/build_artifacts/sphinx-copybutton_1681468139876/work
 sphinx-jupyterbook-latex @ file:///home/conda/feedstock_root/build_artifacts/sphinx-jupyterbook-latex_1702319897226/work
 sphinx-multitoc-numbering @ file:///home/conda/feedstock_root/build_artifacts/sphinx-multitoc-numbering_1615945821575/work
+sphinx-proof==0.2.0
 sphinx-thebe @ file:///home/conda/feedstock_root/build_artifacts/sphinx-thebe_1708445067315/work
 sphinx-togglebutton @ file:///home/conda/feedstock_root/build_artifacts/sphinx-togglebutton_1664390183601/work
 sphinx_design @ file:///work/perseverance-python-buildout/croot/sphinx-design_1698901937668/work

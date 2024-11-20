@@ -28,6 +28,7 @@ parse:
     - strikethrough
     - substitution
     - tasklist
+    
   
 
 # Define the name of the latex output file for PDF builds
@@ -40,7 +41,10 @@ bibtex_bibfiles:
   - references.bib
   
 sphinx:
-  extra_extensions: [bokeh.sphinxext.bokeh_plot]
+  extra_extensions: 
+      - sphinx_proof
+      - bokeh.sphinxext.bokeh_plot
+  
   config:
     language: es
     bibtex_reference_style: author_year
