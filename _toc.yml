@@ -21,7 +21,7 @@ parts:
       - file: contenidos/capitulo2/2.5-Errores
     - caption: Estructuras de Datos
       chapters:
-      - file: contenidos/capitulo3/3.0-EstructurasDatos
+      - file: contenidos/capitulo3/3.0-TAD
       - file: contenidos/capitulo3/3.1-PilasColas
       - file: contenidos/capitulo3/3.2-Listas
       - file: contenidos/capitulo3/3.3-Conjuntos
