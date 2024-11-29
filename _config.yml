@@ -44,7 +44,7 @@ sphinx:
   extra_extensions: 
       - sphinx_proof
       - bokeh.sphinxext.bokeh_plot
-  
   config:
     language: es
     bibtex_reference_style: author_year
+    proof_minimal_theme: true
