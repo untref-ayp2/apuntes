@@ -11,6 +11,8 @@ logo: ./contenidos/assets/images/untref-logo-negro.svg
 execute:
   execute_notebooks: force
   allow_errors: true
+  stderr_output: show
+  nb_merge_streams: true
   
 parse:
   myst_enable_extensions: 
