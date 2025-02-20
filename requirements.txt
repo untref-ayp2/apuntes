@@ -1,1 +1,4 @@
-
+bokeh
+jupyter-book
+jupyterlab
+sphinx-proof
