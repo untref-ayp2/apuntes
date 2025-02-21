@@ -7,13 +7,11 @@ parts:
     - caption: Presentación
       chapters:
       - file: contenidos/capitulo1/1.0-IntroduccionAyP2
-        title: De que va la materia
       - file: contenidos/capitulo1/1.1-Memoria
       - file: contenidos/capitulo1/1.2-AnalisisDeAlgoritmos
-    - caption: Taller de GO
+    - caption: Taller de Go
       chapters:
       - file: contenidos/capitulo2/2.0-IntroduccionGO
-        title: Introducción a GO
       - file: contenidos/capitulo2/2.1-ArreglosSlices
       - file: contenidos/capitulo2/2.2-Mapas
       - file: contenidos/capitulo2/2.3-EstructurasInterfaces
@@ -44,4 +42,3 @@ parts:
     - caption: Taller de Git y GitHub
       chapters:
       - file: contenidos/anexo/A.0-IntroduccionGIT
-
