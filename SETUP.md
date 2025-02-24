@@ -2,7 +2,7 @@
 
 Si deseas desarrollar y/o compilar el libro de Algoritmos y Programación II, debes:
 
-1. Clona este repositorio
+1. Clonar este repositorio
 
 2. Instalar las dependencias del proyecto.
 
