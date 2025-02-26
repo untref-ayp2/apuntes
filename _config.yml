@@ -5,6 +5,7 @@ title: Apuntes de Algoritmos y Programación II
 author: Autores
 copyright: "2024"
 logo: ./contenidos/assets/images/untref-logo.svg
+only_build_toc_files: true
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -31,10 +32,20 @@ parse:
     - substitution
     - tasklist
 
+html:
+  use_edit_page_button: true
+  use_repository_button: true
+  use_issues_button: true
+
 # Define the name of the latex output file for PDF builds
 latex:
   latex_documents:
     targetname: apunte.tex
+
+repository:
+  url: https://github.com/untref-ayp2/apuntes
+  # path_to_book: ""
+  branch: main
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
