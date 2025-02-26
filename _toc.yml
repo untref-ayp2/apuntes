@@ -11,12 +11,15 @@ parts:
       - file: contenidos/capitulo1/1.2-AnalisisDeAlgoritmos
     - caption: Taller de Go
       chapters:
-      - file: contenidos/capitulo2/2.0-IntroduccionGO
-      - file: contenidos/capitulo2/2.1-ArreglosSlices
-      - file: contenidos/capitulo2/2.2-Mapas
-      - file: contenidos/capitulo2/2.3-EstructurasInterfaces
-      - file: contenidos/capitulo2/2.4-Punteros
-      - file: contenidos/capitulo2/2.5-Errores
+      - file: contenidos/taller-go/introduccion-go
+      - file: contenidos/taller-go/arreglos-slices
+      - file: contenidos/taller-go/maps
+      - file: contenidos/taller-go/funciones
+      - file: contenidos/taller-go/punteros
+      - file: contenidos/taller-go/errores
+      - file: contenidos/taller-go/structs-interfaces
+      - file: contenidos/taller-go/exportado-no-exportado
+      - file: contenidos/taller-go/oop
     - caption: Estructuras de Datos
       chapters:
       - file: contenidos/capitulo3/3.0-TAD
