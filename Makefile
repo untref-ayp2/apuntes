@@ -24,7 +24,10 @@ build:
 clean:
 	jupyter-book clean .
 
+## Puerto por defecto para levantar el servidor http
+PORT ?= 8080
+
 ## server: start a HTTP server to read the book
 .PHONY: server
 server: build
-	python -m http.server --directory _build/html
+	python -m http.server $(PORT)  --directory _build/html
