@@ -24,7 +24,7 @@ eficiente. Go fue diseñado para ambientes altamente productivos y concurrentes
 recursos). Fue liberado cómo código abierto y está disponible para todos los
 sistemas operativos.
 
-:::{important}
+:::{attention}
 Los lenguajes compilados cuyo código fuente se traduce de antemano a código
 máquina, en general suelen ser muy eficientes, ya que se pueden ejecutar
 directamente sobre la máquina sin "intermediarios".
