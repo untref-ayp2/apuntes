@@ -24,7 +24,7 @@ eficiente. Go fue diseñado para ambientes altamente productivos y concurrentes
 recursos). Fue liberado cómo código abierto y está disponible para todos los
 sistemas operativos.
 
-:::{margin}
+:::{important}
 Los lenguajes compilados cuyo código fuente se traduce de antemano a código
 máquina, en general suelen ser muy eficientes, ya que se pueden ejecutar
 directamente sobre la máquina sin "intermediarios".
@@ -61,9 +61,7 @@ definir nuevos tipos de datos.
 
 ### Ejemplos
 
-:::{margin}
-`hola.go`
-:::
+El siguiente fragmento se encuentra en el archivo `hello.go`
 
 ```{code-cell} go
 package main
@@ -164,9 +162,7 @@ el código en Go.
 El código se organiza en **paquetes**. Por ejemplo, podemos definir un paquete
 llamado `saludo`, con una función que se exporta llamada `Saludar`.
 
-```{margin}
-`saludo/saludo.go`
-```
+archivo `saludo/saludo.go`
 
 ```{code-cell} go
 package saludo
@@ -182,9 +178,7 @@ Como en muchos lenguajes de programación, el punto de entrada a un programa es
 por medio de una función `main`, como podemos ver a continuación, donde nuestro
 programa hace uso del paquete `saludo`:
 
-```{margin}
-`main.go`
-```
+archivo `main.go`
 
 ```{code-cell} go
 :tags: [remove-output]
@@ -279,6 +273,10 @@ if num < 0 {
 A diferencia de Java, Go cuenta con sólo una instrucción de iteración, el `for`.
 Pero este se puede utilizar de diferentes formas.
 
+De forma análoga a un `while` como lo vimos en Java, cuando `for` solo recibe
+una condición, va a ejecutar el bloque de código "mientras" la condición sea
+verdadera.
+
 ```{code-cell} go
 :tags: [remove-output]
 i := 1
@@ -289,9 +287,9 @@ for i <= 3 {
 }
 ```
 
-De forma análoga a un `while` como lo vimos en Java, cuando `for` solo recibe
-una condición, va a ejecutar el bloque de código "mientras" la condición sea
-verdadera.
+También puede utilizarse de la forma clásica, indicando la inicialización, la
+condición y la operación luego de cada iteración.
+
 
 ```{code-cell} go
 :tags: [remove-output]
@@ -300,8 +298,7 @@ for j := 7; j <= 9; j++ {
 }
 ```
 
-También puede utilizarse de la forma clásica, indicando la inicialización, la
-condición y la operación luego de cada iteración.
+Si `for` no recibe condición, se comporta de la misma forma que `while(true)`.
 
 ```{code-cell} go
 :tags: [remove-output]
@@ -311,7 +308,8 @@ for {
 }
 ```
 
-Si `for` no recibe condición, se comporta de la misma forma que `while(true)`.
+También existen las instrucciones `break` y `continue` para alterar la ejecución
+de las iteraciones.
 
 ```{code-cell} go
 :tags: [remove-output]
@@ -322,9 +320,6 @@ for n := 0; n <= 5; n++ {
     fmt.Println(n)
 }
 ```
-
-También existen las instrucciones `break` y `continue` para alterar la ejecución
-de las iteraciones.
 
 ## Paquetes, módulos y espacios de trabajos
 
@@ -371,7 +366,7 @@ módulo es el repositorio donde se aloja. Ejemplo:
 go mod init github.com/untref-ayp2/miproyecto
 ```
 
-:::{margin}
+:::{important}
 Un espacio de trabajo con varios módulos puede ser útil si trabajamos con varios
 proyectos vinculados, en caso contrario puede ser mejor tener cada proyecto por
 separado.

@@ -23,9 +23,7 @@ De [FAQ: Is Go an object-oriented language?](https://go.dev/doc/faq#Is_Go_an_obj
 Veamos como poder definir un component que puede tener estado y comportamiento
 asociado.
 
-:::{margin}
-`stack/stack.go`
-:::
+archivo `stack/stack.go`
 
 ```{code-cell} go
 :tags: [remove-output]
@@ -66,9 +64,7 @@ tienen como receptor al tipo struct que creamos, de esta forma estos métodos
 tendrán acceso a modificar los campos que no son exportados (cuyos nombres
 comienzan con minúsculas).
 
-:::{margin}
-`main.go`
-:::
+archivo `main.go`
 
 ```{code-cell} go
 :tags: [remove-output]
