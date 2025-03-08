@@ -23,10 +23,10 @@ De [FAQ: Is Go an object-oriented language?](https://go.dev/doc/faq#Is_Go_an_obj
 Veamos como poder definir un component que puede tener estado y comportamiento
 asociado.
 
-archivo `stack/stack.go`
+:::{admonition} `stack/stack.go`
+:class: note
 
-```{code-cell} go
-:tags: [remove-output]
+```go
 package stack
 
 import "errors"
@@ -58,16 +58,18 @@ func (s *Stack) Size() int {
 }
 ```
 
+:::
+
 Por un lado definimos una estructura la cual tiene "campos" (similar a lo que
 llamamos atributos de una clase en Java). Luego, vamos a definir métodos que
 tienen como receptor al tipo struct que creamos, de esta forma estos métodos
 tendrán acceso a modificar los campos que no son exportados (cuyos nombres
 comienzan con minúsculas).
 
-archivo `main.go`
+:::{admonition} `main.go`
+:class: note
 
-```{code-cell} go
-:tags: [remove-output]
+```go
 package main
 
 import (
@@ -90,6 +92,8 @@ func main() {
  fmt.Println()
 }
 ```
+
+:::
 
 En nuestro caso, para crear una variable de tipo `Stack` podemos utilizar la
 forma literal de declarar una estructura. También es común crear un método

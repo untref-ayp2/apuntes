@@ -1,4 +1,11 @@
+---
+file_format: mystnb
+kernelspec:
+  name: gophernotes
+---
+
 # Montículo
+
 Los montículos o heaps son estructuras de datos que permiten acceder al elemento que se encuentra en la cima muy eficientemente. Esta posición privilegiada se utiliza para mantener el mayor elemento del montículo o el menor.
 
 ```{figure} ../assets/images/HeapRopa.svg
@@ -28,6 +35,7 @@ Montículo Binario de Mínimos
 ```
 
 ## Representación
+
 Como un montículo binario es un árbol binario completo, o casi completo, podemos aprovechar esta propiedad y usar un arreglo para representarlo.
 
 ```{note}
@@ -58,7 +66,8 @@ Las fórmulas pueden variar si la primera posición del arreglo es 1 en lugar de
 
 Por ejemplo en la posición 3 del arreglo se encuentra el elemento $H$, su hijo izquierdo se encuentra en la posición $2 \times 3 + 1 = 7$ y su hijo derecho en $2 \times 3 + 2 = 8$. A su vez el padre se encuentra en $\lfloor \frac{3-1} {2} \rfloor = 1$
 
-## Inserción 
+## Inserción
+
 En la figura a continuación, {ref}`Heap Insercion`, se representa la inserción del elemento $9$ dentro de un heap de máximos.
 Para preservar la propiedad de forma es preciso insertar el elemento en la posición 9 del arreglo, es decir como hijo izquierdo de la posición 4. De esta forma nos aseguramos de mantener siempre un árbol completo e izquierdista.
 
@@ -67,7 +76,6 @@ Al insertar el elemento $9$ en la posición 9 vemos que se perdió la propiedad 
 Para reestrablecer la propiedad de orden se realiza la operación `upHeap` desde la hoja recién insertada. Esta operación consiste en comparar el elemento actual con su padre y si no se cumple la propiedad de orden intercambiarlos, luego compara el padre que acaba de intercambiar con su padre, hasta encontrar la posición correcta del elemento recién insertado dentro del montículo.
 
 En el ejemplo de la figura primero intercambia el 9 con el 5. Es decir en el arreglo que representa el heap intercambia los elementos y luego compara la posición 4 con su padre que se encuentra en la posición 1. Cómo el $9$ es mayor que el $7$ los intercambia nuevamente. Finalmente compara la posición 1 con su padre, la raíz en la posición 0, y cómo $10$ es mayor que $9$ termina la operación `upHeap`.
-
 
 ```{figure} ../assets/images/HeapInsercion.svg
 ---
@@ -162,6 +170,7 @@ Mientras A[i] < A[candidato]:
 ````
 
 Los montículos o heaps son estructuras de datos que por lo general se utilizan para implementar colas de prioridad. Una cola de prioridad debe permitir realizar las siguientes operaciones lo más eficientemente posible:
+
 - Agregar un nuevo elemento, con una prioridad dada.
 - Obtener el elemento con mayor prioridad de la cola.
 - Extraer el elemento con mayor prioridad de la cola.

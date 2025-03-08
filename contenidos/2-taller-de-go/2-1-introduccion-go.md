@@ -162,9 +162,10 @@ el código en Go.
 El código se organiza en **paquetes**. Por ejemplo, podemos definir un paquete
 llamado `saludo`, con una función que se exporta llamada `Saludar`.
 
-archivo `saludo/saludo.go`
+:::{admonition} `saludo/saludo.go`
+:class: note
 
-```{code-cell} go
+```go
 package saludo
 
 import "fmt"
@@ -174,14 +175,16 @@ func Saludar() {
 }
 ```
 
+:::
+
 Como en muchos lenguajes de programación, el punto de entrada a un programa es
 por medio de una función `main`, como podemos ver a continuación, donde nuestro
 programa hace uso del paquete `saludo`:
 
-archivo `main.go`
+:::{admonition} `main.go`
+:class: note
 
-```{code-cell} go
-:tags: [remove-output]
+``` go
 package main
 
 import ".saludo"
@@ -190,6 +193,8 @@ func main() {
     saludo.Saludar()
 }
 ```
+
+:::
 
 ### Declaración de variables
 
@@ -289,7 +294,6 @@ for i <= 3 {
 
 También puede utilizarse de la forma clásica, indicando la inicialización, la
 condición y la operación luego de cada iteración.
-
 
 ```{code-cell} go
 :tags: [remove-output]

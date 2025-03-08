@@ -3,6 +3,7 @@ file_format: mystnb
 kernelspec:
   name: gophernotes
 ---
+
 # Tipos Abstractos de Datos
 
 Podemos imaginar un Tipo Abstracto de Datos (TAD) o _Abstract Data Type_ (DAT) en inglés, como una caja negra, la que puede contener valores y manipularlos, es decir realizar acciones con esos valores, por ejemplo ordenarlos, buscar un elemento dado, etc.

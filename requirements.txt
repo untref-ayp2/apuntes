@@ -1,9 +1,4 @@
-black
-black[jupyter]
 bokeh
-ipydrawio
-isort
 jupyter-book
 jupyterlab
-jupyterlab_code_formatter
 sphinx-proof

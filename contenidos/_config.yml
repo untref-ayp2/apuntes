@@ -4,7 +4,7 @@
 title: Apuntes de Algoritmos y Programación II
 author: Cátedra de Algoritmos y Programación II
 copyright: "2025"
-logo: ./contenidos/assets/images/untref-logo.svg
+logo: assets/images/untref-logo.svg
 only_build_toc_files: true
 
 # Force re-execution of notebooks on each build.
@@ -44,7 +44,7 @@ latex:
 
 repository:
   url: https://github.com/untref-ayp2/apuntes
-  # path_to_book: ""
+  path_to_book: contenidos
   branch: main
 
 # Add a bibtex file so that we can create citations

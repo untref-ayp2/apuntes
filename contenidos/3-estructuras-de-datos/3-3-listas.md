@@ -3,12 +3,14 @@ file_format: mystnb
 kernelspec:
   name: gophernotes
 ---
+
 # Listas Enlazadas
-Las listas enlazadas son estructuras de datos que permiten almacenar una colección de elementos, en posiciones de memoria **no necesariamente contiguas**. Cada elemento de una lista se almacena en un nodo que contiene un campo de dato y uno o dos punteros a otros nodos. 
 
-Los nodos están enlazados entre sí para formar la lista. Son estructuras de datos **dinámicas**, que pueden crecer a medida que se le agregan datos y decrecer cuando se eliminan. 
+Las listas enlazadas son estructuras de datos que permiten almacenar una colección de elementos, en posiciones de memoria **no necesariamente contiguas**. Cada elemento de una lista se almacena en un nodo que contiene un campo de dato y uno o dos punteros a otros nodos.
 
-Las listas enlazadas generalmente se usan como contenedores para definir estructuras de datos más complejas. Existen varios tipos de listas enlazadas, que se utilizan para distintas aplicaciones. 
+Los nodos están enlazados entre sí para formar la lista. Son estructuras de datos **dinámicas**, que pueden crecer a medida que se le agregan datos y decrecer cuando se eliminan.
+
+Las listas enlazadas generalmente se usan como contenedores para definir estructuras de datos más complejas. Existen varios tipos de listas enlazadas, que se utilizan para distintas aplicaciones.
 
 Algunos usos de las listas enlazadas pueden ser:
 
@@ -21,8 +23,8 @@ Undo y redo en aplicaciones
 Listas de reproducción
 : Algunas aplicaciones utilizan listas circulares para implementar las funciones de avanzar y retroceder en listas de reproducción infinitas.
 
-
 Las listas que estudiaremos son:
+
 - Lista Enlazada Simple (Simple Linked List)
 - Lista Enlazada Doble (Double Linked List)
 - Lista Circular (Circular List)
@@ -72,7 +74,7 @@ Clear
 
 ````{Admonition} Definición
 
-Una lista enlazada simple es una estructura de datos lineal donde cada nodo de la lista tiene un sucesor, salvo el último. Por definición la lista vacía es la que no contiene datos y su tamaño es 0. 
+Una lista enlazada simple es una estructura de datos lineal donde cada nodo de la lista tiene un sucesor, salvo el último. Por definición la lista vacía es la que no contiene datos y su tamaño es 0.
 
 El nodo de una lista enlazada simple tiene dos campos:
 
@@ -92,6 +94,7 @@ Lista Enlazada Simple
 ```
 
 ### Búsqueda
+
 Para buscar un elemento no queda otra alternativa que recorrer toda la lista desde la cabeza de la misma hasta encontrar el elemento o llegar al final de la lista y determinar que no se encuentra. Si encuentra el elemento devuelve un puntero al nodo correspondiente o nulo en caso contrario
 
 ```{code-block}
@@ -106,6 +109,7 @@ Find(buscado):
 ```
 
 ### Inserción después de un elemento dado
+
 Supongamos que dada la lista de la figura {ref}`lista-simple`, se quiere insertar un elemento nuevo después de un elemento dado. Para poder lograrlo primero hay que crear un nuevo nodo con el elemento a insertar, buscar el elemento después del cual se quiere insertar y finalmente actualizar los campos siguientes de los nodos:
 
 ```{code-block}
@@ -117,6 +121,7 @@ InsertAfter(buscado, elemento):
         nuevo.SetNext(actual) //Primero hay que enlazar el nuevo nodo a la lista
         actual.SetNext(nuevo) //Después corregir al siguiente del nodo actual
 ```
+
 De esta forma se garantiza la integridad de la lista. Ver figura {ref}`ssl-insercion`
 
 ```{figure} ../assets/images/ListaEnlazadaSimpleInsercion.svg
@@ -128,6 +133,7 @@ Inserción en una Lista Enlazada Simple
 ```
 
 ### Eliminación
+
 Supongamos que dada la lista de la figura {ref}`lista-simple`, se quiere eliminar el elemento **E3**, para no perder la integridad de la lista se deben seguir los pasos a continuación:
 
 ```{code-block}
@@ -139,9 +145,10 @@ Remove(buscado):
             self.RemoveFirst
             return
         previo := self.Head()
-        mientras previo.Siguiente.Data() 
-    
+        mientras previo.Siguiente.Data()
+
 ```
+
 Eventualmente el recolector de basura liberará la memoria que ocupa el nodo **E3**, ya no es alcanzable (no hay ningún puntero que nos permita llegar a **E3**). Ver figura {ref}`ssl-eliminacion`
 
 ```{figure} ../assets/images/ListaEnlazadaSimpleEliminacion.svg
@@ -262,86 +269,88 @@ Implementación de una Lista Enlazada Simple, con punteros a la cabeza y la cola
 ```
 
 ### Implementación en GO
+
 A continuación una implementación de una lista enlazada simple, donde se definen dos tipos `LinkedNode` como un node de lista que contiene un dato y un puntero al siguiente y el tipo `LinkedList`. Los datos de la lista son genéricos, pero se piden que sean Comparables entre sí
+
 ```{code-block} go
 :linenos:
 package list
 
 // LinkedNode representa un nodo de una lista enlazada simple.
 type LinkedNode[T comparable] struct {
-	data T
-	next *LinkedNode[T]
+ data T
+ next *LinkedNode[T]
 }
 
 // NewLinkedListNode crea un nuevo nodo de lista enlazada con el dato especificado.
 //
 // Uso:
 //
-//	node := list.NewLinkedListNode(10) // Crea un nuevo nodo con el dato 10.
+// node := list.NewLinkedListNode(10) // Crea un nuevo nodo con el dato 10.
 //
 // Parámetros:
 //   - `data`: el dato a almacenar en el nodo.
 func NewLinkedListNode[T comparable](data T) *LinkedNode[T] {
-	return &LinkedNode[T]{data: data}
+ return &LinkedNode[T]{data: data}
 }
 
 // SetData establece el dato almacenado en el nodo.
 //
 // Uso:
 //
-//	node.SetData(20) // Establece el dato del nodo a 20.
+// node.SetData(20) // Establece el dato del nodo a 20.
 //
 // Parámetros:
 //   - `data`: el dato a almacenar en el nodo.
 func (n *LinkedNode[T]) SetData(data T) {
-	n.data = data
+ n.data = data
 }
 
 // Data devuelve el dato almacenado en el nodo.
 //
 // Uso:
 //
-//	data := node.Data() // Obtiene el dato almacenado en el nodo.
+// data := node.Data() // Obtiene el dato almacenado en el nodo.
 //
 // Retorna:
 //   - el dato almacenado en el nodo.
 func (n *LinkedNode[T]) Data() T {
-	return n.data
+ return n.data
 }
 
 // SetNext establece el nodo siguiente al nodo actual.
 //
 // Uso:
 //
-//	node.SetNext(newNode) // Establece el nodo siguiente al nodo actual.
+// node.SetNext(newNode) // Establece el nodo siguiente al nodo actual.
 //
 // Parámetros:
 //   - `newNext`: el nodo siguiente al nodo actual.
 func (n *LinkedNode[T]) SetNext(newNext *LinkedNode[T]) {
-	n.next = newNext
+ n.next = newNext
 }
 
 // Next devuelve el nodo siguiente al nodo actual.
 //
 // Uso:
 //
-//	nextNode := node.Next() // Obtiene el nodo siguiente al nodo actual.
+// nextNode := node.Next() // Obtiene el nodo siguiente al nodo actual.
 func (n *LinkedNode[T]) Next() *LinkedNode[T] {
-	return n.next
+ return n.next
 }
 
 // HasNext evalúa si el nodo actual tiene asignado un nodo siguiente.
 //
 // Uso:
 //
-//	if node.HasNext() {
-//		fmt.Println("El nodo tiene un nodo siguiente.")
-//	}
+// if node.HasNext() {
+//  fmt.Println("El nodo tiene un nodo siguiente.")
+// }
 //
 // Retorna:
 //   - `true` si el nodo tiene un nodo siguiente; `false` en caso contrario.
 func (n *LinkedNode[T]) HasNext() bool {
-	return n.next != nil
+ return n.next != nil
 }
 ```
 
@@ -354,115 +363,115 @@ import "fmt"
 // LinkedList se implementa con un nodo que contiene un dato y un puntero al siguiente nodo.
 // Los elementos deben ser de un tipo comparable.
 type LinkedList[T comparable] struct {
-	head *LinkedNode[T]
-	tail *LinkedNode[T]
-	size int
+ head *LinkedNode[T]
+ tail *LinkedNode[T]
+ size int
 }
 
 // NewLinkedList crea una nueva lista vacía.
 //
 // Uso:
 //
-//	list := list.NewLinkedList[int]() // Crea una nueva lista vacía.
+// list := list.NewLinkedList[int]() // Crea una nueva lista vacía.
 func NewLinkedList[T comparable]() *LinkedList[T] {
-	return &LinkedList[T]{}
+ return &LinkedList[T]{}
 }
 
 // Head devuelve el primer nodo de la lista.
 //
 // Uso:
 //
-//	head := list.Head() // Obtiene el primer nodo de la lista.
+// head := list.Head() // Obtiene el primer nodo de la lista.
 //
 // Retorna:
 //   - el primer nodo de la lista.
 func (l *LinkedList[T]) Head() *LinkedNode[T] {
-	return l.head
+ return l.head
 }
 
 // Tail devuelve el último nodo de la lista.
 //
 // Uso:
 //
-//	tail := list.Tail() // Obtiene el último nodo de la lista.
+// tail := list.Tail() // Obtiene el último nodo de la lista.
 //
 // Retorna:
 //   - el último nodo de la lista.
 func (l *LinkedList[T]) Tail() *LinkedNode[T] {
-	return l.tail
+ return l.tail
 }
 
 // Size devuelve el tamaño de la lista.
 //
 // Uso:
 //
-//	size := list.Size() // Obtiene el tamaño de la lista.
+// size := list.Size() // Obtiene el tamaño de la lista.
 //
 // Retorna:
 //   - el tamaño de la lista.
 func (l *LinkedList[T]) Size() int {
-	return l.size
+ return l.size
 }
 
 // IsEmpty evalúa si la lista está vacía.
 //
 // Uso:
 //
-//	empty := list.IsEmpty() // Verifica si la lista está vacía.
+// empty := list.IsEmpty() // Verifica si la lista está vacía.
 //
 // Retorna:
 //   - `true` si la lista está vacía; `false` en caso contrario.
 func (l *LinkedList[T]) IsEmpty() bool {
-	return l.size == 0
+ return l.size == 0
 }
 
 // Clear elimina todos los nodos de la lista.
 //
 // Uso:
 //
-//	list.Clear() // Elimina todos los nodos de la lista.
+// list.Clear() // Elimina todos los nodos de la lista.
 func (l *LinkedList[T]) Clear() {
-	l.head = nil
-	l.tail = nil
-	l.size = 0
+ l.head = nil
+ l.tail = nil
+ l.size = 0
 }
 
 // Prepend inserta un dato al inicio de la lista.
 //
 // Uso:
 //
-//	list.Prepend(10) // Inserta el dato 10 al inicio de la lista.
+// list.Prepend(10) // Inserta el dato 10 al inicio de la lista.
 //
 // Parámetros:
 //   - `data`: el dato a insertar en la lista.
 func (l *LinkedList[T]) Prepend(data T) {
-	newNode := NewLinkedListNode(data)
-	if l.IsEmpty() {
-		l.tail = newNode
-	} else {
-		newNode.SetNext(l.head)
-	}
-	l.head = newNode
-	l.size++
+ newNode := NewLinkedListNode(data)
+ if l.IsEmpty() {
+  l.tail = newNode
+ } else {
+  newNode.SetNext(l.head)
+ }
+ l.head = newNode
+ l.size++
 }
 
 // Append inserta un dato al final de la lista.
 //
 // Uso:
 //
-//	list.Append(10) // Inserta el dato 10 al final de la lista.
+// list.Append(10) // Inserta el dato 10 al final de la lista.
 //
 // Parámetros:
 //   - `data`: el dato a insertar en la lista.
 func (l *LinkedList[T]) Append(data T) {
-	newNode := NewLinkedListNode(data)
-	if l.IsEmpty() {
-		l.head = newNode
-	} else {
-		l.tail.SetNext(newNode)
-	}
-	l.tail = newNode
-	l.size++
+ newNode := NewLinkedListNode(data)
+ if l.IsEmpty() {
+  l.head = newNode
+ } else {
+  l.tail.SetNext(newNode)
+ }
+ l.tail = newNode
+ l.size++
 }
 
 // Find busca un dato en la lista, si lo encuentra devuelve el nodo
@@ -470,7 +479,7 @@ func (l *LinkedList[T]) Append(data T) {
 //
 // Uso:
 //
-//	node := list.Find(10) // Busca el dato 10 en la lista.
+// node := list.Find(10) // Busca el dato 10 en la lista.
 //
 // Parámetros:
 //   - `data`: el dato a buscar en la lista.
@@ -478,121 +487,122 @@ func (l *LinkedList[T]) Append(data T) {
 // Retorna:
 //   - el nodo que contiene el dato; `nil` si el dato no se encuentra.
 func (l *LinkedList[T]) Find(data T) *LinkedNode[T] {
-	for current := l.head; current != nil; current = current.Next() {
-		if current.Data() == data {
-			return current
-		}
-	}
+ for current := l.head; current != nil; current = current.Next() {
+  if current.Data() == data {
+   return current
+  }
+ }
 
-	return nil
+ return nil
 }
 
 // RemoveFirst elimina el primer nodo de la lista.
 //
 // Uso:
 //
-//	list.RemoveFirst() // Elimina el primer nodo de la lista.
+// list.RemoveFirst() // Elimina el primer nodo de la lista.
 func (l *LinkedList[T]) RemoveFirst() {
-	if l.IsEmpty() {
-		return
-	}
+ if l.IsEmpty() {
+  return
+ }
 
-	l.head = l.head.Next()
+ l.head = l.head.Next()
 
-	if l.head == nil {
-		l.tail = nil
-	}
+ if l.head == nil {
+  l.tail = nil
+ }
 
-	l.size--
+ l.size--
 }
 
 // RemoveLast elimina el último nodo de la lista.
 //
 // Uso:
 //
-//	list.RemoveLast() // Elimina el último nodo de la lista.
+// list.RemoveLast() // Elimina el último nodo de la lista.
 func (l *LinkedList[T]) RemoveLast() {
-	if l.IsEmpty() {
-		return
-	}
+ if l.IsEmpty() {
+  return
+ }
 
-	if l.Size() == 1 {
-		l.head = nil
-		l.tail = nil
-	} else {
-		current := l.head
-		for current.Next() != l.tail {
-			current = current.Next()
-		}
-		current.SetNext(nil)
-		l.tail = current
-	}
-	l.size--
+ if l.Size() == 1 {
+  l.head = nil
+  l.tail = nil
+ } else {
+  current := l.head
+  for current.Next() != l.tail {
+   current = current.Next()
+  }
+  current.SetNext(nil)
+  l.tail = current
+ }
+ l.size--
 }
 
 // Remove elimina un la primera aparición de un dato en la lista.
 //
 // Uso:
 //
-//	list.Remove(10) // Elimina la primera aparición del dato 10 en la lista.
+// list.Remove(10) // Elimina la primera aparición del dato 10 en la lista.
 //
 // Parámetros:
 //   - `data`: el dato a eliminar de la lista.
 func (l *LinkedList[T]) Remove(data T) {
-	node := l.Find(data)
+ node := l.Find(data)
 
-	if node == nil {
-		return
-	}
+ if node == nil {
+  return
+ }
 
-	if node == l.head {
-		l.RemoveFirst()
+ if node == l.head {
+  l.RemoveFirst()
 
-		return
-	}
+  return
+ }
 
-	current := l.Head()
+ current := l.Head()
 
-	for current.Next() != node {
-		current = current.Next()
-	}
+ for current.Next() != node {
+  current = current.Next()
+ }
 
-	current.SetNext(node.Next())
+ current.SetNext(node.Next())
 
-	if node == l.tail {
-		l.tail = current
-	}
-	l.size--
+ if node == l.tail {
+  l.tail = current
+ }
+ l.size--
 }
 
 // String devuelve una representación en cadena de la lista.
 //
 // Uso:
 //
-//	fmt.Println(list) // Imprime la representación en cadena de la lista.
+// fmt.Println(list) // Imprime la representación en cadena de la lista.
 //
 // Retorna:
 //   - una representación en cadena de la lista.
 func (l *LinkedList[T]) String() string {
-	if l.IsEmpty() {
-		return "LinkedList: []"
-	}
+ if l.IsEmpty() {
+  return "LinkedList: []"
+ }
 
-	result := "LinkedList: "
+ result := "LinkedList: "
 
-	current := l.Head()
-	for {
-		result += fmt.Sprintf("[%v]", current.Data())
-		if !current.HasNext() {
-			break
-		}
-		result += " → "
-		current = current.Next()
-	}
+ current := l.Head()
+ for {
+  result += fmt.Sprintf("[%v]", current.Data())
+  if !current.HasNext() {
+   break
+  }
+  result += " → "
+  current = current.Next()
+ }
 
-	return result
+ return result
 }
 ```
+
 ## Lista Enlazada Doble
 
 En la lista doble, en cada nodo se mantienen dos punteros, uno al sucesor y otro al predecesor. Esta lista permite avanzar y retroceder una posición en la lista en tiempo constante $O(1)$. Su principal uso es en aplicaciones que requieran avanzar y retroceder desde cualquier posición como editores de texto o gestores de historiales de navegación. En la siguiente figura se puede ver una representación gráfica.
@@ -642,6 +652,7 @@ Representación de una Lista Enlazada Circular Doble, vacía, con centinelas
 ```
 
 ## Ejercicios
+
 1. Implementar una lista circular simple, similar a la lista simple dada.
 2. Implementar una lista enlazada doble, similar a la lista simple dada.
 3. Implementar una lista enlazada doble con centinelas.

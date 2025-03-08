@@ -1,33 +1,28 @@
-## help: print this help message
+## help: muestra este mensaje de ayuda
 .PHONY: help
 help:
 	@echo 'Usage:'
 	@sed -n 's/^##//p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/ /'
 
-## install: install all required dependencies
+## install: instala las dependencias necesarias
 .PHONY: install
 install:
 	pip install --requirement requirements.txt
 
-## fmt: format Python and Jupyter files
-.PHONY: fmt
-fmt:
-	find ./contenidos -name "*.ipynb" -not -path "*.ipynb_checkpoints*" -exec jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace {} ';'
-
-## build: build the book
+## build: compila el libro
 .PHONY: build
 build:
-	jupyter-book build .
+	jupyter-book build contenidos
 
-## clean: clean the book
+## clean: elimina los archivos generados
 .PHONY: clean
 clean:
-	jupyter-book clean .
+	jupyter-book clean contenidos
 
-## Puerto por defecto para levantar el servidor http
+# Puerto por defecto para levantar el servidor http
 PORT ?= 8080
 
-## server: start a HTTP server to read the book
+## server: levanta un servidor http para visualizar el libro
 .PHONY: server
 server: build
-	python -m http.server $(PORT)  --directory _build/html
+	python -m http.server $(PORT) --directory contenidos/_build/html

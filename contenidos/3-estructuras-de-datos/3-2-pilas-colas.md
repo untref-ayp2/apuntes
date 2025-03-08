@@ -1,3 +1,9 @@
+---
+file_format: mystnb
+kernelspec:
+  name: gophernotes
+---
+
 # Pilas y Colas
 
 Los primeros TAD que vamos a estudiar son **Pilas** y **Colas**.
@@ -10,7 +16,7 @@ Un TAD dinámico es un TAD que puede modificar su tamaño, es decir, el espacio 
 
 ## Pila
 
-Es una estructura del tipo **LIFO (Last In First Out)** es decir el último elemento que ingresó en la pila será el primer elemento en salir. Por ejemplo, en una {ref}`pila-libros` si queremos agregar un nuevo libro debemos colocarlo encima de la pila, sobre el último libro. A su vez el último libro de la pila es el único al que le podemos ver su portada y sacar de la pila. Por lo tanto para sacar el libro de abajo de la pila, primero hay que sacar uno por uno todos los libros que están apilados sobre él.
+Es una estructura del tipo **LIFO** (_Last In First Out_) es decir el último elemento que ingresó en la pila será el primer elemento en salir. Por ejemplo, en una {ref}`pila-libros` si queremos agregar un nuevo libro debemos colocarlo encima de la pila, sobre el último libro. A su vez el último libro de la pila es el único al que le podemos ver su portada y sacar de la pila. Por lo tanto para sacar el libro de abajo de la pila, primero hay que sacar uno por uno todos los libros que están apilados sobre él.
 
 ```{figure} ../assets/images/book-stack.svg
 ---
@@ -36,18 +42,17 @@ IsEmpty
 
 Todas las operaciones deben ser $O(1)$. Es decir de tiempo constante, independiente del tamaño de la entrada
 
-
 Este comportamiento define la **interfaz** del tipo Pila, es decir las operaciones válidas que se pueden realizar sobre la misma. Falta definir la implementación, es decir la estructura de datos interna que utilizaremos para almacenar nuestros datos. A continuación se muestra una implementación de una pila sobre slices de GO, es decir sobre arreglos dinámicos capaces de aumentar su tamaño a medida que se necesita almacenar más elementos.
 
 En la definición de la pila no hay ninguna restricción sobre el tipo de elementos que se almacenan, por ejemplo podríamos apilar, libros, revistas, cajas, en una única pila. El tamaño de la pila debe ser un entero entre 0 y N (invariante de representación)
 
-Para poder tener una pila genérica, es decir, donde no hay restricciones sobre el tipo de datos que se almacena se puede usar el tipo de datos `Any`. 
+Para poder tener una pila genérica, es decir, donde no hay restricciones sobre el tipo de datos que se almacena se puede usar el tipo de datos `Any`.
 
 ````{important}
 Como ya se mencionó es fundamental ocultar la implementación para que no se pueda manipular el contenedor de datos con operaciones no permitidas. por ejemplo, la definición:
 
 ```go
-// Forma incorrecta de definir un pila, 
+// Forma incorrecta de definir un pila,
 // porque no encapsula el contenedor de datos
 type Stack []any
 ```
@@ -63,120 +68,115 @@ p[0] = "chau"
 
 En este fragmento se agregan elementos a la pila, usando la función `append` de GO y luego se modifica el primer elemento de la pila
 ````
-A continuación se define el TAD Stack, que internamente estará implementado sobre un arreglo dinámico o slice de GO.
 
+A continuación se define el TAD Stack, que internamente estará implementado sobre un arreglo dinámico o slice de GO.
 
 ```go
 import "errors"
 
 type Stack struct {
-	data []any
+    data []any
 }
 ```
 
-El contenedor de datos `data` está encapsulado dentro del `struct`. 
-
+El contenedor de datos `data` está encapsulado dentro del `struct`.
 
 ```go
 func NewStack() *Stack {
     var pila Stack
-	return &pila
+    return &pila
 }
 ```
 
 `NewStack` es una especie de constructor, que nos devuelve una pila vacía cada vez que se llama. Reserva espacio en memoria para almacenar la pila y devuelve la dirección de memoria correspondiente.
 
-
 ```go
 func (s *Stack) IsEmpty() bool {
-	return len(s.data) == 0
+    return len(s.data) == 0
 }
 ```
 
 `IsEmpty` chequea si la cantidad de elementos del contenedor de datos es igual a 0
 
-
 ```go
 func (s *Stack) Push(x any) {
-	s.data = append(s.data, x)
+    s.data = append(s.data, x)
 }
 ```
 
 `Push` agrega siempre al final del arreglo el elemento que recibe
 
-
 ```go
 func (s *Stack) Pop() (any, error) {
     var x any
-	if s.IsEmpty() {
-		return x, errors.New("pila vacía")
-	}
-	x = s.data[len(s.data)-1]
-	s.data = s.data[:len(s.data)-1]
+    if s.IsEmpty() {
+        return x, errors.New("pila vacía")
+    }
+    x = s.data[len(s.data)-1]
+    s.data = s.data[:len(s.data)-1]
 
-	return x, nil
+    return x, nil
 }
 ```
 
 `Pop` chequea si la pila está vacía, en ese caso devuelve el par `(nil, error)`. Caso contrario devuelve el par `(x, nil)` y elimina el tope de la pila. Siempre devuelve un par de valores.
 
-
 ```go
 func (s *Stack) Top() (any, error) {
-	var x any
-	if s.IsEmpty() {
-		return x, errors.New("pila vacía")
-	}
-	x = s.data[len(s.data)-1]
+ var x any
+ if s.IsEmpty() {
+  return x, errors.New("pila vacía")
+ }
+ x = s.data[len(s.data)-1]
 
-	return x, nil
+ return x, nil
 }
 ```
 
 `Top` es similar a `Pop` pero no elimina el tope
 
-
 ```go
 import "fmt"
 
 func main() {
-	// Crear una nueva pila de enteros
-	s := NewStack()
+ // Crear una nueva pila de enteros
+ s := NewStack()
 
-	// Agregar elementos a la pila
-	s.Push(1)
-	s.Push("cadena")
-	s.Push(3.52)
+ // Agregar elementos a la pila
+ s.Push(1)
+ s.Push("cadena")
+ s.Push(3.52)
 
-	// Verificar si la pila está vacía
-	if s.IsEmpty() {
-		fmt.Println("La pila está vacía")
-	} else {
-		fmt.Println("La pila no está vacía")
-	}
+ // Verificar si la pila está vacía
+ if s.IsEmpty() {
+  fmt.Println("La pila está vacía")
+ } else {
+  fmt.Println("La pila no está vacía")
+ }
 
-	// Consultar el elemento en la cima de la pila
-	topElement, _ := s.Top()
-	fmt.Println("Elemento en la cima de la pila:", topElement)
+ // Consultar el elemento en la cima de la pila
+ topElement, _ := s.Top()
+ fmt.Println("Elemento en la cima de la pila:", topElement)
 
-	// Extraer elementos de la pila
-	for !s.IsEmpty() {
-		poppedElement, _ := s.Pop()
-		fmt.Println("Elemento extraído de la pila:", poppedElement)
-	}
+ // Extraer elementos de la pila
+ for !s.IsEmpty() {
+  poppedElement, _ := s.Pop()
+  fmt.Println("Elemento extraído de la pila:", poppedElement)
+ }
 
-	// Verificar si la pila está vacía
-	if s.IsEmpty() {
-		fmt.Println("La pila está vacía")
-	} else {
-		fmt.Println("La pila no está vacía")
-	}
+ // Verificar si la pila está vacía
+ if s.IsEmpty() {
+  fmt.Println("La pila está vacía")
+ } else {
+  fmt.Println("La pila no está vacía")
+ }
 }
 
 main()
 ```
 
 ## Cola
+
 Es una estructura del tipo **FIFO (First In First Out)** es decir el primer elemento en ingresar en la cola es el primero en salir. Un ejemplo clásico del uso de esta estructura es para modelar una {ref}`cola-personas`, por ejemplo en la caja de un supermercado. La última persona que llega se coloca al final de la cola y espera su turno para hacer atendido
 
 ```{figure} ../assets/images/people-queue.png
@@ -203,10 +203,10 @@ IsEmpty
 
 Todas las operaciones deben ser $O(1)$. Es decir de tiempo constante, independiente del tamaño de la entrada
 
-
 ## Ejercicios
+
 1. Implementar una cola genérica, similar a la pila dada.
 2. Verificar que todas las operaciones de pila y cola sean $O(1)$
 3. Escribir casos de pruebas para las operaciones de pila y cola[^1].
 
-[^1]: Los casos deben cubrir todas las operaciones 
+[^1]: Los casos deben cubrir todas las operaciones
