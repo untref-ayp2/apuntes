@@ -4,7 +4,7 @@ kernelspec:
   name: gophernotes
 ---
 
-# Montículo
+# Montículos Binarios
 
 Los montículos o heaps son estructuras de datos que permiten acceder al elemento que se encuentra en la cima muy eficientemente. Esta posición privilegiada se utiliza para mantener el mayor elemento del montículo o el menor.
 
