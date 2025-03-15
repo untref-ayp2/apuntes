@@ -163,94 +163,26 @@ Eliminación de un elemento en una Lista Enlazada Simple
 
 En la siguiente tabla se muestra el orden que deberían tener las operaciones básicas sobre una lista enlazada simple
 
-::::{grid} 2
-:padding: 2
+:::{table} Orden de las Operaciones
+:width: 40%
 
-:::{grid-item}
-Operación
+| Operación    | Orden |
+|:------------:|:-----:|
+| Head         | $O(1)$|
+| Tail         | $O(1)$|
+| Size         | $O(1)$|
+| IsEmpty      | $O(1)$|
+| Prepend      | $O(1)$|
+| Append       | $O(1)$|
+| InsertAfter  | $O(n)$|
+| InsertBefore | $O(n)$|
+| RemoveFirst  | $O(1)$|
+| RemoveLast   | $O(1)$|
+| Remove       | $O(n)$|
+| Find         | $O(n)$|
+| Clear        | $O(1)$|
+
 :::
-:::{grid-item}
-Orden
-:::
-:::{grid-item}
-Head
-:::
-:::{grid-item}
-$O(1)$
-:::
-:::{grid-item}
-Tail
-:::
-:::{grid-item}
-$O(1)$
-:::
-:::{grid-item}
-Size
-:::
-:::{grid-item}
-$O(1)$
-:::
-:::{grid-item}
-IsEmpty
-:::
-:::{grid-item}
-$O(1)$
-:::
-:::{grid-item}
-Prepend
-:::
-:::{grid-item}
-$O(1)$
-:::
-:::{grid-item}
-Append
-:::
-:::{grid-item}
-$O(1)$
-:::
-:::{grid-item}
-InsertAfter
-:::
-:::{grid-item}
-$O(n)$
-:::
-:::{grid-item}
-InsertBefore
-:::
-:::{grid-item}
-$O(n)$
-:::
-:::{grid-item}
-RemoveFirst
-:::
-:::{grid-item}
-$O(1)$
-:::
-:::{grid-item}
-RemoveLast
-:::
-:::{grid-item}
-$O(1)$
-:::
-:::{grid-item}
-Remove
-:::
-:::{grid-item}
-$O(n)$
-:::
-:::{grid-item}
-Find
-:::
-:::{grid-item}
-$O(n)$
-:::
-:::{grid-item}
-Clear
-:::
-:::{grid-item}
-$O(1)$
-:::
-::::
 
 Las operaciones que requieren recorrer la lista son $O(n)$. En particular buscar un elemento, insertar o eliminar un elemento en una posición arbitraria requieren recorrer uno a uno cada nodo hasta posicionarse en el nodo adecuado.
 
