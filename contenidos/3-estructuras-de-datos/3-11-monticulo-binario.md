@@ -375,3 +375,6 @@ func personasDeMenorAMayorEdad(a Persona, b Persona) int {
 	return 0
 }
 ```
+
+4. Crear una Cola de Prioridad de Personas que permita agregar Personas y atenderlas por Orden de prioridad y Orden de llegada. La prioridad se define por la edad de la persona, es decir la persona con mayor edad tiene mayor prioridad. 
+
