@@ -5,6 +5,7 @@ kernelspec:
 ---
 
 # Conjuntos
+
 Los conjuntos son estructuras de datos que permiten almacenar elementos de forma **desordenada** y **sin repetición**. Son similares a los conjuntos matemáticos. Los conjuntos se pueden comparar, por igual o distinto.
 
 Por definición dos conjuntos son iguales si tienen los mismos elementos, sin importar el orden en que se encuentren. Por otro lado, dos conjuntos son distintos si tienen al menos un elemento diferente.
@@ -21,99 +22,98 @@ Las operaciones básicas que se pueden realizar con conjuntos se pueden dividir 
 
 ## Operaciones sobre los elementos
 
-Contains
+`Contains`
 : Verificar si un elemento está en el conjunto.
 
-Add
+`Add`
 : Agregar un elemento al conjunto.
 
-Remove
+`Remove`
 : Eliminar un elemento del conjunto.
 
-Size
+`Size`
 : Obtener el número de elementos del conjunto.
 
-Values
+`Values`
 : Obtener los elementos del conjunto.
 
 ## Operaciones entre conjuntos
 
-Union
+`Union`
 : Crear un nuevo conjunto con los elementos de dos conjuntos.
 
-Intersection
+`Intersection`
 : Crear un nuevo conjunto con los elementos comunes de dos conjuntos.
 
-Difference
+`Difference`
 : Crear un nuevo conjunto con los elementos que están en el primer conjunto pero no en el segundo.
 
-Subset
+`Subset`
 : Verificar si un conjunto es subconjunto de otro.
 
-SimeetricDifference
+`SimeetricDifference`
 : Crear un nuevo conjunto con los elementos que están en uno de los conjuntos pero no en ambos.
 
-Superset
+`Superset`
 : Verificar si un conjunto es superconjunto de otro.
 
 ## Implementación
 
-En GO no existe un tipo de dato nativo para conjuntos. Existen muchas formas de implementarlos, sobre arreglos, listas enlazadas, o mapas.
+En Go no existe un tipo de dato nativo para conjuntos. Existen muchas formas de implementarlos, sobre arreglos, listas enlazadas, o mapas.
 
 A modo de ejemplo se muestra una implementación sobre un mapa de tipo `map[int]bool` para representar un conjunto de enteros
 
-```{code-block} go
+```go
 package main
 
 import "fmt"
 
 type Set struct{
-  elements map[int]bool
+    elements map[int]bool
 }
 
 func NewSet() *Set{
-  return &Set{elements: make(map[int]bool)}
+    return &Set{elements: make(map[int]bool)}
 }
 
 func (s *Set) Add(element int){
-  s.elements[element] = true
+    s.elements[element] = true
 }
 
 func (s *Set) Remove(element int){
-  delete(s.elements, element)
+    delete(s.elements, element)
 }
 
 func (s *Set) Contains(element int) bool{
-  return s.elements[element]
+    return s.elements[element]
 }
 
 func (s *Set) Size() int{
-  return len(s.elements)
+    return len(s.elements)
 }
 
 func (s *Set) Values() []int{
-  values := make([]int, 0, s.Size())
-  for k := range s.elements{
-    values = append(values, k)
-  }
-  return values
+    values := make([]int, 0, s.Size())
+    for k := range s.elements {
+        values = append(values, k)
+    }
+    return values
 }
 
 func main() {
-  s := NewSet()
-  s.Add(1)
-  s.Add(2)
-  s.Add(3)
-  fmt.Println(s.Contains(2)) // true
-  fmt.Println(s.Contains(4)) // false
-  fmt.Println(s.Size()) // 3
-  fmt.Println(s.Values()) // [1 2 3]
-  s.Remove(2)
-  fmt.Println(s.Contains(2)) // false
-  fmt.Println(s.Size()) // 2
-  fmt.Println(s.Values()) // [1 3]
+    s := NewSet()
+    s.Add(1)
+    s.Add(2)
+    s.Add(3)
+    fmt.Println(s.Contains(2)) // true
+    fmt.Println(s.Contains(4)) // false
+    fmt.Println(s.Size()) // 3
+    fmt.Println(s.Values()) // [1 2 3]
+    s.Remove(2)
+    fmt.Println(s.Contains(2)) // false
+    fmt.Println(s.Size()) // 2
+    fmt.Println(s.Values()) // [1 3]
 }
-main()
 ```
 
 ## Orden de las operaciones
