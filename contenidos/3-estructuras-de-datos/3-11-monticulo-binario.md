@@ -7,26 +7,29 @@ kernelspec:
 # Colas de Prioridad y Montículos Binarios
 
 ## Colas de Prioridad
+
 Una cola de prioridad, se comporta de forma similar a una cola, pero cada elemento que ingresa en la cola tiene asignada una prioridad, y los elementos con mayor prioridad son los primeros en salir de la cola.
 
 Si todos los elementos tienen la misma prioridad, la cola se comporta como una cola común, es decir el primero que llega es el primero que sale de la cola.
 
 Por ejemplo, si se tiene una cola de prioridad con los siguientes elementos y prioridades, y la posición en la tabla corresponde al orden de llegada de los elementos, es decir se insertaron en orden alfabético y además suponemos que la prioridad 1 es la mayor, luego la 2 y así sucesivamente.
+
 :::{table} Cola de Prioridad
 :width: 40%
 :align: center
 
 | Elemento | Prioridad |
-|:--------:|:---------:|
-| A        | 3         |
-| B        | 1         |
-| C        | 2         |
-| D        | 1         |
-| E        | 3         |
-| F        | 2         |
-| G        | 1         |
-| H        | 3         |
-| I        | 2         |
+| :------: | :-------: |
+|    A     |     3     |
+|    B     |     1     |
+|    C     |     2     |
+|    D     |     1     |
+|    E     |     3     |
+|    F     |     2     |
+|    G     |     1     |
+|    H     |     3     |
+|    I     |     2     |
+
 :::
 
 La cola de prioridad se comportará de la siguiente forma:
@@ -51,9 +54,9 @@ Para implementar una cola de prioridad se puede usar un **montículo binario**, 
 
 ## Montículos Binarios
 
-Los montículos o heaps en inglés, son estructuras de datos que permiten acceder al elemento que se encuentra en la cima muy eficientemente. Esta posición privilegiada se utiliza para mantener el mayor elemento del montículo o el menor. En el caso de que se mantenga el mayor elemento en la cima se le llama **Montículo de Máximos** y si se mantiene el menor se le llama **Montículo de Mínimos**. 
+Los montículos o _heaps_ en inglés, son estructuras de datos que permiten acceder al elemento que se encuentra en la "cima" muy eficientemente. Esta posición privilegiada se utiliza para mantener el mayor elemento del montículo o el menor. En el caso de que se mantenga el mayor elemento en la cima se le llama **Montículo de Máximos** y si se mantiene el menor se le llama **Montículo de Mínimos**.
 
-Existen diferentes tipos de montículos (binario, fibonacci, suave (soft), etc), pero todos comparten la propiedad de que el elemento que se encuentra en la cima es el mayor o el menor de toda la estructura. En nuestro curso nos enfocaremos en los montículos binarios.
+Existen diferentes tipos de montículos (binario, fibonacci, suave (_soft_), etc.), pero todos comparten la propiedad de que el elemento que se encuentra en la cima es el mayor o el menor de toda la estructura. En nuestro curso nos enfocaremos en los montículos binarios.
 
 ```{figure} ../assets/images/HeapRopa.svg
 ---
@@ -96,25 +99,28 @@ En la siguiente figura se observa como se puede usar un arreglo para mantener un
 width: 300px
 name: Heap Representacion
 ---
-Representación con Arreglos de un Montículo Binario de Mínimos
+Representación con arreglos de un Montículo Binario de Mínimos
 ```
 
 Con las siguientes fórmulas se puede calcular la posición en el arreglo de cualquier hijo o padre de un nodo dado.
 
 :::{card} Fórmulas
-$H_{izq}(i) = 2 \times i + 1$
+$$H_{izq}(i) = 2 \; i + 1$$
 
-$H_{der}(i) = 2 \times i + 2$
+$$H_{der}(i) = 2 \; i + 2$$
 
-$Padre(i) = \lfloor \frac{i-1} {2} \rfloor$ Donde el símbolo $\lfloor$ $\rfloor$ indica el piso, es decir la parte entera del cociente
+$$Padre(i) = \left\lfloor \frac{i-1}{2} \right\rfloor$$
+
+Donde el símbolo $\lfloor \; \rfloor$ indica el piso, es decir la parte entera del cociente.
 
 +++
 Las fórmulas pueden variar si la primera posición del arreglo es 1 en lugar de 0. ¿Cómo serían las fórmulas?
 :::
 
-Por ejemplo en la posición 3 del arreglo se encuentra el elemento $H$, su hijo izquierdo se encuentra en la posición $2 \times 3 + 1 = 7$ y su hijo derecho en $2 \times 3 + 2 = 8$. A su vez el padre se encuentra en $\lfloor \frac{3-1} {2} \rfloor = 1$
+Por ejemplo en la posición 3 del arreglo se encuentra el elemento $H$, su hijo izquierdo se encuentra en la posición $2 \cdot 3 + 1 = 7$ y su hijo derecho en $2 \cdot 3 + 2 = 8$. A su vez el padre se encuentra en $\left\lfloor\frac{3-1}{2}\right\rfloor = 1$
 
 ### Operaciones
+
 Las operaciones básicas que se pueden realizar en un montículo son:
 
 Top
@@ -131,7 +137,8 @@ Remove
 
 #### Insertar
 
-En la figura a continuación, se representa la inserción del elemento $9$ dentro de un heap de máximos.
+En la figura {ref}`Heap Insercion`, se representa la inserción del elemento $9$ dentro de un Heap de Máximos.
+
 Para preservar la propiedad de forma, es preciso insertar el elemento en la posición 9 del arreglo, es decir como hijo izquierdo de la posición 4. De esta forma nos aseguramos de mantener siempre un árbol completo e izquierdista.
 
 Al insertar el elemento $9$ en la posición 9 vemos que se perdió la propiedad de orden, ya que el 9 es mayor que su padre, el elemento $5$.
@@ -152,11 +159,13 @@ Inserción en un Heap de Máximos
 
 Inserta un elemento dentro del Montículo
 
-**Entrada** $elemento$: Elemento a insertar
+**Entrada**
 
-```{code-block}
+- `elemento`: elemento a insertar
+
+```{code-block} go
 :linenos:
-pos = cantidad de elementos - 1
+pos = cantidadDeElementos - 1
 A[pos] = elemento
 upHeap(pos)
 ```
@@ -167,15 +176,18 @@ upHeap(pos)
 
 Reestablece la Propiedad de Orden en un montículo de máximos, luego de insertar un elemento
 
-**Entrada** $i$: Posición dentro del heap donde empieza la operación. Inicialmente la última hoja recién insertada.
+**Entrada**
 
-```{code-block}
+- `i`: posición dentro del heap donde empieza la operación. Inicialmente la última hoja recién insertada.
+
+```{code-block} go
 :linenos:
-padre = (i-1) div 2
-Mientras A[i] < A[padre]:
+padre = (i-1) / 2
+for A[i] < A[padre] {
     Intercambiar(A, i, padre)
     i = padre
-    padre = (i-1) div 2
+    padre = (i-1) / 2
+}
 ```
 ````
 
@@ -203,15 +215,15 @@ Eliminación en un Heap de Máximos
 
 Elimina la cima del heap y devuelve el elemento correspondiente
 
-
 ```{code-block}
 :linenos:
 elemento = A[0]
-ultimo = cantidad de elementos - 1
+ultimo = cantidadDeElementos - 1
 Intercambiar(A, 0, ultimo)
-Decrementar tamaño del Heap en 1
+// Decrementar tamaño del Heap en 1
+A = A[:len(A)-1]
 downHeap(0)
-retornar elemento
+return elemento
 ```
 ````
 
@@ -220,7 +232,9 @@ retornar elemento
 
 Reestablece la Propiedad de Orden en un montículo de máximos, luego de eliminar la raíz
 
-**Entrada** $i$: Posición dentro del heap donde empieza la operación. Inicialmente la raíz en la posición 0.
+**Entrada**
+
+- `i`: posición dentro del heap donde empieza la operación. Inicialmente la raíz en la posición 0.
 
 ```{code-block}
 :linenos:
@@ -238,143 +252,144 @@ Mientras A[i] < A[candidato]:
 :width: 40%
 :align: center
 
-| Operación | Orden      |
-|:---------:|:----------:|
-| Top       | $O(1)$     |
-| Size      | $O(1)$     |
-| Insert    | $O(log_n)$ |
-| Remove    | $O(log_n)$ |
+| Operación |   Orden    |
+| :-------: | :--------: |
+|    Top    |   $O(1)$   |
+|   Size    |   $O(1)$   |
+|  Insert   | $O(log_n)$ |
+|  Remove   | $O(log_n)$ |
+
 :::
 
 Insertar y Remover tienen un orden garantizado de $O(log N)$ porque en el peor caso se debe recorrer la altura del árbol para reestablecer la propiedad de orden y el árbol siempre está balanceado.
 
 ## Ejercicios
+
 1. Implementar un montículo binario de máximos que soporte números enteros.
 2. Dadas la siguiente definición:
 
-```{code-block} GO
-:linenos:
-type Heap[T any] struct {
-  // contenedor de datos
-  elements []T
-  // Función de comparación. Para un heap de mínimo,
-  // devuelve -1 si a < b, 0 si a == b, 1 si a > b
-  // Para un heap de máximo, devuelve 1 si a < b, 0 si a == b, -1 si a > b
-  compare func(a T, b T) int
-}
-```
-Completar el código a continuación, para obtener un montículo genérico, cuyos elementos puede ser cualquier cosa que pueda compararse entre sí, por ejemplo enteros, flotantes, cadenas o estructuras más complejas, como {nombre, edad}, etc. y que soporte montículos de máximos y mínimos.
+   ```{code-block} go
+   :linenos:
+   type Heap[T any] struct {
+       // contenedor de datos
+       elements []T
+       // Función de comparación. Para un heap de mínimo,
+       // devuelve -1 si a < b, 0 si a == b, 1 si a > b
+       // Para un heap de máximo, devuelve 1 si a < b, 0 si a == b, -1 si a > b
+       compare func(a T, b T) int
+   }
+   ```
 
-```{code-block} GO
+   Completar el código a continuación, para obtener un montículo genérico, cuyos elementos puede ser cualquier cosa que pueda compararse entre sí, por ejemplo enteros, flotantes, cadenas o estructuras más complejas, como {nombre, edad}, etc. y que soporte montículos de máximos y mínimos.
 
-// NewGenericHeap crea un nuevo heap binario con una función de comparación personalizada.
-//
-// Uso:
-//
-//	heap := heap.NewGenericHeap[int](func(a int, b int) int {
-//		if a < b {
-//			return -1
-//		}
-//		if a > b {
-//			return 1
-//		}
-//		return 0
-//	})
-//
-// Parámetros:
-//   - `comp` función de comparación personalizada.
-//
-// Retorna:
-//   - un puntero a un heap binario con una función de comparación personalizada.
-func NewGenericHeap[T any](comp func(a T, b T) int) *Heap[T] {
-	....
-}
+   ```{code-block} go
+   // NewGenericHeap crea un nuevo heap binario con una función de comparación personalizada.
+   //
+   // Uso:
+   //
+   //     heap := heap.NewGenericHeap[int](func(a int, b int) int {
+   //         if a < b {
+   //             return -1
+   //         }
+   //         if a > b {
+   //             return 1
+   //         }
+   //         return 0
+   //     })
+   //
+   // Parámetros:
+   //   - `comp` función de comparación personalizada.
+   //
+   // Retorna:
+   //   - un puntero a un heap binario con una función de comparación personalizada.
+   func NewGenericHeap[T any](comp func(a T, b T) int) *Heap[T] {
+       // ...
+   }
 
-// Size retorna la cantidad de elementos en el heap.
-//
-// Uso:
-//
-//	size := heap.Size()
-//
-// Retorna:
-//   - la cantidad de elementos en el heap.
-func (m *Heap[T]) Size() int {
-	....
-}
+   // Size retorna la cantidad de elementos en el heap.
+   //
+   // Uso:
+   //
+   //     size := heap.Size()
+   //
+   // Retorna:
+   // - la cantidad de elementos en el heap.
+   func (m *Heap[T]) Size() int {
+       // ...
+   }
 
-// Insert agrega un elemento al heap.
-//
-// Uso:
-//
-//	heap := heap.NewMinHeap[int]()
-//	heap.Insert(5)
-//
-// Parámetros:
-//
-//	element: elemento a agregar al heap.
-func (m *Heap[T]) Insert(element T) {
-	....
-}
+   // Insert agrega un elemento al heap.
+   //
+   // Uso:
+   //
+   //     heap := heap.NewMinHeap[int]()
+   //     heap.Insert(5)
+   //
+   // Parámetros:
+   //   - `element`: elemento a agregar al heap.
+   func (m *Heap[T]) Insert(element T) {
+       // ...
+   }
 
-// Remove elimina y retorna el elemento en la cima del heap.
-//
-// Uso:
-//
-//	heap := heap.NewMinHeap[int]()
-//	heap.Insert(5)
-//	element, _ := heap.Remove()
-//
-// Retorna:
-//   - el elemento en la cima del heap.
-//   - un error si el heap está vacío.
-func (m *Heap[T]) Remove() (T, error) {
-	....
-}
-// Top retorna el elemento en la cima del heap.
-//
-// Uso:
-//
-//	heap := heap.NewMinHeap[int]()
-//	heap.Insert(5)
-//	element, _ := heap.Top()
-//
-// Retorna:
-//   - el elemento en la cima del heap.
-//   - un error si el heap está vacío.
-func (m *Heap[T]) Top() (T, error) {
-  ....
-}
-```
+   // Remove elimina y retorna el elemento en la cima del heap.
+   //
+   // Uso:
+   //
+   //     heap := heap.NewMinHeap[int]()
+   //     heap.Insert(5)
+   //     element, _ := heap.Remove()
+   //
+   // Retorna:
+   //   - el elemento en la cima del heap.
+   //   - un error si el heap está vacío.
+   func (m *Heap[T]) Remove() (T, error) {
+       // ...
+   }
+
+   // Top retorna el elemento en la cima del heap.
+   //
+   // Uso:
+   //
+   //     heap := heap.NewMinHeap[int]()
+   //     heap.Insert(5)
+   //     element, _ := heap.Top()
+   //
+   // Retorna:
+   //   - el elemento en la cima del heap.
+   //   - un error si el heap está vacío.
+   func (m *Heap[T]) Top() (T, error) {
+       // ...
+   }
+
+   ```
 
 3. Escribir casos de prueba para verificar que el montículo binario del punto anterior funciona correctamente. Usar `Persona` dado a continuación como elementos del montículo.
 
-```{code-block} GO
+   ```{code-block} go
+   type Persona struct {
+       nombre string
+       edad   int
+   }
 
-type Persona struct {
-	nombre string
-	edad   int
-}
+   func personasDeMayorAMenorEdad(a Persona, b Persona) int {
+       if a.edad < b.edad {
+           return 1
+       } else if a.edad > b.edad {
+           return -1
+       }
 
-func personasDeMayorAMenorEdad(a Persona, b Persona) int {
-	if a.edad < b.edad {
-		return 1
-	} else if a.edad > b.edad {
-		return -1
-	}
+       return 0
+   }
 
-	return 0
-}
+   func personasDeMenorAMayorEdad(a Persona, b Persona) int {
+       if a.edad < b.edad {
+           return -1
+       } else if a.edad > b.edad {
+           return 1
+       }
 
-func personasDeMenorAMayorEdad(a Persona, b Persona) int {
-	if a.edad < b.edad {
-		return -1
-	} else if a.edad > b.edad {
-		return 1
-	}
+       return 0
+   }
+   ```
 
-	return 0
-}
-```
-
-4. Crear una Cola de Prioridad de Personas que permita agregar Personas y atenderlas por Orden de prioridad y Orden de llegada. La prioridad se define por la edad de la persona, es decir la persona con mayor edad tiene mayor prioridad. 
-
+4. Crear una Cola de Prioridad de Personas que permita agregar Personas y atenderlas por Orden de prioridad y Orden de llegada. La prioridad se define por la edad de la persona, es decir la persona con mayor edad tiene mayor prioridad.
