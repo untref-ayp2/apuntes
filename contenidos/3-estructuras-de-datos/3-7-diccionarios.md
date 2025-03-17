@@ -1,11 +1,12 @@
 ---
 file_format: mystnb
 kernelspec:
-  name: gophernotes
+    name: gophernotes
 ---
 
 # Diccionarios
-Los diccionarios son una estructura de datos que permite almacenar pares de elementos (clave, valor). La clave es un valor único que nos permite identificar al valor asociado. Los diccionarios se pueden implementar sobre distintas estructuras de datos como tablas de hash y árboles, entre otros. 
+
+Los diccionarios son una estructura de datos que permiten almacenar pares de elementos `(clave, valor)`. La clave es un valor único que nos permite identificar al valor asociado. Los diccionarios se pueden implementar sobre distintas estructuras de datos como tablas de hash y árboles, entre otros.
 
 Podemos pensar a los diccionarios como una guía telefónica, donde el nombre de la persona es la clave y el número de teléfono es el valor asociado y podemos buscar rapidamente un número utilizando un índice para no tener que recorrer toda la guía telefónica.
 
@@ -31,27 +32,26 @@ Las claves de un diccionario tienen que ser únicas, es decir, no puede haber do
 
 Los diccionarios deben soportar las siguientes operaciones:
 
-Put
+`Put`
 : Agrega el par (clave, valor) al diccionario. Si la clave ya existe, se reemplaza el valor asociado a la clave existente por el nuevo valor.
 
-Get
+`Get`
 : Devuelve el valor asociado a la clave.
 
-Size
+`Size`
 : Devuelve la cantidad de elementos en el diccionario.
 
-Exist
+`Exist`
 : Determina si una clave existe en el diccionario.
 
-Remove
+`Remove`
 : Elimina el par (clave, valor) del diccionario.
 
-Keys
+`Keys`
 : Devuelve una lista con todas las claves del diccionario.
 
-Values
+`Values`
 : Devuelve una lista con todos los valores del diccionario.
-
 
 Cómo se mencionó anteriormente, el orden de las operaciones puede variar dependiendo de la implementación del diccionario.
 
@@ -61,19 +61,19 @@ A continuación el orden esperado en una implementación de diccionario sobre ta
 :width: 40%
 :align: center
 
-| Operación |   Orden    |
-| :-------: | :--------: |
-|    Put    |   $O(1)$   |
-|    Get    |   $O(1)$   |
-|   Size    |   $O(1)$   |
-|   Exits   |   $O(1)$   |
-|  Remove   |   $O(1)$   |
-|   Keys    |   $O(n)$   |
-|  Values   |   $O(n)$   |
+| Operación | Orden  |
+| :-------: | :----: |
+|   `Put`   | $O(1)$ |
+|   `Get`   | $O(1)$ |
+|  `Size`   | $O(1)$ |
+|  `Exits`  | $O(1)$ |
+| `Remove`  | $O(1)$ |
+|  `Keys`   | $O(n)$ |
+| `Values`  | $O(n)$ |
 
 :::
 
-## Implementación en GO
+## Implementación en Go
 
 En Go, los diccionarios se pueden implementar usando el tipo de dato `map`. Un `map` es una colección de pares clave-valor, donde las claves son únicas y los valores pueden ser de cualquier tipo. La sintaxis para declarar un `map` es la siguiente:
 
@@ -131,23 +131,24 @@ for clave, valor := range edades {
 
 ## Ejercicios
 
-1. Dada la siguiente definición del tipo de datos _Dictionary_. Implementar un diccionario génerico.
-   
-```go
-// Dictionary implementa un diccionario genérico basado en un map de Go.
-// Las claves deben ser de un tipo comparable y los valores pueden ser de cualquier tipo.
-type Dictionary[K comparable, V any] struct {
-	dict map[K]V
-}
-```
+1. Dada la siguiente definición del tipo de datos `Dictionary`. Implementar un diccionario génerico.
+
+    ```go
+    // Dictionary implementa un diccionario genérico basado en un map de Go.
+    // Las claves deben ser de un tipo comparable y los valores pueden ser de cualquier tipo.
+    type Dictionary[K comparable, V any] struct {
+        dict map[K]V
+    }
+    ```
+
 2. Implementar un diccionario similar al ejercicio anterior pero sobre árboles AVL.
 
-```go
-// AVLDictionary implementa un diccionario genérico basado en un árbol AVL.
-// Las claves deben ser de un tipo comparable y los valores pueden ser de cualquier tipo.
-type AVLDictionary[K types.Ordered, V any] struct {
-  tree *AVLTree[K, V]
-}
-```
+    ```go
+    // AVLDictionary implementa un diccionario genérico basado en un árbol AVL.
+    // Las claves deben ser de un tipo comparable y los valores pueden ser de cualquier tipo.
+    type AVLDictionary[K types.Ordered, V any] struct {
+        tree *AVLTree[K, V]
+    }
+    ```
 
-3. Analizar y comparar el orden de las operaciones de los diccionarios de los ejercicios anteriores
+3. Analizar y comparar el orden de las operaciones de los diccionarios de los ejercicios anteriores.
