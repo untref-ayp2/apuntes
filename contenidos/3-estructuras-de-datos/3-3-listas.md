@@ -165,6 +165,7 @@ En la siguiente tabla se muestra el orden que deberían tener las operaciones b�
 
 :::{table} Orden de las Operaciones
 :width: 40%
+:align: center
 
 | Operación    | Orden |
 |:------------:|:-----:|
