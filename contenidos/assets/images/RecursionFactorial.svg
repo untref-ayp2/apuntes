@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.9 -->
+<!-- CreationDate: 2025-03-18 12:58:12 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="467pt" height="498pt"
+	viewBox="726 438 7408 7899">
+<g fill="none">
+<!-- Line -->
+<rect x="2250" y="1800" width="2700" height="1125" fill="#87cfff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="2340" y="2700" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">return n * factorial(n-1)</text>
+<!-- Line -->
+<rect x="2700" y="3150" width="2700" height="1125" fill="#87cfff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="2790" y="4050" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">return n * factorial(n-1)</text>
+<!-- Line -->
+<rect x="3150" y="4500" width="2700" height="1125" fill="#87cfff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="3240" y="5400" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">return n * factorial(n-1)</text>
+<!-- Line -->
+<rect x="3600" y="5850" width="2700" height="1125" fill="#87cfff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="3690" y="6750" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">return n * factorial(n-1)</text>
+<!-- Line -->
+<rect x="4050" y="7200" width="2700" height="1125" fill="#87cfff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="4140" y="8100" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">fmt.Println(factorial(4))</text>
+<!-- Line -->
+<rect x="1800" y="450" width="2700" height="1125" fill="#87cfff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="1890" y="1350" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">return 1</text>
+<!-- Arc -->
+<defs>
+<clipPath id="cp0">
+	<path clip-rule="evenodd" d="M 726,438 H 8134 V 8337 H 726 z
+		M 3440,6364 3481,6373 3471,6415 3609,6302 3602,6291z"/>
+</clipPath>
+</defs>
+<path d="M 4050,7875 A 835 835 0 0 1 3600 6300" clip-path="url(#cp0)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 3600,6300 -->
+<polygon points=" 3471,6415 3583,6310 3440,6364 3481,6373 3471,6415"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp1">
+	<path clip-rule="evenodd" d="M 726,438 H 8134 V 8337 H 726 z
+		M 2990,5014 3031,5023 3021,5065 3159,4952 3152,4941z"/>
+</clipPath>
+</defs>
+<path d="M 3600,6525 A 835 835 0 0 1 3150 4950" clip-path="url(#cp1)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 3150,4950 -->
+<polygon points=" 3021,5065 3133,4960 2990,5014 3031,5023 3021,5065"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp2">
+	<path clip-rule="evenodd" d="M 726,438 H 8134 V 8337 H 726 z
+		M 2540,3664 2581,3673 2571,3715 2709,3602 2702,3591z"/>
+</clipPath>
+</defs>
+<path d="M 3150,5175 A 835 835 0 0 1 2700 3600" clip-path="url(#cp2)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 2700,3600 -->
+<polygon points=" 2571,3715 2683,3610 2540,3664 2581,3673 2571,3715"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp3">
+	<path clip-rule="evenodd" d="M 726,438 H 8134 V 8337 H 726 z
+		M 2090,2314 2131,2323 2121,2365 2259,2252 2252,2241z"/>
+</clipPath>
+</defs>
+<path d="M 2700,3825 A 835 835 0 0 1 2250 2250" clip-path="url(#cp3)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 2250,2250 -->
+<polygon points=" 2121,2365 2233,2260 2090,2314 2131,2323 2121,2365"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp4">
+	<path clip-rule="evenodd" d="M 726,438 H 8134 V 8337 H 726 z
+		M 1640,1189 1681,1198 1671,1240 1809,1127 1802,1116z"/>
+</clipPath>
+</defs>
+<path d="M 2250,2700 A 835 835 0 0 1 1800 1125" clip-path="url(#cp4)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 1800,1125 -->
+<polygon points=" 1671,1240 1783,1135 1640,1189 1681,1198 1671,1240"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp5">
+	<path clip-rule="evenodd" d="M 726,438 H 8134 V 8337 H 726 z
+		M 5111,2412 5070,2403 5080,2361 4942,2474 4949,2485z"/>
+</clipPath>
+</defs>
+<path d="M 4500,900 A 836 836 0 0 1 4951 2476" clip-path="url(#cp5)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 4951,2476 -->
+<polygon points=" 5080,2361 4968,2466 5111,2412 5070,2403 5080,2361"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp6">
+	<path clip-rule="evenodd" d="M 726,438 H 8134 V 8337 H 726 z
+		M 5561,3762 5520,3753 5530,3711 5392,3824 5399,3835z"/>
+</clipPath>
+</defs>
+<path d="M 4950,2250 A 836 836 0 0 1 5401 3826" clip-path="url(#cp6)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 5401,3826 -->
+<polygon points=" 5530,3711 5418,3816 5561,3762 5520,3753 5530,3711"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp7">
+	<path clip-rule="evenodd" d="M 726,438 H 8134 V 8337 H 726 z
+		M 6011,5112 5970,5103 5980,5061 5842,5174 5849,5185z"/>
+</clipPath>
+</defs>
+<path d="M 5400,3600 A 836 836 0 0 1 5851 5176" clip-path="url(#cp7)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 5851,5176 -->
+<polygon points=" 5980,5061 5868,5166 6011,5112 5970,5103 5980,5061"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp8">
+	<path clip-rule="evenodd" d="M 726,438 H 8134 V 8337 H 726 z
+		M 6911,7812 6870,7803 6880,7761 6742,7874 6749,7885z"/>
+</clipPath>
+</defs>
+<path d="M 6300,6300 A 836 836 0 0 1 6751 7876" clip-path="url(#cp8)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 6751,7876 -->
+<polygon points=" 6880,7761 6768,7866 6911,7812 6870,7803 6880,7761"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Arc -->
+<defs>
+<clipPath id="cp9">
+	<path clip-rule="evenodd" d="M 726,438 H 8134 V 8337 H 726 z
+		M 6460,6461 6419,6452 6429,6410 6291,6523 6298,6534z"/>
+</clipPath>
+</defs>
+<path d="M 5850,4950 A 835 835 0 0 1 6300 6525" clip-path="url(#cp9)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 6300,6525 -->
+<polygon points=" 6429,6410 6317,6515 6460,6461 6419,6452 6429,6410"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Text -->
+<text xml:space="preserve" x="3150" y="7425" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">n = 4</text>
+<!-- Text -->
+<text xml:space="preserve" x="2700" y="6030" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">n = 3</text>
+<!-- Text -->
+<text xml:space="preserve" x="2250" y="4680" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">n = 2</text>
+<!-- Text -->
+<text xml:space="preserve" x="1800" y="3330" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">n = 1</text>
+<!-- Text -->
+<text xml:space="preserve" x="810" y="2475" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">5</text>
+<!-- Text -->
+<text xml:space="preserve" x="810" y="3825" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">4</text>
+<!-- Text -->
+<text xml:space="preserve" x="810" y="5175" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">3</text>
+<!-- Text -->
+<text xml:space="preserve" x="1305" y="1980" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">n = 0</text>
+<!-- Text -->
+<text xml:space="preserve" x="810" y="6525" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">2</text>
+<!-- Text -->
+<text xml:space="preserve" x="810" y="7875" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="810" y="1125" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">6</text>
+<!-- Text -->
+<text xml:space="preserve" x="5490" y="1575" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="5895" y="2925" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">1 * 1 = 1</text>
+<!-- Text -->
+<text xml:space="preserve" x="6390" y="4275" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">2 * 1 = 2</text>
+<!-- Text -->
+<text xml:space="preserve" x="7245" y="6975" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">4 * 6 = 24</text>
+<!-- Text -->
+<text xml:space="preserve" x="6795" y="5580" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">3 * 2 = 6</text>
+</g>
+</svg>
