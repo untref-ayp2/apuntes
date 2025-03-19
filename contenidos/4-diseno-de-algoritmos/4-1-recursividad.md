@@ -65,7 +65,7 @@ name: recursion-factorial
 ---
 Pila de Ejecución - factorial(4).
 ```
-La primera llamada que se hace a factorial recibe el valor de `n = 4`. Como `n != 0`, se llama a la función factorial con `n = 3`. Luego se llama a la función con `n = 2`, `n = 1` y finalmente `n = 0`. En este punto se llega al caso base y se retorna 1. Luego se van desapilando las llamadas recursivas y se van multiplicando los valores de `n` en cada nivel de la pila. Finalmente se obtiene el resultado de `24`.
+La primera llamada que se hace a factorial recibe el valor de `n = 4`. Como `n != 0`, se llama a la función factorial con `n = 3`. Luego se llama a la función con `n = 2`, `n = 1` y finalmente `n = 0`. Cuando la función se llama a si misma queda bloqueada su ejecución en ese punto, esperando el resultado de la llamada rercursiva para continuar. Cuando se llega al caso base y se retorna 1 se retoma la ejecución de la llamada anterior y sucesivamente se van desapilando las llamadas recursivas y se van multiplicando los valores de `n` en cada nivel de la pila. Finalmente se obtiene el resultado de `24`.
 
 ### Tipos de recursión
 
@@ -75,7 +75,7 @@ Recursión directa
 : Es la forma más común de recursión, donde una función se llama a sí misma directamente.
 
 Recursión indirecta
-: En este caso, dos o más funciones se llaman entre sí de forma cíclica. Es decir, la función A llama a la función B, que a su vez llama a la función A. Este tipo de recursión es menos común y puede ser difícil de entender y depurar y así sucesivamente. Incluso puede haber más de dos funciones que se llaman mutuamente.
+: En este caso, dos o más funciones se llaman entre sí de forma cíclica. Es decir, la función A llama a la función B, que a su vez llama a la función A. Este tipo de recursión es menos común y puede ser difícil de entender y depurar. Incluso puede haber más de dos funciones que se llaman mutuamente.
 
 El ejemplo del cálculo del factorial es un ejemplo de recursión directa, ya que la función `factorial` se llama a sí misma directamente.
 
@@ -100,7 +100,7 @@ func esImpar(n int) bool {
 }
 :::
 
-En este caso en la línea 5 se llama a la función `esImpar` y en la línea 12 a la función `esPar`. Cada llamada recursiva se realiza siempre con un número menor, de forma tal de acercarse al caso base cuano `n == 0`. De acuerdo si llego al caso base por la primera o la segunda función el valor de retorno será Verdadero o Falso.
+En este caso en la línea 5 se llama a la función `esImpar` y en la línea 12 a la función `esPar`. Cada llamada recursiva se realiza siempre con un número menor, de forma tal de acercarse al caso base cuano `n == 0`. De acuerdo si llego al caso base por la primera o la segunda función el valor de retorno será `Verdadero` o `Falso`.
 
 ### Cálculo de la complejidad de las funciones recursivas
 
@@ -110,7 +110,7 @@ Para calcular el orden de las funciones recursivas se debe escribir la ecuación
 T(n) = T(n-1) + O(k)
 ```
 
-Donde $T(n)$ es el tiempo de ejecución de la función factorial para un valor $n$. La función `factorial` se llama a sí misma con un valor más pequeño $n-1$, por lo que aparece el término $T(n-1)$ y el resto de las operaciones son constantes y se representant con el término $O(k)$.
+Donde $T(n)$ es el tiempo de ejecución de la función factorial para un valor $n$. La función `factorial` se llama a sí misma con un valor más pequeño, $n-1$, por lo que aparece el término $T(n-1)$, el resto de las operaciones son constantes y se representant con el término $O(k)$.
 
 Aplicando la ecuación de recurrencia podemos calcular $T(n-1)$
 
@@ -135,7 +135,7 @@ Finalmente en la última llamada tendremos:
 T(n) = T(0) + n \; O(k)
 ```
 
-como $T(0) = O(1)$, entonces la complejidad de la función factorial es:
+como $T(0) = O(1)$, porque no se realiza ninguna llamada recursiva, sino que se resuevle por el caso base, entonces la complejidad de la función factorial es:
 
 ```{math}
 T(n) = n \; O(k) + O(1) = O(n)
@@ -143,7 +143,7 @@ T(n) = n \; O(k) + O(1) = O(n)
 
 ## División y Conquista
 
-División y conquista, también conocida como divide y vencerás, es una técnica de diseño de algoritmos, muy vinculada a la recursividad, para resolver problemas que generalmente manipulan una gran cantidad de datos y que consiste aplicar tres pasos:
+División y conquista, también conocida como divide y vencerás, es una técnica de diseño de algoritmos, muy vinculada a la recursividad, que se utiliza para resolver problemas que generalmente manipulan una gran cantidad de datos y que consiste aplicar tres pasos:
 
 Dividir
 : El problema original se divide en subproblemas más pequeños y manejables. Los subproblemas deben ser de la misma naturaleza que el problema original, pero de menor tamaño. Todos los subproblemás deben tener aproximadamente el mismo tamaño.
@@ -160,12 +160,12 @@ A modo de ejemplo vamos a implementar el algoritmo de búsqueda binaria, que es 
 
 :::{important}
 Las partes en la que se subdivide la entrada de datos original deben ser aproximadamente iguales. En el caso de la búsqueda binaria, si el tamaño del arreglo original era impar, entonces una mitad tendrá un elemento más que la otra, lo cual no afecta a la aplicación de esta técnica.
-Esta técnica permite reducir drásticamente el tiempo de ejecución, es decir el orden de la función
+Esta técnica permite reducir drásticamente el tiempo de ejecución, es decir el orden de la función.
 :::
 
 ```{code-block} go
 :linenos:
-:emphasize-lines: 2, 9, 13
+:emphasize-lines: 2, 6, 9, 13
 
 func busquedaBinaria(array []int, inicio int, fin int, x int) int {
   if inicio > fin {
@@ -194,6 +194,8 @@ Conquistar
 Combinar
 : En este ejemplo donde se busca un valor, la construcción del resultado final es trivial, ya que si en algunas de las llamadas recursivas se encuentra el elemento buscado, se devuelve `Verdadero` que se propaga debido los return que acompañan a las llamadas recursivas en las líneas 9 y 13
 
+Caso base
+: Como toda función recursiva debe tener un caso base para impedir que la recursión se desborde. En la búsqueda binaria podemos pensar el caso base como aquel en el que no se encuentra el número buscado y se reduce a 0 el espacio de búsqueda. Se puede ver en la línea 2 cuando `inicio > fin`.
 
 ### Teorema del Maestro
 
@@ -207,17 +209,18 @@ T(n)=a \; T(\frac{n}{b}) + O(n^c)
 Donde
 
 $b$
-: Cantidad de partes iguales en la que se subdivide el problema original
+: Cantidad de partes iguales en la que se subdivide el problema original.
 
 $a$
-: Cuantos de los subproblemas se resuelven efectivamente
+: Cuantos de los subproblemas se resuelven efectivamente.
 
 $c$
-: $O(n^c)$ es el costo de partir o subdividir el problema original más el costo de combinar las soluciones parciales
+: $O(n^c)$ es el costo de partir o subdividir el problema original más el costo de combinar las soluciones parciales.
 
 El Teorema del Maestro establece que la solución a la ecuación de recurrencia es:
 
 ```{math}
+:label: teorema-maestro
 T(n) = 
 \begin{cases}
 O(n^c) & \text{si } log_b(a) < c \\
@@ -239,3 +242,23 @@ por lo tanto, como $log_2(1)=0$ estamos en el segundo caso
 ```{math}
 T(n)=O(log_2(n))
 ```
+
+## Ejercicios
+
+1. Escribir una función recursiva que tome una cadena y devuelva verdadero si la cadena es un palíndromo o falso en caso contrario
+
+2. Escribir una función recursiva que reciba una cadena y un caracter y devuelva la cantidad de veces que aparece el caracter en la cadena.
+
+3. Escribir una función recursiva que resuelva el juego de las [Torres de Hanoi](https://es.wikipedia.org/wiki/Torres_de_Hanói) ([Ver animacion](https://youtu.be/8XQmuPKOgy8?t=38)):
+    
+> El juego, en su forma más tradicional, consiste en tres postes verticales. En uno de los postes se apila un número indeterminado de discos perforados por su centro (elaborados de madera), que determinará la complejidad de la solución. Por regla general se consideran siete discos. Los discos se apilan sobre uno de los postes en tamaño decreciente de abajo arriba. No hay dos discos iguales, y todos ellos están apilados de mayor a menor radio -desde la base del poste hacia arriba- en uno de los postes, quedando los otros dos postes vacíos. El juego consiste en pasar todos los discos desde el poste ocupado (es decir, el que posee la torre) a uno de los otros postes vacíos. Para realizar este objetivo, es necesario seguir tres simples reglas:
+
+> 1. Solo se puede mover un disco cada vez y para mover otro los demás tienen que estar en postes.
+> 2. Un disco de mayor tamaño no puede estar sobre uno más pequeño que él mismo.
+> 3. Solo se puede desplazar el disco que se encuentre arriba en cada poste.
+
+4. Programar la busqueda ternaria recursiva. Donde en lugar de dividir el arreglo en dos partes iguales, se divide en tres partes iguales. Calcular el orden aplicando el Teoreama del Maestro [](#teorema-maestro) y comparar el orden con la busqueda binaria.
+
+5. Se tiene un arreglo de len(n) >= 3 elementos en forma de pico, esto es: estrictamente creciente hasta una determinada posición p, y estrictamente decreciente a partir de ella (con 0 < p < n-1). Por ejemplo, en el arreglo [1, 2, 3, 1, 0, -2] la posición del pico es p=2.
+
+Se pide implementar un algoritmo de división y conquista de orden O(log n) que encuentre la posición p del pico.
