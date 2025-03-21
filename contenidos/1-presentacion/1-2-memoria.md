@@ -60,7 +60,7 @@ En tiempo de ejecución, un proceso está asociado a una porción de la memoria 
     * Liberación dinámica de memoria
 
 ## Esquema de la memoria
-![Esquema de la memoria](../assets/images/esquemaMemoria.jpg "Esquema de la memoria")
+![Esquema de la memoria](../assets/images/esquemaDeMemoria.svg "Esquema de la memoria")
 
 ## Gestión de Memoria en Go
 
@@ -112,7 +112,7 @@ p4.direccion = dir
 ```
 **Mapa de memoria del codigo anterior:**
 
-![Mapa de memoria](../assets/images/mapaDeMemoria.jpg "Mapa de memoria del código anterior.")
+![Mapa de memoria](../assets/images/mapaDeMemoria.svg "Mapa de memoria del código anterior.")
 
 ## Asignación de Memoria: ```new()``` vs ```make()```
 
