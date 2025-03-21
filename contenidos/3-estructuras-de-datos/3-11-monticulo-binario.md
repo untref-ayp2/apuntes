@@ -123,16 +123,16 @@ Por ejemplo en la posición 3 del arreglo se encuentra el elemento $H$, su hijo 
 
 Las operaciones básicas que se pueden realizar en un montículo son:
 
-Top
+`Top`
 : Devuelve el elemento que se encuentra en la cima del montículo, es decir el máximo o el mínimo de toda la estructura, pero no lo elimina.
 
-Size
+`Size`
 : Devuelve la cantidad de elementos que se encuentran en el montículo.
 
-Insert
+`Insert`
 : Inserta un nuevo elemento en el montículo.
 
-Remove
+`Remove`
 : Elimina el elemento que se encuentra en la cima del montículo y lo devuelve.
 
 #### Insertar
@@ -254,10 +254,10 @@ Mientras A[i] < A[candidato]:
 
 | Operación |   Orden    |
 | :-------: | :--------: |
-|    Top    |   $O(1)$   |
-|   Size    |   $O(1)$   |
-|  Insert   | $O(log_n)$ |
-|  Remove   | $O(log_n)$ |
+|   `Top`   |   $O(1)$   |
+|  `Size`   |   $O(1)$   |
+| `Insert`  | $O(log_n)$ |
+| `Remove`  | $O(log_n)$ |
 
 :::
 

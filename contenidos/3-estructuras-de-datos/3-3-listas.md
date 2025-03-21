@@ -31,48 +31,48 @@ Las listas que estudiaremos son:
 
 Las listas enlazadas son muy versátiles y su comportamiento se puede adaptar a medida de las necesidades. Algunas de las operaciones típicas que soporta una lista enlazada son:
 
-Head
+`Head`
 : Devuelve un puntero al primer elemento de la lista.
 
-Tail
+`Tail`
 : Devuelve un puntero al último elemento de la lista.
 
-Size
+`Size`
 : Devuelve el tamaño de la lista (cantidad de nodos que tiene la lista).
 
-IsEmpty
+`IsEmpty`
 : Devuelve **Verdadero** si la lista está vacía o **Falso** en caso contrario.
 
-Prepend
+`Prepend`
 : Insertar un elemento en la cabeza de la lista.
 
-Append
+`Append`
 : Insertar un elemento en la cola de la lista.
 
-InsertAfter
+`InsertAfter`
 : Inserta un elemento a continuación de un elemento dado.
 
-InsertBefore
+`InsertBefore`
 : Inserta un elemento antes de un elemento dado.
 
-RemoveFirst
+`RemoveFirst`
 : Elimina el primer elemento de la lista.
 
-RemoveLast
+`RemoveLast`
 : Elimina el último elemento de la lista.
 
-Remove
+`Remove`
 : Elimina la primera aparición del elemento dado.
 
-Find
+`Find`
 : Devuelve un puntero a la primera aparición de un elemento buscado.
 
-Clear
+`Clear`
 : Elimina todos los elementos de la lista
 
 ## Lista Enlazada Simple
 
-````{Admonition} Definición
+```{Admonition} Definición
 
 Una lista enlazada simple es una estructura de datos lineal donde cada nodo de la lista tiene un sucesor, salvo el último. Por definición la lista vacía es la que no contiene datos y su tamaño es 0.
 
@@ -83,7 +83,7 @@ Dato
 
 Puntero (o enlace)
 : Una referencia a la dirección de memoria del siguiente nodo en la secuencia.
-````
+```
 
 ```{figure} ../assets/images/ListaEnlazadaSimple.svg
 ---
@@ -167,21 +167,21 @@ En la siguiente tabla se muestra el orden que deberían tener las operaciones b�
 :width: 40%
 :align: center
 
-| Operación    | Orden |
-|:------------:|:-----:|
-| Head         | $O(1)$|
-| Tail         | $O(1)$|
-| Size         | $O(1)$|
-| IsEmpty      | $O(1)$|
-| Prepend      | $O(1)$|
-| Append       | $O(1)$|
-| InsertAfter  | $O(n)$|
-| InsertBefore | $O(n)$|
-| RemoveFirst  | $O(1)$|
-| RemoveLast   | $O(1)$|
-| Remove       | $O(n)$|
-| Find         | $O(n)$|
-| Clear        | $O(1)$|
+|   Operación    | Orden  |
+| :------------: | :----: |
+|     `Head`     | $O(1)$ |
+|     `Tail`     | $O(1)$ |
+|     `Size`     | $O(1)$ |
+|   `IsEmpty`    | $O(1)$ |
+|   `Prepend`    | $O(1)$ |
+|    `Append`    | $O(1)$ |
+| `InsertAfter`  | $O(n)$ |
+| `InsertBefore` | $O(n)$ |
+| `RemoveFirst`  | $O(1)$ |
+|  `RemoveLast`  | $O(1)$ |
+|    `Remove`    | $O(n)$ |
+|     `Find`     | $O(n)$ |
+|    `Clear`     | $O(1)$ |
 
 :::
 
@@ -201,7 +201,7 @@ name: ssl-implementacion
 Implementación de una Lista Enlazada Simple, con punteros a la cabeza y la cola
 ```
 
-### Implementación en GO
+### Implementación en Go
 
 A continuación una implementación de una lista enlazada simple, donde se definen dos tipos `LinkedNode` como un node de lista que contiene un dato y un puntero al siguiente y el tipo `LinkedList`. Los datos de la lista son genéricos, pero se piden que sean Comparables entre sí
 
@@ -211,8 +211,8 @@ package list
 
 // LinkedNode representa un nodo de una lista enlazada simple.
 type LinkedNode[T comparable] struct {
- data T
- next *LinkedNode[T]
+    data T
+    next *LinkedNode[T]
 }
 
 // NewLinkedListNode crea un nuevo nodo de lista enlazada con el dato especificado.
@@ -224,7 +224,7 @@ type LinkedNode[T comparable] struct {
 // Parámetros:
 //   - `data`: el dato a almacenar en el nodo.
 func NewLinkedListNode[T comparable](data T) *LinkedNode[T] {
- return &LinkedNode[T]{data: data}
+    return &LinkedNode[T]{data: data}
 }
 
 // SetData establece el dato almacenado en el nodo.
@@ -236,7 +236,7 @@ func NewLinkedListNode[T comparable](data T) *LinkedNode[T] {
 // Parámetros:
 //   - `data`: el dato a almacenar en el nodo.
 func (n *LinkedNode[T]) SetData(data T) {
- n.data = data
+    n.data = data
 }
 
 // Data devuelve el dato almacenado en el nodo.
@@ -248,7 +248,7 @@ func (n *LinkedNode[T]) SetData(data T) {
 // Retorna:
 //   - el dato almacenado en el nodo.
 func (n *LinkedNode[T]) Data() T {
- return n.data
+    return n.data
 }
 
 // SetNext establece el nodo siguiente al nodo actual.
@@ -260,7 +260,7 @@ func (n *LinkedNode[T]) Data() T {
 // Parámetros:
 //   - `newNext`: el nodo siguiente al nodo actual.
 func (n *LinkedNode[T]) SetNext(newNext *LinkedNode[T]) {
- n.next = newNext
+    n.next = newNext
 }
 
 // Next devuelve el nodo siguiente al nodo actual.
@@ -269,7 +269,7 @@ func (n *LinkedNode[T]) SetNext(newNext *LinkedNode[T]) {
 //
 // nextNode := node.Next() // Obtiene el nodo siguiente al nodo actual.
 func (n *LinkedNode[T]) Next() *LinkedNode[T] {
- return n.next
+    return n.next
 }
 
 // HasNext evalúa si el nodo actual tiene asignado un nodo siguiente.
@@ -283,7 +283,7 @@ func (n *LinkedNode[T]) Next() *LinkedNode[T] {
 // Retorna:
 //   - `true` si el nodo tiene un nodo siguiente; `false` en caso contrario.
 func (n *LinkedNode[T]) HasNext() bool {
- return n.next != nil
+    return n.next != nil
 }
 ```
 
@@ -296,9 +296,9 @@ import "fmt"
 // LinkedList se implementa con un nodo que contiene un dato y un puntero al siguiente nodo.
 // Los elementos deben ser de un tipo comparable.
 type LinkedList[T comparable] struct {
- head *LinkedNode[T]
- tail *LinkedNode[T]
- size int
+    head *LinkedNode[T]
+    tail *LinkedNode[T]
+    size int
 }
 
 // NewLinkedList crea una nueva lista vacía.
@@ -307,7 +307,7 @@ type LinkedList[T comparable] struct {
 //
 // list := list.NewLinkedList[int]() // Crea una nueva lista vacía.
 func NewLinkedList[T comparable]() *LinkedList[T] {
- return &LinkedList[T]{}
+    return &LinkedList[T]{}
 }
 
 // Head devuelve el primer nodo de la lista.
@@ -319,7 +319,7 @@ func NewLinkedList[T comparable]() *LinkedList[T] {
 // Retorna:
 //   - el primer nodo de la lista.
 func (l *LinkedList[T]) Head() *LinkedNode[T] {
- return l.head
+    return l.head
 }
 
 // Tail devuelve el último nodo de la lista.
@@ -331,7 +331,7 @@ func (l *LinkedList[T]) Head() *LinkedNode[T] {
 // Retorna:
 //   - el último nodo de la lista.
 func (l *LinkedList[T]) Tail() *LinkedNode[T] {
- return l.tail
+    return l.tail
 }
 
 // Size devuelve el tamaño de la lista.
@@ -343,7 +343,7 @@ func (l *LinkedList[T]) Tail() *LinkedNode[T] {
 // Retorna:
 //   - el tamaño de la lista.
 func (l *LinkedList[T]) Size() int {
- return l.size
+    return l.size
 }
 
 // IsEmpty evalúa si la lista está vacía.
@@ -355,7 +355,7 @@ func (l *LinkedList[T]) Size() int {
 // Retorna:
 //   - `true` si la lista está vacía; `false` en caso contrario.
 func (l *LinkedList[T]) IsEmpty() bool {
- return l.size == 0
+    return l.size == 0
 }
 
 // Clear elimina todos los nodos de la lista.
@@ -364,9 +364,9 @@ func (l *LinkedList[T]) IsEmpty() bool {
 //
 // list.Clear() // Elimina todos los nodos de la lista.
 func (l *LinkedList[T]) Clear() {
- l.head = nil
- l.tail = nil
- l.size = 0
+    l.head = nil
+    l.tail = nil
+    l.size = 0
 }
 
 // Prepend inserta un dato al inicio de la lista.
@@ -378,14 +378,14 @@ func (l *LinkedList[T]) Clear() {
 // Parámetros:
 //   - `data`: el dato a insertar en la lista.
 func (l *LinkedList[T]) Prepend(data T) {
- newNode := NewLinkedListNode(data)
- if l.IsEmpty() {
-  l.tail = newNode
- } else {
-  newNode.SetNext(l.head)
- }
- l.head = newNode
- l.size++
+    newNode := NewLinkedListNode(data)
+    if l.IsEmpty() {
+        l.tail = newNode
+    } else {
+        newNode.SetNext(l.head)
+    }
+    l.head = newNode
+    l.size++
 }
 
 // Append inserta un dato al final de la lista.
@@ -397,14 +397,14 @@ func (l *LinkedList[T]) Prepend(data T) {
 // Parámetros:
 //   - `data`: el dato a insertar en la lista.
 func (l *LinkedList[T]) Append(data T) {
- newNode := NewLinkedListNode(data)
- if l.IsEmpty() {
-  l.head = newNode
- } else {
-  l.tail.SetNext(newNode)
- }
- l.tail = newNode
- l.size++
+    newNode := NewLinkedListNode(data)
+    if l.IsEmpty() {
+        l.head = newNode
+    } else {
+        l.tail.SetNext(newNode)
+    }
+    l.tail = newNode
+    l.size++
 }
 
 // Find busca un dato en la lista, si lo encuentra devuelve el nodo
@@ -420,13 +420,13 @@ func (l *LinkedList[T]) Append(data T) {
 // Retorna:
 //   - el nodo que contiene el dato; `nil` si el dato no se encuentra.
 func (l *LinkedList[T]) Find(data T) *LinkedNode[T] {
- for current := l.head; current != nil; current = current.Next() {
-  if current.Data() == data {
-   return current
-  }
- }
+    for current := l.head; current != nil; current = current.Next() {
+        if current.Data() == data {
+            return current
+        }
+    }
 
- return nil
+    return nil
 }
 
 // RemoveFirst elimina el primer nodo de la lista.
@@ -435,17 +435,17 @@ func (l *LinkedList[T]) Find(data T) *LinkedNode[T] {
 //
 // list.RemoveFirst() // Elimina el primer nodo de la lista.
 func (l *LinkedList[T]) RemoveFirst() {
- if l.IsEmpty() {
-  return
- }
+    if l.IsEmpty() {
+        return
+    }
 
- l.head = l.head.Next()
+    l.head = l.head.Next()
 
- if l.head == nil {
-  l.tail = nil
- }
+    if l.head == nil {
+        l.tail = nil
+    }
 
- l.size--
+    l.size--
 }
 
 // RemoveLast elimina el último nodo de la lista.
@@ -454,22 +454,22 @@ func (l *LinkedList[T]) RemoveFirst() {
 //
 // list.RemoveLast() // Elimina el último nodo de la lista.
 func (l *LinkedList[T]) RemoveLast() {
- if l.IsEmpty() {
-  return
- }
+    if l.IsEmpty() {
+        return
+    }
 
- if l.Size() == 1 {
-  l.head = nil
-  l.tail = nil
- } else {
-  current := l.head
-  for current.Next() != l.tail {
-   current = current.Next()
-  }
-  current.SetNext(nil)
-  l.tail = current
- }
- l.size--
+    if l.Size() == 1 {
+        l.head = nil
+        l.tail = nil
+    } else {
+        current := l.head
+        for current.Next() != l.tail {
+            current = current.Next()
+        }
+        current.SetNext(nil)
+        l.tail = current
+    }
+    l.size--
 }
 
 // Remove elimina un la primera aparición de un dato en la lista.
@@ -481,30 +481,29 @@ func (l *LinkedList[T]) RemoveLast() {
 // Parámetros:
 //   - `data`: el dato a eliminar de la lista.
 func (l *LinkedList[T]) Remove(data T) {
- node := l.Find(data)
+    node := l.Find(data)
 
- if node == nil {
-  return
- }
+    if node == nil {
+        return
+    }
 
- if node == l.head {
-  l.RemoveFirst()
+    if node == l.head {
+        l.RemoveFirst()
+        return
+    }
 
-  return
- }
+    current := l.Head()
 
- current := l.Head()
+    for current.Next() != node {
+        current = current.Next()
+    }
 
- for current.Next() != node {
-  current = current.Next()
- }
+    current.SetNext(node.Next())
 
- current.SetNext(node.Next())
-
- if node == l.tail {
-  l.tail = current
- }
- l.size--
+    if node == l.tail {
+        l.tail = current
+    }
+    l.size--
 }
 
 // String devuelve una representación en cadena de la lista.
@@ -516,23 +515,23 @@ func (l *LinkedList[T]) Remove(data T) {
 // Retorna:
 //   - una representación en cadena de la lista.
 func (l *LinkedList[T]) String() string {
- if l.IsEmpty() {
-  return "LinkedList: []"
- }
+    if l.IsEmpty() {
+        return "LinkedList: []"
+    }
 
- result := "LinkedList: "
+    result := "LinkedList: "
 
- current := l.Head()
- for {
-  result += fmt.Sprintf("[%v]", current.Data())
-  if !current.HasNext() {
-   break
-  }
-  result += " → "
-  current = current.Next()
- }
+    current := l.Head()
+    for {
+        result += fmt.Sprintf("[%v]", current.Data())
+        if !current.HasNext() {
+            break
+        }
+        result += " → "
+        current = current.Next()
+    }
 
- return result
+    return result
 }
 ```
 

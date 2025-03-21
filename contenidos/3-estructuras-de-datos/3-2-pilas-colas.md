@@ -28,21 +28,21 @@ Pila de Libros
 
 A partir de la descripción del comportamiento de la pila de libros, podemos intuir el comportamiento de la estructura Pila o Stack:
 
-Push
+`Push`
 : Permite insertar un elemento en la pila (siempre en el tope de la misma)
 
-Pop
+`Pop`
 : Permite extraer un elemento de la pila (siempre el que está en el tope). Si se intenta hacer un Pop de una pila vacía se debe indicar un error
 
-Top
+`Top`
 : Permite ver el último elemento que ingresó en la pila, sin sacarlo. Si se intenta hacer un Top de una pila vacía se debe indicar un error
 
-IsEmpty
+`IsEmpty`
 : Verifica si la pila está vacía. Devuelve `true` si la pila está vacía o `false` en caso contrario
 
 Todas las operaciones deben ser $O(1)$. Es decir de tiempo constante, independiente del tamaño de la entrada
 
-Este comportamiento define la **interfaz** del tipo Pila, es decir las operaciones válidas que se pueden realizar sobre la misma. Falta definir la implementación, es decir la estructura de datos interna que utilizaremos para almacenar nuestros datos. A continuación se muestra una implementación de una pila sobre slices de GO, es decir sobre arreglos dinámicos capaces de aumentar su tamaño a medida que se necesita almacenar más elementos.
+Este comportamiento define la **interfaz** del tipo Pila, es decir las operaciones válidas que se pueden realizar sobre la misma. Falta definir la implementación, es decir la estructura de datos interna que utilizaremos para almacenar nuestros datos. A continuación se muestra una implementación de una pila sobre slices de Go, es decir sobre arreglos dinámicos capaces de aumentar su tamaño a medida que se necesita almacenar más elementos.
 
 En la definición de la pila no hay ninguna restricción sobre el tipo de elementos que se almacenan, por ejemplo podríamos apilar, libros, revistas, cajas, en una única pila. El tamaño de la pila debe ser un entero entre 0 y N (invariante de representación)
 
@@ -66,10 +66,10 @@ p = append(p, 2)
 p[0] = "chau"
 ```
 
-En este fragmento se agregan elementos a la pila, usando la función `append` de GO y luego se modifica el primer elemento de la pila
+En este fragmento se agregan elementos a la pila, usando la función `append` de Go y luego se modifica el primer elemento de la pila
 ````
 
-A continuación se define el TAD Stack, que internamente estará implementado sobre un arreglo dinámico o slice de GO.
+A continuación se define el TAD Stack, que internamente estará implementado sobre un arreglo dinámico o slice de Go.
 
 ```go
 import "errors"
@@ -123,13 +123,13 @@ func (s *Stack) Pop() (any, error) {
 
 ```go
 func (s *Stack) Top() (any, error) {
- var x any
- if s.IsEmpty() {
-  return x, errors.New("pila vacía")
- }
- x = s.data[len(s.data)-1]
+    var x any
+    if s.IsEmpty() {
+        return x, errors.New("pila vacía")
+    }
+    x = s.data[len(s.data)-1]
 
- return x, nil
+    return x, nil
 }
 ```
 
@@ -139,37 +139,37 @@ func (s *Stack) Top() (any, error) {
 import "fmt"
 
 func main() {
- // Crear una nueva pila de enteros
- s := NewStack()
+    // Crear una nueva pila de enteros
+    s := NewStack()
 
- // Agregar elementos a la pila
- s.Push(1)
- s.Push("cadena")
- s.Push(3.52)
+    // Agregar elementos a la pila
+    s.Push(1)
+    s.Push("cadena")
+    s.Push(3.52)
 
- // Verificar si la pila está vacía
- if s.IsEmpty() {
-  fmt.Println("La pila está vacía")
- } else {
-  fmt.Println("La pila no está vacía")
- }
+    // Verificar si la pila está vacía
+    if s.IsEmpty() {
+        fmt.Println("La pila está vacía")
+    } else {
+        fmt.Println("La pila no está vacía")
+    }
 
- // Consultar el elemento en la cima de la pila
- topElement, _ := s.Top()
- fmt.Println("Elemento en la cima de la pila:", topElement)
+    // Consultar el elemento en la cima de la pila
+    topElement, _ := s.Top()
+    fmt.Println("Elemento en la cima de la pila:", topElement)
 
- // Extraer elementos de la pila
- for !s.IsEmpty() {
-  poppedElement, _ := s.Pop()
-  fmt.Println("Elemento extraído de la pila:", poppedElement)
- }
+    // Extraer elementos de la pila
+    for !s.IsEmpty() {
+        poppedElement, _ := s.Pop()
+        fmt.Println("Elemento extraído de la pila:", poppedElement)
+    }
 
- // Verificar si la pila está vacía
- if s.IsEmpty() {
-  fmt.Println("La pila está vacía")
- } else {
-  fmt.Println("La pila no está vacía")
- }
+    // Verificar si la pila está vacía
+    if s.IsEmpty() {
+        fmt.Println("La pila está vacía")
+    } else {
+        fmt.Println("La pila no está vacía")
+    }
 }
 
 main()
@@ -189,16 +189,16 @@ Cola de Espera
 
 El comportamiento de la cola queda definido por los siguientes métodos:
 
-Enqueue
+`Enqueue`
 : Permite insertar un elemento en la cola (siempre en la última posición)
 
-Dequeue
+`Dequeue`
 : Permite extraer un elemento de la cola (siempre el primero). Si se intenta hacer un Dequeue de una cola vacía se debe indicar un error
 
-Front
+`Front`
 : Permite ver el primer elemento de la cola. Si se intenta hacer un Front de una cola vacía se debe indicar un error
 
-IsEmpty
+`IsEmpty`
 : Verifica si la Coa está vacía. Devuelve `true` si la cola está vacía o `false` en caso contrario
 
 Todas las operaciones deben ser $O(1)$. Es decir de tiempo constante, independiente del tamaño de la entrada
