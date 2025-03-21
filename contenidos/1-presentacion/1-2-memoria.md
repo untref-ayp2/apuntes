@@ -4,7 +4,20 @@ kernelspec:
   name: gophernotes
 ---
 
-# Gestión de Memoria
+# Gestión de memoria
+
+```{code-cell} go
+:tags: [remove-cell]
+import f "fmt"
+
+type FmtWrapper struct{}
+
+func (fw FmtWrapper) Println(a ...interface{}) {
+    _, _ = f.Println(a...)
+}
+
+var fmt FmtWrapper = FmtWrapper{}
+```
 
 En general la memoria de una computadora se puede clasificar en:
 
@@ -76,6 +89,7 @@ type Direccion struct {
     calle, ciudad, provincia string
     numero                   uint
 }
+
 type Persona struct {
     nombre, apellido string
     edad             uint
@@ -95,6 +109,7 @@ p4 := p2
 
 dir:= Direccion{"Av. Corrientes", "CABA", "Buenos Aires", 1050}
 
+p4.apellido = "Martinez"
 p4.apellido = "Martinez"
 p4.direccion = dir
 ```
@@ -133,7 +148,7 @@ s := make([]int, 5) // Slice con capacidad y longitud 5
 print(s)
 ```
 
-Diferencia clave: ```new()``` solo asigna memoria, ```make()``` inicializa estructuras internas.
+Diferencia clave: `new()` solo asigna memoria, `make()` inicializa estructuras internas.
 
 ## Garbage Collector (GC) en GO
 
@@ -143,12 +158,9 @@ Cuando se dice que el Garbage Collector (GC) de GO es concurrente, significa que
 
 Algunas características clave:
 
-* Minimiza las pausas para mejorar el rendimiento.
-
-* Usa múltiples núcleos de CPU para ejecutar la recolección en paralelo.
-
-* Detecta y elimina referencias a objetos no utilizados.
-
+- Minimiza las pausas para mejorar el rendimiento.
+- Usa múltiples núcleos de CPU para ejecutar la recolección en paralelo.
+- Detecta y elimina referencias a objetos no utilizados.
 
 ## ¿Cómo logra esto el GC de GO?
 
@@ -160,16 +172,17 @@ Algunas características clave:
    * **negros** (alcanzados y ya analizados)
  * Marca y rastrea los objetos accesibles sin detener completamente la ejecución del programa.
 
-### 2. Pausas muy cortas (low-pause GC)
+### Pausas muy cortas (low-pause GC)
 
  * GO minimiza los "stop-the-world" (momentos en los que detiene completamente la ejecución para limpiar memoria).
  * La mayoría del trabajo del GC ocurre en paralelo con la ejecución del código.
 
-### 3. Ejecución en múltiples hilos
+### Ejecución en múltiples hilos
 
- * El GC usa múltiples núcleos de la CPU para hacer la recolección de basura sin bloquear las goroutines activas.
+- El GC usa múltiples núcleos de la CPU para hacer la recolección de basura sin bloquear las goroutines activas.
 
 ### Beneficio principal
+
 Un GC concurrente mejora el rendimiento y la experiencia del usuario, ya que evita grandes pausas en la ejecución del programa. Esto es fundamental en servidores y sistemas en tiempo real, donde una pausa larga podría afectar la respuesta del sistema.
 
 ## Escape Analysis: Stack vs. Heap
@@ -177,34 +190,32 @@ Un GC concurrente mejora el rendimiento y la experiencia del usuario, ya que evi
 El compilador de GO decide automáticamente si una variable debe almacenarse en el **Stack** o en el **Heap**. Esto se conoce como **Escape Analysis**.
 
 Si una variable "escapa" del alcance de la función, se almacena en el Heap en lugar del Stack.
+Si una variable "escapa" del alcance de la función, se almacena en el Heap en lugar del Stack.
 
 **Ejemplo:**
 ```{code-cell} go
 func stack() {
-    x := 10  // Se asigna en el Stack
+    x := 10 // Se asigna en el Stack
 }
 
 func heap() *int {
-    p := new(int)  // Se asigna en el Heap porque se devuelve un puntero
+    p := new(int) // Se asigna en el Heap porque se devuelve un puntero
     return p      //retorna el puntero
 }
+
 ```
 
 ## Optimización de Memoria en GO
 
 Algunas estrategias para mejorar el uso de memoria:
 
-* Preasignar capacidad en slices con make().
+- Preasignar capacidad en slices con `make()`.
+- Evitar fugas de memoria eliminando referencias innecesarias.
+- Minimizar uso de punteros si no son necesarios.
 
-* Evitar fugas de memoria eliminando referencias innecesarias.
+:::{prf:example} Optimización: preasignación en slices
 
-* Minimizar uso de punteros si no son necesarios.
-
-**Ejemplo de preasignación en slices:**
-
-## Ejemplo Práctico de Optimización
-
-### Mala Práctica: Crecimiento descontrolado de slices
+**Mala práctica**: crecimiento descontrolado de slices
 
 ```{code-cell} go
 var data []int
@@ -213,7 +224,7 @@ for i := 0; i < 1000000; i++ {
 }
 ```
 
-### Buena Práctica: Prealocar capacidad
+**Buena práctica**: prealocar capacidad
 
 ```{code-cell} go
 data := make([]int, 1000000) // Mejor que ir agregando con append
@@ -221,6 +232,8 @@ for i := 0; i < 1000000; i++ {
     data[i] = i
 }
 ```
+
+:::
 
 Esta optimización reduce el número de **realocaciones de memoria**, mejorando el rendimiento.
 
