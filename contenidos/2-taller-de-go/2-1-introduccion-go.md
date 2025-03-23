@@ -6,6 +6,25 @@ kernelspec:
 
 # Introducción a Go
 
+<!--
+Este bloque oculto nos permite usar `fmt.Println` sin necesidad de importar
+"fmt", el objetivo es que no se imprima la salida que tiene `fmt.Println` ya
+que devuelve la cantidad de caracteres impresos y un error.
+-->
+
+```{code-cell} go
+:tags: [remove-cell]
+import f "fmt"
+
+type FmtWrapper struct{}
+
+func (fw FmtWrapper) Println(a ...interface{}) {
+    _, _ = f.Println(a...)
+}
+
+var fmt FmtWrapper = FmtWrapper{}
+```
+
 ## Características Principales
 
 Go es un lenguaje de programación desarrollado por Google, que se lanzó
@@ -24,11 +43,11 @@ eficiente. Go fue diseñado para ambientes altamente productivos y concurrentes
 recursos). Fue liberado cómo código abierto y está disponible para todos los
 sistemas operativos.
 
-:::{attention}
+```{attention}
 Los lenguajes compilados cuyo código fuente se traduce de antemano a código
 máquina, en general suelen ser muy eficientes, ya que se pueden ejecutar
 directamente sobre la máquina sin "intermediarios".
-:::
+```
 
 Go es un lenguaje **fuertemente tipado** y con **tipado estático**, es decir que
 al momento de compilar, debe estar claramente establecido de que tipo son sus
@@ -42,10 +61,10 @@ explicitamente, por ejemplo si queremos sumarle a un número entero un número e
 decimal (en punto flotante) primero debemos convertir el número en punto
 flotante a entero y así el resultado será otro entero.
 
-:::{note}
+```{note}
 Un sistema de tipos permite definir que valores puede tomar una variable y que
 operaciones se pueden hacer con esos valores.
-:::
+```
 
 La gestión de la memoria es automática, es decir el programador puede
 desentenderse de liberar la memoria que ya no se utiliza. Go implementa un
@@ -61,9 +80,12 @@ definir nuevos tipos de datos.
 
 ### Ejemplos
 
-El siguiente fragmento se encuentra en el archivo `hello.go`
+El siguiente fragmento se encuentra en el archivo `hola.go`
 
-```{code-cell} go
+:::{admonition} `hola.go`
+:class: note
+
+```go
 package main
 
 import "fmt"
@@ -73,10 +95,12 @@ func main() {
 }
 ```
 
+:::
+
 Si ejecutamos en una terminal:
 
 ```console
-go run ./hola.go
+go run hola.go
 ```
 
 obtendremos como resultado:
@@ -122,7 +146,7 @@ sumar(32, 7)
 - [Documentación basada en ejemplos](https://gobyexample.com/)
 - [Go FAQ](https://go.dev/doc/faq)
 - [Go Playground](https://go.dev/play/) (entorno online ara ejecutar código en
-Go)
+  Go)
 
 ## Instalación
 
@@ -184,7 +208,7 @@ programa hace uso del paquete `saludo`:
 :::{admonition} `main.go`
 :class: note
 
-``` go
+```go
 package main
 
 import ".saludo"
@@ -192,6 +216,30 @@ import ".saludo"
 func main() {
     saludo.Saludar()
 }
+```
+
+:::
+
+:::{admonition} ¡Para practicar!
+:class: hint
+
+Se recomienda recrear el ejemplo previamente presentado y ejecutarlo para
+corroborar que todo funciona correctamente y que los paquetes definidos por
+nosotros mismos se pueden importar sin problemas.
+
+Notar que la estructura de archivos que se debe generar es:
+
+```text
+ejemplo
+├── saludo
+│   └── saludo.go
+└── main.go
+```
+
+Luego desde una terminal, deberán ejecutar:
+
+```console
+go run main.go
 ```
 
 :::
@@ -204,6 +252,7 @@ tipo.
 
 ```{code-cell} go
 var edad int
+edad = 42
 ```
 
 Opcionalmente podríamos inicializar esa variable en la misma línea como sucede
@@ -243,7 +292,7 @@ var edad int32 = 42
 var edad64 int64 = edad
 ```
 
-Este código data como resultado el siguiente error.
+Este código dará como resultado el siguiente error:
 
 ```output
 cannot use edad (variable of type int32) as int64 value in variable declaration
@@ -265,7 +314,8 @@ estamos acostumbrado en Java (con la salvedad de que los paréntesis no son
 necesarios en las condiciones).
 
 ```{code-cell} go
-:tags: [remove-output]
+num := 7
+
 if num < 0 {
     fmt.Println(num, "es negativo")
 } else if num < 10 {
@@ -275,7 +325,7 @@ if num < 0 {
 }
 ```
 
-A diferencia de Java, Go cuenta con sólo una instrucción de iteración, el `for`.
+A diferencia de Java, Go cuenta sólo con una instrucción de iteración: el `for`.
 Pero este se puede utilizar de diferentes formas.
 
 De forma análoga a un `while` como lo vimos en Java, cuando `for` solo recibe
@@ -292,6 +342,12 @@ for i <= 3 {
 }
 ```
 
+```output
+1
+2
+3
+```
+
 También puede utilizarse de la forma clásica, indicando la inicialización, la
 condición y la operación luego de cada iteración.
 
@@ -302,6 +358,12 @@ for j := 7; j <= 9; j++ {
 }
 ```
 
+```output
+7
+8
+9
+```
+
 Si `for` no recibe condición, se comporta de la misma forma que `while(true)`.
 
 ```{code-cell} go
@@ -310,6 +372,10 @@ for {
     fmt.Println("loop")
     break
 }
+```
+
+```output
+loop
 ```
 
 También existen las instrucciones `break` y `continue` para alterar la ejecución
@@ -325,58 +391,8 @@ for n := 0; n <= 5; n++ {
 }
 ```
 
-## Paquetes, módulos y espacios de trabajos
-
-Un **paquete** es una colección de archivos que cotienen código fuente,
-definiciones de constantes, definiciones de tipos, etc. Todos los archivos de un
-paquete se encuentran en un mismo directorio.
-
-Los paquetes organizan el código en forma lógica. Las variables, funciones y
-tipos de datos definidos dentro de un paquete son privados del mismo, es decir
-no se pueden utilizar afuera, a menos que se exporten explicitamente.
-
-A su vez una colección de paquetes pueden conformar un **módulo**. Un módulo es
-la unidad fundamental de organización y distribución de código. Los módulos
-permiten gestionar dependencias, compartir código y versionarlo.
-
-Un módulo se define en una carpeta que contiene un archivo `go.mod`.  En este
-archivo se especifica el nombre del módulo, la versión de Go con el que se
-desarrolló y las dependencias de otros módulos.
-
-Todos los paquetes (en general cada paquete en una subcarpeta) que están en la
-misma carpeta que contiene el archivo `go.mod` son parte del mismo módulo. En
-general un módulo corresponde a un proyecto
-
-```text
-miproyecto
-├── otropaquete
-│   ├── estructuras.go
-│   └── estructuras_test.go
-├── unpaquete
-│   ├── utils.go
-│   └── utils_test.go
-├── go.mod
-├── go.sum
-└── main.go
+```output
+1
+3
+5
 ```
-
-### Gestión de módulos
-
-Para crear un módulo se usa el comando `go init` dentro de la carpeta que
-contendrá el proyecto, seguido del nombre del módulo. Usualmente el nombre del
-módulo es el repositorio donde se aloja. Ejemplo:
-
-```console
-go mod init github.com/untref-ayp2/miproyecto
-```
-
-:::{important}
-Un espacio de trabajo con varios módulos puede ser útil si trabajamos con varios
-proyectos vinculados, en caso contrario puede ser mejor tener cada proyecto por
-separado.
-:::
-
-Si trabajamos en varios proyectos podemos organizarlos guardándolos a todos
-juntos dentro de una carpeta raíz, en un **espacio de trabajo** o _workspace_.
-La organización de los módulos dentro de un espacio de trabajo se realiza con el
-archivo `go.work`.
