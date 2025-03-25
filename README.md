@@ -6,10 +6,10 @@ Si deseas desarrollar y/o compilar el libro de Algoritmos y Programación II, de
 
 1. Clonar este repositorio
 
-2. Instalar las dependencias del proyecto.
+> [!TIP]
+> Se recomienda crear un entorno virtual de python para trabajar con este proyecto.
 
-   > [!TIP]
-   > Se recomienda crear un entorno virtual de python para trabajar con este proyecto.
+2. Instalar las dependencias del proyecto.
 
    Luego podemos ejecutar:
 
