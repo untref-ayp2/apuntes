@@ -48,7 +48,7 @@ Si deseas desarrollar y/o compilar el libro de Algoritmos y Programación II, de
 5. (Opcional) Se puede servir este HTML utilizando el siguiente comando de Python:
 
    ```sh
-   python -m http.server --directory _build/html
+   python -m http.server --directory contenidos/_build/html
    ```
 
    o bien,
