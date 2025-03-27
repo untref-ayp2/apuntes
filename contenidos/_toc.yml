@@ -1,27 +1,28 @@
 format: jb-book
 root: introduccion
 defaults:
-    titlesonly: True
-    numbered: true
+  titlesonly: True
+  numbered: true
 parts:
-    - caption: Presentación
-      chapters:
+  - caption: Presentación
+    chapters:
       - file: 1-presentacion/1-1-introduccion
       - file: 1-presentacion/1-2-memoria
       - file: 1-presentacion/1-3-analisis-de-algoritmos
-    - caption: Taller de Go
-      chapters:
+  - caption: Taller de Go
+    chapters:
       - file: 2-taller-de-go/2-1-introduccion-go
-      - file: 2-taller-de-go/2-2-arreglos-slices
-      - file: 2-taller-de-go/2-3-maps
-      - file: 2-taller-de-go/2-4-funciones
-      - file: 2-taller-de-go/2-5-punteros
-      - file: 2-taller-de-go/2-6-errores
-      - file: 2-taller-de-go/2-7-structs-interfaces
-      - file: 2-taller-de-go/2-8-exportado-no-exportado
-      - file: 2-taller-de-go/2-9-oop
-    - caption: Estructuras de Datos
-      chapters:
+      - file: 2-taller-de-go/2-2-paquetes-y-modulos
+      - file: 2-taller-de-go/2-3-arreglos-slices
+      - file: 2-taller-de-go/2-4-maps
+      - file: 2-taller-de-go/2-5-funciones
+      - file: 2-taller-de-go/2-6-punteros
+      - file: 2-taller-de-go/2-7-errores
+      - file: 2-taller-de-go/2-8-structs-interfaces
+      - file: 2-taller-de-go/2-9-exportado-no-exportado
+      - file: 2-taller-de-go/2-10-oop
+  - caption: Estructuras de Datos
+    chapters:
       - file: 3-estructuras-de-datos/3-1-tad
       - file: 3-estructuras-de-datos/3-2-pilas-colas
       - file: 3-estructuras-de-datos/3-3-listas
@@ -33,8 +34,8 @@ parts:
       - file: 3-estructuras-de-datos/3-9-abb
       - file: 3-estructuras-de-datos/3-10-arboles-balanceados
       - file: 3-estructuras-de-datos/3-11-monticulo-binario
-    - caption: Diseño de Algortimos
-      chapters:
+  - caption: Diseño de Algortimos
+    chapters:
       - file: 4-diseno-de-algoritmos/4-1-recursividad
       - file: 4-diseno-de-algoritmos/4-2-patrones-de-diseno
       - file: 4-diseno-de-algoritmos/4-3-algoritmos-avidos
@@ -42,6 +43,6 @@ parts:
       - file: 4-diseno-de-algoritmos/4-5-programacion-dinamica
       - file: 4-diseno-de-algoritmos/4-6-ordenamientos-recursivos
       - file: 4-diseno-de-algoritmos/4-7-ordenamientos-lineales
-    - caption: Taller de Git y GitHub
-      chapters:
+  - caption: Taller de Git y GitHub
+    chapters:
       - file: 5-taller-de-git/5-1-introduccion-git

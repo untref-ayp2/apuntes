@@ -43,7 +43,7 @@ Si deseas desarrollar y/o compilar el libro de Algoritmos y Programación II, de
    make build
    ```
 
-   Una versión HTML completamente renderizada del libro se construirá en `_build/html/`.
+   Una versión HTML completamente renderizada del libro se construirá en `contenidos/_build/html`.
 
 5. (Opcional) Se puede servir este HTML utilizando el siguiente comando de Python:
 
