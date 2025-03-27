@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.9 -->
+<!-- CreationDate: 2025-03-27 13:58:55 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="654pt" height="257pt"
+	viewBox="5838 438 10374 4069">
+<g fill="none">
+<!-- Circle -->
+<circle cx="6300" cy="4050" r="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Circle -->
+<circle cx="8550" cy="4050" r="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="5850" y="2250" width="3150" height="1350"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Circle -->
+<circle cx="9900" cy="4050" r="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Circle -->
+<circle cx="12150" cy="4050" r="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="9450" y="2250" width="3150" height="1350"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Circle -->
+<circle cx="13500" cy="4050" r="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Circle -->
+<circle cx="15750" cy="4050" r="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="13050" y="2250" width="3150" height="1350"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 6750,450 6300,2250"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 6750,450 7200,2250"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="8100" y="900" width="900" height="1350"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp0">
+	<path clip-rule="evenodd" d="M 5838,438 H 16212 V 4507 H 5838 z
+		M 6614,4020 6614,4080 6757,4057 6757,4043z"/>
+</clipPath>
+</defs>
+<polyline points=" 6300,4050 6750,4050" clip-path="url(#cp0)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 6750,4050 -->
+<polygon points=" 6614,4080 6734,4050 6614,4020 6614,4080"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp1">
+	<path clip-rule="evenodd" d="M 5838,438 H 16212 V 4507 H 5838 z
+		M 9101,1253 9051,1220 8991,1352 9002,1359z"/>
+</clipPath>
+</defs>
+<polyline points=" 9450,675 9000,1350" clip-path="url(#cp1)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 9000,1350 -->
+<polygon points=" 9051,1220 9009,1337 9101,1253 9051,1220"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp2">
+	<path clip-rule="evenodd" d="M 5838,438 H 16212 V 4507 H 5838 z
+		M 7047,1230 6990,1211 6966,1354 6979,1359z"/>
+</clipPath>
+</defs>
+<polyline points=" 7200,675 6975,1350" clip-path="url(#cp2)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 6975,1350 -->
+<polygon points=" 6990,1211 6980,1335 7047,1230 6990,1211"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Text -->
+<text xml:space="preserve" x="6300" y="4275" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">r=1</text>
+<!-- Text -->
+<text xml:space="preserve" x="7200" y="2925" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">3 x 7</text>
+<!-- Text -->
+<text xml:space="preserve" x="10800" y="2925" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">3 x 7</text>
+<!-- Text -->
+<text xml:space="preserve" x="14400" y="2925" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">3 x 7</text>
+<!-- Text -->
+<text xml:space="preserve" x="9450" y="675" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">2 x 3</text>
+<!-- Text -->
+<text xml:space="preserve" x="7200" y="675" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">2 x 4</text>
+</g>
+</svg>
