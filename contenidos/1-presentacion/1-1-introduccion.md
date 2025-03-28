@@ -33,7 +33,7 @@ Para aprobar la materia además hay que aprobar un examen final, para poder rend
 ### Herramientas para cursar
 
 - [Google Classroom](https://classroom.google.com/c/Njg3MjUxNTQ3Mzcy)
-- [Slack](https://app.slack.com/)
+- [Slack](https://aypii.slack.com/)
 - [Github Classroom](https://classroom.github.com/classrooms/171295672-untref-ayp2-2025-1c)
 
 ## Lenguaje de Programación
