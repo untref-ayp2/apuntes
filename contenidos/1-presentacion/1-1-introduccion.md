@@ -1,6 +1,6 @@
 # De que va la materia
 
-En informática podemos entender a un algoritmo como una **secuencia de pasos que una computadora debe ejecutar para realizar una determinada tarea**. Por ejemplo existen varios algoritmos para ordenar una secuencia de elementos. Cada algoritmo de ordenamiento es una forma distinta de realizar la misma tarea.  Algunos algoritmos pueden ser más eficientes que otros o más fácil de escribir y/o mantener que otros, etc.
+En informática podemos entender a un algoritmo como una **secuencia de pasos que se deben ejecutar para realizar una determinada tarea**. Por ejemplo existen varios algoritmos para ordenar una secuencia de elementos. Cada algoritmo de ordenamiento es una forma distinta de realizar la misma tarea.  Algunos algoritmos pueden ser más eficientes que otros o más fácil de escribir y/o mantener que otros, etc.
 
 Los algoritmos se diseñan con una meta en particular, con un objetivo dado.  Existen varias técnicas para diseñar y analizar algoritmos.
 
@@ -10,7 +10,7 @@ Cuando hablamos de **eficiencia** en general nos referimos a la cantidad de recu
 
 Un programa es una implementación de un algoritmo, escrito en un lenguaje de programación que la computadora es capaz de entender y ejecutar.
 
-Los programas en general manipulan datos, toman datos como entrada, los procesan y generan salidas, ya sea en la forma de información desplegada en una pantalla, o datos almancenados en un disco, etc. Esta manipulación de los datos requiere que los mismos estén organizados. Esta organización de los datos se conoce como **Estructuras de Datos**. Podemos pensar a las estructuras como bloques donde se *pueden almacenar y manipular datos, y esos bloques se pueden combinar para*generar estructuras más complejas.
+Los programas en general manipulan datos, toman datos como entrada, los procesan y generan salidas, ya sea en la forma de información desplegada en una pantalla, o datos almancenados en un disco, etc. Esta manipulación de los datos requiere que los mismos estén organizados. Esta organización de los datos se conoce como **Estructuras de Datos**. Podemos pensar a las estructuras como bloques donde se *pueden almacenar y manipular datos, y esos bloques se pueden combinar para generar estructuras más complejas.
 
 ## ¿Porqué es necesario estudiar algoritmos y estructuras de datos?
 
@@ -34,9 +34,9 @@ Para aprobar la materia además hay que aprobar un examen final, para poder rend
 
 > **COMPLETAR**
 
-- Google Classroom
-- Slack
-- Github Classroom
+- [Google Classroom](https://classroom.google.com/c/Njg3MjUxNTQ3Mzcy)
+- [Slack](https://app.slack.com/)
+- [Github Classroom](https://classroom.github.com/classrooms/171295672-untref-ayp2-2025-1c)
 
 ## Lenguaje de Programación
 
