@@ -24,30 +24,22 @@ var fmt FmtWrapper = FmtWrapper{}
 Existen dos tipos de memoria clasificadas según su duración:
 
 Memoria volátil
-: La información que almacena se pierde al interrumpirse el suministro de corriente eléctrica.
-: Es más rápida, más costosa y puede almacenar pequeñas cantidades de información.
-: En este tipo se encuentran las memorias: RAM (Random Access Memory), Cache L1, Cache L2
+: La información que almacena se pierde al interrumpirse el suministro de corriente eléctrica. Es más rápida, más costosa y puede almacenar pequeñas cantidades de información. En este tipo se encuentran las memorias: RAM (Random Access Memory), Cache L1, Cache L2
 
 Memoria no volátil o persistente
-: Conserva la información almacenada al interrumpirse el suministro de corriente eléctrica.
-: Es más lenta, más barata y puede almacenar grandes volúmenes de información.
-: En este tipo se encuentran las memorias: discos rígidos, discos ópticos, memorias USB, etc.
-
-## Organización de la memoria de una computadora
+: Conserva la información almacenada al interrumpirse el suministro de corriente eléctrica. Es más lenta, más barata y puede almacenar grandes volúmenes de información. En este tipo se encuentran las memorias: discos rígidos, discos ópticos, memorias USB, etc.
 
 Desde el punto de vista de cómo está organizada la memoria se clasifica en:
 
-Memoria Central o Primaria
-: Constituida por memoria volátil. 
-: Es la memoria de trabajo del procesador, la RAM de acceso rápido, donde se almacenan los programas en ejecución y los datos.
+Memoria central o primaria
+: Constituida por memoria volátil. Es la memoria de trabajo del procesador, la RAM de acceso rápido, donde se almacenan los programas en ejecución y los datos.
 
-Memoria Secundaria
-: Conformada por el conjunto de memorias no volátiles. 
-: Es la memoria de persistencia de información. 
+Memoria secundaria
+: Conformada por el conjunto de memorias no volátiles. Es la memoria de persistencia de información.
 
-## Organización de la Memoria Central o Primaria
+### Organización de la Memoria central o primaria
 
-Tanto los programas como el resto de información que guarda la computadora son almacenados en la **Memoria Secundaria**. Al momento de lanzar la ejecución de un programa, el conjunto de instrucciones que lo componen es copiado a la **Memoria Central o primaria**. Un programa en ejecución se denomina **proceso**.
+Tanto los programas como el resto de información que guarda la computadora son almacenados en la **Memoria secundaria**. Al momento de lanzar la ejecución de un programa, el conjunto de instrucciones que lo componen es copiado a la **Memoria central o primaria**. Un programa en ejecución se denomina **proceso**.
 
 En tiempo de ejecución, un proceso está asociado a una porción de la memoria central que se divide lógicamente en 4 segmentos:
 
@@ -55,19 +47,13 @@ Segmento de Código (_code segment_)
 : Es la porción donde se localizarán las instrucciones que componen nuestro programa. Su tamaño se determina al comenzar la ejecución. Asociado a este segmento se encuentra un **puntero** que indica la próxima instrucción a ejecutar.
 
 Segmento de Datos (_data segment_)
-: Almacena las variables globales y estáticas. 
-: Su tamaño también queda determinado al comenzar la ejecución.
+: Almacena las variables globales y estáticas. Su tamaño también queda determinado al comenzar la ejecución.
 
 Pila (_stack segment_)
-: Almacenará el contenido de las variables locales en cada invocación de una función. 
-: Su tamaño se determina al comenzar la ejecución del programa. 
-: Cada entrada en el stack constituye el contexto de un método en ejecución y contiene variables locales, parámetros y valores de retorno.
-: Se va asignando en bloques de memoria contigua.
+: Almacenará el contenido de las variables locales en cada invocación de una función. Su tamaño se determina al comenzar la ejecución del programa. Cada entrada en el stack constituye el contexto de un método en ejecución y contiene variables locales, parámetros y valores de retorno. Se va asignando en bloques de memoria contigua.
 
 Memoria dinámica (_heap_)
-: Es el espacio de memoria que se utiliza para la asignación dinámica de memoria. 
-: Su tamaño no está determinado al comenzar la ejecución y se va ajustando a medida que el programa solicita más memoria para almacenar datos.
-: No es asignada en bloques de memoria contigua. 
+: Es el espacio de memoria que se utiliza para la asignación dinámica de memoria. Su tamaño no está determinado al comenzar la ejecución y se va ajustando a medida que el programa solicita más memoria para almacenar datos. No es asignada en bloques de memoria contigua.
 
 ## Ejecución de programas
 
@@ -107,6 +93,7 @@ La gestión de memoria es un aspecto clave en cualquier lenguaje de programació
 En Go, las variables se almacenan en el **Stack** o en el **Heap** dependiendo de su alcance, duración y cómo se utilizan.
 
 1. Asignación en el **Stack**:
+
    - Las variables locales dentro de una función, incluidos los _structs_, suelen asignarse en el **Stack** si su tiempo de vida se limita al alcance de la función.
    - La asignación en el **Stack** es rápida porque implica operaciones simples como empujar y sacar direcciones de memoria. Sin embargo, el tamaño de el **Stack** es limitado.
 
@@ -114,15 +101,15 @@ En Go, las variables se almacenan en el **Stack** o en el **Heap** dependiendo d
    - Si el compilador de Go determina (mediante el análisis de escape) que una variable puede ser referenciada fuera de su alcance (por ejemplo, si se devuelve desde una función o se almacena en una variable global), asigna la variable en el **Heap** para evitar punteros colgantes.
    - Las estructuras de datos grandes (por ejemplo, arreglos o _slices_ que superan ciertos umbrales) también se asignan en el **Heap** para evitar desbordamientos de pila.
 
-En Go, si un _struct_ recién creado se almacena en el **Stack** o el **Heap** depende del contexto de su uso y de los resultados del _análisis de escape_ realizado por el compilador de Go.
+En Go, si un _struct_ recién creado se almacena en el **Stack** o el **Heap** depende del contexto de su uso y de los resultados del **análisis de escape** realizado por el compilador de Go.
+
 - Cuando creas un _struct_ usando `var`, se asigna en el **Stack** si su tiempo de vida es local a la función.
 - Usar `new` asigna explícitamente memoria para el _struct_ en el **Heap** y devuelve un puntero a él.
 - El análisis de escape determina si una instancia de _struct_ "escapa" de su alcance local. Si lo hace, se asignará en el **Heap**, incluso si se declara localmente.
 
 Análisis de escape (_Escape analysis_)
-
 : El compilador de Go decide automáticamente si una variable debe almacenarse en el **Stack** o en el **Heap**. Esto se conoce como **Escape Analysis**.
-: Si una variable "escapa" del alcance de la función, se almacena en el Heap en lugar del Stack. 
+: Si una variable "escapa" del alcance de la función, se almacena en el Heap en lugar del Stack.
 
 Consideraciones de Rendimiento
 
