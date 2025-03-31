@@ -19,7 +19,7 @@ func (fw FmtWrapper) Println(a ...interface{}) {
 var fmt FmtWrapper = FmtWrapper{}
 ```
 
-## Tipos de memoria de una computadora
+## Clasificación de memoria de una computadora
 
 Existen dos tipos de memoria clasificadas según su duración:
 
