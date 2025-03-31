@@ -28,7 +28,8 @@ func (fw FmtWrapper) Printf(format string, a ...interface{}) {
 
 var fmt FmtWrapper = FmtWrapper{}
 ```
-Podemos pensar a los mapas como una generalización de los arreglos, donde en lugar de usar sólo enteros como índices, podemos otros tipos. Por ejemplo podemos acceder a un elemento de un mapa usando una cadena como índice `edades["alice"]`{l=go} en lugar de un entero como `edades[0]`{l=go}.
+
+Podemos pensar a los mapas como una generalización de los arreglos, donde en lugar de usar sólo enteros como índices, podemos usar otros tipos. Por ejemplo podemos acceder a un elemento de un mapa usando una cadena como índice `edades["alice"]`{l=go} en lugar de un entero como `edades[0]`{l=go}.
 
 Los mapas son una forma de asociar claves a valores, y son útiles para almacenar datos que se pueden identificar mediante una clave. Por ejemplo, en el caso de `edades`{l=go}, la clave es el nombre de una persona y el valor es su edad.
 
@@ -43,7 +44,6 @@ En Go, un `map`{l=go} es una referencia a una tabla hash[^1], y el tipo de `map`
 No hay restricciones sobre el tipo de valor `V`{l=go}.
 
 Los mapas son dinámicos es decir que pueden crecer o disminuir su tamaño a medida que se agregan o eliminan elementos.
-
 
 La función _built-in_ `make`{l=go} se puede usar para reservar la memoria que usará un mapa:
 
@@ -176,7 +176,7 @@ panic: assignment to entry in nil map
 
 Antes de poder almacenar valores, se debe asignar memoria al mapa.
 
-**Acceder a un elemento de un mapa mediante subíndices siempre devuelve un valor**. Si la clave está presente en el mapa, obtendrás el valor correspondiente; si no, obtendrás el _valor cero_ para el tipo del elemento, como vimos con `edades["bob"]`{l=go}. 
+**Acceder a un elemento de un mapa mediante subíndices siempre devuelve un valor**. Si la clave está presente en el mapa, obtendrás el valor correspondiente; si no, obtendrás el _valor cero_ para el tipo del elemento, como vimos con `edades["bob"]`{l=go}.
 
 Para muchos propósitos, eso está bien, pero a veces necesitas saber si el elemento realmente estaba allí o no. Por ejemplo, si el tipo del elemento es numérico, podrías necesitar distinguir entre un elemento inexistente y un elemento que casualmente tiene el _valor cero_, utilizando una prueba como esta:
 
