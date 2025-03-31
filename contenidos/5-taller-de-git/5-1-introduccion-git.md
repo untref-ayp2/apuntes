@@ -8,7 +8,7 @@ kernelspec:
 
 Cuando trabajamos en un proyecto, es común que necesitemos compartir nuestro trabajo con otros. Para ello, es necesario contar con una herramienta que nos permita llevar un registro de los cambios realizados, y que nos permita compartirlos con otros.
 
-Las preguntas que surgen sobre cómo trabajamos en proyectos que exceden a una persona son muchas:
+Cuando trabajamos en equipo en un proyecto surgen muchas preguntas:
 
 - ¿Cómo **sincronizamos** el trabajo?
 - ¿Cómo **dividimos** las partes a realizar?
@@ -19,9 +19,7 @@ Las preguntas que surgen sobre cómo trabajamos en proyectos que exceden a una p
 
 Para responder a estas preguntas, existen herramientas que nos permiten llevar un registro de los cambios realizados en un proyecto y compartirlos con otros. Una de las herramientas más utilizadas es **Git**.
 
-## ¿Qué es git?
-
-Git es un sistema de control de versiones (SVC).
+Git es un sistema de control de versiones (SCV).
 
 ## ¿Qué es un SCV?
 
@@ -205,7 +203,7 @@ Si hubiera cambios similares en dos ramas que vamos a integrar, pueden suceder q
 
 La resolución de conflictos "de merge" es una tarea que puede asustar, pero es simple si se trabaja en forma ordenada.
 
-### Compartienddo nuestro repo
+### Compartiendo nuestro repo
 
 Para subir nuestro contenido a un repo remoto, debemos…
 
