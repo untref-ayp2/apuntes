@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.9 -->
+<!-- CreationDate: 2025-03-21 12:56:13 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="598pt" height="597pt"
+	viewBox="4038 -12 9491 9474">
+<g fill="none">
+<!-- Line -->
+<rect x="4050" y="8100" width="5400" height="1350" fill="#87cfff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="4050" y="7200" width="5400" height="900" fill="#00b000"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="4050" y="5400" width="5400" height="1800" fill="#ffff8c"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="4050" y="0" width="5400" height="1350" fill="#ffe2e2"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp0">
+	<path clip-rule="evenodd" d="M 4038,-12 H 13529 V 9462 H 4038 z
+		M 6345,2513 6255,2513 6267,2733 6333,2733z"/>
+</clipPath>
+</defs>
+<polyline points=" 6300,1350 6300,2700" clip-path="url(#cp0)"
+	stroke="#000000" stroke-width="60px"/>
+<!-- Forward arrow to point 6300,2700 -->
+<polygon points=" 6255,2513 6300,2633 6345,2513 6255,2513"
+	stroke="#000000" stroke-width="45px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp1">
+	<path clip-rule="evenodd" d="M 4038,-12 H 13529 V 9462 H 4038 z
+		M 7155,4237 7245,4237 7233,4017 7167,4017z"/>
+</clipPath>
+</defs>
+<polyline points=" 7200,5400 7200,4050" clip-path="url(#cp1)"
+	stroke="#000000" stroke-width="60px"/>
+<!-- Forward arrow to point 7200,4050 -->
+<polygon points=" 7245,4237 7200,4117 7155,4237 7245,4237"
+	stroke="#000000" stroke-width="45px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<polyline points=" 4050,1350 4050,5400"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polyline points=" 9450,1350 9450,5400"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="6660" y="810" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Pila (Stack)</text>
+<!-- Text -->
+<text xml:space="preserve" x="6750" y="8820" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Segmento de Código (CS)</text>
+<!-- Text -->
+<text xml:space="preserve" x="6660" y="6300" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Mem. Dinámica (Heap)</text>
+<!-- Text -->
+<text xml:space="preserve" x="9900" y="7650" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Variables globales</text>
+<!-- Text -->
+<text xml:space="preserve" x="9900" y="6300" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Datos de usuario</text>
+<!-- Text -->
+<text xml:space="preserve" x="9900" y="1350" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Variables locales</text>
+<!-- Text -->
+<text xml:space="preserve" x="9900" y="9000" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Instrucciones</text>
+<!-- Text -->
+<text xml:space="preserve" x="9900" y="900" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Llamadas a funciones</text>
+<!-- Text -->
+<text xml:space="preserve" x="6660" y="7740" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Segmento de Datos (DS)</text>
+</g>
+</svg>
