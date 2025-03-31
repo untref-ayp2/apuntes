@@ -80,6 +80,14 @@ definir nuevos tipos de datos.
 
 ### Ejemplos
 
+En el repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git) encontrarán código de ejemplo para empezar a sumergirnos en GO.
+
+Se recomienda crear una carpeta en el disco local, por ejemplo con el nombre taller-go, y clonar el repositorio
+
+```{terminal}
+git clone https://github.com/untref-ayp2/taller-go.git
+```
+
 El siguiente fragmento se encuentra en el archivo `hola.go`
 
 :::{admonition} `hola.go`
