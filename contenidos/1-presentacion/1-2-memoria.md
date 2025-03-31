@@ -21,7 +21,6 @@ var fmt FmtWrapper = FmtWrapper{}
 
 En general la memoria de una computadora se puede clasificar en:
 
-
 Memoria central o primaria
 : Constituida por memoria volátil, más rápida y costosa que otros medios de almacenamiento. Es la memoria de trabajo del procesador, la RAM (_Random Access Memory_) de acceso rápido, donde se almacenan los programas en ejecución y los datos. La información que almacena la RAM se pierde al interrumpirse el suministro de corriente eléctrica.
 
@@ -157,7 +156,7 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
   - **Almacenamiento:** **Stack**
   - **Justificación:** `p1` es una variable de tipo `Persona` declarada como global. Su almacenamiento inicial será en el _**stack**_, donde solo tendremos una referencia para acceder a los datos que almacenará la estructura en el _**heap**_ . Los valores de los campos como `nombre` (`"Marcelo"`) se almacenan en el _**heap**_.
 
-***
+---
 
 - **`p2`**
 
@@ -189,7 +188,7 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
   ```
 
   - **Almacenamiento:** **Stack**
-  - **Justificación:** `p4` es una copia de `p2`. Se almacena en el _**stack**_. Sin embargo, los campos de tipo `string` referenciados por `p4` apuntan a las mismas ubicaciones en el _**heap** que los de `p2`.
+  - **Justificación:** `p4` es una copia de `p2`. Se almacena en el _**stack**_. Sin embargo, los campos de tipo `string` referenciados por `p4` apuntan a las mismas ubicaciones en el _**heap**_ que los de `p2`.
 
   ***
 
