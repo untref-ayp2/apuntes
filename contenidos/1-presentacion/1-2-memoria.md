@@ -19,29 +19,22 @@ func (fw FmtWrapper) Println(a ...interface{}) {
 var fmt FmtWrapper = FmtWrapper{}
 ```
 
-## Clasificación de memoria de una computadora
+En general la memoria de una computadora se puede clasificar en:
 
-Existen dos tipos de memoria clasificadas según su duración:
-
-Memoria volátil
-: La información que almacena se pierde al interrumpirse el suministro de corriente eléctrica. Es más rápida, más costosa y puede almacenar pequeñas cantidades de información. En este tipo se encuentran las memorias: RAM (Random Access Memory), Cache L1, Cache L2
-
-Memoria no volátil o persistente
-: Conserva la información almacenada al interrumpirse el suministro de corriente eléctrica. Es más lenta, más barata y puede almacenar grandes volúmenes de información. En este tipo se encuentran las memorias: discos rígidos, discos ópticos, memorias USB, etc.
-
-Desde el punto de vista de cómo está organizada la memoria se clasifica en:
 
 Memoria central o primaria
-: Constituida por memoria volátil. Es la memoria de trabajo del procesador, la RAM de acceso rápido, donde se almacenan los programas en ejecución y los datos.
+: Constituida por memoria volátil, más rápida y costosa que otros medios de almacenamiento. Es la memoria de trabajo del procesador, la RAM (_Random Access Memory_) de acceso rápido, donde se almacenan los programas en ejecución y los datos. La información que almacena la RAM se pierde al interrumpirse el suministro de corriente eléctrica.
 
 Memoria secundaria
-: Conformada por el conjunto de memorias no volátiles. Es la memoria de persistencia de información.
+: Conformada por el conjunto de memorias no volátiles. Es la memoria de persistencia de información. Ejemplos: discos rígidos, discos ópticos, memorias USB, etc. Conserva la información almacenada al interrumpirse el suministro de corriente eléctrica. Es más lenta y barata que la RAM.
 
-### Organización de la Memoria central o primaria
+## Organización de la Memoria central o primaria
 
-Tanto los programas como el resto de información que guarda la computadora son almacenados en la **Memoria secundaria**. Al momento de lanzar la ejecución de un programa, el conjunto de instrucciones que lo componen es copiado a la **Memoria central o primaria**. Un programa en ejecución se denomina **proceso**.
+Tanto los programas como el resto de información que guarda la computadora están almacenados en la **memoria secundaria**.
 
-En tiempo de ejecución, un proceso está asociado a una porción de la memoria central que se divide lógicamente en 4 segmentos:
+Al lanzar la ejecución de un programa, las instrucciones y los datos iniciales se copian a la **memoria primaria**. Un programa en ejecución se denomina **proceso**.
+
+En tiempo de ejecución, un proceso está asociado a una porción de la memoria primaria que se divide lógicamente en 4 segmentos:
 
 Segmento de Código (_code segment_)
 : Es la porción donde se localizarán las instrucciones que componen nuestro programa. Su tamaño se determina al comenzar la ejecución. Asociado a este segmento se encuentra un **puntero** que indica la próxima instrucción a ejecutar.
@@ -57,26 +50,26 @@ Memoria dinámica (_heap_)
 
 ## Ejecución de programas
 
-Al lanzar la ejecución de un pograma creamos un **proceso** del mismo. Durante la ejecución de un **proceso** la memoria se organiza y se utiliza de la siguiente manera:
+Para poder ejecutar un programa se deben seguir los siguientes pasos:
 
 1\. Compilación y almacenamiento
 : Los programas se almacenan inicialmente en la memoria secundaria (por ejemplo, en un disco duro o SSD). En el caso de Go como se trata de un lenguaje compilado, los archivos fuentes se compilan y se genera un archivo ejecutable que se almacena en el disco.
 
 2\. Asignación de memoria central
-: Al iniciar la ejecución, el sistema operativo carga el programa en la memoria central (RAM). Esto incluye las instrucciones del programa y los datos iniciales necesarios para su ejecución. La memoria asignada al programa se divide en segmentos específicos para el código, los datos, la pila y el heap. El programa en ejecución se denomina **proceso**.
+: Al iniciar la ejecución, el **sistema operativo** carga el programa en la memoria central (RAM). Esto incluye las instrucciones del programa y los datos iniciales necesarios para su ejecución. La memoria asignada al programa se divide en segmentos específicos para el código, los datos, el _stack_ y el _heap_. El programa en ejecución se denomina **proceso**.
 
 3\. Ejecución del programa
-: El procesador ejecuta una a una las instrucciones del programa desde el **Segmento de Código**. Cada vez que ejecuta una instrucción avanza el puntero de instrucción al siguiente. Cuando ejecuta una llamada a una función, se crea un nuevo marco (_frame_) de pila en el **Stack** para almacenar las variables locales y los parámetros de la función. Eventualmente cuando la función termina, el marco de pila se elimina y el valor de retorno se transfiere al marco de pila anterior desde donde se llamó a la función. Si durante la ejecución de una función se solicita memoria dinámica, se asigna en el **Heap**. En Go, durante la ejecución del programa, el recolector de basura (_garbage collector_) se encarga de liberar la memoria no utilizada, para evitar que se produzcan fugas de memoria.
+: El procesador ejecuta una a una las instrucciones del programa desde el **segmento de código**. Cada vez que ejecuta una instrucción avanza el puntero de instrucción al siguiente. Cuando ejecuta una llamada a una función, se crea un nuevo marco (_frame_) de pila en el _**stack**_ para almacenar las variables locales y los parámetros de la función. Eventualmente cuando la función termina, el marco de pila se elimina y el valor de retorno se transfiere al marco de pila anterior desde donde se llamó a la función. Si durante la ejecución de una función se solicita memoria dinámica, se asigna en el _**heap**_. En Go, durante la ejecución del programa, el recolector de basura (_garbage collector_) se encarga de liberar la memoria no utilizada, para evitar que se produzcan fugas de memoria.
 
 4\. Interacción con el sistema operativo
-: El sistema operativo supervisa y gestiona la memoria asignada al programa. Si el programa necesita más memoria, puede solicitarla al sistema operativo, que ajustará el tamaño del **Heap** o la **Pila** según sea necesario.
+: El sistema operativo supervisa y gestiona la memoria asignada al programa. Si el programa necesita más memoria, puede solicitarla al sistema operativo, que ajustará el tamaño del _**heap**_ o el _**stack**_ según sea necesario.
 
 5\. Liberación de memoria
 : Al finalizar la ejecución, el sistema operativo libera toda la memoria asignada al programa, incluyendo los segmentos de código, datos, pila y heap.
 
 En la figura {ref}`esquema-memoria` se muestra un esquema de la memoria de un proceso en ejecución. Cada segmento de memoria tiene un tamaño y una función específica en el programa. La figura es solo a modo didáctico y no representa la organización real de la memoria en Go, que es más compleja.
 
-En el diagrama la pila se ubica en la parte superior de la memoria y crece hacia abajo, cuando no puede crecer más se produce un error de desbordamiento de pila (_stack overflow_). La memoria dinámica se ubica en la parte inferior de la memoria, sobre los segmentos de código y datos y crece hacia arriba.
+En el diagrama el _**stack**_ se ubica en la parte superior de la memoria y crece hacia abajo, cuando no puede crecer más se produce un error de desbordamiento de pila (_stack overflow_). El _**heap**_ se ubica en la parte inferior de la memoria, sobre los segmentos de código y datos y crece hacia arriba.
 
 ```{figure} ../assets/images/MemoriaSegmentos.svg
 ---
@@ -90,30 +83,13 @@ Segmentos de Memoria de un Proceso en Ejecución
 
 La gestión de memoria es un aspecto clave en cualquier lenguaje de programación, ya que impacta en el rendimiento, la eficiencia y la estabilidad del software.
 
-En Go, las variables se almacenan en el **Stack** o en el **Heap** dependiendo de su alcance, duración y cómo se utilizan.
+En Go, las variables se almacenan en el _**stack**_ o en el _**heap**_ dependiendo de su alcance, duración y cómo se utilizan.
 
-1. Asignación en el **Stack**:
-
-   - Las variables locales dentro de una función, incluidos los _structs_, suelen asignarse en el **Stack** si su tiempo de vida se limita al alcance de la función.
-   - La asignación en el **Stack** es rápida porque implica operaciones simples como empujar y sacar direcciones de memoria. Sin embargo, el tamaño de el **Stack** es limitado.
-
-2. Asignación en el **Heap**:
-   - Si el compilador de Go determina (mediante el análisis de escape) que una variable puede ser referenciada fuera de su alcance (por ejemplo, si se devuelve desde una función o se almacena en una variable global), asigna la variable en el **Heap** para evitar punteros colgantes.
-   - Las estructuras de datos grandes (por ejemplo, arreglos o _slices_ que superan ciertos umbrales) también se asignan en el **Heap** para evitar desbordamientos de pila.
-
-En Go, si un _struct_ recién creado se almacena en el **Stack** o el **Heap** depende del contexto de su uso y de los resultados del **análisis de escape** realizado por el compilador de Go.
-
-- Cuando creas un _struct_ usando `var`, se asigna en el **Stack** si su tiempo de vida es local a la función.
-- Usar `new` asigna explícitamente memoria para el _struct_ en el **Heap** y devuelve un puntero a él.
-- El análisis de escape determina si una instancia de _struct_ "escapa" de su alcance local. Si lo hace, se asignará en el **Heap**, incluso si se declara localmente.
-
-Análisis de escape (_Escape analysis_)
-: El compilador de Go decide automáticamente si una variable debe almacenarse en el **Stack** o en el **Heap**. Esto se conoce como **Escape Analysis**.
-: Si una variable "escapa" del alcance de la función, se almacena en el Heap en lugar del Stack.
+_Escape analysis_ (Análisis de Escape)
+: El compilador de Go decide automáticamente si una variable debe almacenarse en el _**stack**_ o en el _**heap**_. Esto se conoce como _**Escape Analysis**_. Si una variable **"escapa"** del alcance de la función, se almacena en el _**heap**_ en lugar del _**stack**_.
 
 Consideraciones de Rendimiento
-
-: La asignación en el **Stack** es más rápida pero tiene un tamaño limitado, mientras que la asignación en el **Heap** es más lenta debido a la sobrecarga de recolección de basura, pero permite estructuras de datos más grandes y persistentes.
+: El acceso a las variables que se encuentran en el _**stack**_ es más directo y más rápido, mientras que el acceso a los datos en el _**heap**_ es más lento ya que se deben referenciar desde el _**stack**_, pero permite estructuras de datos más grandes y persistentes.
 
 Veamos un ejemplo, dado el siguiente fragmento de código:
 
@@ -166,7 +142,7 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
   ```
 
   - **Almacenamiento:** **Stack**
-  - **Justificación:** `num` es una variable global, pero en Go, las variables simples como enteros suelen almacenarse en el stack si no se necesita que persistan más allá del alcance de la función principal. Sin embargo, si el compilador detecta que se necesita más tiempo de vida, podría moverla al heap. En este caso, es probable que esté en el stack.
+  - **Justificación:** `num` es una variable global, pero en Go, las variables simples como enteros suelen almacenarse en el _**stack**_ si no se necesita que persistan más allá del alcance de la función principal. Sin embargo, si el compilador detecta que se necesita más tiempo de vida, podría moverla al _**heap**_. En este caso, es probable que esté en el _**stack**_.
 
   ***
 
@@ -179,9 +155,9 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
   ```
 
   - **Almacenamiento:** **Stack**
-  - **Justificación:** `p1` es una variable de tipo `Persona` declarada como global. Aunque es una estructura más compleja, su almacenamiento inicial será en el stack porque no se asigna dinámicamente ni se pasa como puntero. Sin embargo, los valores de los campos como `nombre` (`"Marcelo"`) se almacenan en el **Heap**, ya que las cadenas (`string`) en Go son referencias a datos en el heap.
+  - **Justificación:** `p1` es una variable de tipo `Persona` declarada como global. Su almacenamiento inicial será en el _**stack**_, donde solo tendremos una referencia para acceder a los datos que almacenará la estructura en el _**heap**_ . Los valores de los campos como `nombre` (`"Marcelo"`) se almacenan en el _**heap**_.
 
-  ***
+***
 
 - **`p2`**
 
@@ -190,7 +166,7 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
   ```
 
   - **Almacenamiento:** **Stack**
-  - **Justificación:** `p2` es una variable local inicializada en el stack porque no se utiliza ningún puntero ni asignación dinámica. Sin embargo, el valor del campo `nombre` ("Pepe") se almacena en el **Heap**, ya que las cadenas en Go son referencias.
+  - **Justificación:** `p2` es una variable local inicializada en el _**stack**_. Sin embargo, el valor del campo `nombre` ("Pepe") se almacena en el _**heap**_, ya que las cadenas en Go son referencias.
 
   ***
 
@@ -202,7 +178,7 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
   ```
 
   - **Almacenamiento:** **Stack** (estructura) y **Heap** (cadenas)
-  - **Justificación:** La estructura `p3` se almacena en el stack porque es una variable local. Sin embargo, los valores de tipo `string` como `"Juan"`, `"Gonzalez"`, `"Valentín Gomez"`, etc., se almacenan en el **Heap**, ya que las cadenas en Go son referencias a datos en memoria dinámica.
+  - **Justificación:** La variable `p3` se almacena en el _**stack**_ porque es una variable local. Sin embargo, los valores de tipo `string` como `"Juan"`, `"Gonzalez"`, `"Valentín Gomez"`, etc., se almacenan en el _**heap**_, ya que las cadenas en Go son referencias a datos en memoria dinámica.
 
   ***
 
@@ -213,7 +189,7 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
   ```
 
   - **Almacenamiento:** **Stack**
-  - **Justificación:** `p4` es una copia de `p2`. Como no se utiliza ningún puntero, `p4` se almacena en el stack. Sin embargo, los campos de tipo `string` referenciados por `p4` apuntan a las mismas ubicaciones en el **Heap** que los de `p2`.
+  - **Justificación:** `p4` es una copia de `p2`. Se almacena en el _**stack**_. Sin embargo, los campos de tipo `string` referenciados por `p4` apuntan a las mismas ubicaciones en el _**heap** que los de `p2`.
 
   ***
 
@@ -224,7 +200,7 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
   ```
 
   - **Almacenamiento:** **Stack** (estructura) y **Heap** (cadenas)
-  - **Justificación:** La estructura `dir` se almacena en el stack porque es una variable local. Sin embargo, los valores de tipo `string` como `"Av. Corrientes"`, `"CABA"`, etc., se almacenan en el **Heap**.
+  - **Justificación:** La variable `dir` se almacena en el _**stack**_ porque es una variable local. Sin embargo, los valores de tipo `string` como `"Av. Corrientes"`, `"CABA"`, etc., se almacenan en el _**heap**_.
 
   ***
 
@@ -292,4 +268,4 @@ Momentos a graficar:
 2. Durante la ejecución de la función `main`, después de la asignación de `localVar` y `localStr`.
 3. Durante la ejecución de la función `main`, después de la asignación de `dynamicSlice`.
 
-En el gráfico, identificar claramente qué variables están en el **Stack** y cuáles están en el **Heap**, así como las referencias entre ellas.
+En el gráfico, identificar claramente qué variables están en el _**Stack**_ y cuáles están en el _**Heap**_, así como las referencias entre ellas.
