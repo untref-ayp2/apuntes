@@ -80,11 +80,11 @@ definir nuevos tipos de datos.
 
 ### Ejemplos
 
-En el repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git) encontrarán código de ejemplo para empezar a sumergirnos en GO.
+En el repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git) encontrarán código de ejemplo para empezar a sumergirnos en Go.
 
 Se recomienda crear una carpeta en el disco local, por ejemplo con el nombre taller-go, y clonar el repositorio
 
-```{terminal}
+```console
 git clone https://github.com/untref-ayp2/taller-go.git
 ```
 
