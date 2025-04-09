@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.9 -->
+<!-- CreationDate: 2025-04-08 15:34:00 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="188pt" height="376pt"
+	viewBox="5142 2595 2970 5967">
+<g fill="none">
+<!-- Line -->
+<rect x="7650" y="3600" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="4050" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="4500" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="5850" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="7650" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="6750" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="6300" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="5400" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="4950" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="8100" width="450" height="450" fill="#e87f7f"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="7200" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="7830" y="2610" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="middle"></text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="4365" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="3915" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">0</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="4815" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">2</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="5265" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">3</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="5715" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">4</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="6120" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">5</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="6615" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">6</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="7065" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">7</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="7470" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">8</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="7965" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">9</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="8460" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">10</text>
+<!-- Text -->
+<text xml:space="preserve" x="6030" y="4995" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="end">f(k1) = 9</text>
+<!-- Text -->
+<text xml:space="preserve" x="7875" y="3915" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">k2</text>
+<!-- Text -->
+<text xml:space="preserve" x="7875" y="7965" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">k1</text>
+<!-- Text -->
+<text xml:space="preserve" x="6030" y="5525" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="end">f(k2) = 9</text>
+</g>
+</svg>

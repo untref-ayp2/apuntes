@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.9 -->
+<!-- CreationDate: 2025-04-08 16:02:14 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="429pt" height="423pt"
+	viewBox="5768 2595 6799 6712">
+<g fill="none">
+<!-- Line -->
+<rect x="11475" y="3600" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="11475" y="4050" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="11475" y="4500" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="11475" y="5850" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="11475" y="7650" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="11475" y="6750" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="11475" y="6300" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="11475" y="5400" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="11475" y="4950" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="11475" y="8100" width="450" height="450" fill="#c3e7ff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="11475" y="7200" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp0">
+	<path clip-rule="evenodd" d="M 5768,2595 H 12567 V 9307 H 5768 z
+		M 11114,7845 11114,7905 11257,7882 11257,7868z"/>
+</clipPath>
+</defs>
+<polyline points=" 10350,7875 11250,7875" clip-path="url(#cp0)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 11250,7875 -->
+<polygon points=" 11114,7905 11234,7875 11114,7845 11114,7905"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp1">
+	<path clip-rule="evenodd" d="M 5768,2595 H 12567 V 9307 H 5768 z
+		M 11114,8295 11114,8355 11257,8332 11257,8318z"/>
+</clipPath>
+</defs>
+<polyline points=" 10350,8325 11250,8325" clip-path="url(#cp1)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 11250,8325 -->
+<polygon points=" 11114,8355 11234,8325 11114,8295 11114,8355"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp2">
+	<path clip-rule="evenodd" d="M 5768,2595 H 12567 V 9307 H 5768 z
+		M 11114,4245 11114,4305 11257,4282 11257,4268z"/>
+</clipPath>
+</defs>
+<polyline points=" 10350,4275 11250,4275" clip-path="url(#cp2)"
+	stroke="#ff0000" stroke-width="8px"/>
+<!-- Forward arrow to point 11250,4275 -->
+<polygon points=" 11114,4305 11234,4275 11114,4245 11114,4305"
+	stroke="#ff0000" stroke-width="8px" stroke-miterlimit="8" fill="#ff0000"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp3">
+	<path clip-rule="evenodd" d="M 5768,2595 H 12567 V 9307 H 5768 z
+		M 11114,3795 11114,3855 11257,3832 11257,3818z"/>
+</clipPath>
+</defs>
+<polyline points=" 10350,3825 11250,3825" clip-path="url(#cp3)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 11250,3825 -->
+<polygon points=" 11114,3855 11234,3825 11114,3795 11114,3855"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8"/>
+<!-- Text -->
+<text xml:space="preserve" x="11385" y="4365" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="11385" y="3915" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">0</text>
+<!-- Text -->
+<text xml:space="preserve" x="11385" y="4815" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">2</text>
+<!-- Text -->
+<text xml:space="preserve" x="11385" y="5265" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">3</text>
+<!-- Text -->
+<text xml:space="preserve" x="11385" y="5715" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">4</text>
+<!-- Text -->
+<text xml:space="preserve" x="11385" y="6120" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">5</text>
+<!-- Text -->
+<text xml:space="preserve" x="11385" y="6615" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">6</text>
+<!-- Text -->
+<text xml:space="preserve" x="11385" y="7065" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">7</text>
+<!-- Text -->
+<text xml:space="preserve" x="11385" y="7470" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">8</text>
+<!-- Text -->
+<text xml:space="preserve" x="11385" y="7965" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">9</text>
+<!-- Text -->
+<text xml:space="preserve" x="11385" y="8460" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">10</text>
+<!-- Text -->
+<text xml:space="preserve" x="11700" y="3915" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">k2</text>
+<!-- Text -->
+<text xml:space="preserve" x="11700" y="7965" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">k1</text>
+<!-- Text -->
+<text xml:space="preserve" x="10125" y="7875" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="end">1- k3</text>
+<!-- Text -->
+<text xml:space="preserve" x="10125" y="8325" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="end">2- k3</text>
+<!-- Text -->
+<text xml:space="preserve" x="10125" y="3825" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="end">3- k3</text>
+<!-- Text -->
+<text xml:space="preserve" x="10125" y="4275" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="end">3- k3</text>
+<!-- Text -->
+<text xml:space="preserve" x="10800" y="6075" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="end">f(k3) = 9</text>
+<!-- Line -->
+<rect x="7650" y="3600" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="4050" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="4500" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="5850" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="7650" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="6750" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="6300" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="5400" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="4950" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="8100" width="450" height="450" fill="#c3e7ff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<rect x="7650" y="7200" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp4">
+	<path clip-rule="evenodd" d="M 5768,2595 H 12567 V 9307 H 5768 z
+		M 7289,7845 7289,7905 7432,7882 7432,7868z"/>
+</clipPath>
+</defs>
+<polyline points=" 6525,7875 7425,7875" clip-path="url(#cp4)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 7425,7875 -->
+<polygon points=" 7289,7905 7409,7875 7289,7845 7289,7905"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp5">
+	<path clip-rule="evenodd" d="M 5768,2595 H 12567 V 9307 H 5768 z
+		M 7289,8295 7289,8355 7432,8332 7432,8318z"/>
+</clipPath>
+</defs>
+<polyline points=" 6525,8325 7425,8325" clip-path="url(#cp5)"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Forward arrow to point 7425,8325 -->
+<polygon points=" 7289,8355 7409,8325 7289,8295 7289,8355"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp6">
+	<path clip-rule="evenodd" d="M 5768,2595 H 12567 V 9307 H 5768 z
+		M 7289,3795 7289,3855 7432,3832 7432,3818z"/>
+</clipPath>
+</defs>
+<polyline points=" 6525,3825 7425,3825" clip-path="url(#cp6)"
+	stroke="#00ff00" stroke-width="8px"/>
+<!-- Forward arrow to point 7425,3825 -->
+<polygon points=" 7289,3855 7409,3825 7289,3795 7289,3855"
+	stroke="#00ff00" stroke-width="8px" stroke-miterlimit="8" fill="#00ff00"/>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="4365" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="3915" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">0</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="4815" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">2</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="5265" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">3</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="5715" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">4</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="6120" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">5</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="6615" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">6</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="7065" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">7</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="7470" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">8</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="7965" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">9</text>
+<!-- Text -->
+<text xml:space="preserve" x="7560" y="8460" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">10</text>
+<!-- Text -->
+<text xml:space="preserve" x="7875" y="3915" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">k2</text>
+<!-- Text -->
+<text xml:space="preserve" x="7875" y="7965" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">k1</text>
+<!-- Text -->
+<text xml:space="preserve" x="6300" y="7875" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="end">1- k2</text>
+<!-- Text -->
+<text xml:space="preserve" x="6300" y="8325" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="end">2- k2</text>
+<!-- Text -->
+<text xml:space="preserve" x="6300" y="3825" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="end">3- k2</text>
+<!-- Text -->
+<text xml:space="preserve" x="6975" y="6075" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="end">f(k2) = 9</text>
+<!-- Text -->
+<text xml:space="preserve" x="7830" y="2610" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="middle"></text>
+<!-- Text -->
+<text xml:space="preserve" x="11700" y="9225" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">Búsqueda de k3</text>
+<!-- Text -->
+<text xml:space="preserve" x="7875" y="9225" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">Búsqueda de k2</text>
+</g>
+</svg>
