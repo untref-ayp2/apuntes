@@ -74,7 +74,8 @@ Los elementos de un mapa se acceden mediante la notación habitual de subíndice
 
 ```{code-cell} go
 edades["alice"] = 32
-fmt.Println(edades["alice"])
+edad := edades["alice"]
+fmt.Println(edad)
 ```
 
 y se pueden eliminar con la función _built-in_ `delete`{l=go}:
