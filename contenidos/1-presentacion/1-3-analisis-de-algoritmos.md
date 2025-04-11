@@ -416,7 +416,7 @@ Vuelta $i$ del ciclo
 entonces para $i = k$
 
 Vuelta $k$ del ciclo
-: $$T(n) = T(0) + k \, c$$
+: $$T(n) = T(1) + k \, c$$
 
 $T(0)$ es cuanto cuesta si el arreglo tiene tamaño 0, es dedir `L > R`, y por lo
 tanto solo devuelve el -1 de la línea 12. Entonces $T(0) = O(1)$
@@ -424,7 +424,7 @@ tanto solo devuelve el -1 de la línea 12. Entonces $T(0) = O(1)$
 podemos despejar $k$ de la ecuación $n = 2^k$ y nos queda que $k = log_2(n)$.
 Finalmente queda:
 
-$$T(n) = O(1) + c \, log_2(n)$$
+$$T(n) = O(1) + c \; log_2(n)$$
 
 $$T(n) = O(log_2(n))$$
 
