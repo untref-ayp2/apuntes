@@ -391,7 +391,7 @@ es que los condicionales son $O(1)$. Siguiendo el mismo razonamiento, todas las
 instrucciones que se realizan afuera del ciclo Mientras también son OE. Por lo
 tanto podemos plantear la siguiente ecuación de recurrencia:
 
-$$T(n) = T(\frac{n}{2}) + c$$
+$$T(n) = T \left\( \frac{n}{2} \right\) + c$$
 
 Donde $T(\frac{n}{2})$ representa que en cada vuelta del ciclo mientras se
 descarta la mitad del arreglo. La constante $c$ representa todas las operaciones
@@ -403,7 +403,7 @@ $$n = 2^k$$
 Reemplazando obtenemos:
 
 Primera vuelta del ciclo
-: $$T(n) = T(\frac{2^k}{2}) + c = T(2^{k-1}) + c$$
+: $$T(n) = T \left\( \frac{2^k}{2} \right\) + c = T(2^{k-1}) + c$$
 
 Segunda vuelta del ciclo
 : $$T(n) = T(2^{k-2}) + 2 \, c$$
