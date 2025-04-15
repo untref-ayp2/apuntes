@@ -6,11 +6,13 @@ kernelspec:
 
 # Tablas de _Hashing_
 
-Las tablas de _hashing_ son estructuras de datos que permiten almacenar y recuperar información de manera eficiente. Utilizan una función de _hash_ para mapear claves a posiciones en un arreglo, lo que permite acceder a los elementos en tiempo constante promedio $O(1)$. Son especialmente útiles para implementar diccionarios, conjuntos y otras estructuras de datos que requieren acceso rápido a los elementos.
+Las tablas de _hashing_ son estructuras de datos que permiten almacenar y recuperar información de manera eficiente. Utilizan una función de _hash_ para mapear claves a posiciones en un arreglo, lo que permite acceder a los elementos en tiempo constante $O(1)$[^1]. Son especialmente útiles para implementar diccionarios, conjuntos y otras estructuras de datos que requieren acceso rápido a los elementos.
 
-Una tabla de _hashing_ generaliza el concepto de un arreglo, ya que permite acceder a cualquier posición de la tabla en tiempo constante. Podemos asi tener arreglos indexados con otros tipos de datos y no solo enteros. 
+[^1]: En este caso se toma el tiempo promedio, bajo ciertas condiciones. Cuando se evalua un TAD donde se insertan, buscan y remueven elementos muy frecuentemente, se acostumbra tomar el tiempo promedio de las operaciones. Sin embargo, en el peor de los casos, algunas operaciones pueden tener un orden lineal.
 
-Para lograr esto, se utiliza una función de _hash_ que toma una clave y devuelve un índice en el arreglo. La función de _hash_ debe ser eficiente y distribuir uniformemente. 
+Una tabla de _hashing_ generaliza el concepto de arreglo, ya que permite acceder a cualquier posición de la tabla en tiempo constante. Podemos asi tener arreglos indexados con otros tipos de datos y no solo enteros. 
+
+Para lograr esto, se utiliza una función de _hash_ que toma una clave y devuelve un índice en el arreglo. La función de _hash_ debe ser eficiente y distribuir el conjunto de claves uniformemente dentro del arreglo.
 
 En la siguiente figura se aprecia un esquema que nos permite analizar los distintos elementos involucrados en una tabla de _hashing_. 
 
@@ -29,7 +31,7 @@ Valores
 : El valor asociado a una clave. Puede ser cualquier tipo de dato, incluyendo estructuras de datos complejas.
 
 Función de _hash_
-: Una función que toma una clave y devuelve un índice en el arreglo. La función de _hash_ debe ser eficiente y distribuir uniformemente las claves en el arreglo.
+: Una función que toma una clave y devuelve un índice en el arreglo.
 
 Arreglo
 : La estructura de datos subyacente que almacena los elementos, es un arreglo de _"valores"_. El tamaño del arreglo debe ser lo suficientemente grande para evitar colisiones, pero no tan grande como para desperdiciar espacio.
@@ -48,14 +50,14 @@ Las colisiones son un problema común en las tablas de _hashing_. Ocurren cuando
 Para manejar las colisiones, existen varias técnicas, entre las que se encuentran:
 
 _Hashing_ abierto
-: Con esta técnica, cuando se produce una colisión, se busca la siguiente posición libre en el arreglo para almacenar el nuevo elemento, simplemente incrementando el índice hasta encontrar una posición libre[1].
+: Con esta técnica, cuando se produce una colisión, se busca la siguiente posición libre en el arreglo para almacenar el nuevo elemento, simplemente incrementando el índice hasta encontrar una posición libre[^2].
 
-1: Otras versiones de esta técnica utilizan una función de _hash_ diferente para encontrar la siguiente posición libre, lo que se conoce como _hashing_ doble.
+[^2]: Otras versiones de esta técnica utilizan una función de _hash_ diferente para encontrar la siguiente posición libre, lo que se conoce como _hashing_ doble.
 
 _Hashing_ cerrado
 : Con esta técnica, el arreglo subyacente contiene una lista de elementos en cada posición. Cuando se produce una colisión, el nuevo elemento se agrega a la lista en la posición correspondiente. Esta técnica es más eficiente en términos de espacio, pero puede ser más lenta en términos de tiempo de acceso.
 
-### _Hashing_ abierto
+## _Hashing_ abierto
 
 Cuando se produce una colisión se debe incrementar el índice en 1 hasta encontrar una posición libre. Esta técnica es simple de implementar y funciona bien en la mayoría de los casos. Sin embargo, puede ser ineficiente si hay muchas colisiones, ya que puede requerir un tiempo de búsqueda lineal en el peor de los casos. Es importante elegir una función de _hash_ que minimice las colisiones y un tamaño de arreglo que sea lo suficientemente grande para evitar colisiones.
 
@@ -104,4 +106,284 @@ En la figura se observa que al buscar la clave $k_2$, se intenta con la posició
 
 Supongamos que se busca una clave $k_3$ cuyo valor de _hash_ también es 9. En este caso, la búsqueda comenzaría en la posición 9, pero como la clave asociada a esa posición es $k_1$, la búsqueda continuaría hasta encontrar una posición vacía o eliminada. En este caso en la posición 1 se encuentra con una posición vacía, por lo que se concluye que la clave $k_3$ no está presente en la tabla de _hashing_.
 
+## _Hashing_ cerrado
 
+El _hashing_ cerrado es una técnica de manejo de colisiones que utiliza listas enlazadas para almacenar los elementos en cada posición del arreglo. Cuando se produce una colisión, el nuevo elemento se agrega a la lista en la posición correspondiente. Esta técnica es más eficiente en términos de espacio, ya que no requiere un tamaño fijo para el arreglo, pero puede ser más lenta en términos de tiempo de acceso.
+
+```{figure} ../assets/images/TablaHashCerrado.svg
+---
+name: tabla_hash_cerrado
+---
+Tabla de _hashing_ cerrada.
+```
+
+## Aritmética Modular
+
+Es la aritmética que deriva del estudio del resto de la división de enteros. Es una forma de realizar cálculos en un conjunto finito de números. En el caso de las tablas de _hashing_, se utiliza para calcular el índice en el arreglo a partir de la clave. La operación más común en la aritmética modular es el operador módulo, que devuelve el resto de la división de dos números.
+
+La operación de módulo se denota como $a \mod b$, donde $a$ es el número que se va a dividir y $b$ es el divisor. El resultado de la operación es el resto de la división de $a$ entre $b$. Por ejemplo, $7 \mod 3 = 1$, ya que al dividir 7 entre 3, el cociente es 2 y el resto es 1.
+
+Algunas propiedades de la aritmética modular son:
+- $a \mod n + b \mod n = (a + b) \mod n$
+- $a \mod n - b \mod n = (a - b) \mod n$
+- $a \mod n * b \mod n = (a * b) \mod n$
+- $a \mod n / b \mod n = (a / b) \mod n$ (si $b \neq 0$)
+
+## Consideraciones de diseño
+
+Al diseñar una tabla de _hashing_ es muy importante evitar colisiones y al mismo tiempo ocupar el menor espacio posible. Para ello se deben considerar los siguientes aspectos:
+
+Factor de carga
+: El factor de carga es la relación entre el número de elementos en la tabla y el tamaño del arreglo. Un factor de carga alto puede aumentar el número de colisiones y disminuir el rendimiento de la tabla de _hashing_. Por lo general, se recomienda mantener el factor de carga por debajo de 0.75 para garantizar un rendimiento óptimo. Por lo contrario, un factor de carga bajo implica disminuir las colisiones al costo de aumentar el espacio utilizado.
+
+Tamaño del arreglo
+: El tamaño del arreglo debería ser un número primo. Esto se debe a que los números primos tienen propiedades matemáticas que ayudan a distribuir uniformemente las claves en el arreglo cuando se utiliza aritmética modular.
+
+Funciones de _hash_
+: La función de _hash_ debe ser eficiente y distribuir uniformemente las claves en el arreglo. Las funciones de _hash_ se basan en operaciones simples como sumas, restas, productos, división y potencia de números que se pueden realizar en tiempo constante. Generalmente como la función de _hash_ puede generar un índice por fuera del arreglo subyacente por lo que se utiliza aritmética modular.
+
+## Ejemplo de implementación de _hashing_ abierto
+
+```{code-block} go
+// Paquete hashing proporciona una implementación de una tabla hash abierta
+// cuyas claves son cadenas de caracteres y los valores pueden ser
+// de cualquier tipo. La tabla hash utiliza un array de buckets para almacenar
+// pares clave-valor.
+//
+// HashTableNode representa un único nodo en la tabla hash, que contiene una clave
+// y su valor asociado.
+//
+// HashTable es una tabla hash abierta que utiliza un array de listas enlazadas
+// (buckets) para almacenar elementos. Cada bucket es una lista enlazada que
+// contiene pares clave-valor. La tabla hash soporta tipos genéricos para claves
+// y valores.
+
+package hashing
+
+import (
+	"fmt"
+	"math"
+)
+
+// HashTableNode representa un nodo en la tabla hash, que contiene una clave y su valor asociado.
+type HashTableNode[K string, V any] struct {
+	key   K
+	value V
+}
+
+// HashTable es una tabla de hash abierta. Cada índice del array
+// representa un HashTableNode que contiene un par clave-valor.
+type HashTable[K string, V any] struct {
+	// buckets es un array de listas enlazadas que almacena los elementos.
+	buckets []*HashTableNode[K, V]
+	// size es el número de elementos en la tabla.
+	size int
+	// capacity es la capacidad de la tabla.
+	capacity int
+	// loadFactor es el factor de carga de la tabla.
+	loadFactor float64
+	// threshold es el umbral de carga para redimensionar la tabla.
+	threshold int
+}
+
+// NewHashTable crea una nueva tabla de hash abierta con la capacidad y el factor de carga especificados.
+// Si la capacidad es menor o igual a 0, se establece en 17.
+// Si el factor de carga es menor o igual a 0 o mayor que 1, se establece en 0.75.
+// Si la capacidad no es un número primo, se redimensiona a la siguiente capacidad
+// primo mayor o igual a la capacidad especificada.
+func NewHashTable[K string, V any](capacity int, loadFactor float64) *HashTable[K, V] {
+	if capacity <= 0 {
+		capacity = 17
+	}
+	if loadFactor <= 0 || loadFactor > 1 {
+		loadFactor = 0.75
+	}
+	if !isPrime(capacity) {
+		capacity = prime(capacity)
+	}
+	return &HashTable[K, V]{
+		buckets:    make([]*HashTableNode[K, V], capacity),
+		size:       0,
+		capacity:   capacity,
+		loadFactor: loadFactor,
+		threshold:  int(float64(capacity) * loadFactor),
+	}
+}
+
+// hash calcula el índice del bucket para una clave dada.
+// Se calcula como el valor asccii de cada caracter de la clave, elevado a
+// la potencia de su posición + 1
+func (ht *HashTable[K, V]) hash(key K) int {
+	hash := 0
+	for i, c := range key {
+		hash += int(math.Pow(float64(c), float64(i+1)))
+	}
+
+	return hash
+}
+
+// Put agrega un nuevo par clave-valor a la tabla de hash. Si la clave ya existe,
+// actualiza el valor asociado a la clave.
+// Devuelve true si se agregó o actualizó el elemento, false si la clave es nula.
+// Si la tabla de hash está llena, se redimensiona automáticamente.
+func (ht *HashTable[K, V]) Put(key K, value V) {
+	if key == "" {
+		return
+	}
+	if ht.size >= ht.threshold {
+		ht.resize()
+	}
+	index := ht.hash(key) % ht.capacity
+	// Si el bucket está vacío entonces la posición está vacía. En cambio
+	// si la clave es nula entonces el dato fue borrado
+	if ht.buckets[index] == nil || ht.buckets[index].key == "" {
+		ht.buckets[index] = &HashTableNode[K, V]{key: key, value: value}
+		ht.size++
+	} else {
+		ht.buckets[index].value = value
+	}
+}
+
+// Get devuelve el valor asociado a la clave dada y true para indicar que encontró
+// la clave buscada.
+// Si la clave no existe o es nula, devuelve false y un valor nulo.
+
+func (ht *HashTable[K, V]) Get(key K) (V, bool) {
+	if key == "" {
+		var zeroValue V
+		return zeroValue, false
+	}
+	index := ht.hash(key) % ht.capacity
+	if ht.buckets[index] != nil && ht.buckets[index].key == key {
+		return ht.buckets[index].value, true
+	}
+	var zeroValue V
+	return zeroValue, false
+}
+
+// Remove elimina el par clave-valor asociado a la clave dada. Devuelve true si se eliminó
+// el elemento, false si la clave no existe.
+func (ht *HashTable[K, V]) Remove(key K) bool {
+	if key == "" {
+		return false
+	}
+	index := ht.hash(key) % ht.capacity
+	if ht.buckets[index] != nil && ht.buckets[index].key == key {
+		ht.buckets[index] = nil
+		ht.size--
+		return true
+	}
+	return false
+}
+
+// Keys devuelve una lista de todas las claves en la tabla de hash.
+func (ht *HashTable[K, V]) Keys() []K {
+	keys := make([]K, 0, ht.size)
+	for _, node := range ht.buckets {
+		if node != nil && node.key != "" {
+			keys = append(keys, node.key)
+		}
+	}
+	return keys
+}
+
+// Values devuelve una lista de todos los valores en la tabla de hash.
+func (ht *HashTable[K, V]) Values() []V {
+	values := make([]V, 0, ht.size)
+	for _, node := range ht.buckets {
+		if node != nil && node.key != "" {
+			values = append(values, node.value)
+		}
+	}
+	return values
+}
+
+// Size devuelve el número de elementos en la tabla de hash.
+func (ht *HashTable[K, V]) Size() int {
+	return ht.size
+}
+
+// IsEmpty devuelve true si la tabla de hash está vacía, false en caso contrario.
+func (ht *HashTable[K, V]) IsEmpty() bool {
+	return ht.size == 0
+}
+
+// prime devuelve el siguiente número primo mayor o igual a n.
+func prime(n int) int {
+	if n <= 1 {
+		return 2
+	}
+	for i := n; ; i++ {
+		if isPrime(i) {
+			return i
+		}
+	}
+}
+
+// isPrime devuelve true si n es un número primo, false en caso contrario.
+func isPrime(n int) bool {
+	if n <= 1 {
+		return false
+	}
+	if n <= 3 {
+		return true
+	}
+	if n%2 == 0 || n%3 == 0 {
+		return false
+	}
+	for i := 5; i*i <= n; i += 6 {
+		if n%i == 0 || n%(i+2) == 0 {
+			return false
+		}
+	}
+	return true
+}
+
+// resize redimensiona la tabla de hash cuando el factor de carga supera el umbral.
+func (ht *HashTable[K, V]) resize() {
+	newCapacity := ht.capacity * 2
+	newCapacity = prime(newCapacity)
+	newBuckets := make([]*HashTableNode[K, V], newCapacity)
+	for _, node := range ht.buckets {
+		if node != nil && node.key != "" {
+			index := ht.hash(node.key) % newCapacity
+			newBuckets[index] = node
+		}
+	}
+	ht.buckets = newBuckets
+	ht.capacity = newCapacity
+	ht.threshold = int(float64(newCapacity) * ht.loadFactor)
+}
+
+// Clear elimina todos los elementos de la tabla de hash.
+func (ht *HashTable[K, V]) Clear() {
+	ht.buckets = make([]*HashTableNode[K, V], ht.capacity)
+	ht.size = 0
+}
+
+// String devuelve una representación en cadena de la tabla de hash.
+func (ht *HashTable[K, V]) String() string {
+	result := "{"
+	for _, node := range ht.buckets {
+		if node != nil && node.key != "" {
+			result += fmt.Sprintf("%v: %v", node.key, node.value) + ", "
+		}
+	}
+	if len(result) > 1 {
+		result = result[:len(result)-2]
+	}
+	result += "}"
+	return result
+}
+```
+
+En el ejemplo sólo se implementa para claves del tipo cadena de caracteres y valores de cualquier tipo. La función de _hash_ se basa en el valor ASCII de cada carácter de la clave, elevado a la potencia de su posición + 1. Esto permite distribuir uniformemente las claves en el arreglo y minimizar las colisiones.
+
+Para otros tipos de claves se debe implementar una función de hash diferente. 
+
+Una tabla de _hashing_ genérica, que soporte cualquier tipo de claves y valores, puede ser implementada utilizando la función de _hash_ de Go. Sin embargo, esto puede ser menos eficiente que utilizar una función de _hash_ específica para el tipo de clave que se está utilizando.
+
+## Ejercicios
+
+1- Implementar una tabla de _hashing_ genérica en Go, cuyas claves puedan ser de distintos tipos (usar el paquete [`maphash`](https://pkg.go.dev/hash/maphash) de Go). La tabla debe permitir la inserción, búsqueda y eliminación de elementos. Además, debe manejar colisiones utilizando listas enlazadas.
+2- Escribir casos de pruebas que cubran todas las operaciones de la tabla de _hashing_ del punto anterior.
