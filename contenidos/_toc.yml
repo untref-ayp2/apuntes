@@ -26,9 +26,9 @@ parts:
       - file: 3-estructuras-de-datos/3-1-tad
       - file: 3-estructuras-de-datos/3-2-pilas-colas
       - file: 3-estructuras-de-datos/3-3-listas
-      - file: 3-estructuras-de-datos/3-4-conjuntos
       - file: 3-estructuras-de-datos/3-5-mapa-de-bits
       - file: 3-estructuras-de-datos/3-6-tablas-de-hashing
+      - file: 3-estructuras-de-datos/3-4-conjuntos
       - file: 3-estructuras-de-datos/3-7-diccionarios
       - file: 3-estructuras-de-datos/3-8-arboles
       - file: 3-estructuras-de-datos/3-9-abb
