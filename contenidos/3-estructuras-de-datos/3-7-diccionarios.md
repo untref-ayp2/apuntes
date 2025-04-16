@@ -131,6 +131,6 @@ for clave, valor := range edades {
 
 ## Ejercicios
 
-1. Implementar un diccionario sobre una tabla de _hashing_ genérica, como la vista en la clase anterior
+1. Implementar un diccionario sobre una tabla de _hashing_ genérica, como la vista en {doc}`Tablas de Hashing<3-6-tablas-de-hashing>`. 
 
 2. Analizar el orden de todas las operaciones
