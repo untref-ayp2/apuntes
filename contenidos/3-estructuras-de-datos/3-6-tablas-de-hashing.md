@@ -145,78 +145,76 @@ Funciones de _hash_
 ## Ejemplo de implementación de _hashing_ abierto
 
 ```{code-block} go
-// Paquete hashing proporciona una implementación de una tabla hash abierta
+// Paquete hashtable proporciona una implementación de una tabla hash abierta
 // cuyas claves son cadenas de caracteres y los valores pueden ser
-// de cualquier tipo. La tabla hash utiliza un array de buckets para almacenar
+// de cualquier tipo. La tabla utiliza un arreglo para almacenar
 // pares clave-valor.
 //
-// HashTableNode representa un único nodo en la tabla hash, que contiene una clave
+// hashTableEntry representa un único nodo en la tabla hash, que contiene una clave
 // y su valor asociado.
 //
-// HashTable es una tabla hash abierta que utiliza un array de listas enlazadas
-// (buckets) para almacenar elementos. Cada bucket es una lista enlazada que
-// contiene pares clave-valor. La tabla hash soporta tipos genéricos para claves
-// y valores.
+// HashTable es una tabla hash abierta que utiliza un arreglo para almacenar elementos.
+// La tabla solo soporta string como claves y cualquier tipo como valores.
 
-package hashing
+package hashtable
 
 import (
 	"fmt"
 	"math"
 )
 
-// HashTableNode representa un nodo en la tabla hash, que contiene una clave y su valor asociado.
-type HashTableNode[K string, V any] struct {
+// hashTableEntry representa una entrada en la tabla hash, que contiene una clave y su valor asociado.
+type hashTableEntry[K string, V any] struct {
 	key   K
 	value V
 }
 
-// HashTable es una tabla de hash abierta. Cada índice del array
-// representa un HashTableNode que contiene un par clave-valor.
+// HashTable es una tabla de hash abierta. En cada posición
+// del arreglo se almacena un par clave-valor.
 type HashTable[K string, V any] struct {
-	// buckets es un array de listas enlazadas que almacena los elementos.
-	buckets []*HashTableNode[K, V]
+	// arreglo de entradas de la tabla hash.
+	buckets []*hashTableEntry[K, V]
 	// size es el número de elementos en la tabla.
-	size int
+	size uint
 	// capacity es la capacidad de la tabla.
-	capacity int
+	capacity uint
 	// loadFactor es el factor de carga de la tabla.
-	loadFactor float64
+	loadFactor float32
 	// threshold es el umbral de carga para redimensionar la tabla.
-	threshold int
+	threshold uint
 }
 
 // NewHashTable crea una nueva tabla de hash abierta con la capacidad y el factor de carga especificados.
-// Si la capacidad es menor o igual a 0, se establece en 17.
+// Si la capacidad es igual a 0, se establece en 17.
 // Si el factor de carga es menor o igual a 0 o mayor que 1, se establece en 0.75.
 // Si la capacidad no es un número primo, se redimensiona a la siguiente capacidad
 // primo mayor o igual a la capacidad especificada.
-func NewHashTable[K string, V any](capacity int, loadFactor float64) *HashTable[K, V] {
-	if capacity <= 0 {
+func NewHashTable[K string, V any](capacity uint, loadFactor float32) *HashTable[K, V] {
+	if capacity == 0 {
 		capacity = 17
 	}
 	if loadFactor <= 0 || loadFactor > 1 {
 		loadFactor = 0.75
 	}
 	if !isPrime(capacity) {
-		capacity = prime(capacity)
+		capacity = nextPrime(capacity)
 	}
 	return &HashTable[K, V]{
-		buckets:    make([]*HashTableNode[K, V], capacity),
+		buckets:    make([]*hashTableEntry[K, V], capacity),
 		size:       0,
 		capacity:   capacity,
 		loadFactor: loadFactor,
-		threshold:  int(float64(capacity) * loadFactor),
+		threshold:  uint(float32(capacity) * loadFactor),
 	}
 }
 
 // hash calcula el índice del bucket para una clave dada.
-// Se calcula como el valor asccii de cada caracter de la clave, elevado a
+// Se calcula como el valor ASCII de cada caracter de la clave, elevado a
 // la potencia de su posición + 1
-func (ht *HashTable[K, V]) hash(key K) int {
-	hash := 0
+func (ht *HashTable[K, V]) hash(key K) uint {
+	var hash uint = 0
 	for i, c := range key {
-		hash += int(math.Pow(float64(c), float64(i+1)))
+		hash += uint(math.Pow(float64(c), float64(i+1)))
 	}
 
 	return hash
@@ -226,54 +224,72 @@ func (ht *HashTable[K, V]) hash(key K) int {
 // actualiza el valor asociado a la clave.
 // Devuelve true si se agregó o actualizó el elemento, false si la clave es nula.
 // Si la tabla de hash está llena, se redimensiona automáticamente.
+// Si la clave es nula, no se agrega nada.
+
 func (ht *HashTable[K, V]) Put(key K, value V) {
+	// Si la clave es nula, no se agrega nada.
 	if key == "" {
 		return
 	}
-	if ht.size >= ht.threshold {
-		ht.resize()
-	}
-	index := ht.hash(key) % ht.capacity
-	// Si el bucket está vacío entonces la posición está vacía. En cambio
-	// si la clave es nula entonces el dato fue borrado
-	if ht.buckets[index] == nil || ht.buckets[index].key == "" {
-		ht.buckets[index] = &HashTableNode[K, V]{key: key, value: value}
-		ht.size++
-	} else {
-		ht.buckets[index].value = value
-	}
-}
+	// Si la tabla de hash está llena, redimensionamos.
+    if ht.size >= ht.threshold {
+        ht.resize()
+    }
 
+    index := ht.hash(key) % ht.capacity
+    for {
+        if ht.buckets[index] == nil {
+            // Si el bucket está vacío, insertamos el nuevo par clave-valor.
+            ht.buckets[index] = &hashTableEntry[K, V]{key: key, value: value}
+            ht.size++
+            return
+        } else if ht.buckets[index].key == key {
+            // Si la clave ya existe, actualizamos el valor.
+            ht.buckets[index].value = value
+            return
+        }
+        // Si el bucket está ocupado y la clave no coincide, probamos el siguiente índice.
+        index = (index + 1) % ht.capacity
+    }
+}
 // Get devuelve el valor asociado a la clave dada y true para indicar que encontró
 // la clave buscada.
 // Si la clave no existe o es nula, devuelve false y un valor nulo.
 
 func (ht *HashTable[K, V]) Get(key K) (V, bool) {
-	if key == "" {
-		var zeroValue V
-		return zeroValue, false
-	}
-	index := ht.hash(key) % ht.capacity
-	if ht.buckets[index] != nil && ht.buckets[index].key == key {
-		return ht.buckets[index].value, true
-	}
 	var zeroValue V
-	return zeroValue, false
+	
+	index, esta := ht.getIndex(key)
+	if esta {
+		return ht.buckets[index].value, esta
+	}
+	return zeroValue, esta
+}
+
+// getIndex devuelve el índice del bucket para una clave dada.
+// y un booleano que indica si la clave existe.
+func (ht *HashTable[K, V]) getIndex(key K) (uint, bool) {
+	if key == "" {
+		return 0, false
+	}
+	for index := ht.hash(key) % ht.capacity; ht.buckets[index] != nil; index=(index+1)%ht.capacity {
+		if ht.buckets[index].key == key {
+			return index, true
+		}
+	}
+	return 0, false
 }
 
 // Remove elimina el par clave-valor asociado a la clave dada. Devuelve true si se eliminó
 // el elemento, false si la clave no existe.
 func (ht *HashTable[K, V]) Remove(key K) bool {
-	if key == "" {
-		return false
+	var zeroValue V
+	index, esta := ht.getIndex(key)
+	if esta {
+		ht.buckets[index].key = "" //marca la clave como nula para indicar que fue eliminada
+		ht.buckets[index].value = zeroValue
 	}
-	index := ht.hash(key) % ht.capacity
-	if ht.buckets[index] != nil && ht.buckets[index].key == key {
-		ht.buckets[index] = nil
-		ht.size--
-		return true
-	}
-	return false
+	return esta
 }
 
 // Keys devuelve una lista de todas las claves en la tabla de hash.
@@ -299,7 +315,7 @@ func (ht *HashTable[K, V]) Values() []V {
 }
 
 // Size devuelve el número de elementos en la tabla de hash.
-func (ht *HashTable[K, V]) Size() int {
+func (ht *HashTable[K, V]) Size() uint {
 	return ht.size
 }
 
@@ -308,8 +324,8 @@ func (ht *HashTable[K, V]) IsEmpty() bool {
 	return ht.size == 0
 }
 
-// prime devuelve el siguiente número primo mayor o igual a n.
-func prime(n int) int {
+// nextPrime devuelve el siguiente número primo mayor o igual a n.
+func nextPrime(n uint) uint {
 	if n <= 1 {
 		return 2
 	}
@@ -321,7 +337,7 @@ func prime(n int) int {
 }
 
 // isPrime devuelve true si n es un número primo, false en caso contrario.
-func isPrime(n int) bool {
+func isPrime(n uint) bool {
 	if n <= 1 {
 		return false
 	}
@@ -331,7 +347,7 @@ func isPrime(n int) bool {
 	if n%2 == 0 || n%3 == 0 {
 		return false
 	}
-	for i := 5; i*i <= n; i += 6 {
+	for i := uint(5); i*i <= n; i += 6 {
 		if n%i == 0 || n%(i+2) == 0 {
 			return false
 		}
@@ -339,25 +355,32 @@ func isPrime(n int) bool {
 	return true
 }
 
-// resize redimensiona la tabla de hash cuando el factor de carga supera el umbral.
 func (ht *HashTable[K, V]) resize() {
-	newCapacity := ht.capacity * 2
-	newCapacity = prime(newCapacity)
-	newBuckets := make([]*HashTableNode[K, V], newCapacity)
-	for _, node := range ht.buckets {
-		if node != nil && node.key != "" {
-			index := ht.hash(node.key) % newCapacity
-			newBuckets[index] = node
-		}
-	}
-	ht.buckets = newBuckets
-	ht.capacity = newCapacity
-	ht.threshold = int(float64(newCapacity) * ht.loadFactor)
+    newCapacity := ht.capacity * 2
+    newCapacity = nextPrime(newCapacity)
+    newBuckets := make([]*hashTableEntry[K, V], newCapacity)
+
+    // Reinsertar todos los elementos en el nuevo arreglo, manejando colisiones
+    for _, node := range ht.buckets {
+        if node != nil && node.key != "" {
+            index := ht.hash(node.key) % newCapacity
+            for newBuckets[index] != nil {
+                // Resolver colisiones con prueba lineal
+                index = (index + 1) % newCapacity
+            }
+            newBuckets[index] = node
+        }
+    }
+
+    // Actualizar los atributos de la tabla hash
+    ht.buckets = newBuckets
+    ht.capacity = newCapacity
+    ht.threshold = uint(float32(newCapacity) * ht.loadFactor)
 }
 
 // Clear elimina todos los elementos de la tabla de hash.
 func (ht *HashTable[K, V]) Clear() {
-	ht.buckets = make([]*HashTableNode[K, V], ht.capacity)
+	ht.buckets = make([]*hashTableEntry[K, V], ht.capacity)
 	ht.size = 0
 }
 
@@ -385,5 +408,8 @@ Una tabla de _hashing_ genérica, que soporte cualquier tipo de claves y valores
 
 ## Ejercicios
 
-1- Implementar una tabla de _hashing_ genérica en Go, cuyas claves puedan ser de distintos tipos (usar el paquete [`maphash`](https://pkg.go.dev/hash/maphash) de Go). La tabla debe permitir la inserción, búsqueda y eliminación de elementos. Además, debe manejar colisiones utilizando listas enlazadas.
-2- Escribir casos de pruebas que cubran todas las operaciones de la tabla de _hashing_ del punto anterior.
+1- Modificar la tabla de _hashing_ abierto para que las claves puedan ser de distintos tipos (usar el paquete [`maphash`](https://pkg.go.dev/hash/maphash) de Go).
+
+2- Implementar una tabla de _hashing_ cerrada. Para ello se debe implementar una lista enlazada que almacene los elementos en cada posición del arreglo. Cuando se produce una colisión, el nuevo elemento se agrega a la lista en la posición correspondiente. La tabla debe tener los mismos métodos que la tabla de _hashing_ abierta: `Put`, `Get`, `Remove`, `Keys`, `Values`, `Size`, `IsEmpty`, `Clear` y `String`. Las claves deben ser de cualquier tipo.
+
+3- Escribir casos de pruebas que cubran todas las operaciones de los puntos anteriores.
