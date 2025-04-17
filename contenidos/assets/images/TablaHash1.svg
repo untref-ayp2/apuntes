@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Creator: fig2dev Version 3.2.9 -->
-<!-- CreationDate: 2025-04-08 12:36:16 -->
+<!-- CreationDate: 2025-04-17 11:18:00 -->
 <!-- Magnification: 1.05 -->
 <svg	xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -27,9 +27,6 @@
 	stroke="#000000" stroke-width="8px"/>
 <!-- Line -->
 <rect x="7650" y="2250" width="450" height="450"
-	stroke="#000000" stroke-width="8px"/>
-<!-- Line -->
-<rect x="7650" y="7650" width="450" height="450"
 	stroke="#000000" stroke-width="8px"/>
 <!-- Line -->
 <rect x="7650" y="4950" width="450" height="900"
@@ -244,6 +241,9 @@
 <!-- Forward arrow to point 6525,6975 -->
 <polygon points=" 6471,7103 6516,6988 6422,7069 6471,7103"
 	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<rect x="7650" y="7650" width="450" height="450"
+	stroke="#000000" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="2700" y="2250" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="start">"Ana"</text>
 <!-- Text -->
@@ -263,37 +263,49 @@
 <!-- Text -->
 <text xml:space="preserve" x="7830" y="2610" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="middle"></text>
 <!-- Text -->
-<g transform="translate(7920,6750) rotate(-90)" >
-<text xml:space="preserve" x="0" y="0" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="middle">...</text>
-</g><!-- Text -->
 <g transform="translate(7920,5400) rotate(-90)" >
 <text xml:space="preserve" x="0" y="0" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="middle">...</text>
 </g><!-- Text -->
-<g transform="translate(7920,3150) rotate(-90)" >
-<text xml:space="preserve" x="0" y="0" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="middle">...</text>
-</g><!-- Text -->
-<text xml:space="preserve" x="7920" y="7560" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">315</text>
-<!-- Text -->
-<text xml:space="preserve" x="7920" y="6210" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">201</text>
-<!-- Text -->
-<text xml:space="preserve" x="7920" y="4860" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">23</text>
-<!-- Text -->
-<text xml:space="preserve" x="7920" y="4410" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">22</text>
-<!-- Text -->
-<text xml:space="preserve" x="7920" y="3960" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">21</text>
-<!-- Text -->
-<text xml:space="preserve" x="7920" y="2610" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">1</text>
-<!-- Text -->
-<text xml:space="preserve" x="7920" y="2160" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">0</text>
-<!-- Text -->
-<text xml:space="preserve" x="7920" y="8010" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">316</text>
-<!-- Text -->
 <text xml:space="preserve" x="2250" y="1125" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="start">Claves</text>
-<!-- Text -->
-<text xml:space="preserve" x="9900" y="1125" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="start">Valores</text>
 <!-- Text -->
 <text xml:space="preserve" x="6750" y="9000" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="start">Arreglo subyacente</text>
 <!-- Text -->
 <text xml:space="preserve" x="4680" y="9000" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="start">Colisión</text>
+<!-- Text -->
+<text xml:space="preserve" x="5130" y="765" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="start">f("Ana") = 315</text>
+<!-- Text -->
+<text xml:space="preserve" x="5130" y="1215" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="start">f("Juan") = 201</text>
+<!-- Text -->
+<text xml:space="preserve" x="5130" y="1665" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="start">f("Enzo") = 23</text>
+<!-- Text -->
+<text xml:space="preserve" x="5130" y="2115" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="start">f("Elian") = 315</text>
+<!-- Text -->
+<text xml:space="preserve" x="5130" y="2565" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="start">f("Luz") = 21</text>
+<!-- Text -->
+<text xml:space="preserve" x="5130" y="2970" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="start">f("Carlos") = 1</text>
+<!-- Text -->
+<text xml:space="preserve" x="7875" y="8010" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">316</text>
+<!-- Text -->
+<text xml:space="preserve" x="7875" y="7560" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">315</text>
+<!-- Text -->
+<text xml:space="preserve" x="7875" y="6210" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">201</text>
+<!-- Text -->
+<g transform="translate(7920,6750) rotate(-90)" >
+<text xml:space="preserve" x="0" y="0" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="middle">...</text>
+</g><!-- Text -->
+<text xml:space="preserve" x="7875" y="4365" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">22</text>
+<!-- Text -->
+<text xml:space="preserve" x="7875" y="4815" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">23</text>
+<!-- Text -->
+<text xml:space="preserve" x="7875" y="3915" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">21</text>
+<!-- Text -->
+<g transform="translate(7920,3150) rotate(-90)" >
+<text xml:space="preserve" x="0" y="0" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="middle">...</text>
+</g><!-- Text -->
+<text xml:space="preserve" x="7875" y="2565" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="7875" y="2115" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">0</text>
+<!-- Text -->
+<text xml:space="preserve" x="9900" y="1125" fill="#000000" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="start">Valores</text>
 </g>
 </svg>

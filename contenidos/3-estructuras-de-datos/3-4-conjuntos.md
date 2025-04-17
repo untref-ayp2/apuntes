@@ -124,6 +124,6 @@ Las operaciones sobre conjuntos tienen un costo asociado. Por ejemplo, en la imp
 
 1. Implementar la operaciones `Union`, `Intersection`, `Difference`, `Subset`, `SymmetricDifference` y `Superset` para el conjunto de enteros dado como ejemplo.
 2. Implementar un conjunto genérico que permita almacenar cualquier tipo de dato.
-3. Implementar un conjunto basado en arreglos. Implementar tantos las operaciones sobre elementos como las operaciones entre conjuntos.
+3. Implementar un conjunto basado en arreglos (que no use maps ni tablas de hashing). Implementar tantos las operaciones sobre elementos como las operaciones entre conjuntos.
 4. Implementar un conjunto basado en listas enlazadas. Implementar tantos las operaciones sobre elementos como las operaciones entre conjuntos.
 5. Comparar el orden de las operaciones entre las implementaciones de arreglos y listas enlazadas.
