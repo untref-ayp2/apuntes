@@ -178,7 +178,7 @@ En la siguiente tabla se muestra el orden que deber√≠an tener las operaciones b√
 | `InsertAfter`  | $O(n)$ |
 | `InsertBefore` | $O(n)$ |
 | `RemoveFirst`  | $O(1)$ |
-|  `RemoveLast`  | $O(1)$ |
+|  `RemoveLast`  | $O(n)$ |
 |    `Remove`    | $O(n)$ |
 |     `Find`     | $O(n)$ |
 |    `Clear`     | $O(1)$ |
