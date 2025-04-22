@@ -34,7 +34,7 @@ La **complejidad** es independiente del hardware o la máquina donde se ejecuta 
 El **rendimiento** es la capacidad de una computadora para realizar una determinada tarea en un tiempo dado
 :::
 
-El **rendimiento** si depende del hardware. Por ejemplo en la medida que aumenta la velocidad del procesador, se necesitará menos tiempo para completar una tarea dada. En cambio la **complejidad** nos indica cuanto más tiempo o memoria va a requerir el algoritmo en función del tamaño de los datos.
+El **rendimiento** sí depende del hardware. Por ejemplo en la medida que aumenta la velocidad del procesador, se necesitará menos tiempo para completar una tarea dada. En cambio la **complejidad** nos indica cuanto más tiempo o memoria va a requerir el algoritmo en función del tamaño de los datos.
 
 :::{admonition} El mito de la computadora todopoderosa
 Muchas veces se cae en la tentación de pensar que a medida que aumente la capacidad de procesamiento de las computadoras se podrá completar cualquier tarea en un tiempo aceptable. Esta afirmación es una falacia. Existen problemas muy bien conocidos que resultan intratables para las computadoras, es decir, que no importa que tanto aumente la capacidad de procesamiento, una pequeño aumento en el tamaño de los datos implica que el tiempo de ejecución aumente desmesuradamente, hasta el punto de hacer inviable el cálculo.
@@ -61,11 +61,15 @@ Esto quiere decir que la tasa de crecimiento de $T(n)$ es menor o igual a la tas
 
 Por ejemplo, si tenemos la función $T(n) = 4 n + 1$, se verifica que es de la familia de $O(n)$, es decir la tasa de crecimiento de $T(n)$ está acotada por $f(n) = n$, ya que:
 
-$\exists \; c = 5, \; n_0 = 1$
+$$
+\exists \; c = 5, \; n_0 = 1
+$$
 
 tal que:
 
-$5 n \ge 4 n + 1, \; \forall n \ge 1$
+$$
+5 n \ge 4 n + 1, \; \forall n \ge 1
+$$
 
 ```{figure} ../assets/images/funcion_acotada.svg
 ---
