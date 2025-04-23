@@ -118,8 +118,8 @@ InsertAfter(buscado, elemento):
     nuevo := NuevoNodo(elemento)
     actual := self.Find(buscado)
     si actual != nulo:
-        nuevo.SetNext(actual.Next()) //Primero hay que enlazar el nuevo nodo a la lista
-        actual.SetNext(nuevo) //Después corregir al siguiente del nodo actual
+        nuevo.SetNext(actual.Next()) // Primero hay que enlazar el nuevo nodo a la lista
+        actual.SetNext(nuevo) // Después corregir al siguiente del nodo actual
 ```
 
 De esta forma se garantiza la integridad de la lista. Ver figura {ref}`ssl-insercion`
@@ -139,10 +139,11 @@ Supongamos que dada la lista de la figura {ref}`lista-simple`, se quiere elimina
 ```{code-block}
 :linenos:
 Remove(buscado):
+    si
     actual := self.Find(buscado)
-    if actual != nulo:
-        if actual == self.Head():
-            self.RemoveFirst
+    si actual != nulo:
+        si actual == self.Head():
+            self.RemoveFirst()
             return
         previo := self.Head()
         mientras previo.Next().Data()
