@@ -1,7 +1,7 @@
 ---
 file_format: mystnb
 kernelspec:
-    name: gophernotes
+  name: gophernotes
 ---
 
 # Diccionarios
@@ -131,24 +131,6 @@ for clave, valor := range edades {
 
 ## Ejercicios
 
-1. Dada la siguiente definición del tipo de datos `Dictionary`. Implementar un diccionario génerico.
+1. Implementar un diccionario sobre una tabla de _hashing_ genérica, como la vista en {doc}`Tablas de Hashing<3-6-tablas-de-hashing>`.
 
-    ```go
-    // Dictionary implementa un diccionario genérico basado en un map de Go.
-    // Las claves deben ser de un tipo comparable y los valores pueden ser de cualquier tipo.
-    type Dictionary[K comparable, V any] struct {
-        dict map[K]V
-    }
-    ```
-
-2. Implementar un diccionario similar al ejercicio anterior pero sobre árboles AVL.
-
-    ```go
-    // AVLDictionary implementa un diccionario genérico basado en un árbol AVL.
-    // Las claves deben ser de un tipo comparable y los valores pueden ser de cualquier tipo.
-    type AVLDictionary[K types.Ordered, V any] struct {
-        tree *AVLTree[K, V]
-    }
-    ```
-
-3. Analizar y comparar el orden de las operaciones de los diccionarios de los ejercicios anteriores.
+2. Analizar el orden de todas las operaciones

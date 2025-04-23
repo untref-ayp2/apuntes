@@ -104,7 +104,7 @@ Find(buscado):
     mientras actual != nulo:
         si actual.Data() == buscado:
             retornar actual
-        actual = actual.siguiente
+        actual = actual.Next()
     retornar nulo
 ```
 
@@ -118,7 +118,7 @@ InsertAfter(buscado, elemento):
     nuevo := NuevoNodo(elemento)
     actual := self.Find(buscado)
     si actual != nulo:
-        nuevo.SetNext(actual) //Primero hay que enlazar el nuevo nodo a la lista
+        nuevo.SetNext(actual.Next()) //Primero hay que enlazar el nuevo nodo a la lista
         actual.SetNext(nuevo) //Después corregir al siguiente del nodo actual
 ```
 
@@ -145,7 +145,7 @@ Remove(buscado):
             self.RemoveFirst
             return
         previo := self.Head()
-        mientras previo.Siguiente.Data()
+        mientras previo.Next().Data()
 
 ```
 
@@ -178,7 +178,7 @@ En la siguiente tabla se muestra el orden que deberían tener las operaciones b�
 | `InsertAfter`  | $O(n)$ |
 | `InsertBefore` | $O(n)$ |
 | `RemoveFirst`  | $O(1)$ |
-|  `RemoveLast`  | $O(1)$ |
+|  `RemoveLast`  | $O(n)$ |
 |    `Remove`    | $O(n)$ |
 |     `Find`     | $O(n)$ |
 |    `Clear`     | $O(1)$ |
