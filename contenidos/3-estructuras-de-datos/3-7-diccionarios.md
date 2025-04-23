@@ -1,7 +1,7 @@
 ---
 file_format: mystnb
 kernelspec:
-    name: gophernotes
+  name: gophernotes
 ---
 
 # Diccionarios
@@ -131,6 +131,6 @@ for clave, valor := range edades {
 
 ## Ejercicios
 
-1. Implementar un diccionario sobre una tabla de _hashing_ genérica, como la vista en {doc}`Tablas de Hashing<3-6-tablas-de-hashing>`. 
+1. Implementar un diccionario sobre una tabla de _hashing_ genérica, como la vista en {doc}`Tablas de Hashing<3-6-tablas-de-hashing>`.
 
 2. Analizar el orden de todas las operaciones
