@@ -42,7 +42,7 @@ En la figura anterior, el árbol tiene una altura de 2, ya que el camino más la
 
 Los árboles binarios son árboles donde cada nodo tiene como máximo dos hijos. Estos hijos se denominan hijo izquierdo e hijo derecho. Los árboles binarios son ampliamente utilizados en informática debido a su simplicidad y eficiencia en diversas operaciones.
 
-```{figure} ../assets/images/ABB.svg
+```{figure} ../assets/images/ArbolBinario.svg
 ---
 name: ArbolBinario
 ---
@@ -59,22 +59,118 @@ La definición recursiva de un árbol binario implica que cada subárbol tambié
 
 ## Recorridos de un árbol binario
 
-Los recorridos de un árbol binario son técnicas utilizadas para visitar y procesar todos los nodos de un árbol en un orden específico. Existen tres tipos principales de recorridos
+Los **recorridos de un árbol binario** son algoritmos fundamentales para visitar y procesar cada uno de los nodos que componen la estructura, siguiendo un orden específico. Existen tres tipos principales de recorridos en profundidad: preorden, inorden y postorden.
 
-Preorden
-: En este recorrido, se visita primero el nodo raíz, luego el subárbol izquierdo y finalmente el subárbol derecho. El orden de visita es: raíz, izquierda, derecha.
+La característica distintiva de estos recorridos radica en su naturaleza recursiva. Al aplicar un recorrido a un árbol, el mismo proceso se aplica de manera independiente a sus subárboles izquierdo y derecho. Esto asegura que cada nodo dentro de la estructura sea visitado siguiendo el patrón definido por el tipo de recorrido.
 
-Inorden
-: En este recorrido, se visita primero el subárbol izquierdo, luego el nodo raíz y finalmente el subárbol derecho. El orden de visita es: izquierda, raíz, derecha.
+Estos métodos son esenciales en diversas aplicaciones informáticas, incluyendo la búsqueda eficiente de información, la ordenación de datos y la evaluación de expresiones aritméticas o lógicas representadas en forma de árbol. Cada tipo de recorrido ofrece una secuencia de visita única, lo que los hace adecuados para diferentes contextos y tareas.
 
-Postorden
-: En este recorrido, se visita primero el subárbol izquierdo, luego el subárbol derecho y finalmente el nodo raíz. El orden de visita es: izquierda, derecha, raíz.
+### Preorden (Raíz - Izquierda - Derecha)
 
-Los subárboles se visitan de forma recursiva, es decir, se aplica el mismo recorrido a cada subárbol. Esto significa que cada subárbol se trata como un árbol binario independiente y se recorren sus nodos siguiendo el mismo patrón de recorrido.
+El recorrido preorden comienza visitando la raíz del árbol, seguido por la exploración recursiva del subárbol izquierdo y, finalmente, el subárbol derecho. El orden de procesamiento es, por lo tanto: nodo raíz, subárbol izquierdo, subárbol derecho.
 
-Los recorridos de un árbol binario son útiles para diversas aplicaciones, como la búsqueda, la ordenación y la evaluación de expresiones. Cada tipo de recorrido tiene sus propias características y se utiliza en diferentes contextos.
+El siguiente seudocódigo ilustra la implementación del recorrido preorden como un método dentro de un nodo de un árbol binario, delegando la lógica del recorrido a cada nodo:
 
-Por ejemplo, para el árbol binario de la figura anterior, los recorridos serían:
-- Preorden: $+ \, a \, * \, - \, b \, c \, d$
-- Inorden: $a + b - c * d$
-- Postorden: $a \, b \, c \, - \, d \, * \, +$
+```{code-block} 
+---
+caption: Preorden
+linenos:
+---
+función preorden(nodo):
+  si nodo es nulo:
+    retornar
+  procesar(nodo)  // Visitar el nodo actual
+  preorden(nodo.izquierdo)  // Recorrer el subárbol izquierdo
+  preorden(nodo.derecho)  // Recorrer el subárbol derecho
+
+```
+
+`procesar(nodo)`
+: Representa una operación genérica que se aplica al nodo actual. Esta operación puede variar según la necesidad, como imprimir el valor del nodo o añadirlo a una lista.
+
+llamadas recursivas
+: Las líneas 5 y 6 realizan las llamadas recursivas para aplicar el recorrido preorden a los subárboles izquierdo y derecho del nodo actual, respectivamente.
+
+Por ejemplo en el siguiente video se observa el recorrido preorden. Cuando el nodo se pinta de amarillo significa que se llamó a la función `preorden` con ese nodo y cuando el nodo se pinta de verde significa que el nodo fue visitado (línea 4 del seudocódigo).
+
+```{figure} ../assets/videos/preorden.mp4
+---
+name: preorden
+---
+Recorrido en Preorden (botón derecho del mouse- Mostrar todos los controles)
+```
+
+```{math}
+
++ \, a \, * \, - \, b \, c \, d
+
+```
+
+### Inorden (Iquierda - Raíz - Derecha)
+
+El recorrido inorden visita primero de forma recursiva todos los nodos del subárbol izquierdo, luego procesa el nodo raíz, y finalmente recorre recursivamente el subárbol derecho. La secuencia de visita es: subárbol izquierdo, nodo raíz, subárbol derecho.
+
+El siguiente seudocódigo muestra la implementación del recorrido inorden:
+
+```{code-block} 
+---
+caption: Inorden
+linenos:
+---
+función inorden (nodo):
+  SI nodo es nulo:
+    retornar
+  inorden(nodo.izquierdo)  // Visitar el subárbol izquierdo
+  procesar(nodo)  // Visitar el nodo actual
+  inorder(nodo.derecho)  // Visitar el subárbol derecho
+
+```
+
+Ejemplo de recorrido inorden:
+
+```{figure} ../assets/videos/inorden.mp4
+---
+name: inorden
+---
+Recorrido en Inorden (botón derecho del mouse- Mostrar todos los controles)
+```
+
+```{math}
+
+a + b - c * d
+
+```
+
+### Postorden (Izquierda - Derecha - Raíz)
+
+En el recorrido postorden, se exploran recursivamente el subárbol izquierdo, seguido del subárbol derecho, y finalmente se procesa el nodo raíz. El orden de visita es: subárbol izquierdo, subárbol derecho, nodo raíz.
+
+El seudocódigo para el recorrido postorden se presenta a continuación:
+
+```{code-block} 
+---
+caption: Postorden
+linenos:
+---
+funcióon inorden (nodo):
+  SI nodo es nulo:
+    retornar
+  inorden(nodo.izquierdo)  // Visitar el subárbol izquierdo
+  inorder(nodo.derecho)  // Visitar el subárbol derecho
+  procesar(nodo)  // Visitar el nodo actual
+
+```
+Ejemplo de recorrido postorden:
+
+```{figure} ../assets/videos/postorden.mp4
+---
+name: postorden
+---
+Recorrido en Postorden (botón derecho del mouse- Mostrar todos los controles)
+```
+
+```{math}
+
+a \, b \, c \, - \, d \, * \, +
+
+```
