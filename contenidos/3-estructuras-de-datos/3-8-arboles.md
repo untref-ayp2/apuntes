@@ -76,20 +76,21 @@ El siguiente seudocódigo ilustra la implementación del recorrido preorden como
 caption: Preorden
 linenos:
 ---
-función preorden(nodo):
-  si nodo es nulo:
+FUNCION Preorden(raiz)
+  SI raiz ES nulo ENTONCES
     retornar
-  procesar(nodo)  // Visitar el nodo actual
-  preorden(nodo.izquierdo)  // Recorrer el subárbol izquierdo
-  preorden(nodo.derecho)  // Recorrer el subárbol derecho
-
+  FIN SI
+  Procesar(raiz)  // Visitar el nodo actual
+  Preorden(raiz.izquierdo)  // Recorrer el subárbol izquierdo
+  Preorden(raiz.derecho)  // Recorrer el subárbol derecho
+FIN FUNCION
 ```
 
-`procesar(nodo)`
+`Procesar(raiz)`
 : Representa una operación genérica que se aplica al nodo actual. Esta operación puede variar según la necesidad, como imprimir el valor del nodo o añadirlo a una lista.
 
 llamadas recursivas
-: Las líneas 5 y 6 realizan las llamadas recursivas para aplicar el recorrido preorden a los subárboles izquierdo y derecho del nodo actual, respectivamente.
+: Las líneas 6 y 7 realizan las llamadas recursivas para aplicar el recorrido preorden a los subárboles izquierdo y derecho del nodo actual, respectivamente.
 
 Por ejemplo en el siguiente video se observa el recorrido preorden. Cuando el nodo se pinta de amarillo significa que se llamó a la función `preorden` con ese nodo y cuando el nodo se pinta de verde significa que el nodo fue visitado (línea 4 del seudocódigo).
 
@@ -117,13 +118,14 @@ El siguiente seudocódigo muestra la implementación del recorrido inorden:
 caption: Inorden
 linenos:
 ---
-función inorden (nodo):
-  SI nodo es nulo:
+FUNCION Inorden (raiz)
+  SI raiz ES nulo ENTONCES
     retornar
-  inorden(nodo.izquierdo)  // Visitar el subárbol izquierdo
-  procesar(nodo)  // Visitar el nodo actual
-  inorder(nodo.derecho)  // Visitar el subárbol derecho
-
+  FIN SI
+  Inorden(raiz.izquierdo)  // Visitar el subárbol izquierdo
+  Procesar(raiz)  // Visitar el nodo actual
+  Inorder(raiz.derecho)  // Visitar el subárbol derecho
+FIN FUNCION
 ```
 
 Ejemplo de recorrido inorden:
@@ -152,13 +154,14 @@ El seudocódigo para el recorrido postorden se presenta a continuación:
 caption: Postorden
 linenos:
 ---
-funcióon inorden (nodo):
-  SI nodo es nulo:
+FUNCION Postorden (raiz)
+  SI raiz ES nulo ENTONCES
     retornar
-  inorden(nodo.izquierdo)  // Visitar el subárbol izquierdo
-  inorder(nodo.derecho)  // Visitar el subárbol derecho
-  procesar(nodo)  // Visitar el nodo actual
-
+  FIN SI
+  Postorden(raiz.izquierdo)  // Visitar el subárbol izquierdo
+  Postorden(raiz.derecho)  // Visitar el subárbol derecho
+  Procesar(raiz)  // Visitar el nodo actual
+FIN FUNCION
 ```
 Ejemplo de recorrido postorden:
 
@@ -174,3 +177,4 @@ Recorrido en Postorden (botón derecho del mouse- Mostrar todos los controles)
 a \, b \, c \, - \, d \, * \, +
 
 ```
+
