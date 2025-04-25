@@ -461,7 +461,7 @@ Para implementar una tabla de _hash_ genérica, que soporte cualquier tipo de cl
 
 ## Ejercicios
 
-1. Modificar la tabla de _hash_ abierto para que las claves puedan ser de distintos tipos (usar el paquete [`maphash`](https://pkg.go.dev/_hash_/maphash) de Go).
+1. Modificar la tabla de _hash_ abierto para que las claves puedan ser de distintos tipos (usar el paquete [`maphash`](https://pkg.go.dev/hash/maphash) de Go).
 
 2. Implementar una tabla de _hash_ cerrada. Para ello se debe implementar una lista enlazada que almacene los elementos en cada posición del arreglo. Cuando se produce una colisión, el nuevo elemento se agrega a la lista en la posición correspondiente. La tabla debe tener los mismos métodos que la tabla de _hash_ abierta: `Put`, `Get`, `Remove`, `Keys`, `Values`, `Size`, `IsEmpty`, `Clear` y `String`. Las claves deben ser de cualquier tipo.
 
