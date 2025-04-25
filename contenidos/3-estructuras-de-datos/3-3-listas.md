@@ -118,8 +118,8 @@ InsertAfter(buscado, elemento):
     nuevo := NuevoNodo(elemento)
     actual := self.Find(buscado)
     si actual != nulo:
-        nuevo.SetNext(actual.Next()) //Primero hay que enlazar el nuevo nodo a la lista
-        actual.SetNext(nuevo) //Después corregir al siguiente del nodo actual
+        nuevo.SetNext(actual.Next()) // Primero hay que enlazar el nuevo nodo a la lista
+        actual.SetNext(nuevo) // Después corregir al siguiente del nodo actual
 ```
 
 De esta forma se garantiza la integridad de la lista. Ver figura {ref}`ssl-insercion`
@@ -139,10 +139,11 @@ Supongamos que dada la lista de la figura {ref}`lista-simple`, se quiere elimina
 ```{code-block}
 :linenos:
 Remove(buscado):
+    si
     actual := self.Find(buscado)
-    if actual != nulo:
-        if actual == self.Head():
-            self.RemoveFirst
+    si actual != nulo:
+        si actual == self.Head():
+            self.RemoveFirst()
             return
         previo := self.Head()
         mientras previo.Next().Data()
@@ -570,7 +571,7 @@ El propósito de estos centinelas es de alguna forma estandarizar las operacione
 width: 500px
 name: lista-centinelas
 ---
-Implementación de una Lista Enlazada Circular Doble con centinelas
+Implementación de una Lista Enlazada Doble con centinelas
 ```
 
 Hay que prestar especial atención a que ahora la lista vacía contendrá al menos dos nodos que se apuntan entre si y no contienen datos como se observa en la siguiente figura
@@ -580,7 +581,7 @@ Hay que prestar especial atención a que ahora la lista vacía contendrá al men
 width: 500px
 name: lista-vacia-centinelas
 ---
-Representación de una Lista Enlazada Circular Doble, vacía, con centinelas
+Representación de una Lista Enlazada Doble, vacía, con centinelas
 ```
 
 ## Ejercicios
