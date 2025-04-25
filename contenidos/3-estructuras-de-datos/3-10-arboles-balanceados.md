@@ -100,9 +100,45 @@ name: AVLRestauradoRSD
 AVL restaurado luego de una rotación simple a derecha
 ```
 
+### Rotación simple a izquierda
 
-- **Rotación simple a la izquierda**: Se utiliza cuando el subárbol derecho de un nodo está desbalanceado y su subárbol derecho también está desbalanceado. En este caso, se realiza una rotación simple a la izquierda para equilibrar el árbol.
+Analogamente cuando en un nodo se produce un desbalance por la inserción de un elemento a la derecha de su hijo derecho, se puede reestablecer el balance con una rotación simple a izquierda.
 
-- **Rotación doble a la derecha**: Se utiliza cuando el subárbol izquierdo de un nodo está desbalanceado y su subárbol derecho está desbalanceado. En este caso, se realiza una rotación doble a la derecha para equilibrar el árbol.
+```{figure} ../assets/images/AVLDERDER.svg
+---
+name: AVLDERDER
+---
+Desbalanceo Derecha-Derecha de un nodo
+```
 
-- **Rotación doble a la izquierda**: Se utiliza cuando el subárbol derecho de un nodo está desbalanceado y su subárbol izquierdo está desbalanceado. En este caso, se realiza una rotación doble a la izquierda para equilibrar el árbol.
+En la figura al insertar el nodo (70) de desbalancea el nodo (54), que se puede volver a balancear con una rotación a la izquierda del nodo (54)
+
+
+```{figure} ../assets/images/AVLRotacionSimpleIzquierda.svg
+---
+name: AVLRSI
+---
+Rotación simple a izquierda
+```
+
+```{figure} ../assets/images/AVLRestauradoRSI.svg
+---
+name: AVLRestauradoRSI
+---
+AVL restaurado luego de una rotación simple a izquierda
+```
+### Rotación doble izquierda-derecha
+
+Cuando el desbalance se produce al insertar un elemento a la izquierda del hijo derecho de un nodo se debe realizar una rotación doble. Las rotaciones doble se componen de dos rotaciones simples, en este caso de una rotación simple a la izquierda seguida de una rotación simple a la derecha.
+
+En la siguiente figura al insertar el (16), se desbalanceó el (17). Parados en el (17) el desbalance se produce al insertar un elemento a la derecha de su hijo izquierdo.
+
+```{figure} ../assets/images/AVLIZQDER.svg
+---
+name: AVLIZQDER
+---
+Desbalanceo Izquierda-Derecha de un nodo
+```
+
+Para restaurar el balance se preciso realizar dos rotaciones simples, la primera es rotar el hijo izquierdo del nodo desbalanceado, es decir el (12) a la izquierda y luego rotar el nodo desbalanceado originalmente a la derecha.
+
