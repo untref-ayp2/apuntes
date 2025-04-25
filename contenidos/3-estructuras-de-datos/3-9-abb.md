@@ -206,9 +206,19 @@ FIN FUNCION
 
 En un árbol binario de búsqueda, las operaciones de inserción, búsqueda y eliminación tienen un tiempo de ejecución que depende de la altura del árbol. Por lo tanto es importante tratar de mantener el árbol equilibrado para que la altura no crezca demasiado.
 
-Un árbol binario de búsqueda equilibrado tiene una altura aproximada de $O(log n)$, donde $n$ es el número de nodos en el árbol. En este caso, las operaciones de inserción, búsqueda y eliminación tienen un tiempo de ejecución promedio de $O(log n)$.
+Un árbol binario de búsqueda equilibrado tiene una altura aproximada de $O(log (n))$, donde $n$ es el número de nodos en el árbol. En este caso, las operaciones de inserción, búsqueda y eliminación tienen un tiempo de ejecución promedio de $O(log (n))$.
 
-En la siguiente figura se observa un árbol binario de búsqueda equilibrado y completamente balanceado, donde cada nodo tiene dos hijos y la altura del árbol es mínima. En este caso, el árbol tiene una altura de 3 y contiene 15 nodos.
+Formalmente la altura $h$ de un árbol binario de búsqueda se define como:
+
+```{math}
+h = 
+\begin{cases}
+0 & \text{si solo tiene raíz} \\
+1 + \max(h_{izq}, h_{der}) & \text{si tiene más de un nodo}
+\end{cases}
+```
+
+En la siguiente figura se observa un árbol binario de búsqueda completo (con todos los nodos en todos los niveles) y perfectamente balanceado, donde cada nodo tiene dos hijos y la altura del árbol es mínima. En este caso, el árbol tiene una altura de 3 y contiene 15 nodos.
 
 ```{figure} ../assets/images/ABBBalanceado.svg
 ---
@@ -216,8 +226,16 @@ name: arbolbalanceado
 ---
 Árbol binario de búsqueda equilibrado
 ```
+La altura $h$ de un árbol binario completo y balanceado se puede calcular como:
 
-Sin embargo, en el peor de los casos, un árbol binario de búsqueda puede degenerar en una lista enlazada, lo que resulta en una altura de $O(n)$ y un tiempo de ejecución de $O(n)$ para las operaciones. Esto ocurre cuando los nodos se insertan en orden ascendente o descendente, lo que provoca que el árbol se convierta en una estructura lineal. En la siguiente figura se observa un árbol binario de búsqueda degenerado, donde cada nodo tiene solo un hijo. En este caso, el árbol tiene una altura de 6 y contiene 7 nodos.
+```{math}
+\begin{aligned}
+&h = log_2 (n+1)-1 \\
+&h = O(log(n))
+\end{aligned}
+```
+
+Por otro lado, en el peor de los casos, un árbol binario de búsqueda puede degenerar en una lista enlazada, lo que resulta en una altura de $O(n)$ y un tiempo de ejecución de $O(n)$ para las operaciones. Esto ocurre cuando los nodos se insertan en orden ascendente o descendente, lo que provoca que el árbol se convierta en una estructura lineal. En la siguiente figura se observa un árbol binario que degeneró en una lista
 
 ```{figure} ../assets/images/ABBDegenerado.svg
 ---
@@ -225,4 +243,13 @@ name: ABBDegenerado
 ---
 Árbol binario de búsqueda degenerado
 ```
+La altura $h$ de un árbol binario degenerado en una lista se puede calcular como:
+
+```{math}
+\begin{aligned}
+&h = n-1 \\
+&h = O(n)
+\end{aligned}
+```
+
 
