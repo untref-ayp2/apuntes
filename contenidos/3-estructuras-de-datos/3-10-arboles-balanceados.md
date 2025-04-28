@@ -137,8 +137,72 @@ En la siguiente figura al insertar el (16), se desbalanceó el (17). Parados en 
 ---
 name: AVLIZQDER
 ---
+Desbalanceo Derecha-Izquierda de un nodo
+```
+
+Para restaurar el balance se preciso realizar dos rotaciones simples, la primera es rotar el hijo izquierdo del nodo desbalanceado, es decir el (12) a la izquierda (aunque el (12) se encuentre balanceado) y luego rotar el nodo desbalanceado originalmente a la derecha.
+
+```{figure} ../assets/images/AVLIZQDER-1.svg
+---
+name: AVLIZQDER-1
+---
+Desbalanceo Derecha-Izquierda, rotación a izquierda del hijo del nodo desbalanceado
+```
+
+Luego de la primera rotación a izquierda queda:
+
+```{figure} ../assets/images/AVLIZQDER-2.svg
+---
+name: AVLIZQDER-2
+---
+Desbalanceo Derecha-Izquierdda, luego de la rotación a izquierda.
+```
+
+Luego se rota el (17) a derecha. Se observa que el (14) que pasará a ocupar la posición actual del (17) ya tiene un hijo derecho (16) que deberá reacomodarse como hijo izquierdo del (17)
+
+
+```{figure} ../assets/images/AVLIZQDER-3.svg
+---
+name: AVLIZQDER-3
+---
+Desbalanceo Derecha-Izquierda, rotación a derecha del nodo desbalanceado
+```
+
+Finalmente el árbol rebalanceado queda como en la siguiente figura
+
+
+```{figure} ../assets/images/AVLIZQDER-4.svg
+---
+name: AVLIZQDER-4
+---
+Desbalanceo Derecha-Izquierda, árbol rebalanceado
+```
+
+### Rotación doble derecha-izquierda
+
+En la siguiente figura se observa que al insertar el (70) se desbalancea el nodo (72). El (70) se insertó bajando una vez a la izquierda y dos veces a la derecha desde el (72), es decir la inserción fue izquierda-derecha, por lo que para reestablecer el balance se deberá realizar una rotación doble derecha-izquierda del (72)
+
+```{figure} ../assets/images/AVLDERIZQ.svg
+---
+name: AVLDERIZQ
+---
 Desbalanceo Izquierda-Derecha de un nodo
 ```
 
-Para restaurar el balance se preciso realizar dos rotaciones simples, la primera es rotar el hijo izquierdo del nodo desbalanceado, es decir el (12) a la izquierda y luego rotar el nodo desbalanceado originalmente a la derecha.
+En la siguiente figura se observa los nodos involucrados en la rotación doble, que se puede realizar como dos rotaciones simples como en el ejemplo anterior o directamente en un único paso, donde el (67) pasará a ocupar la posición del (72). 
 
+```{figure} ../assets/images/AVLDERIZQ-1.svg
+---
+name: AVLDERIZQ-1
+---
+Desbalanceo Izquierda-Derecha, nodos involucrados en la rotación derecha-izquierda
+```
+
+Como (67) tiene un hijo derecho, el nodo (70) recién agregado, entonces deberá ir al subárbol derecho del (67) para mantener la propiedad de búsqueda del ABB, y la única ubicación posible es como hijo izquierdo del (72), como se observa en la siguiente figura.
+
+```{figure} ../assets/images/AVLDERIZQ-2.svg
+---
+name: AVLDERIZQ-2
+---
+Desbalanceo Izquierda-Derecha, árbol rebalanceado luego de la rotación doble Derecha-Izquierda
+```
