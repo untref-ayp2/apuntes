@@ -59,7 +59,8 @@ En la siguiente figura se grafica la inserción de un elemento en una tabla de _
 ```{figure} ../assets/images/TablaHashInsercion.svg
 ---
 name: tabla_hash_insercion_abierta
---- Inserción en una tabla de _hash_ abierta.
+---
+Inserción en una tabla de _hash_ abierta.
 ```
 
 Supongamos que vamos a insertar las claves $k_1$ y $k_2$, en ese orden, y que la posición 10 del arreglo ya se encontraba ocupada. En este caso, $f(k_1)$ devuelve el índice 9, como inicialmente la posición se encuentra vacía, se puede asociar la clave a ese índice. Luego $f(k_2)$ también devuelve 9, como la posición 9 se encuentra ocupada, intenta en la próxima, como la posición 10 ya está ocupada incrementa en forma circular el índice y finalmente puede asociar $k_2$ a la posición 0 del arreglo.
@@ -197,7 +198,6 @@ El módulo se aplica al resultado final para asegurar que el valor hash esté de
 //
 // HashTable es una tabla hash abierta que utiliza un arreglo para almacenar elementos.
 // La tabla solo soporta string como claves y cualquier tipo como valores.
-
 package hashtable
 
 import (
@@ -205,7 +205,8 @@ import (
     "math"
 )
 
-const a = 11 // a es una constante utilizada para calcular el hash de una cadena de caracteres
+// a es una constante utilizada para calcular el hash de una cadena de caracteres
+const a = 11
 
 // hashTableEntry representa una entrada en la tabla hash, que contiene una clave y su valor asociado.
 type hashTableEntry[K string, V any] struct {
