@@ -46,36 +46,36 @@ Un desafío frecuente en las tablas de _hash_ son las colisiones. Estas se produ
 
 - _Hashing_ cerrado
 
-## _Hashing_ abierto con búsqueda lineal
+## _Hashing_ cerrado con búsqueda lineal
 
-Esta técnica, también conocida como direccionamiento abierto con sondeo o búsqueda lineal, aborda las colisiones buscando secuencialmente la siguiente ubicación disponible en el arreglo. Cuando una función _hash_ asigna un índice ya ocupado a una nueva clave, en lugar de sobrescribir el elemento existente, se examinan las posiciones subsiguientes del arreglo de forma lineal (incrementando el índice de uno en uno). Este proceso continúa hasta que se encuentra una celda vacía donde se puede almacenar el nuevo elemento. Posteriormente, al buscar un elemento, se aplica la misma función _hash_ a la clave buscada y si la posición inicial está ocupada por un elemento diferente, se sigue la misma secuencia lineal de búsqueda hasta encontrar el elemento deseado o una posición vacía (lo que indicaría que el elemento no está presente). Si bien esta técnica es fácil de implementar, puede llevar a la formación de clusters o agrupaciones de elementos consecutivos ocupados, lo que puede degradar el rendimiento de las operaciones, ya que se requerirán más comparaciones para encontrar elementos ubicados en estos clusters o posiciones vacías para insertar nuevos elementos. Cuando estos cluster crecen demasiado se degrada el rendimiento de la tabla. Para mitigar este problema se pueden utilizar diferentes técnicas como el sondeo cuadrático que en lugar de incrementar el índice de uno en uno, lo hace de acuerdo a una función cuadrática predeterminada o el doble hashing que utiliza una segunda función de _hash_ para determinar el incremento del índice.
+Esta técnica, también conocida como direccionamiento cerrado con sondeo o búsqueda lineal, aborda las colisiones buscando secuencialmente la siguiente ubicación disponible en el arreglo. Cuando una función _hash_ asigna un índice ya ocupado a una nueva clave, en lugar de sobrescribir el elemento existente, se examinan las posiciones subsiguientes del arreglo de forma lineal (incrementando el índice de uno en uno). Este proceso continúa hasta que se encuentra una celda vacía donde se puede almacenar el nuevo elemento. Posteriormente, al buscar un elemento, se aplica la misma función _hash_ a la clave buscada y si la posición inicial está ocupada por un elemento diferente, se sigue la misma secuencia lineal de búsqueda hasta encontrar el elemento deseado o una posición vacía (lo que indicaría que el elemento no está presente). Si bien esta técnica es fácil de implementar, puede llevar a la formación de clusters o agrupaciones de elementos consecutivos ocupados, lo que puede degradar el rendimiento de las operaciones, ya que se requerirán más comparaciones para encontrar elementos ubicados en estos clusters o posiciones vacías para insertar nuevos elementos. Cuando estos cluster crecen demasiado se degrada el rendimiento de la tabla. Para mitigar este problema se pueden utilizar diferentes técnicas como el sondeo cuadrático que en lugar de incrementar el índice de uno en uno, lo hace de acuerdo a una función cuadrática predeterminada o el doble hashing que utiliza una segunda función de _hash_ para determinar el incremento del índice.
 
 Esta técnica requiere poder distinguir entre posiciones vacías en la tabla y posiciones donde se han borrado elementos. Para ello se debe marcar las posiciones eliminadas con algún marcador especial. Esto permite que la búsqueda continúe sin problemas.
 
 ### Inserción
 
-En la siguiente figura se grafica la inserción de un elemento en una tabla de _hash_ abierta.
+En la siguiente figura se grafica la inserción de un elemento en una tabla de _hash_ cerrada.
 
 ```{figure} ../assets/images/TablaHashInsercion.svg
 ---
-name: tabla_hash_insercion_abierta
+name: tabla_hash_insercion_cerrada
 ---
-Inserción en una tabla de _hash_ abierta.
+Inserción en una tabla de _hash_ cerrada.
 ```
 
 Supongamos que vamos a insertar las claves $k_1$ y $k_2$, en ese orden, y que la posición 10 del arreglo ya se encontraba ocupada. En este caso, $f(k_1)$ devuelve el índice 9, como inicialmente la posición se encuentra vacía, se puede asociar la clave a ese índice. Luego $f(k_2)$ también devuelve 9, como la posición 9 se encuentra ocupada, intenta en la próxima, como la posición 10 ya está ocupada incrementa en forma circular el índice y finalmente puede asociar $k_2$ a la posición 0 del arreglo.
 
 ### Eliminación
 
-La eliminación de un elemento en una tabla de _hash_ abierta es un poco más complicada que la inserción. Cuando se elimina un elemento, se debe marcar la posición como eliminada, pero no se puede dejar la posición vacía, ya que esto podría causar problemas al buscar otros elementos en el futuro. En su lugar, se debe utilizar un marcador especial para indicar que la posición ha sido eliminada.
+La eliminación de un elemento en una tabla de _hash_ cerrada es un poco más complicada que la inserción. Cuando se elimina un elemento, se debe marcar la posición como eliminada, pero no se puede dejar la posición vacía, ya que esto podría causar problemas al buscar otros elementos en el futuro. En su lugar, se debe utilizar un marcador especial para indicar que la posición ha sido eliminada.
 
 Esto se conoce como _marcador de eliminación_ y permite que la búsqueda continúe sin problemas. Sin embargo, esto puede aumentar el tiempo de búsqueda si hay muchos elementos eliminados en la tabla de _hash_.
 
 ```{figure} ../assets/images/TablaHashEliminacion.svg
 ---
-name: tabla_hash_eliminacion_abierta
+name: tabla_hash_eliminacion_cerrada
 ---
-Eliminación en una tabla de _hash_ abierta.
+Eliminación en una tabla de _hash_ cerrada.
 ```
 
 En la figura se observa que al eliminar el elemento en la posición 10, se marca la posición como eliminada, pero no se deja vacía. Esto permite que la búsqueda de otros elementos continúe sin problemas. En resumen una posición de la tabla podrá estar en algunos de los tres siguientes estados:
@@ -86,13 +86,13 @@ En la figura se observa que al eliminar el elemento en la posición 10, se marca
 
 ### Búsqueda
 
-La búsqueda de un elemento en una tabla de _hash_ abierta es similar a la inserción. Se utiliza la función de _hash_ para calcular el índice y luego se busca el elemento en esa posición. Si el elemento no se encuentra en la posición calculada, se incrementa el índice en 1 hasta encontrar el elemento o una posición vacía. Si se encuentra una posición eliminada, la búsqueda continua.
+La búsqueda de un elemento en una tabla de _hash_ cerrada es similar a la inserción. Se utiliza la función de _hash_ para calcular el índice y luego se busca el elemento en esa posición. Si el elemento no se encuentra en la posición calculada, se incrementa el índice en 1 hasta encontrar el elemento o una posición vacía. Si se encuentra una posición eliminada, la búsqueda continua.
 
-```{figure} ../assets/images/TablaHashBusquedaAbierta.svg
+```{figure} ../assets/images/TablaHashBusquedaCerrada.svg
 ---
-name: tabla_hash_busqueda_abierta
+name: tabla_hash_busqueda_cerrada
 ---
-Búsqueda en una tabla de _hash_ abierta.
+Búsqueda en una tabla de _hash_ cerrada.
 ```
 
 En la figura se observa que al buscar la clave $k_2$, se intenta con la posición 9, como la clave asociada a esa posición es $k_1$, la búsqueda continua, luego la posición 10 está eliminada, por lo que se avanza a la posición 0 donde finalmente se encuentra la clave buscada.
@@ -101,7 +101,7 @@ Supongamos que se busca una clave $k_3$ cuyo valor de _hash_ también es 9. En e
 
 ### Aritmética Modular
 
-Es la aritmética que deriva del estudio del resto de la división de enteros. Es una forma de realizar cálculos en un conjunto finito de números. En el caso del _hashing_ abierto, se utiliza para calcular el índice en el arreglo. La operación más común en la aritmética modular es el operador módulo, que devuelve el resto de la división de dos números.
+Es la aritmética que deriva del estudio del resto de la división de enteros. Es una forma de realizar cálculos en un conjunto finito de números. En el caso del _hashing_ cerrado, se utiliza para calcular el índice en el arreglo. La operación más común en la aritmética modular es el operador módulo, que devuelve el resto de la división de dos números.
 
 La operación de módulo se denota como $a \mod b$, donde $a$ es el número que se va a dividir y $b$ es el divisor. El resultado de la operación es el resto de la división de $a$ entre $b$. Por ejemplo, $7 \mod 3 = 1$, ya que al dividir 7 entre 3, el cociente es 2 y el resto es 1.
 
@@ -112,15 +112,15 @@ Algunas propiedades de la aritmética modular son:
 - $a \mod n * b \mod n = (a * b) \mod n$
 - $a \mod n / b \mod n = (a / b) \mod n$ (si $b \neq 0$)
 
-## _Hashing_ cerrado
+## _Hashing_ abierto
 
-El _hashing_ cerrado, es una técnica fundamental para el manejo de colisiones en tablas de _hash_. En contraste con el direccionamiento abierto, donde todos los elementos se almacenan directamente dentro del arreglo subyacente, el _hashing_ cerrado utiliza una estructura de datos adicional (generalmente una lista enlazada). En cada posición del arreglo se encuentra una lista enlazada para almacenar los elementos que colisionan en ese índice. Cuando dos o más claves diferentes se mapean a la misma posición en la tabla, en lugar de buscar otra posición en el arreglo, simplemente se añaden los nuevos elementos a la lista existente en esa posición. Esto significa que múltiples elementos pueden residir en la misma posición del arreglo, encadenados en una lista.
+El _hashing_ abierto, es una técnica fundamental para el manejo de colisiones en tablas de _hash_. En contraste con el direccionamiento cerrado, donde todos los elementos se almacenan directamente dentro del arreglo subyacente, el _hashing_ abierto utiliza una estructura de datos adicional (generalmente una lista enlazada). En cada posición del arreglo se encuentra una lista enlazada para almacenar los elementos que colisionan en ese índice. Cuando dos o más claves diferentes se mapean a la misma posición en la tabla, en lugar de buscar otra posición en el arreglo, simplemente se añaden los nuevos elementos a la lista existente en esa posición. Esto significa que múltiples elementos pueden residir en la misma posición del arreglo, encadenados en una lista.
 
-```{figure} ../assets/images/TablaHashCerrado.svg
+```{figure} ../assets/images/TablaHashAbierta.svg
 ---
-name: tabla_hash_cerrado
+name: tabla_hash_abierta
 ---
-Tabla de _hash_ cerrada.
+Tabla de _hash_ abierta.
 ```
 
 ## Consideraciones de diseño
@@ -137,10 +137,10 @@ El factor de carga $(\alpha)$ es una métrica crucial para evaluar y predecir el
 
 Este valor proporciona una indicación de cuán "llena" está la tabla de _hash_. La intuición detrás del factor de carga es que a medida que la tabla se llena (es decir, a medida que α se acerca o supera a 1), la probabilidad de que nuevas claves colisionen con posiciones ya ocupadas aumenta significativamente.
 
-Se recomienda mantener el factor de carga por debajo de 0.75 como una guía general basada en el compromiso entre el rendimiento y la utilización del espacio. Este umbral suele ser un buen punto de equilibrio para muchas aplicaciones que utilizan técnicas de _hashing_ abierto. Sin embargo, el factor de carga óptimo puede variar dependiendo de:
+Se recomienda mantener el factor de carga por debajo de 0.75 como una guía general basada en el compromiso entre el rendimiento y la utilización del espacio. Este umbral suele ser un buen punto de equilibrio para muchas aplicaciones que utilizan técnicas de _hashing_ cerrado. Sin embargo, el factor de carga óptimo puede variar dependiendo de:
 
 La técnica de resolución de colisiones utilizada
-: El _hashing_ cerrado puede tolerar factores de carga más altos (incluso mayores que 1) antes de que el rendimiento se degrade significativamente en comparación con el direccionamiento abierto. En el _hashing_ cerrado, un factor de carga $\alpha$ significa que en promedio, cada lista tendrá $\alpha$ elementos.
+: El _hashing_ abierto puede tolerar factores de carga más altos (incluso mayores que 1) antes de que el rendimiento se degrade significativamente en comparación con el direccionamiento cerrado. En el _hashing_ abierto, un factor de carga $\alpha$ significa que en promedio, cada lista tendrá $\alpha$ elementos.
 
 Los requisitos específicos de la aplicación
 : Si la eficiencia de las operaciones es primordial, se podría optar por un factor de carga más bajo. Si el espacio es una limitación crítica, se podría tolerar un factor de carga más alto a expensas de un posible impacto en el rendimiento.
@@ -185,10 +185,10 @@ h(S) = (c_1 \cdot a^{n-1} + c_2 \cdot a^{n-2} + ... + c_n \cdot a^0) \mod m
 
 El módulo se aplica al resultado final para asegurar que el valor hash esté dentro del rango válido de índices del arreglo [0, $m$−1].
 
-## Ejemplo de implementación de _hashing_ abierto
+## Ejemplo de implementación de _hashing_ cerrado
 
 ```{code-block} go
-// Paquete hashtable proporciona una implementación de una tabla hash abierta
+// Paquete hashtable proporciona una implementación de una tabla hash cerrada
 // cuyas claves son cadenas de caracteres y los valores pueden ser
 // de cualquier tipo. La tabla utiliza un arreglo para almacenar
 // pares clave-valor.
@@ -196,7 +196,7 @@ El módulo se aplica al resultado final para asegurar que el valor hash esté de
 // hashTableEntry representa un único nodo en la tabla hash, que contiene una clave
 // y su valor asociado.
 //
-// HashTable es una tabla hash abierta que utiliza un arreglo para almacenar elementos.
+// HashTable es una tabla hash cerrada que utiliza un arreglo para almacenar elementos.
 // La tabla solo soporta string como claves y cualquier tipo como valores.
 package hashtable
 
@@ -214,7 +214,7 @@ type hashTableEntry[K string, V any] struct {
     value V
 }
 
-// HashTable es una tabla de hash abierta. En cada posición
+// HashTable es una tabla de hash cerrada. En cada posición
 // del arreglo se almacena un par clave-valor.
 type HashTable[K string, V any] struct {
     // arreglo de entradas de la tabla hash.
@@ -229,7 +229,7 @@ type HashTable[K string, V any] struct {
     threshold uint
 }
 
-// NewHashTable crea una nueva tabla de hash abierta con la capacidad y el factor de carga especificados.
+// NewHashTable crea una nueva tabla de hash cerrada con la capacidad y el factor de carga especificados.
 // Si la capacidad es igual a 0, se establece en 17.
 // Si el factor de carga es menor o igual a 0 o mayor que 1, se establece en 0.75.
 // Si la capacidad no es un número primo, se redimensiona a la siguiente capacidad
@@ -462,8 +462,8 @@ Para implementar una tabla de _hash_ genérica, que soporte cualquier tipo de cl
 
 ## Ejercicios
 
-1. Modificar la tabla de _hash_ abierto para que las claves puedan ser de distintos tipos (usar el paquete [`maphash`](https://pkg.go.dev/hash/maphash) de Go).
+1. Modificar la tabla de _hash_ cerrada para que las claves puedan ser de distintos tipos (usar el paquete [`maphash`](https://pkg.go.dev/hash/maphash) de Go).
 
-2. Implementar una tabla de _hash_ cerrada. Para ello se debe implementar una lista enlazada que almacene los elementos en cada posición del arreglo. Cuando se produce una colisión, el nuevo elemento se agrega a la lista en la posición correspondiente. La tabla debe tener los mismos métodos que la tabla de _hash_ abierta: `Put`, `Get`, `Remove`, `Keys`, `Values`, `Size`, `IsEmpty`, `Clear` y `String`. Las claves deben ser de cualquier tipo.
+2. Implementar una tabla de _hash_ abierta. Para ello se debe implementar una lista enlazada que almacene los elementos en cada posición del arreglo. Cuando se produce una colisión, el nuevo elemento se agrega a la lista en la posición correspondiente. La tabla debe tener los mismos métodos que la tabla de _hash_ cerrada: `Put`, `Get`, `Remove`, `Keys`, `Values`, `Size`, `IsEmpty`, `Clear` y `String`. Las claves deben ser de cualquier tipo.
 
 3. Escribir casos de pruebas que cubran todas las operaciones de los puntos anteriores.
