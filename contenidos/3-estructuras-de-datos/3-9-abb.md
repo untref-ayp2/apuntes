@@ -14,9 +14,9 @@ Un árbol binario de búsqueda es un árbol binario que cumple con las siguiente
 - Ambos subárboles (izquierdo y derecho) deben ser también árboles binarios de búsqueda.
 :::
 
-En la siguiente figura se muestran dos árboles binarios, el de la izquierda cumple con la propiedad de ABB y por lo tanto es un árbol binario de búsqueda, mientras que el de la derecha no cumple con la propiedad ya que el nodo 8 es mayor que el 7 que se encuentra en la raíz del árbol y por lo tanto no se cumple que los todos los nodos del subárbol izquierdo son menores que la raíz. 
+En la siguiente figura se muestran dos árboles binarios, el de la izquierda cumple con la propiedad de ABB y por lo tanto es un árbol binario de búsqueda, mientras que el de la derecha no cumple con la propiedad ya que el nodo (8) es mayor que el (7) que se encuentra en la raíz del árbol y por lo tanto no se cumple que los todos los nodos del subárbol izquierdo son menores que la raíz. 
 
-El subárbol de la izquierda cuya raíz es 2 si es ABB y el de la derecha cuya raiz es 9 también es ABB, sin embargo el árbol completo no es un ABB.
+El subárbol de la izquierda cuya raíz es (2) si es ABB y el de la derecha cuya raiz es (9) también es ABB, sin embargo el árbol completo no es un ABB.
 
 ```{figure} ../assets/images/ABB.svg
 ---
@@ -62,7 +62,7 @@ FUNCION InsertarABB(raiz, valor)
   RETORNAR raiz
 FIN FUNCION
 ```
-En la siguiente animación se observa la inserción del valor 6 en un árbol binario de búsqueda.
+En la siguiente animación se observa la inserción del valor (6) en un árbol binario de búsqueda.
 
 ```{figure} ../assets/videos/insercionABB.mp4
 ---
@@ -71,12 +71,18 @@ name: insercionABB
 Inserción de un nodo en un árbol binario de búsqueda (botón derecho del mouse- Mostrar todos los controles)
 ```
 
-1. Se compara el valor 6 con la raíz (7) y como 6 es menor se va al subárbol izquierdo.
-2. Se compara el valor 6 con la raíz (2) del subárbol izquierdo y como 6 es mayor se va al subárbol derecho.
-3. Se compara el valor 6 con la raíz (5) del subárbol derecho y como 6 es mayor se va al subárbol derecho.
-4. Como el subárbol derecho de (5) es nulo se inserta el nodo 6 como hijo derecho de (5).
+1. Se compara el valor (6) con la raíz (7) y como (6) es menor se desciende al subárbol izquierdo.
+2. Se compara el valor (6) con la raíz (2) del subárbol izquierdo y como (6) es mayor se desciende al subárbol derecho.
+3. Se compara el valor (6) con la raíz (5) del subárbol derecho y como (6) es mayor se desciende al subárbol derecho.
+4. Como el subárbol derecho de (5) es nulo se inserta el nodo (6) como hijo derecho de (5).
+
+```{Important}
+La inserción no permite valores duplicados. Si se requiere contar los elementos repetidos en el árbol, se puede modificar el algoritmo para que en lugar de insertar un nuevo nodo, se incremente un contador en el nodo existente.
+
+La inserción de un nuevo nodo siempre se realiza en una hoja del árbol, es decir, un nodo que no tiene hijos. Esto asegura que la estructura del árbol se mantenga y que la propiedad de ABB se respete.
+```
    
-## Búsqueda
+### Búsqueda
 
 La búsqueda en un árbol binario de búsqueda también se realiza de manera recursiva. Se compara el valor buscado con el valor del nodo actual y se decide si ir al subárbol izquierdo o derecho. Si el valor es igual al del nodo actual, se ha encontrado el nodo, si en cambio se llega a un nodo nulo, el valor no está en el árbol.
 
@@ -98,7 +104,7 @@ FUNCION BuscarABB(raiz, valor)
 FIN FUNCION
 ```
 
-En la siguiente animación se observa la búsqueda del valor 4 que no se encuentra.
+En la siguiente animación se observa la búsqueda del valor (4) que no se encuentra.
 
 ```{figure} ../assets/videos/busquedaABB.mp4
 ---
@@ -107,7 +113,7 @@ name: busquedaABB
 Búsqueda de un nodo en un árbol binario de búsqueda (botón derecho del mouse- Mostrar todos los controles)
 ```
 
-## Eliminación
+### Eliminación
 
 La eliminación de un nodo en un árbol binario de búsqueda es un poco más compleja que la inserción y la búsqueda. Existen tres casos a considerar:
 
@@ -134,7 +140,7 @@ Eliminación de un nodo con un solo hijo
 El nodo a eliminar tiene dos hijos
 : En este caso, se busca el nodo más pequeño en el subárbol derecho del nodo a eliminar (sucesor) o el nodo más grande en el subárbol izquierdo (predecesor). Luego, se reemplaza el valor del nodo a eliminar por el valor del sucesor o predecesor y se elimina el sucesor o predecesor (que siempre va a ser una hoja o a lo sumo va tener un sólo hijo).
 
-En la siguiente figura se observa la eliminación de la raíz del árbol, el nodo 7.
+En la siguiente figura se observa la eliminación de la raíz del árbol, el nodo (7).
 
 ```{figure} ../assets/images/ABBEliminacion-3.svg
 ---
@@ -202,7 +208,7 @@ FUNCION BuscarMaximo(raiz)
 FIN FUNCION
 ```
 
-## Orden de las operaciones
+### Orden de las operaciones
 
 En un árbol binario de búsqueda, las operaciones de inserción, búsqueda y eliminación tienen un tiempo de ejecución que depende de la altura del árbol. Por lo tanto es importante tratar de mantener el árbol equilibrado para que la altura no crezca demasiado.
 
@@ -252,4 +258,22 @@ La altura $h$ de un árbol binario degenerado en una lista se puede calcular com
 \end{aligned}
 ```
 
+## Implementación de un árbol binario de búsqueda
 
+La siguiente interfaz define las operaciones que debería tener un ABB
+
+```{code-block} go
+type SearchTree[T comparable] interface {
+	Insert(k T)
+	Remove(k T)
+	IsEmpty() bool
+	FindMin() (T, error)
+	FindMax() (T, error)
+	Search(k T) bool
+	Clear()
+	String() string
+	Iterator() types.Iterator[T]
+}
+```
+
+Se recomienda implementar la mayor parte de la funcionalidad en los nodos. 

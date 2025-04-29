@@ -17,6 +17,7 @@ Consideremos el árbol genérico ilustrado: el nodo $A$ representa la **raíz**,
 
 ```{figure} ../assets/images/Arbol.svg
 ---
+width: 80%
 name: arbol
 ---
 Árbol de datos
@@ -96,10 +97,13 @@ Por ejemplo en el siguiente video se observa el recorrido preorden. Cuando el no
 
 ```{figure} ../assets/videos/preorden.mp4
 ---
+width: 50%
 name: preorden
+
 ---
 Recorrido en Preorden (botón derecho del mouse- Mostrar todos los controles)
 ```
+
 
 ```{math}
 
@@ -132,6 +136,7 @@ Ejemplo de recorrido inorden:
 
 ```{figure} ../assets/videos/inorden.mp4
 ---
+width: 50%
 name: inorden
 ---
 Recorrido en Inorden (botón derecho del mouse- Mostrar todos los controles)
@@ -167,6 +172,7 @@ Ejemplo de recorrido postorden:
 
 ```{figure} ../assets/videos/postorden.mp4
 ---
+width: 50%
 name: postorden
 ---
 Recorrido en Postorden (botón derecho del mouse- Mostrar todos los controles)
