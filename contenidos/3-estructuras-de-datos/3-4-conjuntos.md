@@ -10,10 +10,10 @@ Los conjuntos son estructuras de datos que permiten almacenar elementos de forma
 
 Por definición dos conjuntos son iguales si tienen los mismos elementos, sin importar el orden en que se encuentren. Por otro lado, dos conjuntos son distintos si tienen al menos un elemento diferente.
 
-```{figure} ../assets/images/Conjuntos.svg
+```{figure} ../assets/images/conjuntos/diagrama-venn.drawio.svg
 ---
-width: 300px
 name: Conjuntos
+class: dark-light
 ---
 Conjuntos
 ```
@@ -68,31 +68,31 @@ package main
 
 import "fmt"
 
-type Set struct{
+type Set struct {
     elements map[int]bool
 }
 
-func NewSet() *Set{
+func NewSet() *Set {
     return &Set{elements: make(map[int]bool)}
 }
 
-func (s *Set) Add(element int){
+func (s *Set) Add(element int) {
     s.elements[element] = true
 }
 
-func (s *Set) Remove(element int){
+func (s *Set) Remove(element int) {
     delete(s.elements, element)
 }
 
-func (s *Set) Contains(element int) bool{
+func (s *Set) Contains(element int) bool {
     return s.elements[element]
 }
 
-func (s *Set) Size() int{
+func (s *Set) Size() int {
     return len(s.elements)
 }
 
-func (s *Set) Values() []int{
+func (s *Set) Values() []int {
     values := make([]int, 0, s.Size())
     for k := range s.elements {
         values = append(values, k)
@@ -107,12 +107,12 @@ func main() {
     s.Add(3)
     fmt.Println(s.Contains(2)) // true
     fmt.Println(s.Contains(4)) // false
-    fmt.Println(s.Size()) // 3
-    fmt.Println(s.Values()) // [1 2 3]
+    fmt.Println(s.Size())      // 3
+    fmt.Println(s.Values())    // [1 2 3]
     s.Remove(2)
     fmt.Println(s.Contains(2)) // false
-    fmt.Println(s.Size()) // 2
-    fmt.Println(s.Values()) // [1 3]
+    fmt.Println(s.Size())      // 2
+    fmt.Println(s.Values())    // [1 3]
 }
 ```
 
