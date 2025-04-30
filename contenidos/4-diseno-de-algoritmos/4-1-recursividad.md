@@ -4,7 +4,7 @@ kernelspec:
   name: gophernotes
 ---
 
-# División y Conquista y Recursividad
+# Recursividad y División y Conquista
 
 ## Recursividad
 
@@ -228,9 +228,9 @@ El Teorema maestro establece que la solución a la ecuación de recurrencia es:
 :label: teorema-maestro
 T(n) =
 \begin{cases}
-O(n^c) & \text{si } log_b(a) < c \\
-O(n^c \; \log_b(n)) & \text{si } log_b(a) = c \\
-O(n^{log_b(a)}) & \text{si } lob_b(a) > c
+O(n^c) & \text{si } \log_b(a) < c \\
+O(n^c \; \log_b(n)) & \text{si } \log_b(a) = c \\
+O(n^{log_b(a)}) & \text{si } \lob_b(a) > c
 \end{cases}
 ```
 
@@ -242,10 +242,10 @@ b = 2 \\
 c = 0
 ```
 
-por lo tanto, como $log_2(1)=0$ estamos en el segundo caso
+por lo tanto, como $\log_2{1}=0$ estamos en el segundo caso
 
 ```{math}
-T(n) = O(log_2(n))
+T(n) = O(\log_2{n})
 ```
 
 ## Ejercicios
@@ -266,4 +266,4 @@ T(n) = O(log_2(n))
 
 5. Se tiene un arreglo de `len(n) >= 3` elementos en forma de pico, esto es: estrictamente creciente hasta una determinada posición `p`, y estrictamente decreciente a partir de ella (con `0 < p < n-1`). Por ejemplo, en el arreglo `[1, 2, 3, 1, 0, -2]` la posición del pico es `p = 2`.
 
-   Se pide implementar un algoritmo de división y conquista de orden $O(log n)$ que encuentre la posición `p` del pico.
+   Se pide implementar un algoritmo de división y conquista de orden $O(\log{n})$ que encuentre la posición `p` del pico.
