@@ -230,7 +230,7 @@ T(n) =
 \begin{cases}
 O(n^c) & \text{si } \log_b(a) < c \\
 O(n^c \; \log_b(n)) & \text{si } \log_b(a) = c \\
-O(n^{log_b(a)}) & \text{si } \lob_b(a) > c
+O(n^{log_b(a)}) & \text{si } \log_b(a) > c
 \end{cases}
 ```
 
