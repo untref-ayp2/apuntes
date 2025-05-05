@@ -258,32 +258,35 @@ func NewHashTable[K string, V any](capacity uint, loadFactor float32) *HashTable
 // - Si la tabla de hash está llena, se redimensiona automáticamente.
 //
 // - Si la clave es nula, no se agrega nada.
-func (ht *HashTable[K, V]) Put(key K, value V) bool {
-    // Si la clave es nula, no se agrega nada.
-    if key == "" {
-        return false
-    }
-    // Si la tabla de hash está llena, redimensionamos.
-    if ht.size >= ht.threshold {
-        ht.resize()
-    }
+func (ht *HashTable[K, V]) Put(key K, value V) {
+	// Si la clave ya existe, actualizamos el valor.
+	if index, esta := ht.getIndex(key); esta {
+		ht.buckets[index].value = value
+		return
+	}
 
-    index := ht.hash(key) % ht.capacity
-    for {
-        if ht.buckets[index] == nil || ht.buckets[index].key == "" {
-            // Si el bucket está vacío o la clave es nula, insertamos el nuevo elemento.
-            ht.buckets[index] = &hashTableEntry[K, V]{key: key, value: value}
-            ht.size++
-            return true
-        } else if ht.buckets[index].key == key {
-            // Si la clave ya existe, actualizamos el valor.
-            ht.buckets[index].value = value
-            return true
-        }
-        // Si el bucket está ocupado y la clave no coincide, probamos el siguiente índice.
-        index = (index + 1) % ht.capacity
-    }
+	// Si la clave es nula, no se agrega nada.
+	if key == "" {
+		return
+	}
+	// Si la tabla de hash está llena, redimensionamos.
+	if ht.size >= ht.threshold {
+		ht.resize()
+	}
+	// La clave no existe, así que la agregamos.
+	index := ht.hash(key) % ht.capacity
+	for {
+		if ht.buckets[index] == nil {
+			// Si el bucket está vacío, insertamos el nuevo par clave-valor.
+			ht.buckets[index] = &hashTableEntry[K, V]{key: key, value: value}
+			ht.size++
+			return
+		}
+		// Si el bucket está ocupado probamos el siguiente índice.
+		index = (index + 1) % ht.capacity
+	}
 }
+
 
 // Get devuelve el valor asociado a la clave dada y true para indicar que
 // encontró la clave buscada.
