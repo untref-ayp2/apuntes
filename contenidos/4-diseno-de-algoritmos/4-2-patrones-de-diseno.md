@@ -488,7 +488,8 @@ func (l *ListaEnlazada) InsertarAlInicio(valor int) {
        Primero()
        Siguiente()
        Anterior()
-       HayMas() bool
-       Actual() int
+       HaySiguiente() bool
+       HayAnterior() bool
+       Actual() T
    }
    ```
