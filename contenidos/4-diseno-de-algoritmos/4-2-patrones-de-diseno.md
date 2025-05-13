@@ -484,12 +484,10 @@ func (l *ListaEnlazada) InsertarAlInicio(valor int) {
 
    ```{code-block} go
    :linenos:
-   type IteradorDoble interface {
-       Primero()
-       Siguiente()
-       Anterior()
+   type IteradorDoble [T any]interface {
+       Siguiente() (T, error)
+       Anterior() (T, error)
        HaySiguiente() bool
        HayAnterior() bool
-       Actual() T
    }
    ```
