@@ -334,7 +334,7 @@ El patrón _Iterator_ o Iterador permite recorrer los elementos de una colecció
 `Siguiente()`{l=go}
 : Avanza el iterador al siguiente elemento
 
-`HayMas()`{l=go}
+`HaySiguiente()`{l=go}
 : Devuelve `true`{l=go} si todavía quedan elementos por recorrer en la colección o `false`{l=go} en caso contario
 
 `Actual()`{l=go}
@@ -383,7 +383,7 @@ func (l *ListaEnlazada) InsertarAlInicio(valor int) {
    type Iterador interface {
        Primero()
        Siguiente()
-       HayMas() bool
+       HaySiguiente() bool
        Actual() int
    }
    ```
@@ -437,7 +437,7 @@ func (l *ListaEnlazada) InsertarAlInicio(valor int) {
        i.actual = i.actual.Siguiente
    }
 
-   func (i IteradorLista) HayMas() bool {
+   func (i IteradorLista) HaySiguiente() bool {
        return i.actual != nil
    }
 
@@ -457,7 +457,7 @@ func (l *ListaEnlazada) InsertarAlInicio(valor int) {
    lista.InsertarAlInicio(1)
 
    iterador := lista.CrearIterador()
-   for iterador.Primero(); iterador.HayMas(); iterador.Siguiente() {
+   for iterador.Primero(); iterador.HaySiguiente(); iterador.Siguiente() {
        fmt.Println(iterador.Actual(), " ")
    }
    ```
@@ -484,10 +484,10 @@ func (l *ListaEnlazada) InsertarAlInicio(valor int) {
 
    ```{code-block} go
    :linenos:
-   type IteradorDoble [T any]interface {
-       Siguiente() (T, error)
-       Anterior() (T, error)
-       HaySiguiente() bool
+   type IteradorDoble interface {
+       Anterior()
+       Siguiente()
        HayAnterior() bool
+       HaySiguiente() bool
    }
    ```
