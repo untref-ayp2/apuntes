@@ -498,7 +498,7 @@ func main() {
 
 Para poder implementar iteradores con los distintos recorridos de un árbol, las implementaciones recursivas no son la mejor opción ya que no permiten mantener el estado entre las llamadas. Por lo tanto se debe implementar un iterador que mantenga el estado del recorrido y permita avanzar a través de los nodos del árbol, lo que se logra utilizando una pila para almacenar los nodos que se deben visitar.
 
-# Ejercicios
+## Ejercicios
 
 1. Implementar un método de árbol binario de búsqueda que devuelva la cantidad de nodos en el árbol.
 2. Implementar un método de árbol binario de búsqueda que devuelva la cantidad de hojas en el árbol.

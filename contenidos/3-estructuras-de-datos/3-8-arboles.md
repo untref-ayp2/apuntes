@@ -39,7 +39,7 @@ Grado
 
 En la figura anterior, el árbol tiene una altura de 2, ya que el camino más largo desde la raíz hasta las hojas $C$, $D$ o $K$, que son las más profundas del árbol, tiene una longitud de 2. La raíz $A$ tiene un grado de 3, ya que tiene tres hijos: $R$, $N$ y $Z$, estos nodos son hermanos ya que tienen el mismo padre. El nodo $R$ tiene un grado de 2, ya que tiene dos hijos: $D$ y $C$. El nodo $C$ es una hoja, por lo que su grado es 0. La profundidad de los nodos $R$, $N$ y $Z$ es 1, ya que está a un nivel de la raíz, a su vez $N$ también es una hoja.
 
-# Árboles binarios
+## Árboles binarios
 
 Los árboles binarios son árboles donde cada nodo tiene a lo sumo dos hijos. Estos hijos se denominan hijo izquierdo e hijo derecho. Los árboles binarios son ampliamente utilizados en informática debido a su simplicidad y eficiencia en diversas operaciones.
 
@@ -58,7 +58,7 @@ Un árbol binario es por definición:
 La definición recursiva de un árbol binario implica que cada subárbol también es un árbol binario. Esto permite construir árboles binarios de manera jerárquica y recursiva, lo que facilita su manipulación y análisis.
 :::
 
-## Recorridos de un árbol binario
+### Recorridos de un árbol binario
 
 Los **recorridos de un árbol binario** son algoritmos fundamentales para visitar y procesar cada uno de los nodos que componen la estructura, siguiendo un orden específico. Existen tres tipos principales de recorridos en profundidad: preorden, inorden y postorden.
 
@@ -66,7 +66,7 @@ La característica distintiva de estos recorridos radica en su naturaleza recurs
 
 Estos métodos son esenciales en diversas aplicaciones informáticas, incluyendo la búsqueda eficiente de información, la ordenación de datos y la evaluación de expresiones aritméticas o lógicas representadas en forma de árbol. Cada tipo de recorrido ofrece una secuencia de visita única, lo que los hace adecuados para diferentes contextos y tareas.
 
-### Preorden (Raíz - Izquierda - Derecha)
+#### Preorden (Raíz - Izquierda - Derecha)
 
 El recorrido preorden comienza visitando la raíz del árbol, seguido por la exploración recursiva del subárbol izquierdo y, finalmente, el subárbol derecho. El orden de procesamiento es, por lo tanto: nodo raíz, subárbol izquierdo, subárbol derecho.
 
@@ -111,7 +111,7 @@ Recorrido en Preorden (botón derecho del mouse- Mostrar todos los controles)
 
 ```
 
-### Inorden (Iquierda - Raíz - Derecha)
+#### Inorden (Iquierda - Raíz - Derecha)
 
 El recorrido inorden visita primero de forma recursiva todos los nodos del subárbol izquierdo, luego procesa el nodo raíz, y finalmente recorre recursivamente el subárbol derecho. La secuencia de visita es: subárbol izquierdo, nodo raíz, subárbol derecho.
 
@@ -148,7 +148,7 @@ a + b - c * d
 
 ```
 
-### Postorden (Izquierda - Derecha - Raíz)
+#### Postorden (Izquierda - Derecha - Raíz)
 
 En el recorrido postorden, se exploran recursivamente el subárbol izquierdo, seguido del subárbol derecho, y finalmente se procesa el nodo raíz. El orden de visita es: subárbol izquierdo, subárbol derecho, nodo raíz.
 
@@ -184,7 +184,7 @@ a \, b \, c \, - \, d \, * \, +
 
 ```
 
-# Ejercicios.
+## Ejercicios.
 1. Dados los siguientes recorridos de un árbol binario, graficar el árbol binario correspondiente.
    - Preorden: A, B, D, E, C, F, G
    - Inorden: D, B, E, A, F, C, G
