@@ -41,7 +41,7 @@ En la figura anterior, el árbol tiene una altura de 2, ya que el camino más la
 
 # Árboles binarios
 
-Los árboles binarios son árboles donde cada nodo tiene como máximo dos hijos. Estos hijos se denominan hijo izquierdo e hijo derecho. Los árboles binarios son ampliamente utilizados en informática debido a su simplicidad y eficiencia en diversas operaciones.
+Los árboles binarios son árboles donde cada nodo tiene a lo sumo dos hijos. Estos hijos se denominan hijo izquierdo e hijo derecho. Los árboles binarios son ampliamente utilizados en informática debido a su simplicidad y eficiencia en diversas operaciones.
 
 ```{figure} ../assets/images/ArbolBinario.svg
 ---
@@ -88,7 +88,7 @@ FIN FUNCION
 ```
 
 `Procesar(raiz)`
-: Representa una operación genérica que se aplica al nodo actual. Esta operación puede variar según la necesidad, como imprimir el valor del nodo o añadirlo a una lista.
+: Representa una operación genérica que se aplica al nodo actual. Esta operación puede variar según la implementación, por ejemplo podría ser imprimir el valor del nodo o añadirlo a una lista.
 
 llamadas recursivas
 : Las líneas 6 y 7 realizan las llamadas recursivas para aplicar el recorrido preorden a los subárboles izquierdo y derecho del nodo actual, respectivamente.
@@ -184,3 +184,15 @@ a \, b \, c \, - \, d \, * \, +
 
 ```
 
+# Ejercicios.
+1. Dados los siguientes recorridos de un árbol binario, graficar el árbol binario correspondiente.
+   - Preorden: A, B, D, E, C, F, G
+   - Inorden: D, B, E, A, F, C, G
+
+2. Dados los siguientes recorridos de un árbol binario, graficar el árbol binario correspondiente.
+   - Inorden: G, A, E, F, C, B, D
+   - Postorden: G, E, A, C, D, B, F
+
+3. Dados los siguientes recorridos de un árbol binario, graficar el árbol binario correspondiente.
+   - Preorden: E, A, F, C, B, G, D
+   - Postorden: F, C, A,  G, D, B, E

@@ -206,3 +206,11 @@ name: AVLDERIZQ-2
 ---
 Desbalanceo Izquierda-Derecha, árbol rebalanceado luego de la rotación doble Derecha-Izquierda
 ```
+
+## Ejercicios
+
+1. Dado el siguiente árbol AVL, inserte los siguientes elementos en el árbol y dibuje el árbol resultante después de cada inserción: 10, 20, 30, 40, 50, 25.
+2. Dado el siguiente árbol AVL, elimine los siguientes elementos del árbol y dibuje el árbol resultante después de cada eliminación: 30, 20, 10.
+3. Dado el siguiente árbol AVL, determine el factor de balanceo de cada nodo y dibuje el árbol resultante después de cada rotación necesaria para mantener el equilibrio: 10, 20, 30, 40, 50, 25.
+4. Escribir un método en árbol binario de búsqueda con el nombre `esAVL`que devuelva `True` si el árbol es AVL y `False` en caso contrario.
+5. Implementar un árbol AVL en Go y realizar las operaciones de inserción, eliminación y búsqueda. 

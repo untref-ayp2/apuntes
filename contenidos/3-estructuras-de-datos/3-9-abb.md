@@ -260,20 +260,249 @@ La altura $h$ de un árbol binario degenerado en una lista se puede calcular com
 
 ## Implementación de un árbol binario de búsqueda
 
-La siguiente interfaz define las operaciones que debería tener un ABB
+A continuación se presenta una implementación de un árbol binario de búsqueda en Go donde se utiliza un tipo genérico `T` que permite almacenar cualquier tipo de dato que implemente la interfaz `constraints.Ordered`, es decir cualquier tipo de dato que soporte orden total y se puedan comparar los elementos con `<`, `>`, `==`, `<=`, `>=`.
+
+En esta implementación las funcionalidades para manipular el árbol están en el árbol propiamiente dicho. 
+
+Como en el caso de las listas se puede delegar la implementación de las operaciones a los nodos del árbol, lo que permite que el árbol esté menos acoplado a la implementación de los nodos.
+
+```{note}
+En la implementación se utiliza el paquete [`golang.org/x/exp/constraints`](https://pkg.go.dev/golang.org/x/exp/constraints) que permite definir restricciones en los tipos genéricos. Este paquete es parte de la biblioteca de Go y se utiliza para trabajar con tipos genéricos y restricciones de tipo.
+```
+
+### Nodo binario
 
 ```{code-block} go
-type SearchTree[T comparable] interface {
-	Insert(k T)
-	Remove(k T)
-	IsEmpty() bool
-	FindMin() (T, error)
-	FindMax() (T, error)
-	Search(k T) bool
-	Clear()
-	String() string
-	Iterator() types.Iterator[T]
+:linenos:
+package binarysearchtree
+
+import "golang.org/x/exp/constraints"
+
+// BinaryNode representa un nodo en un árbol binario.
+type BinaryNode[T constraints.Ordered] struct {
+	Value T
+	Left  *BinaryNode[T]
+	Right *BinaryNode[T]
 }
 ```
 
-Se recomienda implementar la mayor parte de la funcionalidad en los nodos. 
+### Árbol binario de búsqueda
+
+```{code-block} go
+:linenos:
+package binarysearchtree
+
+import "golang.org/x/exp/constraints"
+
+// BinarySearchTree representa un árbol de búsqueda binario.
+type BinarySearchTree[T constraints.Ordered] struct {
+	Root *BinaryNode[T]
+}
+
+// NewBinarySearchTree crea un nuevo árbol de búsqueda binario vacío.
+func NewBinarySearchTree[T constraints.Ordered]() *BinarySearchTree[T] {
+	return &BinarySearchTree[T]{}
+}
+
+// Insert inserta un valor en el árbol de búsqueda binario.
+func (bst *BinarySearchTree[T]) Insert(value T) {
+	bst.Root = bst.insertRecursive(bst.Root, value)
+}
+
+func (bst *BinarySearchTree[T]) insertRecursive(node *BinaryNode[T], value T) *BinaryNode[T] {
+	if node == nil {
+		return &BinaryNode[T]{Value: value}
+	}
+
+	if value < node.Value {
+		node.Left = bst.insertRecursive(node.Left, value)
+	} else if value > node.Value {
+		node.Right = bst.insertRecursive(node.Right, value)
+	}
+	return node
+}
+
+// Search busca un valor en el árbol de búsqueda binario.
+func (bst *BinarySearchTree[T]) Search(value T) bool {
+	return bst.searchRecursive(bst.Root, value)
+}
+
+func (bst *BinarySearchTree[T]) searchRecursive(node *BinaryNode[T], value T) bool {
+	if node == nil {
+		return false
+	}
+
+	if value == node.Value {
+		return true
+	} else if value < node.Value {
+		return bst.searchRecursive(node.Left, value)
+	} else {
+		return bst.searchRecursive(node.Right, value)
+	}
+}
+
+// Delete borra un valor del árbol de búsqueda binario.
+func (bst *BinarySearchTree[T]) Delete(value T) {
+	bst.Root = bst.deleteRecursive(bst.Root, value)
+}
+
+func (bst *BinarySearchTree[T]) deleteRecursive(node *BinaryNode[T], value T) *BinaryNode[T] {
+	if node == nil {
+		return nil
+	}
+
+	if value < node.Value {
+		node.Left = bst.deleteRecursive(node.Left, value)
+	} else if value > node.Value {
+		node.Right = bst.deleteRecursive(node.Right, value)
+	} else {
+		// Nodo encontrado
+		if node.Left == nil {
+			return node.Right
+		} else if node.Right == nil {
+			return node.Left
+		}
+
+		// Nodo con dos hijos: encontrar el sucesor inorder (el menor en el subárbol derecho)
+		minRight := bst.findMin(node.Right)
+		node.Value = minRight
+		node.Right = bst.deleteRecursive(node.Right, minRight)
+	}
+	return node
+}
+
+// findMin encuentra el nodo con el valor mínimo en un subárbol.
+func (bst *BinarySearchTree[T]) findMin(node *BinaryNode[T]) T {
+	current := node
+	for current.Left != nil {
+		current = current.Left
+	}
+	return current.Value
+}
+
+// Height calcula la altura del árbol de búsqueda binario.
+func (bst *BinarySearchTree[T]) Height() int {
+	return bst.heightRecursive(bst.Root)
+}
+
+func (bst *BinarySearchTree[T]) heightRecursive(node *BinaryNode[T]) int {
+	if node == nil {
+		return 0
+	}
+	leftHeight := bst.heightRecursive(node.Left)
+	rightHeight := bst.heightRecursive(node.Right)
+	if leftHeight > rightHeight {
+		return leftHeight + 1
+	}
+	return rightHeight + 1
+}
+
+// InorderTraversal realiza un recorrido inorder y devuelve un arreglo con los valores.
+func (bst *BinarySearchTree[T]) InorderTraversal() []T {
+	result := []T{}
+	bst.inorderRecursive(bst.Root, &result)
+	return result
+}
+
+func (bst *BinarySearchTree[T]) inorderRecursive(node *BinaryNode[T], result *[]T) {
+	if node != nil {
+		bst.inorderRecursive(node.Left, result)
+		*result = append(*result, node.Value)
+		bst.inorderRecursive(node.Right, result)
+	}
+}
+
+// PreorderTraversal realiza un recorrido preorder y devuelve un arreglo con los valores.
+func (bst *BinarySearchTree[T]) PreorderTraversal() []T {
+	result := []T{}
+	bst.preorderRecursive(bst.Root, &result)
+	return result
+}
+
+func (bst *BinarySearchTree[T]) preorderRecursive(node *BinaryNode[T], result *[]T) {
+	if node != nil {
+		*result = append(*result, node.Value)
+		bst.preorderRecursive(node.Left, result)
+		bst.preorderRecursive(node.Right, result)
+	}
+}
+
+// PostorderTraversal realiza un recorrido postorder y devuelve un arreglo con los valores.
+func (bst *BinarySearchTree[T]) PostorderTraversal() []T {
+	result := []T{}
+	bst.postorderRecursive(bst.Root, &result)
+	return result
+}
+
+func (bst *BinarySearchTree[T]) postorderRecursive(node *BinaryNode[T], result *[]T) {
+	if node != nil {
+		bst.postorderRecursive(node.Left, result)
+		bst.postorderRecursive(node.Right, result)
+		*result = append(*result, node.Value)
+	}
+}
+```
+
+### Ejemplo de uso
+
+```{code-block} go
+:linenos:
+package main
+
+import (
+
+	"bst/binarysearchtree"
+	"fmt"
+)
+
+func main() {
+	bstInt := binarysearchtree.NewBinarySearchTree[int]()
+	bstInt.Insert(5)
+	bstInt.Insert(3)
+	bstInt.Insert(7)
+	bstInt.Insert(2)
+	bstInt.Insert(4)
+	bstInt.Insert(6)
+	bstInt.Insert(8)
+
+	fmt.Println("Árbol de enteros:")
+	fmt.Println("Buscar 4:", bstInt.Search(4))
+	fmt.Println("Buscar 9:", bstInt.Search(9))
+	fmt.Println("Altura del árbol:", bstInt.Height())
+	fmt.Println("Recorrido Inorder:", bstInt.InorderTraversal())
+	fmt.Println("Recorrido Preorder:", bstInt.PreorderTraversal())
+	fmt.Println("Recorrido Postorder:", bstInt.PostorderTraversal())
+
+	bstInt.Delete(3)
+	fmt.Println("Árbol después de borrar 3:")
+	fmt.Println("Recorrido Inorder:", bstInt.InorderTraversal())
+
+	bstInt.Delete(7)
+	fmt.Println("Árbol después de borrar 7:")
+	fmt.Println("Recorrido Inorder:", bstInt.InorderTraversal())
+
+	bstInt.Insert(3)
+	bstInt.Insert(7)
+
+	bstString := binarysearchtree.NewBinarySearchTree[string]()
+	bstString.Insert("banana")
+	bstString.Insert("manzana")
+	bstString.Insert("naranja")
+
+	fmt.Println("\nÁrbol de strings:")
+	fmt.Println("Recorrido Inorder:", bstString.InorderTraversal())
+}
+```
+
+### Iteradores
+
+Para poder implementar iteradores con los distintos recorridos de un árbol, las implementaciones recursivas no son la mejor opción ya que no permiten mantener el estado entre las llamadas. Por lo tanto se debe implementar un iterador que mantenga el estado del recorrido y permita avanzar a través de los nodos del árbol, lo que se logra utilizando una pila para almacenar los nodos que se deben visitar.
+
+# Ejercicios
+
+1. Implementar un método de árbol binario de búsqueda que devuelva la cantidad de nodos en el árbol.
+2. Implementar un método de árbol binario de búsqueda que devuelva la cantidad de hojas en el árbol.
+3. Implementar un iterador Inorden para un árbol binario de búsqueda.
+1. Implementar un iterador Preorden para un árbol binario de búsqueda.
+2. Implementar un iterador Postorden para un árbol binario de búsqueda.
+3. Implementar un iterador por niveles para un árbol binario de búsqueda. Tal que primero devuelve la raíz, luego los hijos de la raíz que se encuentran en el nivel 1, luego los hijos de los nodos del nivel 1 que se encuentran en el nivel 2 y así sucesivamente.
