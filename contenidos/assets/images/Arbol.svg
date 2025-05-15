@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.9 -->
+<!-- CreationDate: 2025-04-21 15:07:41 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="303pt" height="223pt"
+	viewBox="2321 1433 4801 3535">
+<g fill="none">
+<!-- Line -->
+<polyline points=" 3510,2250 7110,2250"
+	stroke="#000000" stroke-width="8px" stroke-dasharray="40 40"/>
+<!-- Line -->
+<polyline points=" 3510,3195 7110,3195"
+	stroke="#000000" stroke-width="8px" stroke-dasharray="40 40"/>
+<!-- Line -->
+<polyline points=" 3510,4095 7110,4095"
+	stroke="#000000" stroke-width="8px" stroke-dasharray="40 40"/>
+<!-- Circle -->
+<circle cx="5400" cy="2250" r="229" fill="#66bbbb"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="5400" y="2295" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">A</text>
+<!-- Circle -->
+<circle cx="6255" cy="3195" r="229" fill="#43677f"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="6255" y="3240" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">Z</text>
+<!-- Circle -->
+<circle cx="5400" cy="3195" r="229" fill="#66bb66"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="5400" y="3240" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">N</text>
+<!-- Circle -->
+<circle cx="4050" cy="4095" r="229" fill="#66bb66"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="4050" y="4140" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">D</text>
+<!-- Circle -->
+<circle cx="4905" cy="4095" r="229" fill="#66bb66"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="4905" y="4140" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">C</text>
+<!-- Circle -->
+<circle cx="6255" cy="4095" r="229" fill="#66bb66"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="6255" y="4140" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">K</text>
+<!-- Text -->
+<text xml:space="preserve" x="3420" y="2393" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">nivel = 1</text>
+<!-- Text -->
+<text xml:space="preserve" x="3420" y="2205" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">prof = 0</text>
+<!-- Text -->
+<text xml:space="preserve" x="3420" y="3338" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">nivel = 2</text>
+<!-- Text -->
+<text xml:space="preserve" x="3420" y="3150" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">prof = 1</text>
+<!-- Text -->
+<text xml:space="preserve" x="3420" y="4238" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">nivel = 3</text>
+<!-- Text -->
+<text xml:space="preserve" x="3420" y="4050" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">prof = 2</text>
+<!-- Text -->
+<text xml:space="preserve" x="5662" y="2203" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">altura = 2</text>
+<!-- Text -->
+<text xml:space="preserve" x="5662" y="2015" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">grado = 3</text>
+<!-- Circle -->
+<circle cx="4545" cy="3195" r="229" fill="#43677f"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Text -->
+<text xml:space="preserve" x="4545" y="3240" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">R</text>
+<!-- Line -->
+<defs>
+<clipPath id="cp0">
+	<path clip-rule="evenodd" d="M 2321,1433 H 7122 V 4968 H 2321 z
+		M 5202,1946 5156,1984 5264,2079 5274,2071z"/>
+</clipPath>
+</defs>
+<polyline points=" 4860,1575 5265,2070" clip-path="url(#cp0)"
+	stroke="#87cfff" stroke-width="8px"/>
+<!-- Forward arrow to point 5265,2070 -->
+<polygon points=" 5156,1984 5255,2057 5202,1946 5156,1984"
+	stroke="#87cfff" stroke-width="8px" stroke-miterlimit="8" fill="#87cfff"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp1">
+	<path clip-rule="evenodd" d="M 2321,1433 H 7122 V 4968 H 2321 z
+		M 4292,4365 4320,4312 4182,4266 4176,4278z"/>
+</clipPath>
+</defs>
+<polyline points=" 5130,4770 4185,4275" clip-path="url(#cp1)"
+	stroke="#87cfff" stroke-width="8px"/>
+<!-- Forward arrow to point 4185,4275 -->
+<polygon points=" 4320,4312 4199,4283 4292,4365 4320,4312"
+	stroke="#87cfff" stroke-width="8px" stroke-miterlimit="8" fill="#87cfff"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp2">
+	<path clip-rule="evenodd" d="M 2321,1433 H 7122 V 4968 H 2321 z
+		M 5088,4451 5138,4419 5042,4311 5031,4318z"/>
+</clipPath>
+</defs>
+<polyline points=" 5355,4815 5040,4320" clip-path="url(#cp2)"
+	stroke="#87cfff" stroke-width="8px"/>
+<!-- Forward arrow to point 5040,4320 -->
+<polygon points=" 5138,4419 5049,4334 5088,4451 5138,4419"
+	stroke="#87cfff" stroke-width="8px" stroke-miterlimit="8" fill="#87cfff"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp3">
+	<path clip-rule="evenodd" d="M 2321,1433 H 7122 V 4968 H 2321 z
+		M 6082,4376 6118,4425 6219,4321 6211,4311z"/>
+</clipPath>
+</defs>
+<polyline points=" 5535,4815 6210,4320" clip-path="url(#cp3)"
+	stroke="#87cfff" stroke-width="8px"/>
+<!-- Forward arrow to point 6210,4320 -->
+<polygon points=" 6118,4425 6197,4330 6082,4376 6118,4425"
+	stroke="#87cfff" stroke-width="8px" stroke-miterlimit="8" fill="#87cfff"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp4">
+	<path clip-rule="evenodd" d="M 2321,1433 H 7122 V 4968 H 2321 z
+		M 5415,3601 5475,3601 5452,3458 5438,3458z"/>
+</clipPath>
+</defs>
+<polyline points=" 5445,4770 5445,3465" clip-path="url(#cp4)"
+	stroke="#87cfff" stroke-width="8px"/>
+<!-- Forward arrow to point 5445,3465 -->
+<polygon points=" 5475,3601 5445,3481 5415,3601 5475,3601"
+	stroke="#87cfff" stroke-width="8px" stroke-miterlimit="8" fill="#87cfff"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp5">
+	<path clip-rule="evenodd" d="M 2321,1433 H 7122 V 4968 H 2321 z
+		M 4678,2928 4648,2876 4531,2966 4541,2984z"/>
+</clipPath>
+</defs>
+<polyline points=" 5400,2475 4545,2970" clip-path="url(#cp5)"
+	stroke="#000000" stroke-width="15px"/>
+<!-- Forward arrow to point 4545,2970 -->
+<polygon points=" 4648,2876 4559,2962 4678,2928 4648,2876"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp6">
+	<path clip-rule="evenodd" d="M 2321,1433 H 7122 V 4968 H 2321 z
+		M 5430,2834 5370,2834 5390,2981 5411,2981z"/>
+</clipPath>
+</defs>
+<polyline points=" 5400,2475 5400,2970" clip-path="url(#cp6)"
+	stroke="#000000" stroke-width="15px"/>
+<!-- Forward arrow to point 5400,2970 -->
+<polygon points=" 5370,2834 5400,2954 5430,2834 5370,2834"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp7">
+	<path clip-rule="evenodd" d="M 2321,1433 H 7122 V 4968 H 2321 z
+		M 6152,2876 6122,2928 6259,2984 6269,2966z"/>
+</clipPath>
+</defs>
+<polyline points=" 5400,2475 6255,2970" clip-path="url(#cp7)"
+	stroke="#000000" stroke-width="15px"/>
+<!-- Forward arrow to point 6255,2970 -->
+<polygon points=" 6122,2928 6241,2962 6152,2876 6122,2928"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp8">
+	<path clip-rule="evenodd" d="M 2321,1433 H 7122 V 4968 H 2321 z
+		M 4843,3745 4796,3782 4903,3885 4920,3872z"/>
+</clipPath>
+</defs>
+<polyline points=" 4545,3420 4905,3870" clip-path="url(#cp8)"
+	stroke="#000000" stroke-width="15px"/>
+<!-- Forward arrow to point 4905,3870 -->
+<polygon points=" 4796,3782 4895,3857 4843,3745 4796,3782"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp9">
+	<path clip-rule="evenodd" d="M 2321,1433 H 7122 V 4968 H 2321 z
+		M 4171,3801 4131,3756 4035,3869 4049,3885z"/>
+</clipPath>
+</defs>
+<polyline points=" 4545,3420 4050,3870" clip-path="url(#cp9)"
+	stroke="#000000" stroke-width="15px"/>
+<!-- Forward arrow to point 4050,3870 -->
+<polygon points=" 4131,3756 4062,3859 4171,3801 4131,3756"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp10">
+	<path clip-rule="evenodd" d="M 2321,1433 H 7122 V 4968 H 2321 z
+		M 6285,3734 6225,3734 6245,3881 6266,3881z"/>
+</clipPath>
+</defs>
+<polyline points=" 6255,3420 6255,3870" clip-path="url(#cp10)"
+	stroke="#000000" stroke-width="15px"/>
+<!-- Forward arrow to point 6255,3870 -->
+<polygon points=" 6225,3734 6255,3854 6285,3734 6225,3734"
+	stroke="#000000" stroke-width="8px" stroke-miterlimit="8" fill="#000000"/>
+<!-- Text -->
+<text xml:space="preserve" x="4860" y="1575" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">raíz</text>
+<!-- Text -->
+<text xml:space="preserve" x="5760" y="4905" fill="#000000" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="end">hojas</text>
+</g>
+</svg>
