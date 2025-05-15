@@ -8,8 +8,7 @@ kernelspec:
 
 Un árbol de datos es una estructura jerárquica compuesta por nodos interconectados mediante aristas. Se caracteriza por tener un único nodo **raíz**, en la cima de la jerarquía, del cual pueden descender cero o más nodos hijos. Los árboles son herramientas fundamentales para modelar relaciones jerárquicas, como la organización de sistemas de archivos, la estructura de directorios o las dependencias entre objetos.
 
-En todo árbol, la **raíz** se distingue por carecer de nodo padre. El resto de los nodos poseen un único padre y pueden tener múltiples (o ningún) hijo. Aquellos nodos sin descendientes se denominan **hojas**. Los nodos que no son hojas ni la raíz se conocen como **nodos internos**. 
-
+En todo árbol, la **raíz** se distingue por carecer de nodo padre. El resto de los nodos poseen un único padre y pueden tener múltiples (o ningún) hijo. Aquellos nodos sin descendientes se denominan **hojas**. Los nodos que no son hojas ni la raíz se conocen como **nodos internos**.
 
 Una propiedad esencial de los árboles es la existencia de un único camino que conecta la raíz con cada una de las hojas.
 
@@ -49,12 +48,13 @@ name: ArbolBinario
 ---
 Árbol Binario
 ```
+
 :::{card} Definición de Árbol Binario
 Un árbol binario es por definición:
 
 - Un árbol vacío, o
 - Un nodo raíz con un hijo izquierdo y un hijo derecho, donde cada uno de estos hijos es a su vez un árbol binario.
-+++
+
 La definición recursiva de un árbol binario implica que cada subárbol también es un árbol binario. Esto permite construir árboles binarios de manera jerárquica y recursiva, lo que facilita su manipulación y análisis.
 :::
 
@@ -72,18 +72,18 @@ El recorrido preorden comienza visitando la raíz del árbol, seguido por la exp
 
 El siguiente seudocódigo ilustra la implementación del recorrido preorden como un método dentro de un nodo de un árbol binario, delegando la lógica del recorrido a cada nodo:
 
-```{code-block} 
+```{code-block}
 ---
 caption: Preorden
 linenos:
 ---
 FUNCION Preorden(raiz)
-  SI raiz ES nulo ENTONCES
-    retornar
-  FIN SI
-  Procesar(raiz)  // Visitar el nodo actual
-  Preorden(raiz.izquierdo)  // Recorrer el subárbol izquierdo
-  Preorden(raiz.derecho)  // Recorrer el subárbol derecho
+    SI raiz ES nulo ENTONCES
+        retornar
+    FIN SI
+    Procesar(raiz)           // Visitar el nodo actual
+    Preorden(raiz.izquierdo) // Recorrer el subárbol izquierdo
+    Preorden(raiz.derecho)   // Recorrer el subárbol derecho
 FIN FUNCION
 ```
 
@@ -95,21 +95,15 @@ llamadas recursivas
 
 Por ejemplo en el siguiente video se observa el recorrido preorden. Cuando el nodo se pinta de amarillo significa que se llamó a la función `preorden` con ese nodo y cuando el nodo se pinta de verde significa que el nodo fue visitado (línea 4 del seudocódigo).
 
-```{figure} ../assets/videos/preorden.mp4
----
-width: 50%
-name: preorden
+<!-- markdownlint-disable MD033 -->
+<p class="align-center">
+  <video src="../_static/videos/preorden.mp4" width="300" controls autoplay loop></video>
+</p>
+<!-- markdownlint-enable MD033 -->
 
----
-Recorrido en Preorden (botón derecho del mouse- Mostrar todos los controles)
-```
-
-
-```{math}
-
-+ \, a \, * \, - \, b \, c \, d
-
-```
+$$
++ \; a \; * \; - \; b \; c \; d
+$$
 
 #### Inorden (Iquierda - Raíz - Derecha)
 
@@ -117,36 +111,32 @@ El recorrido inorden visita primero de forma recursiva todos los nodos del subá
 
 El siguiente seudocódigo muestra la implementación del recorrido inorden:
 
-```{code-block} 
+```{code-block}
 ---
 caption: Inorden
 linenos:
 ---
 FUNCION Inorden (raiz)
-  SI raiz ES nulo ENTONCES
-    retornar
-  FIN SI
-  Inorden(raiz.izquierdo)  // Visitar el subárbol izquierdo
-  Procesar(raiz)  // Visitar el nodo actual
-  Inorder(raiz.derecho)  // Visitar el subárbol derecho
+    SI raiz ES nulo ENTONCES
+        retornar
+    FIN SI
+    Inorden(raiz.izquierdo) // Visitar el subárbol izquierdo
+    Procesar(raiz)          // Visitar el nodo actual
+    Inorder(raiz.derecho)   // Visitar el subárbol derecho
 FIN FUNCION
 ```
 
 Ejemplo de recorrido inorden:
 
-```{figure} ../assets/videos/inorden.mp4
----
-width: 50%
-name: inorden
----
-Recorrido en Inorden (botón derecho del mouse- Mostrar todos los controles)
-```
+<!-- markdownlint-disable MD033 -->
+<p class="align-center">
+  <video src="../_static/videos/inorden.mp4" width="300" controls autoplay loop></video>
+</p>
+<!-- markdownlint-enable MD033 -->
 
-```{math}
-
-a + b - c * d
-
-```
+$$
+a \; + \; b \; - \; c \; * \; d
+$$
 
 #### Postorden (Izquierda - Derecha - Raíz)
 
@@ -154,45 +144,46 @@ En el recorrido postorden, se exploran recursivamente el subárbol izquierdo, se
 
 El seudocódigo para el recorrido postorden se presenta a continuación:
 
-```{code-block} 
+```{code-block}
 ---
 caption: Postorden
 linenos:
 ---
 FUNCION Postorden (raiz)
-  SI raiz ES nulo ENTONCES
-    retornar
-  FIN SI
-  Postorden(raiz.izquierdo)  // Visitar el subárbol izquierdo
-  Postorden(raiz.derecho)  // Visitar el subárbol derecho
-  Procesar(raiz)  // Visitar el nodo actual
+    SI raiz ES nulo ENTONCES
+        retornar
+    FIN SI
+    Postorden(raiz.izquierdo) // Visitar el subárbol izquierdo
+    Postorden(raiz.derecho)   // Visitar el subárbol derecho
+    Procesar(raiz)            // Visitar el nodo actual
 FIN FUNCION
 ```
+
 Ejemplo de recorrido postorden:
 
-```{figure} ../assets/videos/postorden.mp4
----
-width: 50%
-name: postorden
----
-Recorrido en Postorden (botón derecho del mouse- Mostrar todos los controles)
-```
+<!-- markdownlint-disable MD033 -->
+<p class="align-center">
+  <video src="../_static/videos/postorden.mp4" width="300" controls autoplay loop></video>
+</p>
+<!-- markdownlint-enable MD033 -->
 
-```{math}
+$$
+a \; b \; c \; - \; d \; * \; +
+$$
 
-a \, b \, c \, - \, d \, * \, +
+## Ejercicios
 
-```
-
-## Ejercicios.
 1. Dados los siguientes recorridos de un árbol binario, graficar el árbol binario correspondiente.
+
    - Preorden: A, B, D, E, C, F, G
    - Inorden: D, B, E, A, F, C, G
 
 2. Dados los siguientes recorridos de un árbol binario, graficar el árbol binario correspondiente.
+
    - Inorden: G, A, E, F, C, B, D
    - Postorden: G, E, A, C, D, B, F
 
 3. Dados los siguientes recorridos de un árbol binario, graficar el árbol binario correspondiente.
+
    - Preorden: E, A, F, C, B, G, D
-   - Postorden: F, C, A,  G, D, B, E
+   - Postorden: F, C, A, G, D, B, E

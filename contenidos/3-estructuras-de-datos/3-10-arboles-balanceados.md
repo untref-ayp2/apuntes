@@ -20,15 +20,16 @@ El nombre "AVL" proviene de las iniciales de sus inventores. Su principal innova
 
 > La diferencia en la altura entre los subárboles izquierdo y derecho de cualquier nodo no puede ser mayor que uno.
 
-Formalmente: 
+Formalmente:
 
 :::{admonition} Definición de Árbol AVL
+
 ```{math}
 \text{AVL } \text{si}
 \begin{cases}
 \text{ ABB nulo} \\
 \text{}\\
-\text{ABB no nulo} 
+\text{ABB no nulo}
 \begin{cases}
 |h_{izq} - h_{der}| \leq 1 \\
 \text{subárbol izquierdo} \text{ es AVL} \\
@@ -36,6 +37,7 @@ Formalmente:
 \end{cases}
 \end{cases}
 ```
+
 :::
 
 En esta definición aparece el concepto de **factor de balanceo** o **factor de equilibrio** de un nodo, que se define como la diferencia entre las alturas de los subárboles izquierdo y derecho:
@@ -83,7 +85,6 @@ Desbalanceo Izquierda-Izquierda de un nodo
 
 Para restaurar el equilibrio del nodo (23) se debe realizar una rotación simple a la derecha del (23). Esta rotación involucra a tres nodos el (23), el (19) y el recién insertado (18). En la siguiente figura se observa la rotación simple a derecha.
 
-
 ```{figure} ../assets/images/AVLRotacionSimpleDerecha.svg
 ---
 name: AVLRSD
@@ -113,7 +114,6 @@ Desbalanceo Derecha-Derecha de un nodo
 
 En la figura al insertar el nodo (70) de desbalancea el nodo (54), que se puede volver a balancear con una rotación a la izquierda del nodo (54)
 
-
 ```{figure} ../assets/images/AVLRotacionSimpleIzquierda.svg
 ---
 name: AVLRSI
@@ -127,6 +127,7 @@ name: AVLRestauradoRSI
 ---
 AVL restaurado luego de una rotación simple a izquierda
 ```
+
 ### Rotación doble izquierda-derecha
 
 Cuando el desbalance se produce al insertar un elemento a la izquierda del hijo derecho de un nodo se debe realizar una rotación doble. Las rotaciones doble se componen de dos rotaciones simples, en este caso de una rotación simple a la izquierda seguida de una rotación simple a la derecha.
@@ -160,7 +161,6 @@ Desbalanceo Derecha-Izquierdda, luego de la rotación a izquierda.
 
 Luego se rota el (17) a derecha. Se observa que el (14) que pasará a ocupar la posición actual del (17) ya tiene un hijo derecho (16) que deberá reacomodarse como hijo izquierdo del (17)
 
-
 ```{figure} ../assets/images/AVLIZQDER-3.svg
 ---
 name: AVLIZQDER-3
@@ -169,7 +169,6 @@ Desbalanceo Derecha-Izquierda, rotación a derecha del nodo desbalanceado
 ```
 
 Finalmente el árbol rebalanceado queda como en la siguiente figura
-
 
 ```{figure} ../assets/images/AVLIZQDER-4.svg
 ---
@@ -189,7 +188,7 @@ name: AVLDERIZQ
 Desbalanceo Izquierda-Derecha de un nodo
 ```
 
-En la siguiente figura se observa los nodos involucrados en la rotación doble, que se puede realizar como dos rotaciones simples como en el ejemplo anterior o directamente en un único paso, donde el (67) pasará a ocupar la posición del (72). 
+En la siguiente figura se observa los nodos involucrados en la rotación doble, que se puede realizar como dos rotaciones simples como en el ejemplo anterior o directamente en un único paso, donde el (67) pasará a ocupar la posición del (72).
 
 ```{figure} ../assets/images/AVLDERIZQ-1.svg
 ---
@@ -213,4 +212,4 @@ Desbalanceo Izquierda-Derecha, árbol rebalanceado luego de la rotación doble D
 2. Dado el siguiente árbol AVL, elimine los siguientes elementos del árbol y dibuje el árbol resultante después de cada eliminación: 30, 20, 10.
 3. Dado el siguiente árbol AVL, determine el factor de balanceo de cada nodo y dibuje el árbol resultante después de cada rotación necesaria para mantener el equilibrio: 10, 20, 30, 40, 50, 25.
 4. Escribir un método en árbol binario de búsqueda con el nombre `esAVL`que devuelva `True` si el árbol es AVL y `False` en caso contrario.
-5. Implementar un árbol AVL en Go y realizar las operaciones de inserción, eliminación y búsqueda. 
+5. Implementar un árbol AVL en Go y realizar las operaciones de inserción, eliminación y búsqueda.
