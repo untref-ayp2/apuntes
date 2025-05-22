@@ -62,7 +62,7 @@ A partir de este fragmento nos podemos preguntar:
 
 Para que siempre pueda entregar el monto solicitado, es preciso contar con la moneda de \$1, para asegurarnos que podrá entregar cualquier monto.
 
-Para asegurar que siempre da la menor cantidad de billetes, el sistema de denominaciones debe ser canónico. Es decir las denominaciones no pueden ser cualquieras, sin que deben ser un conjunto que asegure que siempre funciona el algoritmo ávido. Además deben estar ordenadas de mayor a menor.
+Para asegurar que siempre da la menor cantidad de billetes, el sistema de denominaciones debe ser canónico. Es decir las denominaciones no pueden ser cualquiera, sino que deben ser un conjunto que asegure que siempre funciona el algoritmo ávido. Además deben estar ordenadas de mayor a menor.
 
 Por ejemplo si las denominaciones fueran: \$1, \$2, \$5, \$10, \$20, \$50, \$100, \$200, \$500, \$800 y \$1.000 y tiene que dar \$2.400, nuestro algoritmo ávido daría 2 x \$1.000 + 2 x \$200 en lugar de dar 3 billetes de \$800.
 
