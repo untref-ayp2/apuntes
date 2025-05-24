@@ -177,5 +177,5 @@ Como la lista de entrada de las tareas está ordenada por tiempo de finalizació
 
 ## Ejercicios
 
-1. **Cambio de moneda**: Implementar en GO en forma recursiva, el algoritmo ávido para el cambio de moneda. Analizar la complejidad del algoritmo.
-2. **Plan de actividades**: Implementar en GO en forma recursiva, el algoritmo ávido para el plan de actividades. Analizar la complejidad del algoritmo.
+1. **Cambio de moneda**: Implementar en Go en forma recursiva, el algoritmo ávido para el cambio de moneda. Analizar la complejidad del algoritmo.
+2. **Plan de actividades**: Implementar en Go en forma recursiva, el algoritmo ávido para el plan de actividades. Analizar la complejidad del algoritmo.
