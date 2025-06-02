@@ -129,8 +129,6 @@ A continuación se puede visualizar paso a paso el funcionamiento de Mergesort:
 
 ### Análisis de la Complejidad Computacional:
 
-#### Tiempo de Ejecución
-
 La recurrencia para el tiempo de ejecución de Mergesort se puede expresar como:
 $T(n) = 2T(n/2) + O(n)$
 Donde:
@@ -241,8 +239,9 @@ A continuación se puede visualizar paso a paso el funcionamiento de Quicksort:
 <iframe src="https://opendsa-server.cs.vt.edu/embed/quicksortAV" height="450" width="100%" scrolling="no"></iframe>
 
 ### Análisis de la Complejidad Computacional:
-#### Tiempo de Ejecución
+
 La complejidad temporal de Quicksort depende de la elección del pivote y de cómo se distribuyen los elementos en el arreglo:
+
 Mejor Caso
 : Ocurre cuando el pivote divide el arreglo en dos subarreglos de tamaño aproximadamente igual en cada llamada recursiva. En este caso, la recurrencia es:
   $T(n) = 2T(n/2) + O(n)$. Aplicando el Teorema Maestro, obtenemos una complejidad de tiempo de **$O(n \log n)$**.
@@ -298,8 +297,9 @@ fin funcion
 La función [Intercambiar](#intercambiar) es la misma que en Quicksort.
 
 ### Análisis de la Complejidad Computacional:
-#### Tiempo de Ejecución
+
 La complejidad temporal de Heapsort es **$O(n \log n)$** en todos los casos (mejor, promedio y peor). Esto se debe a que la fase de construcción del heap toma $O(n)$ tiempo y cada extracción del elemento máximo (raíz del heap) toma $O(\log n)$ tiempo, ya que se requiere hundir el nuevo elemento raíz para restaurar la propiedad de heap.
+
 La fase de construcción del heap es eficiente porque, aunque parece que se realizan $n$ operaciones de hundimiento, la mayoría de ellas son en nodos que están cerca de las hojas del árbol, lo que reduce el costo promedio por operación.
 
 
