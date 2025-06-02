@@ -206,6 +206,12 @@ name: AVLDERIZQ-2
 Desbalanceo Derecha-Izquierda, árbol rebalanceado
 ```
 
+```{Important}
+Las rotaciones son operaciones locales que solo afectan a un pequeño número de nodos en el árbol. Cuando se inserta un nuevo nodo, en el camino de regreso a la raíz, se verifica el balanceo de cada nodo y se realizan las rotaciones necesarias. Siempre las rotaciones se realizan en el camino de regreso a la raíz, es decir, desde el nodo recién insertado hasta la raíz del árbol.
+```
+En el siguiente enlace encontrarán un visualizador de árboles AVL que permite ver cómo se realizan las rotaciones y el balanceo del árbol en tiempo real: [Visualizador de Árboles AVL](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html).
+
+
 ## Ejercicios
 
 1. Dado el siguiente árbol AVL, inserte los siguientes elementos en el árbol y dibuje el árbol resultante después de cada inserción: 10, 20, 30, 40, 50, 25.
