@@ -48,7 +48,7 @@ Ordenamiento por Selección (_Selection Sort_)
 Ordenamiento por Burbujeo (_Bubble Sort_)
 : Recorre repetidamente la lista, compara elementos adyacentes y los intercambia si están en el orden incorrecto. Las "burbujas" de elementos más grandes (o más pequeños) se mueven hacia el final (o el principio) de la lista. Es un algoritmo muy intuitivo pero extremadamente ineficiente para grandes conjuntos de datos. Es **Estable** e _**In Place**_, pero no _**Online**_. En el mejor caso cuando los datos están casi ordenados, salvo unos pocos elementos puede presentar una complejidad de $O(n)$. En el peor caso y en el caso promedio es $O(n^2)$.
 
-En la siguiente tabla se resument las principales características de estos algoritmos:
+En la siguiente tabla se resumen las principales características de estos algoritmos:
 
 
 ```{table} Algoritmos de Ordenamiento Simple
@@ -89,7 +89,7 @@ Combinar
 :linenos:
 :name: mergesort
 :caption: Mergesort (Ordenamiento por Mezcla)
-funcion MergeSort(arreglo)
+funcion Mergesort(arreglo)
   si longitud(arreglo) <= 1 entonces // Caso base: si el arreglo tiene 
                                      // 0 o 1 elementos, ya está ordenado
     retornar arreglo
@@ -163,7 +163,7 @@ En este algoritmo no hay un caso mejor o peor, ya que la división y la mezcla s
 
 La idea principal detrás de Quicksort es seleccionar un elemento de la lista, llamado **pivote**, y reorganizar los elementos de tal manera que todos los elementos menores que el pivote queden a su izquierda y todos los elementos mayores queden a su derecha. Luego, se aplica recursivamente el mismo proceso a las sublistas resultantes. Los elementos a la izquierda y derecha del pivote no están necesariamente ordenados, pero el pivote estará en su posición final ordenada después de la partición. 
 
-Esta técnica de paritición es lo que distingue a Quicksort de otros algoritmos de ordenamiento, se conoce como **partición de 3 vías**.
+Esta técnica de partición es lo que distingue a Quicksort de otros algoritmos de ordenamiento, se conoce como **partición de 3 vías**.
 
 **Quicksort** fue creado y publicado por Tony Hoare en 1961.
 
@@ -276,7 +276,7 @@ Si bien Quicksort tiene un peor caso de $O(n^2)$, este escenario es raro en la p
 
 **Heapsort** es un algoritmo que no se basa en el paradigma de "división y conquista", sino que utiliza un _heap_ o montículo como estructura de datos subyacente para ordenar los elementos. 
 
-**Heapsort no es estable** ni _**Online**_, pero si _**In Place**_ por lo que no requiere espacio adicional significativo.
+**Heapsort no es estable** ni _**Onilne**_, pero si _**In Place**_ por lo que no requiere espacio adicional significativo.
 
 Fue desarrollado por J. W. J. Williams en 1964 y es un algoritmo eficiente que garantiza un tiempo de ejecución de $O(n \log n)$ en todos los casos (mejor, promedio y peor).
 
@@ -320,7 +320,7 @@ La función [Intercambiar](#intercambiar) es la misma que en Quicksort.
 
 #### Análisis de la Complejidad Computacional:
 
-La complejidad temporal de Heapsort es **$O(n \log n)$** en todos los casos (mejor, promedio y peor). Esto se debe a que la fase de construcción del _heap_ toma $O(n)$ tiempo y la etapa de extración de elementos toma $O(n \log n)$
+La complejidad temporal de Heapsort es **$O(n \log n)$** en todos los casos (mejor, promedio y peor). Esto se debe a que la fase de construcción del _heap_ toma $O(n)$ tiempo y la etapa de extracción de elementos toma $O(n \log n)$
 
 ##### Heapify
 
@@ -360,14 +360,14 @@ name: Heapify02
 Heap de Máximos
 ```
 
-##### Etapa de Extración de Elementos
+##### Etapa de Extracción de Elementos
 
-En esta etapa el algoritmo es similar al algoritmo de selección, en el sentido que ambos algoritmos localizan el mayor elemento del arreglo y lo colocan al final del mismo. La diferencia fundamental es que en heapsort, el mayor elemento siempre está en la posición 0, es decir, en la raíz del árbol, y por lo tanto solo tiene que intercambiarlo con el último elemento del arreglo y hacer un downHeap de la nueva raíz, lo que tiene un costo $O(log (n))$. La operación se repite $n$ veces dando como resultado un costo total de $O(n)$ del heapify, más $O(n log(n))$ de la etapa de extracción de elementos, quedando $O(n log(n))$
+En esta etapa el algoritmo es similar al algoritmo de selección, en el sentido que ambos algoritmos localizan el mayor elemento del arreglo y lo colocan al final del mismo. La diferencia fundamental es que en Heapsort, el mayor elemento siempre está en la posición 0, es decir, en la raíz del árbol, y por lo tanto solo tiene que intercambiarlo con el último elemento del arreglo y hacer un downHeap de la nueva raíz, lo que tiene un costo $O(log (n))$. La operación se repite $n$ veces dando como resultado un costo total de $O(n)$ del heapify, más $O(n log(n))$ de la etapa de extracción de elementos, quedando $O(n log(n))$
 
 ## Comparación y Resumen de Complejidades
 
 ```{table} Algoritmos de Ordenamiento Recursivos
-| Algoritmo     |      MergeSort      |      QuickSort      |       HeapSort      |
+| Algoritmo     |      Mergesort      |      Quicksort      |       Heapsort      |
 | :------------ | :------------------ | :------------------ | :------------------ |
 | Peor Caso     | $O(n \log n)$       | $O(n^2)$            | $O(n \log n)$       |
 | Caso Promedio | $O(n \log n)$       | $O(n \log n)$       | $O(n \log n)$       |
