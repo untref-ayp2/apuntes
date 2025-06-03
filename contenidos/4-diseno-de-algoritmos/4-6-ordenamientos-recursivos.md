@@ -387,4 +387,4 @@ Los algoritmos de ordenamiento, basados en comparaciones (es decir que deben com
 
 1. Implementar Mergesort, de forma genérica que reciba por parámetro un arreglo de elementos tipo `Ordered` y devuelva un arreglo ordenado
 2. Implementar Quicksort, de forma genérica que reciba por parámetro un arreglo de elementos tipo `Ordered` y ordene el arreglo _**In Place**_
-3. Implementar Heapsort, de forma genérica, que reciba por parámetro un arregl ode elementos tipo `Ordered` y ordene el arrelgo _**In Place**_
+3. Implementar Heapsort, de forma genérica, que reciba por parámetro un arreglo de elementos tipo `Ordered` y ordene el arreglo _**In Place**_
