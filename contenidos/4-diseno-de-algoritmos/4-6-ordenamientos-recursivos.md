@@ -300,7 +300,7 @@ funcion Heapsort(arreglo)
   n ← longitud(arreglo)
 
   // Heapify: Construir el _heap_ de máximo
-  // En un _heap_ el útimo nodo que no es hoja es el nodo en la posición n/2 - 1
+  // En un _heap_ el último nodo que no es hoja es el nodo en la posición n/2 - 1
   // Al hundir cada nodo desde n/2 - 1 hasta 0, se asegura que todos los nodos 
   // cumplen la propiedad de heap
   // y por lo tanto el arreglo se convierte en un _heap_ de máximos
