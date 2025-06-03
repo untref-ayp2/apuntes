@@ -15,7 +15,7 @@ Pensemos en la vida cotidiana: una biblioteca donde los libros están ordenados 
 Algunas características de los algoritmos de ordenamiento incluyen:
 
 Complejidad temporal
-: La cantidad de tiempo que un algoritmo tarda en ordenar un conjunto de datos. Se mide en función del número de elementos a ordenar y se expresa comúnmente en notación O grande (por ejemplo, $O(n \log n)$, $O(n^2)$). En los algoritmos de ordenamiento, además de establecer la complejidad temporal para el peor caso, se suele analizar los casos promedio y el mejor caso, teniendo en cuenta cuando se presenta cada escenario.
+: La cantidad de tiempo que un algoritmo tarda en ordenar un conjunto de datos. Se mide en función del número de elementos a ordenar y se expresa comúnmente en notación O grande (por ejemplo, $O(n \log n)$, $O(n^2)$). En los algoritmos de ordenamiento, además de establecer la complejidad temporal para el peor caso, se suele analizar los casos promedio y el mejor caso, teniendo en cuenta cuando se presenta cada esceneario.
 
   * Peor Caso
     : Describe la situación en la que el algoritmo tarda el mayor tiempo posible en completarse. Esto ocurre cuando los datos de entrada están dispuestos de tal manera que el algoritmo se ve obligado a realizar el número máximo de operaciones. El análisis del peor caso nos da una cota superior. Nos permite garantizar que el algoritmo nunca tardará más de un cierto tiempo, sin importar cómo estén los datos de entrada.
@@ -46,7 +46,7 @@ Ordenamiento por Selección (_Selection Sort_)
 : Encuentra repetidamente el elemento mínimo (o máximo) del resto no ordenado y lo coloca al principio (o al final) de la lista ordenada. Es simple de entender pero no muy eficiente para grandes conjuntos de datos. No es **Estable**, ni _**Online**_, pero si _**In Place**_. Su complejidad temporal es $O(n^2)$ tanto para el peor, el mejor y el caso promedio.
 
 Ordenamiento por Burbujeo (_Bubble Sort_)
-: Recorre repetidamente la lista, compara elementos adyacentes y los intercambia si están en el orden incorrecto. Las "burbujas" de elementos más grandes (o más pequeños) se mueven hacia el final (o el principio) de la lista. Es un algoritmo muy intuitivo pero extremadamente ineficiente para grandes conjuntos de datos. Es **Estable** e _**In Place**_, pero no _**Online**_. En el mejor caso cuando los datos están casi ordenados, salvo unos pocos elementos puede presentar una complejidad de $O(n). En el peor caso y en el caso promedio es O(n^2).
+: Recorre repetidamente la lista, compara elementos adyacentes y los intercambia si están en el orden incorrecto. Las "burbujas" de elementos más grandes (o más pequeños) se mueven hacia el final (o el principio) de la lista. Es un algoritmo muy intuitivo pero extremadamente ineficiente para grandes conjuntos de datos. Es **Estable** e _**In Place**_, pero no _**Online**_. En el mejor caso cuando los datos están casi ordenados, salvo unos pocos elementos puede presentar una complejidad de $O(n)$. En el peor caso y en el caso promedio es $O(n^2)$.
 
 En la siguiente tabla se resument las principales características de estos algoritmos:
 
@@ -89,15 +89,15 @@ Combinar
 :linenos:
 :name: mergesort
 :caption: Mergesort (Ordenamiento por Mezcla)
-funcion mergeSort(arreglo)
+funcion MergeSort(arreglo)
   si longitud(arreglo) <= 1 entonces // Caso base: si el arreglo tiene 
                                      // 0 o 1 elementos, ya está ordenado
     retornar arreglo
   fin si
 
   mitad ← longitud(arreglo) / 2
-  izquierda ← mergeSort(subarreglo desde 0 hasta mitad-1)
-  derecha ← mergeSort(subarreglo desde mitad hasta fin)
+  izquierda ← Mergesort(subarreglo desde 0 hasta mitad-1)
+  derecha ← Mergesort(subarreglo desde mitad hasta fin)
   retornar merge(izquierda, derecha)
 fin funcion
 ```
@@ -163,7 +163,7 @@ En este algoritmo no hay un caso mejor o peor, ya que la división y la mezcla s
 
 La idea principal detrás de Quicksort es seleccionar un elemento de la lista, llamado **pivote**, y reorganizar los elementos de tal manera que todos los elementos menores que el pivote queden a su izquierda y todos los elementos mayores queden a su derecha. Luego, se aplica recursivamente el mismo proceso a las sublistas resultantes. Los elementos a la izquierda y derecha del pivote no están necesariamente ordenados, pero el pivote estará en su posición final ordenada después de la partición. 
 
-Esta técnica de partición es lo que distingue a Quicksort de otros algoritmos de ordenamiento, se conoce como **partición de 3 vías**.
+Esta técnica de paritición es lo que distingue a Quicksort de otros algoritmos de ordenamiento, se conoce como **partición de 3 vías**.
 
 **Quicksort** fue creado y publicado por Tony Hoare en 1961.
 
@@ -182,14 +182,14 @@ Combinar
 :linenos:
 :name: quicksort
 :caption: Quicksort (Ordenamiento Rápido)
-funcion QuickSort(arreglo, inicio, fin)
+funcion Quicksort(arreglo, inicio, fin)
  si inicio >= fin entonces
     retornar // Caso base: si el subarreglo tiene 0 o 1 elementos, ya está ordenado
   fin si
   // Particionar el arreglo y obtener el índice del pivote
   pivote_indice = Particionar(arreglo, inicio, fin)
-  QuickSort(arreglo, inicio, pivote_indice - 1)
-  QuickSort(arreglo, pivote_indice + 1, fin)
+  Quicksort(arreglo, inicio, pivote_indice - 1)
+  Quicksort(arreglo, pivote_indice + 1, fin)
 fin funcion
 ```
 ````{code-block}
@@ -276,7 +276,7 @@ Si bien Quicksort tiene un peor caso de $O(n^2)$, este escenario es raro en la p
 
 **Heapsort** es un algoritmo que no se basa en el paradigma de "división y conquista", sino que utiliza un _heap_ o montículo como estructura de datos subyacente para ordenar los elementos. 
 
-**Heapsort no es estable** ni _**Online**_, pero si _**In Place**_ por lo que no requiere espacio adicional significativo.
+**Heapsort no es estable** ni _**Onilne**_, pero si _**In Place**_ por lo que no requiere espacio adicional significativo.
 
 Fue desarrollado por J. W. J. Williams en 1964 y es un algoritmo eficiente que garantiza un tiempo de ejecución de $O(n \log n)$ en todos los casos (mejor, promedio y peor).
 
@@ -291,26 +291,26 @@ Para ordenar los elementos de menor a mayor se debe construir un _heap_ de máxi
 ```
 
 Extracción de Elementos (_Sort_)
-: Una vez que el arreglo es un heap de máximo, el elemento más grande (la raíz del heap) está en la primera posición. Se intercambia el elemento raíz con el último elemento del heap. Se reduce el tamaño del heap en uno (excluyendo el elemento que acaba de ser colocado en su posición final). Se "hunde" el nuevo elemento raíz (que era el último elemento) para restaurar la propiedad de heap. (Esta etapa del algoritmo es similar a **Selección**)
+: Una vez que el arreglo es un _heap_ de máximos, el elemento más grande (la raíz del _heap_) está en la primera posición. Se intercambia el elemento raíz con el último elemento del _heap_. Se reduce el tamaño del _heap_ en uno (excluyendo el elemento que acaba de ser colocado en su posición final). Se "hunde" el nuevo elemento raíz (que era el último elemento) para restaurar la propiedad de _heap_. (Esta etapa del algoritmo es similar a **Selección**)
 
 ```{code-block}
 :linenos:
 :caption: Heapsort (Ordenamiento por Montículos)
-funcion heapsort(arreglo)
+funcion Heapsort(arreglo)
   n ← longitud(arreglo)
 
-  // Heapify: Construir el heap de máximo
-  // En un heap el útimo nodo que no es hoja es el nodo en la posición n/2 - 1
+  // Heapify: Construir el _heap_ de máximo
+  // En un _heap_ el útimo nodo que no es hoja es el nodo en la posición n/2 - 1
   // Al hundir cada nodo desde n/2 - 1 hasta 0, se asegura que todos los nodos 
   // cumplen la propiedad de heap
-  // y por lo tanto el arreglo se convierte en un heap de máximos
+  // y por lo tanto el arreglo se convierte en un _heap_ de máximos
   para i desde n/2 - 1 hasta 0 hacer
     downHeap(arreglo, n, i)
 
-  // Extraer elementos del heap uno por uno
+  // Extraer elementos del _heap_ uno por uno
   para i desde n - 1 hasta 1 hacer
     Intercambiar(arreglo,0, i) //Mover el máximo (raíz del heap) al final del arreglo.
-    downHeap(arreglo, i, 0) //Restaurar la propiedad de heap en el heap reducido
+    downHeap(arreglo, i, 0) //Restaurar la propiedad de _heap_ en el _heap_ reducido
   fin para
   retornar arreglo // El arreglo ahora está ordenado
 fin funcion
@@ -320,11 +320,11 @@ La función [Intercambiar](#intercambiar) es la misma que en Quicksort.
 
 #### Análisis de la Complejidad Computacional:
 
-La complejidad temporal de Heapsort es **$O(n \log n)$** en todos los casos (mejor, promedio y peor). Esto se debe a que la fase de construcción del heap toma $O(n)$ tiempo y la etapa de extración de elementos toma $O(n \log n)$
+La complejidad temporal de Heapsort es **$O(n \log n)$** en todos los casos (mejor, promedio y peor). Esto se debe a que la fase de construcción del _heap_ toma $O(n)$ tiempo y la etapa de extración de elementos toma $O(n \log n)$
 
 ##### Heapify
 
-El proceso de heapify (construir un heap a partir de un array desordenado) se realiza de abajo hacia arriba, comenzando desde el último nodo no hoja (índice $\lfloor n/2 \rfloor - 1$) y subiendo hasta la raíz (índice $0$).
+El proceso de heapify (construir un _heap_ a partir de un arreglo desordenado) se realiza de abajo hacia arriba, comenzando desde el último nodo no hoja (índice $\lfloor n/2 \rfloor - 1$) y subiendo hasta la raíz (índice $0$).
 
 Para cada nodo, se aplica la operación downHeap, que asegura que el subárbol con raíz en ese nodo cumpla la propiedad de heap. La operación downHeap toma un tiempo proporcional a la altura del subárbol, es decir, $O(h)$.
 
@@ -342,15 +342,15 @@ Vista de un arreglo desordenado como árbol binario
 
 Los nodos (69), (66) y (97) están a altura 1, los nodos (24) y (96) a altura 2 y la raíz a altura 3.
 
-La complejidad total de construir un heap es la suma de los costos de downHeap para todos los nodos. Matemáticamente, esto se puede expresar como:
+La complejidad total de construir un _heap_ es la suma de los costos de downHeap para todos los nodos. Matemáticamente, esto se puede expresar como:
 
 $$ \sum_{h=0}^{\lfloor \log_2 n \rfloor} \frac{n}{2^{h+1}} \cdot h $$
 
-Donde $h$ es la altura del nodo, y $\frac{n}{2^{h+1}}$ es el número aproximado de nodos que hay a esa altura. Esta suma se puede simplificar y se demuestra que es $O(n)$. Es decir, el tiempo requerido para convertir un array desordenado en un heap es lineal con el número de elementos en el arreglo.
+Donde $h$ es la altura del nodo, y $\frac{n}{2^{h+1}}$ es el número aproximado de nodos que hay a esa altura. Esta suma se puede simplificar y se demuestra que es $O(n)$. Es decir, el tiempo requerido para convertir un arreglo desordenado en un _heap_ es lineal con el número de elementos en el arreglo.
 
-En resumen, a pesar de que una sola operación de downHeap puede tomar $O(\log n)$, la suma de todas las operaciones de downHeap en el proceso de construcción del heap resulta en una complejidad de tiempo lineal $O(n)$, lo que lo hace muy eficiente.
+En resumen, a pesar de que una sola operación de downHeap puede tomar $O(\log n)$, la suma de todas las operaciones de downHeap en el proceso de construcción del _heap_ resulta en una complejidad de tiempo lineal $O(n)$, lo que lo hace muy eficiente.
 
-En la siguiente figura se observa el arreglo convertido en un heap de máximos.
+En la siguiente figura se observa el arreglo convertido en un _heap_ de máximos.
 
 ```{figure} ../assets/images/Heapify02.svg
 ---
@@ -387,4 +387,4 @@ Los algoritmos de ordenamiento, basados en comparaciones (es decir que deben com
 
 1. Implementar Mergesort, de forma genérica que reciba por parámetro un arreglo de elementos tipo `Ordered` y devuelva un arreglo ordenado
 2. Implementar Quicksort, de forma genérica que reciba por parámetro un arreglo de elementos tipo `Ordered` y ordene el arreglo _**In Place**_
-3. Implementar Heapsort, de forma genérica, que reciba por parámetro un arreglo de elementos tipo `Ordered` y ordene el arreglo _**In Place**_
+3. Implementar Heapsort, de forma genérica, que reciba por parámetro un arregl ode elementos tipo `Ordered` y ordene el arrelgo _**In Place**_
