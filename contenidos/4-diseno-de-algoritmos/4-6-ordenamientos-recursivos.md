@@ -276,7 +276,7 @@ Si bien Quicksort tiene un peor caso de $O(n^2)$, este escenario es raro en la p
 
 **Heapsort** es un algoritmo que no se basa en el paradigma de "división y conquista", sino que utiliza un _heap_ o montículo como estructura de datos subyacente para ordenar los elementos. 
 
-**Heapsort no es estable** ni _**Onilne**_, pero si _**In Place**_ por lo que no requiere espacio adicional significativo.
+**Heapsort no es estable** ni _**Online**_, pero si _**In Place**_ por lo que no requiere espacio adicional significativo.
 
 Fue desarrollado por J. W. J. Williams en 1964 y es un algoritmo eficiente que garantiza un tiempo de ejecución de $O(n \log n)$ en todos los casos (mejor, promedio y peor).
 
