@@ -46,3 +46,6 @@ parts:
   - caption: "Anexo: Taller de Git y GitHub"
     chapters:
       - file: 5-taller-de-git/5-1-introduccion-git
+  - caption: "Iteradores en Árboles Binarios de Búsqueda"
+    chapters:
+      - file: 3-estructuras-de-datos/3-12-iteradores-abb
