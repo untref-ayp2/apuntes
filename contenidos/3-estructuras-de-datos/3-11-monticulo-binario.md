@@ -8,7 +8,7 @@ kernelspec:
 
 ## Colas de Prioridad
 
-Una cola de prioridad, se comporta de forma similar a una cola, pero cada elemento que ingresa en la cola tiene asignada una prioridad, y los elementos con mayor prioridad son los primeros en salir de la cola.
+Una cola de prioridad, se comporta de forma similar a una cola, pero cada elemento que ingresa tiene asignada una prioridad y los elementos con mayor prioridad son los primeros en salir de la cola.
 
 Si todos los elementos tienen la misma prioridad, la cola se comporta como una cola común, es decir el primero que llega es el primero que sale de la cola.
 
@@ -270,126 +270,127 @@ Insertar y Remover tienen un orden garantizado de $O(log N)$ porque en el peor c
 
    ```{code-block} go
    :linenos:
-   type Heap[T any] struct {
-       // contenedor de datos
-       elements []T
-       // Función de comparación. Para un heap de mínimo,
-       // devuelve -1 si a < b, 0 si a == b, 1 si a > b
-       // Para un heap de máximo, devuelve 1 si a < b, 0 si a == b, -1 si a > b
-       compare func(a T, b T) int
-   }
+
+    type Heap[T any] struct {
+        elements []T
+        // compare es una función de comparación de elementos.
+        // Para un heap de mínimo, devuelve un número negativo si `a < b`, un número
+        // positivo si `a > b` o cero si son iguales.
+        compare func(a, b T) int
+    }
    ```
 
    Completar el código a continuación, para obtener un montículo genérico, cuyos elementos puede ser cualquier cosa que pueda compararse entre sí, por ejemplo enteros, flotantes, cadenas o estructuras más complejas, como {nombre, edad}, etc. y que soporte montículos de máximos y mínimos.
 
    ```{code-block} go
-   // NewGenericHeap crea un nuevo heap binario con una función de comparación personalizada.
-   //
-   // Uso:
-   //
-   //     heap := heap.NewGenericHeap[int](func(a int, b int) int {
-   //         if a < b {
-   //             return -1
-   //         }
-   //         if a > b {
-   //             return 1
-   //         }
-   //         return 0
-   //     })
-   //
-   // Parámetros:
-   //   - `comp` función de comparación personalizada.
-   //
-   // Retorna:
-   //   - un puntero a un heap binario con una función de comparación personalizada.
-   func NewGenericHeap[T any](comp func(a T, b T) int) *Heap[T] {
-       // ...
-   }
+    // NewHeap crea un nuevo heap binario con una función de comparación
+    // personalizada.
+    //
+    // Uso:
+    //
+    // heap := heap.NewHeap[int](func(a int, b int) int {
+    //     return a - b
+    // })
+    //
+    // Parámetros:
+    //   - `compare` función de comparación personalizada.
+    //
+    // Retorna:
+    //   - un puntero a un heap binario con una función de comparación personalizada.
+    func NewHeap[T any](compare func(a, b T) int) *Heap[T] {
+        // Implementar
+        return nil
+    }
 
-   // Size retorna la cantidad de elementos en el heap.
-   //
-   // Uso:
-   //
-   //     size := heap.Size()
-   //
-   // Retorna:
-   // - la cantidad de elementos en el heap.
-   func (m *Heap[T]) Size() int {
-       // ...
-   }
+    // Size retorna la cantidad de elementos en el heap.
+    //
+    // Uso:
+    //
+    // size := heap.Size()
+    //
+    // Retorna:
+    // - la cantidad de elementos en el heap.
+    func (m *Heap[T]) Size() int {
+        // Implementar
+    }
 
-   // Insert agrega un elemento al heap.
-   //
-   // Uso:
-   //
-   //     heap := heap.NewMinHeap[int]()
-   //     heap.Insert(5)
-   //
-   // Parámetros:
-   //   - `element`: elemento a agregar al heap.
-   func (m *Heap[T]) Insert(element T) {
-       // ...
-   }
+    // Insert agrega un elemento al heap.
+    //
+    // Uso:
+    //
+    // heap := heap.NewHeap[int](func(a int, b int) int {
+    //     return a - b
+    // })
+    // heap.Insert(5)
+    //
+    // Parámetros:
+    //   - `element`: elemento a agregar al heap.
+    func (m *Heap[T]) Insert(element T) {
+        // Implementar
+    }
 
-   // Remove elimina y retorna el elemento en la cima del heap.
-   //
-   // Uso:
-   //
-   //     heap := heap.NewMinHeap[int]()
-   //     heap.Insert(5)
-   //     element, _ := heap.Remove()
-   //
-   // Retorna:
-   //   - el elemento en la cima del heap.
-   //   - un error si el heap está vacío.
-   func (m *Heap[T]) Remove() (T, error) {
-       // ...
-   }
+    // Remove elimina y retorna el elemento en la cima del heap.
+    //
+    // Uso:
+    //
+    // heap := heap.NewHeap[int](func(a int, b int) int {
+    //     return a - b
+    // })
+    // heap.Insert(5)
+    // element, _ := heap.Remove()
+    //
+    // Retorna:
+    //   - el elemento en la cima del heap.
+    //   - un error si el heap está vacío.
+    func (m *Heap[T]) Remove() (T, error) {
+        // Implementar
+    }
 
-   // Top retorna el elemento en la cima del heap.
-   //
-   // Uso:
-   //
-   //     heap := heap.NewMinHeap[int]()
-   //     heap.Insert(5)
-   //     element, _ := heap.Top()
-   //
-   // Retorna:
-   //   - el elemento en la cima del heap.
-   //   - un error si el heap está vacío.
-   func (m *Heap[T]) Top() (T, error) {
-       // ...
-   }
-
+    // Top retorna el elemento en la cima del heap.
+    //
+    // Uso:
+    //
+    // heap := heap.NewHeap[int](func(a int, b int) int {
+    //     return a - b
+    // })
+    // heap.Insert(5)
+    // element, _ := heap.Top()
+    //
+    // Retorna:
+    //   - el elemento en la cima del heap.
+    //   - un error si el heap está vacío.
+    func (m *Heap[T]) Top() (T, error) {
+        // Implementar
+    }
    ```
 
 3. Escribir casos de prueba para verificar que el montículo binario del punto anterior funciona correctamente. Usar `Persona` dado a continuación como elementos del montículo.
 
    ```{code-block} go
-   type Persona struct {
-       nombre string
-       edad   int
-   }
+    type Persona struct {
+        nombre string
+        edad   int
+    }
 
-   func personasDeMayorAMenorEdad(a Persona, b Persona) int {
-       if a.edad < b.edad {
-           return 1
-       } else if a.edad > b.edad {
-           return -1
-       }
+    func NewPesona(nombre string, edad int) *Persona {
+        return &Persona{nombre: nombre, edad: edad}
+    }
 
-       return 0
-   }
+    func (p *Persona) GetNombre() string {
+        return p.nombre
+    }
 
-   func personasDeMenorAMayorEdad(a Persona, b Persona) int {
-       if a.edad < b.edad {
-           return -1
-       } else if a.edad > b.edad {
-           return 1
-       }
+    func (p *Persona) GetEdad() int {
+        return p.edad
+    }
 
-       return 0
-   }
+    func ComparadorDeMenorAMayorEdad(a, b Persona) int {
+        return a.edad - b.edad
+    }
+
+    func ComparadorDeMayorAMenorEdad(a, b Persona) int {
+        return b.edad - a.edad
+    }
    ```
 
 4. Crear una Cola de Prioridad de Personas que permita agregar Personas y atenderlas por Orden de prioridad y Orden de llegada. La prioridad se define por la edad de la persona, es decir la persona con mayor edad tiene mayor prioridad.
