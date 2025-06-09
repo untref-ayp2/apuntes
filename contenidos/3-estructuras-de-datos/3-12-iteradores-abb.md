@@ -41,9 +41,16 @@ A continuación se muestra la estructura del nodo del ABB.
 :linenos:
 ```
 
-El nodo contiene un valor genérico del tipo `constraints.Ordered`, lo que significa que los valores deben ser comparables y ordenables, es decir deben soportar las operaciones de comparación como `<`, `<=`, `>`, `>=`, `==` y `!=`.
+El tipo `BinaryNode` solo tiene los métodos necesarios para crear un nodo y obtener su valor. No contiene métodos para insertar o eliminar nodos, ya que toda la funcionalidad del árbol está implementada en `BinarySearchTree` directamente. 
 
-El tipo `BinaryNode` solo tiene los métodos necesarios para crear un nodo y obtener su valor. No contiene métodos para insertar o eliminar nodos, ya que estos serán manejados por el árbol en sí.
+En la implementación del ABB tenemos los métodos para obtener los iteradores: 
+
+```{literalinclude} ../_static/code/binarytree/binarysearchtree.go
+:lineno-match:
+:linenos:
+:emphasize-lines: 95, 101, 107
+```
+
 
 ## Implementación de los iteradores. El Desafío de Mantener el Estado: ¿Por qué no solo recursión?
 
@@ -65,7 +72,7 @@ Espacio en memoria (stack overflow)
 Para superar estos desafíos y crear un iterador que sea _lazy_ (bajo demanda) y eficiente en memoria, necesitamos una forma de simular la pila de llamadas recursiva de forma explícita. Y la estructura de datos perfecta para esto es, precisamente, una pila (stack).
 
 ```{Note}
-Que sea _lazy_ significa que el iterador no calcula todos los elementos de antemano, sino que los obtiene a medida que se le solicita. Esto es fundamental para manejar colecciones grandes o infinitas sin consumir demasiada memoria.
+Que sea _lazy_ significa que el iterador no calcula todos los elementos de antemano, sino que los obtiene a medida que se le solicita un nuevo elemento. Esto es fundamental para manejar colecciones grandes o infinitas sin consumir demasiada memoria.
 ```
 
 ### La Pila como Sustituto de la Recursión Explícita
@@ -93,4 +100,11 @@ La estrategia para el iterador inorder es la siguiente:
 4. Cuando llamamos a Next(), sacamos el nodo del tope de la pila, chequeamos si tiene un hijo derecho. Si lo tiene, vamos a ese hijo derecho y repetimos el proceso de ir hacia la izquierda, apilando los nodos.
 5. Una vez que no hay más nodos a la izquierda, el tope de la pila contendrá el siguiente nodo en orden.
 6. Devolvemos el elemento del nodo que acabamos de sacar de la pila.
+
+En el siguiente fragmento de código se puede observar la implementación del iterador Inorder
+
+```{literalinclude} ../_static/code/binarytree/inorderIterator.go
+:lineno-match:
+:linenos:
+```
 

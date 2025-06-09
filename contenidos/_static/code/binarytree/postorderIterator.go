@@ -6,13 +6,16 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
-// PostorderIterator implementa un iterador para recorrer un árbol binario de búsqueda en order postorder.
+// PostorderIterator implementa un iterador para recorrer un árbol binario de
+// búsqueda en order postorder.
 type PostorderIterator[T constraints.Ordered] struct {
 	stack *stack.Stack[*BinaryNode[T]]
-	ultimoVisitado *BinaryNode[T] // Último nodo visitado en el recorrido postorder
+	ultimoVisitado *BinaryNode[T] // Último nodo visitado en el recorrido
+								  // postorder
 }
 
-// setup inicializa el iterador con la raíz del árbol y apila todos los nodos izquierdos.
+// setup inicializa el iterador con la raíz del árbol y apila todos los nodos
+// izquierdos.
 func (it *PostorderIterator[T]) setup(root *BinaryNode[T]) {
 	it.stack = stack.NewStack[*BinaryNode[T]]()
 	it.pushLeftNodes(root)
@@ -50,7 +53,8 @@ func (it *PostorderIterator[T]) Next() (T, error) {
 	currentNode, _ := it.stack.Pop()
 
 	// Si el nodo tiene un hijo derecho que no ha sido visitado, apilarlo.
-	if currentNode.GetRight() != nil && currentNode.GetRight() != it.ultimoVisitado {
+	if currentNode.GetRight() != nil
+	   && currentNode.GetRight() != it.ultimoVisitado {
 		it.stack.Push(currentNode)
 		it.pushLeftNodes(currentNode.GetRight())
 		return it.Next() // Llamar recursivamente para obtener el siguiente nodo

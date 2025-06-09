@@ -4,7 +4,6 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
-
 type BinaryNode[T constraints.Ordered] struct {
 	left  *BinaryNode[T]
 	right *BinaryNode[T]
@@ -24,7 +23,10 @@ type BinaryNode[T constraints.Ordered] struct {
 //
 // Retorna:
 //   - un puntero a un nuevo BinaryNode.
-func NewBinaryNode[T constraints.Ordered](data T, left *BinaryNode[T], right *BinaryNode[T]) *BinaryNode[T] {
+func NewBinaryNode[T constraints.Ordered](
+	data T, left *BinaryNode[T],
+	right *BinaryNode[T]) *BinaryNode[T] {
+
 	return &BinaryNode[T]{left: left, right: right, data: data}
 }
 
@@ -51,4 +53,3 @@ func (n *BinaryNode[T]) GetLeft() *BinaryNode[T] {
 func (n *BinaryNode[T]) GetRight() *BinaryNode[T] {
 	return n.right
 }
-

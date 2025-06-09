@@ -6,8 +6,10 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
-// BinarySearchTree implementa un árbol binario de búsqueda (Binary Search Tree, BST).
-// El árbol está compuesto por nodos de tipo BinaryNode, que contienen un valor de tipo T generico pero Ordered.
+// BinarySearchTree implementa un árbol binario de búsqueda
+// (Binary Search Tree, BST).
+// El árbol está compuesto por nodos de tipo BinaryNode, que contienen un valor
+// de tipo T generico pero Ordered.
 type BinarySearchTree[T constraints.Ordered] struct {
 	root *BinaryNode[T]
 }
@@ -58,10 +60,13 @@ func (bst *BinarySearchTree[T]) Insert(k T) {
 //
 // Retorna:
 //   - un puntero al nodo raíz del árbol.
-func (bst *BinarySearchTree[T]) insertByNode(node *BinaryNode[T], k T) *BinaryNode[T] {
+func (bst *BinarySearchTree[T]) insertByNode(
+	node *BinaryNode[T], k T) *BinaryNode[T] {
+
 	if node == nil {
 		return NewBinaryNode(k, nil, nil)
 	}
+
 	if k < node.data {
 		node.left = bst.insertByNode(node.left, k)
 	} else if k > node.data {
@@ -86,7 +91,6 @@ func (bst *BinarySearchTree[T]) Clear() {
 func (bst *BinarySearchTree[T]) IsEmpty() bool {
 	return bst.root == nil
 }
-
 
 func (bst *BinarySearchTree[T]) InorderIterator() types.Iterator[T] {
 	iter := &InorderIterator[T]{}

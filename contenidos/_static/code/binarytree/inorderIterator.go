@@ -5,17 +5,18 @@ import (
 	"errors"
 
 	"golang.org/x/exp/constraints"
-	// Importa solo lo necesario de binarytree, o reestructura para evitar el ciclo.
-	// "apunte/binarytree"
 )
 
-// InorderIterator implementa un iterador para recorrer un árbol binario de búsqueda en order (inorder).
-// Utiliza una pila para almacenar los nodos visitados y permite iterar sobre ellos en order ascendente.
+// InorderIterator implementa un iterador para recorrer un árbol binario de
+// búsqueda en order (inorder).
+// Utiliza una pila para almacenar los nodos visitados y permite iterar sobre
+// ellos en order ascendente.
 type InorderIterator[T constraints.Ordered] struct {
 	stack *stack.Stack[*BinaryNode[T]]
 }
 
-// setup inicializa el iterador con la raíz del árbol y apila todos los nodos izquierdos.
+// setup inicializa el iterador con la raíz del árbol y apila todos los nodos
+// izquierdos.
 func (it *InorderIterator[T]) setup(root *BinaryNode[T]) {
 	it.stack = stack.NewStack[*BinaryNode[T]]()
 	it.pushLeftNodes(root)
@@ -23,7 +24,9 @@ func (it *InorderIterator[T]) setup(root *BinaryNode[T]) {
 
 // pushLeftNodes apila todos los nodos izquierdos desde un nodo dado.
 // Parámetros:
-//   - node: un puntero al nodo desde el cual comenzar a apilar los nodos izquierdos.
+//   - node: un puntero al nodo desde el cual comenzar a apilar los nodos
+//
+// izquierdos.
 func (it *InorderIterator[T]) pushLeftNodes(node *BinaryNode[T]) {
 	for node != nil {
 		it.stack.Push(node)
@@ -59,4 +62,3 @@ func (it *InorderIterator[T]) Next() (T, error) {
 	// Devolver el dato del nodo actual.
 	return currentNode.GetData(), nil
 }
-
