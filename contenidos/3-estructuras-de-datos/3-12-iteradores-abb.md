@@ -16,6 +16,7 @@ En el siguiente fragmento de código definimos la interfaz `Iterator` que conten
 :lineno-match:
 :linenos:
 ```
+
 Los métodos que debe implementar un iterador son los siguientes
 
 _HasNext_
@@ -41,9 +42,9 @@ A continuación se muestra la estructura del nodo del ABB.
 :linenos:
 ```
 
-El tipo `BinaryNode` solo tiene los métodos necesarios para crear un nodo y obtener su valor. No contiene métodos para insertar o eliminar nodos, ya que toda la funcionalidad del árbol está implementada en `BinarySearchTree` directamente. 
+El tipo `BinaryNode` solo tiene los métodos necesarios para crear un nodo y obtener su valor. No contiene métodos para insertar o eliminar nodos, ya que toda la funcionalidad del árbol está implementada en `BinarySearchTree` directamente.
 
-En la implementación del ABB tenemos los métodos para obtener los iteradores: 
+En la implementación del ABB tenemos los métodos para obtener los iteradores:
 
 ```{literalinclude} ../_static/code/binarytree/binarysearchtree.go
 :lineno-match:
@@ -61,7 +62,7 @@ Sin embargo, cuando hablamos de un iterador, la situación cambia. Un iterador, 
 
 Aquí es donde la recursión directa presenta un desafío:
 
-Manejo del estado: 
+Manejo del estado:
 Una función recursiva completa su ejecución y devuelve un resultado. No "pausa" su estado para ser reanudada en el mismo punto más tarde. Cada llamada recursiva crea un nuevo stack frame (marco de pila) que se destruye al finalizar.
 
 Devolución de un solo elemento
@@ -102,15 +103,13 @@ La estrategia para el iterador inorder es la siguiente:
 5. Una vez que no hay más nodos a la izquierda, el tope de la pila contendrá el siguiente nodo en orden.
 6. Devolvemos el elemento del nodo que acabamos de sacar de la pila.
 
-
-
-<iframe 
-  src="https://docs.google.com/presentation/d/1Wf0J8QD3Whr5rY7r0xZB8Jx85kiAKKUWCHYQ0LO8ba4/embed" 
-  frameborder="0" 
-  width="100%" 
-  height="569" 
-  allowfullscreen="true" 
-  mozallowfullscreen="true" 
+<iframe
+  src="https://docs.google.com/presentation/d/1Wf0J8QD3Whr5rY7r0xZB8Jx85kiAKKUWCHYQ0LO8ba4/embed"
+  frameborder="0"
+  width="100%"
+  height="569"
+  allowfullscreen="true"
+  mozallowfullscreen="true"
   webkitallowfullscreen="true">
 </iframe>
 
@@ -133,15 +132,13 @@ La estrategia para el iterador preorder varía un poco, ya que lo primero que de
 4. Devolvemos el elemento del nodo que acabamos de sacar de la pila.
 5. Se repite hasta que la pila queda vacía.
 
-
-
-<iframe 
-  src="https://docs.google.com/presentation/d/1dPcj7P__1Em86zUmh0GkHsv02oKRn4m5MtDB6E87zfQ/embed" 
-  frameborder="0" 
-  width="100%" 
-  height="569" 
-  allowfullscreen="true" 
-  mozallowfullscreen="true" 
+<iframe
+  src="https://docs.google.com/presentation/d/1dPcj7P__1Em86zUmh0GkHsv02oKRn4m5MtDB6E87zfQ/embed"
+  frameborder="0"
+  width="100%"
+  height="569"
+  allowfullscreen="true"
+  mozallowfullscreen="true"
   webkitallowfullscreen="true">
 </iframe>
 
@@ -160,34 +157,28 @@ Para implementar el iterador Postorder se necesitan 2 pilas.
 
 El recorrido postorder visita los nodos en el orden: izquierda, derecha, raíz. Sin embargo, si usamos una sola pila y simplemente apilamos los hijos izquierdo y derecho, no es sencillo garantizar este orden sin usar recursión.
 
-Por eso, se usan dos pilas para simular el recorrido postorder de manera iterativa:
+Por eso, se usan dos pilas para simular el recorrido postorder de manera iterativa, la primera pila se usa para recorrer el árbol y la segunda para almacenar los nodos en postorder. La inicialización del iterador implica recorrer todo el árbol y apilar los nodos en la segunda pila. Luego se pueden desapilar los nodos de la segunda pila a demanda.
 
-1. Setup inicial
-: Se apila la raíz en la primera pila (llamémosla stack1).
+* __Setup inicial:__
+  * Se apila la raíz en la primera pila.
+  * Mientras stack1 no esté vacía:
+    * Se desapila un nodo de stack1 y se apila en la segunda pila (stack2).
+    * Si el nodo tiene hijo izquierdo, se apila en stack1.
+    * Si el nodo tiene hijo derecho, se apila en stack1.
 
-2. Recorrido principal
-: Mientras stack1 no esté vacía:
-- Se desapila un nodo de stack1 y se apila en la segunda pila (stack2).
-- Si el nodo tiene hijo izquierdo, se apila en stack1.
-- Si el nodo tiene hijo derecho, se apila en stack1.
-: Así, stack1 sirve para recorrer el árbol y stack2 va guardando los nodos en un orden tal que, al desapilar de stack2, obtenemos el recorrido postorder.
+  Así, stack1 sirve para recorrer el árbol y stack2 va guardando los nodos en un orden tal que, al desapilar de stack2, obtenemos el recorrido postorder.
 
-3. Iteración
-: Cuando se llama a Next(), simplemente se desapila un nodo de stack2 y se devuelve su valor.
-: HasNext() verifica si stack2 aún tiene nodos.
+* __Iteración:__
+  * Cuando se llama a Next(), simplemente se desapila un nodo de stack2 y se devuelve su valor.
+  * HasNext() verifica si stack2 aún tiene nodos.
 
-
-
-
-
-
-<iframe 
-  src="https://docs.google.com/presentation/d/1UKgXA9gn01o90VSMud5RHdnPDxas7GWhIXZg8Pl1ZWY/embed" 
-  frameborder="0" 
-  width="100%" 
-  height="569" 
-  allowfullscreen="true" 
-  mozallowfullscreen="true" 
+<iframe
+  src="https://docs.google.com/presentation/d/1UKgXA9gn01o90VSMud5RHdnPDxas7GWhIXZg8Pl1ZWY/embed"
+  frameborder="0"
+  width="100%"
+  height="569"
+  allowfullscreen="true"
+  mozallowfullscreen="true"
   webkitallowfullscreen="true">
 </iframe>
 
@@ -199,4 +190,6 @@ El setup inicial consiste en apilar la raíz solamente.
 :lineno-match:
 :linenos:
 ```
+## Código completo en Go
 
+[Descargar código fuente](../_static/code.zip)
