@@ -14,7 +14,7 @@ type BinaryNode[T constraints.Ordered] struct {
 //
 // Uso:
 //
-//	d := binarytree.NewBinarNode[int](data, hIzq, hDer)
+//	d := binarytree.NewBinaryNode[int](data, hIzq, hDer)
 //
 // Parámetros:
 //   - 'data' : el dato que guarda el nodo de tipo T
