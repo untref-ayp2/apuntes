@@ -51,6 +51,7 @@ En la implementación del ABB tenemos los métodos para obtener los iteradores:
 :emphasize-lines: 95, 101, 107
 ```
 
+Al crear un iterador se ejecuta un setup inicial que depende de cada tipo de iterador.
 
 ## Implementación de los iteradores. El Desafío de Mantener el Estado: ¿Por qué no solo recursión?
 
@@ -101,9 +102,100 @@ La estrategia para el iterador inorder es la siguiente:
 5. Una vez que no hay más nodos a la izquierda, el tope de la pila contendrá el siguiente nodo en orden.
 6. Devolvemos el elemento del nodo que acabamos de sacar de la pila.
 
+
+
+<iframe 
+  src="https://docs.google.com/presentation/d/1Wf0J8QD3Whr5rY7r0xZB8Jx85kiAKKUWCHYQ0LO8ba4/embed" 
+  frameborder="0" 
+  width="100%" 
+  height="569" 
+  allowfullscreen="true" 
+  mozallowfullscreen="true" 
+  webkitallowfullscreen="true">
+</iframe>
+
 En el siguiente fragmento de código se puede observar la implementación del iterador Inorder
 
+El setup inicial consiste en apilar la raíz y toda la rama izquierda para iniciar. De esta forma el primer nodo que se desapila es el menor de todo el árbol
+
 ```{literalinclude} ../_static/code/binarytree/inorderIterator.go
+:lineno-match:
+:linenos:
+```
+
+## Iterador Preorder
+
+La estrategia para el iterador preorder varía un poco, ya que lo primero que debemos listar es la raíz, por lo tanto el setup inicial consiste en apilar sólo la raíz
+
+1. Comenzamos desde la raíz del árbol.
+2. Apilamos sólo la raíz
+3. Al desapilar un nodo cuando se llama a Next(), se apilan primero su hijo derecho y luego su hijo izquierdo (para que el orden de salida de la pila sea primero el izquierdo y luego el derecho). El próximo en salir de la pila será la raíz del subárbol izquierdo.
+4. Devolvemos el elemento del nodo que acabamos de sacar de la pila.
+5. Se repite hasta que la pila queda vacía.
+
+
+
+<iframe 
+  src="https://docs.google.com/presentation/d/1dPcj7P__1Em86zUmh0GkHsv02oKRn4m5MtDB6E87zfQ/embed" 
+  frameborder="0" 
+  width="100%" 
+  height="569" 
+  allowfullscreen="true" 
+  mozallowfullscreen="true" 
+  webkitallowfullscreen="true">
+</iframe>
+
+En el siguiente fragmento de código se puede observar la implementación del iterador Preorder
+
+El setup inicial consiste en apilar la raíz solamente.
+
+```{literalinclude} ../_static/code/binarytree/preorderIterator.go
+:lineno-match:
+:linenos:
+```
+
+## Iterador Postorder
+
+Para implementar el iterador Postorder se necesitan 2 pilas.
+
+El recorrido postorder visita los nodos en el orden: izquierda, derecha, raíz. Sin embargo, si usamos una sola pila y simplemente apilamos los hijos izquierdo y derecho, no es sencillo garantizar este orden sin usar recursión.
+
+Por eso, se usan dos pilas para simular el recorrido postorder de manera iterativa:
+
+1. Setup inicial
+: Se apila la raíz en la primera pila (llamémosla stack1).
+
+2. Recorrido principal
+: Mientras stack1 no esté vacía:
+- Se desapila un nodo de stack1 y se apila en la segunda pila (stack2).
+- Si el nodo tiene hijo izquierdo, se apila en stack1.
+- Si el nodo tiene hijo derecho, se apila en stack1.
+: Así, stack1 sirve para recorrer el árbol y stack2 va guardando los nodos en un orden tal que, al desapilar de stack2, obtenemos el recorrido postorder.
+
+3. Iteración
+: Cuando se llama a Next(), simplemente se desapila un nodo de stack2 y se devuelve su valor.
+: HasNext() verifica si stack2 aún tiene nodos.
+
+
+
+
+
+
+<iframe 
+  src="https://docs.google.com/presentation/d/1UKgXA9gn01o90VSMud5RHdnPDxas7GWhIXZg8Pl1ZWY/embed" 
+  frameborder="0" 
+  width="100%" 
+  height="569" 
+  allowfullscreen="true" 
+  mozallowfullscreen="true" 
+  webkitallowfullscreen="true">
+</iframe>
+
+En el siguiente fragmento de código se puede observar la implementación del iterador Preorder
+
+El setup inicial consiste en apilar la raíz solamente.
+
+```{literalinclude} ../_static/code/binarytree/postorderIterator.go
 :lineno-match:
 :linenos:
 ```

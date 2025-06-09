@@ -93,19 +93,16 @@ func (bst *BinarySearchTree[T]) IsEmpty() bool {
 }
 
 func (bst *BinarySearchTree[T]) InorderIterator() types.Iterator[T] {
-	iter := &InorderIterator[T]{}
-	iter.setup(bst.root)
+	iter := newInorderIterator(bst.root)
 	return iter
 }
 
 func (bst *BinarySearchTree[T]) PreorderIterator() types.Iterator[T] {
-	iter := &PreorderIterator[T]{}
-	iter.setup(bst.root)
+	iter := newPreorderIterator(bst.root)
 	return iter
 }
 
 func (bst *BinarySearchTree[T]) PostorderIterator() types.Iterator[T] {
-	iter := &PostorderIterator[T]{}
-	iter.setup(bst.root)
+	iter := newPostorderIterator(bst.root)
 	return iter
 }

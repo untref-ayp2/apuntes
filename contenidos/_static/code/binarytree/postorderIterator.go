@@ -3,66 +3,52 @@ package binarytree
 import (
 	"apunte/stack"
 	"errors"
+
 	"golang.org/x/exp/constraints"
 )
 
-// PostorderIterator implementa un iterador para recorrer un árbol binario de
-// búsqueda en order postorder.
+// PostorderIterator implementa un iterador para recorrer un árbol binario
+// en postorder (postorden).
+// Utiliza dos pilas para almacenar los nodos visitados y permite iterar sobre
+// ellos en postorden, es decir, primero los hijos izquierdo y derecho, y
+// finalmente el nodo padre.
 type PostorderIterator[T constraints.Ordered] struct {
-	stack *stack.Stack[*BinaryNode[T]]
-	ultimoVisitado *BinaryNode[T] // Último nodo visitado en el recorrido
-								  // postorder
+	stack1 *stack.Stack[*BinaryNode[T]]
+	stack2 *stack.Stack[*BinaryNode[T]]
 }
 
-// setup inicializa el iterador con la raíz del árbol y apila todos los nodos
-// izquierdos.
-func (it *PostorderIterator[T]) setup(root *BinaryNode[T]) {
-	it.stack = stack.NewStack[*BinaryNode[T]]()
-	it.pushLeftNodes(root)
-	it.ultimoVisitado = nil // Inicializar el último nodo visitado como nil
-}
-
-// pushLeftNodes apila todos los nodos izquierdos del árbol.
-func (it *PostorderIterator[T]) pushLeftNodes(node *BinaryNode[T]) {
-	for node != nil {
-		it.stack.Push(node)
-		node = node.GetLeft()
+// newPostorderIterator crea un nuevo iterador para recorrer un árbol binario
+// inicializa las pilas, apilando en la primera pila los nodos del árbol
+func newPostorderIterator[T constraints.Ordered](root *BinaryNode[T]) *PostorderIterator[T] {
+	it := &PostorderIterator[T]{
+		stack1: stack.NewStack[*BinaryNode[T]](),
+		stack2: stack.NewStack[*BinaryNode[T]](),
 	}
+	if root != nil {
+		it.stack1.Push(root)
+		for !it.stack1.IsEmpty() {
+			node, _ := it.stack1.Pop()
+			it.stack2.Push(node)
+			if node.GetLeft() != nil {
+				it.stack1.Push(node.GetLeft())
+			}
+			if node.GetRight() != nil {
+				it.stack1.Push(node.GetRight())
+			}
+		}
+	}
+	return it
 }
 
-// HasNext verifica si hay más elementos para iterar en el árbol.
-// Retorna:
-//   - true si hay más elementos, false en caso contrario.
 func (it *PostorderIterator[T]) HasNext() bool {
-	return !it.stack.IsEmpty()
+	return !it.stack2.IsEmpty()
 }
 
-// Next devuelve el siguiente elemento del árbol en order postorder.
-// La semántica de Next consiste en avanzar primero al siguiente
-// elemento y luego devolverlo. Si no hay más elementos, devuelve un error.
-// Retorna:
-//   - el siguiente elemento del tipo T en el árbol.
-//   - un error si no hay más elementos para iterar.
 func (it *PostorderIterator[T]) Next() (T, error) {
-	if !it.HasNext() {
-		var zero T // Valor cero para el tipo T
+	var zero T
+	if it.stack2.IsEmpty() {
 		return zero, errors.New("no hay más elementos para iterar")
 	}
-
-	// Obtener el nodo actual del tope de la pila.
-	currentNode, _ := it.stack.Pop()
-
-	// Si el nodo tiene un hijo derecho que no ha sido visitado, apilarlo.
-	if currentNode.GetRight() != nil
-	   && currentNode.GetRight() != it.ultimoVisitado {
-		it.stack.Push(currentNode)
-		it.pushLeftNodes(currentNode.GetRight())
-		return it.Next() // Llamar recursivamente para obtener el siguiente nodo
-	}
-
-	// Marcar el nodo actual como visitado.
-	it.ultimoVisitado = currentNode
-
-	// Devolver el dato del nodo actual.
-	return currentNode.GetData(), nil
+	node, _ := it.stack2.Pop()
+	return node.GetData(), nil
 }

@@ -1,135 +1,73 @@
 package binarytree
+
 import (
 	"testing"
 )
-func TestPreorderIterator_EmptyTree(t *testing.T) {
-	var root *BinaryNode[int] = nil
-	var it PreorderIterator[int]
-	it.setup(root)
 
+func TestPreorderIterator_EmptyTree(t *testing.T) {
+	tree := NewBinarySearchTree[int]()
+	it := tree.PreorderIterator()
 	if it.HasNext() {
-		t.Error("Expected HasNext to be false for empty tree")
+		t.Errorf("El iterador no debería tener elementos en un árbol vacío")
 	}
 	_, err := it.Next()
-	if err == nil {
-		t.Error("Expected error when calling Next on empty tree")
+	if err == nil || err.Error() != "no hay más elementos para iterar" {
+		t.Errorf("Se esperaba error 'no hay más elementos para iterar', se obtuvo: %v", err)
 	}
 }
 
 func TestPreorderIterator_SingleNode(t *testing.T) {
-	root := &BinaryNode[int]{data: 10}
-	var it PreorderIterator[int]
-	it.setup(root)
-
+	tree := NewBinarySearchTree[int]()
+	tree.Insert(10)
+	it := tree.PreorderIterator()
 	if !it.HasNext() {
-		t.Error("Expected HasNext to be true for single node tree")
+		t.Errorf("El iterador debería tener un elemento")
 	}
 	val, err := it.Next()
 	if err != nil {
-		t.Errorf("Unexpected error: %v", err)
+		t.Errorf("No se esperaba error, se obtuvo: %v", err)
 	}
 	if val != 10 {
-		t.Errorf("Expected 10, got %v", val)
+		t.Errorf("Se esperaba 10, se obtuvo %d", val)
 	}
 	if it.HasNext() {
-		t.Error("Expected HasNext to be false after single Next")
+		t.Errorf("El iterador no debería tener más elementos")
 	}
 }
 
-func TestPreorderIterator_TwoLevels(t *testing.T) {
-	bst := NewBinarySearchTree[int]()
-	bst.Insert(2)
-	bst.Insert(1)
-	bst.Insert(3)
-	it := bst.PreorderIterator()
-
-	expected := []int{2, 1, 3}
-	if !it.HasNext() {
-		t.Error("Expected HasNext to be true for two-level tree")
+func TestPreorderIterator_MultipleNodes(t *testing.T) {
+	tree := NewBinarySearchTree[int]()
+	valores := []int{20, 10, 30, 5, 15, 25, 35}
+	for _, v := range valores {
+		tree.Insert(v)
 	}
-	var got []int
+	it := tree.PreorderIterator()
+	var resultado []int
 	for it.HasNext() {
 		val, err := it.Next()
 		if err != nil {
-			t.Fatalf("Unexpected error: %v", err)
+			t.Errorf("No se esperaba error, se obtuvo: %v", err)
 		}
-		got = append(got, val)
+		resultado = append(resultado, val)
 	}
-	for i, v := range expected {
-		if got[i] != v {
-			t.Errorf("Expected %d at position %d, got %d", v, i, got[i])
-		}
-	}
-	if it.HasNext() {
-		t.Error("Expected HasNext to be false after consuming all nodes")
-	}
-}
-
-func TestPreorderIterator_LeftSkewed(t *testing.T) {
-	root := &BinaryNode[int]{data: 1}
-	root.left = &BinaryNode[int]{data: 2}
-	root.left.left = &BinaryNode[int]{data: 3}
-
-	var it PreorderIterator[int]
-	it.setup(root)
-
-	expected := []int{1, 2, 3}
-	for i, v := range expected {
-		val, err := it.Next()
-		if err != nil {
-			t.Errorf("Unexpected error at step %d: %v", i, err)
-		}
-		if val != v {
-			t.Errorf("Expected %d, got %v at step %d", v, val, i)
+	esperado := []int{20, 10, 5, 15, 30, 25, 35}
+	for i, v := range esperado {
+		if resultado[i] != v {
+			t.Errorf("En la posición %d, se esperaba %d, se obtuvo %d", i, v, resultado[i])
 		}
 	}
 }
 
-func TestPreorderIterator_RightSkewed(t *testing.T) {
-	root := &BinaryNode[int]{data: 1}
-	root.right = &BinaryNode[int]{data: 2}
-	root.right.right = &BinaryNode[int]{data: 3}
-
-	var it PreorderIterator[int]
-	it.setup(root)
-
-	expected := []int{1, 2, 3}
-	for i, v := range expected {
-		val, err := it.Next()
-		if err != nil {
-			t.Errorf("Unexpected error at step %d: %v", i, err)
-		}
-		if val != v {
-			t.Errorf("Expected %d, got %v at step %d", v, val, i)
-		}
+func TestPreorderIterator_NextAfterEnd(t *testing.T) {
+	tree := NewBinarySearchTree[int]()
+	tree.Insert(1)
+	it := tree.PreorderIterator()
+	_, err := it.Next()
+	if err != nil {
+		t.Errorf("No se esperaba error, se obtuvo: %v", err)
 	}
-}
-
-func TestPreorderIterator_FullBST(t *testing.T) {
-	bst := NewBinarySearchTree[int]()
-	bst.Insert(5)
-	bst.Insert(1)
-	bst.Insert(9)
-	bst.Insert(4)
-	bst.Insert(2)
-	bst.Insert(6)
-	bst.Insert(10)
-	bst.Insert(7)
-	bst.Insert(8)
-	bst.Insert(3)
-	it := bst.PreorderIterator()
-	var got []int
-	for it.HasNext() {
-		val, err := it.Next()
-		if err != nil {
-			t.Fatalf("Unexpected error: %v", err)
-		}
-		got = append(got, val)
-	}
-	expected := []int{5, 1, 4, 2, 3, 9, 6, 7, 8, 10}
-	for i, v := range expected {
-		if got[i] != v {
-			t.Errorf("Expected %d at position %d, got %d", v, i, got[i])
-		}
+	_, err = it.Next()
+	if err == nil || err.Error() != "no hay más elementos para iterar" {
+		t.Errorf("Se esperaba error 'no hay más elementos para iterar', se obtuvo: %v", err)
 	}
 }

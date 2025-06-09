@@ -15,11 +15,18 @@ type InorderIterator[T constraints.Ordered] struct {
 	stack *stack.Stack[*BinaryNode[T]]
 }
 
-// setup inicializa el iterador con la raíz del árbol y apila todos los nodos
-// izquierdos.
-func (it *InorderIterator[T]) setup(root *BinaryNode[T]) {
+func newInorderIterator[T constraints.Ordered](root *BinaryNode[T]) *InorderIterator[T] {
+	// Crea un nuevo iterador de tipo InorderIterator.
+	it := &InorderIterator[T]{}
+	// Inicializa el iterador con la raíz del árbol y apila todos los nodos
+	// izquierdos.
 	it.stack = stack.NewStack[*BinaryNode[T]]()
-	it.pushLeftNodes(root)
+	if root != nil {
+		it.pushLeftNodes(root)
+	}
+	// Devuelve el iterador inicializado.
+	// Si la raíz es nula, la pila estará vacía y no habrá nodos para iterar.
+	return it
 }
 
 // pushLeftNodes apila todos los nodos izquierdos desde un nodo dado.
