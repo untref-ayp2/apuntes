@@ -152,7 +152,7 @@ El proceso de Radix Sort sería:
 
 ### Complejidad del Radix Sort
 
-La complejidad del **Radix Sort** es $O(n \times k)$, donde $N$ es el número de elementos a ordenar y $k$ es el número de dígitos en el valor más grande. Este algoritmo es eficiente cuando el número de dígitos es pequeño en comparación con el número de elementos a ordenar.
+La complejidad del **Radix Sort** es $O(n \times k)$, donde $n$ es el número de elementos a ordenar y $k$ es el número de dígitos en el valor más grande. Este algoritmo es eficiente cuando el número de dígitos es pequeño en comparación con el número de elementos a ordenar.
 
 Es importante destacar que el algoritmo que se usa para ordenar los dígitos, en este caso el **Ordenamiento por Urnas**, debe ser un algoritmo estable para que el Radix Sort funcione correctamente. Esto significa que los elementos con el mismo valor deben mantener su orden relativo después de cada paso de ordenamiento.
 
