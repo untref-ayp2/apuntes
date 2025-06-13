@@ -43,6 +43,7 @@ parts:
       - file: 4-diseno-de-algoritmos/4-5-programacion-dinamica
       - file: 4-diseno-de-algoritmos/4-6-ordenamientos-recursivos
       - file: 4-diseno-de-algoritmos/4-7-ordenamientos-lineales
-  - caption: "Anexo: Taller de Git y GitHub"
+  - caption: "Anexos"
     chapters:
       - file: 5-taller-de-git/5-1-introduccion-git
+      - file: 3-estructuras-de-datos/3-12-iteradores-abb
