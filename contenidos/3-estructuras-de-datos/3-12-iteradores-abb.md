@@ -49,7 +49,7 @@ En la implementación del ABB tenemos los métodos para obtener los iteradores:
 ```{literalinclude} ../_static/code/binarytree/binarysearchtree.go
 :lineno-match:
 :linenos:
-:emphasize-lines: 95, 101, 107
+:emphasize-lines: 95, 100, 105
 ```
 
 Al crear un iterador se ejecuta un setup inicial que depende de cada tipo de iterador.
