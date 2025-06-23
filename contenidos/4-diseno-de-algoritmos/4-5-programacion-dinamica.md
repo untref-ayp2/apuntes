@@ -54,15 +54,15 @@ func Fibonacci(n int) int {
 
 En la línea 5 se observa que la función `Fibonacci`{l=go} se llama a sí misma dos veces, lo que provoca que se realicen cálculos redundantes. Por ejemplo, al calcular `Fibonacci(5)`{l=go}, se realizan las siguientes llamadas:
 
-```{figure} ../assets/images/RecursionFibonacci00.svg
+```{figure} ../assets/images/programacion-dinamica/fibonacci-recursivo.drawio.svg
 ---
-width: 600px
 name: fibonacci-recursivo
+class: dark-light
 ---
 Cálculo de la serie de Fibonacci utilizando recursión
 ```
 
-Se puede observar que `Fibonacci(0)`{l=go}, `Fibonacci(1)`{l=go} y `Fibonacci(2)`{l=go} se calcularon 3 veces cada uno, `Fibonacci(3)`{l=go} se calculó 2 veces y `Fibonacci(4)`{l=go} y `Fibonacci(5)`{l=go} se calcularon 1 vez. Esto significa que el tiempo de ejecución del algoritmo es exponencial, lo que lo hace ineficiente para valores grandes de `n`{l=go}.
+Se puede observar que `Fibonacci(5)`{l=go} y `Fibonacci(4)`{l=go} se calcularon 1 vez, `Fibonacci(3)`{l=go} se calculó 2 veces, `Fibonacci(2)`{l=go} y `Fibonacci(0)`{l=go} se calcularon 3 veces cada uno, y `Fibonacci(1)`{l=go} se calculó 5 veces. Esto significa que el tiempo de ejecución del algoritmo es exponencial, lo que lo hace ineficiente para valores grandes de `n`{l=go}.
 
 En la siguiente animación se muestra como se pueden reutilizar los resultados utilizando una tabla para almacenar los resultados de los subproblemas:
 
