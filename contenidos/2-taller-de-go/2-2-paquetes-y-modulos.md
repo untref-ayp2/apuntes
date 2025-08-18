@@ -190,7 +190,7 @@ Hay varios puntos a notar:
 Cuando necesitamos utilizar un módulo de terceros, como podría ser un módulo
 que provee distintos métodos de ordenamieto, primero debemos encontrar el
 módulo, esto puede ser haciendo una búsqueda en el registro de go que podemos
-encontrar en <https://pkg.go.dev/> o bien, búscando módulos en internet, es
+encontrar en [https://pkg.go.dev/](https://pkg.go.dev/){target=_blank} o bien, búscando módulos en internet, es
 posible instalar módulos directamente desde repositorios de Git.
 
 Para instalar y agregar dicha dependencia en nuestro módulo, podemo utilisar la
@@ -366,4 +366,3 @@ separado.
 
 Trabajar dentro de un mismo _workspace_ permite referenciar dependencias entre
 módulos locales sin necesidad de decargarlos de un registro online.
-

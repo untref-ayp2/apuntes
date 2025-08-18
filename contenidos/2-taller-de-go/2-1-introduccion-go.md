@@ -33,9 +33,9 @@ código fuente se debe traducir a código máquina para poder ejecutarlo, esta
 operación de traducción se conoce como compilación.
 
 Los creadores de Go, [Robert
-Griesemer](https://en.wikipedia.org/wiki/Robert_Griesemer), [Rob
-Pike](https://en.wikipedia.org/wiki/Rob_Pike) y [Ken
-Thompson](https://en.wikipedia.org/wiki/Ken_Thompson), han dicho que aunque la
+Griesemer](https://en.wikipedia.org/wiki/Robert_Griesemer){target=_blank}, [Rob
+Pike](https://en.wikipedia.org/wiki/Rob_Pike){target=_blank} y [Ken
+Thompson](https://en.wikipedia.org/wiki/Ken_Thompson){target=_blank}, han dicho que aunque la
 sintáxis del lenguaje está inspirada principalmente en C y en Python y en menor
 medida en Java, el objetivo siempre fue crear un nuevo lenguaje simple y
 eficiente. Go fue diseñado para ambientes altamente productivos y concurrentes
@@ -80,7 +80,7 @@ definir nuevos tipos de datos.
 
 ### Ejemplos
 
-En el repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git) encontrarán código de ejemplo para empezar a sumergirnos en Go.
+En el repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git){target=_blank} encontrarán código de ejemplo para empezar a sumergirnos en Go.
 
 Se recomienda crear una carpeta en el disco local, por ejemplo con el nombre taller-go, y clonar el repositorio
 
@@ -88,9 +88,9 @@ Se recomienda crear una carpeta en el disco local, por ejemplo con el nombre tal
 git clone https://github.com/untref-ayp2/taller-go.git
 ```
 
-El siguiente fragmento se encuentra en el archivo `main.go`
+El siguiente fragmento se encuentra en el archivo `00-hola/main.go`
 
-:::{admonition} `main.go`
+:::{admonition} `00-hola/main.go`
 :class: note
 
 ```go
@@ -148,17 +148,17 @@ sumar(32, 7)
 
 ## Links útiles
 
-- [Página principal de Go](https://go.dev/)
-- [Descargar Go](https://go.dev/dl/)
-- [Tour interactivo de Go](https://go.dev/tour/)
-- [Documentación basada en ejemplos](https://gobyexample.com/)
-- [Go FAQ](https://go.dev/doc/faq)
-- [Go Playground](https://go.dev/play/) (entorno online ara ejecutar código en
+- [Página principal de Go](https://go.dev/){target=_blank}
+- [Descargar Go](https://go.dev/dl/){target=_blank}
+- [Tour interactivo de Go](https://go.dev/tour/){target=_blank}
+- [Documentación basada en ejemplos](https://gobyexample.com/){target=_blank}
+- [Go FAQ](https://go.dev/doc/faq){target=_blank}
+- [Go Playground](https://go.dev/play/){target=_blank} (entorno online ara ejecutar código en
   Go)
 
 ## Instalación
 
-El sitio oficial de Go es <https://go.dev/> de donde se puede descargar
+El sitio oficial de Go es [https://go.dev/](https://go.dev/){target=_blank} de donde se puede descargar
 versiones listas para instalar o el código fuente para compilar e instalar. Se
 recomienda seguir las instrucciones. Una vez finalizado el proceso se puede
 verificar la correcta instalación, abriendo una terminal y ejecutando el
@@ -177,14 +177,14 @@ go version go1.24.0 linux/amd64
 ### Go Playground
 
 Go ofrece un servicio online llamado Playground
-[https://go.dev/play](https://go.dev/play/p/kBGNnaPKcvt) que nos permite
+[https://go.dev/play](https://go.dev/play/p/kBGNnaPKcvt){target=_blank} que nos permite
 escribir y ejecutar fragmentos de código de forma simple y sin necesidad de
 instalar Go localmente.
 
 ### Entornos de Desarrollo (IDEs)
 
 Se puede utilizar cualquier entorno de desarrollo disponbile, por ejemplo
-[Visual Studio Code](https://code.visualstudio.com/).
+[Visual Studio Code](https://code.visualstudio.com/){target=_blank}.
 
 ## Estructura de un programa en Go
 

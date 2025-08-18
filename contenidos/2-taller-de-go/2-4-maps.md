@@ -215,6 +215,6 @@ invalid operation: x == y (map can only be compared to nil)
 
 ## Links recomendados
 
-- [Effective Go](https://golang.org/doc/effective_go.html#maps)
-- [Go by Example: Maps](https://gobyexample.com/maps)
-- [The Go Programming Language Specification: Map types](https://golang.org/ref/spec#Map_types)
+- [Effective Go](https://golang.org/doc/effective_go.html#maps){target=_blank}
+- [Go by Example: Maps](https://gobyexample.com/maps){target=_blank}
+- [The Go Programming Language Specification: Map types](https://golang.org/ref/spec#Map_types){target=_blank}
