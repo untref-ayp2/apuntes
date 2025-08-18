@@ -88,9 +88,9 @@ Se recomienda crear una carpeta en el disco local, por ejemplo con el nombre tal
 git clone https://github.com/untref-ayp2/taller-go.git
 ```
 
-El siguiente fragmento se encuentra en el archivo `hola.go`
+El siguiente fragmento se encuentra en el archivo `main.go`
 
-:::{admonition} `hola.go`
+:::{admonition} `main.go`
 :class: note
 
 ```go
@@ -108,7 +108,7 @@ func main() {
 Si ejecutamos en una terminal:
 
 ```console
-go run hola.go
+go run main.go
 ```
 
 obtendremos como resultado:
