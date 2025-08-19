@@ -232,4 +232,4 @@ Y si en cambio, queremos recibir la última versión disponible, debemos…
 
 ## Links recomendados
 
-- [Git-Book](https://git-scm.com/book/es/v2)
+- [Git-Book](https://git-scm.com/book/es/v2){target=_blank}
