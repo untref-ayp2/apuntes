@@ -38,7 +38,7 @@ func main() {
 }
 ```
 
-## Crear errores con información de contexto dinámica
+## Crear errores con formateo dinámico
 
 Además, Go incluye en el paquete `fmt` la función `fmt.Errorf`, que permite
 crear errores con mensajes formateados, similar a `fmt.Sprintf`.
