@@ -255,4 +255,4 @@ fmt.Println("x =", x, "\ny =", y)
 
 ## Links recomendados
 
-- [Go Slices: usage and internals](https://go.dev/blog/slices-intro)
+- [Go Slices: usage and internals](https://go.dev/blog/slices-intro){target=_blank} - Un artículo que explica el uso y la estructura interna de los slices en Go.
