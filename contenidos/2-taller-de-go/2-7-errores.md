@@ -15,10 +15,12 @@ función y quien invocó dicha función es responsable de manejar un posible err
 ## Crear errores simples
 
 ```{code-cell} go
-import {
+package main
+
+import (
     "errors"
     "fmt"
-}
+)
 
 func test(input int) error {
     if input < 0 {
@@ -36,13 +38,15 @@ func main() {
 }
 ```
 
-## Crear errores con contexto dinámico
+## Crear errores con información de contexto dinámica
 
 Además, Go incluye en el paquete `fmt` la función `fmt.Errorf`, que permite
 crear errores con mensajes formateados, similar a `fmt.Sprintf`.
 Esto es muy útil para **agregar información dinámica** al mensaje de error.
 
 ```{code-cell} go
+package main
+
 import "fmt"
 
 func test(input int) error {
@@ -67,8 +71,9 @@ son de gran ayuda para depuración y logging.
 
 ---
 
-En los dos ejemplos anteriores, podemos observar la forma típica en la que se maneja un error
-en Go. Van a encontrar `if err != nil` en multiples lugares de un programa de Go.
+En los dos ejemplos anteriores, podemos observar la forma típica en la que se maneja
+un error en Go. Van a encontrar `if err != nil`{l=go} en multiples lugares de un
+programa de Go.
 
 Go tiene una forma de "lanzar" errores por medio de la función `panic`, pero
 esta debería ser reservada para casos muy extremos, ya que no es posible
