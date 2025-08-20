@@ -70,7 +70,7 @@ En Go para conocer el largo de un array existe la función `len`{l=go}.
 len(numeros)
 ```
 
-Para recorrer un array en Go existe la instrucción `range`{l=go}, que genera un iterador sobre el array devolviendo el índice (`i`) y el valor (`v`), en cadaiteración del `for`{l=go}, veamos un ejemplo:
+Para recorrer un array en Go existe la instrucción `range`{l=go}, que genera un iterador sobre el array devolviendo el índice (`i`) y el valor (`v`), en cada iteración del `for`{l=go}, veamos un ejemplo:
 
 ```{code-cell} go
 :tags: [remove-output]
