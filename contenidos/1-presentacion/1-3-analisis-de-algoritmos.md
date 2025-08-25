@@ -96,7 +96,7 @@ En la siguiente tabla se muestran algunas de las funciones más comunes y sus no
 |       $O(n)$       |   lineal    |
 | $O(n \; log_2(n))$ | casi lineal |
 |      $O(n^2)$      | cuadrática  |
-|      $O(n^n)$      | exponencial |
+|      $O(k^n)$      | exponencial |
 
 ### Propieadades de la O grande
 
