@@ -107,20 +107,22 @@ type Persona struct {
 }
 
 var num int = 5
-
 var p1 Persona
-p1.nombre = "Marcelo"
-p1.edad = 27
 
-p2 := Persona{nombre: "Pepe", edad: 23}
-p3 := Persona{"Juan", "Gonzalez", 34, Direccion{"Valentín Gomez",
-              "Caseros", "Buenos Aires", 742}}
-p4 := p2
+func main() {
+    p1.nombre = "Marcelo"
+    p1.edad = 27
 
-dir:= Direccion{"Av. Corrientes", "CABA", "Buenos Aires", 1050}
+    p2 := Persona{nombre: "Pepe", edad: 23}
+    p3 := Persona{"Juan", "Gonzalez", 34, Direccion{"Valentín Gomez",
+                  "Caseros", "Buenos Aires", 742}}
+    p4 := &p2
 
-p4.apellido = "Martinez"
-p4.direccion = dir
+    dir:= Direccion{"Av. Corrientes", "CABA", "Buenos Aires", 1050}
+
+    p4.apellido = "Martinez"
+    p4.direccion = dir
+}
 ```
 
 El **Stack** y el **Heap** presentaran el siguiente estado:
@@ -184,12 +186,11 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
 - **`p4`**
 
   ```go
-  p4 := p2
+  p4 := &p2
   ```
 
   - **Almacenamiento:** **Stack**
-  - **Justificación:** `p4` es una copia de `p2`. Se almacena en el _**stack**_. Sin embargo, los campos de tipo `string` referenciados por `p4` apuntan a las mismas ubicaciones en el _**heap**_ que los de `p2`.
-
+  - **Justificación:** `p4` es una copia de la dirección de memoria de `p2`. Dicho de otro modo es una copia de la referencia de `p2`. Se almacena en el _**stack**_. `p4` y `p2` apuntan a la misma ubicación en el _**heap**_.
   ***
 
 - **`dir`**
