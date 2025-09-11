@@ -118,7 +118,7 @@ func main() {
 
 ## Orden de las operaciones
 
-Las operaciones sobre conjuntos tienen un costo asociado. Por ejemplo, en la implementación anterior, las operaciones `Add`, `Remove` y `Contains` tienen un costo de tiempo constante $O(1)$. Por otro lado, las operaciones `Size` y `Values` tienen un costo de tiempo lineal $O(n)$. El orden de las operaciones depende de la implementación del conjunto.
+Las operaciones sobre conjuntos tienen un costo asociado. Por ejemplo, en la implementación anterior, las operaciones `Add`, `Remove`, `Size` y `Contains` tienen un costo de tiempo constante $O(1)$. Por otro lado, la operación `Values` tiene un costo de tiempo lineal $O(n)$. El orden de las operaciones depende de la implementación del conjunto.
 
 ## Ejercicios
 
