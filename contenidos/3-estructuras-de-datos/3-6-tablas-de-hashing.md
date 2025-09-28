@@ -276,7 +276,7 @@ func (ht *HashTable[K, V]) Put(key K, value V) {
 	// La clave no existe, así que la agregamos.
 	index := ht.hash(key) % ht.capacity
 	for {
-		if ht.buckets[index] == nil {
+		if ht.buckets[index] == nil || ht.buckets[index].key == "" {
 			// Si el bucket está vacío, insertamos el nuevo par clave-valor.
 			ht.buckets[index] = &hashTableEntry[K, V]{key: key, value: value}
 			ht.size++
