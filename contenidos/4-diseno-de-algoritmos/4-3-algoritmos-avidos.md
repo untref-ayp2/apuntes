@@ -91,7 +91,7 @@ f_j \leq s_i
 **Optimización**: Elegir la actividad que **termina primero** entre las no elegidas, siempre y cuando sea compatible con las actividades ya elegidas.
 :::
 
-Supongamos que tenemos las siguientes actividades, ordenadas de mayor a menor por tiempo de finalización:
+Supongamos que tenemos las siguientes actividades, ordenadas por tiempo de finalización:
 
 ```{figure} ../assets/images/Greedy1.svg
 ---
