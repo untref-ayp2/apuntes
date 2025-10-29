@@ -301,10 +301,10 @@ funcion Heapsort(arreglo)
 
   // Heapify: Construir el _heap_ de máximo
   // En un _heap_ el último nodo que no es hoja es el nodo en la posición n/2 - 1
-  // Al hundir cada nodo desde (n-1)/2 hasta 0, se asegura que todos los nodos 
+  // Al hundir cada nodo desde (n/2)-1 hasta 0, se asegura que todos los nodos 
   // cumplen la propiedad de heap
   // y por lo tanto el arreglo se convierte en un _heap_ de máximos
-  para i desde (n-1)/2 hasta 0 hacer
+  para i desde (n/2)-1 hasta 0 hacer
     downHeap(arreglo, n, i)
 
   // Extraer elementos del _heap_ uno por uno
