@@ -1,7 +1,9 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Árboles
@@ -49,14 +51,14 @@ name: ArbolBinario
 Árbol Binario
 ```
 
-:::{card} Definición de Árbol Binario
+```{card} Definición de Árbol Binario
 Un árbol binario es por definición:
 
 - Un árbol vacío, o
 - Un nodo raíz con un hijo izquierdo y un hijo derecho, donde cada uno de estos hijos es a su vez un árbol binario.
 
 La definición recursiva de un árbol binario implica que cada subárbol también es un árbol binario. Esto permite construir árboles binarios de manera jerárquica y recursiva, lo que facilita su manipulación y análisis.
-:::
+```
 
 ### Recorridos de un árbol binario
 
@@ -75,7 +77,7 @@ El siguiente seudocódigo ilustra la implementación del recorrido preorden como
 ```{code-block}
 ---
 caption: Preorden
-linenos:
+linenos: true
 ---
 FUNCION Preorden(raiz)
     SI raiz ES nulo ENTONCES
@@ -87,19 +89,17 @@ FUNCION Preorden(raiz)
 FIN FUNCION
 ```
 
-`Procesar(raiz)`
+`Procesar(raiz)`{l=go}
 : Representa una operación genérica que se aplica al nodo actual. Esta operación puede variar según la implementación, por ejemplo podría ser imprimir el valor del nodo o añadirlo a una lista.
 
 llamadas recursivas
 : Las líneas 6 y 7 realizan las llamadas recursivas para aplicar el recorrido preorden a los subárboles izquierdo y derecho del nodo actual, respectivamente.
 
-Por ejemplo en el siguiente video se observa el recorrido preorden. Cuando el nodo se pinta de amarillo significa que se llamó a la función `preorden` con ese nodo y cuando el nodo se pinta de verde significa que el nodo fue visitado (línea 4 del seudocódigo).
+Por ejemplo en el siguiente video se observa el recorrido preorden. Cuando el nodo se pinta de amarillo significa que se llamó a la función `preorden`{l=go} con ese nodo y cuando el nodo se pinta de verde significa que el nodo fue visitado (línea 4 del seudocódigo).
 
-<!-- markdownlint-disable MD033 -->
 <p class="align-center">
   <video src="../_static/videos/preorden.mp4" width="300" controls autoplay loop></video>
 </p>
-<!-- markdownlint-enable MD033 -->
 
 $$
 + \; a \; * \; - \; b \; c \; d
@@ -114,7 +114,7 @@ El siguiente seudocódigo muestra la implementación del recorrido inorden:
 ```{code-block}
 ---
 caption: Inorden
-linenos:
+linenos: true
 ---
 FUNCION Inorden (raiz)
     SI raiz ES nulo ENTONCES
@@ -128,11 +128,9 @@ FIN FUNCION
 
 Ejemplo de recorrido inorden:
 
-<!-- markdownlint-disable MD033 -->
 <p class="align-center">
   <video src="../_static/videos/inorden.mp4" width="300" controls autoplay loop></video>
 </p>
-<!-- markdownlint-enable MD033 -->
 
 $$
 a \; + \; b \; - \; c \; * \; d
@@ -147,7 +145,7 @@ El seudocódigo para el recorrido postorden se presenta a continuación:
 ```{code-block}
 ---
 caption: Postorden
-linenos:
+linenos: true
 ---
 FUNCION Postorden (raiz)
     SI raiz ES nulo ENTONCES
@@ -161,11 +159,9 @@ FIN FUNCION
 
 Ejemplo de recorrido postorden:
 
-<!-- markdownlint-disable MD033 -->
 <p class="align-center">
   <video src="../_static/videos/postorden.mp4" width="300" controls autoplay loop></video>
 </p>
-<!-- markdownlint-enable MD033 -->
 
 $$
 a \; b \; c \; - \; d \; * \; +

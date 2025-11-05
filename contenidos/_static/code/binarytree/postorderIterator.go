@@ -4,7 +4,7 @@ import (
 	"apunte/stack"
 	"errors"
 
-	"golang.org/x/exp/constraints"
+	"cmp"
 )
 
 // PostorderIterator implementa un iterador para recorrer un árbol binario
@@ -12,14 +12,14 @@ import (
 // Utiliza dos pilas para almacenar los nodos visitados y permite iterar sobre
 // ellos en postorden, es decir, primero los hijos izquierdo y derecho, y
 // finalmente el nodo padre.
-type PostorderIterator[T constraints.Ordered] struct {
+type PostorderIterator[T cmp.Ordered] struct {
 	stack1 *stack.Stack[*BinaryNode[T]]
 	stack2 *stack.Stack[*BinaryNode[T]]
 }
 
 // newPostorderIterator crea un nuevo iterador para recorrer un árbol binario
 // inicializa las pilas, apilando en la primera pila los nodos del árbol
-func newPostorderIterator[T constraints.Ordered](root *BinaryNode[T]) *PostorderIterator[T] {
+func newPostorderIterator[T cmp.Ordered](root *BinaryNode[T]) *PostorderIterator[T] {
 	it := &PostorderIterator[T]{
 		stack1: stack.NewStack[*BinaryNode[T]](),
 		stack2: stack.NewStack[*BinaryNode[T]](),

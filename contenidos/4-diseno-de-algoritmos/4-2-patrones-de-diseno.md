@@ -1,29 +1,12 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Patrones de Diseño
-
-<!--
-Esta celda oculta nos permite usar `fmt.Println` sin necesidad de importar
-"fmt", el objetivo es que no se imprima la salida que tiene `fmt.Println` ya
-que devuelve la cantidad de caracteres impresos y un error.
--->
-
-```{code-cell} go
-:tags: [remove-cell]
-import f "fmt"
-type FmtWrapper struct{}
-func (fw FmtWrapper) Println(a ...interface{}) {
-    _, _ = f.Println(a...)
-}
-func (fw FmtWrapper) Printf(format string, a ...interface{}) {
-    _, _ = f.Printf(format, a...)
-}
-var fmt FmtWrapper = FmtWrapper{}
-```
 
 Los patrones de diseño son soluciones reutilizables para problemas comunes que surgen en el desarrollo de software. Estos patrones encapsulan buenas prácticas y ofrecen un enfoque probado para resolver problemas recurrentes, facilitando el diseño de sistemas más robustos y mantenibles.
 
@@ -125,17 +108,24 @@ Supongamos que tenemos un robot que realiza mediciones, cuyo sistema de control 
 Nuestra empresa ha concretado la venta del robot a un cliente que necesita incorporar el robot a su sistema de producción, pero el sistema de control del cliente espera que el método `Medir`{l=go} devuelva un solo número que represente la distancia en pulgadas.
 
 1. Identificar los actores en juego: el _**Cliente**_ y el _**Adaptado**_ (componente _legacy_).
+
    - _**Cliente**_: Sistema de control del cliente.
    - _**Adaptado**_: Robot que realiza mediciones.
+
 2. Identificar la _**Interfaz**_ que requiere el _**Cliente**_.
+
    - _**Interfaz**_: Método `Medir()`{l=go} que devuelve la distancia en pulgadas.
+
 3. Verificar que el _**Adaptado**_ que se quiere utilizar puede cumplir con la _**Interfaz**_ solicitada.
+
    - _**Adaptado**_: Robot que realiza mediciones con el método `Medir()`{l=go} que devuelve la distancia en metros y centímetros y se puede convertir a pulgadas.
+
 4. Diseñar un envoltorio (_**Adaptador**_) que va a contener al _**Adaptado**_.
 
    ```{code-block} go
-   :linenos:
-
+   ---
+   linenos: true
+   ---
    // Adaptador que convierte la interfaz del Adaptado a la interfaz esperada
    type RobotAdaptado struct {
        adaptado *Robot
@@ -145,8 +135,9 @@ Nuestra empresa ha concretado la venta del robot a un cliente que necesita incor
 5. Implementar el _**Adaptador**_ para que cumpla con la _**Interfaz**_ esperada por el _**Cliente**_.
 
    ```{code-block} go
-   :linenos:
-
+   ---
+   linenos: true
+   ---
    // Implementación del método requerido por la interfaz esperada
    func (r *RobotAdaptado) Medir() float64 {
        metros, centimetros := r.adaptado.Medir()
@@ -159,8 +150,9 @@ Nuestra empresa ha concretado la venta del robot a un cliente que necesita incor
 6. El _**Cliente**_ interactúa con el _**Adaptador**_ como si fuera el _**Adaptado**_.
 
    ```{code-block} go
-   :linenos:
-
+   ---
+   linenos: true
+   ---
    // Cliente
    robot := &Robot{}
    adaptado := &RobotAdaptado{adaptado: robot}
@@ -211,8 +203,9 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
 1. Definir una interfaz común para todos los elementos de la estructura (_**Componente**_).
 
    ```{code-block} go
-   :linenos:
-
+   ---
+   linenos: true
+   ---
    // Interfaz común para todos los elementos de la estructura
    type Figura interface {
        Area() float64
@@ -222,8 +215,9 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
 2. Implementar los tipos de datos que representen los elementos individuales (_**Simple**_), asegurándose de que cumplan con la interfaz común (_**Componente**_).
 
    ```{code-block} go
-   :linenos:
-
+   ---
+   linenos: true
+   ---
    // Implementación de los tipos de datos que representan los elementos individuales
    import "math"
 
@@ -257,8 +251,9 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
 3. Implementar los tipos de datos que representen los elementos compuestos (_**Compuesto**_), que contienen una colección de elementos (_**Componente**_), asegurándose de que cumplan con la interfaz común (_**Componente**_) y contemplen la posibilidad de agregar elementos a la colección.
 
    ```{code-block} go
-   :linenos:
-
+   ---
+   linenos: true
+   ---
    // Implementación de los tipos de datos que representan los elementos compuestos
    // que contienen una colección de elementos
    type Grupo struct {
@@ -290,8 +285,9 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
    ```
 
    ```{code-block} go
-   :linenos:
-
+   ---
+   linenos: true
+   ---
    locomotora := &Grupo{}
    locomotora.Agregar(&Rectangulo{Base: 7, Altura: 3}) //cuerpo de la locomotora
    locomotora.Agregar(&Circulo{Radio: 1}) //rueda de la locomotora
@@ -352,8 +348,9 @@ El patrón _Iterator_ o Iterador permite recorrer los elementos de una colecció
 Supongamos que tenemos una lista enlazada simple y nos interesa crear un iterador que nos permita recorrerla e imprimir cada elemento de la lista. Por simplicidad suponemos que la lista enlazada solo contiene números enteros.
 
 ```{code-block} go
-:linenos:
-
+---
+linenos: true
+---
 type Nodo struct {
     Valor     int
     Siguiente *Nodo
@@ -377,7 +374,9 @@ func (l *ListaEnlazada) InsertarAlInicio(valor int) {
 1. Definir el comportamiento del **Iterador**, es decir los métodos para obtener el siguiente, etc. Es posible agregar más métodos a los mencionados, por ejemplo si necesitamos un iterador que pueda avanzar y retroceder en su recorrido habrá que agregar los métodos correspondientes.
 
    ```{code-block} go
-   :linenos:
+   ---
+   linenos: true
+   ---
    // Interfaz del Iterador
    // Define los métodos que debe implementar el iterador
    type Iterador interface {
@@ -391,9 +390,10 @@ func (l *ListaEnlazada) InsertarAlInicio(valor int) {
 2. Dentro de la **colección** definir un método para crear el **Iterador**
 
    ```{code-block} go
-   :linenos:
-   :emphasize-lines: 20, 21, 22, 23
-
+   ---
+   linenos: true
+   emphasize-lines: 20, 21, 22, 23
+   ---
    type Nodo struct {
        Valor     int
        Siguiente *Nodo
@@ -422,8 +422,9 @@ func (l *ListaEnlazada) InsertarAlInicio(valor int) {
 3. Implementar el **Iterador** vinculado siempre a una única colección
 
    ```{code-block} go
-   :linenos:
-
+   ---
+   linenos: true
+   ---
    type IteradorLista struct {
        lista  *ListaEnlazada
        actual *Nodo
@@ -449,8 +450,9 @@ func (l *ListaEnlazada) InsertarAlInicio(valor int) {
 4. Recorrer la **colección** con el iterador creado
 
    ```{code-block} go
-   :linenos:
-
+   ---
+   linenos: true
+   ---
    lista := &ListaEnlazada{}
    lista.InsertarAlInicio(3)
    lista.InsertarAlInicio(2)
@@ -467,7 +469,9 @@ func (l *ListaEnlazada) InsertarAlInicio(valor int) {
 1. Dada la siguiente definición de una matriz de números enteros:
 
    ```{code-block} go
-   :linenos:
+   ---
+   linenos: true
+   ---
    type Matriz struct {
        Filas int
        Columnas int
@@ -483,7 +487,9 @@ func (l *ListaEnlazada) InsertarAlInicio(valor int) {
 2. Implementar un iterador para recorrer una lista enlazada doblemente, es decir que permita avanzar y retroceder en el recorrido de la lista.
 
    ```{code-block} go
-   :linenos:
+   ---
+   linenos: true
+   ---
    type IteradorDoble interface {
        Anterior()
        Siguiente()

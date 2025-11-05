@@ -1,7 +1,9 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Ordenamientos Recursivos
@@ -17,14 +19,14 @@ Algunas características de los algoritmos de ordenamiento incluyen:
 Complejidad temporal
 : La cantidad de tiempo que un algoritmo tarda en ordenar un conjunto de datos. Se mide en función del número de elementos a ordenar y se expresa comúnmente en notación O grande (por ejemplo, $O(n \log n)$, $O(n^2)$). En los algoritmos de ordenamiento, además de establecer la complejidad temporal para el peor caso, se suele analizar los casos promedio y el mejor caso, teniendo en cuenta cuando se presenta cada escenario.
 
-  * Peor Caso
-    : Describe la situación en la que el algoritmo tarda el mayor tiempo posible en completarse. Esto ocurre cuando los datos de entrada están dispuestos de tal manera que el algoritmo se ve obligado a realizar el número máximo de operaciones. El análisis del peor caso nos da una cota superior. Nos permite garantizar que el algoritmo nunca tardará más de un cierto tiempo, sin importar cómo estén los datos de entrada.
+Peor Caso
+: Describe la situación en la que el algoritmo tarda el mayor tiempo posible en completarse. Esto ocurre cuando los datos de entrada están dispuestos de tal manera que el algoritmo se ve obligado a realizar el número máximo de operaciones. El análisis del peor caso nos da una cota superior. Nos permite garantizar que el algoritmo nunca tardará más de un cierto tiempo, sin importar cómo estén los datos de entrada.
 
-  * Caso Promedio
-    :  Representa el tiempo de ejecución esperado del algoritmo cuando los datos de entrada son aleatorios o no tienen un patrón específico. Calcularlo puede ser más complejo, ya que implica considerar la probabilidad de diferentes configuraciones de entrada. El análisis del caso promedio nos da una idea más realista del rendimiento del algoritmo en situaciones típicas.
+Caso Promedio
+: Representa el tiempo de ejecución esperado del algoritmo cuando los datos de entrada son aleatorios o no tienen un patrón específico. Calcularlo puede ser más complejo, ya que implica considerar la probabilidad de diferentes configuraciones de entrada. El análisis del caso promedio nos da una idea más realista del rendimiento del algoritmo en situaciones típicas.
 
-  * Mejor Caso
-    : Es la situación en la que el algoritmo tarda el menor tiempo posible en completarse. Esto sucede cuando los datos de entrada están dispuestos de una manera ideal para el algoritmo.  Aunque no es tan útil como el peor caso o el caso promedio para predecir el rendimiento general, el mejor caso puede ser de utilidad en algoritmos de ordenamiento adaptativos que puedan adaptarse a los datos de entrada.
+Mejor Caso
+: Es la situación en la que el algoritmo tarda el menor tiempo posible en completarse. Esto sucede cuando los datos de entrada están dispuestos de una manera ideal para el algoritmo. Aunque no es tan útil como el peor caso o el caso promedio para predecir el rendimiento general, el mejor caso puede ser de utilidad en algoritmos de ordenamiento adaptativos que puedan adaptarse a los datos de entrada.
 
 Estabilidad
 : Un algoritmo es estable si mantiene el orden relativo de los elementos iguales después del ordenamiento. Esto es importante en situaciones donde los elementos tienen múltiples claves de ordenamiento. Por ejemplo si una clave de ordenamiento aparece repetida varias veces en una secuencia de datos desordenadas, puede ser interesante mantener el orden relativo (el primero que aparece, luego el segundo, etc.) en la secuencia ordenada.
@@ -50,10 +52,9 @@ Ordenamiento por Burbujeo (_Bubble Sort_)
 
 En la siguiente tabla se resumen las principales características de estos algoritmos:
 
-
 ```{table} Algoritmos de Ordenamiento Simple
 |         Algoritmo          | Inserción   | Selección  |  Burbujeo |
-| :------------------------- | :---------- | :--------- | :-------- |
+| :------------------------- | :---------: | :--------: | :-------: |
 | Peor Caso                  | $O(n^2)$    | $O(n^2)$   | $O(n^2)$  |
 | Caso Promedio              | $O(n^2)$    | $O(n^2)$   | $O(n^2)$  |
 | Mejor Caso                 | $O(n)$      | $O(n^2)$   | $O(n)$    |
@@ -86,11 +87,13 @@ Combinar
 : Las sublistas ordenadas se mezclan repetidamente para producir nuevas sublistas ordenadas hasta que solo quede una sublista, que es la lista original pero ahora completamente ordenada. La operación clave aquí es la **mezcla (merge)** de dos listas ordenadas en una sola lista ordenada.
 
 ```{code-block}
-:linenos:
-:name: mergesort
-:caption: Mergesort (Ordenamiento por Mezcla)
+---
+linenos: true
+name: mergesort
+caption: Mergesort (Ordenamiento por Mezcla)
+---
 funcion Mergesort(arreglo)
-  si longitud(arreglo) <= 1 entonces // Caso base: si el arreglo tiene 
+  si longitud(arreglo) <= 1 entonces // Caso base: si el arreglo tiene
                                      // 0 o 1 elementos, ya está ordenado
     retornar arreglo
   fin si
@@ -103,10 +106,12 @@ fin funcion
 ```
 
 ```{code-block}
-:linenos:
-:name: merge
-:emphasize-lines: 2, 7
-:caption: Función de Mezcla (Merge)
+---
+linenos: true
+name: merge
+emphasize-lines: 2, 7
+caption: Función de Mezcla (Merge)
+---
 funcion merge(izquierda, derecha)
   resultado ← arreglo vacío // Arreglo para almacenar la mezcla
   i ← 0 // Índice para la sublista izquierda
@@ -137,31 +142,33 @@ funcion merge(izquierda, derecha)
   retornar resultado
 fin funcion
 ```
-En la línea 2 de la función `merge`, por cada mezcla que se realiza se crea un nuevo arreglo `resultado` que contendrá los elementos ordenados de las dos sublistas. Esto es necesario porque Mergesort no modifica las listas originales, sino que crea una nueva lista ordenada a partir de ellas.
 
-En la línea 7 de la función `merge` es fundamental que se compare por menor igual (`<=`) para garantizar la estabilidad del algoritmo, es decir, que los elementos iguales mantengan su orden relativo original.
+En la línea 2 de la función `merge`{l=go}, por cada mezcla que se realiza se crea un nuevo arreglo `resultado`{l=go} que contendrá los elementos ordenados de las dos sublistas. Esto es necesario porque Mergesort no modifica las listas originales, sino que crea una nueva lista ordenada a partir de ellas.
+
+En la línea 7 de la función `merge`{l=go} es fundamental que se compare por menor igual (`<=`{l=go}) para garantizar la estabilidad del algoritmo, es decir, que los elementos iguales mantengan su orden relativo original.
 
 A continuación se puede visualizar paso a paso el funcionamiento de Mergesort:
 
 <iframe src="https://opendsa-server.cs.vt.edu/embed/mergesortAV" height="650" width="100%" scrolling="no"></iframe>
 
-#### Análisis de la Complejidad Computacional:
+#### Análisis de la Complejidad Computacional
 
 La recurrencia para el tiempo de ejecución de Mergesort se puede expresar como:
 $T(n) = 2T(n/2) + O(n)$
 Donde:
-* $2T(n/2)$ representa el costo de ordenar las dos sublistas de tamaño $n/2$.
-* $O(n)$ representa el costo de la operación de mezcla (merge), ya que en el peor caso se recorren todos los elementos de ambas sublistas una vez para fusionarlas.
+
+- $2T(n/2)$ representa el costo de ordenar las dos sublistas de tamaño $n/2$.
+- $O(n)$ representa el costo de la operación de mezcla (merge), ya que en el peor caso se recorren todos los elementos de ambas sublistas una vez para fusionarlas.
 
 Aplicando el Teorema Maestro, se obtiene que la complejidad de tiempo es **$O(n \log n)$**, ya que subdivide recursivamente el arreglo en mitades hasta llegar al caso base y luego combina los resultados de manera lineal.
 
-En este algoritmo no hay un caso mejor o peor, ya que la división y la mezcla siempre ocurren de la misma manera, lo que da como resultado una complejidad de tiempo consistente. 
+En este algoritmo no hay un caso mejor o peor, ya que la división y la mezcla siempre ocurren de la misma manera, lo que da como resultado una complejidad de tiempo consistente.
 
 ### Quicksort (Ordenamiento Rápido)
 
 **Quicksort**, como **Mergesort**, es un algoritmo de ordenamiento basado en el paradigma "divide y vencerás". Sin embargo, su enfoque es diferente y su eficiencia en la práctica lo ha convertido en uno de los algoritmos de ordenamiento más utilizados. Quicksort **no es un algoritmo de ordenamiento estable** ni _**Online**_ pero si es _**In-Place**_ y estrictamente hablando tampoco se puede asegurar que sea de división y conquista, ya que por la forma de partir el arreglo, no se puede asegurar que las sublistas resultantes sean de tamaño similar. A pesar de esto, es ampliamente considerado como uno de los algoritmos más eficientes para ordenar grandes volúmenes de datos.
 
-La idea principal detrás de Quicksort es seleccionar un elemento de la lista, llamado **pivote**, y reorganizar los elementos de tal manera que todos los elementos menores que el pivote queden a su izquierda y todos los elementos mayores queden a su derecha. Luego, se aplica recursivamente el mismo proceso a las sublistas resultantes. Los elementos a la izquierda y derecha del pivote no están necesariamente ordenados, pero el pivote estará en su posición final ordenada después de la partición. 
+La idea principal detrás de Quicksort es seleccionar un elemento de la lista, llamado **pivote**, y reorganizar los elementos de tal manera que todos los elementos menores que el pivote queden a su izquierda y todos los elementos mayores queden a su derecha. Luego, se aplica recursivamente el mismo proceso a las sublistas resultantes. Los elementos a la izquierda y derecha del pivote no están necesariamente ordenados, pero el pivote estará en su posición final ordenada después de la partición.
 
 Esta técnica de partición es lo que distingue a Quicksort de otros algoritmos de ordenamiento, se conoce como **partición de 3 vías**.
 
@@ -179,9 +186,11 @@ Combinar
 : No hay una fase de combinación explícita, ya que la lista se ordena "en el lugar" a medida que las sublistas se ordenan recursivamente. La lista completa queda ordenada una vez que todas las sublistas han sido procesadas.
 
 ```{code-block}
-:linenos:
-:name: quicksort
-:caption: Quicksort (Ordenamiento Rápido)
+---
+linenos: true
+name: quicksort
+caption: Quicksort (Ordenamiento Rápido)
+---
 funcion Quicksort(arreglo, inicio, fin)
  si inicio >= fin entonces
     retornar // Caso base: si el subarreglo tiene 0 o 1 elementos, ya está ordenado
@@ -192,10 +201,13 @@ funcion Quicksort(arreglo, inicio, fin)
   Quicksort(arreglo, pivote_indice + 1, fin)
 fin funcion
 ```
-````{code-block}
-:linenos:
-:name: particionar
-:caption: Partición de 3 vías
+
+```{code-block}
+---
+linenos: true
+name: particionar
+caption: Partición de 3 vías
+---
 funcion Particionar(arreglo, inicio, fin)
   // Elegir el elemento del medio como pivote
   medio = (inicio + fin) / 2
@@ -229,12 +241,14 @@ funcion Particionar(arreglo, inicio, fin)
 
   retornar i // Retorna el índice final del pivote
 fin funcion
-````
+```
 
 ```{code-block}
-:linenos:
-:name: intercambiar
-:caption: Intercambio de elementos
+---
+linenos: true
+name: intercambiar
+caption: Intercambio de elementos
+---
 funcion Intercambiar(arreglo, i, j)
   temp = arreglo[i]
   arreglo[i] = arreglo[j]
@@ -250,19 +264,19 @@ Si el pivote elegido es justo el mayor elemento del arreglo (o el menor), la par
 
 Una técnica común para mitigar este comportamiento es elegir el pivote como la **"mediana de tres"**, que toma el primer, el último y el elemento del medio del arreglo y selecciona el que está en el medio de esos tres valores. Esto ayuda a evitar particiones muy desequilibradas.
 
-Por ejemplo, si tenemos un arreglo `[3, 6, 8, 10, 1, 2, 1]` la mediana de tres compara el primer elemento `3`, el último elemento `1` y el del medio `10`, y selecciona `3` como pivote, lo que ayuda a evitar un caso de peor rendimiento.
+Por ejemplo, si tenemos un arreglo `{...}[3, 6, 8, 10, 1, 2, 1]`{l=go} la mediana de tres compara el primer elemento `3`{l=go}, el último elemento `1`{l=go} y el del medio `10`{l=go}, y selecciona `3`{l=go} como pivote, lo que ayuda a evitar un caso de peor rendimiento.
 
 A continuación se puede visualizar paso a paso el funcionamiento de Quicksort:
 
 <iframe src="https://opendsa-server.cs.vt.edu/embed/quicksortAV" height="450" width="100%" scrolling="no"></iframe>
 
-### Análisis de la Complejidad Computacional:
+### Análisis de la Complejidad Computacional
 
 La complejidad temporal de Quicksort depende de la elección del pivote y de cómo se distribuyen los elementos en el arreglo:
 
 Mejor Caso
 : Ocurre cuando el pivote divide el arreglo en dos subarreglos de tamaño aproximadamente igual en cada llamada recursiva. En este caso, la recurrencia es:
-  $T(n) = 2T(n/2) + O(n)$. Aplicando el Teorema Maestro, obtenemos una complejidad de tiempo de **$O(n \log n)$**.
+$T(n) = 2T(n/2) + O(n)$. Aplicando el Teorema Maestro, obtenemos una complejidad de tiempo de **$O(n \log n)$**.
 
 Caso Promedio
 : En promedio, una buena implementación de Quicksort también logra una complejidad de tiempo de **$O(n \log n)$**. Es fundamental que la elección del pivote sea aleatoria o que se utilice una estrategia como la mediana de tres para evitar particiones muy desequilibradas.
@@ -274,13 +288,14 @@ Si bien Quicksort tiene un peor caso de $O(n^2)$, este escenario es raro en la p
 
 ### Heapsort (Ordenamiento por Montículos)
 
-**Heapsort** es un algoritmo que no se basa en el paradigma de "división y conquista", sino que utiliza un _heap_ o montículo como estructura de datos subyacente para ordenar los elementos. 
+**Heapsort** es un algoritmo que no se basa en el paradigma de "división y conquista", sino que utiliza un _heap_ o montículo como estructura de datos subyacente para ordenar los elementos.
 
 **Heapsort no es estable** ni _**Onilne**_, pero si _**In Place**_ por lo que no requiere espacio adicional significativo.
 
 Fue desarrollado por J. W. J. Williams en 1964 y es un algoritmo eficiente que garantiza un tiempo de ejecución de $O(n \log n)$ en todos los casos (mejor, promedio y peor).
 
 #### Funcionamiento
+
 Heapsort consta de dos fases principales:
 
 Construcción del _Heap_ (_Heapify_)
@@ -294,14 +309,16 @@ Extracción de Elementos (_Sort_)
 : Una vez que el arreglo es un _heap_ de máximos, el elemento más grande (la raíz del _heap_) está en la primera posición. Se intercambia el elemento raíz con el último elemento del _heap_. Se reduce el tamaño del _heap_ en uno (excluyendo el elemento que acaba de ser colocado en su posición final). Se "hunde" el nuevo elemento raíz (que era el último elemento) para restaurar la propiedad de _heap_. (Esta etapa del algoritmo es similar a **Selección**)
 
 ```{code-block}
-:linenos:
-:caption: Heapsort (Ordenamiento por Montículos)
+---
+linenos: true
+caption: Heapsort (Ordenamiento por Montículos)
+---
 funcion Heapsort(arreglo)
   n ← longitud(arreglo)
 
   // Heapify: Construir el _heap_ de máximo
   // En un _heap_ el último nodo que no es hoja es el nodo en la posición n/2 - 1
-  // Al hundir cada nodo desde (n/2)-1 hasta 0, se asegura que todos los nodos 
+  // Al hundir cada nodo desde (n/2)-1 hasta 0, se asegura que todos los nodos
   // cumplen la propiedad de heap
   // y por lo tanto el arreglo se convierte en un _heap_ de máximos
   para i desde (n/2)-1 hasta 0 hacer
@@ -318,7 +335,7 @@ fin funcion
 
 La función [Intercambiar](#intercambiar) es la misma que en Quicksort.
 
-#### Análisis de la Complejidad Computacional:
+#### Análisis de la Complejidad Computacional
 
 La complejidad temporal de Heapsort es **$O(n \log n)$** en todos los casos (mejor, promedio y peor). Esto se debe a que la fase de construcción del _heap_ toma $O(n)$ tiempo y la etapa de extracción de elementos toma $O(n \log n)$
 
@@ -344,7 +361,9 @@ Los nodos (69), (66) y (97) están a altura 1, los nodos (24) y (96) a altura 2 
 
 La complejidad total de construir un _heap_ es la suma de los costos de downHeap para todos los nodos. Matemáticamente, esto se puede expresar como:
 
-$$ \sum_{h=0}^{\lfloor \log_2 n \rfloor} \frac{n}{2^{h+1}} \cdot h $$
+$$
+\sum_{h=0}^{\lfloor \log_2 n \rfloor} \frac{n}{2^{h+1}} \cdot h
+$$
 
 Donde $h$ es la altura del nodo, y $\frac{n}{2^{h+1}}$ es el número aproximado de nodos que hay a esa altura. Esta suma se puede simplificar y se demuestra que es $O(n)$. Es decir, el tiempo requerido para convertir un arreglo desordenado en un _heap_ es lineal con el número de elementos en el arreglo.
 
@@ -368,7 +387,7 @@ En esta etapa el algoritmo es similar al algoritmo de selección, en el sentido 
 
 ```{table} Algoritmos de Ordenamiento Recursivos
 | Algoritmo     |      Mergesort      |      Quicksort      |       Heapsort      |
-| :------------ | :------------------ | :------------------ | :------------------ |
+| :------------ | :-----------------: | :-----------------: | :-----------------: |
 | Peor Caso     | $O(n \log n)$       | $O(n^2)$            | $O(n \log n)$       |
 | Caso Promedio | $O(n \log n)$       | $O(n \log n)$       | $O(n \log n)$       |
 | Mejor Caso    | $O(n \log n)$       | $O(n \log n)$       | $O(n \log n)$       |
@@ -385,6 +404,6 @@ Los algoritmos de ordenamiento, basados en comparaciones (es decir que deben com
 
 ## Ejercicios
 
-1. Implementar Mergesort, de forma genérica que reciba por parámetro un arreglo de elementos tipo `Ordered` y devuelva un arreglo ordenado
-2. Implementar Quicksort, de forma genérica que reciba por parámetro un arreglo de elementos tipo `Ordered` y ordene el arreglo _**In Place**_
-3. Implementar Heapsort, de forma genérica, que reciba por parámetro un arreglo de elementos tipo `Ordered` y ordene el arreglo _**In Place**_
+1. Implementar Mergesort, de forma genérica que reciba por parámetro un arreglo de elementos tipo `Ordered`{l=go} y devuelva un arreglo ordenado
+2. Implementar Quicksort, de forma genérica que reciba por parámetro un arreglo de elementos tipo `Ordered`{l=go} y ordene el arreglo _**In Place**_
+3. Implementar Heapsort, de forma genérica, que reciba por parámetro un arreglo de elementos tipo `Ordered`{l=go} y ordene el arreglo _**In Place**_

@@ -1,7 +1,9 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Conjuntos
@@ -22,46 +24,46 @@ Las operaciones básicas que se pueden realizar con conjuntos se pueden dividir 
 
 ## Operaciones sobre los elementos
 
-`Contains`
+`Contains`{l=go}
 : Verificar si un elemento está en el conjunto.
 
-`Add`
+`Add`{l=go}
 : Agregar un elemento al conjunto.
 
-`Remove`
+`Remove`{l=go}
 : Eliminar un elemento del conjunto.
 
-`Size`
+`Size`{l=go}
 : Obtener el número de elementos del conjunto.
 
-`Values`
+`Values`{l=go}
 : Obtener los elementos del conjunto.
 
 ## Operaciones entre conjuntos
 
-`Union`
+`Union`{l=go}
 : Crear un nuevo conjunto con los elementos de dos conjuntos.
 
-`Intersection`
+`Intersection`{l=go}
 : Crear un nuevo conjunto con los elementos comunes de dos conjuntos.
 
-`Difference`
+`Difference`{l=go}
 : Crear un nuevo conjunto con los elementos que están en el primer conjunto pero no en el segundo.
 
-`Subset`
+`Subset`{l=go}
 : Verificar si un conjunto es subconjunto de otro.
 
-`SimeetricDifference`
+`SimeetricDifference`{l=go}
 : Crear un nuevo conjunto con los elementos que están en uno de los conjuntos pero no en ambos.
 
-`Superset`
+`Superset`{l=go}
 : Verificar si un conjunto es superconjunto de otro.
 
 ## Implementación
 
 En Go no existe un tipo de dato nativo para conjuntos. Existen muchas formas de implementarlos, sobre arreglos, listas enlazadas, o mapas.
 
-A modo de ejemplo se muestra una implementación sobre un mapa de tipo `map[int]bool` para representar un conjunto de enteros
+A modo de ejemplo se muestra una implementación sobre un mapa de tipo `map[int]bool`{l=go} para representar un conjunto de enteros
 
 ```go
 package main
@@ -118,11 +120,11 @@ func main() {
 
 ## Orden de las operaciones
 
-Las operaciones sobre conjuntos tienen un costo asociado. Por ejemplo, en la implementación anterior, las operaciones `Add`, `Remove`, `Size` y `Contains` tienen un costo de tiempo constante $O(1)$. Por otro lado, la operación `Values` tiene un costo de tiempo lineal $O(n)$. El orden de las operaciones depende de la implementación del conjunto.
+Las operaciones sobre conjuntos tienen un costo asociado. Por ejemplo, en la implementación anterior, las operaciones `Add`{l=go}, `Remove`{l=go}, `Size`{l=go} y `Contains`{l=go} tienen un costo de tiempo constante $O(1)$. Por otro lado, la operación `Values`{l=go} tiene un costo de tiempo lineal $O(n)$. El orden de las operaciones depende de la implementación del conjunto.
 
 ## Ejercicios
 
-1. Implementar la operaciones `Union`, `Intersection`, `Difference`, `Subset`, `SymmetricDifference` y `Superset` para el conjunto de enteros dado como ejemplo.
+1. Implementar la operaciones `Union`{l=go}, `Intersection`{l=go}, `Difference`{l=go}, `Subset`{l=go}, `SymmetricDifference`{l=go} y `Superset`{l=go} para el conjunto de enteros dado como ejemplo.
 2. Implementar un conjunto genérico que permita almacenar cualquier tipo de dato.
 3. Implementar un conjunto basado en arreglos (que no use maps ni tablas de hashing). Implementar tantos las operaciones sobre elementos como las operaciones entre conjuntos.
 4. Implementar un conjunto basado en listas enlazadas. Implementar tantos las operaciones sobre elementos como las operaciones entre conjuntos.

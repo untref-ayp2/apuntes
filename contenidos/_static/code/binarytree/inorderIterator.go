@@ -4,18 +4,18 @@ import (
 	"apunte/stack"
 	"errors"
 
-	"golang.org/x/exp/constraints"
+	"cmp"
 )
 
 // InorderIterator implementa un iterador para recorrer un árbol binario de
 // búsqueda en order (inorder).
 // Utiliza una pila para almacenar los nodos visitados y permite iterar sobre
 // ellos en order ascendente.
-type InorderIterator[T constraints.Ordered] struct {
+type InorderIterator[T cmp.Ordered] struct {
 	stack *stack.Stack[*BinaryNode[T]]
 }
 
-func newInorderIterator[T constraints.Ordered](root *BinaryNode[T]) *InorderIterator[T] {
+func newInorderIterator[T cmp.Ordered](root *BinaryNode[T]) *InorderIterator[T] {
 	// Crea un nuevo iterador de tipo InorderIterator.
 	it := &InorderIterator[T]{}
 	// Inicializa el iterador con la raíz del árbol y apila todos los nodos

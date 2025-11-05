@@ -1,7 +1,9 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Iteradores en Árboles Binarios de Busqueda (ABB)
@@ -10,20 +12,23 @@ En este anexo, vamos a implementar iteradores para un Árbol Binario de Búsqued
 
 ## Interfaz del Iterador
 
-En el siguiente fragmento de código definimos la interfaz `Iterator` que contendrá los métodos necesarios para iterar cualquier colección de elementos y en particular los nodos de un ABB.
+En el siguiente fragmento de código definimos la interfaz `Iterator`{l=go} que contendrá los métodos necesarios para iterar cualquier colección de elementos y en particular los nodos de un ABB.
 
 ```{literalinclude} ../_static/code/types/types.go
-:lineno-match:
-:linenos:
+---
+language: go
+lineno-match: true
+linenos: true
+---
 ```
 
 Los métodos que debe implementar un iterador son los siguientes
 
-_HasNext_
-: Indica si hay un siguiente elemento en la colección. Devuelve `true` si hay más elementos por recorrer, o `false` si se ha llegado al final de la colección.
+`HasNext`{l=go}
+: Indica si hay un siguiente elemento en la colección. Devuelve `true`{l=go} si hay más elementos por recorrer, o `false`{l=go} si se ha llegado al final de la colección.
 
-_Next_
-: Devuelve el siguiente elemento de la colección. El comportamiento de Next consiste en avanzar al próximo elemento y devolverlo. Si no hay más elementos para iterar devuelve un elemento nulo y un error.
+`Next`{l=go}
+: Devuelve el siguiente elemento de la colección. El comportamiento de `Next`{l=go} consiste en avanzar al próximo elemento y devolverlo. Si no hay más elementos para iterar devuelve un elemento nulo y un error.
 
 ## Árbol Binario de Búsqueda (ABB)
 
@@ -31,25 +36,31 @@ En esta implementación de ABB la funcionalidad del árbol se encuentra en el á
 
 Los métodos incluidos son los mínimos y necesarios para crear un árbol, insertar elementos y obtener los distintos iteradores.
 
-El árbol es genérico del tipo `constraints.Ordered`, lo que significa que los valores deben ser comparables y ordenables, es decir deben soportar las operaciones de comparación como `<`, `<=`, `>`, `>=`, `==` y `!=`.
+El árbol es genérico del tipo `cmp.Ordered`{l=go}, lo que significa que los valores deben ser comparables y ordenables, es decir deben soportar las operaciones de comparación como `<`{l=go}, `<=`{l=go}, `>`{l=go}, `>=`{l=go}, `==`{l=go} y `!=`{l=go}.
 
 A continuación se muestra la estructura del nodo del ABB.
 
 ```{literalinclude} ../_static/code/binarytree/binarynode.go
-:start-at: type BinaryNode
-:end-at: }
-:lineno-match:
-:linenos:
+---
+language: go
+start-at: type BinaryNode
+end-at: }
+lineno-match: true
+linenos: true
+---
 ```
 
-El tipo `BinaryNode` solo tiene los métodos necesarios para crear un nodo y obtener su valor. No contiene métodos para insertar o eliminar nodos, ya que toda la funcionalidad del árbol está implementada en `BinarySearchTree` directamente.
+El tipo `BinaryNode`{l=go} solo tiene los métodos necesarios para crear un nodo y obtener su valor. No contiene métodos para insertar o eliminar nodos, ya que toda la funcionalidad del árbol está implementada en `BinarySearchTree`{l=go} directamente.
 
 En la implementación del ABB tenemos los métodos para obtener los iteradores:
 
 ```{literalinclude} ../_static/code/binarytree/binarysearchtree.go
-:lineno-match:
-:linenos:
-:emphasize-lines: 95, 100, 105
+---
+language: go
+lineno-match: true
+linenos: true
+emphasize-lines: 95, 100, 105
+---
 ```
 
 Al crear un iterador se ejecuta un setup inicial que depende de cada tipo de iterador.
@@ -58,7 +69,7 @@ Al crear un iterador se ejecuta un setup inicial que depende de cada tipo de ite
 
 Cuando estudiamos los recorridos de árboles (inorder, preorder, postorder), la forma más intuitiva y elegante de implementarlos es usando recursión, ya que el código queda conciso, limpio y fácil de entender.
 
-Sin embargo, cuando hablamos de un iterador, la situación cambia. Un iterador, por definición (según el patrón Iterador), debe permitirnos obtener el "siguiente" elemento de la colección a demanda, sin tener que procesar el resto de la colección de antemano. Es decir, queremos que nuestro método Next() devuelva un único valor y luego HasNext() nos diga si hay más, esperando una nueva llamada a Next().
+Sin embargo, cuando hablamos de un iterador, la situación cambia. Un iterador, por definición (según el patrón Iterador), debe permitirnos obtener el "siguiente" elemento de la colección a demanda, sin tener que procesar el resto de la colección de antemano. Es decir, queremos que nuestro método `Next()`{l=go} devuelva un único valor y luego Has`Next()`{l=go} nos diga si hay más, esperando una nueva llamada a `Next()`{l=go}.
 
 Aquí es donde la recursión directa presenta un desafío:
 
@@ -66,12 +77,12 @@ Manejo del estado:
 Una función recursiva completa su ejecución y devuelve un resultado. No "pausa" su estado para ser reanudada en el mismo punto más tarde. Cada llamada recursiva crea un nuevo stack frame (marco de pila) que se destruye al finalizar.
 
 Devolución de un solo elemento
-: Si intentáramos adaptar la recursión para devolver un solo elemento en cada llamada a Next(), nos encontraríamos con que la función recursiva ya ha avanzado en el recorrido, y sería muy difícil mantener el "punto exacto" en el que nos quedamos para la siguiente llamada.
+: Si intentáramos adaptar la recursión para devolver un solo elemento en cada llamada a `Next()`{l=go}, nos encontraríamos con que la función recursiva ya ha avanzado en el recorrido, y sería muy difícil mantener el "punto exacto" en el que nos quedamos para la siguiente llamada.
 
-Espacio en memoria (stack overflow)
+Espacio en memoria (_stack overflow_)
 : Para árboles muy grandes o muy desbalanceados (degenerados), una implementación recursiva podría consumir una gran cantidad de memoria de la pila de llamadas, llevando a un error de stack overflow.
 
-Para superar estos desafíos y crear un iterador que sea _lazy_ (bajo demanda) y eficiente en memoria, necesitamos una forma de simular la pila de llamadas recursiva de forma explícita. Y la estructura de datos perfecta para esto es, precisamente, una pila (stack).
+Para superar estos desafíos y crear un iterador que sea _lazy_ (bajo demanda) y eficiente en memoria, necesitamos una forma de simular la pila de llamadas recursiva de forma explícita. Y la estructura de datos perfecta para esto es, precisamente, una pila (_stack_).
 
 ```{Note}
 Que sea _lazy_ significa que el iterador no calcula todos los elementos de antemano, sino que los obtiene a medida que se le solicita un nuevo elemento. Esto es fundamental para manejar colecciones grandes o infinitas sin consumir demasiada memoria.
@@ -84,10 +95,10 @@ Al usar una pila en nuestros iteradores, nosotros somos los que gestionamos el "
 Esta técnica nos permite:
 
 Pausar y Reanudar
-: Cuando Next() es llamado, podemos extraer el siguiente nodo a visitar de la pila, devolverlo, y luego dejar la pila en un estado que representa el "resto" del recorrido. La próxima vez que se llame Next(), la pila nos recordará dónde estábamos.
+: Cuando `Next()`{l=go} es llamado, podemos extraer el siguiente nodo a visitar de la pila, devolverlo, y luego dejar la pila en un estado que representa el "resto" del recorrido. La próxima vez que se llame `Next()`{l=go}, la pila nos recordará dónde estábamos.
 
 Eficiencia en Memoria
-: La profundidad de la pila que necesitamos es proporcional a la altura del árbol (O(h)), no al número total de nodos (O(N)), lo que es mucho más eficiente para árboles grandes y balanceados (O(logN)).
+: La profundidad de la pila que necesitamos es proporcional a la altura del árbol ($O(h)$), no al número total de nodos ($O(N)$), lo que es mucho más eficiente para árboles grandes y balanceados ($O(\log{N})$).
 
 Control Explícito
 : Tenemos un control total sobre el orden en que los nodos se agregan y se eliminan de la pila, lo que es fundamental para implementar correctamente los diferentes tipos de recorridos.
@@ -99,7 +110,7 @@ La estrategia para el iterador inorder es la siguiente:
 1. Comenzamos desde la raíz del árbol.
 2. Vamos hacia la izquierda hasta llegar al nodo más a la izquierda apilando los nodos en la pila.
 3. El menor elemento del árbol será el nodo más a la izquierda es el que se encuentra en el tope de la pila.
-4. Cuando llamamos a Next(), sacamos el nodo del tope de la pila, chequeamos si tiene un hijo derecho. Si lo tiene, vamos a ese hijo derecho y repetimos el proceso de ir hacia la izquierda, apilando los nodos.
+4. Cuando llamamos a `Next()`{l=go}, sacamos el nodo del tope de la pila, chequeamos si tiene un hijo derecho. Si lo tiene, vamos a ese hijo derecho y repetimos el proceso de ir hacia la izquierda, apilando los nodos.
 5. Una vez que no hay más nodos a la izquierda, el tope de la pila contendrá el siguiente nodo en orden.
 6. Devolvemos el elemento del nodo que acabamos de sacar de la pila.
 
@@ -118,8 +129,11 @@ En el siguiente fragmento de código se puede observar la implementación del it
 El setup inicial consiste en apilar la raíz y toda la rama izquierda para iniciar. De esta forma el primer nodo que se desapila es el menor de todo el árbol
 
 ```{literalinclude} ../_static/code/binarytree/inorderIterator.go
-:lineno-match:
-:linenos:
+---
+language: go
+lineno-match: true
+linenos: true
+---
 ```
 
 ## Iterador Preorder
@@ -128,7 +142,7 @@ La estrategia para el iterador preorder varía un poco, ya que lo primero que de
 
 1. Comenzamos desde la raíz del árbol.
 2. Apilamos sólo la raíz
-3. Al desapilar un nodo cuando se llama a Next(), se apilan primero su hijo derecho y luego su hijo izquierdo (para que el orden de salida de la pila sea primero el izquierdo y luego el derecho). El próximo en salir de la pila será la raíz del subárbol izquierdo.
+3. Al desapilar un nodo cuando se llama a `Next()`{l=go}, se apilan primero su hijo derecho y luego su hijo izquierdo (para que el orden de salida de la pila sea primero el izquierdo y luego el derecho). El próximo en salir de la pila será la raíz del subárbol izquierdo.
 4. Devolvemos el elemento del nodo que acabamos de sacar de la pila.
 5. Se repite hasta que la pila queda vacía.
 
@@ -147,8 +161,11 @@ En el siguiente fragmento de código se puede observar la implementación del it
 El setup inicial consiste en apilar la raíz solamente.
 
 ```{literalinclude} ../_static/code/binarytree/preorderIterator.go
-:lineno-match:
-:linenos:
+---
+language: go
+lineno-match: true
+linenos: true
+---
 ```
 
 ## Iterador Postorder
@@ -159,18 +176,20 @@ El recorrido postorder visita los nodos en el orden: izquierda, derecha, raíz. 
 
 Por eso, se usan dos pilas para simular el recorrido postorder de manera iterativa, la primera pila se usa para recorrer el árbol y la segunda para almacenar los nodos en postorder. La inicialización del iterador implica recorrer todo el árbol y apilar los nodos en la segunda pila. Luego se pueden desapilar los nodos de la segunda pila a demanda.
 
-* __Setup inicial:__
-  * Se apila la raíz en la primera pila.
-  * Mientras stack1 no esté vacía:
-    * Se desapila un nodo de stack1 y se apila en la segunda pila (stack2).
-    * Si el nodo tiene hijo izquierdo, se apila en stack1.
-    * Si el nodo tiene hijo derecho, se apila en stack1.
+- __Setup inicial:__
+
+  - Se apila la raíz en la primera pila.
+  - Mientras stack1 no esté vacía:
+    - Se desapila un nodo de stack1 y se apila en la segunda pila (stack2).
+    - Si el nodo tiene hijo izquierdo, se apila en stack1.
+    - Si el nodo tiene hijo derecho, se apila en stack1.
 
   Así, stack1 sirve para recorrer el árbol y stack2 va guardando los nodos en un orden tal que, al desapilar de stack2, obtenemos el recorrido postorder.
 
-* __Iteración:__
-  * Cuando se llama a Next(), simplemente se desapila un nodo de stack2 y se devuelve su valor.
-  * HasNext() verifica si stack2 aún tiene nodos.
+- __Iteración:__
+
+  - Cuando se llama a `Next()`{l=go}, simplemente se desapila un nodo de stack2 y se devuelve su valor.
+  - Has`Next()`{l=go} verifica si stack2 aún tiene nodos.
 
 <iframe
   src="https://docs.google.com/presentation/d/1UKgXA9gn01o90VSMud5RHdnPDxas7GWhIXZg8Pl1ZWY/embed"
@@ -187,9 +206,13 @@ En el siguiente fragmento de código se puede observar la implementación del it
 El setup inicial consiste en apilar la raíz solamente.
 
 ```{literalinclude} ../_static/code/binarytree/postorderIterator.go
-:lineno-match:
-:linenos:
+---
+language: go
+lineno-match: true
+linenos: true
+---
 ```
+
 ## Código completo en Go
 
 [Descargar código fuente](../_static/code.zip)

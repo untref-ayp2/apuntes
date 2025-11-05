@@ -1,7 +1,9 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # _Backtracking_ (Vuelta Atrás)
@@ -30,19 +32,18 @@ Para encontrar una solución posible, la idea es ir colocando una reina en cada 
 
 En la siguiente animación se muestra el proceso de búsqueda de una solución al problema de las N reinas para N=4. En este caso, se puede ver cómo se van colocando las reinas y cómo se vuelve atrás cuando no hay más opciones disponibles.
 
-<!-- markdownlint-disable MD033 -->
 <p class="align-center">
   <video src="../_static/videos/NReinas-20250516.mp4" width="100%" controls autoplay loop></video>
 </p>
-<!-- markdownlint-enable MD033 -->
 
 ## Algoritmo de _Backtracking_
 
 A continuación se muestra la estructura general de este esquema:
 
 ```{code-block} text
-:linenos:
-
+---
+linenos: true
+---
 FUNCION backtracking(solucionParcial, ...)
     SI esSolucion(solucionParcial) ENTONCES
         mostrar(solucionParcial)
@@ -59,39 +60,39 @@ FUNCION backtracking(solucionParcial, ...)
 
 Para resolver un problema con _backtracking_, se deben identificar y definir los siguientes elementos:
 
-`solucionParcial`
-: Determinar una estructura de datos adecuada para representar la solución parcial. Puede ser un vector, una lista, etc. `solucionParcial` debe permitir agregar nuevas opciones y verificar si es una solución válida.
+`solucionParcial`{l=go}
+: Determinar una estructura de datos adecuada para representar la solución parcial. Puede ser un vector, una lista, etc. `solucionParcial`{l=go} debe permitir agregar nuevas opciones y verificar si es una solución válida.
 
-`esSolucion`
-: Definir una función que verifique si `solucionParcial` es una solución completa.
+`esSolucion`{l=go}
+: Definir una función que verifique si `solucionParcial`{l=go} es una solución completa.
 
-`extender`
-: Definir una función que tome una `solucionParcial` y devuelva una a una todas las opciones posibles para extenderla. Esta función debe generar todas las combinaciones posibles de extender `solucionParcial`.
+`extender`{l=go}
+: Definir una función que tome una `solucionParcial`{l=go} y devuelva una a una todas las opciones posibles para extenderla. Esta función debe generar todas las combinaciones posibles de extender `solucionParcial`{l=go}.
 
-`esFactible`
-: Definir una función que verifique si una opción es válida para extender `solucionParcial`. Esta función debe verificar si la opción no viola ninguna restricción del problema.
+`esFactible`{l=go}
+: Definir una función que verifique si una opción es válida para extender `solucionParcial`{l=go}. Esta función debe verificar si la opción no viola ninguna restricción del problema.
 
-`registrar`
-: Definir una función que registre la opción generada con `extender` en la `solucionParcial`. Eventualmente puede ser necesario registrar información adicional de la opción generada.
+`registrar`{l=go}
+: Definir una función que registre la opción generada con `extender`{l=go} en la `solucionParcial`{l=go}. Eventualmente puede ser necesario registrar información adicional de la opción generada.
 
-`borrar`
-: Definir una función que borre la última opción registrada en `solucionParcial`. Es decir es el paso opuesto al de `registrar`. Si es necesario también debe restaurar cualquier información extra o de contexto registrada anteriormente.
+`borrar`{l=go}
+: Definir una función que borre la última opción registrada en `solucionParcial`{l=go}. Es decir es el paso opuesto al de `registrar`{l=go}. Si es necesario también debe restaurar cualquier información extra o de contexto registrada anteriormente.
 
 ## Implementación de la solución al problema de las N reinas
 
-`solucionParcial`
+`solucionParcial`{l=go}
 : puede ser un arreglo de tamaño $N$ donde las posiciones del arreglo representan las filas y los valores alamacenados en cada posición del arreglo representan las columnas. Por ejemplo, para el caso de $N=4$, una solución parcial podría ser $[2, 0, 3, 1]$, lo que significa que hay una reina en la fila $0$ en la columna $2$, una reina en la fila $1$ en la columna $0$, etc.
 
-`esSolucion`
-: es una función que verifica si la `solucionParcial` tiene $N$ reinas. En este caso, se verifica si la longitud del arreglo `solucionParcial` es igual a $N$.
+`esSolucion`{l=go}
+: es una función que verifica si la `solucionParcial`{l=go} tiene $N$ reinas. En este caso, se verifica si la longitud del arreglo `solucionParcial`{l=go} es igual a $N$.
 
-`extender`
+`extender`{l=go}
 : con un solo ciclo entre $[0, N)$, podemos generar todas las posibles columnas en la que se puede colocar una reina en la fila $i$.
 
-`esFactible`
+`esFactible`{l=go}
 : es una función que debe chequear si en la misma columna o en las diagonales hay otras reinas que entren en conflicto con la nueva reina que intentamos agregar al tablero.
 
-: Para chequear si hay ya una reina en la misma columna basta con revisar los valores del arreglo `solucionParcial` para asegurarse que la columna candidata no está atacada por otra reina, es decir no puede haber dos valores iguales en el arreglo y para chequear si hay una reina en alguna de las dos diagonales que se pueden generar en cualquier posición del tablero, se puede usar la propiedad de que en todas las diagonales directas, por nombrarlas de alguna forma, las de color azul, $fila - columna = constante$. Mientras que para las diagonales inversas, las de color rojo, se cumple que $fila + columna = constante$. Ver la figura a continuación.
+: Para chequear si hay ya una reina en la misma columna basta con revisar los valores del arreglo `solucionParcial`{l=go} para asegurarse que la columna candidata no está atacada por otra reina, es decir no puede haber dos valores iguales en el arreglo y para chequear si hay una reina en alguna de las dos diagonales que se pueden generar en cualquier posición del tablero, se puede usar la propiedad de que en todas las diagonales directas, por nombrarlas de alguna forma, las de color azul, $fila - columna = constante$. Mientras que para las diagonales inversas, las de color rojo, se cumple que $fila + columna = constante$. Ver la figura a continuación.
 
 ```{figure} ../assets/images/NReinasDiagonal.svg
 ---
@@ -104,8 +105,9 @@ Reinas en la misma diagonal
 A continuación se muestra una implementación en Go.
 
 ```{code-block} go
-:linenos:
-
+---
+linenos: true
+---
 package nreinas
 
 // NReinas es una función que implementa la solución al problema de las N reinas.

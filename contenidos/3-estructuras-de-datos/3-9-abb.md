@@ -1,19 +1,20 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Árboles Binarios de Búsqueda
 
-:::{Admonition} Definición de Árbol Binario de Búsqueda
+```{Admonition} Definición de Árbol Binario de Búsqueda
 Un árbol binario de búsqueda es un árbol binario que cumple con las siguientes propiedades para cada nodo N:
 
 - Todos los nodos en el subárbol izquierdo de N tienen valores menores que el valor de N.
 - Todos los nodos en el subárbol derecho de N tienen valores mayores que el valor de N.
 - Ambos subárboles (izquierdo y derecho) deben ser también árboles binarios de búsqueda.
-
-:::
+```
 
 En la siguiente figura se muestran dos árboles binarios, el de la izquierda cumple con la propiedad de ABB y por lo tanto es un árbol binario de búsqueda, mientras que el de la derecha no cumple con la propiedad ya que el nodo (8) es mayor que el (7) que se encuentra en la raíz del árbol y por lo tanto no se cumple que los todos los nodos del subárbol izquierdo son menores que la raíz.
 
@@ -53,7 +54,7 @@ Para insertar un nuevo nodo en un árbol binario de búsqueda, se sigue el sigui
 ```{code-block}
 ---
 caption: Algoritmo de inserción en un árbol binario de búsqueda
-linenos:
+linenos: true
 ---
 FUNCION InsertarABB(raiz, valor)
     SI raiz ES nula ENTONCES
@@ -69,11 +70,9 @@ FIN FUNCION
 
 En la siguiente animación se observa la inserción del valor (6) en un árbol binario de búsqueda.
 
-<!-- markdownlint-disable MD033 -->
 <p class="align-center">
   <video src="../_static/videos/insercionABB.mp4" width="300" controls autoplay loop></video>
 </p>
-<!-- markdownlint-enable MD033 -->
 
 1. Se compara el valor (6) con la raíz (7) y como (6) es menor se desciende al subárbol izquierdo.
 2. Se compara el valor (6) con la raíz (2) del subárbol izquierdo y como (6) es mayor se desciende al subárbol derecho.
@@ -93,7 +92,7 @@ La búsqueda en un árbol binario de búsqueda también se realiza de manera rec
 ```{code-block}
 ---
 caption: Algoritmo de búsqueda en un árbol binario de búsqueda
-linenos:
+linenos: true
 ---
 FUNCION BuscarABB(raiz, valor)
     SI raiz ES nula ENTONCES
@@ -110,11 +109,9 @@ FIN FUNCION
 
 En la siguiente animación se observa la búsqueda del valor (4) que no se encuentra.
 
-<!-- markdownlint-disable MD033 -->
 <p class="align-center">
   <video src="../_static/videos/busquedaABB.mp4" width="300" controls autoplay loop></video>
 </p>
-<!-- markdownlint-enable MD033 -->
 
 ### Eliminación
 
@@ -167,7 +164,7 @@ A continuación se presenta el algoritmo de eliminación de un nodo en un árbol
 ```{code-block}
 ---
 caption: Algoritmo de eliminación en un árbol binario de búsqueda
-linenos:
+linenos: true
 ---
 FUNCION EliminarABB(raiz, valor)
     SI raiz ES nula ENTONCES
@@ -200,7 +197,7 @@ FIN FUNCION
 ```{code-block}
 ---
 caption: Algoritmo de búsqueda del nodo máximo en un árbol binario de búsqueda
-linenos:
+linenos: true
 ---
 FUNCION BuscarMaximo(raiz)
     SI raiz.derecho ES nula ENTONCES
@@ -265,26 +262,28 @@ La altura $h$ de un árbol binario degenerado en una lista se puede calcular com
 
 ## Implementación de un árbol binario de búsqueda
 
-A continuación se presenta una implementación de un árbol binario de búsqueda en Go donde se utiliza un tipo genérico `T` que permite almacenar cualquier tipo de dato que implemente la interfaz `constraints.Ordered`, es decir cualquier tipo de dato que soporte orden total y se puedan comparar los elementos con `<`, `>`, `==`, `<=`, `>=`.
+A continuación se presenta una implementación de un árbol binario de búsqueda en Go donde se utiliza un tipo genérico `T`{l=go} que permite almacenar cualquier tipo de dato que implemente la interfaz `cmp.Ordered`{l=go}, es decir cualquier tipo de dato que soporte orden total y se puedan comparar los elementos con `<`{l=go}, `>`{l=go}, `==`{l=go}, `<=`{l=go}, `>=`{l=go}.
 
 En esta implementación las funcionalidades para manipular el árbol están en el árbol propiamiente dicho.
 
 Como en el caso de las listas se puede delegar la implementación de las operaciones a los nodos del árbol, lo que permite que el árbol esté menos acoplado a la implementación de los nodos.
 
 ```{note}
-En la implementación se utiliza el paquete [`golang.org/x/exp/constraints`](https://pkg.go.dev/golang.org/x/exp/constraints) que permite definir restricciones en los tipos genéricos. Este paquete es parte de la biblioteca de Go y se utiliza para trabajar con tipos genéricos y restricciones de tipo.
+En la implementación se utiliza el paquete [`cmp`](https://pkg.go.dev/cmp) que permite definir restricciones en los tipos genéricos. Este paquete es parte de la biblioteca de Go y se utiliza para trabajar con tipos genéricos y restricciones de tipo.
 ```
 
 ### Nodo binario
 
 ```{code-block} go
-:linenos:
+---
+linenos: true
+---
 package binarysearchtree
 
-import "golang.org/x/exp/constraints"
+import "cmp"
 
 // BinaryNode representa un nodo en un árbol binario.
-type BinaryNode[T constraints.Ordered] struct {
+type BinaryNode[T cmp.Ordered] struct {
     Value T
     Left  *BinaryNode[T]
     Right *BinaryNode[T]
@@ -294,18 +293,20 @@ type BinaryNode[T constraints.Ordered] struct {
 ### Árbol binario de búsqueda
 
 ```{code-block} go
-:linenos:
+---
+linenos: true
+---
 package binarysearchtree
 
-import "golang.org/x/exp/constraints"
+import "cmp"
 
 // BinarySearchTree representa un árbol de búsqueda binario.
-type BinarySearchTree[T constraints.Ordered] struct {
+type BinarySearchTree[T cmp.Ordered] struct {
     Root *BinaryNode[T]
 }
 
 // NewBinarySearchTree crea un nuevo árbol de búsqueda binario vacío.
-func NewBinarySearchTree[T constraints.Ordered]() *BinarySearchTree[T] {
+func NewBinarySearchTree[T cmp.Ordered]() *BinarySearchTree[T] {
     return &BinarySearchTree[T]{}
 }
 
@@ -451,7 +452,9 @@ func (bst *BinarySearchTree[T]) postorderRecursive(node *BinaryNode[T], result *
 ### Ejemplo de uso
 
 ```{code-block} go
-:linenos:
+---
+linenos: true
+---
 package main
 
 import (

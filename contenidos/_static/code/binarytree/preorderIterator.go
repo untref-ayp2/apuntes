@@ -4,14 +4,14 @@ import (
 	"apunte/stack"
 	"errors"
 
-	"golang.org/x/exp/constraints"
+	"cmp"
 )
 
-type PreorderIterator[T constraints.Ordered] struct {
+type PreorderIterator[T cmp.Ordered] struct {
 	stack *stack.Stack[*BinaryNode[T]]
 }
 
-func newPreorderIterator[T constraints.Ordered](root *BinaryNode[T]) *PreorderIterator[T] {
+func newPreorderIterator[T cmp.Ordered](root *BinaryNode[T]) *PreorderIterator[T] {
 	// Crea un nuevo iterador de tipo PreorderIterator.
 	it := &PreorderIterator[T]{}
 	// Inicializa el iterador con la raíz del árbol y apila la raíz.

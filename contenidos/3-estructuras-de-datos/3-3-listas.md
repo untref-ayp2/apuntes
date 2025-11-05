@@ -1,7 +1,9 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Listas Enlazadas
@@ -31,43 +33,43 @@ Las listas que estudiaremos son:
 
 Las listas enlazadas son muy versátiles y su comportamiento se puede adaptar a medida de las necesidades. Algunas de las operaciones típicas que soporta una lista enlazada son:
 
-`Head`
+`Head`{l=go}
 : Devuelve un puntero al primer elemento de la lista.
 
-`Tail`
+`Tail`{l=go}
 : Devuelve un puntero al último elemento de la lista.
 
-`Size`
+`Size`{l=go}
 : Devuelve el tamaño de la lista (cantidad de nodos que tiene la lista).
 
-`IsEmpty`
-: Devuelve **Verdadero** si la lista está vacía o **Falso** en caso contrario.
+`IsEmpty`{l=go}
+: Devuelve `true`{l=go} si la lista está vacía o `false`{l=go} en caso contrario.
 
-`Prepend`
+`Prepend`{l=go}
 : Insertar un elemento en la cabeza de la lista.
 
-`Append`
+`Append`{l=go}
 : Insertar un elemento en la cola de la lista.
 
-`InsertAfter`
+`InsertAfter`{l=go}
 : Inserta un elemento a continuación de un elemento dado.
 
-`InsertBefore`
+`InsertBefore`{l=go}
 : Inserta un elemento antes de un elemento dado.
 
-`RemoveFirst`
+`RemoveFirst`{l=go}
 : Elimina el primer elemento de la lista.
 
-`RemoveLast`
+`RemoveLast`{l=go}
 : Elimina el último elemento de la lista.
 
-`Remove`
+`Remove`{l=go}
 : Elimina la primera aparición del elemento dado.
 
-`Find`
+`Find`{l=go}
 : Devuelve un puntero a la primera aparición de un elemento buscado.
 
-`Clear`
+`Clear`{l=go}
 : Elimina todos los elementos de la lista
 
 ## Lista Enlazada Simple
@@ -98,7 +100,9 @@ Lista Enlazada Simple
 Para buscar un elemento no queda otra alternativa que recorrer toda la lista desde la cabeza de la misma hasta encontrar el elemento o llegar al final de la lista y determinar que no se encuentra. Si encuentra el elemento devuelve un puntero al nodo correspondiente o nulo en caso contrario
 
 ```{code-block}
-:linenos:
+---
+linenos: true
+---
 Find(buscado):
     actual := self.Head()
     mientras actual != nulo:
@@ -113,7 +117,9 @@ Find(buscado):
 Supongamos que dada la lista de la figura {ref}`lista-simple`, se quiere insertar un elemento nuevo después de un elemento dado. Para poder lograrlo primero hay que crear un nuevo nodo con el elemento a insertar, buscar el elemento después del cual se quiere insertar y finalmente actualizar los campos siguientes de los nodos:
 
 ```{code-block}
-:linenos:
+---
+linenos: true
+---
 InsertAfter(buscado, elemento):
     nuevo := NuevoNodo(elemento)
     actual := self.Find(buscado)
@@ -137,7 +143,9 @@ Inserción en una Lista Enlazada Simple
 Supongamos que dada la lista de la figura {ref}`lista-simple`, se quiere eliminar el elemento **E3**, para no perder la integridad de la lista se deben seguir los pasos a continuación:
 
 ```{code-block}
-:linenos:
+---
+linenos: true
+---
 Remove(buscado):
     si
     actual := self.Find(buscado)
@@ -147,7 +155,6 @@ Remove(buscado):
             return
         previo := self.Head()
         mientras previo.Next().Data()
-
 ```
 
 Eventualmente el recolector de basura liberará la memoria que ocupa el nodo **E3**, ya no es alcanzable (no hay ningún puntero que nos permita llegar a **E3**). Ver figura {ref}`ssl-eliminacion`
@@ -164,27 +171,28 @@ Eliminación de un elemento en una Lista Enlazada Simple
 
 En la siguiente tabla se muestra el orden que deberían tener las operaciones básicas sobre una lista enlazada simple
 
-:::{table} Orden de las Operaciones
-:width: 40%
-:align: center
+```{table} Orden de las Operaciones
+---
+width: 40%
+align: center
+---
+|      Operación       | Orden  |
+| :------------------: | :----: |
+|     `Head`{l=go}     | $O(1)$ |
+|     `Tail`{l=go}     | $O(1)$ |
+|     `Size`{l=go}     | $O(1)$ |
+|   `IsEmpty`{l=go}    | $O(1)$ |
+|   `Prepend`{l=go}    | $O(1)$ |
+|    `Append`{l=go}    | $O(1)$ |
+| `InsertAfter`{l=go}  | $O(n)$ |
+| `InsertBefore`{l=go} | $O(n)$ |
+| `RemoveFirst`{l=go}  | $O(1)$ |
+|  `RemoveLast`{l=go}  | $O(n)$ |
+|    `Remove`{l=go}    | $O(n)$ |
+|     `Find`{l=go}     | $O(n)$ |
+|    `Clear`{l=go}     | $O(1)$ |
 
-|   Operación    | Orden  |
-| :------------: | :----: |
-|     `Head`     | $O(1)$ |
-|     `Tail`     | $O(1)$ |
-|     `Size`     | $O(1)$ |
-|   `IsEmpty`    | $O(1)$ |
-|   `Prepend`    | $O(1)$ |
-|    `Append`    | $O(1)$ |
-| `InsertAfter`  | $O(n)$ |
-| `InsertBefore` | $O(n)$ |
-| `RemoveFirst`  | $O(1)$ |
-|  `RemoveLast`  | $O(n)$ |
-|    `Remove`    | $O(n)$ |
-|     `Find`     | $O(n)$ |
-|    `Clear`     | $O(1)$ |
-
-:::
+```
 
 Las operaciones que requieren recorrer la lista son $O(n)$. En particular buscar un elemento, insertar o eliminar un elemento en una posición arbitraria requieren recorrer uno a uno cada nodo hasta posicionarse en el nodo adecuado.
 
@@ -204,10 +212,12 @@ Implementación de una Lista Enlazada Simple, con punteros a la cabeza y la cola
 
 ### Implementación en Go
 
-A continuación una implementación de una lista enlazada simple, donde se definen dos tipos `LinkedNode` como un node de lista que contiene un dato y un puntero al siguiente y el tipo `LinkedList`. Los datos de la lista son genéricos, pero se piden que sean Comparables entre sí
+A continuación una implementación de una lista enlazada simple, donde se definen dos tipos `LinkedNode`{l=go} como un node de lista que contiene un dato y un puntero al siguiente y el tipo `LinkedList`{l=go}. Los datos de la lista son genéricos, pero se piden que sean Comparables entre sí
 
 ```{code-block} go
-:linenos:
+---
+linenos: true
+---
 package list
 
 // LinkedNode representa un nodo de una lista enlazada simple.
@@ -289,7 +299,9 @@ func (n *LinkedNode[T]) HasNext() bool {
 ```
 
 ```{code-block} go
-:linenos:
+---
+linenos: true
+---
 package list
 
 import "fmt"

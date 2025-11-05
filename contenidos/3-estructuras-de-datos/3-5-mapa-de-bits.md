@@ -1,7 +1,9 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Mapas de Bits
@@ -44,9 +46,10 @@ _NOT_ (Negación)
 
 A continuación se presenta la tabla de verdad de las operaciones lógicas booleanas sobre bits:
 
-:::{table} Tabla de verdad de las operaciones sobre bits
-:align: center
-
+```{table} Tabla de verdad de las operaciones sobre bits
+---
+align: center
+---
 |  A  |  B  | `(A & B)` | `(A \| B)` | `(A ^ B)` | `(^A)` |
 | :-: | :-: | :-------: | :--------: | :-------: | :----: |
 |  0  |  0  |     0     |     0      |     0     |   1    |
@@ -54,7 +57,7 @@ A continuación se presenta la tabla de verdad de las operaciones lógicas boole
 |  1  |  0  |     0     |     1      |     1     |   0    |
 |  1  |  1  |     1     |     1      |     0     |   0    |
 
-:::
+```
 
 ### Operadores binarios en Go
 
@@ -134,10 +137,11 @@ c := a &^ b // 0b1100 & 0b0101 = 0b0100 (4)
 
 Esto significa que el resultado `c`{l=go} tiene un 1 en la posición 2 porque se han borrado los bits 1 y 3 de la entrada `a`{l=go}.
 
-:::{table} Operaciones sobre bits en Go
-:align: center
-:width: 50%
-
+```{table} Operaciones sobre bits en Go
+---
+align: center
+width: 50%
+---
 |         Operación          |  Símbolo   |    Ejemplo     |
 | :------------------------: | :--------: | :------------: |
 |            AND             | `&`{l=go}  | `a & b`{l=go}  |
@@ -148,14 +152,15 @@ Esto significa que el resultado `c`{l=go} tiene un 1 en la posición 2 porque se
 |            NOT             | `^`{l=go}  |   `^a`{l=go}   |
 |          AND NOT           | `&^`{l=go} | `a &^ b`{l=go} |
 
-:::
+```
 
 Go también soporta los operadores de asignación compuesta, que combinan una operación binaria con una asignación. Estos operadores son:
 
-:::{table} Operadores de asignación compuesta en Go
-:align: center
-:width: 50%
-
+```{table} Operadores de asignación compuesta en Go
+---
+align: center
+width: 50%
+---
 |   Símbolo   |     Operación      |     Ejemplo     |
 | :---------: | :----------------: | :-------------: |
 | `&=`{l=go}  | `a = a & b`{l=go}  | `a &= b`{l=go}  |
@@ -165,7 +170,7 @@ Go también soporta los operadores de asignación compuesta, que combinan una op
 | `>>=`{l=go} | `a = a >> b`{l=go} | `a >>= b`{l=go} |
 | `&^=`{l=go} | `a = a &^ b`{l=go} | `a &^= b`{l=go} |
 
-:::
+```
 
 ## Ejercicios
 

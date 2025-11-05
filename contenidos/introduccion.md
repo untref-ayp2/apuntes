@@ -1,3 +1,11 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+---
+
 # Algoritmos y Programación II
 
 La asignatura está incluida entre las materias básicas de la formación de la carrera [Ingeniería en Computación](https://www.untref.edu.ar/carrera/ingenieria-en-computacion), de la Universidad Nacional de Tres de Febrero, Buenos Aires, Argentina.

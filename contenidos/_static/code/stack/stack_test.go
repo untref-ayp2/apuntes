@@ -93,4 +93,3 @@ func TestPeekEmptyStack(t *testing.T) {
 		t.Error("expected error when peeking from empty stack, got nil")
 	}
 }
-

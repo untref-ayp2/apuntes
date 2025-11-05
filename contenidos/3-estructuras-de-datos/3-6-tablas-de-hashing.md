@@ -1,14 +1,14 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Tablas de _Hash_
 
 Las tablas de _hash_ son estructuras de datos eficientes para almacenar y recuperar información. Emplean una función _hash_ para convertir claves en índices dentro de un arreglo, permitiendo un acceso a los datos en tiempo promedio constante ($O(1)$[^1]). Esto las hace ideales para implementar diccionarios, conjuntos y otras estructuras que demandan búsquedas rápidas. Una tabla de _hash_ extiende la idea de un arreglo tradicional, posibilitando el uso de claves de cualquier tipo para acceder a sus posiciones, gracias a la función _hash_ que asigna cada clave a un índice específico en el arreglo. La eficacia de esta estructura depende de una función _hash_ que sea rápida y distribuya las claves de manera uniforme en el arreglo. La siguiente imagen ilustra los componentes de una tabla de _hash_.
-
-[^1]: En este caso se toma el tiempo promedio, bajo ciertas condiciones. Cuando se evalua un TAD donde se insertan, buscan y remueven elementos muy frecuentemente, se acostumbra tomar el tiempo promedio de las operaciones. Sin embargo, en el peor de los casos, algunas operaciones pueden tener un orden lineal.
 
 ```{figure} ../assets/images/TablaHash1.svg
 ---
@@ -27,7 +27,7 @@ Función de _hash_
 : Una función que toma una clave y devuelve un índice en el arreglo.
 
 Arreglo
-: La estructura de datos subyacente que almacena los elementos, es un arreglo de pares **`(clave, valor)`**. El tamaño del arreglo debe ser lo suficientemente grande para evitar colisiones, pero no tan grande como para desperdiciar espacio. Se debe almacenar el par `(clave, valor)` para poder distinguir entre claves diferentes que colisionan en el mismo índice.
+: La estructura de datos subyacente que almacena los elementos, es un arreglo de pares **`(clave, valor)`{l=go}**. El tamaño del arreglo debe ser lo suficientemente grande para evitar colisiones, pero no tan grande como para desperdiciar espacio. Se debe almacenar el par `(clave, valor)`{l=go} para poder distinguir entre claves diferentes que colisionan en el mismo índice.
 
 Colisiones
 : Ocurren cuando dos claves diferentes se mapean al mismo índice en el arreglo. Las colisiones deben manejarse de manera eficiente para garantizar un rendimiento óptimo de la tabla de _hash_.
@@ -259,32 +259,34 @@ func NewHashTable[K string, V any](capacity uint, loadFactor float32) *HashTable
 //
 // - Si la clave es nula, no se agrega nada.
 func (ht *HashTable[K, V]) Put(key K, value V) {
-	// Si la clave ya existe, actualizamos el valor.
-	if index, esta := ht.getIndex(key); esta {
-		ht.buckets[index].value = value
-		return
-	}
+    // Si la clave ya existe, actualizamos el valor.
+    if index, esta := ht.getIndex(key); esta {
+        ht.buckets[index].value = value
+        return
+    }
 
-	// Si la clave es nula, no se agrega nada.
-	if key == "" {
-		return
-	}
-	// Si la tabla de hash está llena, redimensionamos.
-	if ht.size >= ht.threshold {
-		ht.resize()
-	}
-	// La clave no existe, así que la agregamos.
-	index := ht.hash(key) % ht.capacity
-	for {
-		if ht.buckets[index] == nil || ht.buckets[index].key == "" {
-			// Si el bucket está vacío, insertamos el nuevo par clave-valor.
-			ht.buckets[index] = &hashTableEntry[K, V]{key: key, value: value}
-			ht.size++
-			return
-		}
-		// Si el bucket está ocupado probamos el siguiente índice.
-		index = (index + 1) % ht.capacity
-	}
+    // Si la clave es nula, no se agrega nada.
+    if key == "" {
+        return
+    }
+
+    // Si la tabla de hash está llena, redimensionamos.
+    if ht.size >= ht.threshold {
+        ht.resize()
+    }
+
+    // La clave no existe, así que la agregamos.
+    index := ht.hash(key) % ht.capacity
+    for {
+        if ht.buckets[index] == nil || ht.buckets[index].key == "" {
+            // Si el bucket está vacío, insertamos el nuevo par clave-valor.
+            ht.buckets[index] = &hashTableEntry[K, V]{key: key, value: value}
+            ht.size++
+            return
+        }
+        // Si el bucket está ocupado probamos el siguiente índice.
+        index = (index + 1) % ht.capacity
+    }
 }
 
 
@@ -468,6 +470,8 @@ Para implementar una tabla de _hash_ genérica, que soporte cualquier tipo de cl
 
 1. Modificar la tabla de _hash_ cerrada para que las claves puedan ser de distintos tipos (usar el paquete [`maphash`](https://pkg.go.dev/hash/maphash) de Go).
 
-2. Implementar una tabla de _hash_ abierta. Para ello se debe implementar una lista enlazada que almacene los elementos en cada posición del arreglo. Cuando se produce una colisión, el nuevo elemento se agrega a la lista en la posición correspondiente. La tabla debe tener los mismos métodos que la tabla de _hash_ cerrada: `Put`, `Get`, `Remove`, `Keys`, `Values`, `Size`, `IsEmpty`, `Clear` y `String`. Las claves deben ser de cualquier tipo.
+2. Implementar una tabla de _hash_ abierta. Para ello se debe implementar una lista enlazada que almacene los elementos en cada posición del arreglo. Cuando se produce una colisión, el nuevo elemento se agrega a la lista en la posición correspondiente. La tabla debe tener los mismos métodos que la tabla de _hash_ cerrada: `Put`{l=go}, `Get`{l=go}, `Remove`{l=go}, `Keys`{l=go}, `Values`{l=go}, `Size`{l=go}, `IsEmpty`{l=go}, `Clear`{l=go} y `String`{l=go}. Las claves deben ser de cualquier tipo.
 
 3. Escribir casos de pruebas que cubran todas las operaciones de los puntos anteriores.
+
+[^1]: En este caso se toma el tiempo promedio, bajo ciertas condiciones. Cuando se evalua un TAD donde se insertan, buscan y remueven elementos muy frecuentemente, se acostumbra tomar el tiempo promedio de las operaciones. Sin embargo, en el peor de los casos, algunas operaciones pueden tener un orden lineal.

@@ -1,7 +1,9 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Árboles Binarios de Búsqueda Balanceados
@@ -22,7 +24,7 @@ El nombre "AVL" proviene de las iniciales de sus inventores. Su principal innova
 
 Formalmente:
 
-:::{admonition} Definición de Árbol AVL
+````{admonition} Definición de Árbol AVL
 
 ```{math}
 \text{AVL } \text{si}
@@ -38,7 +40,7 @@ Formalmente:
 \end{cases}
 ```
 
-:::
+````
 
 En esta definición aparece el concepto de **factor de balanceo** o **factor de equilibrio** de un nodo, que se define como la diferencia entre las alturas de los subárboles izquierdo y derecho:
 
@@ -74,7 +76,7 @@ name: AVL
 
 ### Rotación simple a derecha
 
-Supongamos que en {AVL} se inserta el (18), lo que desbalancea el nodo (23). Si observamos el (23) se desbalanceo cuando se insertó un elemento a la izquierda de su subárbol izquierdo y este desbalanceo solo es local, ya que tanto el (17) como el (50) permanecen balanceados.
+Supongamos que en {ref}`AVL` se inserta el (18), lo que desbalancea el nodo (23). Si observamos el (23) se desbalanceo cuando se insertó un elemento a la izquierda de su subárbol izquierdo y este desbalanceo solo es local, ya que tanto el (17) como el (50) permanecen balanceados.
 
 ```{figure} ../assets/images/AVLIZQIZQ.svg
 ---
@@ -209,16 +211,15 @@ Desbalanceo Derecha-Izquierda, árbol rebalanceado
 ```{Important}
 Las rotaciones son operaciones locales que solo afectan a un pequeño número de nodos en el árbol. Cuando se inserta un nuevo nodo, en el camino de regreso a la raíz, se verifica el balanceo de cada nodo y se realizan las rotaciones necesarias. Siempre las rotaciones se realizan en el camino de regreso a la raíz, es decir, desde el nodo recién insertado hasta la raíz del árbol.
 ```
-En el siguiente enlace encontrarán un visualizador de árboles AVL que permite ver cómo se realizan las rotaciones y el balanceo del árbol en tiempo real: 
 
-[Visualizador de Árboles AVL](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html){target="_blank"}.
+En el siguiente enlace encontrarán un visualizador de árboles AVL que permite ver cómo se realizan las rotaciones y el balanceo del árbol en tiempo real:
 
-
+[Visualizador de Árboles AVL](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html){target="\_blank"}.
 
 ## Ejercicios
 
 1. Dado el siguiente árbol AVL, inserte los siguientes elementos en el árbol y dibuje el árbol resultante después de cada inserción: 10, 20, 30, 40, 50, 25.
 2. Dado el siguiente árbol AVL, elimine los siguientes elementos del árbol y dibuje el árbol resultante después de cada eliminación: 30, 20, 10.
 3. Dado el siguiente árbol AVL, determine el factor de balanceo de cada nodo y dibuje el árbol resultante después de cada rotación necesaria para mantener el equilibrio: 10, 20, 30, 40, 50, 25.
-4. Escribir un método en árbol binario de búsqueda con el nombre `esAVL`que devuelva `True` si el árbol es AVL y `False` en caso contrario.
+4. Escribir un método en árbol binario de búsqueda con el nombre `esAVL`{l=go} que devuelva `true`{l=go} si el árbol es AVL y `false`{l=go} en caso contrario.
 5. Implementar un árbol AVL en Go y realizar las operaciones de inserción, eliminación y búsqueda.

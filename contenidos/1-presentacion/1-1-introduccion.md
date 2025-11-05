@@ -1,3 +1,11 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+---
+
 # De que va la materia
 
 En informática podemos entender a un algoritmo como una **secuencia de pasos que se deben ejecutar para realizar una determinada tarea**. Por ejemplo existen varios algoritmos para ordenar una secuencia de elementos. Cada algoritmo de ordenamiento es una forma distinta de realizar la misma tarea. Algunos algoritmos pueden ser más eficientes que otros o más fácil de escribir y/o mantener que otros, etc.
@@ -51,6 +59,3 @@ Algunos lenguajes de programación, al igual que los idiomas hablados, permiten 
 Teniendo en cuenta que esta materia es parte de la formación de ingenieras/os en computación cuyo foco está en los sistemas integrados de hardware y software, elegimos a Go como lenguaje, porque es un lenguaje moderno, fácil de aprender y a su vez más cercano al hardware que otros lenguajes.
 
 <h1 class="align-center">¡Bienvenidos a AyP2!</h1>
-
-<iframe src="C:\Users\valeb\Mi unidad (vbecker@untref.edu.ar)\UNTREF\AyP2\ReposGo\UNTREF-AYP2\apuntes (1)\contenidos\1-presentacion\pag1y2.pdf" width="100%" height="600px">
-</iframe>

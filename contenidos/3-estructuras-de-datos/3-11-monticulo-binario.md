@@ -1,7 +1,9 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Colas de Prioridad y Montículos Binarios
@@ -14,10 +16,11 @@ Si todos los elementos tienen la misma prioridad, la cola se comporta como una c
 
 Por ejemplo, si se tiene una cola de prioridad con los siguientes elementos y prioridades, y la posición en la tabla corresponde al orden de llegada de los elementos, es decir se insertaron en orden alfabético y además suponemos que la prioridad 1 es la mayor, luego la 2 y así sucesivamente.
 
-:::{table} Cola de Prioridad
-:width: 40%
-:align: center
-
+```{table} Cola de Prioridad
+---
+width: 40%
+align: center
+---
 | Elemento | Prioridad |
 | :------: | :-------: |
 |    A     |     3     |
@@ -30,7 +33,7 @@ Por ejemplo, si se tiene una cola de prioridad con los siguientes elementos y pr
 |    H     |     3     |
 |    I     |     2     |
 
-:::
+```
 
 La cola de prioridad se comportará de la siguiente forma:
 
@@ -104,35 +107,42 @@ Representación con arreglos de un Montículo Binario de Mínimos
 
 Con las siguientes fórmulas se puede calcular la posición en el arreglo de cualquier hijo o padre de un nodo dado.
 
-:::{card} Fórmulas
-$$H_{izq}(i) = 2 \; i + 1$$
+```{card} Fórmulas
+$$
+H_{izq}(i) = 2 \; i + 1
+$$
 
-$$H_{der}(i) = 2 \; i + 2$$
+$$
+H_{der}(i) = 2 \; i + 2
+$$
 
-$$Padre(i) = \left\lfloor \frac{i-1}{2} \right\rfloor$$
+$$
+Padre(i) = \left\lfloor \frac{i-1}{2} \right\rfloor
+$$
 
 Donde el símbolo $\lfloor \; \rfloor$ indica el piso, es decir la parte entera del cociente.
 
 +++
-Las fórmulas pueden variar si la primera posición del arreglo es 1 en lugar de 0. ¿Cómo serían las fórmulas?
-:::
 
-Por ejemplo en la posición 3 del arreglo se encuentra el elemento $H$, su hijo izquierdo se encuentra en la posición $2 \cdot 3 + 1 = 7$ y su hijo derecho en $2 \cdot 3 + 2 = 8$. A su vez el padre se encuentra en $\left\lfloor\frac{3-1}{2}\right\rfloor = 1$
+Las fórmulas pueden variar si la primera posición del arreglo es 1 en lugar de 0. ¿Cómo serían las fórmulas?
+```
+
+Por ejemplo en la posición 3 del arreglo se encuentra el elemento $H$, su hijo izquierdo se encuentra en la posición $2 \cdot 3 + 1 = 7$ y su hijo derecho en $2 \cdot 3 + 2 = 8$. A su vez el padre se encuentra en $\left\lfloor\frac{3-1}{2}\right\rfloor = 1$.
 
 ### Operaciones
 
 Las operaciones básicas que se pueden realizar en un montículo son:
 
-`Top`
+`Top`{l=go}
 : Devuelve el elemento que se encuentra en la cima del montículo, es decir el máximo o el mínimo de toda la estructura, pero no lo elimina.
 
-`Size`
+`Size`{l=go}
 : Devuelve la cantidad de elementos que se encuentran en el montículo.
 
-`Insert`
+`Insert`{l=go}
 : Inserta un nuevo elemento en el montículo.
 
-`Remove`
+`Remove`{l=go}
 : Elimina el elemento que se encuentra en la cima del montículo y lo devuelve.
 
 #### Insertar
@@ -143,9 +153,9 @@ Para preservar la propiedad de forma, es preciso insertar el elemento en la posi
 
 Al insertar el elemento $9$ en la posición 9 vemos que se perdió la propiedad de orden, ya que el 9 es mayor que su padre, el elemento $5$.
 
-Para reestrablecer la propiedad de orden se realiza la operación `upHeap` desde la hoja recién insertada. Esta operación consiste en comparar el elemento actual con su padre y si no se cumple la propiedad de orden intercambiarlos, luego compara el padre que acaba de intercambiar con su padre, hasta encontrar la posición correcta del elemento recién insertado dentro del montículo.
+Para reestrablecer la propiedad de orden se realiza la operación `upHeap`{l=go} desde la hoja recién insertada. Esta operación consiste en comparar el elemento actual con su padre y si no se cumple la propiedad de orden intercambiarlos, luego compara el padre que acaba de intercambiar con su padre, hasta encontrar la posición correcta del elemento recién insertado dentro del montículo.
 
-En el ejemplo de la figura primero intercambia el 9 con el 5. Es decir en el arreglo que representa el heap intercambia los elementos y luego compara la posición 4 con su padre que se encuentra en la posición 1. Cómo el $9$ es mayor que el $7$ los intercambia nuevamente. Finalmente compara la posición 1 con su padre, la raíz en la posición 0, y cómo $10$ es mayor que $9$ termina la operación `upHeap`.
+En el ejemplo de la figura primero intercambia el 9 con el 5. Es decir en el arreglo que representa el heap intercambia los elementos y luego compara la posición 4 con su padre que se encuentra en la posición 1. Cómo el $9$ es mayor que el $7$ los intercambia nuevamente. Finalmente compara la posición 1 con su padre, la raíz en la posición 0, y cómo $10$ es mayor que $9$ termina la operación `upHeap`{l=go}.
 
 ```{figure} ../assets/images/HeapInsercion.svg
 ---
@@ -155,16 +165,19 @@ Inserción en un Heap de Máximos
 ```
 
 ````{prf:algorithm} Insertar
-:label: Insertar
-
+---
+label: Insertar
+---
 Inserta un elemento dentro del Montículo
 
 **Entrada**
 
-- `elemento`: elemento a insertar
+- `elemento`{l=go}: elemento a insertar
 
 ```{code-block} go
-:linenos:
+---
+linenos: true
+---
 pos = cantidadDeElementos - 1
 A[pos] = elemento
 upHeap(pos)
@@ -172,16 +185,19 @@ upHeap(pos)
 ````
 
 ````{prf:algorithm} upHeap
-:label: upHeap
-
+---
+label: upHeap
+---
 Reestablece la Propiedad de Orden en un montículo de máximos, luego de insertar un elemento
 
 **Entrada**
 
-- `i`: posición dentro del heap donde empieza la operación. Inicialmente la última hoja recién insertada.
+- `i`{l=go}: posición dentro del heap donde empieza la operación. Inicialmente la última hoja recién insertada.
 
 ```{code-block} go
-:linenos:
+---
+linenos: true
+---
 padre = (i-1) / 2
 for A[i] < A[padre] {
     Intercambiar(A, i, padre)
@@ -199,7 +215,7 @@ Eliminar el máximo o el mínimo implica siempre eliminar la raíz del árbol, p
 
 Para preservar la propiedad de forma, es decir mantener todo el arreglo contiguo y sin posiciones vacías se elimina la última hoja, en la práctica se disminuye el tamaño del arreglo en 1 y el elemento que se encontraba en esa hoja se lo guarda en la raíz.
 
-Esta operación hace que se pierda la propiedad de orden, para reestablecerla se realiza la operación `downHeap`, que consiste en comparar la raíz con sus dos hijos y si la raíz es menor que los hijos (en un heap de máximos) se intercambia con el mayor de los hijos. Nuevamente se realiza la operación sobre el hijo hasta que se encuentra la posición correcta del elemento.
+Esta operación hace que se pierda la propiedad de orden, para reestablecerla se realiza la operación `downHeap`{l=go}, que consiste en comparar la raíz con sus dos hijos y si la raíz es menor que los hijos (en un heap de máximos) se intercambia con el mayor de los hijos. Nuevamente se realiza la operación sobre el hijo hasta que se encuentra la posición correcta del elemento.
 
 En la figura a continuación, se observa el proceso de eliminación de la raíz en un montículo de máximos
 
@@ -211,12 +227,15 @@ Eliminación en un Heap de Máximos
 ```
 
 ````{prf:algorithm} Eliminar
-:label: Eliminar
-
+---
+label: Eliminar
+---
 Elimina la cima del heap y devuelve el elemento correspondiente
 
 ```{code-block}
-:linenos:
+---
+linenos: true
+---
 elemento = A[0]
 ultimo = cantidadDeElementos - 1
 Intercambiar(A, 0, ultimo)
@@ -228,16 +247,19 @@ return elemento
 ````
 
 ````{prf:algorithm} downHeap
-:label: downHeap
-
+---
+label: downHeap
+---
 Reestablece la Propiedad de Orden en un montículo de máximos, luego de eliminar la raíz
 
 **Entrada**
 
-- `i`: posición dentro del heap donde empieza la operación. Inicialmente la raíz en la posición 0.
+- `i`{l=go}: posición dentro del heap donde empieza la operación. Inicialmente la raíz en la posición 0.
 
 ```{code-block}
-:linenos:
+---
+linenos: true
+---
 candidato = Elegir menor de los hijos
 Mientras A[i] < A[candidato]:
     Intercambiar(A, i, candidato)
@@ -248,29 +270,32 @@ Mientras A[i] < A[candidato]:
 
 #### Orden de las operaciones
 
-:::{table} Orden de las Operaciones
-:width: 40%
-:align: center
+```{table} Orden de las Operaciones
+---
+width: 40%
+align: center
+---
+|    Operación    |   Orden    |
+| :-------------: | :--------: |
+|   `Top`{l=go}   |   $O(1)$   |
+|  `Size`{l=go}   |   $O(1)$   |
+| `Insert`{l=go}  | $O(log_n)$ |
+| `Remove`{l=go}  | $O(log_n)$ |
 
-| Operación |   Orden    |
-| :-------: | :--------: |
-|   `Top`   |   $O(1)$   |
-|  `Size`   |   $O(1)$   |
-| `Insert`  | $O(log_n)$ |
-| `Remove`  | $O(log_n)$ |
-
-:::
+```
 
 Insertar y Remover tienen un orden garantizado de $O(log N)$ porque en el peor caso se debe recorrer la altura del árbol para reestablecer la propiedad de orden y el árbol siempre está balanceado.
 
 ## Ejercicios
 
 1. Implementar un montículo binario de máximos que soporte números enteros.
+
 2. Dadas la siguiente definición:
 
    ```{code-block} go
-   :linenos:
-
+   ---
+   linenos: true
+   ---
     type Heap[T any] struct {
         elements []T
         // compare es una función de comparación de elementos.
@@ -364,7 +389,7 @@ Insertar y Remover tienen un orden garantizado de $O(log N)$ porque en el peor c
     }
    ```
 
-3. Escribir casos de prueba para verificar que el montículo binario del punto anterior funciona correctamente. Usar `Persona` dado a continuación como elementos del montículo.
+3. Escribir casos de prueba para verificar que el montículo binario del punto anterior funciona correctamente. Usar `Persona`{l=go} dado a continuación como elementos del montículo.
 
    ```{code-block} go
     type Persona struct {

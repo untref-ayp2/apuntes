@@ -1,12 +1,14 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Tipos Abstractos de Datos
 
-Podemos imaginar un Tipo Abstracto de Datos (TAD) o _Abstract Data Type_ (DAT) en inglés, como una caja negra, la que puede contener valores y manipularlos, es decir realizar acciones con esos valores, por ejemplo ordenarlos, buscar un elemento dado, etc.
+Podemos imaginar un Tipo Abstracto de Datos (TAD) o _Abstract Data Type_ (ADT) en inglés, como una caja negra, la que puede contener valores y manipularlos, es decir realizar acciones con esos valores, por ejemplo ordenarlos, buscar un elemento dado, etc.
 
 ```{Admonition} Definición
 Un TAD es un modelo matemático caracterizado por:
@@ -45,4 +47,4 @@ Invariante de representación
 
 Por ejemplo en una lista de elementos todos los elementos tienen un sucesor y un predecesor salvo el primero y el último de la lista. El primero sólo tiene sucesor y el último sólo tiene predecesor. **Si no se cumple el invariante, entonces el TAD está "roto"**. Volviendo al ejemplo de la lista, si por algun motivo algún elemento intermedio pierde la referencia a su sucesor la lista queda inutilizable.
 
-Go cuenta con `struct` e `interface` para definir nuevos tipos abstractos de datos. Las estructuras nos permiten definir un conjunto de valores y un conjunto de operaciones asociadas a esas estructuras. Algunas de las operaciones pueden ser públicas, es decir, formar parte de la interfaz del TAD o ser privadas, para uso interno. Las interfaces permiten que varios tipos de datos que presentan el mismo comportamiento puedan manipularse como un único tipo
+Go cuenta con `struct`{l=go} e `interface`{l=go} para definir nuevos tipos abstractos de datos. Las estructuras nos permiten definir un conjunto de valores y un conjunto de operaciones asociadas a esas estructuras. Algunas de las operaciones pueden ser públicas, es decir, formar parte de la interfaz del TAD o ser privadas, para uso interno. Las interfaces permiten que varios tipos de datos que presentan el mismo comportamiento puedan manipularse como un único tipo.

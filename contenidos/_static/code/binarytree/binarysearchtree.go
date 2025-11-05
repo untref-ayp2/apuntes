@@ -3,14 +3,14 @@ package binarytree
 import (
 	"apunte/types"
 
-	"golang.org/x/exp/constraints"
+	"cmp"
 )
 
 // BinarySearchTree implementa un árbol binario de búsqueda
 // (Binary Search Tree, BST).
 // El árbol está compuesto por nodos de tipo BinaryNode, que contienen un valor
 // de tipo T generico pero Ordered.
-type BinarySearchTree[T constraints.Ordered] struct {
+type BinarySearchTree[T cmp.Ordered] struct {
 	root *BinaryNode[T]
 }
 
@@ -22,7 +22,7 @@ type BinarySearchTree[T constraints.Ordered] struct {
 //
 // Retorna:
 //   - un puntero a un nuevo BinarySearchTree.
-func NewBinarySearchTree[T constraints.Ordered]() *BinarySearchTree[T] {
+func NewBinarySearchTree[T cmp.Ordered]() *BinarySearchTree[T] {
 	return &BinarySearchTree[T]{root: nil}
 }
 

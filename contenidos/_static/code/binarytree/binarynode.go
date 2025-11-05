@@ -1,10 +1,8 @@
 package binarytree
 
-import (
-	"golang.org/x/exp/constraints"
-)
+import "cmp"
 
-type BinaryNode[T constraints.Ordered] struct {
+type BinaryNode[T cmp.Ordered] struct {
 	left  *BinaryNode[T]
 	right *BinaryNode[T]
 	data  T
@@ -23,7 +21,7 @@ type BinaryNode[T constraints.Ordered] struct {
 //
 // Retorna:
 //   - un puntero a un nuevo BinaryNode.
-func NewBinaryNode[T constraints.Ordered](
+func NewBinaryNode[T cmp.Ordered](
 	data T, left *BinaryNode[T],
 	right *BinaryNode[T]) *BinaryNode[T] {
 

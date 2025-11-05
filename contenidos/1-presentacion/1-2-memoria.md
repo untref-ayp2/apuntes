@@ -1,23 +1,12 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Gestión de memoria
-
-```{code-cell} go
-:tags: [remove-cell]
-import f "fmt"
-
-type FmtWrapper struct{}
-
-func (fw FmtWrapper) Println(a ...interface{}) {
-    _, _ = f.Println(a...)
-}
-
-var fmt FmtWrapper = FmtWrapper{}
-```
 
 En general la memoria de una computadora se puede clasificar en:
 
@@ -93,8 +82,9 @@ Consideraciones de Rendimiento
 Veamos un ejemplo, dado el siguiente fragmento de código:
 
 ```{code-block} go
-:linenos:
-
+---
+linenos: true
+---
 type Direccion struct {
     calle, ciudad, provincia string
     numero                   uint
@@ -145,7 +135,7 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
   - **Almacenamiento:** **Stack**
   - **Justificación:** `num` es una variable global, pero en Go, las variables simples como enteros suelen almacenarse en el _**stack**_ si no se necesita que persistan más allá del alcance de la función principal. Sin embargo, si el compilador detecta que se necesita más tiempo de vida, podría moverla al _**heap**_. En este caso, es probable que esté en el _**stack**_.
 
-  ***
+  ______________________________________________________________________
 
 - **`p1`**
 
@@ -158,7 +148,7 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
   - **Almacenamiento:** **Stack**
   - **Justificación:** `p1` es una variable de tipo `Persona` declarada como global. Su almacenamiento inicial será en el _**stack**_, donde solo tendremos una referencia para acceder a los datos que almacenará la estructura en el _**heap**_ . Los valores de los campos como `nombre` (`"Marcelo"`) se almacenan en el _**heap**_.
 
----
+______________________________________________________________________
 
 - **`p2`**
 
@@ -169,7 +159,7 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
   - **Almacenamiento:** **Stack**
   - **Justificación:** `p2` es una variable local inicializada en el _**stack**_. Sin embargo, el valor del campo `nombre` ("Pepe") se almacena en el _**heap**_, ya que las cadenas en Go son referencias.
 
-  ***
+  ______________________________________________________________________
 
 - **`p3`**
 
@@ -181,7 +171,7 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
   - **Almacenamiento:** **Stack** (estructura) y **Heap** (cadenas)
   - **Justificación:** La variable `p3` se almacena en el _**stack**_ porque es una variable local. Sin embargo, los valores de tipo `string` como `"Juan"`, `"Gonzalez"`, `"Valentín Gomez"`, etc., se almacenan en el _**heap**_, ya que las cadenas en Go son referencias a datos en memoria dinámica.
 
-  ***
+  ______________________________________________________________________
 
 - **`p4`**
 
@@ -191,7 +181,8 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
 
   - **Almacenamiento:** **Stack**
   - **Justificación:** `p4` es una copia de la dirección de memoria de `p2`. Dicho de otro modo es una copia de la referencia de `p2`. Se almacena en el _**stack**_. `p4` y `p2` apuntan a la misma ubicación en el _**heap**_.
-  ***
+
+  ______________________________________________________________________
 
 - **`dir`**
 
@@ -202,7 +193,7 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
   - **Almacenamiento:** **Stack** (estructura) y **Heap** (cadenas)
   - **Justificación:** La variable `dir` se almacena en el _**stack**_ porque es una variable local. Sin embargo, los valores de tipo `string` como `"Av. Corrientes"`, `"CABA"`, etc., se almacenan en el _**heap**_.
 
-  ***
+  ______________________________________________________________________
 
 **Resumen general:**
 
@@ -240,8 +231,9 @@ Un GC concurrente mejora el rendimiento y la experiencia del usuario, ya que evi
 Dado el siguiente fragmento de código:
 
 ```{code-block} go
-:linenos:
-
+---
+linenos: true
+---
 package main
 
 import "fmt"

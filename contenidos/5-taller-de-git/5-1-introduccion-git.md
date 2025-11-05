@@ -1,7 +1,9 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Introducción a Git y GitHub
@@ -66,7 +68,9 @@ Ahora podemos empezar a trabajar en nuestro proyecto. Cuando hayamos creado una 
 Imaginemos que hemos creado un archivo llamado `ejercicios.go` y hemos escrito un par de líneas de código. Si ahora ejecutamos `git status`, veremos que el archivo no está en el registro de cambios, por lo que debemos primero **agregarlos**.
 
 ```{code-block} console
-:emphasize-lines: 9
+---
+emphasize-lines: 9
+---
 ~/ayp2-repo $ nvim ejercicios.go
 
 ~/ayp2-repo $ git status
@@ -84,7 +88,9 @@ nothing added to commit but untracked files present (use "git add" to track)
 Podemos ver que Git no solo nos cuenta cual es el estado de nuestros cambios, sino que también nos dice que comando deberiamos usar para agregar el archivo al registro de cambios, entonces hagamos eso mismo:
 
 ```{code-block} console
-:emphasize-lines: 8
+---
+emphasize-lines: 8
+---
 ~/ayp2-repo $ git add ejercicios.go
 
 ~/ayp2-repo $ git status
@@ -111,7 +117,9 @@ Estamos listos para dejar registro de nuestro primer cambio. Como lo que hacemos
 Si ahora volvemos a consultar el estado del repo (cosa que como ya se habrán dado cuenta, se hace muy seguido), podemos ver que ya no hay cambios pendientes de registrar y nuestro _working tree_ está limpio.
 
 ```{code-block} console
-:emphasize-lines: 3
+---
+emphasize-lines: 3
+---
 ~/ayp2-repo $ git status
 On branch main
 nothing to commit, working tree clean
@@ -154,7 +162,9 @@ Switched to a new branch 'pruebas'
 Esto crea una nueva rama llamada `pruebas` y nos "cambia" a esa rama. Si ahora hacemos `git status`, veremos que estamos en la rama `pruebas`.
 
 ```{code-block} console
-:emphasize-lines: 2
+---
+emphasize-lines: 2
+---
 ~/ayp2-repo $ git status
 On branch pruebas
 nothing to commit, working tree clean
@@ -163,7 +173,9 @@ nothing to commit, working tree clean
 Para listar las _branches_ que tenemos, usamos el comando `git branch`:
 
 ```{code-block} console
-:emphasize-lines: 3
+---
+emphasize-lines: 3
+---
 ~/ayp2-repo $ git branch
   main
 * pruebas
@@ -232,4 +244,4 @@ Y si en cambio, queremos recibir la última versión disponible, debemos…
 
 ## Links recomendados
 
-- [Git-Book](https://git-scm.com/book/es/v2){target=_blank}
+- [Git-Book](https://git-scm.com/book/es/v2){target="\_blank"}

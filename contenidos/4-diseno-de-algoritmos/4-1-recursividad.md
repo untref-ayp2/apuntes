@@ -1,7 +1,9 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Recursividad y División y Conquista
@@ -39,9 +41,10 @@ n \; (n-1) \; (n-2) \; \cdots \; 1 & \text{si } n > 0 \\
 La definición de factorial es claramente recursiva y se puede implementar en Go de la siguiente manera:
 
 ```{code-block} go
-:linenos:
-:emphasize-lines: 4, 7
-
+---
+linenos: true
+emphasize-lines: 4, 7
+---
 import "fmt"
 
 func factorial(n int) int {
@@ -83,9 +86,10 @@ El ejemplo del cálculo del factorial es un ejemplo de recursión directa, ya qu
 A continuación se muestra un ejemplo de recursión indirecta, donde dos funciones se llaman entre sí de forma cíclica. Las funciones son capaces de determinar si el entero dado es par o impar, sin usar divisiones, resto de la división o multiplicaciones. Simplemente llegan hasta el caso base cuando `n == 0` y retornan el valor correspondiente. (Es un ejemplo didáctico, no es la forma más eficiente de determinar si un número es par o impar)
 
 ```{code-block} go
-:linenos:
-:emphasize-lines: 5, 12
-
+---
+linenos: true
+emphasize-lines: 5, 12
+---
 func esPar(n int) bool {
     if n == 0 { // El 0 es par
         return true
@@ -160,16 +164,17 @@ No todos los problemas se pueden resolver de manera, pero aquellos que sí, suel
 
 A modo de ejemplo vamos a implementar el algoritmo de búsqueda binaria, que es un algoritmo de búsqueda eficiente para encontrar un elemento específico en un arreglo ordenado. La búsqueda binaria divide el arreglo en mitades y compara el valor buscado con el elemento en el índice medio del arreglo. Si el valor buscado es menor que el elemento en el medio, la búsqueda se realiza en la mitad izquierda del arreglo. Si el valor buscado es mayor, la búsqueda se realiza en la mitad derecha del arreglo. Este proceso se repite hasta que el valor buscado se encuentre o el rango de búsqueda se reduzca a cero.
 
-:::{important}
+```{important}
 Las partes en la que se subdivide la entrada de datos original deben ser aproximadamente iguales. En el caso de la búsqueda binaria, si el tamaño del arreglo original era impar, entonces una mitad tendrá un elemento más que la otra, lo cual no afecta a la aplicación de esta técnica.
 
 Esta técnica permite reducir drásticamente el tiempo de ejecución, es decir el orden de la función.
-:::
+```
 
 ```{code-block} go
-:linenos:
-:emphasize-lines: 2, 6, 9, 13
-
+---
+linenos: true
+emphasize-lines: 2, 6, 9, 13
+---
 func busquedaBinaria(array []int, inicio int, fin int, x int) int {
     if inicio > fin {
         return -1
@@ -225,7 +230,9 @@ $c$
 El Teorema maestro establece que la solución a la ecuación de recurrencia es:
 
 ```{math}
-:label: teorema-maestro
+---
+label: teorema-maestro
+---
 T(n) =
 \begin{cases}
 O(n^c) & \text{si } \log_b(a) < c \\
@@ -254,7 +261,7 @@ T(n) = O(\log_2{n})
 
 2. Escribir una función recursiva que reciba una cadena y un caracter y devuelva la cantidad de veces que aparece el caracter en la cadena.
 
-3. Escribir una función recursiva que resuelva el juego de las [Torres de Hanoi](https://es.wikipedia.org/wiki/Torres_de_Hanói) ([Ver animacion](https://youtu.be/8XQmuPKOgy8?t=38)):
+3. Escribir una función recursiva que resuelva el juego de las [Torres de Hanoi](https://es.wikipedia.org/wiki/Torres_de_Han%C3%B3i) ([Ver animacion](https://youtu.be/8XQmuPKOgy8?t=38)):
 
    > El juego, en su forma más tradicional, consiste en tres postes verticales. En uno de los postes se apila un número indeterminado de discos perforados por su centro (elaborados de madera), que determinará la complejidad de la solución. Por regla general se consideran siete discos. Los discos se apilan sobre uno de los postes en tamaño decreciente de abajo arriba. No hay dos discos iguales, y todos ellos están apilados de mayor a menor radio -desde la base del poste hacia arriba- en uno de los postes, quedando los otros dos postes vacíos. El juego consiste en pasar todos los discos desde el poste ocupado (es decir, el que posee la torre) a uno de los otros postes vacíos. Para realizar este objetivo, es necesario seguir tres simples reglas:
    >

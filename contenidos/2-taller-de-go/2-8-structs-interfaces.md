@@ -1,17 +1,18 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Estructuras e interfaces
 
 ## _Structs_
 
-En Go las _structs_ son colecciones de campos, podríamos pensar una `struct`
-cómo una clase que solo declara atributos (los campos).
+En Go las _structs_ son colecciones de campos, podríamos pensar una `struct`{l=go} cómo una clase que solo declara atributos (los campos).
 
-```{code-cell} go
+```go
 type Direccion struct {
     calle, ciudad, provincia string
     numero                   uint
@@ -24,40 +25,27 @@ type Persona struct {
 }
 ```
 
-Para acceder a un campo de una estructura, se usa la notación de punto, como lo
-hacemos para acceder a un atributo en Java.
+Para acceder a un campo de una estructura, se usa la notación de punto, como lo hacemos para acceder a un atributo en Java.
 
-```{code-cell} go
+```go
 var p1 Persona
 p1.nombre = "Marcelo"
 p1.edad = 27
 ```
 
-```{code-cell} go
-p1.edad
-```
+También podemos declarar una variable de tipo `struct`{l=go} de forma literal:
 
-También podemos declarar una variable de tipo `struct` de forma literal:
-
-```{code-cell} go
+```go
 p2 := Persona{nombre: "Laura", apellido: "Medina", edad: 25}
-```
-
-```{code-cell} go
-:tags: [remove-input]
-p2
 ```
 
 ### Métodos
 
-Go no tiene clases como Java, sin embargo permite definir métodos sobre ciertos
-tipos.
+Go no tiene clases como Java, sin embargo permite definir métodos sobre ciertos tipos.
 
-Un método es una función con un argumento especial **receptor** . El
-**receptor** aparece en su propia lista de argumentos entre la palabra clave
-`func` y el nombre del método.
+Un método es una función con un argumento especial **receptor** . El **receptor** aparece en su propia lista de argumentos entre la palabra clave `func`{l=go} y el nombre del método.
 
-```{code-cell} go
+```go
 import "math"
 
 type Vector struct {
@@ -74,21 +62,15 @@ func (v *Vector) Escalar(factor float64) {
 }
 ```
 
-En este ejemplo, el método `Modulo` tiene un receptor de tipo `Vector` llamado
-`v`. Y el método `Escalar` recibe un puntero a `Vector`, ya que en este contexto
-es necesario contar con la referencia a la variable apuntada, ya que este método
-modifica el "estado" del receptor.
+En este ejemplo, el método `Modulo`{l=go} tiene un receptor de tipo `Vector`{l=go} llamado `v`{l=go}. Y el método `Escalar`{l=go} recibe un puntero a `Vector`{l=go}, ya que en este contexto es necesario contar con la referencia a la variable apuntada, ya que este método modifica el "estado" del receptor.
 
 ## Interfaces
 
-Como mencionamos anteriormente, en Go existe el concepto de interfaces pero
-funcionan de forma algo diferente a como lo hacen en Java.
+Como mencionamos anteriormente, en Go existe el concepto de interfaces pero funcionan de forma algo diferente a como lo hacen en Java.
 
-Un tipo `interface` se define como una conjunto de firmas de método. Un valor de
-ese tipo de interfaz, puede contener a cualquier valor que implemente (todos)
-esos métodos.
+Un tipo `interface`{l=go} se define como una conjunto de firmas de método. Un valor de ese tipo de interfaz, puede contener a cualquier valor que implemente (todos) esos métodos.
 
-```{code-cell} go
+```go
 type Caminante interface {
     Avanzar(pasos int)
     Girar(grados float32)
@@ -97,17 +79,15 @@ type Caminante interface {
 
 Luego si un tipo implementa todos esos métodos:
 
-```{code-cell} go
+```go
 func (p *Persona) Avanzar(pasos int) { /* ... */ }
 
 func (p *Persona) Girar(grados float32) { /* ... */ }
 ```
 
-Podemos pasar como parámetro una variable de tipo `Persona` siempre se espere un
-argumento de tipo `Caminante`.
+Podemos pasar como parámetro una variable de tipo `Persona`{l=go} siempre se espere un argumento de tipo `Caminante`{l=go}.
 
-```{code-cell} go
-:tags: [remove-output]
+```go
 func RealizarRecorrido(caminante Caminante) { /* ... */ }
 
 p := Persona{}

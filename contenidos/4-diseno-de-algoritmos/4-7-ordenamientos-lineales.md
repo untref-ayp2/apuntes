@@ -1,18 +1,20 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Ordenamientos en Tiempo Lineal
 
 Los algoritmos de ordenamiento en tiempo lineal son una alternativa eficiente para ordenar datos cuando se cumplen ciertas condiciones sobre los valores de los elementos. A diferencia de los algoritmos de ordenamiento basados en comparaciones, que tienen una cota inferior de $O(n \log n)$, los algoritmos de tiempo lineal pueden lograr una complejidad de $O(n+k)$ o $O(n \times k)$ donde $k$ es un factor relacionado con el rango de los valores o el número de dígitos.
 
-Vamos a profundizar en los algoritmos más conocidos: **Ordenamiento por Conteo (_Counting Sort_)**, **Ordenamiento por Urnas (_Bucket Sort_)** y **Radix Sort**. 
+Vamos a profundizar en los algoritmos más conocidos: **Ordenamiento por Conteo (_Counting Sort_)**, **Ordenamiento por Urnas (_Bucket Sort_)** y **Radix Sort**.
 
 ## Ordenamiento por Conteo (_Counting Sort_)
 
-El **Ordenamiento por Conteo** es un algoritmo que se utiliza para ordenar elementos enteros dentro de un rango conocido. Funciona contando la cantidad de veces que aparece cada valor y luego reconstruyendo el arreglo ordenado a partir de estas cuentas. Por ejemplo supongamos que tenemos un arreglo de $N$ números enteros  pero todos los números son del rango $[0, k]$ donde $k$ es un entero positivo. El algoritmo sigue estos pasos:
+El **Ordenamiento por Conteo** es un algoritmo que se utiliza para ordenar elementos enteros dentro de un rango conocido. Funciona contando la cantidad de veces que aparece cada valor y luego reconstruyendo el arreglo ordenado a partir de estas cuentas. Por ejemplo supongamos que tenemos un arreglo de $N$ números enteros pero todos los números son del rango $[0, k]$ donde $k$ es un entero positivo. El algoritmo sigue estos pasos:
 
 1. **Inicialización**: Crear un arreglo de conteo de tamaño $k+1$ (para incluir el valor $k$) e inicializarlo a cero.
 2. **Conteo**: Recorrer el arreglo original y para cada elemento incrementar su posición correspondiente en el arreglo de conteo.
@@ -20,6 +22,7 @@ El **Ordenamiento por Conteo** es un algoritmo que se utiliza para ordenar eleme
 4. **Resultado**: El arreglo resultante estará ordenado.
 
 ### Ejemplo de Ordenamiento por Conteo
+
 Supongamos que tenemos el siguiente arreglo de números enteros:
 
 ```text
@@ -29,24 +32,32 @@ Supongamos que tenemos el siguiente arreglo de números enteros:
 El proceso de ordenamiento por conteo sería:
 
 1. **Inicialización**: Crear un arreglo de conteo de tamaño $9$ (para los valores del $0$ al $8$):
+
    ```text
    conteo = [0, 0, 0, 0, 0, 0, 0, 0, 0]
    ```
+
 2. **Conteo**: Recorrer el arreglo original y actualizar el arreglo de conteo:
+
    ```text
    conteo = [0, 1, 2, 2, 1, 0, 0, 0, 1]
    ```
+
 3. **Reconstrucción**: Recorrer el arreglo de conteo y reconstruir el arreglo ordenado:
+
    ```text
    ordenado = [1, 2, 2, 3, 3, 4, 8]
    ```
+
 4. **Resultado**: El arreglo ordenado es:
+
    ```text
    [1, 2, 2, 3, 3, 4, 8]
    ```
 
 ### Complejidad del Ordenamiento por Conteo
-La complejidad del **Ordenamiento por Conteo** es $O(n + k)$, donde $n$ es el número de elementos a ordenar y $k$ es el rango de los valores. Este algoritmo es eficiente cuando $k$ es a lo sumo del orden de $n$.  
+
+La complejidad del **Ordenamiento por Conteo** es $O(n + k)$, donde $n$ es el número de elementos a ordenar y $k$ es el rango de los valores. Este algoritmo es eficiente cuando $k$ es a lo sumo del orden de $n$.
 
 ## Ordenamiento por Urnas (_Bucket Sort_)
 
@@ -69,19 +80,25 @@ Supongamos que tenemos una lista de enteros, pero los enteros están el rango de
 ```
 
 1. **División en Buckets**: Dividimos el rango de $[0, 9]$ en 10 buckets:
+
    ```text
    buckets = [[], [], [], [], [], [], [], [], [], []]
    ```
+
 2. **Distribución**: Colocamos cada elemento en el bucket correspondiente:
+
    ```text
    buckets = [[0], [1, 1], [2], [3, 3], [4, 4], [5], [6], [7, 7], [8, 8], [9, 9]]
    ```
+
 3. **Concatenación**: Concatenamos los elementos de todos los buckets para obtener el arreglo ordenado:
+
    ```text
    ordenado = [0, 1, 1, 2, 3, 3, 4, 4, 5, 6, 7, 7, 8, 8, 9, 9]
    ```
 
-### Otro ejemplo de Ordenamiento por Urnas donde hay que ordenar los elementos dentro de cada bucket:
+### Otro ejemplo de Ordenamiento por Urnas donde hay que ordenar los elementos dentro de cada bucket
+
 Supongamos que tenemos el siguiente arreglo de números reales en el rango de $[0, 1]$:
 
 ```text
@@ -89,27 +106,32 @@ Supongamos que tenemos el siguiente arreglo de números reales en el rango de $[
 ```
 
 1. **División en Buckets**: Dividimos el rango de $[0, 1]$ en 5 buckets, donde en cada bucket se almacenarán los números en el rango de $[0, 0.2)$, $[0.2, 0.4)$, $[0.4, 0.6)$, $[0.6, 0.8)$ y $[0.8, 1]$:
+
    ```text
    buckets = [[], [], [], [], []]
    ```
+
 2. **Distribución**: Colocamos cada elemento en el bucket correspondiente:
+
    ```text
    buckets = [[0.17], [0.39, 0.26, 0.21], [], [0.78], [0.94, 0.82]]
    ```
+
 3. **Ordenamiento de Buckets**: Ordenamos cada bucket individualmente, por ejemplo, utilizando el **Ordenamiento por Inserción**. En este caso sólo necesitamos ordenar el segundo y el último bucket:
-   
+
    ```text
    buckets = [[0.17], [0.21, 0.26, 0.39], [], [0.78], [0.82, 0.94]]
    ```
 
 4. **Concatenación**: Concatenamos los elementos de todos los buckets para obtener el arreglo ordenado:
+
    ```text
    ordenado = [0.17, 0.21, 0.26, 0.39, 0.78, 0.82, 0.94]
    ```
 
 ### Complejidad del Ordenamiento por Urnas
-La complejidad del **Ordenamiento por Urnas** es $O(n + k)$, donde $n$ es el número de elementos a ordenar y $k$ es el número de buckets. Este algoritmo es eficiente cuando los datos están uniformemente distribuidos y el número de buckets es razonable en comparación con el número de elementos a ordenar.
 
+La complejidad del **Ordenamiento por Urnas** es $O(n + k)$, donde $n$ es el número de elementos a ordenar y $k$ es el número de buckets. Este algoritmo es eficiente cuando los datos están uniformemente distribuidos y el número de buckets es razonable en comparación con el número de elementos a ordenar.
 
 El **Ordenamiento por Urnas** es un algoritmo **estable**, lo que significa que los elementos con el mismo valor mantienen su orden relativo después del ordenamiento.
 
@@ -130,25 +152,26 @@ Supongamos que tenemos el siguiente arreglo de cadenas de caracteres:
 ```
 
 El proceso de Radix Sort sería:
+
 1. **Identificación del Dígito Menos Significativo**: Comenzamos con el último carácter de cada cadena.
-   
+
 2. **Ordenamiento por Urnas**: Utilizamos el **Ordenamiento por Urnas** para ordenar las cadenas según el último carácter. La primera pasada se ordenan todos los elementos solo por el último carácter:
 
-```text
-[BCA, CBA, ZAB, ACD, DBE, ZEF]
-```
+   ```text
+   [BCA, CBA, ZAB, ACD, DBE, ZEF]
+   ```
 
 3. **Repetir para Cada Dígito**: Ahora repetimos el proceso para el caracter del centro:
-   
-```text
-[ZAB, CBA, DBE, BCA, ACD, ZEF]
-```
+
+   ```text
+   [ZAB, CBA, DBE, BCA, ACD, ZEF]
+   ```
 
 4. **Repetir para el Primer Dígito**: Finalmente, ordenamos por el primer carácter:
 
-```text
-[ACD, BCA, CBA, DBE, ZAB, ZEF]
-```
+   ```text
+   [ACD, BCA, CBA, DBE, ZAB, ZEF]
+   ```
 
 ### Complejidad del Radix Sort
 
@@ -159,15 +182,21 @@ Es importante destacar que el algoritmo que se usa para ordenar los dígitos, en
 ## Ejercicios
 
 1. Ordenar en lápiz y papel el siguiente arreglo de números enteros utilizando el **Ordenamiento por Conteo**:
+
    ```text
    [5, 2, 9, 1, 5, 6]
    ```
+
 2. Implementar el **Ordenamiento por Urnas** para ordenar el siguiente arreglo de números reales en el rango de $[0, 1]$ de mayor a menor:
+
    ```text
    [0.42, 0.32, 0.24, 0.56, 0.78, 0.12]
    ```
+
 3. Utilizar el **Radix Sort** para ordenar el siguiente arreglo de números enteros de mayor a menor:
+
    ```text
    [170, 45, 75, 90, 802, 24, 2, 66]
    ```
+
 4. Investigar otra variante del **Radix Sort** que empiece a ordenar por el dígito más significativo (MSD) en lugar del menos significativo (LSD) y explicar sus diferencias.

@@ -1,7 +1,9 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Algoritmos Ávidos
@@ -14,11 +16,13 @@ La principal ventaja de este tipo de algoritmos es que es muy fácil de implemen
 
 Por ejemplo veamos a continuación un problema clásico:
 
-:::{card} Cambio de moneda
+```{card} Cambio de moneda
 Un cajero automático tiene que ser capaz de entregar la cantidad de pesos que se le requiere utilizando la menor cantidad de billetes y monedas.
+
 +++
+
 **Optimización**: Entregar la mayor cantidad posible de los billetes de mayor denominación.
-:::
+```
 
 Por ejemplo, en Argentina, a Mayo de 2024 se emplean monedas de \$1, \$2, \$5 y \$10, y billetes de \$10, \$20, \$50, \$100, \$200, \$500, \$1.000, \$2.000 y \$10.000. Si el cajero tiene que entregar \$5.528
 
@@ -30,7 +34,7 @@ La solución será:
 
 En total se entregan 8 piezas.
 
-::::{prf:algorithm} Cambio de moneda
+````{prf:algorithm} Cambio de moneda
 **Entrada**
 
 - `billetes`: lista con las denominaciones disponibles ordenada de mayor a menor.
@@ -41,8 +45,9 @@ En total se entregan 8 piezas.
 - `cambio` : diccionario cuyas claves son las denominaciones y cuyo valor son las cantidades a entregar de cada denominación
 
 ```{code-block}
-:linenos:
-
+---
+linenos: true
+---
 PARA CADA denominacion EN billetes HACER
     SI cantidad >= denominacion ENTONCES
         cantidad_billetes := cantidad / denominacion
@@ -52,7 +57,7 @@ PARA CADA denominacion EN billetes HACER
 FIN_PARA
 ```
 
-::::
+````
 
 A partir de este fragmento nos podemos preguntar:
 
@@ -70,26 +75,31 @@ La verificación formal de que un algoritmo ávido es correcto es un tema comple
 
 A continuación otro ejemplo de algoritmo ávido muy popular en la literatura:
 
-:::{card} Plan de actividades
+````{card} Plan de actividades
 Se tiene un conjunto de actividades que se pueden realizar en un tiempo determinado. Cada actividad $a_i$ tiene un tiempo de inicio $s_i$ y un tiempo de finalización $f_i$. Se desea seleccionar la mayor cantidad de actividades que no se superpongan.
 
 Dos actividades $a_i$ y $a_j$ son compatibles si los intervalos $[s_i, f_i)$ y $[s_j, f_j)$ no se superponen. Es decir:
 
 ```{math}
-:label: compatibilidad
+---
+label: compatibilidad
+---
 f_i \leq s_j
 ```
 
 O
 
 ```{math}
-:label: compatibilidad2
+---
+label: compatibilidad2
+---
 f_j \leq s_i
 ```
 
 +++
+
 **Optimización**: Elegir la actividad que **termina primero** entre las no elegidas, siempre y cuando sea compatible con las actividades ya elegidas.
-:::
+````
 
 Supongamos que tenemos las siguientes actividades, ordenadas por tiempo de finalización:
 
@@ -151,14 +161,15 @@ Diagrama de actividades
 
 El algoritmo ávido para este problema es el siguiente:
 
-:::{prf:algorithm} Plan de actividades
+````{prf:algorithm} Plan de actividades
 **Entrada** : Lista de actividades ordenadas por tiempo de finalización
 
 **Salida** : Lista de actividades seleccionadas
 
 ```{code-block}
-:linenos:
-
+---
+linenos: true
+---
 actividades_seleccionadas := []
 actividad_actual := actividades[0]
 actividades_seleccionadas = append(actividades_seleccionadas, actividad_actual)
@@ -170,10 +181,11 @@ PARA CADA actividad EN actividades HACER
 FIN_PARA
 ```
 
-:::{Admonition} Observación
+```{Admonition} Observación
 Como la lista de entrada de las tareas está ordenada por tiempo de finalización, no hace falta programar la ecuación [](#compatibilidad2)
-:::
-::::
+```
+
+````
 
 ## Ejercicios
 

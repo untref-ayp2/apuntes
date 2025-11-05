@@ -1,7 +1,9 @@
 ---
-file_format: mystnb
-kernelspec:
-  name: gophernotes
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
 ---
 
 # Programación Dinámica
@@ -41,9 +43,10 @@ $$
 Una posible implementación del cálculo de la serie de Fibonacci utilizando recursión es la siguiente:
 
 ```{code-block} go
-:linenos:
-:emphasize-lines: 5
-
+---
+linenos: true
+emphasize-lines: 5
+---
 func Fibonacci(n int) int {
     if n <= 1 {
         return n
@@ -66,11 +69,9 @@ Se puede observar que `Fibonacci(5)`{l=go} y `Fibonacci(4)`{l=go} se calcularon 
 
 En la siguiente animación se muestra como se pueden reutilizar los resultados utilizando una tabla para almacenar los resultados de los subproblemas:
 
-<!-- markdownlint-disable MD033 -->
 <p class="align-center">
   <video src="../_static/videos/Fibonacci.mp4" width="100%" controls autoplay loop></video>
 </p>
-<!-- markdownlint-enable MD033 -->
 
 Esta forma de implementar algoritmos por programación dinámica usando una tabla para almacenar los valores se conoce como **tabulación**, en inglés _**Bottom/Up**_.
 
@@ -87,8 +88,9 @@ El resultado final se encuentra en la última celda de la tabla, que contiene el
 En el siguiente fragmento de código se muestra la implementación de la serie de Fibonacci utilizando tabulación:
 
 ```{code-block} go
-:linenos:
-
+---
+linenos: true
+---
 func Fibonacci(n int) int {
     // Inicialización de la tabla
     fib := make([]int, n+1)
@@ -125,19 +127,19 @@ El problema de la mochila es un clásico en programación dinámica y se puede e
 
 Supongamos que tenemos una mochila de capacidad 5 y los siguientes objetos:
 
-:::{Table}
-:align: center
-:width: 30%
-
+```{Table}
+---
+align: center
+width: 30%
+---
 | Objeto | Peso | Valor |
-|:------:|:----:|:-----:|
-| 1      | 3    | 2     |
-| 2      | 4    | 3     |
-| 3      | 1    | 4     |
-| 4      | 2    | 2     |
-| 5      | 5    | 5     |
-
-:::
+| :----: | :--: | :---: |
+|   1    |  3   |   2   |
+|   2    |  4   |   3   |
+|   3    |  1   |   4   |
+|   4    |  2   |   2   |
+|   5    |  5   |   5   |
+```
 
 La solución se puede encontrar utilizando nuevamente tabulación, donde se construye una tabla que almacena el valor máximo que se puede obtener para cada capacidad de la mochila y cada objeto.
 
@@ -186,11 +188,9 @@ Cómo se pretende maximizar el valor total, pero restringidos por la capacidad m
 
 En la siguiente animación se muestra cómo se llena la tabla para una capacidad de mochila de 5 y los objetos dados anteriormente. En cada posición de la tabla se almacenan dos valores, el superior corresponde al peso máximo que se puede obtener y el inferior al valor máximo correspondiente.:
 
-<!-- markdownlint-disable MD033 -->
 <p class="align-center">
   <video src="../_static/videos/Mochila.mp4" width="100%"controls autoplay></video>
 </p>
-<!-- markdownlint-enable MD033 -->
 
 La decisión de incluir o no incluir el objeto se basa en la comparación entre el valor máximo obtenido al incluir el objeto y el valor máximo obtenido sin incluirlo. La celda correspondiente se llena con el valor máximo de ambas opciones.
 
@@ -202,7 +202,7 @@ Complejidad temporal
 Complejidad espacial
 : $O(n \times w)$, ya que se utiliza una tabla de tamaño $n$ por $w$ para almacenar los resultados de los subproblemas.
 
-## Tabulación (_Bottom/Up_) vs. Memorización (_Top/Down_)
+## Tabulación (_Bottom_/_Up_) vs. Memorización (_Top_/_Down_)
 
 La **tabulación** y la **memorización** son dos enfoques diferentes para implementar la programación dinámica, y cada uno tiene sus propias ventajas y desventajas.
 
@@ -215,8 +215,9 @@ La **memorización** es útil cuando el problema tiene una estructura de árbol,
 En el siguiente fragmento de código se muestra la implementación de la serie de Fibonacci utilizando memorización:
 
 ```{code-block} go
-:linenos:
-
+---
+linenos: true
+---
 func Fibonacci(n int, memo map[int]int) int {
     if n <= 1 {
         return n
@@ -229,7 +230,7 @@ func Fibonacci(n int, memo map[int]int) int {
 }
 ```
 
-En este caso, se utiliza un mapa `memo` para almacenar los resultados de los subproblemas a medida que se van calculando. Si el resultado ya está en el mapa, se devuelve directamente sin volver a calcularlo.
+En este caso, se utiliza un mapa `memo`{l=go} para almacenar los resultados de los subproblemas a medida que se van calculando. Si el resultado ya está en el mapa, se devuelve directamente sin volver a calcularlo.
 
 La complejidad temporal y espacial del algoritmo es:
 
@@ -241,34 +242,35 @@ Complejidad espacial
 
 En la siguiente tabla se resumen las diferencias entre ambos enfoques:
 
-:::{Table}
-:align: center
-
-| Característica             | Tabulación (_Bottom/Up_) | Memorización (_Top/Down_) |
-|----------------------------|--------------------------|---------------------------|
+```{Table}
+---
+align: center
+---
+| Característica             | Tabulación (_Bottom_/_Up_) | Memorización (_Top_/_Down_) |
+| -------------------------- | ------------------------ | ------------------------- |
 | Enfoque                    | Iterativo                | Recursivo                 |
 | Inicialización             | Tabla                    | Estructura de datos       |
 | Almacenamiento             | Tabla                    | Estructura de datos       |
 | Resolución de subproblemas | Todos los subproblemas   | Solo los necesarios       |
 | Complejidad temporal       | $O(n \times w)$          | $O(n)$                    |
 | Complejidad espacial       | $O(n \times w)$          | $O(n)$                    |
-
-:::
+```
 
 En algunos casos la **tabulación** puede ser más fácil de implementar y entender, mientras que la **memorización** puede ser más eficiente en términos de tiempo de ejecución. La elección entre ambos enfoques depende del problema específico y de las preferencias del programador.
 
 ## Ejercicios
 
-1. Modificar el algoritmo de la serie de Fibonacci por tabulación para que utilice un arreglo de tamaño 2 en lugar de un arreglo de tamaño `n+1`. Esto se puede lograr utilizando dos variables para almacenar los dos últimos valores de la serie y actualizarlos en cada iteración.
+1. Modificar el algoritmo de la serie de Fibonacci por tabulación para que utilice un arreglo de tamaño 2 en lugar de un arreglo de tamaño `n+1`{l=go}. Esto se puede lograr utilizando dos variables para almacenar los dos últimos valores de la serie y actualizarlos en cada iteración.
 
 2. Implementar el problema de la mochila utilizando memorización. Dado un conjunto de objetos con peso y valor, y una capacidad de mochila, el objetivo es determinar el valor máximo que se puede obtener al incluir los objetos en la mochila. Utilizar un mapa para almacenar los resultados de los subproblemas a medida que se van calculando.
 
-    ```{Admonition} Pista
-    :class: tip
+   ```{Admonition} Pista
+   ---
+   class: tip
+   ---
+   Se puede utilizar una función recursiva que tome como parámetros el índice del objeto actual, la capacidad restante de la mochila y un mapa para almacenar los resultados de los subproblemas. La función debe considerar dos casos: incluir el objeto actual o no incluirlo, y devolver el valor máximo obtenido en ambos casos.
+   ```
 
-    Se puede utilizar una función recursiva que tome como parámetros el índice del objeto actual, la capacidad restante de la mochila y un mapa para almacenar los resultados de los subproblemas. La función debe considerar dos casos: incluir el objeto actual o no incluirlo, y devolver el valor máximo obtenido en ambos casos.
-    ```
-
-3. Implementar el problema de la subcadena común más larga (Longest Common Subsequence) utilizando programación dinámica. Dado dos cadenas de caracteres, el objetivo es encontrar la longitud de la subcadena común más larga entre ellas. Por ejemplo, para las cadenas `"AGGTAB"` y `"GXTXAYB"`, la subcadena común más larga es `"GTAB"` y su longitud es `4`.
+3. Implementar el problema de la subcadena común más larga (Longest Common Subsequence) utilizando programación dinámica. Dado dos cadenas de caracteres, el objetivo es encontrar la longitud de la subcadena común más larga entre ellas. Por ejemplo, para las cadenas `"AGGTAB"`{l=go} y `"GXTXAYB"`{l=go}, la subcadena común más larga es `"GTAB"`{l=go} y su longitud es 4.
 
 4. Implementar el problema de la suma de subconjuntos (Subset Sum Problem) utilizando programación dinámica. Dado un conjunto de números enteros y un número objetivo, el objetivo es determinar la cantidad de subconjuntos de los números que sume exactamente el número objetivo. Por ejemplo, para el conjunto `{3, 34, 4, 12, 5, 2}` y el número objetivo `9`, hay 2 subconjuntos que suman `9`: `{4, 5}` y `{3, 4, 2}`.
