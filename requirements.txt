@@ -1,3 +1,10 @@
 bokeh
-jupyter-book
+# Fijamos la versión a la más acutal de v1.x.x, Jupyter Book 2 ya está
+# disponible pero deberíamos aplicar cambios para permitir la migración a la
+# nueva versión.
+jupyter-book<2
+jupyterlab
+mdformat
+mdformat-myst
+myst-parser
 sphinx-proof

@@ -9,6 +9,11 @@ help:
 install:
 	pip install --requirement requirements.txt
 
+## fmt: formatea todos el contenido del libro
+.PHONY: fmt
+fmt:
+	mdformat --number contenidos/**/*.md
+
 ## build: compila el libro
 .PHONY: build
 build:
@@ -24,5 +29,5 @@ PORT ?= 8080
 
 ## server: levanta un servidor http para visualizar el libro
 .PHONY: server
-server: build
+server:
 	python -m http.server $(PORT) --directory contenidos/_build/html

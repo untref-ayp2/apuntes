@@ -2,10 +2,10 @@
 
 ## Instalación y configuración del entorno
 
-Si deseas desarrollar y/o compilar el libro de Algoritmos y Programación II, debes:
+Si deseas desarrollar y/o compilar el apunte de Algoritmos y Programación II, debes:
 
 > [!TIP]
-> Para esta guía se asume que Python y Go instalados en el sistema.
+> Para esta guía se asume que Python.
 >
 > Se recomienda crear un entorno virtual de Python para trabajar con este proyecto.
 
@@ -16,12 +16,6 @@ Si deseas desarrollar y/o compilar el libro de Algoritmos y Programación II, de
    ```sh
    pip install -r requirements.txt
    ```
-
-   - Una vez instaladas las dependencias de Python (principalmente `jupyter-book`), debemos instalar el kernel de Go para Jupyter: en nuestro caso utilizamos `gophernotes`.
-
-     Ya que las instrucciones de instalación dependen de cada sistema operativo y entorno dejamos el link al repositorio del módulo Go que explica como instalar y probar ese kernel:
-
-     <https://github.com/gopherdata/gophernotes>
 
 3. (Opcional) Edita los archivos fuente del libro ubicados en el directorio `contenidos`
 
