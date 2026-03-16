@@ -26,12 +26,13 @@ make fmt              # formatea MD (mdformat)
 Comandos individuales:
 
 - `mdformat --number contenidos/**/*.md` - Markdown
-- `jupyter-book build contenidos` - Compila el libro
+- `jupyter-book build contenidos` - Compila el libro (deprecated, usar myst)
 
 ### Build y desarrollo
 
 ```bash
-make build    # compila el libro
+make build    # compila el libro (HTML + PDF)
+make pdf      # compila solo el PDF
 make server   # servidor de desarrollo
 make clean    # elimina archivos generados
 ```
@@ -82,7 +83,7 @@ import (
 | Elemento      | Convención   | Ejemplo          |
 |---------------|--------------|------------------|
 | Paquetes      | lowercase    | `stack`, `queue` |
-| Funciones     | PascalCase   | `Push`, `Pop`    |
+| Funciones     | PascalCase   | `Push`, `Pop`   |
 | Variables     | camelCase    | `nodeValue`      |
 | Constantes    | Mayúsculas   | `MAX_SIZE`       |
 | Interfaces    | er suffix    | `Reader`, `Stack`|
@@ -148,6 +149,18 @@ func ejemplo() error {
 ```
 ````
 
+### Inclusion de archivos de código
+
+Para incluir archivos de código fuente:
+
+````markdown
+```{code-file} ../_static/code/mipackage/mifile.go
+:language: go
+:linenos: true
+:lineno-match: true
+```
+````
+
 ### Ejercicios y Soluciones
 
 ````markdown
@@ -166,6 +179,30 @@ func respuesta() error {
 ```
 ````
 
+### Imágenes Modo Claro/Oscuro
+
+Para soportar ambos temas, crear dos versiones de cada imagen SVG:
+- `_light.svg` para modo claro
+- `_dark.svg` para modo oscuro
+
+Y usarlas así:
+
+````markdown
+```{figure} ../_static/figures/mi-diagrama_light.svg
+---
+class: only-light-mode
+---
+Mi Diagrama
+```
+
+```{figure} ../_static/figures/mi-diagrama_dark.svg
+---
+class: only-dark-mode
+---
+Mi Diagrama
+```
+````
+
 ---
 
 ## Code Style Guidelines
@@ -178,24 +215,23 @@ func respuesta() error {
 - Habilitar números de línea en bloques de código cuando se demuestre ejecución paso a paso
 - Usar admonitions para tips, advertencias y notas:
   ```markdown
-  > [!TIP]
-  > Tu contenido aquí
+  ```{note}
+  Tu contenido aquí
+  ```
   ```
 
 ### Markdown Linting
 
-El proyecto usa markdownlint y mdformat con estas reglas (`.markdownlint.json`):
+El proyecto usa markdownlint y mdformat:
 
-- `default: true` - habilitar todas las reglas por defecto
-- `line-length: false` - permitir líneas largas
-- `no-inline-html: false` - permitir HTML inline
-- `no-duplicate-heading.siblings_only: true` - permitir headings duplicados en diferentes secciones
+- `mdformat --number` - Habilita números de línea
+- Permitir líneas largas
 
 ### File Naming
 
 - Archivos Markdown: `kebab-case` matching el número de sección, ej: `2-3-arreglos-slices.md`
 - Paquetes Go: lowercase, ej: `stack`, `binarytree`
-- Imágenes: nombres descriptivos en `contenidos/_images/`
+- Imágenes: nombres descriptivos en `contenidos/_static/figures/`
 
 ### Directory Structure
 
@@ -206,22 +242,24 @@ El proyecto usa markdownlint y mdformat con estas reglas (`.markdownlint.json`):
 ├── requirements.txt
 ├── README.md
 ├── .github/workflows/deploy.yml
+├── scripts/
+│   └── build_pdf.py
 ├── contenidos/
-│   ├── _config.yml          # Jupyter Book configuration
-│   ├── _toc.yml             # Table of contents
-│   ├── _static/             # Static files (code examples)
-│   │   └── code/
-│   │       └── go.mod       # Go module for examples
-│   ├── _images/             # Diagrams and images
-│   ├── _build/              # Generated HTML output
-│   └── [chapters]/          # Markdown content files
+│   ├── myst.yml              # MyST configuration (reemplaza _config.yml y _toc.yml)
+│   ├── _static/
+│   │   ├── figures/          # Imágenes y diagramas
+│   │   ├── code/            # Código fuente Go
+│   │   ├── css/custom.css   # Estilos personalizados
+│   │   └── js/custom.js     # Scripts personalizados
+│   ├── references.bib
+│   └── [chapters]/           # Archivos markdown
 ```
 
 ### Git Conventions
 
 - Commit messages en español
-- Crear feature branches para cambios significativos
-- PRs deben pasar el build antes de merge (CI corre `jupyter-book build`)
+- Trabajar en la rama `jb2-martin` para cambios de migración
+- PRs deben pasar el build antes de merge
 
 ---
 
@@ -230,12 +268,33 @@ El proyecto usa markdownlint y mdformat con estas reglas (`.markdownlint.json`):
 ### Agregar un Nuevo Capítulo
 
 1. Crear el archivo markdown en `contenidos/`
-2. Agregar entrada a `contenidos/_toc.yml` bajo la sección apropiada
-3. Agregar imágenes a `contenidos/_images/`
+2. Agregar entrada a `contenidos/myst.yml` bajo la sección `project.toc`
+3. Agregar imágenes a `contenidos/_static/figures/`
 4. Build para verificar: `make build`
 
 ### Agregar Ejemplos de Código
 
 1. Agregar archivos Go a `contenidos/_static/code/`
-2. Usar fenced code blocks en markdown con ````go` o ````go:line-numbers`
+2. Usar fenced code blocks en markdown con ````go` o `code-file` para incluir archivos
 3. Testear el código: `go test ./...` en ese directorio
+
+---
+
+## Build System
+
+Este proyecto usa **MyST** (mystmd) en lugar de Jupyter Book v1.
+
+### Diferencias principales con Jupyter Book v1
+
+| Aspecto | JBv1 | MyST (JBv2) |
+|---------|------|-------------|
+| Config | `_config.yml` + `_toc.yml` | `myst.yml` |
+| Build | `jupyter-book build` | `myst build` |
+| PDF | LaTeX | Typst |
+| Imágenes | Una versión | Versiones light/dark |
+
+### Dependencias
+
+- `mystmd` - Build system
+- `typst` - Compilador PDF
+- `mdformat` - Formateador Markdown

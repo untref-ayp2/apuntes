@@ -20,7 +20,7 @@ Podemos declarar un array de la siguiente forma:
 var numeros [7]int
 ```
 
-Aquí creamos una variable de tipo `[7]int`{l=go} a la que referenciaremos con el nombre `numeros`{l=go}.
+Aquí creamos una variable de tipo `[7]int` a la que referenciaremos con el nombre `numeros`.
 
 La forma de acceder o modificar los valores en las distintas posiciones de un array es por medio del índice que indica la posición, como ya se ha visto en materias anteriores y como en la mayoría los lenguajes de programación (aunque no todos), empezando de `0` hasta el largo menos 1.
 
@@ -47,7 +47,7 @@ panic: runtime error: index out of range [7] with length 7
 
 Cuando un array es pasado como argumento en una función o método, este pasa por "referencia". Es decir, que la fución que recibe esa referencia tendrá la libertad de modifcar el contenido de dicho array.
 
-En Go para conocer el largo de un array existe la función `len`{l=go}.
+En Go para conocer el largo de un array existe la función `len`.
 
 ```go
 len(numeros)
@@ -57,7 +57,7 @@ len(numeros)
 7
 ```
 
-Para recorrer un array en Go existe la instrucción `range`{l=go}, que genera un iterador sobre el array devolviendo el índice (`i`) y el valor (`v`), en cada iteración del `for`{l=go}, veamos un ejemplo:
+Para recorrer un array en Go existe la instrucción `range`, que genera un iterador sobre el array devolviendo el índice (`i`) y el valor (`v`), en cada iteración del `for`, veamos un ejemplo:
 
 ```go
 nombres := [4]string{"Fabián", "Martín", "Valeria", "Santiago"}
@@ -76,15 +76,15 @@ for i, v := range nombres {
 
 ## _Slices_
 
-Los _slices_ representan secuencias de longitud variable cuyos elementos son del mismo tipo. Un tipo de _slice_ se escribe como `[]T`{l=go}, donde los elementos son de tipo `T`{l=go}; se asemeja a un tipo de _array_ sin tamaño.
+Los _slices_ representan secuencias de longitud variable cuyos elementos son del mismo tipo. Un tipo de _slice_ se escribe como `[]T`, donde los elementos son de tipo `T`; se asemeja a un tipo de _array_ sin tamaño.
 
-Los _arreglos_ y los _slices_ están estrechamente relacionados. Un _slice_ es una estructura de datos ligera que da acceso a una subsecuencia (o quizás a todos) de los elementos de un arreglo, conocido como el arreglo subyacente de la _slice_. Una _slice_ tiene tres componentes: un **puntero**, una **longitud** y una **capacidad**. El puntero apunta al primer elemento del arreglo accesible a través de la _slice_, que no es necesariamente el primer elemento del arreglo. La longitud es el número de elementos de la _slice_; no puede exceder la capacidad, que generalmente es el número de elementos entre el inicio de la _slice_ y el final del arreglo subyacente. Las funciones integradas `len`{l=go} y cap devuelven estos valores.
+Los _arreglos_ y los _slices_ están estrechamente relacionados. Un _slice_ es una estructura de datos ligera que da acceso a una subsecuencia (o quizás a todos) de los elementos de un arreglo, conocido como el arreglo subyacente de la _slice_. Una _slice_ tiene tres componentes: un **puntero**, una **longitud** y una **capacidad**. El puntero apunta al primer elemento del arreglo accesible a través de la _slice_, que no es necesariamente el primer elemento del arreglo. La longitud es el número de elementos de la _slice_; no puede exceder la capacidad, que generalmente es el número de elementos entre el inicio de la _slice_ y el final del arreglo subyacente. Las funciones integradas `len` y cap devuelven estos valores.
 
 ```go
 var s []byte
 ```
 
-```{figure} ../assets/images/arreglos-slices/slice-struct.png
+```{figure} ../_static/figures/arreglos-slices/slice-struct.png
 ---
 name: slice-struct
 ---
@@ -95,7 +95,7 @@ Estructura interna de un _slice_.
 s = make([]byte, 5, 5)
 ```
 
-```{figure} ../assets/images/arreglos-slices/slice-1.png
+```{figure} ../_static/figures/arreglos-slices/slice-1.png
 ---
 name: slice-1
 ---
@@ -108,7 +108,7 @@ A medida que hacemos _slicing_ de `s`, observamos los cambios en la estructura d
 s = s[2:4]
 ```
 
-```{figure} ../assets/images/arreglos-slices/slice-2.png
+```{figure} ../_static/figures/arreglos-slices/slice-2.png
 ---
 name: slice-2
 ---
@@ -121,7 +121,7 @@ El _slicing_ no copia los datos del _slice_. En su lugar, crea un nuevo valor de
 s = s[:cap(s)]
 ```
 
-```{figure} ../assets/images/arreglos-slices/slice-3.png
+```{figure} ../_static/figures/arreglos-slices/slice-3.png
 ---
 name: slice-3
 ---
@@ -135,7 +135,7 @@ meses := [12]string{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
     "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}
 ```
 
-El operador slice `s[i:j]`{l=go}, donde $0 \leq i \leq j \leq \texttt{cap(s)}$, crea un nuevo slice que hace referencia a los elementos desde `i`{l=go} hasta `j-1`{l=go} de las secuencias, que pueden ser una variable de array, un puntero a un array, u otro slice. El slice resultante tiene `j-i`{l=go} elementos. Si se omite `i`{l=go}, su valor es 0, y si se omite `j`{l=go}, su valor es `len(s)`{l=go}. Así, el slice `months[0:12]`{l=go} hace referencia a todo el rango de meses válidos, al igual que el slice `months[1:]`{l=go}; el slice `months[:]`{l=go} hace referencia a todo el array. Definamos slices superpuestos para el segundo trimestre y el invierno:
+El operador slice `s[i:j]`, donde $0 \leq i \leq j \leq \texttt{cap(s)}$, crea un nuevo slice que hace referencia a los elementos desde `i` hasta `j-1` de las secuencias, que pueden ser una variable de array, un puntero a un array, u otro slice. El slice resultante tiene `j-i` elementos. Si se omite `i`, su valor es 0, y si se omite `j`, su valor es `len(s)`. Así, el slice `months[0:12]` hace referencia a todo el rango de meses válidos, al igual que el slice `months[1:]`; el slice `months[:]` hace referencia a todo el array. Definamos slices superpuestos para el segundo trimestre y el invierno:
 
 ```go
 t2 := meses[3:6]
@@ -151,14 +151,14 @@ t2 = [Abril Mayo Junio]
 invierno = [Junio Julio Agosto]
 ```
 
-```{figure} ../assets/images/arreglos-slices/overlaping-slices.drawio.svg
+```{figure} ../_static/figures/arreglos-slices/overlaping-slices.drawio.svg
 ---
 name: overlaping-slices
 ---
 Dos _slices_ sobre el mismo array de meses.
 ```
 
-Hacer _slicing_ más allá de `cap(s)`{l=go} causa un pánico, pero hacer _slicing_ más allá de `len(s)`{l=go} extiende el _slice_, por lo que el resultado puede ser más largo que el original:
+Hacer _slicing_ más allá de `cap(s)` causa un pánico, pero hacer _slicing_ más allá de `len(s)` extiende el _slice_, por lo que el resultado puede ser más largo que el original:
 
 ```go
 fmt.Println(invierno[:20])
@@ -179,7 +179,7 @@ fmt.Println(inviernoSinFin)
 
 ### Agregando elementos a un _slice_
 
-Para agregar elementos a un _slice_ se utiliza la función `append`{l=go}, que toma un _slice_ y uno o más elementos del mismo tipo que el _slice_ y devuelve un nuevo _slice_ que contiene todos los elementos del _slice_ original más los nuevos elementos. Si el _slice_ resultante es mayor que la capacidad del _slice_ original, `append`{l=go} crea un nuevo _slice_ que es el doble de grande, copia los elementos del _slice_ original y luego agrega los nuevos elementos:
+Para agregar elementos a un _slice_ se utiliza la función `append`, que toma un _slice_ y uno o más elementos del mismo tipo que el _slice_ y devuelve un nuevo _slice_ que contiene todos los elementos del _slice_ original más los nuevos elementos. Si el _slice_ resultante es mayor que la capacidad del _slice_ original, `append` crea un nuevo _slice_ que es el doble de grande, copia los elementos del _slice_ original y luego agrega los nuevos elementos:
 
 ```go
 s := []int{1, 2, 3}
@@ -220,7 +220,7 @@ x = [0 1 2]
 y = [0 1 2 3]
 ```
 
-```{figure} ../assets/images/arreglos-slices/slice-append-entangled-1.drawio.svg
+```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-1.drawio.svg
 ---
 name: slice-append-entangled-1
 ---
@@ -237,7 +237,7 @@ x = [0 1 2 4]
 y = [0 1 2 4]
 ```
 
-```{figure} ../assets/images/arreglos-slices/slice-append-entangled-2.drawio.svg
+```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-2.drawio.svg
 ---
 name: slice-append-entangled-2
 ---
@@ -256,13 +256,13 @@ x = [0 1 2 4]
 y = [0 1 2 4 4]
 ```
 
-```{figure} ../assets/images/arreglos-slices/slice-append-entangled-3.drawio.svg
+```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-3.drawio.svg
 ---
 name: slice-append-entangled-3
 ---
 ```
 
-es importante notar que el array subyacente ya no es el mismo ya que el slice original fue copiado a un nuevo array, pero el segundo slice sigue apuntando al array subyacenter original. Si modificamos algunos de los valores de `y`{l=go}, no va a afectar a `x`{l=go}:
+es importante notar que el array subyacente ya no es el mismo ya que el slice original fue copiado a un nuevo array, pero el segundo slice sigue apuntando al array subyacenter original. Si modificamos algunos de los valores de `y`, no va a afectar a `x`:
 
 ```go
 y[3] = 3
@@ -277,11 +277,11 @@ y = [0 1 2 3 4]
 
 ## Ejercicios
 
-1. Escriba una función `invertir`{l=go} que invierta un slice. Por ejemplo, el slice `[1, 2, 3, 4]`{l=go} invertido sería `[4, 3, 2, 1]`{l=go}.
-2. Escriba una función `rotar`{l=go} que rote un slice en un número `n`{l=go} de posiciones. Por ejemplo, el slice `[1, 2, 3, 4, 5]`{l=go} rotado en 2 posiciones sería `[3, 4, 5, 1, 2]`{l=go}.
-3. Escriba una función `eliminar`{l=go} que elimine un elemento de un slice. Por ejemplo, el slice `[1, 2, 3, 4, 5]`{l=go} eliminando el elemento en la posición 2 sería `[1, 2, 4, 5]`{l=go}.
-4. Escriba una función `eliminarDuplicados`{l=go} que elimine los elementos duplicados de un slice. Por ejemplo, el slice `[1, 2, 2, 3, 4, 4, 5]`{l=go} sin duplicados sería `[1, 2, 3, 4, 5]`{l=go}.
+1. Escriba una función `invertir` que invierta un slice. Por ejemplo, el slice `[1, 2, 3, 4]` invertido sería `[4, 3, 2, 1]`.
+2. Escriba una función `rotar` que rote un slice en un número `n` de posiciones. Por ejemplo, el slice `[1, 2, 3, 4, 5]` rotado en 2 posiciones sería `[3, 4, 5, 1, 2]`.
+3. Escriba una función `eliminar` que elimine un elemento de un slice. Por ejemplo, el slice `[1, 2, 3, 4, 5]` eliminando el elemento en la posición 2 sería `[1, 2, 4, 5]`.
+4. Escriba una función `eliminarDuplicados` que elimine los elementos duplicados de un slice. Por ejemplo, el slice `[1, 2, 2, 3, 4, 4, 5]` sin duplicados sería `[1, 2, 3, 4, 5]`.
 
 ## Links recomendados
 
-- [Go Slices: usage and internals](https://go.dev/blog/slices-intro){target="\_blank"} - Un artículo que explica el uso y la estructura interna de los slices en Go.
+- [Go Slices: usage and internals](https://go.dev/blog/slices-intro) - Un artículo que explica el uso y la estructura interna de los slices en Go.

@@ -35,7 +35,7 @@ type Boveda struct {
 }
 ```
 
-En este ejemplo, `Id`{l=go} será un dato accesible desde cualquier punto en el programa que importe este paquete. Pero `dato`{l=go} solo será accesible desde dentro del mismo paquete. Para modificar este valor podemos definir métodos que operen sobre estos campos no exportados.
+En este ejemplo, `Id` será un dato accesible desde cualquier punto en el programa que importe este paquete. Pero `dato` solo será accesible desde dentro del mismo paquete. Para modificar este valor podemos definir métodos que operen sobre estos campos no exportados.
 
 ```go
 package seguridad

@@ -65,25 +65,25 @@ El objetivo final de organizar nuestro código en paquetes y módulos es que pod
 
 En Go exiten distintos tipos de módulos que podemos importar, dependendien de su procedencia. por ejemplo, go provee una serie de módulos que son nativos del lenguaje, como pueden ser:
 
-`fmt`{l=go}
+`fmt`
 : entrada y salida por pantalla y teclado
 
-`math`{l=go}
+`math`
 : constantes y funciones matemáticas
 
-`time`{l=go}
+`time`
 : funciones para medir y mostrar tiempos
 
-`errors`{l=go}
+`errors`
 : funciones para manipular errores
 
-`path`{l=go}
+`path`
 : funciones para manipular carpetas y archivos
 
-`testing`{l=go}
+`testing`
 : soporte para test automáticos
 
-`strings`{l=go}
+`strings`
 : funciones para manipular cadenas de caracteres
 
 Hasta ahora hemos utilzado mayormente este tipo de módulos, también podemos utilizar referencias a paquetes dentro de nuestro mismo módulo. Como ya hicimos en un ejemplo anterior.
@@ -98,9 +98,9 @@ func main() {
 }
 ```
 
-`".saludo"`{l=go} indica que debemos importar el paquete `saludo` que está dentro de la misma carpeta desde donde lo importamos `.`.
+`".saludo"` indica que debemos importar el paquete `saludo` que está dentro de la misma carpeta desde donde lo importamos `.`.
 
-Otro tipo de módulos que podemos importar, son los módulos de otros programadores, por ejemplo podríamos pensar en utilizar un supuesto módulo de algoritmos de ordenamiento de la cátedra. Entonces, imaginemos que existe el módulo llamado `"untref.edu.ar/ayp2/busqueda"`{l=go}. Podemos importarlo de la siguiente manera.
+Otro tipo de módulos que podemos importar, son los módulos de otros programadores, por ejemplo podríamos pensar en utilizar un supuesto módulo de algoritmos de ordenamiento de la cátedra. Entonces, imaginemos que existe el módulo llamado `"untref.edu.ar/ayp2/busqueda"`. Podemos importarlo de la siguiente manera.
 
 ```go
 package main
@@ -135,11 +135,11 @@ Hay varios puntos a notar:
   import b "untref.edu.ar/ayp2/busqueda"
   ```
 
-  Luego podremos utilizar la nueva referencia `b`{l=go} en lugar `busqueda`{l=go}.
+  Luego podremos utilizar la nueva referencia `b` en lugar `busqueda`.
 
 ## Dependencias
 
-Cuando necesitamos utilizar un módulo de terceros, como podría ser un módulo que provee distintos métodos de ordenamieto, primero debemos encontrar el módulo, esto puede ser haciendo una búsqueda en el registro de go que podemos encontrar en [https://pkg.go.dev/](https://pkg.go.dev/){target="\_blank"} o bien, búscando módulos en internet, es posible instalar módulos directamente desde repositorios de Git.
+Cuando necesitamos utilizar un módulo de terceros, como podría ser un módulo que provee distintos métodos de ordenamieto, primero debemos encontrar el módulo, esto puede ser haciendo una búsqueda en el registro de go que podemos encontrar en [https://pkg.go.dev/](https://pkg.go.dev/) o bien, búscando módulos en internet, es posible instalar módulos directamente desde repositorios de Git.
 
 Para instalar y agregar dicha dependencia en nuestro módulo, podemo utilisar la herramienta `go get` de la siguiente forma:
 
@@ -165,7 +165,7 @@ Su pongamos que creamos un módulo e importamos algunas cosas en nuestro archivo
 
 ````{admonition} Creación de un módulo simple
 
-Primero creamos una carpeta con el nombre `mimodulo`{l=go} y nos posicionamos en ella.
+Primero creamos una carpeta con el nombre `mimodulo` y nos posicionamos en ella.
 
 ```console
 mkdir mimodulo && cd mimodulo
@@ -244,7 +244,7 @@ go: downloading golang.org/x/sys v0.25.0
 go: downloading github.com/mattn/go-colorable v0.1.13
 ```
 
-Si ahora vemos como luce el archivo `go.mod` podemos comprobar que se agregó la directiva `require`{l=go} donde se declaran las dependencias faltantes (pero adicionalmente `go mod tidy` también descargó esas dependencias en nuestro proyecto).
+Si ahora vemos como luce el archivo `go.mod` podemos comprobar que se agregó la directiva `require` donde se declaran las dependencias faltantes (pero adicionalmente `go mod tidy` también descargó esas dependencias en nuestro proyecto).
 
 ```console
 $ cat go.mod

@@ -12,7 +12,7 @@ Los conjuntos son estructuras de datos que permiten almacenar elementos de forma
 
 Por definición dos conjuntos son iguales si tienen los mismos elementos, sin importar el orden en que se encuentren. Por otro lado, dos conjuntos son distintos si tienen al menos un elemento diferente.
 
-```{figure} ../assets/images/conjuntos/diagrama-venn.drawio.svg
+```{figure} ../_static/figures/conjuntos/diagrama-venn.drawio.svg
 ---
 name: Conjuntos
 class: dark-light
@@ -24,46 +24,46 @@ Las operaciones básicas que se pueden realizar con conjuntos se pueden dividir 
 
 ## Operaciones sobre los elementos
 
-`Contains`{l=go}
+`Contains`
 : Verificar si un elemento está en el conjunto.
 
-`Add`{l=go}
+`Add`
 : Agregar un elemento al conjunto.
 
-`Remove`{l=go}
+`Remove`
 : Eliminar un elemento del conjunto.
 
-`Size`{l=go}
+`Size`
 : Obtener el número de elementos del conjunto.
 
-`Values`{l=go}
+`Values`
 : Obtener los elementos del conjunto.
 
 ## Operaciones entre conjuntos
 
-`Union`{l=go}
+`Union`
 : Crear un nuevo conjunto con los elementos de dos conjuntos.
 
-`Intersection`{l=go}
+`Intersection`
 : Crear un nuevo conjunto con los elementos comunes de dos conjuntos.
 
-`Difference`{l=go}
+`Difference`
 : Crear un nuevo conjunto con los elementos que están en el primer conjunto pero no en el segundo.
 
-`Subset`{l=go}
+`Subset`
 : Verificar si un conjunto es subconjunto de otro.
 
-`SimeetricDifference`{l=go}
+`SimeetricDifference`
 : Crear un nuevo conjunto con los elementos que están en uno de los conjuntos pero no en ambos.
 
-`Superset`{l=go}
+`Superset`
 : Verificar si un conjunto es superconjunto de otro.
 
 ## Implementación
 
 En Go no existe un tipo de dato nativo para conjuntos. Existen muchas formas de implementarlos, sobre arreglos, listas enlazadas, o mapas.
 
-A modo de ejemplo se muestra una implementación sobre un mapa de tipo `map[int]bool`{l=go} para representar un conjunto de enteros
+A modo de ejemplo se muestra una implementación sobre un mapa de tipo `map[int]bool` para representar un conjunto de enteros
 
 ```go
 package main
@@ -120,11 +120,11 @@ func main() {
 
 ## Orden de las operaciones
 
-Las operaciones sobre conjuntos tienen un costo asociado. Por ejemplo, en la implementación anterior, las operaciones `Add`{l=go}, `Remove`{l=go}, `Size`{l=go} y `Contains`{l=go} tienen un costo de tiempo constante $O(1)$. Por otro lado, la operación `Values`{l=go} tiene un costo de tiempo lineal $O(n)$. El orden de las operaciones depende de la implementación del conjunto.
+Las operaciones sobre conjuntos tienen un costo asociado. Por ejemplo, en la implementación anterior, las operaciones `Add`, `Remove`, `Size` y `Contains` tienen un costo de tiempo constante $O(1)$. Por otro lado, la operación `Values` tiene un costo de tiempo lineal $O(n)$. El orden de las operaciones depende de la implementación del conjunto.
 
 ## Ejercicios
 
-1. Implementar la operaciones `Union`{l=go}, `Intersection`{l=go}, `Difference`{l=go}, `Subset`{l=go}, `SymmetricDifference`{l=go} y `Superset`{l=go} para el conjunto de enteros dado como ejemplo.
+1. Implementar la operaciones `Union`, `Intersection`, `Difference`, `Subset`, `SymmetricDifference` y `Superset` para el conjunto de enteros dado como ejemplo.
 2. Implementar un conjunto genérico que permita almacenar cualquier tipo de dato.
 3. Implementar un conjunto basado en arreglos (que no use maps ni tablas de hashing). Implementar tantos las operaciones sobre elementos como las operaciones entre conjuntos.
 4. Implementar un conjunto basado en listas enlazadas. Implementar tantos las operaciones sobre elementos como las operaciones entre conjuntos.

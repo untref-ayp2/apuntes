@@ -12,7 +12,7 @@ jupytext:
 
 En programación, la recursividad es una técnica donde **una función se llama a sí misma** dentro de su propia definición. Es como si la función se estuviera "descomponiendo" en versiones más pequeñas del mismo problema, hasta llegar a un **caso tan simple que se puede resolver directamente**.
 
-```{figure} ../assets/images/Recursion.svg
+```{figure} ../_static/figures/Recursion.svg
 ---
 width: 300px
 name: recursion
@@ -61,10 +61,18 @@ En la línea 4 se define el caso base, donde el factorial de 0 es 1. En la líne
 
 Para entender como funciona la recursión tenemos que observar la pila de ejecución. Si ejecutamos el código anterior, la pila de ejecución se verá de la siguiente manera:
 
-```{figure} ../assets/images/RecursionFactorial.svg
+```{figure} ../_static/figures/RecursionFactorial_light.svg
 ---
 width: 600px
 name: recursion-factorial
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/RecursionFactorial_dark.svg
+---
+width: 600px
+name: recursion-factorial
+class: only-dark-mode
 ---
 Pila de Ejecución - factorial(4).
 ```

@@ -20,7 +20,7 @@ Con esta técnica también se pueden encontrar todas las soluciones posibles a u
 
 El problema de las N reinas consiste en colocar $N$ reinas en un tablero de ajedrez de $N \times N$ de tal manera que ninguna reina ataque a otra. Esto significa que no pueden estar en la misma fila, columna o diagonal. En la siguente figura se muestra una solución para el caso de tableros de $8 \times 8$ donde se colocan $8$ reinas.
 
-```{figure} ../assets/images/NReinasSolucion.svg
+```{figure} ../_static/figures/NReinasSolucion.svg
 ---
 width: 60%
 name: sol.n.reinas
@@ -60,41 +60,41 @@ FUNCION backtracking(solucionParcial, ...)
 
 Para resolver un problema con _backtracking_, se deben identificar y definir los siguientes elementos:
 
-`solucionParcial`{l=go}
-: Determinar una estructura de datos adecuada para representar la solución parcial. Puede ser un vector, una lista, etc. `solucionParcial`{l=go} debe permitir agregar nuevas opciones y verificar si es una solución válida.
+`solucionParcial`
+: Determinar una estructura de datos adecuada para representar la solución parcial. Puede ser un vector, una lista, etc. `solucionParcial` debe permitir agregar nuevas opciones y verificar si es una solución válida.
 
-`esSolucion`{l=go}
-: Definir una función que verifique si `solucionParcial`{l=go} es una solución completa.
+`esSolucion`
+: Definir una función que verifique si `solucionParcial` es una solución completa.
 
-`extender`{l=go}
-: Definir una función que tome una `solucionParcial`{l=go} y devuelva una a una todas las opciones posibles para extenderla. Esta función debe generar todas las combinaciones posibles de extender `solucionParcial`{l=go}.
+`extender`
+: Definir una función que tome una `solucionParcial` y devuelva una a una todas las opciones posibles para extenderla. Esta función debe generar todas las combinaciones posibles de extender `solucionParcial`.
 
-`esFactible`{l=go}
-: Definir una función que verifique si una opción es válida para extender `solucionParcial`{l=go}. Esta función debe verificar si la opción no viola ninguna restricción del problema.
+`esFactible`
+: Definir una función que verifique si una opción es válida para extender `solucionParcial`. Esta función debe verificar si la opción no viola ninguna restricción del problema.
 
-`registrar`{l=go}
-: Definir una función que registre la opción generada con `extender`{l=go} en la `solucionParcial`{l=go}. Eventualmente puede ser necesario registrar información adicional de la opción generada.
+`registrar`
+: Definir una función que registre la opción generada con `extender` en la `solucionParcial`. Eventualmente puede ser necesario registrar información adicional de la opción generada.
 
-`borrar`{l=go}
-: Definir una función que borre la última opción registrada en `solucionParcial`{l=go}. Es decir es el paso opuesto al de `registrar`{l=go}. Si es necesario también debe restaurar cualquier información extra o de contexto registrada anteriormente.
+`borrar`
+: Definir una función que borre la última opción registrada en `solucionParcial`. Es decir es el paso opuesto al de `registrar`. Si es necesario también debe restaurar cualquier información extra o de contexto registrada anteriormente.
 
 ## Implementación de la solución al problema de las N reinas
 
-`solucionParcial`{l=go}
+`solucionParcial`
 : puede ser un arreglo de tamaño $N$ donde las posiciones del arreglo representan las filas y los valores alamacenados en cada posición del arreglo representan las columnas. Por ejemplo, para el caso de $N=4$, una solución parcial podría ser $[2, 0, 3, 1]$, lo que significa que hay una reina en la fila $0$ en la columna $2$, una reina en la fila $1$ en la columna $0$, etc.
 
-`esSolucion`{l=go}
-: es una función que verifica si la `solucionParcial`{l=go} tiene $N$ reinas. En este caso, se verifica si la longitud del arreglo `solucionParcial`{l=go} es igual a $N$.
+`esSolucion`
+: es una función que verifica si la `solucionParcial` tiene $N$ reinas. En este caso, se verifica si la longitud del arreglo `solucionParcial` es igual a $N$.
 
-`extender`{l=go}
+`extender`
 : con un solo ciclo entre $[0, N)$, podemos generar todas las posibles columnas en la que se puede colocar una reina en la fila $i$.
 
-`esFactible`{l=go}
+`esFactible`
 : es una función que debe chequear si en la misma columna o en las diagonales hay otras reinas que entren en conflicto con la nueva reina que intentamos agregar al tablero.
 
-: Para chequear si hay ya una reina en la misma columna basta con revisar los valores del arreglo `solucionParcial`{l=go} para asegurarse que la columna candidata no está atacada por otra reina, es decir no puede haber dos valores iguales en el arreglo y para chequear si hay una reina en alguna de las dos diagonales que se pueden generar en cualquier posición del tablero, se puede usar la propiedad de que en todas las diagonales directas, por nombrarlas de alguna forma, las de color azul, $fila - columna = constante$. Mientras que para las diagonales inversas, las de color rojo, se cumple que $fila + columna = constante$. Ver la figura a continuación.
+: Para chequear si hay ya una reina en la misma columna basta con revisar los valores del arreglo `solucionParcial` para asegurarse que la columna candidata no está atacada por otra reina, es decir no puede haber dos valores iguales en el arreglo y para chequear si hay una reina en alguna de las dos diagonales que se pueden generar en cualquier posición del tablero, se puede usar la propiedad de que en todas las diagonales directas, por nombrarlas de alguna forma, las de color azul, $fila - columna = constante$. Mientras que para las diagonales inversas, las de color rojo, se cumple que $fila + columna = constante$. Ver la figura a continuación.
 
-```{figure} ../assets/images/NReinasDiagonal.svg
+```{figure} ../_static/figures/NReinasDiagonal.svg
 ---
 width: 70%
 name: sol.n.reinas.diagonal
@@ -172,7 +172,7 @@ Como caso general se puede pensar que la complejidad es $O(N^M)$, donde $N$ es e
 
 En la figura a continuación se muestra un árbol de búsqueda para el caso de $N=3$ y $M=3$. En este caso, se puede ver que el árbol tiene una profundidad de 3 y en cada nivel hay 3 opciones posibles.
 
-```{figure} ../assets/images/BacktrackingOrden.svg
+```{figure} ../_static/figures/BacktrackingOrden.svg
 ---
 width: 70%
 name: BacktrackingOrden
@@ -196,7 +196,7 @@ La implementación de _backtracking_ puede ser sencilla y elegante, como se ha v
 
 3. Escribir un programa para resolver sudokus usando _backtracking_. El sudoku es un rompecabezas de lógica que consiste en llenar una cuadrícula de 9x9 con números del 1 al 9, de tal manera que cada fila, cada columna y cada una de las nueve subcuadrículas de 3x3 contengan todos los dígitos del 1 al 9 sin repetir. En general se inicia de un tablero parcialmente lleno, como el que se muestra a continuación.
 
-```{figure} ../assets/images/Sudoku.svg
+```{figure} ../_static/figures/Sudoku.svg
 ---
 width: 100%
 name: Sudoku

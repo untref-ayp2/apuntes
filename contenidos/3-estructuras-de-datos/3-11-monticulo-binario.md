@@ -61,7 +61,7 @@ Los montículos o _heaps_ en inglés, son estructuras de datos que permiten acce
 
 Existen diferentes tipos de montículos (binario, fibonacci, suave (_soft_), etc.), pero todos comparten la propiedad de que el elemento que se encuentra en la cima es el mayor o el menor de toda la estructura. En nuestro curso nos enfocaremos en los montículos binarios.
 
-```{figure} ../assets/images/HeapRopa.svg
+```{figure} ../_static/figures/HeapRopa.svg
 ---
 width: 300px
 name: Monticulo
@@ -79,10 +79,18 @@ Propiedad de Orden
 
 En la siguiente figura se puede ver un heap de mínimos donde se cumplen ambas propiedades. El elemento $A$ es el menor de toda la estructura y se encuentra en la raíz. Analogamente el menor de sus descendientes por la izquierda es el elemento $D$ y se encuentra en la raíz del subárbol izquierdo y por el lado derecho el elemento $M$ es el menor del subárbol derecho.
 
-```{figure} ../assets/images/HeapMinimos.svg
+```{figure} ../_static/figures/HeapMinimos_light.svg
 ---
 width: 300px
 name: Heap de Mínimos
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/HeapMinimos_dark.svg
+---
+width: 300px
+name: Heap de Mínimos
+class: only-dark-mode
 ---
 Montículo Binario de Mínimos
 ```
@@ -97,10 +105,18 @@ Cómo es un árbol **completo e izquierdista** entonces el arreglo que se usa co
 
 En la siguiente figura se observa como se puede usar un arreglo para mantener un montículo binario. La raíz se encuentra en la posición 0, el hijo izquierdo de la raíz en la posición 1, el hijo derecho de la raíz en la posición 2 y así sucesivamente.
 
-```{figure} ../assets/images/HeapMinimosRepresentacion.svg
+```{figure} ../_static/figures/HeapMinimosRepresentacion_light.svg
 ---
 width: 300px
 name: Heap Representacion
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/HeapMinimosRepresentacion_dark.svg
+---
+width: 300px
+name: Heap Representacion
+class: only-dark-mode
 ---
 Representación con arreglos de un Montículo Binario de Mínimos
 ```
@@ -133,16 +149,16 @@ Por ejemplo en la posición 3 del arreglo se encuentra el elemento $H$, su hijo 
 
 Las operaciones básicas que se pueden realizar en un montículo son:
 
-`Top`{l=go}
+`Top`
 : Devuelve el elemento que se encuentra en la cima del montículo, es decir el máximo o el mínimo de toda la estructura, pero no lo elimina.
 
-`Size`{l=go}
+`Size`
 : Devuelve la cantidad de elementos que se encuentran en el montículo.
 
-`Insert`{l=go}
+`Insert`
 : Inserta un nuevo elemento en el montículo.
 
-`Remove`{l=go}
+`Remove`
 : Elimina el elemento que se encuentra en la cima del montículo y lo devuelve.
 
 #### Insertar
@@ -153,13 +169,20 @@ Para preservar la propiedad de forma, es preciso insertar el elemento en la posi
 
 Al insertar el elemento $9$ en la posición 9 vemos que se perdió la propiedad de orden, ya que el 9 es mayor que su padre, el elemento $5$.
 
-Para reestrablecer la propiedad de orden se realiza la operación `upHeap`{l=go} desde la hoja recién insertada. Esta operación consiste en comparar el elemento actual con su padre y si no se cumple la propiedad de orden intercambiarlos, luego compara el padre que acaba de intercambiar con su padre, hasta encontrar la posición correcta del elemento recién insertado dentro del montículo.
+Para reestrablecer la propiedad de orden se realiza la operación `upHeap` desde la hoja recién insertada. Esta operación consiste en comparar el elemento actual con su padre y si no se cumple la propiedad de orden intercambiarlos, luego compara el padre que acaba de intercambiar con su padre, hasta encontrar la posición correcta del elemento recién insertado dentro del montículo.
 
-En el ejemplo de la figura primero intercambia el 9 con el 5. Es decir en el arreglo que representa el heap intercambia los elementos y luego compara la posición 4 con su padre que se encuentra en la posición 1. Cómo el $9$ es mayor que el $7$ los intercambia nuevamente. Finalmente compara la posición 1 con su padre, la raíz en la posición 0, y cómo $10$ es mayor que $9$ termina la operación `upHeap`{l=go}.
+En el ejemplo de la figura primero intercambia el 9 con el 5. Es decir en el arreglo que representa el heap intercambia los elementos y luego compara la posición 4 con su padre que se encuentra en la posición 1. Cómo el $9$ es mayor que el $7$ los intercambia nuevamente. Finalmente compara la posición 1 con su padre, la raíz en la posición 0, y cómo $10$ es mayor que $9$ termina la operación `upHeap`.
 
-```{figure} ../assets/images/HeapInsercion.svg
+```{figure} ../_static/figures/HeapInsercion_light.svg
 ---
 name: Heap Insercion
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/HeapInsercion_dark.svg
+---
+name: Heap Insercion
+class: only-dark-mode
 ---
 Inserción en un Heap de Máximos
 ```
@@ -172,7 +195,7 @@ Inserta un elemento dentro del Montículo
 
 **Entrada**
 
-- `elemento`{l=go}: elemento a insertar
+- `elemento`: elemento a insertar
 
 ```{code-block} go
 ---
@@ -192,7 +215,7 @@ Reestablece la Propiedad de Orden en un montículo de máximos, luego de inserta
 
 **Entrada**
 
-- `i`{l=go}: posición dentro del heap donde empieza la operación. Inicialmente la última hoja recién insertada.
+- `i`: posición dentro del heap donde empieza la operación. Inicialmente la última hoja recién insertada.
 
 ```{code-block} go
 ---
@@ -215,13 +238,20 @@ Eliminar el máximo o el mínimo implica siempre eliminar la raíz del árbol, p
 
 Para preservar la propiedad de forma, es decir mantener todo el arreglo contiguo y sin posiciones vacías se elimina la última hoja, en la práctica se disminuye el tamaño del arreglo en 1 y el elemento que se encontraba en esa hoja se lo guarda en la raíz.
 
-Esta operación hace que se pierda la propiedad de orden, para reestablecerla se realiza la operación `downHeap`{l=go}, que consiste en comparar la raíz con sus dos hijos y si la raíz es menor que los hijos (en un heap de máximos) se intercambia con el mayor de los hijos. Nuevamente se realiza la operación sobre el hijo hasta que se encuentra la posición correcta del elemento.
+Esta operación hace que se pierda la propiedad de orden, para reestablecerla se realiza la operación `downHeap`, que consiste en comparar la raíz con sus dos hijos y si la raíz es menor que los hijos (en un heap de máximos) se intercambia con el mayor de los hijos. Nuevamente se realiza la operación sobre el hijo hasta que se encuentra la posición correcta del elemento.
 
 En la figura a continuación, se observa el proceso de eliminación de la raíz en un montículo de máximos
 
-```{figure} ../assets/images/HeapEliminacion.svg
+```{figure} ../_static/figures/HeapEliminacion_light.svg
 ---
 name: Heap Eliminacion
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/HeapEliminacion_dark.svg
+---
+name: Heap Eliminacion
+class: only-dark-mode
 ---
 Eliminación en un Heap de Máximos
 ```
@@ -254,7 +284,7 @@ Reestablece la Propiedad de Orden en un montículo de máximos, luego de elimina
 
 **Entrada**
 
-- `i`{l=go}: posición dentro del heap donde empieza la operación. Inicialmente la raíz en la posición 0.
+- `i`: posición dentro del heap donde empieza la operación. Inicialmente la raíz en la posición 0.
 
 ```{code-block}
 ---
@@ -277,10 +307,10 @@ align: center
 ---
 |    Operación    |   Orden    |
 | :-------------: | :--------: |
-|   `Top`{l=go}   |   $O(1)$   |
-|  `Size`{l=go}   |   $O(1)$   |
-| `Insert`{l=go}  | $O(log_n)$ |
-| `Remove`{l=go}  | $O(log_n)$ |
+|   `Top`   |   $O(1)$   |
+|  `Size`   |   $O(1)$   |
+| `Insert`  | $O(log_n)$ |
+| `Remove`  | $O(log_n)$ |
 
 ```
 
@@ -389,7 +419,7 @@ Insertar y Remover tienen un orden garantizado de $O(log N)$ porque en el peor c
     }
    ```
 
-3. Escribir casos de prueba para verificar que el montículo binario del punto anterior funciona correctamente. Usar `Persona`{l=go} dado a continuación como elementos del montículo.
+3. Escribir casos de prueba para verificar que el montículo binario del punto anterior funciona correctamente. Usar `Persona` dado a continuación como elementos del montículo.
 
    ```{code-block} go
     type Persona struct {

@@ -103,18 +103,32 @@ f_j \leq s_i
 
 Supongamos que tenemos las siguientes actividades, ordenadas por tiempo de finalización:
 
-```{figure} ../assets/images/Greedy1.svg
+```{figure} ../_static/figures/Greedy1_light.svg
 ---
 name: actividades1
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/Greedy1_dark.svg
+---
+name: actividades1
+class: only-dark-mode
 ---
 Lista de actividades
 ```
 
 A continuación el diagrama de actividades. En principio no hay ninguna actividad seleccionada.
 
-```{figure} ../assets/images/Greedy2.svg
+```{figure} ../_static/figures/Greedy2_light.svg
 ---
 name: actividades2
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/Greedy2_dark.svg
+---
+name: actividades2
+class: only-dark-mode
 ---
 Diagrama de actividades
 ```
@@ -122,9 +136,16 @@ Diagrama de actividades
 Paso 1
 : Se selecciona la tarea que termina primero de entre todas las tareas a planificar. En este caso la tarea 1. Inmeditamente las tareas 2, 3, 5, 10 se marcan como incompatibles, ya que se superponen con la tarea 1.
 
-```{figure} ../assets/images/Greedy3.svg
+```{figure} ../_static/figures/Greedy3_light.svg
 ---
 name: actividades3
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/Greedy3_dark.svg
+---
+name: actividades3
+class: only-dark-mode
 ---
 Diagrama de actividades
 ```
@@ -132,9 +153,16 @@ Diagrama de actividades
 Paso 2
 : De entre las tareas disponibles (4, 6, 7, 8, 9 y 11) se selecciona la tarea 4, que es la que finaliza primero, por lo tanto las tareas 6 y 7 dejan de ser compatibles con la planificación.
 
-```{figure} ../assets/images/Greedy4.svg
+```{figure} ../_static/figures/Greedy4_light.svg
 ---
 name: actividades4
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/Greedy4_dark.svg
+---
+name: actividades4
+class: only-dark-mode
 ---
 Diagrama de actividades
 ```
@@ -142,9 +170,16 @@ Diagrama de actividades
 Paso 3
 : Se selecciona la tarea 8, ya que es la que finaliza primero entre las tareas disponibles (8, 9 y 11). La tarea 9 se vuelve incompatible.
 
-```{figure} ../assets/images/Greedy5.svg
+```{figure} ../_static/figures/Greedy5_light.svg
 ---
 name: actividades5
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/Greedy5_dark.svg
+---
+name: actividades5
+class: only-dark-mode
 ---
 Diagrama de actividades
 ```
@@ -152,9 +187,16 @@ Diagrama de actividades
 Paso 4
 : Por último se selecciona la única tarea disponible, la 11.
 
-```{figure} ../assets/images/Greedy6.svg
+```{figure} ../_static/figures/Greedy6_light.svg
 ---
 name: actividades6
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/Greedy6_dark.svg
+---
+name: actividades6
+class: only-dark-mode
 ---
 Diagrama de actividades
 ```

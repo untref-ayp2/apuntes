@@ -18,7 +18,7 @@ func sumar(x int, y int) int {
 }
 ```
 
-En este ejemplo la función `sumar`{l=go} toma 2 parámetros de tipo `int`{l=go}. Si quisiéramos generar algo similar en Java deberíamos declarar una clase con métodos estáticos:
+En este ejemplo la función `sumar` toma 2 parámetros de tipo `int`. Si quisiéramos generar algo similar en Java deberíamos declarar una clase con métodos estáticos:
 
 ```java
 public class Matematica {
@@ -30,7 +30,7 @@ public class Matematica {
 
 Cabe destacar, que a diferencia de Java, el valor de retorno en la declaración de la función viene después de los paréntesis.
 
-En Go es posible, devolver múltiples valores de una función, lo cual es muy utilizado para el reporte de errores o la notificación del resultado de un computo, cómo cuando se busca un valor por una clave en un `map`{l=go}. Por ejemplo:
+En Go es posible, devolver múltiples valores de una función, lo cual es muy utilizado para el reporte de errores o la notificación del resultado de un computo, cómo cuando se busca un valor por una clave en un `map`. Por ejemplo:
 
 ```go
 import "errors"

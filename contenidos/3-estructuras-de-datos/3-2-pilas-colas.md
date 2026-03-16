@@ -20,7 +20,7 @@ Un TAD dinámico es un TAD que puede modificar su tamaño, es decir, el espacio 
 
 Es una estructura del tipo **LIFO** (_Last In First Out_) es decir el último elemento que ingresó en la pila será el primer elemento en salir. Por ejemplo, en una {ref}`pila-libros` si queremos agregar un nuevo libro debemos colocarlo encima de la pila, sobre el último libro. A su vez el último libro de la pila es el único al que le podemos ver su portada y sacar de la pila. Por lo tanto para sacar el libro de abajo de la pila, primero hay que sacar uno por uno todos los libros que están apilados sobre él.
 
-```{figure} ../assets/images/book-stack.svg
+```{figure} ../_static/figures/book-stack.svg
 ---
 width: 300px
 name: pila-libros
@@ -30,17 +30,17 @@ Pila de Libros
 
 A partir de la descripción del comportamiento de la pila de libros, podemos intuir el comportamiento de la estructura Pila o Stack:
 
-`Push`{l=go}
+`Push`
 : Permite insertar un elemento en la pila (siempre en el tope de la misma)
 
-`Pop`{l=go}
+`Pop`
 : Permite extraer un elemento de la pila (siempre el que está en el tope). Si se intenta hacer un Pop de una pila vacía se debe indicar un error
 
-`Top`{l=go}
+`Top`
 : Permite ver el último elemento que ingresó en la pila, sin sacarlo. Si se intenta hacer un Top de una pila vacía se debe indicar un error
 
-`IsEmpty`{l=go}
-: Verifica si la pila está vacía. Devuelve `true`{l=go} si la pila está vacía o `false`{l=go} en caso contrario
+`IsEmpty`
+: Verifica si la pila está vacía. Devuelve `true` si la pila está vacía o `false` en caso contrario
 
 Todas las operaciones deben ser $O(1)$. Es decir de tiempo constante, independiente del tamaño de la entrada
 
@@ -48,7 +48,7 @@ Este comportamiento define la **interfaz** del tipo Pila, es decir las operacion
 
 En la definición de la pila no hay ninguna restricción sobre el tipo de elementos que se almacenan, por ejemplo podríamos apilar, libros, revistas, cajas, en una única pila. El tamaño de la pila debe ser un entero entre 0 y N (invariante de representación)
 
-Para poder tener una pila genérica, es decir, donde no hay restricciones sobre el tipo de datos que se almacena se puede usar el tipo de datos `Any`{l=go}.
+Para poder tener una pila genérica, es decir, donde no hay restricciones sobre el tipo de datos que se almacena se puede usar el tipo de datos `Any`.
 
 ````{important}
 Como ya se mencionó es fundamental ocultar la implementación para que no se pueda manipular el contenedor de datos con operaciones no permitidas. por ejemplo, la definición:
@@ -68,7 +68,7 @@ p = append(p, 2)
 p[0] = "chau"
 ```
 
-En este fragmento se agregan elementos a la pila, usando la función `append`{l=go} de Go y luego se modifica el primer elemento de la pila
+En este fragmento se agregan elementos a la pila, usando la función `append` de Go y luego se modifica el primer elemento de la pila
 ````
 
 A continuación se define el TAD Stack, que internamente estará implementado sobre un arreglo dinámico o slice de Go.
@@ -81,7 +81,7 @@ type Stack struct {
 }
 ```
 
-El contenedor de datos `data`{l=go} está encapsulado dentro del `struct`{l=go}.
+El contenedor de datos `data` está encapsulado dentro del `struct`.
 
 ```go
 func NewStack() *Stack {
@@ -90,7 +90,7 @@ func NewStack() *Stack {
 }
 ```
 
-`NewStack`{l=go} es una especie de constructor, que nos devuelve una pila vacía cada vez que se llama. Reserva espacio en memoria para almacenar la pila y devuelve la dirección de memoria correspondiente.
+`NewStack` es una especie de constructor, que nos devuelve una pila vacía cada vez que se llama. Reserva espacio en memoria para almacenar la pila y devuelve la dirección de memoria correspondiente.
 
 ```go
 func (s *Stack) IsEmpty() bool {
@@ -98,7 +98,7 @@ func (s *Stack) IsEmpty() bool {
 }
 ```
 
-`IsEmpty`{l=go} chequea si la cantidad de elementos del contenedor de datos es igual a 0
+`IsEmpty` chequea si la cantidad de elementos del contenedor de datos es igual a 0
 
 ```go
 func (s *Stack) Push(x any) {
@@ -106,7 +106,7 @@ func (s *Stack) Push(x any) {
 }
 ```
 
-`Push`{l=go} agrega siempre al final del arreglo el elemento que recibe
+`Push` agrega siempre al final del arreglo el elemento que recibe
 
 ```go
 func (s *Stack) Pop() (any, error) {
@@ -121,7 +121,7 @@ func (s *Stack) Pop() (any, error) {
 }
 ```
 
-`Pop`{l=go} chequea si la pila está vacía, en ese caso devuelve el par `(nil, error)`{l=go}. Caso contrario devuelve el par `(x, nil)`{l=go} y elimina el tope de la pila. Siempre devuelve un par de valores.
+`Pop` chequea si la pila está vacía, en ese caso devuelve el par `(nil, error)`. Caso contrario devuelve el par `(x, nil)` y elimina el tope de la pila. Siempre devuelve un par de valores.
 
 ```go
 func (s *Stack) Top() (any, error) {
@@ -135,7 +135,7 @@ func (s *Stack) Top() (any, error) {
 }
 ```
 
-`Top`{l=go} es similar a `Pop`{l=go} pero no elimina el tope
+`Top` es similar a `Pop` pero no elimina el tope
 
 ```go
 import "fmt"
@@ -181,7 +181,7 @@ main()
 
 Es una estructura del tipo **FIFO (First In First Out)** es decir el primer elemento en ingresar en la cola es el primero en salir. Un ejemplo clásico del uso de esta estructura es para modelar una {ref}`cola-personas`, por ejemplo en la caja de un supermercado. La última persona que llega se coloca al final de la cola y espera su turno para hacer atendido
 
-```{figure} ../assets/images/people-queue.png
+```{figure} ../_static/figures/people-queue.png
 ---
 width: 500px
 name: cola-personas
@@ -191,17 +191,17 @@ Cola de Espera
 
 El comportamiento de la cola queda definido por los siguientes métodos:
 
-`Enqueue`{l=go}
+`Enqueue`
 : Permite insertar un elemento en la cola (siempre en la última posición)
 
-`Dequeue`{l=go}
+`Dequeue`
 : Permite extraer un elemento de la cola (siempre el primero). Si se intenta hacer un Dequeue de una cola vacía se debe indicar un error
 
-`Front`{l=go}
+`Front`
 : Permite ver el primer elemento de la cola. Si se intenta hacer un Front de una cola vacía se debe indicar un error
 
-`IsEmpty`{l=go}
-: Verifica si la Coa está vacía. Devuelve `true`{l=go} si la cola está vacía o `false`{l=go} en caso contrario
+`IsEmpty`
+: Verifica si la Coa está vacía. Devuelve `true` si la cola está vacía o `false` en caso contrario
 
 Todas las operaciones deben ser $O(1)$. Es decir de tiempo constante, independiente del tamaño de la entrada
 

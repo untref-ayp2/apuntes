@@ -62,7 +62,7 @@ Veremos en más profundidad algunos de estos patrones.
 
 ## Patrón _Adapter_
 
-```{figure} ../assets/images/PatronAdapter.svg
+```{figure} ../_static/figures/PatronAdapter.svg
 ---
 name: adapter
 ---
@@ -73,24 +73,31 @@ El patrón _adapter_ permite reutilizar código heredado o _legacy_ cuya interfa
 
 En la figura {ref}`adapter2` se observan los siguientes componentes.
 
-```{figure} ../assets/images/PatronAdapter2.svg
+```{figure} ../_static/figures/PatronAdapter2_light.svg
 ---
 name: adapter2
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/PatronAdapter2_dark.svg
+---
+name: adapter2
+class: only-dark-mode
 ---
 Diagrama de Clases del Patrón _Adapter_
 ```
 
 Cliente
-: Representa el sistema nuevo que espera una interfaz específica. En este ejemplo se observa que el cliente espera una interfaz que tiene el método `request()`{l=go}.
+: Representa el sistema nuevo que espera una interfaz específica. En este ejemplo se observa que el cliente espera una interfaz que tiene el método `request()`.
 
 Interfaz
 : Define la interfaz esperada por el sistema nuevo.
 
 Adaptado
-: Representa la clase existente con la interfaz incompatible. En este ejemplo se observa que cuenta con el método `specifirequest()`{l=go}.
+: Representa la clase existente con la interfaz incompatible. En este ejemplo se observa que cuenta con el método `specifirequest()`.
 
 Adaptador
-: Convierte la interfaz del _Adaptado_. Dentro del método `request()`{l=go} en el _Adapatador_ se invoca el método específico del _Adaptado_ `specificrequest()`{l=go}. Eventualmente puede realizar alguna transformación de datos o invocar otros métodos del _Adaptado_ para conseguir que `request()`{l=go} cumpla con la interfaz esperada.
+: Convierte la interfaz del _Adaptado_. Dentro del método `request()` en el _Adapatador_ se invoca el método específico del _Adaptado_ `specificrequest()`. Eventualmente puede realizar alguna transformación de datos o invocar otros métodos del _Adaptado_ para conseguir que `request()` cumpla con la interfaz esperada.
 
 ### Cómo Proceder
 
@@ -103,9 +110,9 @@ Adaptador
 
 ### Ejemplo
 
-Supongamos que tenemos un robot que realiza mediciones, cuyo sistema de control proporciona los métodos `Medir()`{l=go} que devuelve un par de enteros, donde el primer número representa la distancia en metros y el segundo número la distancia en centímetros. Por ejemplo si la última medición fue de 10,5 m, entonces `Medir()`{l=go} devolverá el par `(10, 50)`{l=go}.
+Supongamos que tenemos un robot que realiza mediciones, cuyo sistema de control proporciona los métodos `Medir()` que devuelve un par de enteros, donde el primer número representa la distancia en metros y el segundo número la distancia en centímetros. Por ejemplo si la última medición fue de 10,5 m, entonces `Medir()` devolverá el par `(10, 50)`.
 
-Nuestra empresa ha concretado la venta del robot a un cliente que necesita incorporar el robot a su sistema de producción, pero el sistema de control del cliente espera que el método `Medir`{l=go} devuelva un solo número que represente la distancia en pulgadas.
+Nuestra empresa ha concretado la venta del robot a un cliente que necesita incorporar el robot a su sistema de producción, pero el sistema de control del cliente espera que el método `Medir` devuelva un solo número que represente la distancia en pulgadas.
 
 1. Identificar los actores en juego: el _**Cliente**_ y el _**Adaptado**_ (componente _legacy_).
 
@@ -114,11 +121,11 @@ Nuestra empresa ha concretado la venta del robot a un cliente que necesita incor
 
 2. Identificar la _**Interfaz**_ que requiere el _**Cliente**_.
 
-   - _**Interfaz**_: Método `Medir()`{l=go} que devuelve la distancia en pulgadas.
+   - _**Interfaz**_: Método `Medir()` que devuelve la distancia en pulgadas.
 
 3. Verificar que el _**Adaptado**_ que se quiere utilizar puede cumplir con la _**Interfaz**_ solicitada.
 
-   - _**Adaptado**_: Robot que realiza mediciones con el método `Medir()`{l=go} que devuelve la distancia en metros y centímetros y se puede convertir a pulgadas.
+   - _**Adaptado**_: Robot que realiza mediciones con el método `Medir()` que devuelve la distancia en metros y centímetros y se puede convertir a pulgadas.
 
 4. Diseñar un envoltorio (_**Adaptador**_) que va a contener al _**Adaptado**_.
 
@@ -160,11 +167,11 @@ Nuestra empresa ha concretado la venta del robot a un cliente que necesita incor
    fmt.Println(distancia) // distancia en pulgadas
    ```
 
-   En este ejemplo, el _**Adaptador**_ `RobotAdaptado`{l=go} convierte la interfaz del `Robot`{l=go} en la interfaz requerida por el _**Cliente**_, permitiendo que el sistema de control del cliente pueda utilizar el robot para realizar mediciones **sin modificar el código original** del robot.
+   En este ejemplo, el _**Adaptador**_ `RobotAdaptado` convierte la interfaz del `Robot` en la interfaz requerida por el _**Cliente**_, permitiendo que el sistema de control del cliente pueda utilizar el robot para realizar mediciones **sin modificar el código original** del robot.
 
 ## Patrón _Composite_
 
-```{figure} ../assets/images/PatronComposite.svg
+```{figure} ../_static/figures/PatronComposite.svg
 ---
 name: composite
 ---
@@ -173,9 +180,16 @@ Patrón _Composite_
 
 El patrón _composite_ permite tratar tanto a objetos individuales como a composiciones de objetos de manera uniforme. Esto significa que se pueden tratar tanto a un objeto simple como a un grupo de objetos de la misma manera, sin tener que distinguir entre ellos. Lo que simplifica el diseño y la implementación de estructuras jerárquicas de objetos.
 
-```{figure} ../assets/images/PatronComposite2.svg
+```{figure} ../_static/figures/PatronComposite2_light.svg
 ---
 name: composite2
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/PatronComposite2_dark.svg
+---
+name: composite2
+class: only-dark-mode
 ---
 Diagrama de Clase del Patrón _Composite_
 ```
@@ -277,12 +291,17 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
 
    Por ejemplo queremos calcular el área de un tren compuesto por una locomotora y dos vagones, cada uno con su respectiva estructura de figuras.
 
-   ```{figure} ../assets/images/PatronTren.svg
-   ---
-   name: tren
-   ---
-   Tren Compuesto de Figuras
-   ```
+   ```{figure} ../_static/figures/PatronTren_light.svg
+---
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/PatronTren_dark.svg
+---
+class: only-dark-mode
+---
+
+```
 
    ```{code-block} go
    ---
@@ -315,7 +334,7 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
 
 ## Patrón _Iterator_
 
-```{figure} ../assets/images/PatronIterator.svg
+```{figure} ../_static/figures/PatronIterator.svg
 ---
 name: iterator
 ---
@@ -324,16 +343,16 @@ Patrón Iterador
 
 El patrón _Iterator_ o Iterador permite recorrer los elementos de una colección cualquiera sin exponer su estructura interna. El Iterador declara un conjunto de métodos o funciones para acceder secuencialmente a los elementos. Los métodos más comunes son:
 
-`Primero()`{l=go}
+`Primero()`
 : Se posiciona el iterador en el primer elemento de la colección
 
-`Siguiente()`{l=go}
+`Siguiente()`
 : Avanza el iterador al siguiente elemento
 
-`HaySiguiente()`{l=go}
-: Devuelve `true`{l=go} si todavía quedan elementos por recorrer en la colección o `false`{l=go} en caso contario
+`HaySiguiente()`
+: Devuelve `true` si todavía quedan elementos por recorrer en la colección o `false` en caso contario
 
-`Actual()`{l=go}
+`Actual()`
 : Devuelve el elemento actual donde está el iterador
 
 ### Cómo Proceder

@@ -33,48 +33,50 @@ Las listas que estudiaremos son:
 
 Las listas enlazadas son muy versátiles y su comportamiento se puede adaptar a medida de las necesidades. Algunas de las operaciones típicas que soporta una lista enlazada son:
 
-`Head`{l=go}
+`Head`
 : Devuelve un puntero al primer elemento de la lista.
 
-`Tail`{l=go}
+`Tail`
 : Devuelve un puntero al último elemento de la lista.
 
-`Size`{l=go}
+`Size`
 : Devuelve el tamaño de la lista (cantidad de nodos que tiene la lista).
 
-`IsEmpty`{l=go}
-: Devuelve `true`{l=go} si la lista está vacía o `false`{l=go} en caso contrario.
+`IsEmpty`
+: Devuelve `true` si la lista está vacía o `false` en caso contrario.
 
-`Prepend`{l=go}
+`Prepend`
 : Insertar un elemento en la cabeza de la lista.
 
-`Append`{l=go}
+`Append`
 : Insertar un elemento en la cola de la lista.
 
-`InsertAfter`{l=go}
+`InsertAfter`
 : Inserta un elemento a continuación de un elemento dado.
 
-`InsertBefore`{l=go}
+`InsertBefore`
 : Inserta un elemento antes de un elemento dado.
 
-`RemoveFirst`{l=go}
+`RemoveFirst`
 : Elimina el primer elemento de la lista.
 
-`RemoveLast`{l=go}
+`RemoveLast`
 : Elimina el último elemento de la lista.
 
-`Remove`{l=go}
+`Remove`
 : Elimina la primera aparición del elemento dado.
 
-`Find`{l=go}
+`Find`
 : Devuelve un puntero a la primera aparición de un elemento buscado.
 
-`Clear`{l=go}
+`Clear`
 : Elimina todos los elementos de la lista
 
 ## Lista Enlazada Simple
 
-```{Admonition} Definición
+```{note}
+:class: definition
+Definición
 
 Una lista enlazada simple es una estructura de datos lineal donde cada nodo de la lista tiene un sucesor, salvo el último. Por definición la lista vacía es la que no contiene datos y su tamaño es 0.
 
@@ -87,7 +89,7 @@ Puntero (o enlace)
 : Una referencia a la dirección de memoria del siguiente nodo en la secuencia.
 ```
 
-```{figure} ../assets/images/ListaEnlazadaSimple.svg
+```{figure} ../_static/figures/ListaEnlazadaSimple.svg
 ---
 width: 500px
 name: lista-simple
@@ -130,7 +132,7 @@ InsertAfter(buscado, elemento):
 
 De esta forma se garantiza la integridad de la lista. Ver figura {ref}`ssl-insercion`
 
-```{figure} ../assets/images/ListaEnlazadaSimpleInsercion.svg
+```{figure} ../_static/figures/ListaEnlazadaSimpleInsercion.svg
 ---
 width: 500px
 name: ssl-insercion
@@ -159,7 +161,7 @@ Remove(buscado):
 
 Eventualmente el recolector de basura liberará la memoria que ocupa el nodo **E3**, ya no es alcanzable (no hay ningún puntero que nos permita llegar a **E3**). Ver figura {ref}`ssl-eliminacion`
 
-```{figure} ../assets/images/ListaEnlazadaSimpleEliminacion.svg
+```{figure} ../_static/figures/ListaEnlazadaSimpleEliminacion.svg
 ---
 width: 500px
 name: ssl-eliminacion
@@ -178,19 +180,19 @@ align: center
 ---
 |      Operación       | Orden  |
 | :------------------: | :----: |
-|     `Head`{l=go}     | $O(1)$ |
-|     `Tail`{l=go}     | $O(1)$ |
-|     `Size`{l=go}     | $O(1)$ |
-|   `IsEmpty`{l=go}    | $O(1)$ |
-|   `Prepend`{l=go}    | $O(1)$ |
-|    `Append`{l=go}    | $O(1)$ |
-| `InsertAfter`{l=go}  | $O(n)$ |
-| `InsertBefore`{l=go} | $O(n)$ |
-| `RemoveFirst`{l=go}  | $O(1)$ |
-|  `RemoveLast`{l=go}  | $O(n)$ |
-|    `Remove`{l=go}    | $O(n)$ |
-|     `Find`{l=go}     | $O(n)$ |
-|    `Clear`{l=go}     | $O(1)$ |
+|     `Head`     | $O(1)$ |
+|     `Tail`     | $O(1)$ |
+|     `Size`     | $O(1)$ |
+|   `IsEmpty`    | $O(1)$ |
+|   `Prepend`    | $O(1)$ |
+|    `Append`    | $O(1)$ |
+| `InsertAfter`  | $O(n)$ |
+| `InsertBefore` | $O(n)$ |
+| `RemoveFirst`  | $O(1)$ |
+|  `RemoveLast`  | $O(n)$ |
+|    `Remove`    | $O(n)$ |
+|     `Find`     | $O(n)$ |
+|    `Clear`     | $O(1)$ |
 
 ```
 
@@ -202,7 +204,7 @@ Encontrar el predecesor de un elemento dado también es $O(n)$ ya que hay ingres
 
 Existen distintas alternativas para implementar una lista. Una alternativa se muestra en la figura {ref}`ssl-implementacion`. Para lograr que las operaciones de insertar y eliminar un elemento de la cola de la lista sean $O(1)$ se guarda un puntero a la cola de la lista, para poder acceder en tiempo constante al último elemento de la lista. En esta implementación la lista vacía se representa cuando los punteros a la cabeza y la cola son nulos y el tamaño es 0
 
-```{figure} ../assets/images/ListaEnlazadaSimpleImplementacion.svg
+```{figure} ../_static/figures/ListaEnlazadaSimpleImplementacion.svg
 ---
 width: 500px
 name: ssl-implementacion
@@ -212,7 +214,7 @@ Implementación de una Lista Enlazada Simple, con punteros a la cabeza y la cola
 
 ### Implementación en Go
 
-A continuación una implementación de una lista enlazada simple, donde se definen dos tipos `LinkedNode`{l=go} como un node de lista que contiene un dato y un puntero al siguiente y el tipo `LinkedList`{l=go}. Los datos de la lista son genéricos, pero se piden que sean Comparables entre sí
+A continuación una implementación de una lista enlazada simple, donde se definen dos tipos `LinkedNode` como un node de lista que contiene un dato y un puntero al siguiente y el tipo `LinkedList`. Los datos de la lista son genéricos, pero se piden que sean Comparables entre sí
 
 ```{code-block} go
 ---
@@ -552,7 +554,7 @@ func (l *LinkedList[T]) String() string {
 
 En la lista doble, en cada nodo se mantienen dos punteros, uno al sucesor y otro al predecesor. Esta lista permite avanzar y retroceder una posición en la lista en tiempo constante $O(1)$. Su principal uso es en aplicaciones que requieran avanzar y retroceder desde cualquier posición como editores de texto o gestores de historiales de navegación. En la siguiente figura se puede ver una representación gráfica.
 
-```{figure} ../assets/images/ListaEnlazadaDoble.svg
+```{figure} ../_static/figures/ListaEnlazadaDoble.svg
 ---
 width: 500px
 name: lista-doble
@@ -564,7 +566,7 @@ Implementación de una Lista Enlazada Doble, con punteros a la cabeza y la cola
 
 En una lista circular el último nodo se enlaza al primero para poder recorrer en forma continua la lista, se utiliza para modelar colas, gestión de procesos de un sistema operativo y juegos entre otras aplicaciones. En la siguiente figura se puede ver una implementación de una lista circular doble. Las listas circulares se pueden implementar con enlaces dobles o simples. Como el último y el primer elemento de la lista están enlazados solo es necesario mantener un puntero a la cabeza de la lista.
 
-```{figure} ../assets/images/ListaEnlazadaCircularDoble.svg
+```{figure} ../_static/figures/ListaEnlazadaCircularDoble.svg
 ---
 width: 500px
 name: lista-circular-doble
@@ -578,7 +580,7 @@ Los centinelas son nodos ficticios que no contienen datos, y se agrega uno al pr
 
 El propósito de estos centinelas es de alguna forma estandarizar las operaciones primitivas de las listas sin tener que contemplar casos especiales como si la lista está vacía (y por lo tanto no hay ningún nodo) o si estoy parado sobre el último elemento, etc.
 
-```{figure} ../assets/images/ListaConCentinelas.svg
+```{figure} ../_static/figures/ListaConCentinelas.svg
 ---
 width: 500px
 name: lista-centinelas
@@ -588,7 +590,7 @@ Implementación de una Lista Enlazada Doble con centinelas
 
 Hay que prestar especial atención a que ahora la lista vacía contendrá al menos dos nodos que se apuntan entre si y no contienen datos como se observa en la siguiente figura
 
-```{figure} ../assets/images/ListaVaciaCentinelas.svg
+```{figure} ../_static/figures/ListaVaciaCentinelas.svg
 ---
 width: 500px
 name: lista-vacia-centinelas

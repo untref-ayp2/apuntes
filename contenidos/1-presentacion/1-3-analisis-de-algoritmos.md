@@ -73,18 +73,40 @@ $$
 5 n \ge 4 n + 1, \; \forall n \ge 1
 $$
 
-```{figure} ../assets/images/funcion_acotada.svg
+```{figure} ../_static/figures/funcion_acotada_light.svg
 ---
 name: funcion-acotada
+class: only-light-mode---
+
+```{figure} ../_static/figures/funcion_acotada_dark.svg
+---
+name: funcion-acotada
+class: only-dark-mode---
+funcion_acotada
+```{figure} ../_static/figures/funcion_acotada_dark.svg
+---
+name: funcion-acotada
+class: only-dark-mode
 ---
 Función Acotada: $T(n) \subset O(n)$
 ```
 
 A continuación se muestran algunas tasas de crecimiento de las funciones que comunmente se encuentran al calcular la O grande.
 
-```{figure} ../assets/images/comparacion_funciones.svg
+```{figure} ../_static/figures/comparacion_funciones_light.svg
 ---
 name: tasa-crecimiento
+class: only-light-mode---
+
+```{figure} ../_static/figures/comparacion_funciones_dark.svg
+---
+name: tasa-crecimiento
+class: only-dark-mode---
+comparacion_funciones
+```{figure} ../_static/figures/comparacion_funciones_dark.svg
+---
+name: tasa-crecimiento
+class: only-dark-mode
 ---
 Comparación de tasas de crecimiento
 ```

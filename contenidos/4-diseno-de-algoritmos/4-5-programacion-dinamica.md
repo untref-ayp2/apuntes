@@ -55,9 +55,9 @@ func Fibonacci(n int) int {
 }
 ```
 
-En la línea 5 se observa que la función `Fibonacci`{l=go} se llama a sí misma dos veces, lo que provoca que se realicen cálculos redundantes. Por ejemplo, al calcular `Fibonacci(5)`{l=go}, se realizan las siguientes llamadas:
+En la línea 5 se observa que la función `Fibonacci` se llama a sí misma dos veces, lo que provoca que se realicen cálculos redundantes. Por ejemplo, al calcular `Fibonacci(5)`, se realizan las siguientes llamadas:
 
-```{figure} ../assets/images/programacion-dinamica/fibonacci-recursivo.drawio.svg
+```{figure} ../_static/figures/programacion-dinamica/fibonacci-recursivo.drawio.svg
 ---
 name: fibonacci-recursivo
 class: dark-light
@@ -65,7 +65,7 @@ class: dark-light
 Cálculo de la serie de Fibonacci utilizando recursión
 ```
 
-Se puede observar que `Fibonacci(5)`{l=go} y `Fibonacci(4)`{l=go} se calcularon 1 vez, `Fibonacci(3)`{l=go} se calculó 2 veces, `Fibonacci(2)`{l=go} y `Fibonacci(0)`{l=go} se calcularon 3 veces cada uno, y `Fibonacci(1)`{l=go} se calculó 5 veces. Esto significa que el tiempo de ejecución del algoritmo es exponencial, lo que lo hace ineficiente para valores grandes de `n`{l=go}.
+Se puede observar que `Fibonacci(5)` y `Fibonacci(4)` se calcularon 1 vez, `Fibonacci(3)` se calculó 2 veces, `Fibonacci(2)` y `Fibonacci(0)` se calcularon 3 veces cada uno, y `Fibonacci(1)` se calculó 5 veces. Esto significa que el tiempo de ejecución del algoritmo es exponencial, lo que lo hace ineficiente para valores grandes de `n`.
 
 En la siguiente animación se muestra como se pueden reutilizar los resultados utilizando una tabla para almacenar los resultados de los subproblemas:
 
@@ -81,7 +81,7 @@ Inicialización de la tabla
 : Se inicializa una tabla con los valores base de la serie de Fibonacci. Estos valores iniciales son necesarios para calcular los valores posteriores de la serie.
 
 Llenado Iterativo de la tabla
-: Se van completando los valores de la tabla de forma iterativa, utilizando los valores previamente calculados. En cada iteración, se calcula el valor de `Fibonacci(n)`{l=go} sumando los dos valores anteriores en la tabla, es decir, `Fibonacci(n-1)`{l=go} y `Fibonacci(n-2)`{l=go}. El proceso se repite hasta que se alcanza el valor deseado de `n`{l=go}.
+: Se van completando los valores de la tabla de forma iterativa, utilizando los valores previamente calculados. En cada iteración, se calcula el valor de `Fibonacci(n)` sumando los dos valores anteriores en la tabla, es decir, `Fibonacci(n-1)` y `Fibonacci(n-2)`. El proceso se repite hasta que se alcanza el valor deseado de `n`.
 
 El resultado final se encuentra en la última celda de la tabla, que contiene el valor de Fibonacci(n). Este enfoque evita la recursión y los cálculos redundantes, lo que mejora significativamente la eficiencia del algoritmo.
 
@@ -109,11 +109,11 @@ func Fibonacci(n int) int {
 En este caso donde la tabla es en realidad un arreglo, se puede estimar la complejidad temporal y espacial del algoritmo:
 
 - Complejidad temporal: $O(n)$, ya que se realiza un solo recorrido a través de la tabla.
-- Complejidad espacial: $O(n)$, ya que se utiliza una tabla de tamaño `n+1`{l=go} para almacenar los resultados de los subproblemas.
+- Complejidad espacial: $O(n)$, ya que se utiliza una tabla de tamaño `n+1` para almacenar los resultados de los subproblemas.
 
 ## Problema de la mochila (_Knapsack Problem_)
 
-```{Figura} ../assets/images/Mochila00.svg
+```{Figura} ../_static/figures/Mochila00.svg
 ---
 width: 600px
 name: mochila
@@ -230,7 +230,7 @@ func Fibonacci(n int, memo map[int]int) int {
 }
 ```
 
-En este caso, se utiliza un mapa `memo`{l=go} para almacenar los resultados de los subproblemas a medida que se van calculando. Si el resultado ya está en el mapa, se devuelve directamente sin volver a calcularlo.
+En este caso, se utiliza un mapa `memo` para almacenar los resultados de los subproblemas a medida que se van calculando. Si el resultado ya está en el mapa, se devuelve directamente sin volver a calcularlo.
 
 La complejidad temporal y espacial del algoritmo es:
 
@@ -260,7 +260,7 @@ En algunos casos la **tabulación** puede ser más fácil de implementar y enten
 
 ## Ejercicios
 
-1. Modificar el algoritmo de la serie de Fibonacci por tabulación para que utilice un arreglo de tamaño 2 en lugar de un arreglo de tamaño `n+1`{l=go}. Esto se puede lograr utilizando dos variables para almacenar los dos últimos valores de la serie y actualizarlos en cada iteración.
+1. Modificar el algoritmo de la serie de Fibonacci por tabulación para que utilice un arreglo de tamaño 2 en lugar de un arreglo de tamaño `n+1`. Esto se puede lograr utilizando dos variables para almacenar los dos últimos valores de la serie y actualizarlos en cada iteración.
 
 2. Implementar el problema de la mochila utilizando memorización. Dado un conjunto de objetos con peso y valor, y una capacidad de mochila, el objetivo es determinar el valor máximo que se puede obtener al incluir los objetos en la mochila. Utilizar un mapa para almacenar los resultados de los subproblemas a medida que se van calculando.
 
@@ -271,6 +271,6 @@ En algunos casos la **tabulación** puede ser más fácil de implementar y enten
    Se puede utilizar una función recursiva que tome como parámetros el índice del objeto actual, la capacidad restante de la mochila y un mapa para almacenar los resultados de los subproblemas. La función debe considerar dos casos: incluir el objeto actual o no incluirlo, y devolver el valor máximo obtenido en ambos casos.
    ```
 
-3. Implementar el problema de la subcadena común más larga (Longest Common Subsequence) utilizando programación dinámica. Dado dos cadenas de caracteres, el objetivo es encontrar la longitud de la subcadena común más larga entre ellas. Por ejemplo, para las cadenas `"AGGTAB"`{l=go} y `"GXTXAYB"`{l=go}, la subcadena común más larga es `"GTAB"`{l=go} y su longitud es 4.
+3. Implementar el problema de la subcadena común más larga (Longest Common Subsequence) utilizando programación dinámica. Dado dos cadenas de caracteres, el objetivo es encontrar la longitud de la subcadena común más larga entre ellas. Por ejemplo, para las cadenas `"AGGTAB"` y `"GXTXAYB"`, la subcadena común más larga es `"GTAB"` y su longitud es 4.
 
 4. Implementar el problema de la suma de subconjuntos (Subset Sum Problem) utilizando programación dinámica. Dado un conjunto de números enteros y un número objetivo, el objetivo es determinar la cantidad de subconjuntos de los números que sume exactamente el número objetivo. Por ejemplo, para el conjunto `{3, 34, 4, 12, 5, 2}` y el número objetivo `9`, hay 2 subconjuntos que suman `9`: `{4, 5}` y `{3, 4, 2}`.

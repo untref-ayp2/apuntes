@@ -229,19 +229,8 @@ Y si en cambio, queremos recibir la última versión disponible, debemos…
 ~/ayp2-repo $ git pull
 ```
 
-<center>
-  <iframe
-    width="560"
-    height="315"
-    src="https://www.youtube.com/embed/yEs0E3PnGuI?si=fXWPaE19xyzX9Gug"
-    title="YouTube video player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen
-  ></iframe>
-</center>
+[Ver video: Git Pull](https://www.youtube.com/watch?v=yEs0E3PnGuI)
 
 ## Links recomendados
 
-- [Git-Book](https://git-scm.com/book/es/v2){target="\_blank"}
+- [Git-Book](https://git-scm.com/book/es/v2)

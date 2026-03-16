@@ -1,0 +1,66 @@
+details[open] .details-body {
+    margin-top: 10px !important;
+}
+
+.hidden-citations {
+    display: none;
+}
+
+/* Ocultar el título "References" generado automáticamente */
+#references header {
+    display: none !important;
+}
+
+/* Aumentar el tamaño de letra de las referencias */
+li[id^="cite-"],
+.bibliography li,
+.myst-bibliography li {
+    font-size: 1rem !important;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Robust Light/Dark Mode Image Toggling */
+
+/* Default: Light Mode */
+/* Ensure Light image is visible and Dark image is hidden by default */
+.only-light-mode {
+    display: block !important;
+}
+
+.only-dark-mode {
+    display: none !important;
+}
+
+/* Dark Mode Overrides */
+/* Check for data-theme="dark" OR class="dark" on html OR body */
+html[data-theme="dark"] .only-dark-mode,
+html.dark .only-dark-mode,
+body[data-theme="dark"] .only-dark-mode,
+body.dark .only-dark-mode {
+    display: block !important;
+}
+
+html[data-theme="dark"] .only-light-mode,
+html.dark .only-light-mode,
+body[data-theme="dark"] .only-light-mode,
+body.dark .only-light-mode {
+    display: none !important;
+}
+
+details>summary.myst-dropdown-header {
+    font-size: 0.75rem !important;
+}
+
+/* Roles de colores personalizados */
+.red-text {
+    color: #e74c3c;
+}
+
+.blue-text {
+    color: #3498db;
+}
+
+.green-text {
+    color: #27ae60;
+}

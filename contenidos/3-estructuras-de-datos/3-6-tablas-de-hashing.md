@@ -10,9 +10,16 @@ jupytext:
 
 Las tablas de _hash_ son estructuras de datos eficientes para almacenar y recuperar información. Emplean una función _hash_ para convertir claves en índices dentro de un arreglo, permitiendo un acceso a los datos en tiempo promedio constante ($O(1)$[^1]). Esto las hace ideales para implementar diccionarios, conjuntos y otras estructuras que demandan búsquedas rápidas. Una tabla de _hash_ extiende la idea de un arreglo tradicional, posibilitando el uso de claves de cualquier tipo para acceder a sus posiciones, gracias a la función _hash_ que asigna cada clave a un índice específico en el arreglo. La eficacia de esta estructura depende de una función _hash_ que sea rápida y distribuya las claves de manera uniforme en el arreglo. La siguiente imagen ilustra los componentes de una tabla de _hash_.
 
-```{figure} ../assets/images/TablaHash1.svg
+```{figure} ../_static/figures/TablaHash1_light.svg
 ---
 name: tabla_hash
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/TablaHash1_dark.svg
+---
+name: tabla_hash
+class: only-dark-mode
 ---
 Esquema de una tabla de _hash_.
 ```
@@ -27,7 +34,7 @@ Función de _hash_
 : Una función que toma una clave y devuelve un índice en el arreglo.
 
 Arreglo
-: La estructura de datos subyacente que almacena los elementos, es un arreglo de pares **`(clave, valor)`{l=go}**. El tamaño del arreglo debe ser lo suficientemente grande para evitar colisiones, pero no tan grande como para desperdiciar espacio. Se debe almacenar el par `(clave, valor)`{l=go} para poder distinguir entre claves diferentes que colisionan en el mismo índice.
+: La estructura de datos subyacente que almacena los elementos, es un arreglo de pares **`(clave, valor)`**. El tamaño del arreglo debe ser lo suficientemente grande para evitar colisiones, pero no tan grande como para desperdiciar espacio. Se debe almacenar el par `(clave, valor)` para poder distinguir entre claves diferentes que colisionan en el mismo índice.
 
 Colisiones
 : Ocurren cuando dos claves diferentes se mapean al mismo índice en el arreglo. Las colisiones deben manejarse de manera eficiente para garantizar un rendimiento óptimo de la tabla de _hash_.
@@ -57,9 +64,16 @@ Esta técnica requiere poder distinguir entre posiciones vacías en la tabla y p
 
 En la siguiente figura se grafica la inserción de un elemento en una tabla de _hash_ cerrada.
 
-```{figure} ../assets/images/TablaHashInsercion.svg
+```{figure} ../_static/figures/TablaHashInsercion_light.svg
 ---
 name: tabla_hash_insercion_cerrada
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/TablaHashInsercion_dark.svg
+---
+name: tabla_hash_insercion_cerrada
+class: only-dark-mode
 ---
 Inserción en una tabla de _hash_ cerrada.
 ```
@@ -72,9 +86,16 @@ La eliminación de un elemento en una tabla de _hash_ cerrada es un poco más co
 
 Esto se conoce como _marcador de eliminación_ y permite que la búsqueda continúe sin problemas. Sin embargo, esto puede aumentar el tiempo de búsqueda si hay muchos elementos eliminados en la tabla de _hash_.
 
-```{figure} ../assets/images/TablaHashEliminacion.svg
+```{figure} ../_static/figures/TablaHashEliminacion_light.svg
 ---
 name: tabla_hash_eliminacion_cerrada
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/TablaHashEliminacion_dark.svg
+---
+name: tabla_hash_eliminacion_cerrada
+class: only-dark-mode
 ---
 Eliminación en una tabla de _hash_ cerrada.
 ```
@@ -89,9 +110,16 @@ En la figura se observa que al eliminar el elemento en la posición 10, se marca
 
 La búsqueda de un elemento en una tabla de _hash_ cerrada es similar a la inserción. Se utiliza la función de _hash_ para calcular el índice y luego se busca el elemento en esa posición. Si el elemento no se encuentra en la posición calculada, se incrementa el índice en 1 hasta encontrar el elemento o una posición vacía. Si se encuentra una posición eliminada, la búsqueda continua.
 
-```{figure} ../assets/images/TablaHashBusquedaCerrada.svg
+```{figure} ../_static/figures/TablaHashBusquedaCerrada_light.svg
 ---
 name: tabla_hash_busqueda_cerrada
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/TablaHashBusquedaCerrada_dark.svg
+---
+name: tabla_hash_busqueda_cerrada
+class: only-dark-mode
 ---
 Búsqueda en una tabla de _hash_ cerrada.
 ```
@@ -117,9 +145,16 @@ Algunas propiedades de la aritmética modular son:
 
 El _hashing_ abierto, es una técnica fundamental para el manejo de colisiones en tablas de _hash_. En contraste con el direccionamiento cerrado, donde todos los elementos se almacenan directamente dentro del arreglo subyacente, el _hashing_ abierto utiliza una estructura de datos adicional (generalmente una lista enlazada). En cada posición del arreglo se encuentra una lista enlazada para almacenar los elementos que colisionan en ese índice. Cuando dos o más claves diferentes se "mapean" a la misma posición en la tabla, en lugar de buscar otra posición en el arreglo, simplemente se añaden los nuevos elementos a la lista existente en esa posición. Esto significa que múltiples elementos pueden residir en la misma posición del arreglo, encadenados en una lista.
 
-```{figure} ../assets/images/TablaHashAbierta.svg
+```{figure} ../_static/figures/TablaHashAbierta_light.svg
 ---
 name: tabla_hash_abierta
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/TablaHashAbierta_dark.svg
+---
+name: tabla_hash_abierta
+class: only-dark-mode
 ---
 Tabla de _hash_ abierta.
 ```
@@ -470,7 +505,7 @@ Para implementar una tabla de _hash_ genérica, que soporte cualquier tipo de cl
 
 1. Modificar la tabla de _hash_ cerrada para que las claves puedan ser de distintos tipos (usar el paquete [`maphash`](https://pkg.go.dev/hash/maphash) de Go).
 
-2. Implementar una tabla de _hash_ abierta. Para ello se debe implementar una lista enlazada que almacene los elementos en cada posición del arreglo. Cuando se produce una colisión, el nuevo elemento se agrega a la lista en la posición correspondiente. La tabla debe tener los mismos métodos que la tabla de _hash_ cerrada: `Put`{l=go}, `Get`{l=go}, `Remove`{l=go}, `Keys`{l=go}, `Values`{l=go}, `Size`{l=go}, `IsEmpty`{l=go}, `Clear`{l=go} y `String`{l=go}. Las claves deben ser de cualquier tipo.
+2. Implementar una tabla de _hash_ abierta. Para ello se debe implementar una lista enlazada que almacene los elementos en cada posición del arreglo. Cuando se produce una colisión, el nuevo elemento se agrega a la lista en la posición correspondiente. La tabla debe tener los mismos métodos que la tabla de _hash_ cerrada: `Put`, `Get`, `Remove`, `Keys`, `Values`, `Size`, `IsEmpty`, `Clear` y `String`. Las claves deben ser de cualquier tipo.
 
 3. Escribir casos de pruebas que cubran todas las operaciones de los puntos anteriores.
 

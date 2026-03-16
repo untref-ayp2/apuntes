@@ -143,13 +143,13 @@ funcion merge(izquierda, derecha)
 fin funcion
 ```
 
-En la línea 2 de la función `merge`{l=go}, por cada mezcla que se realiza se crea un nuevo arreglo `resultado`{l=go} que contendrá los elementos ordenados de las dos sublistas. Esto es necesario porque Mergesort no modifica las listas originales, sino que crea una nueva lista ordenada a partir de ellas.
+En la línea 2 de la función `merge`, por cada mezcla que se realiza se crea un nuevo arreglo `resultado` que contendrá los elementos ordenados de las dos sublistas. Esto es necesario porque Mergesort no modifica las listas originales, sino que crea una nueva lista ordenada a partir de ellas.
 
-En la línea 7 de la función `merge`{l=go} es fundamental que se compare por menor igual (`<=`{l=go}) para garantizar la estabilidad del algoritmo, es decir, que los elementos iguales mantengan su orden relativo original.
+En la línea 7 de la función `merge` es fundamental que se compare por menor igual (`<=`) para garantizar la estabilidad del algoritmo, es decir, que los elementos iguales mantengan su orden relativo original.
 
 A continuación se puede visualizar paso a paso el funcionamiento de Mergesort:
 
-<iframe src="https://opendsa-server.cs.vt.edu/embed/mergesortAV" height="650" width="100%" scrolling="no"></iframe>
+[Ver visualización: MergeSort](https://opendsa-server.cs.vt.edu/embed/mergesortAV)
 
 #### Análisis de la Complejidad Computacional
 
@@ -264,11 +264,11 @@ Si el pivote elegido es justo el mayor elemento del arreglo (o el menor), la par
 
 Una técnica común para mitigar este comportamiento es elegir el pivote como la **"mediana de tres"**, que toma el primer, el último y el elemento del medio del arreglo y selecciona el que está en el medio de esos tres valores. Esto ayuda a evitar particiones muy desequilibradas.
 
-Por ejemplo, si tenemos un arreglo `{...}[3, 6, 8, 10, 1, 2, 1]`{l=go} la mediana de tres compara el primer elemento `3`{l=go}, el último elemento `1`{l=go} y el del medio `10`{l=go}, y selecciona `3`{l=go} como pivote, lo que ayuda a evitar un caso de peor rendimiento.
+Por ejemplo, si tenemos un arreglo `{...}[3, 6, 8, 10, 1, 2, 1]` la mediana de tres compara el primer elemento `3`, el último elemento `1` y el del medio `10`, y selecciona `3` como pivote, lo que ayuda a evitar un caso de peor rendimiento.
 
 A continuación se puede visualizar paso a paso el funcionamiento de Quicksort:
 
-<iframe src="https://opendsa-server.cs.vt.edu/embed/quicksortAV" height="450" width="100%" scrolling="no"></iframe>
+[Ver visualización: QuickSort](https://opendsa-server.cs.vt.edu/embed/quicksortAV)
 
 ### Análisis de la Complejidad Computacional
 
@@ -349,7 +349,7 @@ Aunque la altura máxima de un árbol es $\log (n)$, la mayoría de los nodos en
 
 Por ejemplo, en la siguiente figura se observa un arreglo como un árbol.
 
-```{figure} ../assets/images/Heapify01.svg
+```{figure} ../_static/figures/Heapify01.svg
 ---
 width: 600px
 name: Heapify01
@@ -371,7 +371,7 @@ En resumen, a pesar de que una sola operación de downHeap puede tomar $O(\log n
 
 En la siguiente figura se observa el arreglo convertido en un _heap_ de máximos.
 
-```{figure} ../assets/images/Heapify02.svg
+```{figure} ../_static/figures/Heapify02.svg
 ---
 width: 600px
 name: Heapify02
@@ -404,6 +404,6 @@ Los algoritmos de ordenamiento, basados en comparaciones (es decir que deben com
 
 ## Ejercicios
 
-1. Implementar Mergesort, de forma genérica que reciba por parámetro un arreglo de elementos tipo `Ordered`{l=go} y devuelva un arreglo ordenado
-2. Implementar Quicksort, de forma genérica que reciba por parámetro un arreglo de elementos tipo `Ordered`{l=go} y ordene el arreglo _**In Place**_
-3. Implementar Heapsort, de forma genérica, que reciba por parámetro un arreglo de elementos tipo `Ordered`{l=go} y ordene el arreglo _**In Place**_
+1. Implementar Mergesort, de forma genérica que reciba por parámetro un arreglo de elementos tipo `Ordered` y devuelva un arreglo ordenado
+2. Implementar Quicksort, de forma genérica que reciba por parámetro un arreglo de elementos tipo `Ordered` y ordene el arreglo _**In Place**_
+3. Implementar Heapsort, de forma genérica, que reciba por parámetro un arreglo de elementos tipo `Ordered` y ordene el arreglo _**In Place**_

@@ -1,10 +1,10 @@
 name: deploy-book
 
 on:
-  # Trigger the workflow on push to main branch
+  # Trigger the workflow on push to jb2-martin branch
   push:
     branches:
-      - main
+      - jb2-martin
 
 env:
   BASE_URL: /${{ github.event.repository.name }}
@@ -33,14 +33,23 @@ jobs:
         with:
           python-version: 3.13
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           pip install -r requirements.txt
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install MyST
+        run: npm install -g mystmd
 
       # Build the book
       - name: Build the book
         run: |
-          jupyter-book build contenidos
+          cd contenidos && myst build --html --execute --execute-parallel 2
+          touch _build/html/.nojekyll
 
       # Upload the book's HTML as an artifact
       - name: Upload artifact

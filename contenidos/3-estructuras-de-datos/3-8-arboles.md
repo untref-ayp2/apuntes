@@ -16,10 +16,18 @@ Una propiedad esencial de los árboles es la existencia de un único camino que 
 
 Consideremos el árbol genérico ilustrado: el nodo $A$ representa la **raíz**, mientras que $D$, $C$, $N$ y $K$ son las **hojas** y los nodos $R$ y $Z$ son **nodos internos**.
 
-```{figure} ../assets/images/Arbol.svg
+```{figure} ../_static/figures/Arbol_light.svg
 ---
 width: 80%
 name: arbol
+class: only-light-mode
+---
+
+```{figure} ../_static/figures/Arbol_dark.svg
+---
+width: 80%
+name: arbol
+class: only-dark-mode
 ---
 Árbol de datos
 ```
@@ -44,7 +52,7 @@ En la figura anterior, el árbol tiene una altura de 2, ya que el camino más la
 
 Los árboles binarios son árboles donde cada nodo tiene a lo sumo dos hijos. Estos hijos se denominan hijo izquierdo e hijo derecho. Los árboles binarios son ampliamente utilizados en informática debido a su simplicidad y eficiencia en diversas operaciones.
 
-```{figure} ../assets/images/ArbolBinario.svg
+```{figure} ../_static/figures/ArbolBinario.svg
 ---
 name: ArbolBinario
 ---
@@ -89,13 +97,13 @@ FUNCION Preorden(raiz)
 FIN FUNCION
 ```
 
-`Procesar(raiz)`{l=go}
+`Procesar(raiz)`
 : Representa una operación genérica que se aplica al nodo actual. Esta operación puede variar según la implementación, por ejemplo podría ser imprimir el valor del nodo o añadirlo a una lista.
 
 llamadas recursivas
 : Las líneas 6 y 7 realizan las llamadas recursivas para aplicar el recorrido preorden a los subárboles izquierdo y derecho del nodo actual, respectivamente.
 
-Por ejemplo en el siguiente video se observa el recorrido preorden. Cuando el nodo se pinta de amarillo significa que se llamó a la función `preorden`{l=go} con ese nodo y cuando el nodo se pinta de verde significa que el nodo fue visitado (línea 4 del seudocódigo).
+Por ejemplo en el siguiente video se observa el recorrido preorden. Cuando el nodo se pinta de amarillo significa que se llamó a la función `preorden` con ese nodo y cuando el nodo se pinta de verde significa que el nodo fue visitado (línea 4 del seudocódigo).
 
 <p class="align-center">
   <video src="../_static/videos/preorden.mp4" width="300" controls autoplay loop></video>

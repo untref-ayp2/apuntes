@@ -12,23 +12,23 @@ En este anexo, vamos a implementar iteradores para un Árbol Binario de Búsqued
 
 ## Interfaz del Iterador
 
-En el siguiente fragmento de código definimos la interfaz `Iterator`{l=go} que contendrá los métodos necesarios para iterar cualquier colección de elementos y en particular los nodos de un ABB.
+En el siguiente fragmento de código definimos la interfaz `Iterator` que contendrá los métodos necesarios para iterar cualquier colección de elementos y en particular los nodos de un ABB.
 
-```{literalinclude} ../_static/code/types/types.go
----
-language: go
-lineno-match: true
-linenos: true
----
+```{code-block} go
+// La interfaz Iterator define los métodos para iterar sobre una colección
+type Iterator[T any] interface {
+    HasNext() bool
+    Next() (T, error)
+}
 ```
 
 Los métodos que debe implementar un iterador son los siguientes
 
-`HasNext`{l=go}
-: Indica si hay un siguiente elemento en la colección. Devuelve `true`{l=go} si hay más elementos por recorrer, o `false`{l=go} si se ha llegado al final de la colección.
+`HasNext`
+: Indica si hay un siguiente elemento en la colección. Devuelve `true` si hay más elementos por recorrer, o `false` si se ha llegado al final de la colección.
 
-`Next`{l=go}
-: Devuelve el siguiente elemento de la colección. El comportamiento de `Next`{l=go} consiste en avanzar al próximo elemento y devolverlo. Si no hay más elementos para iterar devuelve un elemento nulo y un error.
+`Next`
+: Devuelve el siguiente elemento de la colección. El comportamiento de `Next` consiste en avanzar al próximo elemento y devolverlo. Si no hay más elementos para iterar devuelve un elemento nulo y un error.
 
 ## Árbol Binario de Búsqueda (ABB)
 
@@ -36,31 +36,40 @@ En esta implementación de ABB la funcionalidad del árbol se encuentra en el á
 
 Los métodos incluidos son los mínimos y necesarios para crear un árbol, insertar elementos y obtener los distintos iteradores.
 
-El árbol es genérico del tipo `cmp.Ordered`{l=go}, lo que significa que los valores deben ser comparables y ordenables, es decir deben soportar las operaciones de comparación como `<`{l=go}, `<=`{l=go}, `>`{l=go}, `>=`{l=go}, `==`{l=go} y `!=`{l=go}.
+El árbol es genérico del tipo `cmp.Ordered`, lo que significa que los valores deben ser comparables y ordenables, es decir deben soportar las operaciones de comparación como `<`, `<=`, `>`, `>=`, `==` y `!=`.
 
 A continuación se muestra la estructura del nodo del ABB.
 
-```{literalinclude} ../_static/code/binarytree/binarynode.go
----
-language: go
-start-at: type BinaryNode
-end-at: }
-lineno-match: true
-linenos: true
----
+```{code-block} go
+// BinaryNode representa un nodo en el árbol binario
+type BinaryNode[T any] struct {
+    value T
+    left  *BinaryNode[T]
+    right *BinaryNode[T]
+}
 ```
 
-El tipo `BinaryNode`{l=go} solo tiene los métodos necesarios para crear un nodo y obtener su valor. No contiene métodos para insertar o eliminar nodos, ya que toda la funcionalidad del árbol está implementada en `BinarySearchTree`{l=go} directamente.
+El tipo `BinaryNode` solo tiene los métodos necesarios para crear un nodo y obtener su valor. No contiene métodos para insertar o eliminar nodos, ya que toda la funcionalidad del árbol está implementada en `BinarySearchTree` directamente.
 
 En la implementación del ABB tenemos los métodos para obtener los iteradores:
 
-```{literalinclude} ../_static/code/binarytree/binarysearchtree.go
----
-language: go
-lineno-match: true
-linenos: true
-emphasize-lines: 95, 100, 105
----
+```{code-block} go
+// BinarySearchTree implementa un árbol binario de búsqueda genérico
+type BinarySearchTree[T any] struct {
+    root *BinaryNode[T]
+    cmp  func(T, T) int
+}
+
+// NewBinarySearchTree crea un nuevo ABB con la función de comparación dada
+func NewBinarySearchTree[T any](cmp func(T, T) int) *BinarySearchTree[T] {
+    return &BinarySearchTree[T]{cmp: cmp}
+}
+
+// Insert agrega un valor al árbol
+func (t *BinarySearchTree[T]) Insert(value T) { ... }
+
+// InorderIterator retorna un iterador inorder
+func (t *BinarySearchTree[T]) InorderIterator() Iterator[T] { ... }
 ```
 
 Al crear un iterador se ejecuta un setup inicial que depende de cada tipo de iterador.
@@ -69,7 +78,7 @@ Al crear un iterador se ejecuta un setup inicial que depende de cada tipo de ite
 
 Cuando estudiamos los recorridos de árboles (inorder, preorder, postorder), la forma más intuitiva y elegante de implementarlos es usando recursión, ya que el código queda conciso, limpio y fácil de entender.
 
-Sin embargo, cuando hablamos de un iterador, la situación cambia. Un iterador, por definición (según el patrón Iterador), debe permitirnos obtener el "siguiente" elemento de la colección a demanda, sin tener que procesar el resto de la colección de antemano. Es decir, queremos que nuestro método `Next()`{l=go} devuelva un único valor y luego Has`Next()`{l=go} nos diga si hay más, esperando una nueva llamada a `Next()`{l=go}.
+Sin embargo, cuando hablamos de un iterador, la situación cambia. Un iterador, por definición (según el patrón Iterador), debe permitirnos obtener el "siguiente" elemento de la colección a demanda, sin tener que procesar el resto de la colección de antemano. Es decir, queremos que nuestro método `Next()` devuelva un único valor y luego Has`Next()` nos diga si hay más, esperando una nueva llamada a `Next()`.
 
 Aquí es donde la recursión directa presenta un desafío:
 
@@ -77,7 +86,7 @@ Manejo del estado:
 Una función recursiva completa su ejecución y devuelve un resultado. No "pausa" su estado para ser reanudada en el mismo punto más tarde. Cada llamada recursiva crea un nuevo stack frame (marco de pila) que se destruye al finalizar.
 
 Devolución de un solo elemento
-: Si intentáramos adaptar la recursión para devolver un solo elemento en cada llamada a `Next()`{l=go}, nos encontraríamos con que la función recursiva ya ha avanzado en el recorrido, y sería muy difícil mantener el "punto exacto" en el que nos quedamos para la siguiente llamada.
+: Si intentáramos adaptar la recursión para devolver un solo elemento en cada llamada a `Next()`, nos encontraríamos con que la función recursiva ya ha avanzado en el recorrido, y sería muy difícil mantener el "punto exacto" en el que nos quedamos para la siguiente llamada.
 
 Espacio en memoria (_stack overflow_)
 : Para árboles muy grandes o muy desbalanceados (degenerados), una implementación recursiva podría consumir una gran cantidad de memoria de la pila de llamadas, llevando a un error de stack overflow.
@@ -95,7 +104,7 @@ Al usar una pila en nuestros iteradores, nosotros somos los que gestionamos el "
 Esta técnica nos permite:
 
 Pausar y Reanudar
-: Cuando `Next()`{l=go} es llamado, podemos extraer el siguiente nodo a visitar de la pila, devolverlo, y luego dejar la pila en un estado que representa el "resto" del recorrido. La próxima vez que se llame `Next()`{l=go}, la pila nos recordará dónde estábamos.
+: Cuando `Next()` es llamado, podemos extraer el siguiente nodo a visitar de la pila, devolverlo, y luego dejar la pila en un estado que representa el "resto" del recorrido. La próxima vez que se llame `Next()`, la pila nos recordará dónde estábamos.
 
 Eficiencia en Memoria
 : La profundidad de la pila que necesitamos es proporcional a la altura del árbol ($O(h)$), no al número total de nodos ($O(N)$), lo que es mucho más eficiente para árboles grandes y balanceados ($O(\log{N})$).
@@ -110,30 +119,43 @@ La estrategia para el iterador inorder es la siguiente:
 1. Comenzamos desde la raíz del árbol.
 2. Vamos hacia la izquierda hasta llegar al nodo más a la izquierda apilando los nodos en la pila.
 3. El menor elemento del árbol será el nodo más a la izquierda es el que se encuentra en el tope de la pila.
-4. Cuando llamamos a `Next()`{l=go}, sacamos el nodo del tope de la pila, chequeamos si tiene un hijo derecho. Si lo tiene, vamos a ese hijo derecho y repetimos el proceso de ir hacia la izquierda, apilando los nodos.
+4. Cuando llamamos a `Next()`, sacamos el nodo del tope de la pila, chequeamos si tiene un hijo derecho. Si lo tiene, vamos a ese hijo derecho y repetimos el proceso de ir hacia la izquierda, apilando los nodos.
 5. Una vez que no hay más nodos a la izquierda, el tope de la pila contendrá el siguiente nodo en orden.
 6. Devolvemos el elemento del nodo que acabamos de sacar de la pila.
 
-<iframe
-  src="https://docs.google.com/presentation/d/1Wf0J8QD3Whr5rY7r0xZB8Jx85kiAKKUWCHYQ0LO8ba4/embed"
-  frameborder="0"
-  width="100%"
-  height="569"
-  allowfullscreen="true"
-  mozallowfullscreen="true"
-  webkitallowfullscreen="true">
-</iframe>
+[Ver presentación: Iterador Inorder](https://docs.google.com/presentation/d/1Wf0J8QD3Whr5rY7r0xZB8Jx85kiAKKUWCHYQ0LO8ba4)
 
 En el siguiente fragmento de código se puede observar la implementación del iterador Inorder
 
 El setup inicial consiste en apilar la raíz y toda la rama izquierda para iniciar. De esta forma el primer nodo que se desapila es el menor de todo el árbol
 
-```{literalinclude} ../_static/code/binarytree/inorderIterator.go
----
-language: go
-lineno-match: true
-linenos: true
----
+```{code-block} go
+// InorderIterator implementa un iterador inorder usando dos pilas
+type InorderIterator[T any] struct {
+    stack1 []*BinaryNode[T]  // Pila principal para traversal
+    stack2 []*BinaryNode[T]  // Pila auxiliar para postorder
+}
+
+func (t *BinarySearchTree[T]) InorderIterator() Iterator[T] {
+    iter := &InorderIterator[T]{stack1: make([]*BinaryNode[T], 0)}
+    // Setup: apilar raíz y toda la rama izquierda
+    node := t.root
+    for node != nil {
+        iter.stack1 = append(iter.stack1, node)
+        node = node.left
+    }
+    return iter
+}
+
+func (iter *InorderIterator[T]) HasNext() bool {
+    return len(iter.stack1) > 0 || len(iter.stack2) > 0
+}
+
+func (iter *InorderIterator[T]) Next() (T, error) {
+    // Implementación del Next...
+    var zero T
+    return zero, nil
+}
 ```
 
 ## Iterador Preorder
@@ -142,30 +164,39 @@ La estrategia para el iterador preorder varía un poco, ya que lo primero que de
 
 1. Comenzamos desde la raíz del árbol.
 2. Apilamos sólo la raíz
-3. Al desapilar un nodo cuando se llama a `Next()`{l=go}, se apilan primero su hijo derecho y luego su hijo izquierdo (para que el orden de salida de la pila sea primero el izquierdo y luego el derecho). El próximo en salir de la pila será la raíz del subárbol izquierdo.
+3. Al desapilar un nodo cuando se llama a `Next()`, se apilan primero su hijo derecho y luego su hijo izquierdo (para que el orden de salida de la pila sea primero el izquierdo y luego el derecho). El próximo en salir de la pila será la raíz del subárbol izquierdo.
 4. Devolvemos el elemento del nodo que acabamos de sacar de la pila.
 5. Se repite hasta que la pila queda vacía.
 
-<iframe
-  src="https://docs.google.com/presentation/d/1dPcj7P__1Em86zUmh0GkHsv02oKRn4m5MtDB6E87zfQ/embed"
-  frameborder="0"
-  width="100%"
-  height="569"
-  allowfullscreen="true"
-  mozallowfullscreen="true"
-  webkitallowfullscreen="true">
-</iframe>
+[Ver presentación: Iterador Preorder](https://docs.google.com/presentation/d/1dPcj7P__1Em86zUmh0GkHsv02oKRn4m5MtDB6E87zfQ)
 
 En el siguiente fragmento de código se puede observar la implementación del iterador Preorder
 
 El setup inicial consiste en apilar la raíz solamente.
 
-```{literalinclude} ../_static/code/binarytree/preorderIterator.go
----
-language: go
-lineno-match: true
-linenos: true
----
+```{code-block} go
+// PreorderIterator implementa un iterador preorder
+type PreorderIterator[T any] struct {
+    stack []*BinaryNode[T]
+}
+
+func (t *BinarySearchTree[T]) PreorderIterator() Iterator[T] {
+    iter := &PreorderIterator[T]{stack: make([]*BinaryNode[T], 0)}
+    if t.root != nil {
+        iter.stack = append(iter.stack, t.root)
+    }
+    return iter
+}
+
+func (iter *PreorderIterator[T]) HasNext() bool {
+    return len(iter.stack) > 0
+}
+
+func (iter *PreorderIterator[T]) Next() (T, error) {
+    // Implementación...
+    var zero T
+    return zero, nil
+}
 ```
 
 ## Iterador Postorder
@@ -188,29 +219,52 @@ Por eso, se usan dos pilas para simular el recorrido postorder de manera iterati
 
 - __Iteración:__
 
-  - Cuando se llama a `Next()`{l=go}, simplemente se desapila un nodo de stack2 y se devuelve su valor.
-  - Has`Next()`{l=go} verifica si stack2 aún tiene nodos.
+- Cuando se llama a `Next()`, simplemente se desapila un nodo de stack2 y se devuelve su valor.
+- Has`Next()` verifica si stack2 aún tiene nodos.
 
-<iframe
-  src="https://docs.google.com/presentation/d/1UKgXA9gn01o90VSMud5RHdnPDxas7GWhIXZg8Pl1ZWY/embed"
-  frameborder="0"
-  width="100%"
-  height="569"
-  allowfullscreen="true"
-  mozallowfullscreen="true"
-  webkitallowfullscreen="true">
-</iframe>
+[Ver presentación: Iterador Postorder](https://docs.google.com/presentation/d/1UKgXA9gn01o90VSMud5RHdnPDxas7GWhIXZg8Pl1ZWY)
 
 En el siguiente fragmento de código se puede observar la implementación del iterador Preorder
 
 El setup inicial consiste en apilar la raíz solamente.
 
-```{literalinclude} ../_static/code/binarytree/postorderIterator.go
----
-language: go
-lineno-match: true
-linenos: true
----
+```{code-block} go
+// PostorderIterator implementa un iterador postorder usando dos pilas
+type PostorderIterator[T any] struct {
+    stack1 []*BinaryNode[T]
+    stack2 []*BinaryNode[T]
+}
+
+func (t *BinarySearchTree[T]) PostorderIterator() Iterator[T] {
+    iter := &PostorderIterator[T]{
+        stack1: make([]*BinaryNode[T], 0),
+        stack2: make([]*BinaryNode[T], 0),
+    }
+    // Setup: traversal para llenar stack2 en orden postorder
+    node := t.root
+    for node != nil || len(iter.stack1) > 0 {
+        if node != nil {
+            iter.stack1 = append(iter.stack1, node)
+            node = node.left
+        } else {
+            node = iter.stack1[len(iter.stack1)-1]
+            iter.stack1 = iter.stack1[:len(iter.stack1)-1]
+            iter.stack2 = append(iter.stack2, node)
+            node = node.right
+        }
+    }
+    return iter
+}
+
+func (iter *PostorderIterator[T]) HasNext() bool {
+    return len(iter.stack2) > 0
+}
+
+func (iter *PostorderIterator[T]) Next() (T, error) {
+    // Implementación...
+    var zero T
+    return zero, nil
+}
 ```
 
 ## Código completo en Go
