@@ -298,3 +298,11 @@ Este proyecto usa **MyST** (mystmd) en lugar de Jupyter Book v1.
 - `mystmd` - Build system
 - `typst` - Compilador PDF
 - `mdformat` - Formateador Markdown
+
+---
+
+## Normas del Proyecto
+
+- **NO abrir PRs** sin autorización expresa del usuario
+- Los commits se hacen directamente a la rama de trabajo
+- Solo crear PR cuando el trabajo esté completo y el usuario lo solicite
