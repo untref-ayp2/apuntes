@@ -12,7 +12,7 @@ Este documento contiene las directivas para agentes que colaboren en este proyec
 6. **Estáticos**: Imágenes en `contenidos/_static/figures`
 7. **Citas**: Agregar a `contenidos/references.bib` y usar sintaxis MyST
 
----
+______________________________________________________________________
 
 ## Comandos de Build, Lint y Test
 
@@ -37,7 +37,7 @@ make server   # servidor de desarrollo
 make clean    # elimina archivos generados
 ```
 
----
+______________________________________________________________________
 
 ## Testing
 
@@ -57,7 +57,7 @@ go test -v -run TestFunctionName ./package/path
 go test -v -run TestStackPush ./stack
 ```
 
----
+______________________________________________________________________
 
 ## Convenciones de Código Go
 
@@ -80,13 +80,13 @@ import (
 
 ### Convenciones de Nombres
 
-| Elemento      | Convención   | Ejemplo          |
-|---------------|--------------|------------------|
-| Paquetes      | lowercase    | `stack`, `queue` |
-| Funciones     | PascalCase   | `Push`, `Pop`   |
-| Variables     | camelCase    | `nodeValue`      |
-| Constantes    | Mayúsculas   | `MAX_SIZE`       |
-| Interfaces    | er suffix    | `Reader`, `Stack`|
+| Elemento   | Convención | Ejemplo           |
+| ---------- | ---------- | ----------------- |
+| Paquetes   | lowercase  | `stack`, `queue`  |
+| Funciones  | PascalCase | `Push`, `Pop`     |
+| Variables  | camelCase  | `nodeValue`       |
+| Constantes | Mayúsculas | `MAX_SIZE`        |
+| Interfaces | er suffix  | `Reader`, `Stack` |
 
 ### Manejo de Errores
 
@@ -119,7 +119,7 @@ func (s Stack) String() string {
 5. Funciones exportadas (con docstrings)
 6. Funciones no exportadas
 
----
+______________________________________________________________________
 
 ## MyST y Contenido
 
@@ -182,6 +182,7 @@ func respuesta() error {
 ### Imágenes Modo Claro/Oscuro
 
 Para soportar ambos temas, crear dos versiones de cada imagen SVG:
+
 - `_light.svg` para modo claro
 - `_dark.svg` para modo oscuro
 
@@ -203,7 +204,7 @@ Mi Diagrama
 ```
 ````
 
----
+______________________________________________________________________
 
 ## Code Style Guidelines
 
@@ -211,13 +212,15 @@ Mi Diagrama
 
 - Escribir en español
 - Usar ATX-style headers (`#`, `##`, `###`)
-- Usar fenced code blocks con especificadores de lenguaje: ```go, ```python, etc.
+- Usar fenced code blocks con especificadores de lenguaje: `go, `python, etc.
 - Habilitar números de línea en bloques de código cuando se demuestre ejecución paso a paso
 - Usar admonitions para tips, advertencias y notas:
-  ```markdown
+  ````markdown
   ```{note}
   Tu contenido aquí
+  ````
   ```
+
   ```
 
 ### Markdown Linting
@@ -261,7 +264,7 @@ El proyecto usa markdownlint y mdformat:
 - Trabajar en la rama `jb2-martin` para cambios de migración
 - PRs deben pasar el build antes de merge
 
----
+______________________________________________________________________
 
 ## Tareas Comunes
 
@@ -275,10 +278,10 @@ El proyecto usa markdownlint y mdformat:
 ### Agregar Ejemplos de Código
 
 1. Agregar archivos Go a `contenidos/_static/code/`
-2. Usar fenced code blocks en markdown con ````go` o `code-file` para incluir archivos
+2. Usar fenced code blocks en markdown con \`\`\`\`go`o`code-file\` para incluir archivos
 3. Testear el código: `go test ./...` en ese directorio
 
----
+______________________________________________________________________
 
 ## Build System
 
@@ -286,12 +289,12 @@ Este proyecto usa **MyST** (mystmd) en lugar de Jupyter Book v1.
 
 ### Diferencias principales con Jupyter Book v1
 
-| Aspecto | JBv1 | MyST (JBv2) |
-|---------|------|-------------|
-| Config | `_config.yml` + `_toc.yml` | `myst.yml` |
-| Build | `jupyter-book build` | `myst build` |
-| PDF | LaTeX | Typst |
-| Imágenes | Una versión | Versiones light/dark |
+| Aspecto  | JBv1                       | MyST (JBv2)          |
+| -------- | -------------------------- | -------------------- |
+| Config   | `_config.yml` + `_toc.yml` | `myst.yml`           |
+| Build    | `jupyter-book build`       | `myst build`         |
+| PDF      | LaTeX                      | Typst                |
+| Imágenes | Una versión                | Versiones light/dark |
 
 ### Dependencias
 
@@ -299,7 +302,7 @@ Este proyecto usa **MyST** (mystmd) en lugar de Jupyter Book v1.
 - `typst` - Compilador PDF
 - `mdformat` - Formateador Markdown
 
----
+______________________________________________________________________
 
 ## Normas del Proyecto
 

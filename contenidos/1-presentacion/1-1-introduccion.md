@@ -38,12 +38,6 @@ Para poder regularizar la cursada es necesario aprobar dos parciales, cada parci
 
 Para aprobar la materia además hay que aprobar un examen final, para poder rendirlo es necesario tener aprobada Algoritmos y Programación I.
 
-### Herramientas para cursar
-
-- [Google Classroom](https://classroom.google.com/c/Njg3MjUxNTQ3Mzcy)
-- [Slack](https://aypii.slack.com/)
-- [Github Classroom](https://classroom.github.com/classrooms/171295672-untref-ayp2-2025-1c)
-
 ## Lenguaje de Programación
 
 Un lenguaje de programación es lo que nos permite comunicarnos con la computadora para que realice alguna tarea. Cada lenguaje de programación tiene su propia:
@@ -58,4 +52,4 @@ Algunos lenguajes de programación, al igual que los idiomas hablados, permiten 
 
 Teniendo en cuenta que esta materia es parte de la formación de ingenieras/os en computación cuyo foco está en los sistemas integrados de hardware y software, elegimos a Go como lenguaje, porque es un lenguaje moderno, fácil de aprender y a su vez más cercano al hardware que otros lenguajes.
 
-<h1 class="align-center">¡Bienvenidos a AyP2!</h1>
+***¡Bienvenidos a AyP2!***

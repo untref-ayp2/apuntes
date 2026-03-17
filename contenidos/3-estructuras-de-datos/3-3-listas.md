@@ -75,7 +75,9 @@ Las listas enlazadas son muy versátiles y su comportamiento se puede adaptar a 
 ## Lista Enlazada Simple
 
 ```{note}
-:class: definition
+---
+class: definition
+---
 Definición
 
 Una lista enlazada simple es una estructura de datos lineal donde cada nodo de la lista tiene un sucesor, salvo el último. Por definición la lista vacía es la que no contiene datos y su tamaño es 0.

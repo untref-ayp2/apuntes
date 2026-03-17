@@ -8,58 +8,58 @@
 	viewBox="1338 438 10824 8662">
 <g fill="none">
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="1800" width="450" height="450"
+<rect x="7650" y="1800" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="3600" width="450" height="450"
+<rect x="7650" y="3600" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="4050" width="450" height="450"
+<rect x="7650" y="4050" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="4500" width="450" height="450"
+<rect x="7650" y="4500" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="5850" width="450" height="450"
+<rect x="7650" y="5850" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="7200" width="450" height="450"
+<rect x="7650" y="7200" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="2250" width="450" height="450"
+<rect x="7650" y="2250" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="4950" width="450" height="900"
+<rect x="7650" y="4950" width="450" height="900"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="6300" width="450" height="900"
+<rect x="7650" y="6300" width="450" height="900"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="2700" width="450" height="900"
+<rect x="7650" y="2700" width="450" height="900"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="9000" y="3600" width="2700" height="450"
+<rect x="9000" y="3600" width="2700" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="9000" y="4500" width="2700" height="450"
+<rect x="9000" y="4500" width="2700" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="9000" y="5850" width="2700" height="450"
+<rect x="9000" y="5850" width="2700" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="9000" y="7200" width="2700" height="450"
+<rect x="9000" y="7200" width="2700" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="9000" y="7650" width="2700" height="450"
+<rect x="9000" y="7650" width="2700" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="9000" y="2250" width="2700" height="450"
+<rect x="9000" y="2250" width="2700" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="8550" y="450" width="3600" height="8100"
+<rect x="8550" y="450" width="3600" height="8100"
 	stroke="#333333" stroke-width="8px" stroke-dasharray="10 30"/>
 <!-- Line -->
-<rect fill="#ffffff" x="1350" y="450" width="3600" height="8100"
+<rect x="1350" y="450" width="3600" height="8100"
 	stroke="#333333" stroke-width="8px" stroke-dasharray="10 30"/>
 <!-- Line -->
 <defs>
@@ -242,7 +242,7 @@
 <polygon points=" 6471,7103 6516,6988 6422,7069 6471,7103"
 	stroke="#333333" stroke-width="8px" stroke-miterlimit="8" fill="#333333"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="7650" width="450" height="450"
+<rect x="7650" y="7650" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="2700" y="2250" fill="#333333" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="start">"Ana"</text>

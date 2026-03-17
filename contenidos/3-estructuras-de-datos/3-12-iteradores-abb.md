@@ -93,7 +93,10 @@ Espacio en memoria (_stack overflow_)
 
 Para superar estos desafíos y crear un iterador que sea _lazy_ (bajo demanda) y eficiente en memoria, necesitamos una forma de simular la pila de llamadas recursiva de forma explícita. Y la estructura de datos perfecta para esto es, precisamente, una pila (_stack_).
 
-```{Note}
+```{admonition} Nota
+---
+class: Note
+---
 Que sea _lazy_ significa que el iterador no calcula todos los elementos de antemano, sino que los obtiene a medida que se le solicita un nuevo elemento. Esto es fundamental para manejar colecciones grandes o infinitas sin consumir demasiada memoria.
 ```
 
@@ -220,6 +223,7 @@ Por eso, se usan dos pilas para simular el recorrido postorder de manera iterati
 - __Iteración:__
 
 - Cuando se llama a `Next()`, simplemente se desapila un nodo de stack2 y se devuelve su valor.
+
 - Has`Next()` verifica si stack2 aún tiene nodos.
 
 [Ver presentación: Iterador Postorder](https://docs.google.com/presentation/d/1UKgXA9gn01o90VSMud5RHdnPDxas7GWhIXZg8Pl1ZWY)

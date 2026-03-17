@@ -10,7 +10,6 @@ project:
       "algoritmos",
       "programación",
       "go",
-      "estructuras de datos",
       "untref",
       "ingeniería en computación",
     ]
@@ -24,7 +23,7 @@ project:
     - references.bib
 
   exports:
-    - format: latex
+    - format: typst
       template: templates/plain_latex_book
       output: exports/apunte-ayp2.pdf
 
@@ -37,53 +36,51 @@ project:
     heading_2: true
     heading_3: true
   toc:
-    - file: introduccion
+    - file: introduccion.md
     - title: Presentación
       children:
-        - file: 1-presentacion/1-1-introduccion
-        - file: 1-presentacion/1-2-memoria
-        - file: 1-presentacion/1-3-analisis-de-algoritmos
+        - file: 1-presentacion/1-1-introduccion.md
+        - file: 1-presentacion/1-2-memoria.md
+        - file: 1-presentacion/1-3-analisis-de-algoritmos.md
     - title: Taller de Go
       children:
-        - file: 2-taller-de-go/2-1-introduccion-go
-        - file: 2-taller-de-go/2-2-paquetes-y-modulos
-        - file: 2-taller-de-go/2-3-arreglos-slices
-        - file: 2-taller-de-go/2-4-maps
-        - file: 2-taller-de-go/2-5-funciones
-        - file: 2-taller-de-go/2-6-punteros
-        - file: 2-taller-de-go/2-7-errores
-        - file: 2-taller-de-go/2-8-structs-interfaces
-        - file: 2-taller-de-go/2-9-exportado-no-exportado
-        - file: 2-taller-de-go/2-10-oop
+        - file: 2-taller-de-go/2-1-introduccion-go.md
+        - file: 2-taller-de-go/2-2-paquetes-y-modulos.md
+        - file: 2-taller-de-go/2-3-arreglos-slices.md
+        - file: 2-taller-de-go/2-4-maps.md
+        - file: 2-taller-de-go/2-5-funciones.md
+        - file: 2-taller-de-go/2-6-punteros.md
+        - file: 2-taller-de-go/2-7-errores.md
+        - file: 2-taller-de-go/2-8-structs-interfaces.md
+        - file: 2-taller-de-go/2-9-exportado-no-exportado.md
+        - file: 2-taller-de-go/2-10-oop.md
     - title: Estructuras de Datos
       children:
-        - file: 3-estructuras-de-datos/3-1-tad
-        - file: 3-estructuras-de-datos/3-2-pilas-colas
-        - file: 3-estructuras-de-datos/3-3-listas
-        - file: 3-estructuras-de-datos/3-5-mapa-de-bits
-        - file: 3-estructuras-de-datos/3-6-tablas-de-hashing
-        - file: 3-estructuras-de-datos/3-4-conjuntos
-        - file: 3-estructuras-de-datos/3-7-diccionarios
-        - file: 3-estructuras-de-datos/3-8-arboles
-        - file: 3-estructuras-de-datos/3-9-abb
-        - file: 3-estructuras-de-datos/3-10-arboles-balanceados
-        - file: 3-estructuras-de-datos/3-11-monticulo-binario
+        - file: 3-estructuras-de-datos/3-1-tad.md
+        - file: 3-estructuras-de-datos/3-2-pilas-colas.md
+        - file: 3-estructuras-de-datos/3-3-listas.md
+        - file: 3-estructuras-de-datos/3-5-mapa-de-bits.md
+        - file: 3-estructuras-de-datos/3-6-tablas-de-hashing.md
+        - file: 3-estructuras-de-datos/3-4-conjuntos.md
+        - file: 3-estructuras-de-datos/3-7-diccionarios.md
+        - file: 3-estructuras-de-datos/3-8-arboles.md
+        - file: 3-estructuras-de-datos/3-9-abb.md
+        - file: 3-estructuras-de-datos/3-10-arboles-balanceados.md
+        - file: 3-estructuras-de-datos/3-11-monticulo-binario.md
     - title: Diseño de Algoritmos
       children:
-        - file: 4-diseno-de-algoritmos/4-1-recursividad
-        - file: 4-diseno-de-algoritmos/4-2-patrones-de-diseno
-        - file: 4-diseno-de-algoritmos/4-3-algoritmos-avidos
-        - file: 4-diseno-de-algoritmos/4-4-backtracking
-        - file: 4-diseno-de-algoritmos/4-5-programacion-dinamica
-        - file: 4-diseno-de-algoritmos/4-6-ordenamientos-recursivos
-        - file: 4-diseno-de-algoritmos/4-7-ordenamientos-lineales
+        - file: 4-diseno-de-algoritmos/4-1-recursividad.md
+        - file: 4-diseno-de-algoritmos/4-2-patrones-de-diseno.md
+        - file: 4-diseno-de-algoritmos/4-3-algoritmos-avidos.md
+        - file: 4-diseno-de-algoritmos/4-4-backtracking.md
+        - file: 4-diseno-de-algoritmos/4-5-programacion-dinamica.md
+        - file: 4-diseno-de-algoritmos/4-6-ordenamientos-recursivos.md
+        - file: 4-diseno-de-algoritmos/4-7-ordenamientos-lineales.md
     - title: Anexos
       children:
-        - file: 5-taller-de-git/5-1-introduccion-git
-        - file: 3-estructuras-de-datos/3-12-iteradores-abb
-    - title: Referencias
-      children:
-        - file: bibliografia
+        - file: 5-taller-de-git/5-1-introduccion-git.md
+        - file: 3-estructuras-de-datos/3-12-iteradores-abb.md
+
 
 
 site:

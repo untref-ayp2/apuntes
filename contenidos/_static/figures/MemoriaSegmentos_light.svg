@@ -8,16 +8,16 @@
 	viewBox="4038 -12 9491 9474">
 <g fill="none">
 <!-- Line -->
-<rect fill="#ffffff" x="4050" y="8100" width="5400" height="1350" fill="#87cfff"
+<rect x="4050" y="8100" width="5400" height="1350" fill="#e1f5ff"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="4050" y="7200" width="5400" height="900" fill="#00b000"
+<rect x="4050" y="7200" width="5400" height="900" fill="#00b000"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="4050" y="5400" width="5400" height="1800" fill="#ffff8c"
+<rect x="4050" y="5400" width="5400" height="1800" fill="#ffff8c"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="4050" y="0" width="5400" height="1350" fill="#ffe2e2"
+<rect x="4050" y="0" width="5400" height="1350" fill="#ffe2e2"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
 <defs>

@@ -108,6 +108,8 @@ Supongamos que tenemos las siguientes actividades, ordenadas por tiempo de final
 name: actividades1
 class: only-light-mode
 ---
+Lista de actividades
+```
 
 ```{figure} ../_static/figures/Greedy1_dark.svg
 ---
@@ -124,6 +126,8 @@ A continuación el diagrama de actividades. En principio no hay ninguna activida
 name: actividades2
 class: only-light-mode
 ---
+Diagrama de actividades
+```
 
 ```{figure} ../_static/figures/Greedy2_dark.svg
 ---
@@ -141,6 +145,8 @@ Paso 1
 name: actividades3
 class: only-light-mode
 ---
+Diagrama de actividades
+```
 
 ```{figure} ../_static/figures/Greedy3_dark.svg
 ---
@@ -158,6 +164,8 @@ Paso 2
 name: actividades4
 class: only-light-mode
 ---
+Diagrama de actividades
+```
 
 ```{figure} ../_static/figures/Greedy4_dark.svg
 ---
@@ -175,6 +183,8 @@ Paso 3
 name: actividades5
 class: only-light-mode
 ---
+Diagrama de actividades
+```
 
 ```{figure} ../_static/figures/Greedy5_dark.svg
 ---
@@ -192,6 +202,8 @@ Paso 4
 name: actividades6
 class: only-light-mode
 ---
+Diagrama de actividades
+```
 
 ```{figure} ../_static/figures/Greedy6_dark.svg
 ---
@@ -223,7 +235,10 @@ PARA CADA actividad EN actividades HACER
 FIN_PARA
 ```
 
-```{Admonition} Observación
+```{admonition} Observación
+---
+class: hint
+---
 Como la lista de entrada de las tareas está ordenada por tiempo de finalización, no hace falta programar la ecuación [](#compatibilidad2)
 ```
 

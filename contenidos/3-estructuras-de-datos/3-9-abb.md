@@ -8,7 +8,10 @@ jupytext:
 
 # Árboles Binarios de Búsqueda
 
-```{Admonition} Definición de Árbol Binario de Búsqueda
+```{admonition} Definición de Árbol Binario de Búsqueda
+---
+class: hint
+---
 Un árbol binario de búsqueda es un árbol binario que cumple con las siguientes propiedades para cada nodo N:
 
 - Todos los nodos en el subárbol izquierdo de N tienen valores menores que el valor de N.
@@ -79,7 +82,10 @@ En la siguiente animación se observa la inserción del valor (6) en un árbol b
 3. Se compara el valor (6) con la raíz (5) del subárbol derecho y como (6) es mayor se desciende al subárbol derecho.
 4. Como el subárbol derecho de (5) es nulo se inserta el nodo (6) como hijo derecho de (5).
 
-```{Important}
+```{admonition} Importante
+---
+class: Important
+---
 La inserción no permite valores duplicados. Si se requiere contar los elementos repetidos en el árbol, se puede modificar el algoritmo para que en lugar de insertar un nuevo nodo, se incremente un contador en el nodo existente.
 
 La inserción de un nuevo nodo siempre se realiza en una hoja del árbol, es decir, un nodo que no tiene hijos. Esto asegura que la estructura del árbol se mantenga y que la propiedad de ABB se respete.

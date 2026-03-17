@@ -301,7 +301,10 @@ Heapsort consta de dos fases principales:
 Construcción del _Heap_ (_Heapify_)
 : Se transforma el arreglo de entrada en un _heap_ de máximos. Esto se hace comenzando desde el último nodo no hoja y "hundiendo (_downHeap_)" cada elemento hacia abajo en el árbol para asegurar que la propiedad de _heap_ se mantenga. Esta fase toma $O(n)$ tiempo.
 
-```{Important}
+```{admonition} Importante
+---
+class: Important
+---
 Para ordenar los elementos de menor a mayor se debe construir un _heap_ de máximos, en cambio si se quieren ordenar los elementos de mayor a menor, el _heap_ debe ser de mínimos.
 ```
 
@@ -398,7 +401,10 @@ En esta etapa el algoritmo es similar al algoritmo de selección, en el sentido 
 
 Como podemos observar, los algoritmos recursivos de "divide y vencerás" (Mergesort, Quicksort) y el basado en estructura de datos eficiente (Heapsort) superan significativamente a los algoritmos simples de $O(n^2)$ para grandes volúmenes de datos, llevando la complejidad a un óptimo $O(n \log n)$. La elección entre ellos dependerá de factores como la disponibilidad de memoria (Mergesort vs. Quicksort/Heapsort), la necesidad de estabilidad, y la garantía de rendimiento en el peor caso.
 
-```{Important}
+```{admonition} Importante
+---
+class: Important
+---
 Los algoritmos de ordenamiento, basados en comparaciones (es decir que deben comparar cada elemento con los restantes) realizan al menos $n \log(n)$ operaciones simples. Es decir no hay forma de obtener un algoritmo con una mejor cota temporal que $O(n \log n)$ para el peor caso o el caso promedio.
 ```
 

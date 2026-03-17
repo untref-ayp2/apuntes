@@ -23,40 +23,40 @@
 <polyline points=" 12465,7650 12465,7425 12150,7425"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="1800" width="450" height="450"
+<rect x="7650" y="1800" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="3600" width="450" height="450"
+<rect x="7650" y="3600" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="4050" width="450" height="450"
+<rect x="7650" y="4050" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="4500" width="450" height="450"
+<rect x="7650" y="4500" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="5850" width="450" height="450"
+<rect x="7650" y="5850" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="7200" width="450" height="450"
+<rect x="7650" y="7200" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="2250" width="450" height="450"
+<rect x="7650" y="2250" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="7650" width="450" height="450"
+<rect x="7650" y="7650" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="4950" width="450" height="900"
+<rect x="7650" y="4950" width="450" height="900"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="6300" width="450" height="900"
+<rect x="7650" y="6300" width="450" height="900"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="2700" width="450" height="900"
+<rect x="7650" y="2700" width="450" height="900"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="1350" y="450" width="3600" height="8100"
+<rect x="1350" y="450" width="3600" height="8100"
 	stroke="#333333" stroke-width="8px" stroke-dasharray="10 30"/>
 <!-- Line -->
 <defs>
@@ -215,22 +215,22 @@
 <polygon points=" 6471,7103 6516,6988 6422,7069 6471,7103"
 	stroke="#333333" stroke-width="8px" stroke-miterlimit="8" fill="#333333"/>
 <!-- Line -->
-<rect fill="#ffffff" x="9000" y="2250" width="1350" height="450"
+<rect x="9000" y="2250" width="1350" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="9000" y="3600" width="1350" height="450"
+<rect x="9000" y="3600" width="1350" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="9000" y="4500" width="1350" height="450"
+<rect x="9000" y="4500" width="1350" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="9000" y="5850" width="1350" height="450"
+<rect x="9000" y="5850" width="1350" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="9000" y="7200" width="1350" height="450"
+<rect x="9000" y="7200" width="1350" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="10800" y="7200" width="1350" height="450"
+<rect x="10800" y="7200" width="1350" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
 <defs>
@@ -245,7 +245,7 @@
 <polygon points=" 10588,7470 10768,7425 10588,7380 10588,7470"
 	stroke="#333333" stroke-width="15px" stroke-miterlimit="8" fill="#333333"/>
 <!-- Line -->
-<rect fill="#ffffff" x="8550" y="450" width="4500" height="8100"
+<rect x="8550" y="450" width="4500" height="8100"
 	stroke="#333333" stroke-width="8px" stroke-dasharray="10 30"/>
 <!-- Text -->
 <text xml:space="preserve" x="2700" y="2250" fill="#333333" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="start">"Ana"</text>

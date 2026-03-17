@@ -47,7 +47,7 @@ Usar clases CSS en `<defs><style>` para mantener consistencia y facilitar manten
 
 **Regla**: Si el texto representa código Python o valores de datos, usar fuente monospaciada. Para títulos, usar fuente por defecto.
 
-### Colores - Theme Light
+### Colores - Theme Light (Tonos Pasteles Claros)
 
 | Elemento                 | Fill      | Stroke    |
 | ------------------------ | --------- | --------- |
@@ -59,7 +59,7 @@ Usar clases CSS en `<defs><style>` para mantener consistencia y facilitar manten
 | Nodos morados            | `#f5e1ff` | `#9f7aea` |
 | Texto y líneas           | -         | `#333333` |
 
-### Colores - Theme Dark
+### Colores - Theme Dark (Tonos Pasteles Oscuros)
 
 | Elemento                   | Fill      | Stroke    |
 | -------------------------- | --------- | --------- |
@@ -67,6 +67,9 @@ Usar clases CSS en `<defs><style>` para mantener consistencia y facilitar manten
 | Contenedores               | `#2d3748` | -         |
 | Nodos internos (variables) | `#2d3748` | `#63b3ed` |
 | Nodos hoja (valores)       | `#4a5568` | `#fc8181` |
+| Nodos verdes               | `#285e61` | `#68d391` |
+| Nodos naranjas             | `#744210` | `#f6ad55` |
+| Nodos morados              | `#44337a` | `#b794f4` |
 | Texto y líneas             | -         | `#e0e0e0` |
 
 ### Tamaños de Fuente
@@ -91,6 +94,38 @@ Usar clases CSS en `<defs><style>` para mantener consistencia y facilitar manten
 1. **Siempre crear versión light y dark**: cada diagrama debe tener `_light.svg` y `_dark.svg`
 2. Ubicación: `contenidos/_static/figures/`
 3. Nomenclatura: descriptiva, minúsculas, guiones si es necesario
+
+## Workflow para Crear Diagramas Light/Dark
+
+### Paso 1: Crear versión Light (Tonos Pasteles Claros)
+
+1. Usar fondo `#f0f2f5`
+2. Usar fills pastel claros para nodos (ej: `#e1f5ff`, `#ffe1e1`, `#e1ffe1`)
+3. Usar strokes de colores medios (ej: `#4682b4`, `#e9967a`)
+4. Usar texto `#333333`
+
+### Paso 2: Crear versión Dark (basada en la Light)
+
+1. **Copiar** el archivo `_light.svg` y renombrar a `_dark.svg`
+2. **Invertir fondo**: `#f0f2f5` → `#1e1e1e`
+3. **Ajustar fills de nodos**: usar versiones oscuras (ej: `#2d3748`, `#4a5568`)
+4. **Mantener strokes**: mismos colores brillante pastel (ej: `#63b3ed`, `#fc8181`)
+5. **Invertir texto**: `#333333` → `#e0e0e0`
+6. **Ajustar elementos inline** (atributos directo en elementos, no clases):
+   - Cambiar `fill` y `stroke` explícitos
+   - Ajustar `fill` de elementos de texto
+
+### Ejemplo de Transformación Light → Dark
+
+| Elemento         | Light         | Dark          |
+| ---------------- | ------------- | ------------- |
+| Fondo rect       | `#f0f2f5`     | `#1e1e1e`     |
+| variable-node    | `#e1f5ff`     | `#2d3748`     |
+| value-node       | `#ffe1e1`     | `#4a5568`     |
+| Texto (clase)    | `#333333`     | `#e0e0e0`     |
+| arrow            | `#333333`     | `#e0e0e0`     |
+
+**Nota**: Los strokes (bordes) se mantienen con colores pastel brillantes en ambos themes para mantener contraste visual.
 
 ## Estructura de Diagramas
 

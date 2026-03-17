@@ -8,37 +8,37 @@
 	viewBox="5142 2595 2970 5967">
 <g fill="none">
 <!-- Line -->
-<rect fill="#1e1e1e" x="7650" y="3600" width="450" height="450"
+<rect x="7650" y="3600" width="450" height="450"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="7650" y="4050" width="450" height="450"
+<rect x="7650" y="4050" width="450" height="450"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="7650" y="4500" width="450" height="450"
+<rect x="7650" y="4500" width="450" height="450"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="7650" y="5850" width="450" height="450"
+<rect x="7650" y="5850" width="450" height="450"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="7650" y="7650" width="450" height="450"
+<rect x="7650" y="7650" width="450" height="450"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="7650" y="6750" width="450" height="450"
+<rect x="7650" y="6750" width="450" height="450"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="7650" y="6300" width="450" height="450"
+<rect x="7650" y="6300" width="450" height="450"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="7650" y="5400" width="450" height="450"
+<rect x="7650" y="5400" width="450" height="450"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="7650" y="4950" width="450" height="450"
+<rect x="7650" y="4950" width="450" height="450"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="7650" y="8100" width="450" height="450" fill="#e87f7f"
+<rect x="7650" y="8100" width="450" height="450" fill="#e87f7f"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="7650" y="7200" width="450" height="450"
+<rect x="7650" y="7200" width="450" height="450"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="7830" y="2610" fill="#e0e0e0" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="middle"></text>

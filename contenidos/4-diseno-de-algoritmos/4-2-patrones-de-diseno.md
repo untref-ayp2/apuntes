@@ -78,6 +78,8 @@ En la figura {ref}`adapter2` se observan los siguientes componentes.
 name: adapter2
 class: only-light-mode
 ---
+Diagrama de Clases del Patrón _Adapter_
+```
 
 ```{figure} ../_static/figures/PatronAdapter2_dark.svg
 ---
@@ -185,6 +187,8 @@ El patrón _composite_ permite tratar tanto a objetos individuales como a compos
 name: composite2
 class: only-light-mode
 ---
+Diagrama de Clase del Patrón _Composite_
+```
 
 ```{figure} ../_static/figures/PatronComposite2_dark.svg
 ---
@@ -292,16 +296,18 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
    Por ejemplo queremos calcular el área de un tren compuesto por una locomotora y dos vagones, cada uno con su respectiva estructura de figuras.
 
    ```{figure} ../_static/figures/PatronTren_light.svg
----
-class: only-light-mode
----
+   ---
+   class: only-light-mode
+   ---
+   Ejemplo de tren compuesto por figuras
+   ```
 
-```{figure} ../_static/figures/PatronTren_dark.svg
----
-class: only-dark-mode
----
-
-```
+   ```{figure} ../_static/figures/PatronTren_dark.svg
+   ---
+   class: only-dark-mode
+   ---
+   Ejemplo de tren compuesto por figuras
+   ```
 
    ```{code-block} go
    ---

@@ -14,7 +14,10 @@ A diferencia de los algoritmos ávidos, que toman decisiones locales óptimas en
 
 El problema original se subdivide en subproblemas de menor tamaño y se almacenan sus soluciones para evitar cálculos redundantes. Esto se logra mediante la técnica de **memorización**, que almacena los resultados de los subproblemas ya resueltos, y la técnica de **tabulación**, que construye una tabla para almacenar las soluciones de los subproblemas.
 
-```{Important}
+```{admonition} Importante
+---
+class: Important
+---
 La principal característica de la programación dinámica es que los cálculos se realizan una sola vez y se reutilizan en lugar de volver a calcularlos.
 ```
 
@@ -113,7 +116,7 @@ En este caso donde la tabla es en realidad un arreglo, se puede estimar la compl
 
 ## Problema de la mochila (_Knapsack Problem_)
 
-```{Figura} ../_static/figures/Mochila00.svg
+```{figure} ../_static/figures/Mochila00.svg
 ---
 width: 600px
 name: mochila
@@ -127,7 +130,7 @@ El problema de la mochila es un clásico en programación dinámica y se puede e
 
 Supongamos que tenemos una mochila de capacidad 5 y los siguientes objetos:
 
-```{Table}
+```{table}
 ---
 align: center
 width: 30%
@@ -242,7 +245,7 @@ Complejidad espacial
 
 En la siguiente tabla se resumen las diferencias entre ambos enfoques:
 
-```{Table}
+```{table}
 ---
 align: center
 ---
@@ -264,7 +267,7 @@ En algunos casos la **tabulación** puede ser más fácil de implementar y enten
 
 2. Implementar el problema de la mochila utilizando memorización. Dado un conjunto de objetos con peso y valor, y una capacidad de mochila, el objetivo es determinar el valor máximo que se puede obtener al incluir los objetos en la mochila. Utilizar un mapa para almacenar los resultados de los subproblemas a medida que se van calculando.
 
-   ```{Admonition} Pista
+   ```{admonition} Pista
    ---
    class: tip
    ---

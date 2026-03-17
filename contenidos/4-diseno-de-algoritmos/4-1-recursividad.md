@@ -67,6 +67,8 @@ width: 600px
 name: recursion-factorial
 class: only-light-mode
 ---
+Pila de Ejecución - factorial(4).
+```
 
 ```{figure} ../_static/figures/RecursionFactorial_dark.svg
 ---

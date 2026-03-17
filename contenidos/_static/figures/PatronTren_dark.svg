@@ -14,7 +14,7 @@
 <circle cx="8550" cy="4050" r="450"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="5850" y="2250" width="3150" height="1350"
+<rect x="5850" y="2250" width="3150" height="1350"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Circle -->
 <circle cx="9900" cy="4050" r="450"
@@ -23,7 +23,7 @@
 <circle cx="12150" cy="4050" r="450"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="9450" y="2250" width="3150" height="1350"
+<rect x="9450" y="2250" width="3150" height="1350"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Circle -->
 <circle cx="13500" cy="4050" r="450"
@@ -32,7 +32,7 @@
 <circle cx="15750" cy="4050" r="450"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="13050" y="2250" width="3150" height="1350"
+<rect x="13050" y="2250" width="3150" height="1350"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
 <polyline points=" 6750,450 6300,2250"
@@ -41,7 +41,7 @@
 <polyline points=" 6750,450 7200,2250"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="8100" y="900" width="900" height="1350"
+<rect x="8100" y="900" width="900" height="1350"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
 <defs>

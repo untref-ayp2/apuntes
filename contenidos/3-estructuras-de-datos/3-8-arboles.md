@@ -22,6 +22,8 @@ width: 80%
 name: arbol
 class: only-light-mode
 ---
+Árbol de datos
+```
 
 ```{figure} ../_static/figures/Arbol_dark.svg
 ---

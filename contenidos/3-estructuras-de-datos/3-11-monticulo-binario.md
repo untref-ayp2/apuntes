@@ -85,6 +85,8 @@ width: 300px
 name: Heap de Mínimos
 class: only-light-mode
 ---
+Montículo Binario de Mínimos
+```
 
 ```{figure} ../_static/figures/HeapMinimos_dark.svg
 ---
@@ -111,6 +113,8 @@ width: 300px
 name: Heap Representacion
 class: only-light-mode
 ---
+Representación con arreglos de un Montículo Binario de Mínimos
+```
 
 ```{figure} ../_static/figures/HeapMinimosRepresentacion_dark.svg
 ---
@@ -178,6 +182,8 @@ En el ejemplo de la figura primero intercambia el 9 con el 5. Es decir en el arr
 name: Heap Insercion
 class: only-light-mode
 ---
+Inserción en un Heap de Máximos
+```
 
 ```{figure} ../_static/figures/HeapInsercion_dark.svg
 ---
@@ -247,6 +253,8 @@ En la figura a continuación, se observa el proceso de eliminación de la raíz 
 name: Heap Eliminacion
 class: only-light-mode
 ---
+Eliminación en un Heap de Máximos
+```
 
 ```{figure} ../_static/figures/HeapEliminacion_dark.svg
 ---

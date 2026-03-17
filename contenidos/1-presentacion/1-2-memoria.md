@@ -55,26 +55,21 @@ Para poder ejecutar un programa se deben seguir los siguientes pasos:
 5\. Liberación de memoria
 : Al finalizar la ejecución, el sistema operativo libera toda la memoria asignada al programa, incluyendo los segmentos de código, datos, pila y heap.
 
-En la figura {ref}`esquema-memoria` se muestra un esquema de la memoria de un proceso en ejecución. Cada segmento de memoria tiene un tamaño y una función específica en el programa. La figura es solo a modo didáctico y no representa la organización real de la memoria en Go, que es más compleja.
+En la figura a continuación, se muestra un esquema de la memoria de un proceso en ejecución. Cada segmento de memoria tiene un tamaño y una función específica en el programa. La figura es solo a modo didáctico y no representa la organización real de la memoria en Go, que es más compleja.
 
 En el diagrama el _**stack**_ se ubica en la parte superior de la memoria y crece hacia abajo, cuando no puede crecer más se produce un error de desbordamiento de pila (_stack overflow_). El _**heap**_ se ubica en la parte inferior de la memoria, sobre los segmentos de código y datos y crece hacia arriba.
 
 ```{figure} ../_static/figures/MemoriaSegmentos_light.svg
 ---
-width: 500px
-name: esquema-memoria
-class: only-light-mode---
+width: 50%
+class: only-light-mode
+---
+Segmentos de Memoria de un Proceso en Ejecución
+```
 
 ```{figure} ../_static/figures/MemoriaSegmentos_dark.svg
 ---
-width: 500px
-name: esquema-memoria
-class: only-dark-mode---
-MemoriaSegmentos
-```{figure} ../_static/figures/MemoriaSegmentos_dark.svg
----
-width: 500px
-name: esquema-memoria
+width: 50%
 class: only-dark-mode
 ---
 Segmentos de Memoria de un Proceso en Ejecución
@@ -133,13 +128,11 @@ El **Stack** y el **Heap** presentaran el siguiente estado:
 ```{figure} ../_static/figures/MapaDeMemoria.dio_light.svg
 ---
 name: mapa-memoria-Santi
-class: only-light-mode---
-
-```{figure} ../_static/figures/MapaDeMemoria.dio_dark.svg
+class: only-light-mode
 ---
-name: mapa-memoria-Santi
-class: only-dark-mode---
-MapaDeMemoria.dio
+Mapa de Memoria
+```
+
 ```{figure} ../_static/figures/MapaDeMemoria.dio_dark.svg
 ---
 name: mapa-memoria-Santi
@@ -147,6 +140,7 @@ class: only-dark-mode
 ---
 Mapa de Memoria
 ```
+
 
 Vamos a analizar cada variable en el código y justificar dónde se almacena:
 
@@ -246,7 +240,10 @@ Para poder ejecutar el GC, se debe detener completamente la ejecución del progr
 - Go minimiza los _**stop-the-world**_.
 - La mayoría del trabajo del GC ocurre en paralelo con la ejecución del código, evitando así los _**stop the world**_.
 
-```{important}
+```{admonition} Importante
+---
+class: Important
+---
 Un GC concurrente mejora el rendimiento y la experiencia del usuario, ya que evita grandes pausas en la ejecución del programa. Esto es fundamental en servidores y sistemas en tiempo real, donde una pausa larga podría afectar la respuesta del sistema.
 ```
 

@@ -67,7 +67,10 @@ El **Ordenamiento por Urnas** es un algoritmo que distribuye los elementos en va
 2. **Distribución**: Colocar cada elemento en el bucket correspondiente según su valor.
 3. **Concatenación**: Concatenar los elementos de todos los buckets para obtener el arreglo ordenado.
 
-```{Note}
+```{admonition} Nota
+---
+class: Note
+---
 En algunos casos, cada una de las urnas se pueden ordenar utilizando otro algoritmo de ordenamiento, como el **Ordenamiento por Inserción** o el **Ordenamiento por Conteo**, dependiendo de la naturaleza de los datos en cada urna.
 ```
 

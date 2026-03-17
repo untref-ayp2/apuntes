@@ -1,4 +1,13 @@
-mystmd
+black[jupyter]
+bokeh
+jupyterlab
+jupytext
+matplotlib
 mdformat
+mdformat-black
 mdformat-myst
-black
+myst-parser
+mystmd
+sphinx-proof
+sphinx-thebe
+tabulate

@@ -12,7 +12,10 @@ Como ya mencionamos antes, podemos entender a un algoritmo como un método para 
 
 Para un problema cualquiera, puede existir más de un algoritmo que lo resuelva. Un algoritmo puede consumir más o menos recursos que otro que resuelve el mismo problema, por lo tanto una de las principales variable de análisis generalmente es la **eficiencia** en el uso de los recursos.
 
-```{note}
+```{admonition} Nota
+---
+class: Note
+---
 Los recursos que consumen un algoritmo son tiempo y espacio (memoria). El mismo problema se puede resolver, en la misma computadora, en minutos o en años, de acuerdo al algoritmo que se implemente.
 ```
 
@@ -23,6 +26,9 @@ La **simplicidad** y la **eficiencia** no son conceptos antagónicos. Es decir u
 ## Complejidad
 
 ```{admonition} Definición
+---
+class: hint
+---
 La **complejidad** es una propiedad de un algoritmo que nos indica como escala la cantidad de recursos que se necesitan a medida que aumenta el volumen de los datos.
 ```
 
@@ -32,13 +38,19 @@ Informalmente hablando, cuanto mayor sea la **complejidad** de un algoritmo, ser
 
 La **complejidad** es independiente del hardware o la máquina donde se ejecuta el algoritmo. No debemos confundir **complejidad** con **rendimiento**.
 
-```{note}
+```{admonition} Nota
+---
+class: Note
+---
 El **rendimiento** es la capacidad de una computadora para realizar una determinada tarea en un tiempo dado
 ```
 
 El **rendimiento** sí depende del hardware. Por ejemplo en la medida que aumenta la velocidad del procesador, se necesitará menos tiempo para completar una tarea dada. En cambio la **complejidad** nos indica cuanto más tiempo o memoria va a requerir el algoritmo en función del tamaño de los datos.
 
 ```{admonition} El mito de la computadora todopoderosa
+---
+class: hint
+---
 Muchas veces se cae en la tentación de pensar que a medida que aumente la capacidad de procesamiento de las computadoras se podrá completar cualquier tarea en un tiempo aceptable. Esta afirmación es una falacia. Existen problemas muy bien conocidos que resultan intratables para las computadoras, es decir, que no importa que tanto aumente la capacidad de procesamiento, una pequeño aumento en el tamaño de los datos implica que el tiempo de ejecución aumente desmesuradamente, hasta el punto de hacer inviable el cálculo.
 ```
 
@@ -51,6 +63,9 @@ Como la cantidad de operaciones elementales que debe realizar depende de los dat
 La cota superior asintótica, O grande o _Big-O_ en inglés, es parte de la familia de notaciones asintóticas, también conocidas como notaciones de Bachmann-Landau. En ciencias de la computación, la O grande, permite clasificar a los algoritmos de acuerdo a como aumenta la cantidad de recursos que necesita en la medida que aumenta el tamaño de la entrada, es decir nos permite clasificar algoritmos en el límite, cuando el tamaño de la entrada tiende a infinito. Sea $T(n)$ la función que indica cuanto tiempo va a tardar un algoritmo en función del tamaño de la entrada $n$, donde $n$ es un número natural, entonces:
 
 ```{admonition} Definición
+---
+class: hint
+---
 
 $$
 T(n) = O(f(n)) \; \textrm{si} \; \exists \; c, \; n_0 \; \textrm{tal que} \; T(n) \leq c \cdot f(n), \; \forall n > n_0
@@ -76,13 +91,11 @@ $$
 ```{figure} ../_static/figures/funcion_acotada_light.svg
 ---
 name: funcion-acotada
-class: only-light-mode---
-
-```{figure} ../_static/figures/funcion_acotada_dark.svg
+class: only-light-mode
 ---
-name: funcion-acotada
-class: only-dark-mode---
-funcion_acotada
+Función Acotada: $T(n) \subset O(n)$
+```
+
 ```{figure} ../_static/figures/funcion_acotada_dark.svg
 ---
 name: funcion-acotada
@@ -96,13 +109,11 @@ A continuación se muestran algunas tasas de crecimiento de las funciones que co
 ```{figure} ../_static/figures/comparacion_funciones_light.svg
 ---
 name: tasa-crecimiento
-class: only-light-mode---
-
-```{figure} ../_static/figures/comparacion_funciones_dark.svg
+class: only-light-mode
 ---
-name: tasa-crecimiento
-class: only-dark-mode---
-comparacion_funciones
+Comparación de tasas de crecimiento
+```
+
 ```{figure} ../_static/figures/comparacion_funciones_dark.svg
 ---
 name: tasa-crecimiento
@@ -210,7 +221,10 @@ Como ya se mencionó, para poder calcular el orden de un algoritmo se necesita c
 
 ### Operaciones elementales (OE)
 
-```{note}
+```{admonition} Nota
+---
+class: Note
+---
 Un valor simple, es un valor que se puede representar en un registro de la computadora y por lo tanto se puede leer y escribir en una única operación, por ejemplo un número entero de una longitud finita, un número en punto flotante, un bit, etc. No son valores simples los enteros de longitud indefinida o valores compuestos, por ejemplo un objeto compuestos por otros otros objetos.
 ```
 

@@ -17,32 +17,32 @@
 <polyline points=" 3510,4095 7110,4095"
 	stroke="#333333" stroke-width="8px" stroke-dasharray="40 40"/>
 <!-- Circle -->
-<circle cx="5400" cy="2250" r="229" fill="#66bbbb"
+<circle cx="5400" cy="2250" r="229" fill="#e1ffe1"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="5400" y="2295" fill="#333333" font-family="Courier" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">A</text>
 <!-- Circle -->
-<circle cx="6255" cy="3195" r="229" fill="#43677f"
+<circle cx="6255" cy="3195" r="229" fill="#4a5568"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="6255" y="3240" fill="#333333" font-family="Courier" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">Z</text>
 <!-- Circle -->
-<circle cx="5400" cy="3195" r="229" fill="#66bb66"
+<circle cx="5400" cy="3195" r="229" fill="#e1ffe1"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="5400" y="3240" fill="#333333" font-family="Courier" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">N</text>
 <!-- Circle -->
-<circle cx="4050" cy="4095" r="229" fill="#66bb66"
+<circle cx="4050" cy="4095" r="229" fill="#e1ffe1"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="4050" y="4140" fill="#333333" font-family="Courier" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">D</text>
 <!-- Circle -->
-<circle cx="4905" cy="4095" r="229" fill="#66bb66"
+<circle cx="4905" cy="4095" r="229" fill="#e1ffe1"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="4905" y="4140" fill="#333333" font-family="Courier" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">C</text>
 <!-- Circle -->
-<circle cx="6255" cy="4095" r="229" fill="#66bb66"
+<circle cx="6255" cy="4095" r="229" fill="#e1ffe1"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="6255" y="4140" fill="#333333" font-family="Courier" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">K</text>
@@ -63,7 +63,7 @@
 <!-- Text -->
 <text xml:space="preserve" x="5662" y="2015" fill="#333333" font-family="Courier" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">grado = 3</text>
 <!-- Circle -->
-<circle cx="4545" cy="3195" r="229" fill="#43677f"
+<circle cx="4545" cy="3195" r="229" fill="#4a5568"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="4545" y="3240" fill="#333333" font-family="Courier" font-style="normal" font-weight="normal" font-size="168" text-anchor="middle">R</text>
@@ -78,7 +78,7 @@
 	stroke="#87cfff" stroke-width="8px"/>
 <!-- Forward arrow to point 5265,2070 -->
 <polygon points=" 5156,1984 5255,2057 5202,1946 5156,1984"
-	stroke="#87cfff" stroke-width="8px" stroke-miterlimit="8" fill="#87cfff"/>
+	stroke="#87cfff" stroke-width="8px" stroke-miterlimit="8" fill="#e1f5ff"/>
 <!-- Line -->
 <defs>
 <clipPath id="cp1">
@@ -90,7 +90,7 @@
 	stroke="#87cfff" stroke-width="8px"/>
 <!-- Forward arrow to point 4185,4275 -->
 <polygon points=" 4320,4312 4199,4283 4292,4365 4320,4312"
-	stroke="#87cfff" stroke-width="8px" stroke-miterlimit="8" fill="#87cfff"/>
+	stroke="#87cfff" stroke-width="8px" stroke-miterlimit="8" fill="#e1f5ff"/>
 <!-- Line -->
 <defs>
 <clipPath id="cp2">
@@ -102,7 +102,7 @@
 	stroke="#87cfff" stroke-width="8px"/>
 <!-- Forward arrow to point 5040,4320 -->
 <polygon points=" 5138,4419 5049,4334 5088,4451 5138,4419"
-	stroke="#87cfff" stroke-width="8px" stroke-miterlimit="8" fill="#87cfff"/>
+	stroke="#87cfff" stroke-width="8px" stroke-miterlimit="8" fill="#e1f5ff"/>
 <!-- Line -->
 <defs>
 <clipPath id="cp3">
@@ -114,7 +114,7 @@
 	stroke="#87cfff" stroke-width="8px"/>
 <!-- Forward arrow to point 6210,4320 -->
 <polygon points=" 6118,4425 6197,4330 6082,4376 6118,4425"
-	stroke="#87cfff" stroke-width="8px" stroke-miterlimit="8" fill="#87cfff"/>
+	stroke="#87cfff" stroke-width="8px" stroke-miterlimit="8" fill="#e1f5ff"/>
 <!-- Line -->
 <defs>
 <clipPath id="cp4">
@@ -126,7 +126,7 @@
 	stroke="#87cfff" stroke-width="8px"/>
 <!-- Forward arrow to point 5445,3465 -->
 <polygon points=" 5475,3601 5445,3481 5415,3601 5475,3601"
-	stroke="#87cfff" stroke-width="8px" stroke-miterlimit="8" fill="#87cfff"/>
+	stroke="#87cfff" stroke-width="8px" stroke-miterlimit="8" fill="#e1f5ff"/>
 <!-- Line -->
 <defs>
 <clipPath id="cp5">

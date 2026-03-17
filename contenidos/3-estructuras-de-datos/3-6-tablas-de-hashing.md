@@ -15,6 +15,8 @@ Las tablas de _hash_ son estructuras de datos eficientes para almacenar y recupe
 name: tabla_hash
 class: only-light-mode
 ---
+Esquema de una tabla de _hash_.
+```
 
 ```{figure} ../_static/figures/TablaHash1_dark.svg
 ---
@@ -69,6 +71,8 @@ En la siguiente figura se grafica la inserción de un elemento en una tabla de _
 name: tabla_hash_insercion_cerrada
 class: only-light-mode
 ---
+Inserción en una tabla de _hash_ cerrada.
+```
 
 ```{figure} ../_static/figures/TablaHashInsercion_dark.svg
 ---
@@ -91,6 +95,8 @@ Esto se conoce como _marcador de eliminación_ y permite que la búsqueda contin
 name: tabla_hash_eliminacion_cerrada
 class: only-light-mode
 ---
+Eliminación en una tabla de _hash_ cerrada.
+```
 
 ```{figure} ../_static/figures/TablaHashEliminacion_dark.svg
 ---
@@ -115,6 +121,8 @@ La búsqueda de un elemento en una tabla de _hash_ cerrada es similar a la inser
 name: tabla_hash_busqueda_cerrada
 class: only-light-mode
 ---
+Búsqueda en una tabla de _hash_ cerrada.
+```
 
 ```{figure} ../_static/figures/TablaHashBusquedaCerrada_dark.svg
 ---
@@ -150,13 +158,15 @@ El _hashing_ abierto, es una técnica fundamental para el manejo de colisiones e
 name: tabla_hash_abierta
 class: only-light-mode
 ---
+Tabla de _hash_abierta.
+```
 
 ```{figure} ../_static/figures/TablaHashAbierta_dark.svg
 ---
 name: tabla_hash_abierta
 class: only-dark-mode
 ---
-Tabla de _hash_ abierta.
+Tabla de _hash_abierta.
 ```
 
 ## Consideraciones de diseño

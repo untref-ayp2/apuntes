@@ -8,37 +8,37 @@
 	viewBox="5768 2595 6799 6712">
 <g fill="none">
 <!-- Line -->
-<rect fill="#ffffff" x="11475" y="3600" width="450" height="450"
+<rect x="11475" y="3600" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="11475" y="4050" width="450" height="450"
+<rect x="11475" y="4050" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="11475" y="4500" width="450" height="450"
+<rect x="11475" y="4500" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="11475" y="5850" width="450" height="450"
+<rect x="11475" y="5850" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="11475" y="7650" width="450" height="450"
+<rect x="11475" y="7650" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="11475" y="6750" width="450" height="450"
+<rect x="11475" y="6750" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="11475" y="6300" width="450" height="450"
+<rect x="11475" y="6300" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="11475" y="5400" width="450" height="450"
+<rect x="11475" y="5400" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="11475" y="4950" width="450" height="450"
+<rect x="11475" y="4950" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="11475" y="8100" width="450" height="450" fill="#c3e7ff"
+<rect x="11475" y="8100" width="450" height="450" fill="#e1f5ff"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="11475" y="7200" width="450" height="450"
+<rect x="11475" y="7200" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
 <defs>
@@ -125,37 +125,37 @@
 <!-- Text -->
 <text xml:space="preserve" x="10800" y="6075" fill="#333333" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="168" text-anchor="end">f(k3) = 9</text>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="3600" width="450" height="450"
+<rect x="7650" y="3600" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="4050" width="450" height="450"
+<rect x="7650" y="4050" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="4500" width="450" height="450"
+<rect x="7650" y="4500" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="5850" width="450" height="450"
+<rect x="7650" y="5850" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="7650" width="450" height="450"
+<rect x="7650" y="7650" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="6750" width="450" height="450"
+<rect x="7650" y="6750" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="6300" width="450" height="450"
+<rect x="7650" y="6300" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="5400" width="450" height="450"
+<rect x="7650" y="5400" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="4950" width="450" height="450"
+<rect x="7650" y="4950" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="8100" width="450" height="450" fill="#c3e7ff"
+<rect x="7650" y="8100" width="450" height="450" fill="#e1f5ff"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#ffffff" x="7650" y="7200" width="450" height="450"
+<rect x="7650" y="7200" width="450" height="450"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
 <defs>

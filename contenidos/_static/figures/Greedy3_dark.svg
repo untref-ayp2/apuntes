@@ -56,37 +56,37 @@
 <polyline points=" 12375,900 12375,6075"
 	stroke="#e0e0e0" stroke-width="8px" stroke-dasharray="40 40"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="5625" y="2475" width="1350" height="225" fill="#f9fcff"
+<rect x="5625" y="2475" width="1350" height="225" fill="#f9fcff"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="5625" y="3375" width="2700" height="225" fill="#f9fcff"
+<rect x="5625" y="3375" width="2700" height="225" fill="#f9fcff"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="6300" y="3825" width="2700" height="225" fill="#f9fcff"
+<rect x="6300" y="3825" width="2700" height="225" fill="#f9fcff"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="7650" y="4275" width="2025" height="225" fill="#f9fcff"
+<rect x="7650" y="4275" width="2025" height="225" fill="#f9fcff"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="7650" y="4725" width="2700" height="225" fill="#f9fcff"
+<rect x="7650" y="4725" width="2700" height="225" fill="#f9fcff"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="10350" y="5625" width="2025" height="225" fill="#f9fcff"
+<rect x="10350" y="5625" width="2025" height="225" fill="#f9fcff"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="2925" y="1125" width="2025" height="225" fill="#8ccc8c"
+<rect x="2925" y="1125" width="2025" height="225" fill="#8ccc8c"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="4275" y="1575" width="1350" height="225" fill="#ea8c8c"
+<rect x="4275" y="1575" width="1350" height="225" fill="#ea8c8c"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="2250" y="2025" width="4050" height="225" fill="#ea8c8c"
+<rect x="2250" y="2025" width="4050" height="225" fill="#ea8c8c"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="4275" y="2925" width="4050" height="225" fill="#ea8c8c"
+<rect x="4275" y="2925" width="4050" height="225" fill="#ea8c8c"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
-<rect fill="#1e1e1e" x="3600" y="5175" width="8100" height="225" fill="#ea8c8c"
+<rect x="3600" y="5175" width="8100" height="225" fill="#ea8c8c"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="2250" y="6390" fill="#e0e0e0" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="middle">0</text>

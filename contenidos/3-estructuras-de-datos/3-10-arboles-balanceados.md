@@ -208,7 +208,10 @@ name: AVLDERIZQ-2
 Desbalanceo Derecha-Izquierda, árbol rebalanceado
 ```
 
-```{Important}
+```{admonition} Importante
+---
+class: Important
+---
 Las rotaciones son operaciones locales que solo afectan a un pequeño número de nodos en el árbol. Cuando se inserta un nuevo nodo, en el camino de regreso a la raíz, se verifica el balanceo de cada nodo y se realizan las rotaciones necesarias. Siempre las rotaciones se realizan en el camino de regreso a la raíz, es decir, desde el nodo recién insertado hasta la raíz del árbol.
 ```
 

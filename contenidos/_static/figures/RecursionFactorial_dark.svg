@@ -8,32 +8,32 @@
 	viewBox="726 438 7408 7899">
 <g fill="none">
 <!-- Line -->
-<rect fill="#1e1e1e" x="2250" y="1800" width="2700" height="1125" fill="#87cfff"
+<rect x="2250" y="1800" width="2700" height="1125" fill="#2d3748"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="2340" y="2700" fill="#e0e0e0" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">return n * factorial(n-1)</text>
 <!-- Line -->
-<rect fill="#1e1e1e" x="2700" y="3150" width="2700" height="1125" fill="#87cfff"
+<rect x="2700" y="3150" width="2700" height="1125" fill="#2d3748"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="2790" y="4050" fill="#e0e0e0" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">return n * factorial(n-1)</text>
 <!-- Line -->
-<rect fill="#1e1e1e" x="3150" y="4500" width="2700" height="1125" fill="#87cfff"
+<rect x="3150" y="4500" width="2700" height="1125" fill="#2d3748"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="3240" y="5400" fill="#e0e0e0" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">return n * factorial(n-1)</text>
 <!-- Line -->
-<rect fill="#1e1e1e" x="3600" y="5850" width="2700" height="1125" fill="#87cfff"
+<rect x="3600" y="5850" width="2700" height="1125" fill="#2d3748"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="3690" y="6750" fill="#e0e0e0" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">return n * factorial(n-1)</text>
 <!-- Line -->
-<rect fill="#1e1e1e" x="4050" y="7200" width="2700" height="1125" fill="#87cfff"
+<rect x="4050" y="7200" width="2700" height="1125" fill="#2d3748"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="4140" y="8100" fill="#e0e0e0" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">fmt.Println(factorial(4))</text>
 <!-- Line -->
-<rect fill="#1e1e1e" x="1800" y="450" width="2700" height="1125" fill="#87cfff"
+<rect x="1800" y="450" width="2700" height="1125" fill="#2d3748"
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="1890" y="1350" fill="#e0e0e0" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="144" text-anchor="start">return 1</text>
