@@ -88,6 +88,7 @@ Usar clases CSS en `<defs><style>` para mantener consistencia y facilitar manten
 - Bordes redondeados: `rx="5"` para nodos
 - Flechas: marker tipo triángulo
 - Alineación de texto: `text-anchor="middle"` o `text-anchor="left"`
+- Ruteo de líneas: usar estilo Manhattan
 
 ## Reglas de Archivos
 
@@ -117,13 +118,13 @@ Usar clases CSS en `<defs><style>` para mantener consistencia y facilitar manten
 
 ### Ejemplo de Transformación Light → Dark
 
-| Elemento         | Light         | Dark          |
-| ---------------- | ------------- | ------------- |
-| Fondo rect       | `#f0f2f5`     | `#1e1e1e`     |
-| variable-node    | `#e1f5ff`     | `#2d3748`     |
-| value-node       | `#ffe1e1`     | `#4a5568`     |
-| Texto (clase)    | `#333333`     | `#e0e0e0`     |
-| arrow            | `#333333`     | `#e0e0e0`     |
+| Elemento      | Light     | Dark      |
+| ------------- | --------- | --------- |
+| Fondo rect    | `#f0f2f5` | `#1e1e1e` |
+| variable-node | `#e1f5ff` | `#2d3748` |
+| value-node    | `#ffe1e1` | `#4a5568` |
+| Texto (clase) | `#333333` | `#e0e0e0` |
+| arrow         | `#333333` | `#e0e0e0` |
 
 **Nota**: Los strokes (bordes) se mantienen con colores pastel brillantes en ambos themes para mantener contraste visual.
 
