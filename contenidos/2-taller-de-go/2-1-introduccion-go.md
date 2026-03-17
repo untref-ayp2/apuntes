@@ -12,9 +12,19 @@ jupytext:
 
 Go es un lenguaje de programación desarrollado por Google, que se lanzó oficialmente en 2009. Es un lenguaje compilado, es decir que una vez escrito el código fuente se debe traducir a código máquina para poder ejecutarlo, esta operación de traducción se conoce como compilación.
 
+```{figure} ../_static/figures/Go-Logo_Blue.svg
+---
+align: center
+width: 200px
+---
+```
+
 Los creadores de Go, [Robert Griesemer](https://en.wikipedia.org/wiki/Robert_Griesemer), [Rob Pike](https://en.wikipedia.org/wiki/Rob_Pike) y [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson), han dicho que aunque la sintáxis del lenguaje está inspirada principalmente en C y en Python y en menor medida en Java, el objetivo siempre fue crear un nuevo lenguaje simple y eficiente. Go fue diseñado para ambientes altamente productivos y concurrentes (es decir donde varios programas se ejecutan al mismo tiempo y comparten recursos). Fue liberado cómo código abierto y está disponible para todos los sistemas operativos.
 
-```{attention}
+```{admontion} Atención
+---
+class: attention
+---
 Los lenguajes compilados cuyo código fuente se traduce de antemano a código máquina, en general suelen ser muy eficientes, ya que se pueden ejecutar directamente sobre la máquina sin "intermediarios".
 ```
 
@@ -22,7 +32,10 @@ Go es un lenguaje **fuertemente tipado** y con **tipado estático**, es decir qu
 
 Fuertemente tipado significa que no se puede realizar operaciones entre distintos tipos de datos que no están previamente establecidas por el lenguaje o el programador. Las conversiones entre distintos tipos se deben realizar explicitamente, por ejemplo si queremos sumarle a un número entero un número en decimal (en punto flotante) primero debemos convertir el número en punto flotante a entero y así el resultado será otro entero.
 
-```{note}
+```{admonition} Nota
+---
+class: note
+---
 Un sistema de tipos permite definir que valores puede tomar una variable y que operaciones se pueden hacer con esos valores.
 ```
 
