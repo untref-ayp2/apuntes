@@ -134,7 +134,10 @@ En la siguiente tabla se muestran algunas de las funciones más comunes y sus no
 
 ### Propieadades de la O grande
 
-```{prf:property} Propiedad transitiva
+```{admonition} Propiedad transitiva
+---
+class: dropdown
+---
 Si,
 
 $$
@@ -148,7 +151,10 @@ T(n) = O(g(n))
 $$
 ```
 
-```{prf:property}
+```{admonition} Multiplicación por una constante
+---
+class: dropdown
+---
 Si,
 
 $$
@@ -162,7 +168,10 @@ O(k \, T(n)) = k \cdot O(T(n)) = O(f(n))
 $$
 ```
 
-```{prf:property} Propiedad de la suma
+```{admonition} Propiedad de la suma
+--- 
+class: dropdown
+---
 Si,
 
 $$
@@ -176,7 +185,10 @@ T_1(n) + T_2(n) = \max(O(f(n)), O(g(n)))
 $$
 ```
 
-```{prf:property} Propiedad del producto
+```{admonition} Propiedad del producto
+---
+class: dropdown
+---
 Si,
 
 $$
@@ -190,7 +202,10 @@ T_1(n) \cdot T_2(n) = O(f(n) \cdot g(n))
 $$
 ```
 
-```{prf:property} Propiedad de los polinomios
+```{admonition} Propiedad de los polinomios
+---
+class: dropdown
+---
 Si,
 
 $$
@@ -204,7 +219,10 @@ T(n) = O(n^k)
 $$
 ```
 
-```{prf:example} Aplicación de las propiedades de la O grande
+```{admonition} Ejemplo de aplicación de las propiedades de la O grande
+---
+class: hint
+---
 $T_1(n)=5 n^2 + 3 = O(n^2)$
 
 $T_2(n)=4 n + 1 = O(n)$
@@ -292,102 +310,98 @@ El tiempo de ejecución de una función se calcula como 1 (operación elemental 
 
 ### Ejemplos de cálculo
 
-`````{prf:example} Cálculo de O en la búsqueda lineal
+#### Búsqueda Lineal
 
-> Dado un arreglo de elementos (por simplicidad solo números enteros) y un elemento a buscar, se debe recorrer todo el arreglo desde la primera posición hasta la última, hasta encontrar el elemento buscado o determinar que no se encuentra. Si el elemento se ecuentra en el arreglo, se devuelve la posición del elemento o -1 en caso contrario.
+En este ejemplo vamos a implementar el algoritmo de búsqueda lineal para buscar un elemento dentro de un arreglo. El algoritmo se puede enunciar como:
 
-````{prf:algorithm} Búsqueda Lineal
-**Entrada**
+```{admonition} Algoritmo: Búsqueda Lineal
+---
+class: hint
+---
+Dado un arreglo de elementos (por simplicidad solo números enteros) y un elemento a buscar, se debe recorrer todo el arreglo desde la primera posición hasta la última, hasta encontrar el elemento buscado o determinar que no se encuentra. Si el elemento se ecuentra en el arreglo, se devuelve la posición del elemento o -1 en caso contrario.
+```
 
-- `lista [n]int`{l=g0}: arreglo de enteros.
-- `n int`{l=g0}: longitud del arreglo.
-- `elemento int`{l=g0}: número entero a buscar.
-
-**Salida**
-
-- La posición del elemento buscado dentro del arreglo o `-1`{l=g0} si no se encuentra.
+A continuación una implementación en Go:
 
 ```{code-block} go
 ---
 linenos: true
 ---
-pos := 0
-for pos < n:
-    if lista[pos] == elemento:
-        return pos
-    pos = pos + 1
-return -1
+func busquedaLineal(arreglo []int, objetivo int) int {
+    for i := 0; i < len(arreglo); i++ {
+        if arreglo[i] == objetivo {
+            return i
+        }
+    }
+    return -1
+}
 ```
-
-````
 
 Para calcular el tiempo de ejecución de un algoritmo, conviene empezar por las operaciones elementales que se encuentran más anidadas. En este ejemplo la línea 4 dentro del condicional es $O(1)$.
 
-Evaluar la condición `pos < n`{l=g0} también es $O(1)$ ya que se trata de accesos a valores y una comparación, por lo tanto:
+Evaluar la condición `arreglo[i] == objetivo` (línea 3) también es $O(1)$ ya que se trata de accesos a valores y una comparación, por lo tanto:
 
 $$
 T(\langle condicional \rangle) = O(1)
 $$
 
-Entonces dentro del ciclo **mientras** (`for`{l=g0}) tenemos un condicional de $O(1)$ y la instrucción de la línea 5 que son operaciones simples y por lo tanto es $O(1)$. Podemos concluir que todo el cuerpo del ciclo es $O(1)$.
+Entonces dentro del ciclo `for` tenemos un condicional de $O(1)$ y la actualización del índice (`i++`) que también es una operación simple y por lo tanto es $O(1)$. Podemos concluir que todo el cuerpo del ciclo es $O(1)$.
 
 $$
 T(\langle ciclo \rangle) = O(1) + n \, O(1) = O(n)
 $$
 
-ya que evaluar la condición del ciclo, `pos < n`{l=g0}, también es $O(1)$
+ya que evaluar la condición del ciclo, `i < len(arreglo)`, también es $O(1)$ (donde $n$ es la longitud del arreglo).
 
-Las líneas 1 y 6 también son $O(1)$.
+La línea 11 también es $O(1)$.
 
 $$
 T(n) = O(1) + O(n) + O(1) = O(n)
 $$
-`````
 
-`````{prf:example} Ejemplo del cálculo de O en la búsqueda binaria
 
-> Dado un arreglo de elementos (por simplicidad solo números enteros) que están **ordenados** y un elemento a buscar, se compara el elemento buscado con el elemento que se encuentra el medio del arreglo. Si el elemento del medio del arreglo es menor que elemento buscado, se descarta la primera mitad del arreglo, en cambio si el elemento del medio es mayor que el elemento buscado, se descarta la mitad superior del arreglo. Si no es menor ni mayor, entonces es igual y encontramos el elemento.
->
-> La operación se repite hasta que se encuentra el elemento o ya no se puede seguir partiendo al medio y por lo tanto no se encuentra.
+#### Búsqueda Binaria
 
-````{prf:algorithm} Búsqueda Binaria
-**Entrada**
+```{admonition} Algoritmo: Búsqueda Binaria
+---
+class: hint
+---
+Dado un arreglo de elementos (por simplicidad solo números enteros) que están **ordenados** y un elemento a buscar, se compara el elemento buscado con el elemento que se encuentra el medio del arreglo. Si el elemento del medio del arreglo es menor que elemento buscado, se descarta la primera mitad del arreglo, en cambio si el elemento del medio es mayor que el elemento buscado, se descarta la mitad superior del arreglo. Si no es menor ni mayor, entonces es igual y encontramos el elemento.
 
-- `lista [n]int`{l=g0}: arreglo ordenado de enteros.
-- `n int`{l=g0}: longitud del arreglo.
-- `elemento int`{l=g0}: número entero a buscar.
-
-**Salida**
-
-- La posición del elemento buscado dentro del arreglo o `-1`{l=g0} si no se encuentra.
+ La operación se repite hasta que se encuentra el elemento o ya no se puede seguir partiendo al medio y por lo tanto no se encuentra.
+```
+Implementación en Go:
 
 ```{code-block} go
 ---
 linenos: true
 ---
-L := 0 // primera posición del arregloa
-R := n-1 // última posición del arreglo
-for L <= R:
-    M := (L + R) / 2 // índice del medio del arreglo
-    if lista[M] < elemento: // el elemento buscado no puede estar en la primera mitad del arreglo
-        L = M + 1
-        continue // reinicia el ciclo mientras
-    if lista[M] > elemento: // el elemento buscado no puede estar en la mitad superior del arreglo
-        R = M - 1
-        continue // reinicia el ciclo mientras
-    return m // se encontró el elemento buscado
-return -1 // no se encontró el elemento
+func busquedaBinaria(lista []int, elemento int) int {
+    L := 0
+    R := len(lista) - 1
+    for L <= R {
+        M := (L + R) / 2
+        if lista[M] < elemento {
+            L = M + 1
+            continue
+        }
+        if lista[M] > elemento {
+            R = M - 1
+            continue
+        }
+        return M // Se encontró el elemento
+    }
+    return -1 // No se encontró
+}
 ```
 
-````
-
-Para analizar la búsqueda binaria, la primera observación que podemos realizar es que los condicionales son $O(1)$. Siguiendo el mismo razonamiento, todas las instrucciones que se realizan afuera del ciclo Mientras también son OE. Por lo tanto podemos plantear la siguiente ecuación de recurrencia:
+Para analizar la búsqueda binaria, la primera observación que podemos realizar es que los condicionales son $O(1)$. Siguiendo el mismo razonamiento, todas las instrucciones que se realizan afuera del ciclo `for` también son OE. Por lo tanto podemos plantear la siguiente ecuación de recurrencia:
 
 $$
 T(n) = T \left( \frac{n}{2} \right) + c
 $$
 
-Donde $T(\frac{n}{2})$ representa que en cada vuelta del ciclo mientras se descarta la mitad del arreglo. La constante $c$ representa todas las operaciones $O(1)$ que se realizan en cada vuelta del ciclo. Para resolverla podemos suponer que `n`{l=g0} es una potencia de 2. Es decir:
+Donde $T(\frac{n}{2})$ representa que en cada vuelta del ciclo mientras se descarta la mitad del arreglo. La constante $c$ representa todas las operaciones $O(1)$ que se realizan en cada vuelta del ciclo. Para resolverla podemos suponer que `n` es una potencia de 2. Es decir:
 
 $$
 n = 2^k
@@ -433,5 +447,5 @@ $$
 T(n) = O(log_2(n))
 $$
 
-Es decir al tener el arreglo ordenado, la búsqueda binaria necesita realizar mucho menos operaciones que la búsqueda lineal para encontrar el valor buscado o determinar que no existe. La clave está en descartar la mitad del arreglo en cada vuelta del ciclo **mientras**.
+Es decir al tener el arreglo ordenado, la búsqueda binaria necesita realizar mucho menos operaciones que la búsqueda lineal para encontrar el valor buscado o determinar que no existe. La clave está en descartar la mitad del arreglo en cada vuelta del ciclo **`for`**.
 `````
