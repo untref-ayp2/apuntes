@@ -9,16 +9,16 @@
 <g fill="none">
 <!-- Line -->
 <rect x="4050" y="8100" width="5400" height="1350" fill="#e1f5ff"
-	stroke="#333333" stroke-width="8px"/>
+	stroke="#4682b4" stroke-width="24px"/>
 <!-- Line -->
-<rect x="4050" y="7200" width="5400" height="900" fill="#00b000"
-	stroke="#333333" stroke-width="8px"/>
+<rect x="4050" y="7200" width="5400" height="900" fill="#e6f4ea"
+	stroke="#8fbc8f" stroke-width="24px"/>
 <!-- Line -->
-<rect x="4050" y="5400" width="5400" height="1800" fill="#ffff8c"
-	stroke="#333333" stroke-width="8px"/>
+<rect x="4050" y="5400" width="5400" height="1800" fill="#fff9c4"
+	stroke="#daa520" stroke-width="24px"/>
 <!-- Line -->
-<rect x="4050" y="0" width="5400" height="1350" fill="#ffe2e2"
-	stroke="#333333" stroke-width="8px"/>
+<rect x="4050" y="0" width="5400" height="1350" fill="#ffe1e1"
+	stroke="#e9967a" stroke-width="24px"/>
 <!-- Line -->
 <defs>
 <clipPath id="cp0">
@@ -50,22 +50,22 @@
 <polyline points=" 9450,1350 9450,5400"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Text -->
-<text xml:space="preserve" x="6660" y="810" fill="#333333" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Pila (Stack)</text>
+<text xml:space="preserve" x="6660" y="810" fill="#333333" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Pila (Stack)</text>
 <!-- Text -->
-<text xml:space="preserve" x="6750" y="8820" fill="#333333" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Segmento de Código (CS)</text>
+<text xml:space="preserve" x="6750" y="8820" fill="#333333" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Segmento de Código (CS)</text>
 <!-- Text -->
-<text xml:space="preserve" x="6660" y="6300" fill="#333333" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Mem. Dinámica (Heap)</text>
+<text xml:space="preserve" x="6660" y="6300" fill="#333333" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Mem. Dinámica (Heap)</text>
 <!-- Text -->
-<text xml:space="preserve" x="9900" y="7650" fill="#333333" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Variables globales</text>
+<text xml:space="preserve" x="9900" y="7650" fill="#333333" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Variables globales</text>
 <!-- Text -->
-<text xml:space="preserve" x="9900" y="6300" fill="#333333" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Datos de usuario</text>
+<text xml:space="preserve" x="9900" y="6300" fill="#333333" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Datos de usuario</text>
 <!-- Text -->
-<text xml:space="preserve" x="9900" y="1350" fill="#333333" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Variables locales</text>
+<text xml:space="preserve" x="9900" y="1350" fill="#333333" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Variables locales</text>
 <!-- Text -->
-<text xml:space="preserve" x="9900" y="9000" fill="#333333" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Instrucciones</text>
+<text xml:space="preserve" x="9900" y="9000" fill="#333333" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Instrucciones</text>
 <!-- Text -->
-<text xml:space="preserve" x="9900" y="900" fill="#333333" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Llamadas a funciones</text>
+<text xml:space="preserve" x="9900" y="900" fill="#333333" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Llamadas a funciones</text>
 <!-- Text -->
-<text xml:space="preserve" x="6660" y="7740" fill="#333333" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Segmento de Datos (DS)</text>
+<text xml:space="preserve" x="6660" y="7740" fill="#333333" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Segmento de Datos (DS)</text>
 </g>
 </svg>

@@ -125,7 +125,7 @@ func main() {
 
 El **Stack** y el **Heap** presentaran el siguiente estado:
 
-```{figure} ../_static/figures/MapaDeMemoria.dio_light.svg
+```{figure} ../_static/figures/MapaDeMemoria_light.svg
 ---
 name: mapa-memoria-Santi
 class: only-light-mode
@@ -133,14 +133,13 @@ class: only-light-mode
 Mapa de Memoria
 ```
 
-```{figure} ../_static/figures/MapaDeMemoria.dio_dark.svg
+```{figure} ../_static/figures/MapaDeMemoria_dark.svg
 ---
 name: mapa-memoria-Santi
 class: only-dark-mode
 ---
 Mapa de Memoria
 ```
-
 
 Vamos a analizar cada variable en el código y justificar dónde se almacena:
 

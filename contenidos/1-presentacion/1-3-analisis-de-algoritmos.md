@@ -66,7 +66,6 @@ La cota superior asintótica, O grande o _Big-O_ en inglés, es parte de la fami
 ---
 class: hint
 ---
-
 $$
 T(n) = O(f(n)) \; \textrm{si} \; \exists \; c, \; n_0 \; \textrm{tal que} \; T(n) \leq c \cdot f(n), \; \forall n > n_0
 $$

@@ -29,7 +29,7 @@ project:
 
   numbering:
     equation: true
-    figure: true
+    figure: false
     table: true
     code: true
     heading_1: true

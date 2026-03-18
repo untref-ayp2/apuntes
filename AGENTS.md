@@ -186,6 +186,19 @@ Para soportar ambos temas, crear dos versiones de cada imagen SVG:
 - `_light.svg` para modo claro
 - `_dark.svg` para modo oscuro
 
+**Lineamientos de Estilo (SVG):**
+
+- **Tipografía**: Usar siempre `font-family="ui-sans-serif, system-ui, sans-serif"`.
+- **Modo Claro** (`_light.svg`):
+  - **Rellenos**: Colores pasteles suaves (ej. `#e1f5ff` azul, `#ffe1e1` rojo, `#e6f4ea` verde, `#fff9c4` amarillo).
+  - **Bordes**: Tonos más saturados del mismo color del relleno (ej. `#4682b4` azul, `#e9967a` rojo, `#8fbc8f` verde, `#daa520` amarillo).
+  - **Texto y flechas**: `#333333`.
+- **Modo Oscuro** (`_dark.svg`):
+  - **Rellenos**: Gris oscuro uniforme (ej. `#2d3748`).
+  - **Bordes**: Colores pasteles brillantes para resaltar sobre el fondo oscuro (ej. `#63b3ed` azul, `#fc8181` rojo, `#68d391` verde, `#f6e05e` amarillo).
+  - **Texto y flechas**: `#e0e0e0`.
+- **Flechas**: Usar siempre estilo de triángulo cerrado (en Draw.io `endArrow=block`).
+
 Y usarlas así:
 
 ````markdown
@@ -215,12 +228,10 @@ ______________________________________________________________________
 - Usar fenced code blocks con especificadores de lenguaje: `go, `python, etc.
 - Habilitar números de línea en bloques de código cuando se demuestre ejecución paso a paso
 - Usar admonitions para tips, advertencias y notas:
-  ````markdown
+  ```markdown
   ```{note}
   Tu contenido aquí
-  ````
   ```
-
   ```
 
 ### Markdown Linting
@@ -238,7 +249,7 @@ El proyecto usa markdownlint y mdformat:
 
 ### Directory Structure
 
-```
+```text
 /
 ├── AGENTS.md
 ├── Makefile
