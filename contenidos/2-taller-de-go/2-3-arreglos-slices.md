@@ -84,9 +84,18 @@ Los _arreglos_ y los _slices_ están estrechamente relacionados. Un _slice_ es u
 var s []byte
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-struct.png
+```{figure} ../_static/figures/arreglos-slices/slice-struct_light.svg
 ---
-name: slice-struct
+name: slice-struct-light
+class: only-light-mode
+---
+Estructura interna de un _slice_.
+```
+
+```{figure} ../_static/figures/arreglos-slices/slice-struct_dark.svg
+---
+name: slice-struct-dark
+class: only-dark-mode
 ---
 Estructura interna de un _slice_.
 ```
@@ -95,9 +104,18 @@ Estructura interna de un _slice_.
 s = make([]byte, 5, 5)
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-1.png
+```{figure} ../_static/figures/arreglos-slices/slice-1_light.svg
 ---
-name: slice-1
+name: slice-1-light
+class: only-light-mode
+---
+_Slice_ de longitud 5 y capacidad 5.
+```
+
+```{figure} ../_static/figures/arreglos-slices/slice-1_dark.svg
+---
+name: slice-1-dark
+class: only-dark-mode
 ---
 _Slice_ de longitud 5 y capacidad 5.
 ```
@@ -108,9 +126,18 @@ A medida que hacemos _slicing_ de `s`, observamos los cambios en la estructura d
 s = s[2:4]
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-2.png
+```{figure} ../_static/figures/arreglos-slices/slice-2_light.svg
 ---
-name: slice-2
+name: slice-2-light
+class: only-light-mode
+---
+_Slice_ de longitud 2 y capacidad 3.
+```
+
+```{figure} ../_static/figures/arreglos-slices/slice-2_dark.svg
+---
+name: slice-2-dark
+class: only-dark-mode
 ---
 _Slice_ de longitud 2 y capacidad 3.
 ```
@@ -121,9 +148,18 @@ El _slicing_ no copia los datos del _slice_. En su lugar, crea un nuevo valor de
 s = s[:cap(s)]
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-3.png
+```{figure} ../_static/figures/arreglos-slices/slice-3_light.svg
 ---
-name: slice-3
+name: slice-3-light
+class: only-light-mode
+---
+_Slice_ de longitud 3 y capacidad 3.
+```
+
+```{figure} ../_static/figures/arreglos-slices/slice-3_dark.svg
+---
+name: slice-3-dark
+class: only-dark-mode
 ---
 _Slice_ de longitud 3 y capacidad 3.
 ```
@@ -151,9 +187,18 @@ t2 = [Abril Mayo Junio]
 invierno = [Junio Julio Agosto]
 ```
 
-```{figure} ../_static/figures/arreglos-slices/overlaping-slices.drawio.svg
+```{figure} ../_static/figures/arreglos-slices/overlaping-slices_light.svg
 ---
-name: overlaping-slices
+name: overlaping-slices-light
+class: only-light-mode
+---
+Dos _slices_ sobre el mismo array de meses.
+```
+
+```{figure} ../_static/figures/arreglos-slices/overlaping-slices_dark.svg
+---
+name: overlaping-slices-dark
+class: only-dark-mode
 ---
 Dos _slices_ sobre el mismo array de meses.
 ```
@@ -220,9 +265,15 @@ x = [0 1 2]
 y = [0 1 2 3]
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-1.drawio.svg
+```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-1_light.svg
 ---
-name: slice-append-entangled-1
+class: only-light-mode
+---
+```
+
+```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-1_dark.svg
+---
+class: only-dark-mode
 ---
 ```
 
@@ -237,9 +288,15 @@ x = [0 1 2 4]
 y = [0 1 2 4]
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-2.drawio.svg
+```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-2_light.svg
 ---
-name: slice-append-entangled-2
+class: only-light-mode
+---
+```
+
+```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-2_dark.svg
+---
+class: only-dark-mode
 ---
 ```
 
@@ -256,9 +313,15 @@ x = [0 1 2 4]
 y = [0 1 2 4 4]
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-3.drawio.svg
+```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-3_light.svg
 ---
-name: slice-append-entangled-3
+class: only-light-mode
+---
+```
+
+```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-3_dark.svg
+---
+class: only-dark-mode
 ---
 ```
 

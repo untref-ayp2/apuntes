@@ -197,7 +197,10 @@ Para soportar ambos temas, crear dos versiones de cada imagen SVG:
   - **Rellenos**: Gris oscuro uniforme (ej. `#2d3748`).
   - **Bordes**: Colores pasteles brillantes para resaltar sobre el fondo oscuro (ej. `#63b3ed` azul, `#fc8181` rojo, `#68d391` verde, `#f6e05e` amarillo).
   - **Texto y flechas**: `#e0e0e0`.
-- **Flechas**: Usar siempre estilo de triángulo cerrado (en Draw.io `endArrow=block`).
+- **Flechas y Líneas**: 
+  - **Grosor**: Usar siempre `2px` (en SVG `stroke-width="2"`).
+  - **Estilo de punta**: Usar siempre estilo de triángulo cerrado (en Draw.io `endArrow=block`).
+  - **Ruteo**: Usar estilo "Manhattan" (solo segmentos horizontales y verticales) con la menor cantidad de quiebres posible.
 
 Y usarlas así:
 

@@ -21,7 +21,7 @@ width: 200px
 
 Los creadores de Go, [Robert Griesemer](https://en.wikipedia.org/wiki/Robert_Griesemer), [Rob Pike](https://en.wikipedia.org/wiki/Rob_Pike) y [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson), han dicho que aunque la sintáxis del lenguaje está inspirada principalmente en C y en Python y en menor medida en Java, el objetivo siempre fue crear un nuevo lenguaje simple y eficiente. Go fue diseñado para ambientes altamente productivos y concurrentes (es decir donde varios programas se ejecutan al mismo tiempo y comparten recursos). Fue liberado cómo código abierto y está disponible para todos los sistemas operativos.
 
-```{admontion} Atención
+```{admonition} Atención
 ---
 class: attention
 ---
@@ -32,14 +32,43 @@ Go es un lenguaje **fuertemente tipado** y con **tipado estático**, es decir qu
 
 Fuertemente tipado significa que no se puede realizar operaciones entre distintos tipos de datos que no están previamente establecidas por el lenguaje o el programador. Las conversiones entre distintos tipos se deben realizar explicitamente, por ejemplo si queremos sumarle a un número entero un número en decimal (en punto flotante) primero debemos convertir el número en punto flotante a entero y así el resultado será otro entero.
 
-```{admonition} Nota
+Tipado estático significa que el tipo de una variable se determina en al momento de escribir el código y no puede cambiar durante la ejecución del programa.
+
+```{admonition} Sistema de Tipos
 ---
-class: note
+class: important
 ---
 Un sistema de tipos permite definir que valores puede tomar una variable y que operaciones se pueden hacer con esos valores.
 ```
 
-La gestión de la memoria es automática, es decir el programador puede desentenderse de liberar la memoria que ya no se utiliza. Go implementa un **recolector de basura** o _garbage collector_, que identifica y libera zonas de la memoria que el programa en ejecución ya no necesita. La asignación de memoria también es automática, cuando se declara una variable, como se declara el tipo de la misma, Go sabe exactamente cuanta memoria reservar para almacenar cualquier dato del tipo declarado.
+### Gestión de memoria
+
+La gestión de memoria se refiere a cómo se reserva espacio para las variables y cómo se libera ese espacio cuando ya no se necesitan. En Go, este proceso es **automático**, por lo que el programador no necesita pedir ni liberar memoria explícitamente (al estilo de `malloc` y `free` en C).
+
+#### Reserva de memoria: Stack vs Heap
+
+Go utiliza principalmente dos áreas de memoria para almacenar datos:
+
+- **Pila (*Stack*):** Es una memoria muy rápida donde se almacenan las variables locales de las funciones y los parámetros. El espacio se reserva al declarar la variable y se libera automáticamente e instantáneamente cuando la función termina.
+- **Montículo (*Heap*):** Es una región de memoria más grande que se utiliza para datos que deben persistir más allá de la ejecución de una función o que tienen un tamaño dinámico (como *slices* o mapas).
+
+Para reservar memoria, el programador simplemente declara la variable; el compilador e incluso el ambiente de ejecución (*runtime*) se encargan de asignar el espacio necesario:
+
+```go
+var edad int                 // Reserva automática para un entero
+nombres := make([]string, 0) // Reserva dinámica para un slice
+```
+
+El compilador decide automáticamente dónde colocar cada variable mediante un proceso llamado **análisis de escape** (*escape analysis*). Si detecta que una variable local "escapa" de su función (por ejemplo, si se devuelve un puntero a esa variable o se guarda en una estructura global), la moverá automáticamente al *heap*.
+
+#### Liberación de memoria: Garbage Collector
+
+Para la memoria reservada en el *heap*, Go utiliza un **recolector de basura** (*Garbage Collector* o GC). El GC se ejecuta de forma periódica realizando las siguientes tareas:
+
+1. **Rastreo:** Identifica qué objetos en el *heap* ya no son accesibles desde ninguna parte activa del código.
+2. **Barrido:** Libera el espacio que ocupaban esos objetos para que pueda ser reutilizado.
+
+Este enfoque evita errores críticos como las **fugas de memoria** (*memory leaks*) —olvidar liberar la memoria que reservamos— o el acceso a **punteros colgantes** (*dangling pointers*) —intentar usar memoria que el programa ya liberó—.
 
 Go no es un lenguaje orientado a objetos, es decir no hay clases ni objetos como en Java por ejemplo, sino que utiliza `struct`, a la C, lo que nos permite definir nuevos tipos de datos.
 
@@ -104,7 +133,7 @@ sumar(32, 7)
 ## Similitudes entre Java y Go
 
 - Son lenguajes compilados y con chequeo estático de tipos.
-- Implementan un recolector de basura (_Garbage Collector_).
+- Implementan un recolector de basura (*Garbage Collector*).
 
 ## Principales diferencias entre Java y Go
 

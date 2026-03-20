@@ -1,0 +1,31 @@
+<svg width="600" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrowhead-3-light" markerWidth="5" markerHeight="3.5" refX="5" refY="1.75" orient="auto">
+      <polygon points="0 0, 5 1.75, 0 3.5" fill="#333333" />
+    </marker>
+  </defs>
+
+  <!-- Labels - Repositioned to avoid clipping -->
+  <text x="60" y="30" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#333333" text-anchor="middle">[]byte</text>
+  <text x="350" y="165" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#333333" text-anchor="middle">[5]byte</text>
+  
+  <!-- Slice Header -->
+  <rect x="20" y="40" width="80" height="40" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+  <text x="60" y="65" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">ptr</text>
+  
+  <rect x="20" y="80" width="80" height="40" fill="#e6f4ea" stroke="#8fbc8f" stroke-width="2"/>
+  <text x="60" y="105" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#333333" text-anchor="middle">3</text>
+  
+  <rect x="20" y="120" width="80" height="40" fill="#ffe1e1" stroke="#e9967a" stroke-width="2"/>
+  <text x="60" y="145" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#333333" text-anchor="middle">3</text>
+
+  <!-- Underlying Array -->
+  <rect x="200" y="70" width="60" height="60" fill="#fff9c4" stroke="#daa520" stroke-width="2"/>
+<rect x="260" y="70" width="60" height="60" fill="#fff9c4" stroke="#daa520" stroke-width="2"/>
+<rect x="320" y="70" width="60" height="60" fill="#fff9c4" stroke="#daa520" stroke-width="2"/>
+<rect x="380" y="70" width="60" height="60" fill="#fff9c4" stroke="#daa520" stroke-width="2"/>
+<rect x="440" y="70" width="60" height="60" fill="#fff9c4" stroke="#daa520" stroke-width="2"/>
+
+  <path d="M 100 60 L 150 60 L 150 30 L 350 30 L 350 68" 
+        fill="none" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead-3-light)"/>
+</svg>
