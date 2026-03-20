@@ -8,14 +8,17 @@ jupytext:
 
 # Mapas
 
-Podemos pensar a los mapas como una generalización de los arreglos, donde en lugar de usar sólo enteros como índices, podemos usar otros tipos. Por ejemplo podemos acceder a un elemento de un mapa usando una cadena como índice `edades["alice"]` en lugar de un entero como `edades[0]`.
+Podemos pensar a los mapas como una generalización de los arreglos, donde en lugar de usar sólo enteros como índices, podemos usar otros tipos de datos. Por ejemplo podemos acceder a un elemento de un mapa usando una cadena como índice `edades["alice"]` en lugar de un entero como `edades[0]`.
 
 Los mapas son una forma de asociar claves a valores, y son útiles para almacenar datos que se pueden identificar mediante una clave. Por ejemplo, en el caso de `edades`, la clave es el nombre de una persona y el valor es su edad.
 
 En Go, un `map` es una referencia a una tabla hash[^1], y el tipo de `map` se escribe como `map[K]V`, donde `K` y `V` son los tipos de sus claves y valores. Todas las claves en un mapa dado son del mismo tipo, y todos los valores son del mismo tipo, pero las claves no necesitan ser del mismo tipo que los valores.
 
-```{important}
-**El tipo de clave `K` se debe poder comparar usando `==`**, para que el mapa pueda verificar si una clave ya está presente o no.
+```{admonition} Importante
+---
+class: important
+---
+El tipo de clave `K` se debe poder comparar usando `==`, para que el mapa pueda verificar si una clave ya está presente o no.
 ```
 
 No hay restricciones sobre el tipo de valor `V`.

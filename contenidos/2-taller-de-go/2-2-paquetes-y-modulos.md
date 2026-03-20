@@ -163,7 +163,7 @@ Si en lugar de instalar y agregar la dependencia con `go get`, tenemos forma alt
 
 Su pongamos que creamos un módulo e importamos algunas cosas en nuestro archivo `main.go`.
 
-````{admonition} Creación de un módulo simple
+### Ejemplo de creación de un módulo simple
 
 Primero creamos una carpeta con el nombre `mimodulo` y nos posicionamos en ella.
 
@@ -269,7 +269,6 @@ $ go run main.go
 ```
 
 (si, confien que el texto sale en color rojo)
-````
 
 ```{admonition} ¡Para practicar!
 ---

@@ -84,10 +84,6 @@ git clone https://github.com/untref-ayp2/taller-go.git
 
 El siguiente fragmento se encuentra en el archivo `00-hola/main.go`
 
-````{admonition} <code class="docutils literal notranslate"><span class="pre">00-hola/main.go</span></code>
----
-class: note
----
 ```go
 package main
 
@@ -97,8 +93,6 @@ func main() {
     fmt.Println("¡Hola mundo!")
 }
 ```
-
-````
 
 Si ejecutamos en una terminal:
 
@@ -180,10 +174,6 @@ Utilizando el clásico ejemplo de un hola mundo, vamos a mostrar cómo se organi
 
 El código se organiza en **paquetes**. Por ejemplo, podemos definir un paquete llamado `saludo`, con una función que se exporta llamada `Saludar`.
 
-````{admonition} <code class="docutils literal notranslate"><span class="pre">saludo/saludo.go</span></code>
----
-class: note
----
 ```go
 package saludo
 
@@ -194,14 +184,8 @@ func Saludar() {
 }
 ```
 
-````
-
 Como en muchos lenguajes de programación, el punto de entrada a un programa es por medio de una función `main`, como podemos ver a continuación, donde nuestro programa hace uso del paquete `saludo`:
 
-````{admonition} <code class="docutils literal notranslate"><span class="pre">main.go</span></code>
----
-class: note
----
 ```go
 package main
 
@@ -211,8 +195,6 @@ func main() {
     saludo.Saludar()
 }
 ```
-
-````
 
 ````{admonition} ¡Para practicar!
 ---
