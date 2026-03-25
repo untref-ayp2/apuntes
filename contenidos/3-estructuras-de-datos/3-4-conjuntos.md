@@ -1,4 +1,5 @@
 ---
+label: conjuntos
 jupytext:
   formats: md:myst
   text_representation:

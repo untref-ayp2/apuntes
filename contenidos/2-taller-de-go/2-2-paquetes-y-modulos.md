@@ -1,4 +1,5 @@
 ---
+label: paquetes-modulos
 jupytext:
   formats: md:myst
   text_representation:
@@ -10,7 +11,7 @@ jupytext:
 
 ## Paquetes
 
-Un **paquete** es una colección de archivos que cotienen código fuente, definiciones de constantes, definiciones de tipos, etc. Todos los archivos de un paquete se encuentran en un mismo directorio.
+Un **paquete** es una colección de archivos que contiene código fuente, definiciones de constantes, definiciones de tipos, etc. Todos los archivos de un paquete se encuentran en un mismo directorio.
 
 Los paquetes organizan el código en forma lógica. Las variables, funciones y tipos de datos definidos dentro de un paquete son privados del mismo, es decir no se pueden utilizar afuera, a menos que se exporten explicitamente.
 
@@ -86,7 +87,7 @@ En Go exiten distintos tipos de módulos que podemos importar, dependendien de s
 `strings`
 : funciones para manipular cadenas de caracteres
 
-Hasta ahora hemos utilzado mayormente este tipo de módulos, también podemos utilizar referencias a paquetes dentro de nuestro mismo módulo. Como ya hicimos en un ejemplo anterior.
+Hasta ahora hemos utilzado mayormente este tipo de módulos, también podemos utilizar referencias a paquetes dentro de nuestro mismo módulo.
 
 ```go
 package main
@@ -281,7 +282,10 @@ Se recomienda recrear el ejemplo previamente presentado y ejecutarlo para corrob
 
 Si trabajamos en varios proyectos podemos organizarlos guardándolos a todos juntos dentro de una carpeta raíz, en un **espacio de trabajo** o _workspace_. La organización de los módulos dentro de un espacio de trabajo se realiza con el archivo `go.work`.
 
-```{important}
+```{admonition} Importante
+---
+class: important
+---
 Un espacio de trabajo con varios módulos puede ser útil si trabajamos con varios proyectos vinculados, en caso contrario puede ser mejor tener cada proyecto por separado.
 ```
 

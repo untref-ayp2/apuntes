@@ -1,4 +1,5 @@
 ---
+label: ordenamientos-recursivos
 jupytext:
   formats: md:myst
   text_representation:

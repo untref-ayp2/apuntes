@@ -1,4 +1,5 @@
 ---
+label: ordenamientos-lineales
 jupytext:
   formats: md:myst
   text_representation:

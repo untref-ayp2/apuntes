@@ -1,4 +1,5 @@
 ---
+label: intro-go
 jupytext:
   formats: md:myst
   text_representation:
@@ -43,14 +44,14 @@ Un sistema de tipos permite definir que valores puede tomar una variable y que o
 
 ### Gestión de memoria
 
-La gestión de memoria se refiere a cómo se reserva espacio para las variables y cómo se libera ese espacio cuando ya no se necesitan. En Go, este proceso es **automático**, por lo que el programador no necesita pedir ni liberar memoria explícitamente (al estilo de `malloc` y `free` en C).
+La gestión de memoria se refiere a cómo se reserva espacio para las variables y cómo se libera ese espacio cuando ya no se necesitan dichas variables. En Go, este proceso es **automático**, por lo que el programador no necesita pedir, ni liberar memoria explícitamente (al estilo de `malloc` y `free` en C).
 
 #### Reserva de memoria: Stack vs Heap
 
 Go utiliza principalmente dos áreas de memoria para almacenar datos:
 
 - **Pila (*Stack*):** Es una memoria muy rápida donde se almacenan las variables locales de las funciones y los parámetros. El espacio se reserva al declarar la variable y se libera automáticamente e instantáneamente cuando la función termina.
-- **Montículo (*Heap*):** Es una región de memoria más grande que se utiliza para datos que deben persistir más allá de la ejecución de una función o que tienen un tamaño dinámico (como *slices* o mapas).
+- **Montículo (*Heap*):** Es una región de memoria más grande que se utiliza para datos que deben persistir más allá de la ejecución de una función o que tienen un tamaño dinámico (como *slices* o mapas), es decir que el tamaño no se conoce al momento de declarar la variable.
 
 Para reservar memoria, el programador simplemente declara la variable; el compilador e incluso el ambiente de ejecución (*runtime*) se encargan de asignar el espacio necesario:
 
@@ -63,14 +64,53 @@ El compilador decide automáticamente dónde colocar cada variable mediante un p
 
 #### Liberación de memoria: Garbage Collector
 
-Para la memoria reservada en el *heap*, Go utiliza un **recolector de basura** (*Garbage Collector* o GC). El GC se ejecuta de forma periódica realizando las siguientes tareas:
+Para liberar la memoria reservada en el *heap*, Go utiliza un **recolector de basura** (*Garbage Collector* o GC). El GC se ejecuta de forma periódica realizando las siguientes tareas:
 
 1. **Rastreo:** Identifica qué objetos en el *heap* ya no son accesibles desde ninguna parte activa del código.
 2. **Barrido:** Libera el espacio que ocupaban esos objetos para que pueda ser reutilizado.
 
 Este enfoque evita errores críticos como las **fugas de memoria** (*memory leaks*) —olvidar liberar la memoria que reservamos— o el acceso a **punteros colgantes** (*dangling pointers*) —intentar usar memoria que el programa ya liberó—.
 
+```{figure} ../_static/figures/garbage_collector_light.svg
+---
+class: only-light-mode
+---
+Funcionamiento del Garbage Collector: rastreo y liberación de objetos inalcanzables.
+```
+
+```{figure} ../_static/figures/garbage_collector_dark.svg
+---
+class: only-dark-mode
+---
+Funcionamiento del Garbage Collector: rastreo y liberación de objetos inalcanzables.
+```
+
+En la imagen los objetos 4, 5 y 6 ya no son referenciados por ninguna variable, por lo tanto el GC los eliminará en la próxima ejecución.
+
+### Orientación a objetos
+
 Go no es un lenguaje orientado a objetos, es decir no hay clases ni objetos como en Java por ejemplo, sino que utiliza `struct`, a la C, lo que nos permite definir nuevos tipos de datos.
+
+```go
+type Persona struct {
+    Nombre string
+    Edad   int
+}
+```
+
+Define una estructura de datos llamada `Persona` con dos campos: `Nombre` de tipo `string` y `Edad` de tipo `int`.
+
+```go
+var p Persona
+p.Nombre = "Fabián"
+p.Edad = 32
+```
+
+`p` es una variable de tipo `Persona` y podemos acceder a sus campos utilizando el operador punto (`.`), en este caso `p.Nombre` tiene el valor `"Fabián"` y `p.Edad` tiene el valor `32`.
+
+En Go no existe la herencia, pero si existe la composición, que nos permite crear nuevos tipos de datos a partir de otros. En el capítulo {ref}`structs-interfaces` vamos a profundizar en las estructuras y veremos como funciona la composición en Go.
+
+
 
 ### Ejemplos
 
@@ -124,28 +164,6 @@ sumar(32, 7)
 39
 ```
 
-## Similitudes entre Java y Go
-
-- Son lenguajes compilados y con chequeo estático de tipos.
-- Implementan un recolector de basura (*Garbage Collector*).
-
-## Principales diferencias entre Java y Go
-
-- Go no es orientado a objetos.
-- Go utiliza punteros de forma directa.
-- Go permite devolver multiples valores desde una función o un método.
-- Go no tiene excepciones.
-- Go tiene interfaces pero funcionan de manera distinta que en Java.
-
-## Links útiles
-
-- [Página principal de Go](https://go.dev/)
-- [Descargar Go](https://go.dev/dl/)
-- [Tour interactivo de Go](https://go.dev/tour/)
-- [Documentación basada en ejemplos](https://gobyexample.com/)
-- [Go FAQ](https://go.dev/doc/faq)
-- [Go Playground](https://go.dev/play/) (entorno online ara ejecutar código en Go)
-
 ## Instalación
 
 El sitio oficial de Go es [https://go.dev/](https://go.dev/) de donde se puede descargar versiones listas para instalar o el código fuente para compilar e instalar. Se recomienda seguir las instrucciones. Una vez finalizado el proceso se puede verificar la correcta instalación, abriendo una terminal y ejecutando el siguiente comando:
@@ -164,193 +182,12 @@ go version go1.24.0 linux/amd64
 
 Go ofrece un servicio online llamado Playground [https://go.dev/play](https://go.dev/play/p/kBGNnaPKcvt) que nos permite escribir y ejecutar fragmentos de código de forma simple y sin necesidad de instalar Go localmente.
 
-### Entornos de Desarrollo (IDEs)
+## Links útiles
 
-Se puede utilizar cualquier entorno de desarrollo disponbile, por ejemplo [Visual Studio Code](https://code.visualstudio.com/).
+- [Página principal de Go](https://go.dev/)
+- [Descargar Go](https://go.dev/dl/)
+- [Tour interactivo de Go](https://go.dev/tour/)
+- [Documentación basada en ejemplos](https://gobyexample.com/)
+- [Go FAQ](https://go.dev/doc/faq)
+- [Go Playground](https://go.dev/play/) (entorno online ara ejecutar código en Go)
 
-## Estructura de un programa en Go
-
-Utilizando el clásico ejemplo de un hola mundo, vamos a mostrar cómo se organiza el código en Go.
-
-El código se organiza en **paquetes**. Por ejemplo, podemos definir un paquete llamado `saludo`, con una función que se exporta llamada `Saludar`.
-
-```go
-package saludo
-
-import "fmt"
-
-func Saludar() {
-    fmt.Println("¡Hola mundo!")
-}
-```
-
-Como en muchos lenguajes de programación, el punto de entrada a un programa es por medio de una función `main`, como podemos ver a continuación, donde nuestro programa hace uso del paquete `saludo`:
-
-```go
-package main
-
-import ".saludo"
-
-func main() {
-    saludo.Saludar()
-}
-```
-
-````{admonition} ¡Para practicar!
----
-class: hint
----
-Se recomienda recrear el ejemplo previamente presentado y ejecutarlo para corroborar que todo funciona correctamente y que los paquetes definidos por nosotros mismos se pueden importar sin problemas.
-
-Notar que la estructura de archivos que se debe generar es:
-
-```text
-ejemplo
-├── saludo
-│   └── saludo.go
-└── main.go
-```
-
-Luego desde una terminal, deberán ejecutar:
-
-```console
-go run main.go
-```
-
-````
-
-### Declaración de variables
-
-Existen varias formas de declarar una variable en Go. Primero es utilizando la palabra clave `var`, donde debemos especificar el nombre de la variable y su tipo.
-
-```go
-var edad int
-edad = 42
-```
-
-Opcionalmente podríamos inicializar esa variable en la misma línea como sucede en muchos lenguajes de programación.
-
-```go
-var edad int = 42
-```
-
-Otra forma de declarar una variable es utilizando la notación de asignación corta (`:=`), que determina el tipo de la variable de forma implícita. Por lo que podemos escribir:
-
-```go
-edad := 42
-```
-
-Tipos básicos de datos en Go:
-
-- `bool`
-- `string`
-- `int`, `int8`, `int16`, `int32`, `int64`
-- `uint`, `uint8`, `uint16`, `uint32`, `uint64`
-- `float32`, `float64`
-- `complex64`, `complex128`
-- `byte` (alias de `uint8`)
-- `rune` (alias de `int32`, representa una posición en código Unicode)
-- `uintptr` (tipo utilizado para guardar una dirección de puntero)
-
-Go es un lenguaje fuertemente tipado. A diferencia de Java, Go no hace conversión automática de tipos por lo que cada vez que necesitemos pasar de un tipo a otro debemos realizar un casteo explicito.
-
-```go
-var edad int32 = 42
-var edad64 int64 = edad
-```
-
-Este código dará como resultado el siguiente error:
-
-```output
-cannot use edad (variable of type int32) as int64 value in variable declaration
-```
-
-En cambio, debemos realizar el casteo explicito para indicar al compilador de Go que realmente queremos asignar un valor de tipo `int32` a una variable de tipo `int64`.
-
-```go
-var edad int32 = 42
-var edad64 int64 = int64(edad)
-```
-
-### Control de flujo en Go
-
-Los bloques condicionales `if`/`else` se utilizan de forma muy similar a como estamos acostumbrado en Java (con la salvedad de que los paréntesis no son necesarios en las condiciones).
-
-```go
-num := 7
-
-if num < 0 {
-    fmt.Println(num, "es negativo")
-} else if num < 10 {
-    fmt.Println(num, "tiene 1 dígito")
-} else {
-    fmt.Println(num, "tiene múltiples dígitos")
-}
-```
-
-```output
-7 tiene 1 dígito
-```
-
-A diferencia de Java, Go cuenta sólo con una instrucción de iteración: el `for`. Pero este se puede utilizar de diferentes formas.
-
-De forma análoga a un `while` como lo vimos en Java, cuando `for` solo recibe una condición, va a ejecutar el bloque de código "mientras" la condición sea verdadera.
-
-```go
-i := 1
-
-for i <= 3 {
-    fmt.Println(i)
-    i = i + 1
-}
-```
-
-```output
-1
-2
-3
-```
-
-También puede utilizarse de la forma clásica, indicando la inicialización, la condición y la operación luego de cada iteración.
-
-```go
-for j := 7; j <= 9; j++ {
-    fmt.Println(j)
-}
-```
-
-```output
-7
-8
-9
-```
-
-Si `for` no recibe condición, se comporta de la misma forma que `while(true)`.
-
-```go
-for {
-    fmt.Println("loop")
-    break
-}
-```
-
-```output
-loop
-```
-
-También existen las instrucciones `break` y `continue` para alterar la ejecución de las iteraciones.
-
-```go
-for n := 0; n <= 5; n++ {
-    if n%2 == 0 {
-        continue
-    }
-    fmt.Println(n)
-}
-```
-
-```output
-1
-3
-5
-```

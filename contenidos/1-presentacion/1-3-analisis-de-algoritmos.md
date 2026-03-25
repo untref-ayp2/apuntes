@@ -1,4 +1,5 @@
 ---
+label: analisis-algoritmos
 jupytext:
   formats: md:myst
   text_representation:

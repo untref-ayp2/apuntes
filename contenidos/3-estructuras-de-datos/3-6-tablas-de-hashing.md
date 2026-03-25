@@ -1,4 +1,5 @@
 ---
+label: hashing
 jupytext:
   formats: md:myst
   text_representation:

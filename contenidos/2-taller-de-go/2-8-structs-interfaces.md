@@ -1,4 +1,5 @@
 ---
+label: structs-interfaces
 jupytext:
   formats: md:myst
   text_representation:

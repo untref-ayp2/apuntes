@@ -1,4 +1,5 @@
 ---
+label: arboles
 jupytext:
   formats: md:myst
   text_representation:

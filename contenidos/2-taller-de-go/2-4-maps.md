@@ -1,4 +1,5 @@
 ---
+label: maps
 jupytext:
   formats: md:myst
   text_representation:

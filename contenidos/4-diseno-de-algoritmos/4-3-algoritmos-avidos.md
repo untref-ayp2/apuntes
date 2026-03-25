@@ -1,4 +1,5 @@
 ---
+label: algoritmos-avidos
 jupytext:
   formats: md:myst
   text_representation:

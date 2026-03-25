@@ -1,4 +1,5 @@
 ---
+label: recursividad
 jupytext:
   formats: md:myst
   text_representation:

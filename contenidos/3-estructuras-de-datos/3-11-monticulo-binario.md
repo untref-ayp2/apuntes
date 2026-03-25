@@ -1,4 +1,5 @@
 ---
+label: monticulo-binario
 jupytext:
   formats: md:myst
   text_representation:

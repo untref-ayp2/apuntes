@@ -1,4 +1,5 @@
 ---
+label: arreglos-slices
 jupytext:
   formats: md:myst
   text_representation:
@@ -10,9 +11,9 @@ jupytext:
 
 ## Arreglos
 
-En Go los arreglos o _arrays_ son estructuras de datos que almanecenan una cantidad arbitraria de valores **del mismo tipo**. A nivel de memoria, todos sus elementos se encuentran en posiciones contiguas.
+En Go los arreglos o _arrays_ son estructuras de datos que almacenan una cantidad arbitraria de valores **del mismo tipo**. A nivel de memoria, todos sus elementos se encuentran en posiciones contiguas.
 
-El tamaño de un array es definido al momento de su creación y determina su "tipo". Es decir, un array de 7 elementos tiene un tipo diferente a un array de 3.
+El tamaño de un array es definido al momento de su creación y determina su "tipo". Es decir, un array de enteros de 7 elementos tiene un tipo diferente a un array de enteros de 3 elementos.
 
 Podemos declarar un array de la siguiente forma:
 
@@ -22,7 +23,7 @@ var numeros [7]int
 
 Aquí creamos una variable de tipo `[7]int` a la que referenciaremos con el nombre `numeros`.
 
-La forma de acceder o modificar los valores en las distintas posiciones de un array es por medio del índice que indica la posición, como ya se ha visto en materias anteriores y como en la mayoría los lenguajes de programación (aunque no todos), empezando de `0` hasta el largo menos 1.
+Para acceder a los elementos de un arreglo o modificarlos, utilizamos su índice. Tal como sucede en la mayoría de los lenguajes de programación, los índices en Go comienzan en `0` y terminan en `largo - 1`.
 
 ```go
 numeros[0] = 42
@@ -35,7 +36,7 @@ fmt.Println(numeros[0] + numeros[3])
 1379
 ```
 
-En el caso, de un array de 7 elementos, podremos acceder a los elementos en los indices desde el `0` hasta el `6` inclusive. Intentar acceder a un índice fuera de este rango va a causar un error.
+En el caso de un array de 7 elementos, podremos acceder a los elementos en los índices desde el `0` hasta el `6` inclusive. Intentar acceder a un índice fuera de este rango va a causar un error.
 
 ```go
 numeros[7]
@@ -45,7 +46,7 @@ numeros[7]
 panic: runtime error: index out of range [7] with length 7
 ```
 
-Cuando un array es pasado como argumento en una función o método, este pasa por "referencia". Es decir, que la fución que recibe esa referencia tendrá la libertad de modifcar el contenido de dicho array.
+A diferencia de los _slices_ que veremos más adelante, cuando un array es pasado como argumento en una función o método, este se pasa por **valor**. Es decir, se crea una copia completa del arreglo, por lo que las modificaciones dentro de la función no afectan al arreglo original (a menos que usemos punteros).
 
 En Go para conocer el largo de un array existe la función `len`.
 
@@ -325,7 +326,7 @@ class: only-dark-mode
 ---
 ```
 
-es importante notar que el array subyacente ya no es el mismo ya que el slice original fue copiado a un nuevo array, pero el segundo slice sigue apuntando al array subyacenter original. Si modificamos algunos de los valores de `y`, no va a afectar a `x`:
+Es importante notar que el array subyacente ya no es el mismo, ya que el slice original fue copiado a un nuevo array, pero el segundo slice sigue apuntando al array subyacente original. Si modificamos alguno de los valores de `y`, no va a afectar a `x`:
 
 ```go
 y[3] = 3

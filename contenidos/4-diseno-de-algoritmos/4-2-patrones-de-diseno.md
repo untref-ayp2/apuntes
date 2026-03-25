@@ -1,4 +1,5 @@
 ---
+label: patrones-diseno
 jupytext:
   formats: md:myst
   text_representation:

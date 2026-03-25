@@ -1,4 +1,5 @@
 ---
+label: diccionarios
 jupytext:
   formats: md:myst
   text_representation:

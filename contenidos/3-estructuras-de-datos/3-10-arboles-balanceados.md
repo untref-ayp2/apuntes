@@ -1,4 +1,5 @@
 ---
+label: arboles-balanceados
 jupytext:
   formats: md:myst
   text_representation:

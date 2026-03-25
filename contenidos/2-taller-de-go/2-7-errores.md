@@ -1,4 +1,5 @@
 ---
+label: errores
 jupytext:
   formats: md:myst
   text_representation:
