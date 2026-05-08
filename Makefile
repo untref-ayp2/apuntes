@@ -17,15 +17,15 @@ fmt:
 	mdformat --number *.md
 	black --line-length 120 .
 
-## build: compila el libro en formato HTML
+## build: compila el libro ejecutando las celdas (HTML + PDF)
 .PHONY: build
-build: clean
-	cd contenidos && myst build --html --execute
+build: clean pdf
+	cd contenidos && myst build --execute
 
-## pdf: compila el libro en formato PDF (requiere template disponible)
+## pdf: genera PDF con pre-procesamiento (scripts/build_pdf.py)
 .PHONY: pdf
 pdf:
-	cd contenidos && myst build --pdf --execute
+	python3 scripts/build_pdf.py
 
 ## clean: elimina todos los archivos generados por la compilación
 .PHONY: clean

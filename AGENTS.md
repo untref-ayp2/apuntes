@@ -20,22 +20,33 @@ ______________________________________________________________________
 
 ```bash
 make install          # pip install --requirement requirements.txt
-make fmt              # formatea MD (mdformat)
+make fmt              # formatea MD y Python (mdformat + black)
 ```
 
 Comandos individuales:
 
 - `mdformat --number contenidos/**/*.md` - Markdown
-- `jupyter-book build contenidos` - Compila el libro (deprecated, usar myst)
+- `black --line-length 120 .` - Python
 
 ### Build y desarrollo
 
 ```bash
 make build    # compila el libro (HTML + PDF)
-make pdf      # compila solo el PDF
-make server   # servidor de desarrollo
-make clean    # elimina archivos generados
+make pdf      # genera PDF con pre-procesamiento (scripts/build_pdf.py)
+make start    # inicia servidor de desarrollo
+make clean    # elimina archivos generados por compilación
 ```
+
+### Build PDF
+
+El PDF se genera mediante `scripts/build_pdf.py` que:
+
+1. Copia `contenidos/` a un directorio temporal
+2. Pre-procesa los archivos .md (elimina bloques `only-dark-mode`, convierte `dropdown` a texto, `admonition` a `note`)
+3. Genera Typst con `myst build --execute --typst`
+4. Post-procesa los `.typ` (reemplaza `arrow.r` por `->`, etc.)
+5. Compila con `typst compile`
+6. Mueve el PDF a `contenidos/exports/apunte-ayp2.pdf`
 
 ______________________________________________________________________
 
@@ -55,6 +66,17 @@ go test -v -run TestFunctionName ./package/path
 
 ```sh
 go test -v -run TestStackPush ./stack
+```
+
+### Cobertura
+
+```sh
+# Cobertura global
+go test -cover ./...
+
+# Cobertura con perfil detallado
+go test -v -coverprofile=coverage.out ./package/path
+go tool cover -html=coverage.out
 ```
 
 ______________________________________________________________________
@@ -163,15 +185,17 @@ Para incluir archivos de código fuente:
 
 ### Ejercicios y Soluciones
 
+Usar labels con formato `ej-{seccion}-{numero}` (ej. `ej-pilas-1`, `ej-abb-orden`).
+
 ````markdown
 ```{exercise}
-:label: ejercicio-1
+:label: ej-pilas-1
 
 Enunciado aquí.
 ```
 
 ```{solution}
-:label: solucion-1
+:label: sol-ej-pilas-1
 
 func respuesta() error {
     return nil
@@ -186,22 +210,8 @@ Para soportar ambos temas, crear dos versiones de cada imagen SVG:
 - `_light.svg` para modo claro
 - `_dark.svg` para modo oscuro
 
-**Lineamientos de Estilo (SVG):**
-
-- **Tipografía**: Usar siempre `font-family="ui-sans-serif, system-ui, sans-serif"`.
-- **Modo Claro** (`_light.svg`):
-  - **Rellenos**: Colores pasteles suaves (ej. `#e1f5ff` azul, `#ffe1e1` rojo, `#e6f4ea` verde, `#fff9c4` amarillo).
-  - **Bordes**: Tonos más saturados del mismo color del relleno (ej. `#4682b4` azul, `#e9967a` rojo, `#8fbc8f` verde, `#daa520` amarillo).
-  - **Texto y flechas**: `#333333`.
-- **Modo Oscuro** (`_dark.svg`):
-  - **Rellenos**: Gris oscuro uniforme (ej. `#2d3748`).
-  - **Bordes**: Colores pasteles brillantes para resaltar sobre el fondo oscuro (ej. `#63b3ed` azul, `#fc8181` rojo, `#68d391` verde, `#f6e05e` amarillo).
-  - **Texto y flechas**: `#e0e0e0`.
-- **Flechas y Líneas**:
-  - **Grosor**: Usar siempre `2px` (en SVG `stroke-width="2"`).
-  - **Estilo de punta**: Usar siempre estilo de triángulo cerrado (en Draw.io `endArrow=block`).
-  - **Dimensiones (SVG marker)**: `markerWidth="6"`, `markerHeight="4.2"`, `refX="6"`, `refY="2.1"`. El polígono debe ser `points="0 0, 6 2.1, 0 4.2"`.
-  - **Ruteo**: Usar estilo "Manhattan" (solo segmentos horizontales y verticales) con la menor cantidad de quiebres posible.
+Para las guías detalladas de estilo (colores, tipografía, flechas, grosores),
+consultar el skill `diagramas-svg` en `.opencode/skills/diagramas-svg/SKILL.md`.
 
 Y usarlas así:
 
@@ -244,6 +254,7 @@ El proyecto usa markdownlint y mdformat:
 
 - `mdformat --number` - Habilita números de línea
 - Permitir líneas largas
+- `black --line-length 120` - Python
 
 ### File Naming
 
@@ -260,24 +271,29 @@ El proyecto usa markdownlint y mdformat:
 ├── requirements.txt
 ├── README.md
 ├── .github/workflows/deploy.yml
+├── .opencode/
+│   └── skills/
+│       └── diagramas-svg/SKILL.md
 ├── scripts/
-│   └── build_pdf.py
+│   └── build_pdf.py            # Generación de PDF con pre-procesamiento
 ├── contenidos/
-│   ├── myst.yml              # MyST configuration (reemplaza _config.yml y _toc.yml)
+│   ├── myst.yml                # Configuración MyST
 │   ├── _static/
-│   │   ├── figures/          # Imágenes y diagramas
-│   │   ├── code/            # Código fuente Go
-│   │   ├── css/custom.css   # Estilos personalizados
-│   │   └── js/custom.js     # Scripts personalizados
+│   │   ├── figures/            # Imágenes y diagramas
+│   │   ├── code/               # Código fuente Go
+│   │   ├── css/custom.css      # Estilos personalizados
+│   │   └── js/custom.js        # Scripts personalizados
 │   ├── references.bib
-│   └── [chapters]/           # Archivos markdown
+│   └── [capítulos]/            # Archivos markdown
 ```
 
 ### Git Conventions
 
-- Commit messages en español
-- Trabajar en la rama `jb2-martin` para cambios de migración
-- PRs deben pasar el build antes de merge
+- **Commits**: Mensajes en español, idealmente con prefijos semánticos
+  (`feat:`, `fix:`, `docs:`, `refactor:`, `test:`)
+- **Ramas**: Trabajar en `jb2-martin` para cambios de migración
+- **PRs**: Apuntar a `main` y deben pasar el build antes de merge
+- **Licencia**: `CC-BY-SA-4.0`
 
 ______________________________________________________________________
 
@@ -285,8 +301,8 @@ ______________________________________________________________________
 
 ### Agregar un Nuevo Capítulo
 
-1. Crear el archivo markdown en `contenidos/`
-2. Agregar entrada a `contenidos/myst.yml` bajo la sección `project.toc`
+1. Crear el archivo `X-Y-tema.md` en `contenidos/` (numeración coherente con existentes)
+2. Agregar entrada a `contenidos/myst.yml` bajo `project.toc` respetando el orden
 3. Agregar imágenes a `contenidos/_static/figures/`
 4. Build para verificar: `make build`
 
@@ -316,6 +332,7 @@ Este proyecto usa **MyST** (mystmd) en lugar de Jupyter Book v1.
 - `mystmd` - Build system
 - `typst` - Compilador PDF
 - `mdformat` - Formateador Markdown
+- `templates/plain_latex_book` - Template PDF (definido en `myst.yml`)
 
 ______________________________________________________________________
 
