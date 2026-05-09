@@ -242,7 +242,7 @@ El Teorema maestro establece que la solución a la ecuación de recurrencia es:
 
 ```{math}
 ---
-label: teorema-maestro
+label: formula-teorema-maestro
 ---
 T(n) =
 \begin{cases}

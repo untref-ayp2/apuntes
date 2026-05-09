@@ -83,7 +83,7 @@ En la siguiente figura se puede ver un heap de mínimos donde se cumplen ambas p
 ```{figure} ../_static/figures/HeapMinimos_light.svg
 ---
 width: 300px
-name: Heap de Mínimos
+name: heap-de-minimos
 class: only-light-mode
 ---
 Montículo Binario de Mínimos
@@ -92,7 +92,7 @@ Montículo Binario de Mínimos
 ```{figure} ../_static/figures/HeapMinimos_dark.svg
 ---
 width: 300px
-name: Heap de Mínimos
+name: heap-de-minimos
 class: only-dark-mode
 ---
 Montículo Binario de Mínimos
@@ -111,7 +111,7 @@ En la siguiente figura se observa como se puede usar un arreglo para mantener un
 ```{figure} ../_static/figures/HeapMinimosRepresentacion_light.svg
 ---
 width: 300px
-name: Heap Representacion
+name: heap-representacion
 class: only-light-mode
 ---
 Representación con arreglos de un Montículo Binario de Mínimos
@@ -120,7 +120,7 @@ Representación con arreglos de un Montículo Binario de Mínimos
 ```{figure} ../_static/figures/HeapMinimosRepresentacion_dark.svg
 ---
 width: 300px
-name: Heap Representacion
+name: heap-representacion
 class: only-dark-mode
 ---
 Representación con arreglos de un Montículo Binario de Mínimos
@@ -168,7 +168,7 @@ Las operaciones básicas que se pueden realizar en un montículo son:
 
 #### Insertar
 
-En la figura {ref}`Heap Insercion`, se representa la inserción del elemento $9$ dentro de un Heap de Máximos.
+En la figura {ref}`heap-insercion`, se representa la inserción del elemento $9$ dentro de un Heap de Máximos.
 
 Para preservar la propiedad de forma, es preciso insertar el elemento en la posición 9 del arreglo, es decir como hijo izquierdo de la posición 4. De esta forma nos aseguramos de mantener siempre un árbol completo e izquierdista.
 
@@ -180,7 +180,7 @@ En el ejemplo de la figura primero intercambia el 9 con el 5. Es decir en el arr
 
 ```{figure} ../_static/figures/HeapInsercion_light.svg
 ---
-name: Heap Insercion
+name: heap-insercion
 class: only-light-mode
 ---
 Inserción en un Heap de Máximos
@@ -188,7 +188,7 @@ Inserción en un Heap de Máximos
 
 ```{figure} ../_static/figures/HeapInsercion_dark.svg
 ---
-name: Heap Insercion
+name: heap-insercion
 class: only-dark-mode
 ---
 Inserción en un Heap de Máximos
@@ -251,7 +251,7 @@ En la figura a continuación, se observa el proceso de eliminación de la raíz 
 
 ```{figure} ../_static/figures/HeapEliminacion_light.svg
 ---
-name: Heap Eliminacion
+name: heap-eliminacion
 class: only-light-mode
 ---
 Eliminación en un Heap de Máximos
@@ -259,7 +259,7 @@ Eliminación en un Heap de Máximos
 
 ```{figure} ../_static/figures/HeapEliminacion_dark.svg
 ---
-name: Heap Eliminacion
+name: heap-eliminacion
 class: only-dark-mode
 ---
 Eliminación en un Heap de Máximos

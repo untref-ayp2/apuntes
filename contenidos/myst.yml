@@ -24,12 +24,12 @@ project:
 
   exports:
     - format: typst
-      template: templates/plain_latex_book
+      template: templates/plain_typst_book_ayp2
       output: exports/apunte-ayp2.pdf
 
   numbering:
     equation: true
-    figure: false
+    figure: true
     table: true
     code: true
     heading_1: true
@@ -86,8 +86,23 @@ project:
 site:
   template: book-theme
   options:
+    hide_authors: true
     folders: true
     logo: _static/figures/untref-logo.svg
     logo_dark: _static/figures/untref-logo-white.svg
+    logo_alt: Apuntes de Algoritmos y Programación II - UNTREF
     style: _static/css/custom.css
     toggles: true
+  # nav:
+  #   - title: Slack
+  #     url: https://untref-ayp2.slack.com
+  #   - title: Guías
+  #     url: https://github.com/untref-ayp2/guias
+  #   - title: Classroom
+  #     url: https://classroom.google.com/c/...
+  #   - title: TP
+  #     url: https://github.com/untref-ayp2/...
+  actions:
+    - title: Descargar PDF
+      url: exports/apunte-ayp2.pdf
+      static: true

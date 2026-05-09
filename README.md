@@ -2,53 +2,84 @@
 
 ## Instalación y configuración del entorno
 
-Si deseas desarrollar y/o compilar el apunte de Algoritmos y Programación II, debes:
+Si deseas desarrollar y/o compilar el apunte de Algoritmos y Programación II, necesitás:
 
 > [!TIP]
-> Para esta guía se asume que Python.
->
 > Se recomienda crear un entorno virtual de Python para trabajar con este proyecto.
 
-1. Clonar este repositorio
+1. **Clonar** este repositorio.
 
-2. Instalar las dependencias del proyecto.
+2. **Instalar dependencias Python**:
 
    ```sh
    pip install -r requirements.txt
    ```
 
-3. (Opcional) Edita los archivos fuente del libro ubicados en el directorio `contenidos`
+3. **Instalar dependencias del sistema**:
 
-4. Para compilar el libre ejecutar:
+   - **Typst** (compilador de PDF):
+     - **Arch / CachyOS**: `sudo pacman -S typst`
+     - **Debian / Ubuntu**: `sudo apt install typst`
+     - **macOS**: `brew install typst`
+     - O descargar desde <https://github.com/typst/typst/releases>
 
-   ```sh
-   jupyter-book build contenidos
-   ```
+   - **MyST** (build system):
+     ```sh
+     npm install -g mystmd
+     ```
 
-   Una versión HTML completamente renderizada del libro se construirá en `contenidos/_build/html`.
+   - **Fuente Roboto** (necesaria para el PDF):
+     - **Arch / CachyOS**: `sudo pacman -S ttf-roboto`
+     - **Debian / Ubuntu**: `sudo apt install fonts-roboto`
+     - **Fedora**: `sudo dnf install google-roboto-fonts`
+     - **macOS**: `brew install --cask font-roboto`
 
-5. (Opcional) Se puede servir este HTML utilizando el siguiente comando de Python:
+4. **Instalar `make`** (opcional, pero facilita los comandos):
+   - En sistemas Unix ya suele estar instalado.
+   - En Windows: `winget install -e --id GnuWin32.Make`
 
-   ```sh
-   python -m http.server --directory contenidos/_build/html
-   ```
+## Compilar el libro
 
-### Ejecutando comando con `make`
+### Con `make` (recomendado)
 
-`make` es una herramienta de automatización de tareas muy útil. En este proyecto se utiliza para instalar las dependencias, compilar el libro y servirlo en un servidor web local.
+| Comando       | Qué hace                                           |
+| ------------- | -------------------------------------------------- |
+| `make build`  | Compila HTML + PDF (limpia y reconstruye todo)     |
+| `make pdf`    | Genera solo el PDF (vía `scripts/build_pdf.py`)    |
+| `make start`  | Inicia servidor de desarrollo con recarga en vivo  |
+| `make clean`  | Elimina archivos generados por la compilación      |
+| `make fmt`    | Formatea Markdown y Python                         |
+| `make install`| Instala dependencias Python                        |
+| `make help`   | Muestra todos los comandos disponibles             |
 
-En el apartado anterior hemos explicado como se instalan las dependencies de este proyecto y como "construir" el libro. A continuación se detallan los comandos que se pueden ejecutar con `make`.
+### Sin `make`
 
-Primero debemos asegurarnos de que tenemos `make` disponible en nuestro sistema. En sistemas Unix (como Linux o MacOS) es probable que ya lo tengamos instalado. En Windows, se puede instalar con [`winget`](https://docs.microsoft.com/en-us/windows/package-manager/winget/).
+- **HTML**: `cd contenidos && myst build --execute`
+- **PDF**: `python3 scripts/build_pdf.py`
+- **Servidor de desarrollo**: `cd contenidos && myst start --execute`
 
-```sh
-winget install -e --id GnuWin32.Make
+El HTML generado queda en `contenidos/_build/html` y el PDF en `contenidos/exports/apunte-ayp2.pdf`.
+
+## Estructura del proyecto
+
+```text
+├── AGENTS.md                  # Directivas para asistentes IA
+├── Makefile                   # Automatización de tareas
+├── scripts/build_pdf.py       # Generación del PDF (pre-procesamiento + Typst)
+├── contenidos/
+│   ├── myst.yml               # Configuración de MyST
+│   ├── _static/
+│   │   ├── figures/           # Imágenes SVG (con pares light/dark)
+│   │   ├── code/              # Código fuente Go
+│   │   └── css/custom.css     # Estilos personalizados
+│   ├── templates/             # Template Typst para PDF
+│   ├── references.bib
+│   ├── introduccion.md
+│   ├── 1-presentacion/
+│   ├── 2-taller-de-go/
+│   ├── 3-estructuras-de-datos/
+│   ├── 4-diseno-de-algoritmos/
+│   ├── 5-taller-de-git/
+│   └── bibliografia.md
+└── Plan-Migracion.md          # Plan de migración a MyST/JBv2
 ```
-
-Una vez que tenemos `make` disponible, podemos ejecutar los siguientes comandos:
-
-- `make install`: Instala las dependencias del proyecto.
-- `make build`: Compila el libro.
-- `make server`: Sirve el libro en un servidor web local.
-
-Esto simplifica el proceso de desarrollo y permite que cualquier persona pueda compilar y servir el libro sin tener que recordar los comandos de Python o Jupyter Book.
