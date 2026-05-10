@@ -15,7 +15,7 @@ El repositorio tiene dos ramas principales:
 | Config (`myst.yml`)     | ✅ Creado                        |
 | Archivos legacy         | ✅ `_config.yml`/`_toc.yml` quitados |
 | Assets a `_static/`     | ✅ Imágenes movidas              |
-| CSS light/dark mode     | 🔶 Básico, falta completar       |
+| CSS light/dark mode     | ✅ Reemplazado con el de EDD     |
 | JS sidebar              | ✅ Adaptado a MyST               |
 | Script PDF              | ✅ Migrado a Typst               |
 | Template PDF            | ✅ `plain_typst_book_ayp2`       |
@@ -36,7 +36,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | -- | ------- | ------ |
 | 1  | `contenidos/introduccion.md` | ✅ Revisado |
 | 2  | `contenidos/1-presentacion/1-1-introduccion.md` | ✅ Revisado |
-| 3  | `contenidos/1-presentacion/1-2-memoria.md` | ⬜ Pendiente |
+| 3  | `contenidos/1-presentacion/1-2-memoria.md` | ✅ Revisado |
 | 4  | `contenidos/1-presentacion/1-3-analisis-de-algoritmos.md` | ⬜ Pendiente |
 | 5  | `contenidos/2-taller-de-go/2-1-introduccion-go.md` | ⬜ Pendiente |
 | 6  | `contenidos/2-taller-de-go/2-2-paquetes-y-modulos.md` | ⬜ Pendiente |
@@ -82,7 +82,8 @@ Reemplazar `custom.css` con el de EDD. Incluye reglas `only-light-mode` / `only-
 - Unificar títulos y convertir legacy
 
 ### Figuras — Pares Light/Dark
-Crear `_dark.svg` / `_light.svg` para ~30 imágenes restantes (ABB, AVL, Listas, Patrones, Recursión, Backtracking, Heap, Misc). Usar skill `diagramas-svg`.
+- ✅ MapaDeMemoria: agregado Segmento de Datos
+- Pendiente: ~30 imágenes (ABB, AVL, Listas, Patrones, Recursión, Backtracking, Heap, Misc). Usar skill `diagramas-svg`.
 
 ### Limpieza
 - `requirements.txt`: remover `sphinx-proof`, `sphinx-thebe`, `myst-parser`
@@ -108,7 +109,7 @@ Estado actual (jb2-martin):
   Revisión de contenido (09/05/2026):
     introduccion.md    ✅
     1-1-introduccion   ✅
-    1-2-memoria        ⬜
+    1-2-memoria        ✅
     1-3-analisis       ⬜
     2-Taller de Go     ⬜ 10 archivos
     3-Estructuras      ⬜ 12 archivos
