@@ -20,7 +20,7 @@ width: 200px
 ---
 ```
 
-Los creadores de Go, [Robert Griesemer](https://en.wikipedia.org/wiki/Robert_Griesemer), [Rob Pike](https://en.wikipedia.org/wiki/Rob_Pike) y [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson), han dicho que aunque la sintáxis del lenguaje está inspirada principalmente en C y en Python y en menor medida en Java, el objetivo siempre fue crear un nuevo lenguaje simple y eficiente. Go fue diseñado para ambientes altamente productivos y concurrentes (es decir donde varios programas se ejecutan al mismo tiempo y comparten recursos). Fue liberado cómo código abierto y está disponible para todos los sistemas operativos.
+Los creadores de Go, [Robert Griesemer](https://en.wikipedia.org/wiki/Robert_Griesemer), [Rob Pike](https://en.wikipedia.org/wiki/Rob_Pike) y [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson), han dicho que aunque la sintaxis del lenguaje está inspirada principalmente en C y en Python y en menor medida en Java, el objetivo siempre fue crear un nuevo lenguaje simple y eficiente. Go fue diseñado para ambientes altamente productivos y concurrentes (es decir donde varios programas se ejecutan al mismo tiempo y comparten recursos). Fue liberado como código abierto y está disponible para todos los sistemas operativos.
 
 ```{admonition} Atención
 ---
@@ -31,9 +31,9 @@ Los lenguajes compilados cuyo código fuente se traduce de antemano a código m�
 
 Go es un lenguaje **fuertemente tipado** y con **tipado estático**, es decir que al momento de compilar, debe estar claramente establecido de que tipo son sus variables. Por lo tanto, cuando escribimos código, al declarar una variable se debe declarar de que tipo es.
 
-Fuertemente tipado significa que no se puede realizar operaciones entre distintos tipos de datos que no están previamente establecidas por el lenguaje o el programador. Las conversiones entre distintos tipos se deben realizar explicitamente, por ejemplo si queremos sumarle a un número entero un número en decimal (en punto flotante) primero debemos convertir el número en punto flotante a entero y así el resultado será otro entero.
+Fuertemente tipado significa que no se puede realizar operaciones entre distintos tipos de datos que no están previamente establecidas por el lenguaje o el programador. Las conversiones entre distintos tipos se deben realizar explícitamente, por ejemplo si queremos sumarle a un número entero un número en decimal (en punto flotante) primero debemos convertir el número en punto flotante a entero y así el resultado será otro entero.
 
-Tipado estático significa que el tipo de una variable se determina en al momento de escribir el código y no puede cambiar durante la ejecución del programa.
+Tipado estático significa que el tipo de una variable se determina en el momento de escribir el código y no puede cambiar durante la ejecución del programa.
 
 ```{admonition} Sistema de Tipos
 ---
@@ -110,8 +110,6 @@ p.Edad = 32
 
 En Go no existe la herencia, pero si existe la composición, que nos permite crear nuevos tipos de datos a partir de otros. En el capítulo {ref}`structs-interfaces` vamos a profundizar en las estructuras y veremos como funciona la composición en Go.
 
-
-
 ### Ejemplos
 
 En el repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git) encontrarán código de ejemplo para empezar a sumergirnos en Go.
@@ -143,13 +141,13 @@ go run main.go
 obtendremos como resultado:
 
 ```output
-"¡Hola mundo!"
+¡Hola mundo!
 ```
 
 Aquí vemos un ejemplo de una función simple que recibe 2 argumentos de tipo `int` y devuelve un nuevo valor de tipo `int`.
 
 ```go
-func sumar(a, b int)int{
+func sumar(a, b int) int {
     return a + b
 }
 ```
@@ -157,7 +155,7 @@ func sumar(a, b int)int{
 Para utilizar dicha función solo debemos invocarla por su nombre y proporcionarle los parametros requeridos.
 
 ```go
-sumar(32, 7)
+fmt.Println(sumar(32, 7))
 ```
 
 ```output
@@ -182,6 +180,16 @@ go version go1.24.0 linux/amd64
 
 Go ofrece un servicio online llamado Playground [https://go.dev/play](https://go.dev/play/p/kBGNnaPKcvt) que nos permite escribir y ejecutar fragmentos de código de forma simple y sin necesidad de instalar Go localmente.
 
+## Ejercicios
+
+1. Verificá si Go está instalado en tu PC ejecutando el comando `go version` en una terminal. Si no lo está, descargalo e instalalo desde [https://go.dev/dl/](https://go.dev/dl/).
+
+2. Cloná el repositorio `taller-go`, ubicate en el directorio `00-hola/` y ejecutá el programa con `go run main.go`. ¿Qué salida se obtiene?
+
+3. Andá al [Go Playground](https://go.dev/play/), escribí un programa que sume los números `42` y `18` e imprima el resultado, luego ejecutalo y compartí el link haciendo click en el botón _Share_.
+
+4. Modificá el archivo `main.go` de `00-hola/` para que el saludo diga tu nombre en lugar de `"mundo"`, ejecutalo nuevamente y verificá que la salida refleje el cambio.
+
 ## Links útiles
 
 - [Página principal de Go](https://go.dev/)
@@ -189,5 +197,5 @@ Go ofrece un servicio online llamado Playground [https://go.dev/play](https://go
 - [Tour interactivo de Go](https://go.dev/tour/)
 - [Documentación basada en ejemplos](https://gobyexample.com/)
 - [Go FAQ](https://go.dev/doc/faq)
-- [Go Playground](https://go.dev/play/) (entorno online ara ejecutar código en Go)
+- [Go Playground](https://go.dev/play/) (entorno online para ejecutar código en Go)
 
