@@ -13,7 +13,7 @@ jupytext:
 
 Un **paquete** es una colección de archivos que contiene código fuente, definiciones de constantes, definiciones de tipos, etc. Todos los archivos de un paquete se encuentran en un mismo directorio.
 
-Los paquetes organizan el código en forma lógica. Las variables, funciones y tipos de datos definidos dentro de un paquete son privados del mismo, es decir no se pueden utilizar afuera, a menos que se exporten explicitamente.
+Los paquetes organizan el código en forma lógica. Las variables, funciones y tipos de datos definidos dentro de un paquete son privados del mismo, es decir no se pueden utilizar afuera, a menos que se exporten explícitamente.
 
 Además de que todos los archivos estén en el mismo directorio, cada archivo que forma parte de un paquete debe declarar a que paquete pertenece:
 
@@ -31,7 +31,7 @@ Todos los paquetes (en general cada paquete en una subcarpeta) que están en la 
 
 ### Gestión de módulos
 
-Para crear un módulo se usa el comando `go init` dentro de la carpeta que contendrá el proyecto, seguido del nombre del módulo. Usualmente el nombre del módulo es el repositorio donde se aloja. Ejemplo:
+Para crear un módulo se usa el comando `go mod init` dentro de la carpeta que contendrá el proyecto, seguido del nombre del módulo. Usualmente el nombre del módulo es el repositorio donde se aloja. Ejemplo:
 
 ```console
 go mod init github.com/untref-ayp2/miproyecto
@@ -64,7 +64,7 @@ miproyecto
 
 El objetivo final de organizar nuestro código en paquetes y módulos es que podamos reusarlos en otros proyectos. Cada vez que necesitemos usar una dependencia tanto interna a nuestro módulo como externa, debemos usar la instrucción `import`, lo que nos permite acceder a las estructuras, funciones y utilidades de los distintos módulos.
 
-En Go exiten distintos tipos de módulos que podemos importar, dependendien de su procedencia. por ejemplo, go provee una serie de módulos que son nativos del lenguaje, como pueden ser:
+En Go existen distintos tipos de módulos que podemos importar, dependiendo de su procedencia. Por ejemplo, go provee una serie de módulos que son nativos del lenguaje, como pueden ser:
 
 `fmt`
 : entrada y salida por pantalla y teclado
@@ -87,21 +87,21 @@ En Go exiten distintos tipos de módulos que podemos importar, dependendien de s
 `strings`
 : funciones para manipular cadenas de caracteres
 
-Hasta ahora hemos utilzado mayormente este tipo de módulos, también podemos utilizar referencias a paquetes dentro de nuestro mismo módulo.
+Hasta ahora hemos utilizado mayormente este tipo de módulos, también podemos utilizar referencias a paquetes dentro de nuestro mismo módulo.
 
 ```go
 package main
 
-import ".saludo"
+import "github.com/untref-ayp2/miproyecto/saludo"
 
 func main() {
     saludo.Saludar()
 }
 ```
 
-`".saludo"` indica que debemos importar el paquete `saludo` que está dentro de la misma carpeta desde donde lo importamos `.`.
+La ruta completa del import (`github.com/untref-ayp2/miproyecto/saludo`) indica que debemos importar el paquete `saludo`, que es un subpaquete de nuestro módulo. El nombre del paquete (`saludo`) es la última parte de la ruta y es la referencia que usamos para acceder a sus miembros exportados.
 
-Otro tipo de módulos que podemos importar, son los módulos de otros programadores, por ejemplo podríamos pensar en utilizar un supuesto módulo de algoritmos de ordenamiento de la cátedra. Entonces, imaginemos que existe el módulo llamado `"untref.edu.ar/ayp2/busqueda"`. Podemos importarlo de la siguiente manera.
+Otros tipos de módulos que podemos importar, son los módulos de otros programadores, por ejemplo podríamos pensar en utilizar un supuesto módulo de algoritmos de ordenamiento de la cátedra. Entonces, imaginemos que existe el módulo llamado `"untref.edu.ar/ayp2/busqueda"`. Podemos importarlo de la siguiente manera.
 
 ```go
 package main
@@ -128,7 +128,7 @@ Hay varios puntos a notar:
 
 - Siempre se importan **paquetes**.
 
-- Cuando importamos un paquete, el texto luego de la última `/` será el nombre de la referencia que podemos utilizar para acceder a los miembres del paquete. Que además coincide con el nombre del paquete.
+- Cuando importamos un paquete, el texto luego de la última `/` será el nombre de la referencia que podemos utilizar para acceder a los miembros del paquete. Que además coincide con el nombre del paquete.
 
 - Podemos renombrar la referencia que se crea al importar un paquete, ya sea por conveniencia como en el caso de que haya un conflicto de nombres entre paquetes de distintos módulos.
 
@@ -140,9 +140,9 @@ Hay varios puntos a notar:
 
 ## Dependencias
 
-Cuando necesitamos utilizar un módulo de terceros, como podría ser un módulo que provee distintos métodos de ordenamieto, primero debemos encontrar el módulo, esto puede ser haciendo una búsqueda en el registro de go que podemos encontrar en [https://pkg.go.dev/](https://pkg.go.dev/) o bien, búscando módulos en internet, es posible instalar módulos directamente desde repositorios de Git.
+Cuando necesitamos utilizar un módulo de terceros, como podría ser un módulo que provee distintos métodos de ordenamiento, primero debemos encontrar el módulo, esto puede ser haciendo una búsqueda en el registro de go que podemos encontrar en [https://pkg.go.dev/](https://pkg.go.dev/) o bien, buscando módulos en internet. Es posible instalar módulos directamente desde repositorios de Git.
 
-Para instalar y agregar dicha dependencia en nuestro módulo, podemo utilisar la herramienta `go get` de la siguiente forma:
+Para instalar y agregar dicha dependencia en nuestro módulo, podemos utilizar la herramienta `go get` de la siguiente forma:
 
 ```console
 go get github.com/untref-ayp2/busquedas
@@ -160,9 +160,9 @@ require github.com/untref-ayp2/busquedas v0.1.0
 
 De esta forma, si estamos trabajando con más personas en el mismo proyecto, o si alguien más quiere utilizar nuestro módulo como dependencia en su propio proyecto, será posible respetar los requerimientos que cada módulo en el proyecto necesita que se cumpla.
 
-Si en lugar de instalar y agregar la dependencia con `go get`, tenemos forma alternativa que es, primero usar la dependencia en nuestro código y luego eejecutar `go mod tidy`. Veamos un ejemplo.
+Si en lugar de instalar y agregar la dependencia con `go get`, tenemos una forma alternativa que es, primero usar la dependencia en nuestro código y luego ejecutar `go mod tidy`. Veamos un ejemplo.
 
-Su pongamos que creamos un módulo e importamos algunas cosas en nuestro archivo `main.go`.
+Supongamos que creamos un módulo e importamos algunas cosas en nuestro archivo `main.go`.
 
 ### Ejemplo de creación de un módulo simple
 
@@ -269,7 +269,7 @@ $ go run main.go
 ¡Texto en rojo!
 ```
 
-(si, confien que el texto sale en color rojo)
+(sí, confíen que el texto sale en color rojo)
 
 ```{admonition} ¡Para practicar!
 ---
@@ -289,4 +289,53 @@ class: important
 Un espacio de trabajo con varios módulos puede ser útil si trabajamos con varios proyectos vinculados, en caso contrario puede ser mejor tener cada proyecto por separado.
 ```
 
-Trabajar dentro de un mismo _workspace_ permite referenciar dependencias entre módulos locales sin necesidad de decargarlos de un registro online.
+Trabajar dentro de un mismo _workspace_ permite referenciar dependencias entre módulos locales sin necesidad de descargarlos de un registro online.
+
+### Crear un espacio de trabajo
+
+Para crear un espacio de trabajo, primero creamos una carpeta raíz donde agruparemos nuestros proyectos y luego usamos `go work init` seguido de las rutas de los módulos que lo componen:
+
+```console
+$ mkdir misproyectos && cd misproyectos
+$ go work init ./proyecto1 ./proyecto2
+```
+
+Este comando crea un archivo `go.work` con el siguiente contenido:
+
+```text
+go 1.24.1
+
+use (
+    ./proyecto1
+    ./proyecto2
+)
+```
+
+### Estructura de un workspace
+
+La estructura de directorios de un espacio de trabajo suele verse así:
+
+```text
+misproyectos
+├── go.work
+├── proyecto1
+│   ├── go.mod
+│   ├── main.go
+│   └── saludo/
+│       └── saludo.go
+└── proyecto2
+    ├── go.mod
+    └── main.go
+```
+
+Dentro del _workspace_, `proyecto1` puede importar paquetes de `proyecto2` (y viceversa) usando su ruta de módulo, y Go resolverá las dependencias localmente sin necesidad de publicar los módulos ni descargarlos de internet.
+
+### Agregar módulos a un workspace existente
+
+Si ya tenemos un `go.work` y queremos agregar un nuevo módulo, usamos `go work use`:
+
+```console
+$ go work use ./proyecto3
+```
+
+Esto agrega la ruta `./proyecto3` a la directiva `use` en el archivo `go.work`.
