@@ -30,7 +30,7 @@ Por ejemplo, en Argentina, a Mayo de 2024 se emplean monedas de \$1, \$2, \$5 y 
 La solución será:
 
 ```{math}
-2 \times $2000 + 1 \times $1000 + 1 \times $500 + 1 \times $20 + 1 \times $5 + 1 \times $2 +1 \times $1
+2 \times 2000 + 1 \times 1000 + 1 \times 500 + 1 \times 20 + 1 \times 5 + 1 \times 2 +1 \times 1
 ```
 
 En total se entregan 8 piezas.
