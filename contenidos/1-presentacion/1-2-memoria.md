@@ -84,7 +84,10 @@ En Go, las variables se almacenan en el ***stack*** o en el ***heap*** dependien
 
 El compilador de Go decide automáticamente si una variable debe almacenarse en el ***stack*** o en el ***heap***. Esto se conoce como ***Escape Analysis***. Si una variable **"escapa"** del alcance de la función, se almacena en el ***heap*** en lugar del ***stack***.
 
-```{note} Consideraciones de Rendimiento
+```{admonition} Consideraciones de Rendimiento
+---
+class: note
+---
 El acceso a las variables que se encuentran en el ***stack*** es más directo y más rápido, mientras que el acceso a los datos en el ***heap*** es más lento ya que se deben referenciar desde el ***stack***, pero permite estructuras de datos más grandes y persistentes.
 ```
 Veamos un ejemplo, dado el siguiente fragmento de código:
@@ -222,7 +225,10 @@ Para coordinar ciertos pasos del proceso de limpieza, el GC realiza pausas extre
 - La mayor parte del marcado de objetos ocurre mientras el programa sigue corriendo.
 - Detecta y elimina referencias a objetos no utilizados de forma eficiente.
 
-```{important} Importante
+```{admonition} Importante
+---
+class: important
+---
 Un GC concurrente mejora el rendimiento y la experiencia del usuario, ya que evita grandes pausas en la ejecución del programa. Esto es fundamental en servidores y sistemas en tiempo real, donde una pausa larga podría afectar la respuesta del sistema.
 ```
 

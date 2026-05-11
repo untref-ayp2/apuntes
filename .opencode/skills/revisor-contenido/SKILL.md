@@ -95,7 +95,7 @@ Verificar la corrección técnica de:
 
 ### 4. Revisión de formato MyST
 
-- **Admonitions**: detectar `{admonition}` sin título estandarizado. Sugerir reemplazo por `{note}`, `{important}`, `{warning}`, `{tip}`, `{caution}` según el contexto. El título del admonition debe ser conciso y aportar valor.
+- **Admonitions**: verificar que usen el formato unificado `{admonition}` con `class:`. No usar directivos shorthand (`{note}`, `{important}`, `{tip}`, etc.). Clases disponibles: `note`, `hint`, `important`, `warning`, `tip`, `caution`, `dropdown`. El título debe ser conciso y aportar valor.
 - **Figures**: verificar que usen los bloques ```` ```{figure} ```` con los campos `name:`, `class:` y `width:` cuando corresponda. Las figuras con `only-light-mode` deben tener su contraparte `only-dark-mode`.
 - **Code blocks**: verificar que usen `{code-block}` o `{code-file}` con `:language:` correcto y `:linenos:` cuando sea útil.
 - **Labels**: verificar que los ejercicios tengan labels con formato `ej-{seccion}-{numero}`.

@@ -241,12 +241,16 @@ ______________________________________________________________________
 - Usar ATX-style headers (`#`, `##`, `###`)
 - Usar fenced code blocks con especificadores de lenguaje: `go`, `python`, etc.
 - Habilitar números de línea en bloques de código cuando se demuestre ejecución paso a paso
-- Usar admonitions para tips, advertencias y notas:
+- Usar admonitions con el formato unificado `{admonition}` + `class:`:
   ```markdown
-  ```{note}
+  ```{admonition} Título
+  ---
+  class: note
+  ---
   Tu contenido aquí
   ```
   ```
+  Clases disponibles: `note`, `hint`, `important`, `warning`, `tip`, `caution`, `dropdown`.
 
 ### Markdown Linting
 

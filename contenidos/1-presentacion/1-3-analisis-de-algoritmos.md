@@ -11,11 +11,11 @@ jupytext:
 
 Como ya mencionamos antes, podemos entender a un algoritmo como un método para resolver un problema dado en una computadora. Un algoritmo describe los pasos que se deben seguir para alcanzar el resultado buscado.
 
-Para un problema cualquiera, puede existir más de un algoritmo que lo resuelva. Un algoritmo puede consumir más o menos recursos que otro que resuelve el mismo problema, por lo tanto una de las principales variable de análisis generalmente es la **eficiencia** en el uso de los recursos.
+Para un problema cualquiera, puede existir más de un algoritmo que lo resuelva. Un algoritmo puede consumir más o menos recursos que otro que resuelve el mismo problema, por lo tanto una de las principales variables de análisis generalmente es la **eficiencia** en el uso de los recursos.
 
 ```{admonition} Nota
 ---
-class: Note
+class: note
 ---
 Los recursos que consumen un algoritmo son tiempo y espacio (memoria). El mismo problema se puede resolver, en la misma computadora, en minutos o en años, de acuerdo al algoritmo que se implemente.
 ```
@@ -35,13 +35,13 @@ La **complejidad** es una propiedad de un algoritmo que nos indica como escala l
 
 En esta definición de **complejidad** entra en juego una variable más, la cantidad o el tamaño de los datos, por ejemplo si tenemos que ordenar pocos datos, y rara vez se agregan nuevos datos o se modifican los existentes, quizás prime la simplicidad del algoritmo a la hora de elegir alguno de los algoritmos de ordenamiento, pero si tenemos que ordenar millones de datos, donde además se agregan cientos o miles de datos y se modifican otros muy frecuentemente, es probable que nos interese analizar cuanto tiempo va a demorar y cuanta memoria o espacio en disco vamos a necesitar y más aún, cuánto más necesitaremos a medida que aumente el volumen de datos, es decir es probable que prime la **eficiencia** a la hora de elegir.
 
-Informalmente hablando, cuanto mayor sea la **complejidad** de un algoritmo, será menos **eficiente** en el uso de los recuros.
+Informalmente hablando, cuanto mayor sea la **complejidad** de un algoritmo, será menos **eficiente** en el uso de los recursos.
 
 La **complejidad** es independiente del hardware o la máquina donde se ejecuta el algoritmo. No debemos confundir **complejidad** con **rendimiento**.
 
 ```{admonition} Nota
 ---
-class: Note
+class: note
 ---
 El **rendimiento** es la capacidad de una computadora para realizar una determinada tarea en un tiempo dado
 ```
@@ -52,12 +52,12 @@ El **rendimiento** sí depende del hardware. Por ejemplo en la medida que aument
 ---
 class: hint
 ---
-Muchas veces se cae en la tentación de pensar que a medida que aumente la capacidad de procesamiento de las computadoras se podrá completar cualquier tarea en un tiempo aceptable. Esta afirmación es una falacia. Existen problemas muy bien conocidos que resultan intratables para las computadoras, es decir, que no importa que tanto aumente la capacidad de procesamiento, una pequeño aumento en el tamaño de los datos implica que el tiempo de ejecución aumente desmesuradamente, hasta el punto de hacer inviable el cálculo.
+Muchas veces se cae en la tentación de pensar que a medida que aumente la capacidad de procesamiento de las computadoras se podrá completar cualquier tarea en un tiempo aceptable. Esta afirmación es una falacia. Existen problemas muy bien conocidos que resultan intratables para las computadoras, es decir, que no importa que tanto aumente la capacidad de procesamiento, un pequeño aumento en el tamaño de los datos implica que el tiempo de ejecución aumente desmesuradamente, hasta el punto de hacer inviable el cálculo.
 ```
 
 En esta primera aproximación al estudio del análisis de algoritmos, nos vamos a enfocar en la **complejidad temporal**. Como la complejidad temporal es una métrica independiente del hardware donde se ejecuta el programa, normalmente se estima contando la cantidad de operaciones elementales que realiza el algoritmo bajo análisis para completar el cálculo, teniendo en cuenta que cada unidad elemental requiere una cantidad fija de tiempo, que por simplicidad se asume como una unidad de tiempo.
 
-Como la cantidad de operaciones elementales que debe realizar depende de los datos, se toma siempre el peor caso, para poder obtener una cota confiable. Por ejemplo si hay que buscar un elemento en un arreglo desdordenado, no queda otra que buscar el elemento en todas las posiciones del arreglo. En el peor caso se deberá recorrer todo el arreglo para encontrar el elemento en la última posición escrutada o poder concluir que el elemento no se encuentra, es probable que si ejecutamos nuestro algoritmo muchas veces, algunas veces lo encuentre antes de recorrer todo el arreglo, pero como buscamos una cota, **se toma siempre el peor caso.**
+Como la cantidad de operaciones elementales que debe realizar depende de los datos, se toma siempre el peor caso, para poder obtener una cota confiable. Por ejemplo si hay que buscar un elemento en un arreglo desordenado, no queda otra que buscar el elemento en todas las posiciones del arreglo. En el peor caso se deberá recorrer todo el arreglo para encontrar el elemento en la última posición escrutada o poder concluir que el elemento no se encuentra, es probable que si ejecutamos nuestro algoritmo muchas veces, algunas veces lo encuentre antes de recorrer todo el arreglo, pero como buscamos una cota, **se toma siempre el peor caso.**
 
 ## Cota Superior Asintótica (O grande)
 
@@ -104,7 +104,7 @@ class: only-dark-mode
 Función Acotada: $T(n) \subset O(n)$
 ```
 
-A continuación se muestran algunas tasas de crecimiento de las funciones que comunmente se encuentran al calcular la O grande.
+A continuación se muestran algunas tasas de crecimiento de las funciones que comúnmente se encuentran al calcular la O grande.
 
 ```{figure} ../_static/figures/comparacion_funciones_light.svg
 ---
@@ -127,13 +127,13 @@ En la siguiente tabla se muestran algunas de las funciones más comunes y sus no
 |       Orden        |   Nombre    |
 | :----------------: | :---------: |
 |       $O(1)$       |  constante  |
-|   $O(log_2(n))$    | logaritmica |
+|   $O(log_2(n))$    | logarítmica |
 |       $O(n)$       |   lineal    |
 | $O(n \; log_2(n))$ | casi lineal |
 |      $O(n^2)$      | cuadrática  |
 |      $O(k^n)$      | exponencial |
 
-### Propieadades de la O grande
+### Propiedades de la O grande
 
 ```{admonition} Propiedad transitiva
 ---
@@ -241,9 +241,9 @@ Como ya se mencionó, para poder calcular el orden de un algoritmo se necesita c
 
 ```{admonition} Nota
 ---
-class: Note
+class: note
 ---
-Un valor simple, es un valor que se puede representar en un registro de la computadora y por lo tanto se puede leer y escribir en una única operación, por ejemplo un número entero de una longitud finita, un número en punto flotante, un bit, etc. No son valores simples los enteros de longitud indefinida o valores compuestos, por ejemplo un objeto compuestos por otros otros objetos.
+Un valor simple, es un valor que se puede representar en un registro de la computadora y por lo tanto se puede leer y escribir en una única operación, por ejemplo un número entero de una longitud finita, un número en punto flotante, un bit, etc. No son valores simples los enteros de longitud indefinida o valores compuestos, por ejemplo un objeto compuesto por otros objetos.
 ```
 
 Las operaciones elementales son lo que tienen un costo de 1 es decir cuyo tiempo de ejecución es 1 (una unidad genérica de tiempo).
@@ -251,7 +251,7 @@ Las operaciones elementales son lo que tienen un costo de 1 es decir cuyo tiempo
 Las siguientes son OE:
 
 - Asignación o consulta de una variable simple.
-- Operaciones aritméticas elementales de valores simples(suma, resta, multiplicación, división y resto).
+- Operaciones aritméticas elementales de valores simples (suma, resta, multiplicación, división y resto).
 - Comparaciones (mayor, mayor igual, igual, distinto, menor y menor igual).
 - Operaciones lógicas (_and_, _or_ y _not_).
 - Acceso indexado a un elemento simple de un arreglo.
@@ -290,7 +290,7 @@ $$
 
 +++
 
-El tiempo de ejecución de un ciclo se calcula como el tiempo de evaluar la condición por primera vez, para ver si se ejecuta el ciclo, mas la cantidad de iteraciones multiplicado por la suma de evaluar nuevamente la condición en cada iteración más el tiempo de todas las sentencias del cuerpo del ciclo.
+El tiempo de ejecución de un ciclo se calcula como el tiempo de evaluar la condición por primera vez, para ver si se ejecuta el ciclo, más la cantidad de iteraciones multiplicado por la suma de evaluar nuevamente la condición en cada iteración más el tiempo de todas las sentencias del cuerpo del ciclo.
 ```
 
 ```{card} Ejecución de Funciones
@@ -319,7 +319,7 @@ En este ejemplo vamos a implementar el algoritmo de búsqueda lineal para buscar
 ---
 class: hint
 ---
-Dado un arreglo de elementos (por simplicidad solo números enteros) y un elemento a buscar, se debe recorrer todo el arreglo desde la primera posición hasta la última, hasta encontrar el elemento buscado o determinar que no se encuentra. Si el elemento se ecuentra en el arreglo, se devuelve la posición del elemento o -1 en caso contrario.
+Dado un arreglo de elementos (por simplicidad solo números enteros) y un elemento a buscar, se debe recorrer todo el arreglo desde la primera posición hasta la última, hasta encontrar el elemento buscado o determinar que no se encuentra. Si el elemento se encuentra en el arreglo, se devuelve la posición del elemento o -1 en caso contrario.
 ```
 
 A continuación una implementación en Go:
@@ -367,7 +367,7 @@ $$
 ---
 class: hint
 ---
-Dado un arreglo de elementos (por simplicidad solo números enteros) que están **ordenados** y un elemento a buscar, se compara el elemento buscado con el elemento que se encuentra el medio del arreglo. Si el elemento del medio del arreglo es menor que elemento buscado, se descarta la primera mitad del arreglo, en cambio si el elemento del medio es mayor que el elemento buscado, se descarta la mitad superior del arreglo. Si no es menor ni mayor, entonces es igual y encontramos el elemento.
+Dado un arreglo de elementos (por simplicidad solo números enteros) que están **ordenados** y un elemento a buscar, se compara el elemento buscado con el elemento que se encuentra en el medio del arreglo. Si el elemento del medio del arreglo es menor que elemento buscado, se descarta la primera mitad del arreglo, en cambio si el elemento del medio es mayor que el elemento buscado, se descarta la mitad superior del arreglo. Si no es menor ni mayor, entonces es igual y encontramos el elemento.
 
  La operación se repite hasta que se encuentra el elemento o ya no se puede seguir partiendo al medio y por lo tanto no se encuentra.
 ```
@@ -436,7 +436,7 @@ Vuelta $k$ del ciclo
 T(n) = T(1) + k \, c
 $$
 
-$T(1)$ es cuanto cuesta si el arreglo tiene tamaño 0, es dedir `L > R`, y por lo tanto solo devuelve el -1 de la línea 12. Entonces $T(1) = O(1)$
+$T(1)$ es cuanto cuesta si el arreglo tiene tamaño 1, es decir `L == R`, y por lo tanto solo ejecuta una iteración del bucle para determinar si el elemento es el buscado o ajustar los índices para salir. Entonces $T(1) = O(1)$
 
 podemos despejar $k$ de la ecuación $n = 2^k$ y nos queda que $k = log_2(n)$. Finalmente queda:
 
