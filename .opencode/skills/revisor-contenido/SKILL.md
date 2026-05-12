@@ -142,6 +142,13 @@ Devolver un reporte con esta estructura:
 4. **NO** corregir errores sobre la marcha — solo señalarlos y sugerir la corrección.
 5. Si hay dudas sobre un concepto, preguntar al usuario en vez de asumir.
 
+## Notas de estilo (actualizadas por revisión)
+
+- **Ejercicios**: Los ejercicios numerados como listas planas son aceptables y preferibles cuando no tienen soluciones asociadas. No es necesario convertirlos a `{exercise}` directives a menos que tengan una `{solution}` correspondiente.
+- **Crecimiento de `append`**: La estrategia de crecimiento de `append` no es exactamente 2x en todas las versiones de Go. Desde Go 1.18, la tasa de crecimiento es variable (~2x para capacidades < 256, reduciéndose gradualmente hasta ~1.25x). Usar "aproximadamente el doble" en vez de afirmaciones absolutas.
+- **Nombres de variables en adaptaciones**: Al adaptar ejemplos de libros (ej: Donovan & Kernighan), verificar que el nombre de la variable se mantenga consistente entre el texto explicativo y el bloque de código. Si se traduce el nombre (ej: `months` → `meses`), actualizar ambas ocurrencias.
+- **Referencias a figuras numeradas**: No usar "Figura X.Y" a menos que la figura tenga un label numerado explícito con `{ref}`. Preferir "la siguiente figura" o usar referencias cruzadas con `{ref}`.
+
 ## Referencias útiles
 
 - Skill `diagramas-svg` para estándares de figuras light/dark

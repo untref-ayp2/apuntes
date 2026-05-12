@@ -11,7 +11,7 @@ jupytext:
 
 ## Arreglos
 
-En Go los arreglos o _arrays_ son estructuras de datos que almacenan una cantidad arbitraria de valores **del mismo tipo**. A nivel de memoria, todos sus elementos se encuentran en posiciones contiguas.
+En Go, los arreglos o _arrays_ son estructuras de datos que almacenan una cantidad arbitraria de valores **del mismo tipo**. A nivel de memoria, todos sus elementos se encuentran en posiciones contiguas.
 
 El tamaño de un array es definido al momento de su creación y determina su "tipo". Es decir, un array de enteros de 7 elementos tiene un tipo diferente a un array de enteros de 3 elementos.
 
@@ -77,9 +77,18 @@ for i, v := range nombres {
 
 ## _Slices_
 
-Los _slices_ representan secuencias de longitud variable cuyos elementos son del mismo tipo. Un tipo de _slice_ se escribe como `[]T`, donde los elementos son de tipo `T`; se asemeja a un tipo de _array_ sin tamaño.
+Los _slices_ (o tajadas) en castellano representan secuencias de longitud variable cuyos elementos son del mismo tipo. Un tipo de _slice_ se escribe como `[]T`, donde los elementos son de tipo `T`; se asemeja a un tipo de _array_ sin tamaño.
 
-Los _arreglos_ y los _slices_ están estrechamente relacionados. Un _slice_ es una estructura de datos ligera que da acceso a una subsecuencia (o quizás a todos) de los elementos de un arreglo, conocido como el arreglo subyacente de la _slice_. Una _slice_ tiene tres componentes: un **puntero**, una **longitud** y una **capacidad**. El puntero apunta al primer elemento del arreglo accesible a través de la _slice_, que no es necesariamente el primer elemento del arreglo. La longitud es el número de elementos de la _slice_; no puede exceder la capacidad, que generalmente es el número de elementos entre el inicio de la _slice_ y el final del arreglo subyacente. Las funciones integradas `len` y cap devuelven estos valores.
+Los _arreglos_ y los _slices_ están estrechamente relacionados. Un _slice_ es una estructura de datos ligera que da acceso a una subsecuencia (o a todos) los elementos de un arreglo. Ese arreglo se conoce como el **arreglo subyacente** del _slice_.
+
+Un _slice_ tiene tres componentes internos:
+- **puntero**: apunta al primer elemento del arreglo accesible desde el _slice_ (no necesariamente el elemento 0 del arreglo)
+- **longitud** (`len`): cantidad de elementos que contiene el _slice_
+- **capacidad** (`cap`): cantidad máxima de elementos disponibles desde esa posición hasta el final del arreglo subyacente
+
+La longitud no puede superar la capacidad. Las funciones `len` y `cap` devuelven estos valores para cualquier _slice_.
+
+Podemos imaginar que un _slice_ es como una ventana que podemos deslizar sobre un arreglo y nos permite acceder a una parte del mismo.
 
 ```go
 var s []byte
@@ -110,7 +119,7 @@ s = make([]byte, 5, 5)
 name: slice-1-light
 class: only-light-mode
 ---
-_Slice_ de longitud 5 y capacidad 5.
+_Slice_ de longitud 5 y capacidad 5: El arreglo subyacente tiene tamaño 5 y la ventana del slice "ve" todo el arreglo.
 ```
 
 ```{figure} ../_static/figures/arreglos-slices/slice-1_dark.svg
@@ -118,7 +127,7 @@ _Slice_ de longitud 5 y capacidad 5.
 name: slice-1-dark
 class: only-dark-mode
 ---
-_Slice_ de longitud 5 y capacidad 5.
+_Slice_ de longitud 5 y capacidad 5: El arreglo subyacente tiene tamaño 5 y la ventana del slice "ve" todo el arreglo.
 ```
 
 A medida que hacemos _slicing_ de `s`, observamos los cambios en la estructura de datos del _slice_ y su relación con el arreglo subyacente:
@@ -132,7 +141,7 @@ s = s[2:4]
 name: slice-2-light
 class: only-light-mode
 ---
-_Slice_ de longitud 2 y capacidad 3.
+_Slice_ de longitud 2 y capacidad 3: La ventana del slice ahora ve desde la posición 2 del arreglo subyacente hasta la posición 3 (longitud 2, el último elemento no se incluye). Sin embargo, la capacidad es 3, lo que indica que el slice todavía puede crecer una posición más sobre el mismo arreglo.
 ```
 
 ```{figure} ../_static/figures/arreglos-slices/slice-2_dark.svg
@@ -140,10 +149,10 @@ _Slice_ de longitud 2 y capacidad 3.
 name: slice-2-dark
 class: only-dark-mode
 ---
-_Slice_ de longitud 2 y capacidad 3.
+_Slice_ de longitud 2 y capacidad 3: La ventana del slice ahora ve desde la posición 2 del arreglo subyacente hasta la posición 3 (longitud 2, el último elemento no se incluye). Sin embargo, la capacidad es 3, lo que indica que el slice todavía puede crecer una posición más sobre el mismo arreglo.
 ```
 
-El _slicing_ no copia los datos del _slice_. En su lugar, crea un nuevo valor de _slice_ que apunta al arreglo original. Esto hace que las operaciones con _slices_ sean tan eficientes como manipular índices de arreglos. Por lo tanto, modificar los elementos (no el _slice_ en sí) de un _re-slice_ modifica los elementos del _slice_ original:
+El _slicing_ no copia los datos del _slice_. En su lugar, crea un nuevo valor de _slice_ que apunta a otra porción del arreglo original. Esto hace que las operaciones con _slices_ sean tan eficientes como manipular índices de arreglos. Modificar los elementos de un _slice_ modifica los elementos del arreglo subyacente:
 
 ```go
 s = s[:cap(s)]
@@ -154,7 +163,7 @@ s = s[:cap(s)]
 name: slice-3-light
 class: only-light-mode
 ---
-_Slice_ de longitud 3 y capacidad 3.
+_Slice_ de longitud 3 y capacidad 3: Ahora la ventana del slice se agrandó y ve desde la posición 2 hasta el final del arreglo subyacente.
 ```
 
 ```{figure} ../_static/figures/arreglos-slices/slice-3_dark.svg
@@ -162,17 +171,23 @@ _Slice_ de longitud 3 y capacidad 3.
 name: slice-3-dark
 class: only-dark-mode
 ---
-_Slice_ de longitud 3 y capacidad 3.
+_Slice_ de longitud 3 y capacidad 3: Ahora la ventana del slice se agrandó y ve desde la posición 2 hasta el final del arreglo subyacente.
 ```
 
-Múltiples _slices_ pueden compartir el mismo array subyacente y pueden referirse a partes superpuestas de ese array. La Figura 4.1 muestra un array de cadenas para los meses del año y dos _slices_ superpuestos de este. El array se declara como:
+Múltiples _slices_ pueden compartir el mismo array subyacente y pueden referirse a partes superpuestas de ese array. La siguiente figura muestra un array de cadenas para los meses del año y dos _slices_ superpuestos de este. El array se declara como:
 
 ```go
 meses := [12]string{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
     "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}
 ```
 
-El operador slice `s[i:j]`, donde $0 \leq i \leq j \leq \texttt{cap(s)}$, crea un nuevo slice que hace referencia a los elementos desde `i` hasta `j-1` de las secuencias, que pueden ser una variable de array, un puntero a un array, u otro slice. El slice resultante tiene `j-i` elementos. Si se omite `i`, su valor es 0, y si se omite `j`, su valor es `len(s)`. Así, el slice `months[0:12]` hace referencia a todo el rango de meses válidos, al igual que el slice `months[1:]`; el slice `months[:]` hace referencia a todo el array. Definamos slices superpuestos para el segundo trimestre y el invierno:
+El operador slice `s[i:j]` crea un nuevo slice con los elementos desde `i` hasta `j-1` del array o slice `s`, donde $0 \leq i \leq j \leq \texttt{cap(s)}$ y el resultado tiene `j-i` elementos. Si se omite `i`, se toma 0; si se omite `j`, se toma `len(s)`.
+
+Sobre `meses`, podemos crear slices que referencien subconjuntos. Por ejemplo:
+- `meses[0:12]` y `meses[:]` abarcan **todos** los meses
+- `meses[1:]` abarca de Febrero a Diciembre
+
+Definamos slices superpuestos para el segundo trimestre y el invierno:
 
 ```go
 t2 := meses[3:6]
@@ -225,7 +240,9 @@ fmt.Println(inviernoSinFin)
 
 ### Agregando elementos a un _slice_
 
-Para agregar elementos a un _slice_ se utiliza la función `append`, que toma un _slice_ y uno o más elementos del mismo tipo que el _slice_ y devuelve un nuevo _slice_ que contiene todos los elementos del _slice_ original más los nuevos elementos. Si el _slice_ resultante es mayor que la capacidad del _slice_ original, `append` crea un nuevo _slice_ que es el doble de grande, copia los elementos del _slice_ original y luego agrega los nuevos elementos:
+Para agregar elementos a un _slice_ se usa la función `append`. Esta recibe un _slice_ y uno o más elementos del mismo tipo, y devuelve un nuevo _slice_ con todos los elementos originales más los nuevos.
+
+Si el _slice_ resultante entra en la capacidad actual, `append` reutiliza el mismo arreglo subyacente. Si no entra, `append` crea un nuevo arreglo subyacente con capacidad aproximadamente el doble de la original, copia todos los elementos y luego agrega los nuevos.
 
 ```go
 s := []int{1, 2, 3}
@@ -249,7 +266,7 @@ len = 5
 cap = 6
 ```
 
-Puede darse el caso en el que si tenemos dos slices sobre un mismo array subyacente, al agregar un elemento a uno de los slices, el otro también se vea modificado:
+Puede darse el caso en el que, si tenemos dos slices sobre un mismo array subyacente, al agregar un elemento a uno de los slices, el otro también se vea modificado:
 
 ```go
 x := make([]int, 0, 4)
@@ -268,14 +285,18 @@ y = [0 1 2 3]
 
 ```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-1_light.svg
 ---
+name: slice-append-entangled-1-light
 class: only-light-mode
 ---
+Slices x e y comparten el mismo arreglo subyacente.
 ```
 
 ```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-1_dark.svg
 ---
+name: slice-append-entangled-1-dark
 class: only-dark-mode
 ---
+Slices x e y comparten el mismo arreglo subyacente.
 ```
 
 ```go
@@ -291,17 +312,21 @@ y = [0 1 2 4]
 
 ```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-2_light.svg
 ---
+name: slice-append-entangled-2-light
 class: only-light-mode
 ---
+Modificar x también afecta a y al compartir el arreglo subyacente.
 ```
 
 ```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-2_dark.svg
 ---
+name: slice-append-entangled-2-dark
 class: only-dark-mode
 ---
+Modificar x también afecta a y al compartir el arreglo subyacente.
 ```
 
-También si el _slice_ sobre el que agregamos el nuevo elemento, no tiene más capacidad para agregar elementos, se crea un nuevo _slice_ con el doble de capacidad y se copian los elementos del slice original:
+También, si el _slice_ sobre el que agregamos el nuevo elemento no tiene más capacidad para agregar elementos, se crea un nuevo _slice_ con aproximadamente el doble de capacidad y se copian los elementos del slice original:
 
 ```go
 y = append(y, 4)
@@ -316,17 +341,23 @@ y = [0 1 2 4 4]
 
 ```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-3_light.svg
 ---
+name: slice-append-entangled-3-light
 class: only-light-mode
 ---
+Al superar la capacidad, y apunta a un nuevo arreglo subyacente.
 ```
 
 ```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-3_dark.svg
 ---
+name: slice-append-entangled-3-dark
 class: only-dark-mode
 ---
+Al superar la capacidad, y apunta a un nuevo arreglo subyacente.
 ```
 
-Es importante notar que el array subyacente ya no es el mismo, ya que el slice original fue copiado a un nuevo array, pero el segundo slice sigue apuntando al array subyacente original. Si modificamos alguno de los valores de `y`, no va a afectar a `x`:
+Cuando `y = append(y, 4)` superó la capacidad, `append` creó un nuevo arreglo subyacente para `y` y copió allí los elementos. El slice `x`, en cambio, sigue apuntando al arreglo subyacente original.
+
+Por eso, modificar los valores de `y` ya no afecta a `x`:
 
 ```go
 y[3] = 3
@@ -346,6 +377,6 @@ y = [0 1 2 3 4]
 3. Escriba una función `eliminar` que elimine un elemento de un slice. Por ejemplo, el slice `[1, 2, 3, 4, 5]` eliminando el elemento en la posición 2 sería `[1, 2, 4, 5]`.
 4. Escriba una función `eliminarDuplicados` que elimine los elementos duplicados de un slice. Por ejemplo, el slice `[1, 2, 2, 3, 4, 4, 5]` sin duplicados sería `[1, 2, 3, 4, 5]`.
 
-## Links recomendados
+## Enlaces recomendados
 
 - [Go Slices: usage and internals](https://go.dev/blog/slices-intro) - Un artículo que explica el uso y la estructura interna de los slices en Go.
