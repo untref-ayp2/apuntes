@@ -9,7 +9,7 @@ jupytext:
 
 # Mapas
 
-Podemos pensar a los mapas como una generalización de los arreglos, donde en lugar de usar sólo enteros como índices, podemos usar otros tipos de datos. Por ejemplo podemos acceder a un elemento de un mapa usando una cadena como índice `edades["alice"]` en lugar de un entero como `edades[0]`.
+Podemos pensar a los mapas como una generalización de los arreglos, donde en lugar de usar solo enteros como índices, podemos usar otros tipos de datos. Por ejemplo, podemos acceder a un elemento de un mapa usando una cadena como índice `edades["alice"]` en lugar de un entero como `edades[0]`.
 
 Los mapas son una forma de asociar claves a valores, y son útiles para almacenar datos que se pueden identificar mediante una clave. Por ejemplo, en el caso de `edades`, la clave es el nombre de una persona y el valor es su edad.
 
@@ -24,7 +24,21 @@ El tipo de clave `K` se debe poder comparar usando `==`, para que el mapa pueda 
 
 No hay restricciones sobre el tipo de valor `V`.
 
-Los mapas son dinámicos es decir que pueden crecer o disminuir su tamaño a medida que se agregan o eliminan elementos.
+Los tipos que se pueden usar como clave son aquellos comparables con `==`: booleanos, números, strings, punteros, canales, y tipos compuestos como `structs` cuyos campos sean todos comparables o `arrays` con elementos comparables. En cambio, los _slices_, mapas y funciones no son comparables y no se pueden usar como clave.
+
+```go
+// Válido
+m1 := make(map[string]int)
+m2 := make(map[int]string)
+m3 := make(map[[3]int]string) // array de 3 ints como clave
+```
+
+```go
+// Inválido: slice como clave (no compila)
+// m := make(map[[]string]int)
+```
+
+Los mapas son dinámicos, es decir, que pueden crecer o reducir la cantidad de elementos a medida que se agregan o eliminan.
 
 La función _built-in_ `make` se puede usar para reservar la memoria que usará un mapa:
 
@@ -50,6 +64,33 @@ edades["charlie"] = 34
 ```
 
 Una expresión alternativa para un nuevo mapa vacío es `map[string]int{}`.
+
+Cuando se conoce la cantidad aproximada de entradas, es más eficiente pre-asignar espacio con un segundo argumento en `make`:
+
+```go
+edades := make(map[string]int, 100) // capacidad inicial para ~100 entradas
+```
+
+Esto evita que el mapa tenga que redimensionar su tabla de hash internamente a medida que crece.
+
+Los valores de un mapa también pueden ser otros mapas. Por ejemplo, para asociar nombres de estudiantes con sus notas por materia:
+
+```go
+notas := map[string]map[string]int{
+    "alice": {"matematica": 8, "lengua": 9},
+}
+
+fmt.Println(notas["alice"]["matematica"]) // 8
+```
+
+Si el mapa interior no está inicializado, asignar un valor produce un error. Por eso es común inicializarlo antes de usarlo:
+
+```go
+if _, ok := notas["bob"]; !ok {
+    notas["bob"] = make(map[string]int)
+}
+notas["bob"]["matematica"] = 7
+```
 
 Los elementos de un mapa se acceden mediante la notación habitual de subíndice:
 
@@ -100,9 +141,9 @@ charlie  34
 bob      3
 ```
 
-Los mapas en Go no están ordenados y si mostramos todos los pares claves/valor almacenados es posible que el orden se modifique de una ejecución a la siguiente. Esto es intencional; hacer que la secuencia varíe ayuda a forzar que los programas sean robustos entre implementaciones.
+Los mapas en Go no están ordenados y si mostramos todos los pares clave/valor almacenados es posible que el orden se modifique de una ejecución a la siguiente. Esto es intencional; hacer que la secuencia varíe ayuda a forzar que los programas sean robustos entre implementaciones.
 
-Para enumerar los pares clave/valor en orden, debemos ordenar las claves explícitamente, por ejemplo, usando la función `sort` del paquete `String`:
+Para enumerar los pares clave/valor en orden, debemos ordenar las claves explícitamente, por ejemplo, usando la función `Strings` del paquete `sort`:
 
 ```go
 import "sort"
@@ -133,7 +174,7 @@ names := make([]string, 0, len(edades))
 
 En el primer bucle `range` mencionado anteriormente, solo necesitamos las claves del mapa `edades`, por lo que omitimos la segunda variable del bucle. En el segundo bucle, solo necesitamos los elementos del _slice_ `names`, por lo que usamos el identificador en blanco `_` para ignorar la primera variable, el índice.
 
-El _valor cero_ para un tipo mapa es `nil`, es decir nulo. En otras palabras el mapa no tiene memoria asignada y no se puede usar. Un mapa `nil` es diferente de un mapa vacío, que es un mapa que tiene memoria asignada pero no tiene claves.
+El _valor cero_ para un tipo mapa es `nil`, es decir, nulo. En otras palabras el mapa no tiene memoria asignada y no se puede usar. Un mapa `nil` es diferente de un mapa vacío, que es un mapa que tiene memoria asignada pero no tiene claves.
 
 ```go
 var edades map[string]int
@@ -158,9 +199,9 @@ panic: assignment to entry in nil map
 
 Antes de poder almacenar valores, se debe asignar memoria al mapa.
 
-**Acceder a un elemento de un mapa mediante subíndices siempre devuelve un valor**. Si la clave está presente en el mapa, obtendrás el valor correspondiente; si no, obtendrás el _valor cero_ para el tipo del elemento, como vimos con `edades["bob"]`.
+**Acceder a un elemento de un mapa mediante subíndices siempre devuelve un valor**. Si la clave está presente en el mapa, obtenemos el valor correspondiente; si no, obtenemos el _valor cero_ para el tipo del elemento, como vimos con `edades["bob"]`.
 
-Para muchos propósitos, eso está bien, pero a veces necesitas saber si el elemento realmente estaba allí o no. Por ejemplo, si el tipo del elemento es numérico, podrías necesitar distinguir entre un elemento inexistente y un elemento que casualmente tiene el _valor cero_, utilizando una prueba como esta:
+Para muchos propósitos, eso está bien, pero a veces necesitamos saber si el elemento realmente estaba allí o no. Por ejemplo, si el tipo del elemento es numérico, podemos necesitar distinguir entre un elemento inexistente y un elemento que casualmente tiene el _valor cero_, utilizando una prueba como esta:
 
 ```go
 age, ok := edades["bob"]
@@ -187,6 +228,40 @@ fmt.Println(x == y)
 invalid operation: x == y (map can only be compared to nil)
 ```
 
+Una aplicación común de los mapas es usarlos como un **conjunto** (_set_), es decir, una colección de elementos sin orden ni repetición[^2]. Como Go no tiene un tipo `set` nativo, podemos simularlo con un mapa cuyas claves son los elementos del conjunto.
+
+La forma más sencilla es usar `map[Tipo]bool`:
+
+```go
+conjunto := make(map[string]bool)
+conjunto["manzana"] = true
+conjunto["pera"] = true
+
+fmt.Println(conjunto["manzana"]) // true
+fmt.Println(conjunto["banana"])  // false (no está presente)
+```
+
+Para verificar si un elemento pertenece al conjunto, usamos la sintaxis de dos valores:
+
+```go
+if conjunto["manzana"] {
+    fmt.Println("manzana está en el conjunto")
+}
+```
+
+Para eliminar se usa `delete` como con cualquier mapa.
+
+Una variante más eficiente en memoria usa `struct{}` como tipo de valor, ya que `struct{}` ocupa 0 bytes (a diferencia de `bool` que ocupa 1). Esta es la forma preferida en código Go cuando la eficiencia importa:
+
+```go
+conjunto := make(map[string]struct{})
+conjunto["manzana"] = struct{}{}
+
+if _, ok := conjunto["manzana"]; ok {
+    fmt.Println("manzana está en el conjunto")
+}
+```
+
 ## Ejercicios
 
 1. Escribir una función `ContarPalabras` que cuente las palabras en un string y devuelva un mapa que mapee las palabras a su número de ocurrencias. La función `Split` del paquete `strings` puede ser útil.
@@ -198,5 +273,7 @@ invalid operation: x == y (map can only be compared to nil)
 - [Effective Go](https://golang.org/doc/effective_go.html#maps)
 - [Go by Example: Maps](https://gobyexample.com/maps)
 - [The Go Programming Language Specification: Map types](https://golang.org/ref/spec#Map_types)
+
+[^2]: Más adelante estudiaremos los conjuntos como estructura de datos. Por ahora nos alcanza con saber que los conjuntos no pueden tener valores repetidos.
 
 [^1]: Durante el curso veremos qué es y como funciona una tabla de hash.
