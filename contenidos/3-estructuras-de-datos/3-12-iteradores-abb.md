@@ -1,10 +1,5 @@
 ---
 label: iteradores-abb
-jupytext:
-  formats: md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
 ---
 
 # Iteradores en Árboles Binarios de Busqueda (ABB)

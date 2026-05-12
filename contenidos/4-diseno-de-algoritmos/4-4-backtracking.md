@@ -1,10 +1,5 @@
 ---
 label: backtracking
-jupytext:
-  formats: md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
 ---
 
 # _Backtracking_ (Vuelta Atrás)

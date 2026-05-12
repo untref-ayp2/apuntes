@@ -1,10 +1,5 @@
 ---
 label: intro-go
-jupytext:
-  formats: md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
 ---
 
 # Introducción a Go

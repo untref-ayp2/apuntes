@@ -1,10 +1,5 @@
 ---
 label: ordenamientos-lineales
-jupytext:
-  formats: md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
 ---
 
 # Ordenamientos en Tiempo Lineal

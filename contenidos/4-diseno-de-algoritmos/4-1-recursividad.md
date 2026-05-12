@@ -1,10 +1,5 @@
 ---
 label: recursividad
-jupytext:
-  formats: md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
 ---
 
 # Recursividad y División y Conquista

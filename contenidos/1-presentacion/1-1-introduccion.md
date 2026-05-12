@@ -1,10 +1,5 @@
 ---
 label: introduccion
-jupytext:
-  formats: md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
 ---
 
 # De qué trata la materia

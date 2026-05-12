@@ -1,10 +1,5 @@
 ---
 label: monticulo-binario
-jupytext:
-  formats: md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
 ---
 
 # Colas de Prioridad y Montículos Binarios
