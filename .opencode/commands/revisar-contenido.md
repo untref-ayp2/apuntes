@@ -1,0 +1,136 @@
+---
+description: Revisa ortografía, gramática, conceptos e imágenes SVG de un capítulo del apunte AyP2
+---
+
+# /revisar-contenido
+
+Revisa un capítulo del apunte AyP2 en **modo plan**: solo muestra sugerencias, NUNCA modifica archivos ni ejecuta builds.
+
+**Uso:** `/revisar-contenido <capítulo>` donde `<capítulo>` puede ser el número de sección (ej: `1-3`, `2-6`), un nombre corto (ej: `punteros`, `abb`) o el nombre del archivo.
+
+## Resolución del capítulo
+
+Usar esta tabla para determinar el archivo a revisar según el argumento:
+
+| Si dice... | Archivo |
+|---|---|
+| `intro` o `introduccion` | `contenidos/introduccion.md` |
+| `1-1` o `1-1-intro` | `contenidos/1-presentacion/1-1-introduccion.md` |
+| `1-2` o `1-2-memoria` | `contenidos/1-presentacion/1-2-memoria.md` |
+| `1-3` o `1-3-analisis` | `contenidos/1-presentacion/1-3-analisis-de-algoritmos.md` |
+| `2-1` o `2-1-intro-go` | `contenidos/2-taller-de-go/2-1-introduccion-go.md` |
+| `2-2` o `2-2-paquetes` | `contenidos/2-taller-de-go/2-2-paquetes-y-modulos.md` |
+| `2-3` o `2-3-arreglos` | `contenidos/2-taller-de-go/2-3-arreglos-slices.md` |
+| `2-4` o `2-4-maps` | `contenidos/2-taller-de-go/2-4-maps.md` |
+| `2-5` o `2-5-funciones` | `contenidos/2-taller-de-go/2-5-funciones.md` |
+| `2-6` o `2-6-punteros` | `contenidos/2-taller-de-go/2-6-punteros.md` |
+| `2-7` o `2-7-errores` | `contenidos/2-taller-de-go/2-7-errores.md` |
+| `2-8` o `2-8-structs` | `contenidos/2-taller-de-go/2-8-structs-interfaces.md` |
+| `2-9` o `2-9-exportado` | `contenidos/2-taller-de-go/2-9-exportado-no-exportado.md` |
+| `2-10` o `2-10-oop` | `contenidos/2-taller-de-go/2-10-oop.md` |
+| `3-1` o `3-1-tad` | `contenidos/3-estructuras-de-datos/3-1-tad.md` |
+| `3-2` o `3-2-pilas` | `contenidos/3-estructuras-de-datos/3-2-pilas-colas.md` |
+| `3-3` o `3-3-listas` | `contenidos/3-estructuras-de-datos/3-3-listas.md` |
+| `3-4` o `3-4-conjuntos` | `contenidos/3-estructuras-de-datos/3-4-conjuntos.md` |
+| `3-5` o `3-5-mapa-bits` | `contenidos/3-estructuras-de-datos/3-5-mapa-de-bits.md` |
+| `3-6` o `3-6-hashing` | `contenidos/3-estructuras-de-datos/3-6-tablas-de-hashing.md` |
+| `3-7` o `3-7-diccionarios` | `contenidos/3-estructuras-de-datos/3-7-diccionarios.md` |
+| `3-8` o `3-8-arboles` | `contenidos/3-estructuras-de-datos/3-8-arboles.md` |
+| `3-9` o `3-9-abb` | `contenidos/3-estructuras-de-datos/3-9-abb.md` |
+| `3-10` o `3-10-balanceados` | `contenidos/3-estructuras-de-datos/3-10-arboles-balanceados.md` |
+| `3-11` o `3-11-heap` | `contenidos/3-estructuras-de-datos/3-11-monticulo-binario.md` |
+| `3-12` o `3-12-iteradores` | `contenidos/3-estructuras-de-datos/3-12-iteradores-abb.md` |
+| `4-1` o `4-1-recursividad` | `contenidos/4-diseno-de-algoritmos/4-1-recursividad.md` |
+| `4-2` o `4-2-patrones` | `contenidos/4-diseno-de-algoritmos/4-2-patrones-de-diseno.md` |
+| `4-3` o `4-3-avidos` | `contenidos/4-diseno-de-algoritmos/4-3-algoritmos-avidos.md` |
+| `4-4` o `4-4-backtracking` | `contenidos/4-diseno-de-algoritmos/4-4-backtracking.md` |
+| `4-5` o `4-5-programacion-dinamica` | `contenidos/4-diseno-de-algoritmos/4-5-programacion-dinamica.md` |
+| `4-6` o `4-6-ordenamientos-rec` | `contenidos/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos.md` |
+| `4-7` o `4-7-ordenamientos-lineales` | `contenidos/4-diseno-de-algoritmos/4-7-ordenamientos-lineales.md` |
+| `5-1` o `5-1-git` | `contenidos/5-taller-de-git/5-1-introduccion-git.md` |
+| `biblio` o `bibliografia` | `contenidos/bibliografia.md` |
+
+Sin match exacto, buscar con `contenidos/**/*${termino}*.md`.
+
+## Proceso de revisión
+
+### 1. Leer el archivo completo
+
+### 2. Revisión ortográfica y gramatical
+
+- Tildes faltantes o incorrectas
+- Puntuación mal usada
+- Concordancia género/número
+- Errores tipográficos, espacios duplicados
+- Extranjerismos sin cursiva (`*extranjerismo*`)
+- Mayúsculas/minúsculas en títulos, nombres propios, siglas
+- Artículo "el" ante "heap" y "stack": usar "el *heap*", "el *stack*"
+- Español rioplatense: "vos"/"tuteo", evitar "ustedes" singular
+
+### 3. Revisión conceptual
+
+- Definiciones precisas y actualizadas
+- Código Go: que compile y sea correcto
+- Diagramas: texto y valores coinciden con ejemplos
+- Ejercicios: enunciados claros, soluciones correctas
+- Citas/referencias: formato `{cite}`, existen en `references.bib`
+- Consistencia entre secciones del capítulo
+
+### 4. Revisión de formato MyST
+
+- Admonitions: formato unificado `{admonition}` con `class:`. No usar shorthand (`{note}`, `{important}`, etc.)
+- Figures: ` ```{figure} ``, campos `name:`, `class:`, `width:`. Pares light/dark completos
+- Code blocks: `{code-block}` o `{code-file}` con `:language:` y `:linenos:` cuando corresponda
+- Labels de ejercicios: `ej-{seccion}-{numero}`
+- Frontmatter YAML: mínimo `label:`
+
+### 5. Revisión de imágenes SVG
+
+Para cada SVG referenciado:
+1. Abrir el SVG (tanto `_light` como `_dark`)
+2. Verificar que represente lo que el texto describe
+3. Verificar clases CSS estándar (`.title`, `.code`, `.variable-node`, `.value-node`, `.arrow`)
+4. Verificar pares light/dark completos
+
+### 6. Reporte
+
+```markdown
+## Reporte de revisión: <archivo>
+
+### 🔤 Ortografía y gramática
+- `archivo.md:XX` — descripción → sugerencia
+
+### 🧠 Conceptos
+- `archivo.md:XX` — descripción → sugerencia
+
+### 🖼️ Imágenes SVG
+- `ruta/al/svg.svg` — descripción → sugerencia
+
+### 📋 Admonitions y formato
+- `archivo.md:XX` — descripción → sugerencia
+
+### 📊 Pares light/dark
+- `figura.svg` — ✅ Completo
+- `figura.svg` — ❌ Falta `_dark.svg`
+```
+
+## Reglas estrictas
+
+1. NUNCA modificar archivos directamente.
+2. NUNCA ejecutar `make build`, `myst build`, `typst compile` ni comandos de build.
+3. NUNCA hacer commits ni cambios en el repositorio.
+4. NO corregir errores sobre la marcha — solo señalarlos.
+5. Dudas conceptuales → preguntar al usuario.
+
+## Notas de estilo
+
+- Ejercicios como listas planas son aceptables si no tienen solución asociada
+- Crecimiento de `append`: ~2x para capacidades < 256, hasta ~1.25x (Go 1.18+)
+- Nombres de variables consistentes entre texto y código (ej: traducir ambos si se traduce)
+- Referencias a figuras: preferir "la siguiente figura" o `{ref}` sobre "Figura X.Y"
+
+## Referencias
+
+- Skill `diagramas-svg` para estándares de figuras light/dark
+- `AGENTS.md` para convenciones del proyecto
+- `contenidos/myst.yml` para estructura del TOC

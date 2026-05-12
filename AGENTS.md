@@ -187,6 +187,8 @@ Para incluir archivos de código fuente:
 
 Usar labels con formato `ej-{seccion}-{numero}` (ej. `ej-pilas-1`, `ej-abb-orden`).
 
+Los ejercicios numerados como **listas planas** son aceptables y preferibles cuando no tienen soluciones asociadas. No es necesario convertirlos a `{exercise}` directives a menos que tengan una `{solution}` correspondiente.
+
 ````markdown
 ```{exercise}
 :label: ej-pilas-1
