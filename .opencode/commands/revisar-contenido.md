@@ -121,6 +121,7 @@ Para cada SVG referenciado:
 3. NUNCA hacer commits ni cambios en el repositorio.
 4. NO corregir errores sobre la marcha — solo señalarlos.
 5. Dudas conceptuales → preguntar al usuario.
+6. NO sugerir ampliación de contenido — solo señalar errores existentes; no recomendar agregar secciones, ejemplos, ejercicios ni contenido nuevo.
 
 ## Notas de estilo
 
@@ -132,5 +133,6 @@ Para cada SVG referenciado:
 ## Referencias
 
 - Skill `diagramas-svg` para estándares de figuras light/dark
+- `Plan-Migracion.md` para estado de revisión de cada archivo
 - `AGENTS.md` para convenciones del proyecto
 - `contenidos/myst.yml` para estructura del TOC
