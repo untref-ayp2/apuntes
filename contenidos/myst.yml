@@ -47,9 +47,9 @@ project:
       children:
         - file: 2-taller-de-go/2-1-introduccion-go.md
         - file: 2-taller-de-go/2-2-paquetes-y-modulos.md
-        - file: 2-taller-de-go/2-3-arreglos-slices.md
-        - file: 2-taller-de-go/2-4-maps.md
-        - file: 2-taller-de-go/2-5-funciones.md
+        - file: 2-taller-de-go/2-3-funciones.md
+        - file: 2-taller-de-go/2-4-arreglos-slices.md
+        - file: 2-taller-de-go/2-5-maps.md
         - file: 2-taller-de-go/2-6-punteros.md
         - file: 2-taller-de-go/2-7-structs-interfaces.md
         - file: 2-taller-de-go/2-8-archivos.md

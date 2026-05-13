@@ -8,9 +8,9 @@ label: paquetes-modulos
 
 Un **paquete** es una colección de archivos que contiene código fuente, definiciones de constantes, definiciones de tipos, etc. Todos los archivos de un paquete se encuentran en un mismo directorio.
 
-Los paquetes organizan el código en forma lógica. Las variables, funciones y tipos de datos definidos dentro de un paquete son privados del mismo, es decir no se pueden utilizar afuera, a menos que se exporten explícitamente.
+Los paquetes organizan el código en forma lógica. Las variables, funciones y tipos de datos definidos dentro de un paquete son privados del mismo, es decir, no se pueden utilizar afuera, a menos que se exporten explícitamente.
 
-Además de que todos los archivos estén en el mismo directorio, cada archivo que forma parte de un paquete debe declarar a que paquete pertenece:
+Además de que todos los archivos estén en el mismo directorio, cada archivo que forma parte de un paquete debe declarar a qué paquete pertenece:
 
 ```go
 package mipaquete
@@ -20,9 +20,9 @@ package mipaquete
 
 A su vez una colección de paquetes pueden conformar un **módulo**. Un módulo es la unidad fundamental de organización y distribución de código. Los módulos permiten gestionar dependencias, compartir código y versionarlo.
 
-Un módulo se define en una carpeta que contiene un archivo `go.mod`. En este archivo se especifica el nombre del módulo, la versión de Go con el que se desarrolló y las dependencias de otros módulos.
+Un módulo se define en una carpeta que contiene un archivo `go.mod`. En este archivo se especifica el nombre del módulo, la versión de Go con la que se desarrolló y las dependencias de otros módulos.
 
-Todos los paquetes (en general cada paquete en una subcarpeta) que están en la misma carpeta que contiene el archivo `go.mod` son parte del mismo módulo. En general un módulo corresponde a un proyecto
+Todos los paquetes (en general cada paquete en una subcarpeta) que están en la misma carpeta que contiene el archivo `go.mod` son parte del mismo módulo. En general un módulo corresponde a un proyecto.
 
 ### Gestión de módulos
 
@@ -59,7 +59,7 @@ miproyecto
 
 El objetivo final de organizar nuestro código en paquetes y módulos es que podamos reusarlos en otros proyectos. Cada vez que necesitemos usar una dependencia tanto interna a nuestro módulo como externa, debemos usar la instrucción `import`, lo que nos permite acceder a las estructuras, funciones y utilidades de los distintos módulos.
 
-En Go existen distintos tipos de módulos que podemos importar, dependiendo de su procedencia. Por ejemplo, go provee una serie de módulos que son nativos del lenguaje, como pueden ser:
+En Go existen distintos tipos de módulos que podemos importar, dependiendo de su procedencia. Por ejemplo, Go provee una serie de módulos que son nativos del lenguaje, como pueden ser:
 
 `fmt`
 : entrada y salida por pantalla y teclado
@@ -82,7 +82,7 @@ En Go existen distintos tipos de módulos que podemos importar, dependiendo de s
 `strings`
 : funciones para manipular cadenas de caracteres
 
-Hasta ahora hemos utilizado mayormente este tipo de módulos, también podemos utilizar referencias a paquetes dentro de nuestro mismo módulo.
+Hasta ahora hemos utilizado mayormente este tipo de módulos. También podemos utilizar referencias a paquetes dentro de nuestro mismo módulo.
 
 ```go
 package main
@@ -123,7 +123,7 @@ Hay varios puntos a notar:
 
 - Siempre se importan **paquetes**.
 
-- Cuando importamos un paquete, el texto luego de la última `/` será el nombre de la referencia que podemos utilizar para acceder a los miembros del paquete. Que además coincide con el nombre del paquete.
+- Cuando importamos un paquete, el texto luego de la última `/` será el nombre de la referencia que podemos utilizar para acceder a los miembros del paquete, que además coincide con el nombre del paquete.
 
 - Podemos renombrar la referencia que se crea al importar un paquete, ya sea por conveniencia como en el caso de que haya un conflicto de nombres entre paquetes de distintos módulos.
 
@@ -131,7 +131,7 @@ Hay varios puntos a notar:
   import b "untref.edu.ar/ayp2/busqueda"
   ```
 
-  Luego podremos utilizar la nueva referencia `b` en lugar `busqueda`.
+  Luego podremos utilizar la nueva referencia `b` en lugar de `busqueda`.
 
 ## Dependencias
 
@@ -153,7 +153,7 @@ go 1.24.1
 require github.com/untref-ayp2/busquedas v0.1.0
 ```
 
-De esta forma, si estamos trabajando con más personas en el mismo proyecto, o si alguien más quiere utilizar nuestro módulo como dependencia en su propio proyecto, será posible respetar los requerimientos que cada módulo en el proyecto necesita que se cumpla.
+De esta forma, si estamos trabajando con más personas en el mismo proyecto, o si alguien más quiere utilizar nuestro módulo como dependencia en su propio proyecto, será posible respetar los requerimientos que cada módulo en el proyecto necesita que se cumplan.
 
 Si en lugar de instalar y agregar la dependencia con `go get`, tenemos una forma alternativa que es, primero usar la dependencia en nuestro código y luego ejecutar `go mod tidy`. Veamos un ejemplo.
 
@@ -264,7 +264,7 @@ $ go run main.go
 ¡Texto en rojo!
 ```
 
-(sí, confíen que el texto sale en color rojo)
+(el mensaje se imprime en color rojo en la terminal)
 
 ```{admonition} ¡Para practicar!
 ---
@@ -273,64 +273,3 @@ class: hint
 Se recomienda recrear el ejemplo previamente presentado y ejecutarlo para corroborar que todo funciona correctamente.
 ```
 
-## Espacios de trabajo (_workspaces_)
-
-Si trabajamos en varios proyectos podemos organizarlos guardándolos a todos juntos dentro de una carpeta raíz, en un **espacio de trabajo** o _workspace_. La organización de los módulos dentro de un espacio de trabajo se realiza con el archivo `go.work`.
-
-```{admonition} Importante
----
-class: important
----
-Un espacio de trabajo con varios módulos puede ser útil si trabajamos con varios proyectos vinculados, en caso contrario puede ser mejor tener cada proyecto por separado.
-```
-
-Trabajar dentro de un mismo _workspace_ permite referenciar dependencias entre módulos locales sin necesidad de descargarlos de un registro online.
-
-### Crear un espacio de trabajo
-
-Para crear un espacio de trabajo, primero creamos una carpeta raíz donde agruparemos nuestros proyectos y luego usamos `go work init` seguido de las rutas de los módulos que lo componen:
-
-```console
-$ mkdir misproyectos && cd misproyectos
-$ go work init ./proyecto1 ./proyecto2
-```
-
-Este comando crea un archivo `go.work` con el siguiente contenido:
-
-```text
-go 1.24.1
-
-use (
-    ./proyecto1
-    ./proyecto2
-)
-```
-
-### Estructura de un workspace
-
-La estructura de directorios de un espacio de trabajo suele verse así:
-
-```text
-misproyectos
-├── go.work
-├── proyecto1
-│   ├── go.mod
-│   ├── main.go
-│   └── saludo/
-│       └── saludo.go
-└── proyecto2
-    ├── go.mod
-    └── main.go
-```
-
-Dentro del _workspace_, `proyecto1` puede importar paquetes de `proyecto2` (y viceversa) usando su ruta de módulo, y Go resolverá las dependencias localmente sin necesidad de publicar los módulos ni descargarlos de internet.
-
-### Agregar módulos a un workspace existente
-
-Si ya tenemos un `go.work` y queremos agregar un nuevo módulo, usamos `go work use`:
-
-```console
-$ go work use ./proyecto3
-```
-
-Esto agrega la ruta `./proyecto3` a la directiva `use` en el archivo `go.work`.

@@ -19,14 +19,14 @@ Los creadores de Go, [Robert Griesemer](https://en.wikipedia.org/wiki/Robert_Gri
 
 ```{admonition} Atención
 ---
-class: attention
+class: caution
 ---
 Los lenguajes compilados cuyo código fuente se traduce de antemano a código máquina, en general suelen ser muy eficientes, ya que se pueden ejecutar directamente sobre la máquina sin "intermediarios".
 ```
 
 Go es un lenguaje **fuertemente tipado** y con **tipado estático**, es decir que al momento de compilar, debe estar claramente establecido de que tipo son sus variables. Por lo tanto, cuando escribimos código, al declarar una variable se debe declarar de que tipo es.
 
-Fuertemente tipado significa que no se puede realizar operaciones entre distintos tipos de datos que no están previamente establecidas por el lenguaje o el programador. Las conversiones entre distintos tipos se deben realizar explícitamente, por ejemplo si queremos sumarle a un número entero un número en decimal (en punto flotante) primero debemos convertir el número en punto flotante a entero y así el resultado será otro entero.
+Fuertemente tipado significa que no se pueden realizar operaciones entre distintos tipos de datos que no están previamente establecidas por el lenguaje o el programador. Las conversiones entre distintos tipos se deben realizar explícitamente, por ejemplo si queremos sumarle a un número entero un número en decimal (en punto flotante) primero debemos convertir el número en punto flotante a entero y así el resultado será otro entero.
 
 Tipado estático significa que el tipo de una variable se determina en el momento de escribir el código y no puede cambiar durante la ejecución del programa.
 
@@ -103,7 +103,7 @@ p.Edad = 32
 
 `p` es una variable de tipo `Persona` y podemos acceder a sus campos utilizando el operador punto (`.`), en este caso `p.Nombre` tiene el valor `"Fabián"` y `p.Edad` tiene el valor `32`.
 
-En Go no existe la herencia, pero si existe la composición, que nos permite crear nuevos tipos de datos a partir de otros. En el capítulo {ref}`structs-interfaces` vamos a profundizar en las estructuras y veremos como funciona la composición en Go.
+En Go no existe la herencia, pero sí existe la composición, que nos permite crear nuevos tipos de datos a partir de otros. En el capítulo {ref}`structs-interfaces` vamos a profundizar en las estructuras y veremos como funciona la composición en Go.
 
 ### Ejemplos
 
@@ -147,7 +147,7 @@ func sumar(a, b int) int {
 }
 ```
 
-Para utilizar dicha función solo debemos invocarla por su nombre y proporcionarle los parametros requeridos.
+Para utilizar dicha función solo debemos invocarla por su nombre y proporcionarle los parámetros requeridos.
 
 ```go
 fmt.Println(sumar(32, 7))
@@ -165,7 +165,7 @@ El sitio oficial de Go es [https://go.dev/](https://go.dev/) de donde se puede d
 go version
 ```
 
-Si la instalación fué exitosa, deberíamos ver una salida como la siguiente:
+Si la instalación fue exitosa, deberíamos ver una salida como la siguiente:
 
 ```output
 go version go1.24.0 linux/amd64
@@ -173,7 +173,7 @@ go version go1.24.0 linux/amd64
 
 ### Go Playground
 
-Go ofrece un servicio online llamado Playground [https://go.dev/play](https://go.dev/play/p/kBGNnaPKcvt) que nos permite escribir y ejecutar fragmentos de código de forma simple y sin necesidad de instalar Go localmente.
+Go ofrece un servicio *online* llamado Playground [https://go.dev/play](https://go.dev/play/p/kBGNnaPKcvt) que nos permite escribir y ejecutar fragmentos de código de forma simple y sin necesidad de instalar Go localmente.
 
 ## Ejercicios
 
@@ -181,7 +181,7 @@ Go ofrece un servicio online llamado Playground [https://go.dev/play](https://go
 
 2. Cloná el repositorio `taller-go`, ubicate en el directorio `00-hola/` y ejecutá el programa con `go run main.go`. ¿Qué salida se obtiene?
 
-3. Andá al [Go Playground](https://go.dev/play/), escribí un programa que sume los números `42` y `18` e imprima el resultado, luego ejecutalo y compartí el link haciendo click en el botón _Share_.
+3. Andá al [Go Playground](https://go.dev/play/), escribí un programa que sume los números `42` y `18` e imprima el resultado, luego ejecutalo y compartí el *link* haciendo click en el botón _Share_.
 
 4. Modificá el archivo `main.go` de `00-hola/` para que el saludo diga tu nombre en lugar de `"mundo"`, ejecutalo nuevamente y verificá que la salida refleje el cambio.
 

@@ -72,7 +72,7 @@ func main() {
 el nro. ingresado debe ser mayor o igual a cero, en su lugar se recibió: -1
 ```
 
-En este ejemplo, la función retorna un error más informativo que incluye el valor de entrada que causó el problema. Este tipo de mensajes con contexto son de gran ayuda para depuración y logging.
+En este ejemplo, la función retorna un error más informativo que incluye el valor de entrada que causó el problema. Este tipo de mensajes con contexto son de gran ayuda para depuración y *logging*.
 
 
 En los dos ejemplos anteriores, podemos observar la forma típica en la que se maneja un error en Go. Van a encontrar `if err != nil` en múltiples lugares de un programa de Go.
@@ -266,7 +266,7 @@ contexto se haya agregado en el camino.
 Para cerrar, algunas convenciones que se ven en todo código Go:
 
 1. **El error es siempre el último valor de retorno.** Si una función devuelve un resultado y puede fallar, la firma es `(resultado, error)`.
-2. **Revisar `err != nil` inmediatamente.** Apenas recibís un error, lo checkeás. No lo guardás para después.
+2. **Revisar `err != nil` inmediatamente.** Apenas recibís un error, lo *checkeás*. No lo guardás para después.
 3. **No ignorar errores.** Si una función devuelve `error` y estás seguro de que no va a fallar, usá `_ = llamada()` como señal explícita de que decidiste ignorarlo.
 4. **Preferir `errors.New` y `fmt.Errorf` a `panic`.** Salvo excepciones muy contadas, los errores se manejan con valores, no con `panic`.
 
@@ -371,4 +371,3 @@ con archivos.
    contexto con `fmt.Errorf` y `%w` indicando que falló al leer la configuración.
    En el `main`, usá `errors.Is` para detectar el error original.
 
-Go tiene una forma de "lanzar" errores por medio de la función `panic`, pero debería reservarse para casos extremos, ya que el programa termina abruptamente a menos que haya un `recover()` que permita recuperarse del `panic`.

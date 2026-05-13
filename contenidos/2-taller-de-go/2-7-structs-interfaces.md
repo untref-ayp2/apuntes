@@ -6,7 +6,7 @@ label: structs-interfaces
 
 ## _Structs_
 
-En Go las _structs_ son colecciones de campos. A diferencia de las clases en Java, una `struct` no soporta herencia, no tiene constructores explícitos ni métodos `static`. Sin embargo, puede tener métodos asociados (como veremos en breve) y puede incrustar otras _structs_ como forma de composición. Podríamos pensar una `struct` como una clase liviana que agrupa datos, sin el peso de un sistema de herencia ni la maquinaria de POO tradicional.
+En Go las _structs_ son colecciones de campos. A diferencia de las clases en Java, una `struct` no soporta herencia, no tiene constructores explícitos ni métodos *static*. Sin embargo, puede tener métodos asociados (como veremos en breve) y puede incrustar otras _structs_ como forma de composición. Podríamos pensar una `struct` como una clase liviana que agrupa datos, sin el peso de un sistema de herencia ni la maquinaria de POO tradicional.
 
 ```go
 type Direccion struct {
@@ -42,7 +42,7 @@ Laura Medina
 
 ### Métodos
 
-Go no tiene clases como Java, sin embargo permite definir métodos sobre ciertos tipos.
+Go no tiene clases como Java; sin embargo, permite definir métodos sobre ciertos tipos.
 
 Un método es una función con un argumento especial **receptor**. El **receptor** aparece en su propia lista de argumentos entre la palabra clave `func` y el nombre del método.
 
@@ -71,7 +71,7 @@ Ana López
 31
 ```
 
-### Punteros a struct
+### Punteros a *struct*
 
 Podemos declarar una variable que sea un puntero a una estructura:
 
@@ -91,7 +91,7 @@ María
 Go permite acceder a los campos sin dereferenciar explícitamente el puntero. `p.nombre` equivale a `(*p).nombre`. Es azúcar sintáctico.
 
 Los punteros a struct son útiles para:
-- Evitar copiar la estructura al pasar como parámetro
+- Evitar copiar la estructura al pasarla como parámetro
 - Poder modificar los campos desde otra función o método
 
 ### Receptores: puntero vs. valor
@@ -99,10 +99,10 @@ Los punteros a struct son útiles para:
 | Receptor valor | Receptor puntero |
 |---|---|
 | No modifica el original | Modifica el original |
-| Copia la struct | No copia (más eficiente) |
+| Copia la *struct* | No copia (más eficiente) |
 | Útil para consultas | Útil para mutaciones |
 
-Go aplica azúcar sintáctico: si definimos un método con receptor puntero y llamamos sobre una variable no puntero, Go lo convierte automáticamente.
+Go aplica azúcar sintáctico: si definimos un método con receptor puntero y lo llamamos sobre una variable no puntero, Go lo convierte automáticamente.
 
 ```go
 func main() {
@@ -115,11 +115,11 @@ func main() {
 31
 ```
 
-Regla práctica: usar receptor puntero cuando el método modifica el receptor o cuando la struct es grande; usar receptor valor para consultas que no modifican estado.
+Regla práctica: usar receptor puntero cuando el método modifica el receptor o cuando la *struct* es grande; usar receptor valor para consultas que no modifican estado.
 
 ### ¿Métodos de clase?
 
-Go no tiene un equivalente directo a `static` de Java ni métodos de clase. Para simular este comportamiento se utilizan **funciones del paquete**. Por convención, suelen llamarse `New<Tipo>`:
+Go no tiene un equivalente directo a *static* de Java ni métodos de clase. Para simular este comportamiento se utilizan **funciones del paquete**. Por convención, suelen llamarse `New<Tipo>`:
 
 ```go
 func NewPersona(nombre, apellido string, edad uint) Persona {
@@ -143,7 +143,7 @@ Estas funciones reemplazan el rol de los constructores o fábricas estáticas.
 
 ## Interfaces
 
-Como mencionamos anteriormente, en Go existe el concepto de interfaces pero funcionan de forma algo diferente a como lo hacen en Java.
+Como mencionamos anteriormente, en Go existe el concepto de interfaces, pero estas funcionan de forma algo diferente a como lo hacen en Java.
 
 Un tipo `interface` se define como un conjunto de firmas de método[^firma]. Un valor de ese tipo de interfaz puede contener cualquier valor que implemente todos esos métodos.
 

@@ -249,7 +249,7 @@ fmt.Println(*contador)
 43
 ```
 
-A simple vista parece peligroso: `c` es una variable local de `nuevoContador`, ¿no se destruye al salir de la función? Go resuelve esto mediante el **escape analysis** (análisis de escape). El compilador detecta que la dirección de `c` escapa del ámbito de la función, y automáticamente asigna `c` en el *heap* en vez del *stack*. Esto se cubrió en el capítulo de gestión de memoria.
+A simple vista parece peligroso: `c` es una variable local de `nuevoContador`, ¿no se destruye al salir de la función? Go resuelve esto mediante el *escape analysis* (análisis de escape). El compilador detecta que la dirección de `c` escapa del ámbito de la función, y automáticamente asigna `c` en el *heap* en vez del *stack*. Esto se cubrió en el capítulo de gestión de memoria.
 
 ## Ejercicios
 

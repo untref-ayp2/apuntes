@@ -144,6 +144,7 @@ func main() {
     fmt.Fprintln(archivo, "Primera línea")
     fmt.Fprintln(archivo, "Segunda línea")
 }
+```
 
 ## Ejercicios
 
