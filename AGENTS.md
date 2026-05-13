@@ -250,6 +250,13 @@ ______________________________________________________________________
 
 ## Code Style Guidelines
 
+### Ortografía y gramática
+
+- Extranjerismos (palabras en inglés como *struct*, *slice*, *interface*) deben ir en cursiva con `*palabra*`
+- Excepción: "Go" va en mayúscula sin cursiva
+- Tildes correctas, puntuación adecuada, concordancia género/número
+- Español rioplatense
+
 ### Markdown Content
 
 - Escribir en español

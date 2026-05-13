@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 440" width="600" height="440">
+  <defs>
+    <style>
+      .bg { fill: #1e1e1e; }
+      .class-box { fill: #2d3748; stroke: #63b3ed; stroke-width: 2; }
+      .class-name { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 18px; font-weight: bold; fill: #e0e0e0; text-anchor: middle; }
+      .section-line { stroke: #63b3ed; stroke-width: 1; }
+      .attr { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 14px; fill: #e0e0e0; text-anchor: start; }
+      .method { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 14px; fill: #e0e0e0; text-anchor: start; }
+      .arrow-line { stroke: #e0e0e0; stroke-width: 2; }
+      .inherit-triangle { fill: #1e1e1e; stroke: #e0e0e0; stroke-width: 2; }
+      .label { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; fill: #a0a0a0; text-anchor: middle; font-style: italic; }
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 20px; font-weight: bold; fill: #e0e0e0; text-anchor: middle; }
+    </style>
+    <marker id="arrowhead" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <polygon points="0 0, 6 2.5, 0 5" fill="#e0e0e0" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="600" height="440" rx="8" />
+
+  <text class="title" x="300" y="30">Diagrama de clases Java</text>
+
+  <!-- Persona -->
+  <rect class="class-box" x="160" y="60" width="280" height="145" rx="4" />
+  <text class="class-name" x="300" y="85">Persona</text>
+  <line class="section-line" x1="160" y1="95" x2="440" y2="95" />
+  <text class="attr" x="175" y="115">- nombre: String</text>
+  <text class="attr" x="175" y="135">- direccion: String</text>
+  <text class="attr" x="175" y="155">- dni: String</text>
+  <line class="section-line" x1="160" y1="165" x2="440" y2="165" />
+  <text class="method" x="175" y="183">+ saludar(): String</text>
+  <text class="method" x="175" y="200">+ caminar(): String</text>
+
+  <!-- Inheritance arrow -->
+  <line class="arrow-line" x1="300" y1="260" x2="300" y2="220" />
+  <polygon class="inherit-triangle" points="300,205 285,225 315,225" />
+
+  <!-- Estudiante -->
+  <rect class="class-box" x="160" y="260" width="280" height="130" rx="4" />
+  <text class="class-name" x="300" y="285">Estudiante</text>
+  <line class="section-line" x1="160" y1="295" x2="440" y2="295" />
+  <text class="attr" x="175" y="315">- legajo: int</text>
+  <line class="section-line" x1="160" y1="325" x2="440" y2="325" />
+  <text class="method" x="175" y="345">+ saludar(): String</text>
+  <text class="method" x="175" y="365">+ cursarMateria(String): String</text>
+</svg>
