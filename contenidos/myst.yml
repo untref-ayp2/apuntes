@@ -51,9 +51,9 @@ project:
         - file: 2-taller-de-go/2-4-maps.md
         - file: 2-taller-de-go/2-5-funciones.md
         - file: 2-taller-de-go/2-6-punteros.md
-        - file: 2-taller-de-go/2-7-errores.md
-        - file: 2-taller-de-go/2-8-structs-interfaces.md
-        - file: 2-taller-de-go/2-9-exportado-no-exportado.md
+        - file: 2-taller-de-go/2-7-structs-interfaces.md
+        - file: 2-taller-de-go/2-8-archivos.md
+        - file: 2-taller-de-go/2-9-errores.md
         - file: 2-taller-de-go/2-10-oop.md
     - title: Estructuras de Datos
       children:
