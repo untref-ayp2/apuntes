@@ -243,6 +243,7 @@ ______________________________________________________________________
 - Usar ATX-style headers (`#`, `##`, `###`)
 - Usar fenced code blocks con especificadores de lenguaje: `go`, `python`, etc.
 - Habilitar números de línea en bloques de código cuando se demuestre ejecución paso a paso
+- Líneas de código en `{code-block}` y `{code-file}`: máximo 80 columnas
 - Usar admonitions con el formato unificado `{admonition}` + `class:`:
   ```markdown
   ```{admonition} Título
