@@ -226,32 +226,40 @@ package main
 import (
     "errors"
     "fmt"
+    "os"
 )
 
-var ErrNotFound = errors.New("elemento no encontrado")
-
-func buscarPorID(id int) (string, error) {
-    if id <= 0 {
-        return "", fmt.Errorf("id inválido %d: %w", id,
-            ErrNotFound)
+func cargarUsuario(id int) (string, error) {
+    ruta := fmt.Sprintf("usuarios/%d.txt", id)
+    datos, err := os.ReadFile(ruta)
+    if err != nil {
+        return "", fmt.Errorf("cargando usuario %d: %w", id, err)
     }
-    return "item", nil
+    return string(datos), nil
 }
 
 func main() {
-    _, err := buscarPorID(-3)
-    if errors.Is(err, ErrNotFound) {
-        fmt.Println("el elemento no se encontró " +
-            "(o el id es inválido)")
+    _, err := cargarUsuario(42)
+    if err != nil {
+        if errors.Is(err, os.ErrNotExist) {
+            fmt.Println("el archivo del usuario no existe")
+        } else {
+            fmt.Println("error inesperado:", err)
+        }
+        return
     }
 }
 ```
 
 ```text
-el elemento no se encontró (o el id es inválido)
+el archivo del usuario no existe
 ```
 
-El `%w` envuelve (*wrap*) el error original dentro del nuevo error. Después podés usar `errors.Is()` para preguntar si en la cadena de errores envueltos hay algún error que coincida con el centinela. Esto funciona incluso si el error está envuelto en varias capas.
+Fijate que el mensaje del error original (`os.ErrNotExist`) queda preservado
+dentro del error que creamos con `%w`. Por eso `errors.Is` puede
+detectarlo aunque esté envuelto en una capa con más contexto. Así podemos
+reaccionar distinto según el tipo de error que ocurrió, sin importar cuánto
+contexto se haya agregado en el camino.
 
 ## Convenciones en el manejo de errores
 
@@ -261,6 +269,82 @@ Para cerrar, algunas convenciones que se ven en todo código Go:
 2. **Revisar `err != nil` inmediatamente.** Apenas recibís un error, lo checkeás. No lo guardás para después.
 3. **No ignorar errores.** Si una función devuelve `error` y estás seguro de que no va a fallar, usá `_ = llamada()` como señal explícita de que decidiste ignorarlo.
 4. **Preferir `errors.New` y `fmt.Errorf` a `panic`.** Salvo excepciones muy contadas, los errores se manejan con valores, no con `panic`.
+
+## Manejo de errores con archivos
+
+Como viste en el capítulo 2-8, las funciones del paquete `os` devuelven un
+`error` que tenés que revisar. Combinado con lo que vimos antes, podés
+**agregar contexto** al error con `%w` para saber en qué operación falló:
+
+```{code-block} go
+:linenos:
+
+package main
+
+import (
+    "fmt"
+    "os"
+)
+
+func leerArchivo(ruta string) (string, error) {
+    datos, err := os.ReadFile(ruta)
+    if err != nil {
+        return "", fmt.Errorf("error al leer %s: %w", ruta, err)
+    }
+    return string(datos), nil
+}
+
+func main() {
+    contenido, err := leerArchivo("mensaje.txt")
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Print(contenido)
+}
+```
+
+```text
+error al leer mensaje.txt: open mensaje.txt: no such file or directory
+```
+
+Lo mismo al escribir:
+
+```{code-block} go
+:linenos:
+
+package main
+
+import (
+    "fmt"
+    "os"
+)
+
+func escribirArchivo(ruta, texto string) error {
+    err := os.WriteFile(ruta, []byte(texto), 0644)
+    if err != nil {
+        return fmt.Errorf("error al escribir %s: %w", ruta, err)
+    }
+    return nil
+}
+
+func main() {
+    err := escribirArchivo("salida.txt", "Hola, archivo!\n")
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println("archivo escrito correctamente")
+}
+```
+
+```text
+archivo escrito correctamente
+```
+
+Este patrón — función que delega en `os.ReadFile`/`os.WriteFile` y envuelve
+el error con `fmt.Errorf` + `%w` — es muy común en programas Go que trabajan
+con archivos.
 
 ## Ejercicios
 

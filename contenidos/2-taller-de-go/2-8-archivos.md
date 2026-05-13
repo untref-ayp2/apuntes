@@ -4,7 +4,7 @@ label: archivos
 
 # Archivos
 
-Trabajar con archivos es una tarea común en casi cualquier programa. Go provee el paquete `os` para operaciones básicas de entrada/salida y `bufio` para lectura y escritura con buffer.
+Trabajar con archivos es una tarea común en casi cualquier programa. Go provee el paquete `os` para operaciones básicas de entrada/salida y `bufio` para lectura y escritura con *buffer*.
 
 ## Leer un archivo completo
 
@@ -80,7 +80,7 @@ func main() {
 }
 ```
 
-`defer archivo.Close()` garantiza que el archivo se cierre cuando la función termina, incluso si ocurre un error después de abrirlo.
+`defer archivo.Close()` garantiza que el archivo se cierre cuando la función termina, incluso si ocurre un error o *panic* después de abrirlo.
 
 ## Leer línea por línea con `bufio.Scanner`
 
@@ -120,7 +120,7 @@ func main() {
 
 ## Escribir con formato
 
-Para escribir datos formateados en un archivo, podemos usar `fmt.Fprintf` que es como `fmt.Printf` pero escribe en un archivo (o cualquier otro `io.Writer`):
+Para escribir datos formateados en un archivo, podemos usar `fmt.Fprintf`, que es como `fmt.Printf` pero escribe en un archivo (o cualquier otro `io.Writer`):
 
 ```go
 package main
@@ -141,15 +141,9 @@ func main() {
     fmt.Fprintf(archivo, "Alumno: %s\n", "Martín")
     fmt.Fprintf(archivo, "Nota: %d\n", 9)
     fmt.Fprintf(archivo, "Materia: %s\n", "Algoritmos II")
+    fmt.Fprintln(archivo, "Primera línea")
+    fmt.Fprintln(archivo, "Segunda línea")
 }
-```
-
-También podemos escribir línea por línea con `fmt.Fprintln`:
-
-```go
-fmt.Fprintln(archivo, "Primera línea")
-fmt.Fprintln(archivo, "Segunda línea")
-```
 
 ## Ejercicios
 
