@@ -171,6 +171,19 @@ func ejemplo() error {
 ```
 ````
 
+Siempre que sea posible, los bloques de código deben incluir un `func main()` y la salida esperada debe mostrarse en un bloque ` ```output ` inmediatamente después del bloque de código.
+
+````markdown
+```go
+func main() {
+    fmt.Println("hola")
+}
+```
+```output
+hola
+```
+````
+
 ### Inclusion de archivos de código
 
 Para incluir archivos de código fuente:

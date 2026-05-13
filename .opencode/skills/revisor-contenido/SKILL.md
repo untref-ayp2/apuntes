@@ -34,10 +34,10 @@ tabla priorizando coincidencia por el número de sección:
 | `2-4` o `2-4-maps`          | `contenidos/2-taller-de-go/2-4-maps.md`         |
 | `2-5` o `2-5-funciones`     | `contenidos/2-taller-de-go/2-5-funciones.md`    |
 | `2-6` o `2-6-punteros`      | `contenidos/2-taller-de-go/2-6-punteros.md`     |
-| `2-7` o `2-7-errores`       | `contenidos/2-taller-de-go/2-7-errores.md`      |
-| `2-8` o `2-8-structs`       | `contenidos/2-taller-de-go/2-8-structs-interfaces.md` |
-| `2-9` o `2-9-exportado`     | `contenidos/2-taller-de-go/2-9-exportado-no-exportado.md` |
-| `2-10` o `2-10-oop`         | `contenidos/2-taller-de-go/2-10-oop.md`         |
+| `2-7` o `2-7-structs`       | `contenidos/2-taller-de-go/2-7-structs-interfaces.md` |
+| `2-8` o `2-8-archivos`      | `contenidos/2-taller-de-go/2-8-archivos.md`      |
+| `2-9` o `2-9-errores`       | `contenidos/2-taller-de-go/2-9-errores.md`       |
+| `2-10` o `2-10-oop`         | `contenidos/2-taller-de-go/2-10-oop.md`          |
 | `3-1` o `3-1-tad`           | `contenidos/3-estructuras-de-datos/3-1-tad.md`  |
 | `3-2` o `3-2-pilas`         | `contenidos/3-estructuras-de-datos/3-2-pilas-colas.md` |
 | `3-3` o `3-3-listas`        | `contenidos/3-estructuras-de-datos/3-3-listas.md` |
@@ -141,6 +141,7 @@ Devolver un reporte con esta estructura:
 3. **NUNCA** hacer commits ni cambios en el repositorio.
 4. **NO** corregir errores sobre la marcha — solo señalarlos y sugerir la corrección.
 5. Si hay dudas sobre un concepto, preguntar al usuario en vez de asumir.
+6. **NO sugerir ampliación de contenido** — solo señalar errores existentes; no recomendar agregar secciones, ejemplos, ejercicios ni contenido nuevo.
 
 ## Notas de estilo (actualizadas por revisión)
 
