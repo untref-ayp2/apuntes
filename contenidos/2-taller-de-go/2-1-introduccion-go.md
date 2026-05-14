@@ -4,9 +4,9 @@ label: intro-go
 
 # Introducción a Go
 
-## Características Principales
+## Características principales
 
-Go es un lenguaje de programación desarrollado por Google, que se lanzó oficialmente en 2009. Es un lenguaje compilado, es decir que una vez escrito el código fuente se debe traducir a código máquina para poder ejecutarlo, esta operación de traducción se conoce como compilación.
+Go es un lenguaje de programación desarrollado por Google y lanzado oficialmente en 2009. Es un lenguaje compilado, es decir, una vez escrito el código fuente se debe traducir a código máquina para poder ejecutarlo; esta operación de traducción se conoce como compilación.
 
 ```{figure} ../_static/figures/Go-Logo_Blue.svg
 ---
@@ -24,9 +24,9 @@ class: caution
 Los lenguajes compilados cuyo código fuente se traduce de antemano a código máquina, en general suelen ser muy eficientes, ya que se pueden ejecutar directamente sobre la máquina sin "intermediarios".
 ```
 
-Go es un lenguaje **fuertemente tipado** y con **tipado estático**, es decir que al momento de compilar, debe estar claramente establecido de que tipo son sus variables. Por lo tanto, cuando escribimos código, al declarar una variable se debe declarar de que tipo es.
+Go es un lenguaje **fuertemente tipado** y con **tipado estático**, es decir que al momento de compilar, debe estar claramente establecido de qué tipo son sus variables. Por lo tanto, cuando escribimos código, al declarar una variable se debe declarar de qué tipo es.
 
-Fuertemente tipado significa que no se pueden realizar operaciones entre distintos tipos de datos que no están previamente establecidas por el lenguaje o el programador. Las conversiones entre distintos tipos se deben realizar explícitamente, por ejemplo si queremos sumarle a un número entero un número en decimal (en punto flotante) primero debemos convertir el número en punto flotante a entero y así el resultado será otro entero.
+Fuertemente tipado significa que no se pueden realizar operaciones entre distintos tipos de datos que no están previamente establecidas por el lenguaje o el programador. Las conversiones entre distintos tipos se deben realizar explícitamente, por ejemplo, si queremos sumarle a un número entero un número en decimal (en punto flotante) primero debemos convertir el número en punto flotante a entero y así el resultado será otro entero.
 
 Tipado estático significa que el tipo de una variable se determina en el momento de escribir el código y no puede cambiar durante la ejecución del programa.
 
@@ -34,12 +34,12 @@ Tipado estático significa que el tipo de una variable se determina en el moment
 ---
 class: important
 ---
-Un sistema de tipos permite definir que valores puede tomar una variable y que operaciones se pueden hacer con esos valores.
+Un sistema de tipos permite definir qué valores puede tomar una variable y qué operaciones se pueden hacer con esos valores.
 ```
 
 ### Gestión de memoria
 
-La gestión de memoria se refiere a cómo se reserva espacio para las variables y cómo se libera ese espacio cuando ya no se necesitan dichas variables. En Go, este proceso es **automático**, por lo que el programador no necesita pedir, ni liberar memoria explícitamente (al estilo de `malloc` y `free` en C).
+La gestión de memoria se refiere a cómo se reserva espacio para las variables y cómo se libera ese espacio cuando ya no se necesitan dichas variables. En Go, este proceso es **automático**, por lo que el programador no necesita pedir ni liberar memoria explícitamente (al estilo de `malloc` y `free` en C).
 
 #### Reserva de memoria: Stack vs Heap
 
@@ -84,7 +84,7 @@ En la imagen los objetos 4, 5 y 6 ya no son referenciados por ninguna variable, 
 
 ### Orientación a objetos
 
-Go no es un lenguaje orientado a objetos, es decir no hay clases ni objetos como en Java por ejemplo, sino que utiliza `struct`, a la C, lo que nos permite definir nuevos tipos de datos.
+Go no es un lenguaje orientado a objetos, es decir, no hay clases ni objetos como en Java, por ejemplo, sino que utiliza `struct`, a la C, lo que nos permite definir nuevos tipos de datos.
 
 ```go
 type Persona struct {
@@ -103,17 +103,11 @@ p.Edad = 32
 
 `p` es una variable de tipo `Persona` y podemos acceder a sus campos utilizando el operador punto (`.`), en este caso `p.Nombre` tiene el valor `"Fabián"` y `p.Edad` tiene el valor `32`.
 
-En Go no existe la herencia, pero sí existe la composición, que nos permite crear nuevos tipos de datos a partir de otros. En el capítulo {ref}`structs-interfaces` vamos a profundizar en las estructuras y veremos como funciona la composición en Go.
+En Go no existe la herencia, pero sí existe la composición, que nos permite crear nuevos tipos de datos a partir de otros. En el capítulo {ref}`structs-interfaces` vamos a profundizar en las estructuras y veremos cómo funciona la composición en Go.
 
 ### Ejemplos
 
 En el repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git) encontrarán código de ejemplo para empezar a sumergirnos en Go.
-
-Se recomienda crear una carpeta en el disco local, por ejemplo con el nombre taller-go, y clonar el repositorio
-
-```console
-git clone https://github.com/untref-ayp2/taller-go.git
-```
 
 El siguiente fragmento se encuentra en el archivo `01-introduccion/ejemplos/00-hola/main.go`
 
@@ -173,7 +167,7 @@ go version go1.24.0 linux/amd64
 
 ### Go Playground
 
-Go ofrece un servicio *online* llamado Playground [https://go.dev/play](https://go.dev/play/p/kBGNnaPKcvt) que nos permite escribir y ejecutar fragmentos de código de forma simple y sin necesidad de instalar Go localmente.
+Go ofrece un servicio *online* llamado Playground [https://go.dev/play](https://go.dev/play/) que nos permite escribir y ejecutar fragmentos de código de forma simple y sin necesidad de instalar Go localmente.
 
 ## Ejercicios
 
@@ -185,7 +179,26 @@ Go ofrece un servicio *online* llamado Playground [https://go.dev/play](https://
 
 4. Modificá el archivo `main.go` de `01-introduccion/ejemplos/00-hola/` para que el saludo diga tu nombre en lugar de `"mundo"`, ejecutalo nuevamente y verificá que la salida refleje el cambio.
 
-Los esqueletos de estos ejercicios están en `01-introduccion/ejercicios/` del repositorio taller-go. Las soluciones están disponibles en la rama `soluciones`.
+Los esqueletos de estos ejercicios están en `01-introduccion/ejercicios/` del repositorio taller-go.
+
+## Repositorio del taller de Go
+
+El siguiente [repositorio](https://github.com/untref-ayp2/taller-go.git) es el material de trabajo para este taller de Go. Está organizado por temas (intro, funciones, structs, etc.) y dentro de cada tema hay dos carpetas:
+
+- **`ejemplos/`**: programas completos y fragmentos que ilustran los conceptos explicados en el apunte. Sirven para seguir la teoría en la práctica y experimentar.
+- **`ejercicios/`**: esqueletos de código con partes incompletas que se corresponden con los ejercicios propuestos a lo largo de este taller. La idea es que completen esos archivos como práctica.
+
+Para clonarlo:
+
+```console
+git clone https://github.com/untref-ayp2/taller-go.git
+```
+
+Una vez clonado, tienen acceso a todo el contenido en su máquina local. Si se actualiza el repo pueden usar:
+
+```console
+git pull
+```
 
 ## Links útiles
 
