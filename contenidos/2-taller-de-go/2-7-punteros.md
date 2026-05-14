@@ -1,5 +1,5 @@
 ---
-file: 2-taller-de-go/2-6-punteros.md
+file: 2-taller-de-go/2-7-punteros.md
 label: punteros
 ---
 

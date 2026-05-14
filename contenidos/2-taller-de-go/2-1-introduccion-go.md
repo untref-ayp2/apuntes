@@ -115,7 +115,7 @@ Se recomienda crear una carpeta en el disco local, por ejemplo con el nombre tal
 git clone https://github.com/untref-ayp2/taller-go.git
 ```
 
-El siguiente fragmento se encuentra en el archivo `00-hola/main.go`
+El siguiente fragmento se encuentra en el archivo `01-introduccion/ejemplos/00-hola/main.go`
 
 ```go
 package main
@@ -179,11 +179,13 @@ Go ofrece un servicio *online* llamado Playground [https://go.dev/play](https://
 
 1. Verificá si Go está instalado en tu PC ejecutando el comando `go version` en una terminal. Si no lo está, descargalo e instalalo desde [https://go.dev/dl/](https://go.dev/dl/).
 
-2. Cloná el repositorio `taller-go`, ubicate en el directorio `00-hola/` y ejecutá el programa con `go run main.go`. ¿Qué salida se obtiene?
+2. Cloná el repositorio `taller-go`, ubicate en el directorio `01-introduccion/ejemplos/00-hola/` y ejecutá el programa con `go run main.go`. ¿Qué salida se obtiene?
 
 3. Andá al [Go Playground](https://go.dev/play/), escribí un programa que sume los números `42` y `18` e imprima el resultado, luego ejecutalo y compartí el *link* haciendo click en el botón _Share_.
 
-4. Modificá el archivo `main.go` de `00-hola/` para que el saludo diga tu nombre en lugar de `"mundo"`, ejecutalo nuevamente y verificá que la salida refleje el cambio.
+4. Modificá el archivo `main.go` de `01-introduccion/ejemplos/00-hola/` para que el saludo diga tu nombre en lugar de `"mundo"`, ejecutalo nuevamente y verificá que la salida refleje el cambio.
+
+Los esqueletos de estos ejercicios están en `01-introduccion/ejercicios/` del repositorio taller-go. Las soluciones están disponibles en la rama `soluciones`.
 
 ## Links útiles
 

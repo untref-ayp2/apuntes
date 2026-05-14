@@ -47,14 +47,15 @@ project:
       children:
         - file: 2-taller-de-go/2-1-introduccion-go.md
         - file: 2-taller-de-go/2-2-paquetes-y-modulos.md
-        - file: 2-taller-de-go/2-3-funciones.md
-        - file: 2-taller-de-go/2-4-arreglos-slices.md
-        - file: 2-taller-de-go/2-5-maps.md
-        - file: 2-taller-de-go/2-6-punteros.md
-        - file: 2-taller-de-go/2-7-structs-interfaces.md
-        - file: 2-taller-de-go/2-8-archivos.md
-        - file: 2-taller-de-go/2-9-errores.md
-        - file: 2-taller-de-go/2-10-oop.md
+        - file: 2-taller-de-go/2-3-elementos-basicos.md
+        - file: 2-taller-de-go/2-4-funciones.md
+        - file: 2-taller-de-go/2-5-arreglos-slices.md
+        - file: 2-taller-de-go/2-6-maps.md
+        - file: 2-taller-de-go/2-7-punteros.md
+        - file: 2-taller-de-go/2-8-structs-interfaces.md
+        - file: 2-taller-de-go/2-9-archivos.md
+        - file: 2-taller-de-go/2-10-errores.md
+        - file: 2-taller-de-go/2-11-oop.md
     - title: Estructuras de Datos
       children:
         - file: 3-estructuras-de-datos/3-1-tad.md
