@@ -444,4 +444,123 @@ T(n) = O(log_2(n))
 $$
 
 Es decir al tener el arreglo ordenado, la búsqueda binaria necesita realizar mucho menos operaciones que la búsqueda lineal para encontrar el valor buscado o determinar que no existe. La clave está en descartar la mitad del arreglo en cada vuelta del ciclo **`for`**.
+
+## Ejercicios
+
+### 1. Potencia iterativa
+
+Indique el tiempo de ejecución en notación O.
+
+```text
+Algoritmo Potencia(x, n)
+    resultado ← 1
+    Para i ← 0 hasta n-1:
+        resultado ← resultado * x
+    Fin Para
+    Devolver resultado
+Fin Algoritmo
+```
+
+### 2. Mostrar alumnos
+
+Indique el tiempo de ejecución en notación O.
+
+```text
+Algoritmo MostrarAlumnos(a)
+    i ← 0
+    Mientras i < longitud(a):
+        Imprimir a[i].nombre, " ", a[i].apellido
+        i ← i + 1
+    Fin Mientras
+Fin Algoritmo
+```
+
+### 3. Fragmentos de código
+
+Para cada uno de los siguientes fragmentos, dé un análisis en notación O del tiempo de ejecución.
+
+```text
+// Fragmento 1
+Para i ← 0 hasta n-1:
+    suma ← suma + 1
+Fin Para
+```
+
+```text
+// Fragmento 2
+Para i ← 0 hasta n-1, paso 2:
+    suma ← suma + 1
+Fin Para
+```
+
+```text
+// Fragmento 3
+Para i ← 0 hasta n-1:
+    Para j ← 0 hasta n-1:
+        suma ← suma + 1
+    Fin Para
+Fin Para
+```
+
+```text
+// Fragmento 4
+Para i ← 0 hasta n-1:
+    suma ← suma + 1
+Fin Para
+Para j ← 0 hasta n-1:
+    suma ← suma + 1
+Fin Para
+```
+
+```text
+// Fragmento 5
+Para i ← 0 hasta n-1:
+    Para j ← 0 hasta n²-1:
+        suma ← suma + 1
+    Fin Para
+Fin Para
+```
+
+```text
+// Fragmento 6
+Para i ← 0 hasta n-1:
+    Para j ← 0 hasta i-1:
+        suma ← suma + 1
+    Fin Para
+Fin Para
+```
+
+```text
+// Fragmento 7
+Para i ← 0 hasta n-1:
+    Para j ← 0 hasta n²-1:
+        Para k ← 0 hasta j-1:
+            suma ← suma + 1
+        Fin Para
+    Fin Para
+Fin Para
+```
+
+### 4. Subsecuencia contigua de suma máxima
+
+Dado un arreglo de números enteros (que puede contener positivos y negativos), escriba un algoritmo que encuentre la subsecuencia **contigua** cuya suma sea máxima y devuelva dicha suma.
+
+Por ejemplo, dado el arreglo `[-1, 2, 3, -4]`, las subsecuencias contiguas son:
+
+```text
+[-1]           → suma = -1
+[-1, 2]        → suma =  1
+[-1, 2, 3]     → suma =  4
+[-1, 2, 3, -4] → suma =  0
+[2]            → suma =  2
+[2, 3]         → suma =  5   ← máxima
+[2, 3, -4]     → suma =  1
+[3]            → suma =  3
+[3, -4]        → suma = -1
+[-4]           → suma = -4
+```
+
+La subsecuencia con suma máxima es `[2, 3]` cuya suma es `5`.
+
+Indique el tiempo de ejecución en notación O. Si encuentra más de una forma de hacerlo, plantee ambas y compare la eficiencia.
 `````
