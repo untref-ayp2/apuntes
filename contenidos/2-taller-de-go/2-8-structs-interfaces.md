@@ -274,19 +274,19 @@ Una misma variable concreta (`ana`) puede verse a través de distintas interface
 
 ## Ejercicios
 
-1. Definí un *struct* `Punto` con campos `X` e `Y` de tipo `float64`. Implementá una función `NuevoPunto(x, y float64) Punto` que cree un nuevo punto, y un método `(p Punto) DistanciaOrigen() float64` que devuelva el cuadrado de la distancia al origen ($X^2 + Y^2$).
+Implementá un sistema de figuras geométricas en un solo archivo:
 
-2. Implementá un sistema de figuras geométricas:
+1. Definí un *struct* `Punto` con campos `X` e `Y` de tipo `float64`. Implementá una función `NewPunto(x, y float64) Punto`.
 
-   a. Definí una interfaz `Figura` con los métodos `Area() float64` y `Perimetro() float64`.
+2. Definí una interfaz `Figura` con los métodos `Area() float64` y `Perimetro() float64`.
 
-   b. Creá un *struct* `Rectangulo` con campos `Ancho` y `Alto` (`float64`). Implementá la interfaz `Figura`.
+3. Creá un *struct* `Rectangulo` con dos puntos: `EsqInfIzq` y `EsqSupDer`. Implementá `NewRectangulo(infIzq, supDer Punto) Rectangulo` y los métodos de `Figura`.
 
-   c. Creá un *struct* `Circulo` con campo `Radio` (`float64`). Implementá la interfaz `Figura` usando `math.Pi`.
+4. Creá un *struct* `Circulo` con `Centro` (`Punto`) y `Radio` (`float64`). Implementá `NewCirculo(centro Punto, radio float64) Circulo` y los métodos de `Figura` usando `math.Pi`.
 
-   d. Creá un *struct* `Cuadrado` que incruste (`embedding`) un `Rectangulo`. Implementá una función `NuevoCuadrado(lado float64) Cuadrado`.
+5. Creá un *struct* `Cuadrado` que incruste (`embedding`) un `Rectangulo`. Implementá `NewCuadrado(infIzq Punto, lado float64) Cuadrado`. `Cuadrado` usa `Area()` y `Perimetro()` de `Rectangulo` mediante la promoción de métodos del *embedding*.
 
-   e. Escribí una función `main` que cree un `Rectangulo` de 3×4, un `Circulo` de radio 5 y un `Cuadrado` de lado 4, los almacene en un `[]Figura`, e imprima área y perímetro de cada uno.
+6. Escribí un `main` que cree un `Rectangulo` de (0,0) a (3,4), un `Circulo` con centro en (0,0) y radio 5, y un `Cuadrado` desde (0,0) de lado 4. Almacenalos en `[]Figura` e imprimí área y perímetro de cada uno.
 
 ```go
 // Salida esperada:
@@ -295,4 +295,4 @@ Una misma variable concreta (`ana`) puede verse a través de distintas interface
 // Cuadrado: área = 16, perímetro = 16
 ```
 
-Los esqueletos de estos ejercicios están en `08-structs-interfaces/ejercicios/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+Los esqueletos de estos ejercicios están en `08-structs-interfaces/ejercicios/figuras/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
