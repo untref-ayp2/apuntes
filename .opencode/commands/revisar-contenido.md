@@ -173,7 +173,7 @@ Para cada SVG referenciado:
 
 1. NUNCA modificar archivos directamente.
 2. NUNCA ejecutar `make build`, `myst build`, `typst compile` ni comandos de build.
-3. NUNCA hacer commits ni cambios en el repositorio.
+3. NUNCA hacer commits, push ni cambios en el repositorio.
 4. NO corregir errores sobre la marcha — solo señalarlos.
 5. Dudas conceptuales → preguntar al usuario.
 6. Para capítulos 3-x y 4-x, sugerir recursos externos de `github.com/untref-ayp2` (guías de ejercicios, código de ejemplo) según el paso 5. Para el resto de los capítulos, NO sugerir ampliación de contenido — solo señalar errores existentes.

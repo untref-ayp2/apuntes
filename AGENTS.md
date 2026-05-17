@@ -2,6 +2,11 @@
 
 Este documento contiene las directivas para agentes que colaboren en este proyecto.
 
+## Regla Crítica
+
+**NUNCA hacer commit ni push sin autorización explícita del usuario.**
+Esperar a que el usuario diga "commiteá", "hacé commit" o "pusheá".
+
 ## Lineamientos Generales
 
 1. **Idioma**: Español rioplatense
@@ -418,6 +423,6 @@ ______________________________________________________________________
 ## Normas del Proyecto
 
 - **NO abrir PRs** sin autorización expresa del usuario
-- **NO commitear** sin autorización expresa del usuario. Esperar a que el usuario indique explícitamente "commiteá" o "hacé commit".
+- **NO commitear ni pushear** sin autorización expresa del usuario. Esperar a que el usuario indique explícitamente "commiteá", "hacé commit" o "pusheá".
 - Los commits se hacen directamente a la rama de trabajo
 - Solo crear PR cuando el trabajo esté completo y el usuario lo solicite
