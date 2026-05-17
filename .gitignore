@@ -143,3 +143,9 @@ dmypy.json
 # OSX
 .DS_Store
 .jupyter/desktop-workspaces/default-37a8.jupyterlab-workspace
+
+# Backup files
+*.bak
+
+# Code archives (duplicates tracked source)
+contenidos/_static/code/*.zip
