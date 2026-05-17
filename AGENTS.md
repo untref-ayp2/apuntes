@@ -385,6 +385,23 @@ replace github.com/untref-ayp2/data-structures => ../data-structures
 Esto permite que el alumno implemente las interfaces en su fork y los ejercicios del
 taller consuman su propia implementación.
 
+### Repositorios como fuente única de ejercicios
+
+Los enunciados y detalles de los ejercicios **NO** deben ir inline en el apunte.
+El apunte solo debe contener:
+
+```markdown
+## Ejercicios
+
+Los ejercicios de este capítulo están en `XX-tema/ejercicios/`
+del repositorio [taller-*](https://github.com/untref-ayp2/taller-*).
+Cada directorio contiene un `README.md` con el enunciado y los esqueletos
+para resolverlo.
+```
+
+Sin tablas, sin listas de ejercicios, sin descripciones. Todo va en el `README.md`
+del repo. Así se puede agregar, modificar o sacar ejercicios sin tocar el apunte.
+
 ### `{code-file}` no soportado
 
 `{code-file}` era una directiva de Sphinx (JBv1). En mystmd **no está disponible**.

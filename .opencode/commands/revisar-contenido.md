@@ -84,6 +84,7 @@ Sin match exacto, buscar con `contenidos/**/*${termino}*.md`.
 - Código Go: que compile y sea correcto
 - Diagramas: texto y valores coinciden con ejemplos
 - Ejercicios: enunciados claros, soluciones correctas
+  - Los detalles de los ejercicios **NO** van inline en el apunte (ni tablas, ni listas, ni descripciones). Todo va en `README.md` del repo `taller-*` asociado. El apunte solo referencia el directorio del repo.
 - Citas/referencias: formato `{cite}`, existen en `references.bib`
 - Consistencia entre secciones del capítulo
 

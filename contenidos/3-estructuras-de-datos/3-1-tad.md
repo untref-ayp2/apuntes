@@ -286,26 +286,33 @@ fuera del paquete `contador` puede accederlos directamente. Las funciones y mét
 con mayúscula (`NuevoContador`, `Incrementar`, `Valor`) son públicos: forman la
 interfaz del TAD.
 
-## Ejercicios
+## Repositorio del taller de TAD
 
-Los ejercicios de este capítulo están en el repositorio
-[`untref-ayp2/taller-tad`](https://github.com/untref-ayp2/taller-tad). Cada ejercicio
-tiene su propio directorio con un esqueleto incompleto y tests automatizados.
+Los ejemplos y ejercicios de este capítulo están en el repositorio
+[`untref-ayp2/taller-tad`](https://github.com/untref-ayp2/taller-tad). Está organizado
+por capítulo (`01-tipos-abstractos-de-datos/`, `02-pilas-colas/`, etc.) y dentro de cada
+uno hay dos carpetas:
 
-```{admonition} Instrucciones
----
-class: note
----
-1. Cloná el repositorio: `git clone https://github.com/untref-ayp2/taller-tad.git`
-2. Ingresá al directorio del ejercicio: `cd 01-tipos-abstractos-de-datos/ejercicios/01-fraccion/`
-3. Implementá las funciones que faltan en el esqueleto
-4. Ejecutá los tests: `go test -v`
-5. Cuando pasen todos los tests, pasá al ejercicio siguiente
+- **`ejemplos/`**: programas completos que ilustran los conceptos del apunte.
+- **`ejercicios/`**: esqueletos de código con partes incompletas para completar y tests
+  automatizados para validar la solución.
+
+Para clonarlo:
+
+```console
+git clone https://github.com/untref-ayp2/taller-tad.git
 ```
 
-Los ejercicios disponibles son:
+Para ejecutar los tests de un ejercicio:
 
-| # | TAD | Descripción | Directorio |
-|---|---|---|---|
-| 1 | `Fraccion` | Números racionales, simplificación, operaciones aritméticas | `01-fraccion/` |
-| 2 | `Reloj` | Hora en formato 24h, avance de segundos con wrapping | `02-reloj/` |
+```console
+cd taller-tad/01-tipos-abstractos-de-datos/ejercicios/01-fraccion
+go test -v
+```
+
+## Ejercicios
+
+Los ejercicios de este capítulo están en `01-tipos-abstractos-de-datos/ejercicios/`
+del repositorio [`untref-ayp2/taller-tad`](https://github.com/untref-ayp2/taller-tad).
+Cada directorio contiene un `README.md` con el enunciado y los esqueletos para
+resolverlo.
