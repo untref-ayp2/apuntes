@@ -1,5 +1,5 @@
 ---
-description: Revisa ortografía, gramática, conceptos e imágenes SVG de un capítulo del apunte AyP2
+description: Revisa ortografía, gramática, conceptos, imágenes SVG y recursos externos de GitHub de un capítulo del apunte AyP2
 ---
 
 # /revisar-contenido
@@ -95,7 +95,30 @@ Sin match exacto, buscar con `contenidos/**/*${termino}*.md`.
 - Labels de ejercicios: `ej-{seccion}-{numero}`
 - Frontmatter YAML: mínimo `label:`
 
-### 5. Revisión de imágenes SVG
+### 5. Búsqueda de recursos externos en GitHub
+
+Solo para capítulos 3-x y 4-x (Estructuras de Datos o Diseño de Algoritmos).
+
+1. Consultar `github.com/untref-ayp2` para encontrar repositorios relevantes al tema del capítulo:
+   - Guías de ejercicios: `guia-*` (ej: `guia-pilas-colas`, `guia-abb`, `guia-backtracking`)
+   - Código de ejemplo: `examples/` (subdirectorios como `recursividad`, `avidos`, `backtracking`)
+   - Data structures: `data-structures`
+   - Repos archivados: `snippets`, `clase-4-*`, `examenes`
+2. Usar la sección "Vinculación con Repositorios Externos" de `Plan-Migracion.md`
+   para identificar qué repos corresponden al capítulo.
+3. Para cada repo encontrado, revisar su `README.md` y estructura de directorios
+   para identificar:
+   - Ejercicios que podrían citarse o referenciarse desde el apunte
+   - Código de ejemplo que complemente la teoría del capítulo
+   - Soluciones de guías que podrían incluirse como `{code-file}`
+4. Presentar los hallazgos como tabla de sugerencias.
+5. Preguntar al usuario antes de incorporar cualquier recurso:
+   "¿Querés que explore el repo `X` en detalle para buscar contenido para incluir?"
+   - Si el usuario dice que sí, explorar el repo y listar archivos concretos.
+   - Si el usuario dice que no, saltar ese repo.
+6. NO modificar ningún archivo del apunte durante este paso.
+
+### 6. Revisión de imágenes SVG
 
 Para cada SVG referenciado:
 1. Abrir el SVG (tanto `_light` como `_dark`)
@@ -103,7 +126,7 @@ Para cada SVG referenciado:
 3. Verificar clases CSS estándar (`.title`, `.code`, `.variable-node`, `.value-node`, `.arrow`)
 4. Verificar pares light/dark completos
 
-### 6. Reporte
+### 7. Reporte
 
 ```markdown
 ## Reporte de revisión: <archivo>
@@ -113,6 +136,9 @@ Para cada SVG referenciado:
 
 ### 🧠 Conceptos
 - `archivo.md:XX` — descripción → sugerencia
+
+### 🌐 Recursos externos
+- `untref-ayp2/repo` — descripción → sugerencia de inclusión
 
 ### 🖼️ Imágenes SVG
 - `ruta/al/svg.svg` — descripción → sugerencia
@@ -132,7 +158,7 @@ Para cada SVG referenciado:
 3. NUNCA hacer commits ni cambios en el repositorio.
 4. NO corregir errores sobre la marcha — solo señalarlos.
 5. Dudas conceptuales → preguntar al usuario.
-6. NO sugerir ampliación de contenido — solo señalar errores existentes; no recomendar agregar secciones, ejemplos, ejercicios ni contenido nuevo.
+6. Para capítulos 3-x y 4-x, sugerir recursos externos de `github.com/untref-ayp2` (guías de ejercicios, código de ejemplo) según el paso 5. Para el resto de los capítulos, NO sugerir ampliación de contenido — solo señalar errores existentes.
 
 ## Notas de estilo
 
@@ -144,6 +170,7 @@ Para cada SVG referenciado:
 ## Referencias
 
 - Skill `diagramas-svg` para estándares de figuras light/dark
-- `Plan-Migracion.md` para estado de revisión de cada archivo
+- `Plan-Migracion.md` para estado de revisión y tabla de vinculación con repos
 - `AGENTS.md` para convenciones del proyecto
 - `contenidos/myst.yml` para estructura del TOC
+- `github.com/untref-ayp2` para guías de ejercicios y código de ejemplo
