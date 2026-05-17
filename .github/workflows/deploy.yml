@@ -1,10 +1,10 @@
 name: deploy-book
 
 on:
-  # Trigger the workflow on push to jb2-martin branch
+  # Trigger the workflow on push to main branch
   push:
     branches:
-      - jb2-martin
+      - main
 
 env:
   BASE_URL: /${{ github.event.repository.name }}
