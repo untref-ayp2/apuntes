@@ -191,8 +191,7 @@ Hola, Martín
 
 ## Ejercicios
 
-1. Escriba una función variádica `promedio` que reciba `nums ...float64` y devuelva el promedio. Si no recibe argumentos, debe devolver `0.0`.
-
-2. Escriba una función `aplicar` que reciba un slice de enteros y una función `f func(int) int`, y devuelva un nuevo slice con `f` aplicada a cada elemento.
-
-Los esqueletos de estos ejercicios están en `04-funciones/ejercicios/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+Los ejercicios de este capítulo están en `04-funciones/ejercicios/`
+del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+Cada directorio contiene un `README.md` con el enunciado y los esqueletos
+para resolverlo.

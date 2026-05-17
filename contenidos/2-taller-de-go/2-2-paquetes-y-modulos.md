@@ -96,7 +96,7 @@ func main() {
 
 La ruta completa del import (`github.com/untref-ayp2/miproyecto/saludo`) indica que debemos importar el paquete `saludo`, que es un subpaquete de nuestro módulo. El nombre del paquete (`saludo`) es la última parte de la ruta y es la referencia que usamos para acceder a sus miembros exportados.
 
-Otros tipos de módulos que podemos importar, son los módulos de otros programadores, por ejemplo podríamos pensar en utilizar un supuesto módulo de algoritmos de ordenamiento de la cátedra. Entonces, imaginemos que existe el módulo llamado `"untref.edu.ar/ayp2/busqueda"`. Podemos importarlo de la siguiente manera.
+Otros tipos de módulos que podemos importar son los módulos de otros programadores, por ejemplo, podríamos pensar en utilizar un supuesto módulo de algoritmos de ordenamiento de la cátedra. Entonces, imaginemos que existe el módulo llamado `"untref.edu.ar/ayp2/busqueda"`. Podemos importarlo de la siguiente manera.
 
 ```go
 package main
@@ -213,7 +213,7 @@ Podemos notar que los mensajes de error de Go muchas veces (no siempre) son muy 
 
 Si bien en este ejemplo, queremos mostrar una forma alternativa de solucionar la falta de la dependencia, `go get` es otra forma de arreglar el problema que, intencionalmente, acabamos de crear.
 
-Para ello usaremos `go mod tidy`, si consultamos la ayuda podemos aprender que es lo que este comando realmente hace con nuestro módulo.
+Para ello usaremos `go mod tidy`, si consultamos la ayuda podemos aprender qué es lo que este comando realmente hace con nuestro módulo.
 
 ```console
 $ go help mod tidy
@@ -240,7 +240,7 @@ go: downloading golang.org/x/sys v0.25.0
 go: downloading github.com/mattn/go-colorable v0.1.13
 ```
 
-Si ahora vemos como luce el archivo `go.mod` podemos comprobar que se agregó la directiva `require` donde se declaran las dependencias faltantes (pero adicionalmente `go mod tidy` también descargó esas dependencias en nuestro proyecto).
+Si ahora vemos cómo luce el archivo `go.mod` podemos comprobar que se agregó la directiva `require` donde se declaran las dependencias faltantes (pero adicionalmente `go mod tidy` también descargó esas dependencias en nuestro proyecto).
 
 ```console
 $ cat go.mod

@@ -6,7 +6,7 @@ label: structs-interfaces
 
 ## _Structs_
 
-En Go las _structs_ son colecciones de campos. A diferencia de las clases en Java, una `struct` no soporta herencia, no tiene constructores explícitos ni métodos *static*. Sin embargo, puede tener métodos asociados (como veremos en breve) y puede incrustar otras _structs_ como forma de composición. Podríamos pensar una `struct` como una clase liviana que agrupa datos, sin el peso de un sistema de herencia ni la maquinaria de POO tradicional.
+En Go las _structs_ son colecciones de campos. A diferencia de las clases en Java, una `struct` no soporta herencia, no tiene constructores explícitos ni métodos *static*. Sin embargo, puede tener métodos asociados (como veremos en breve) y puede incrustar otras _structs_ como forma de composición. Podríamos pensar en una `struct` como una clase liviana que agrupa datos, sin el peso de un sistema de herencia ni la maquinaria de POO tradicional.
 
 ```go
 type Direccion struct {
@@ -274,25 +274,7 @@ Una misma variable concreta (`ana`) puede verse a través de distintas interface
 
 ## Ejercicios
 
-Implementá un sistema de figuras geométricas en un solo archivo:
-
-1. Definí un *struct* `Punto` con campos `X` e `Y` de tipo `float64`. Implementá una función `NewPunto(x, y float64) Punto`.
-
-2. Definí una interfaz `Figura` con los métodos `Area() float64` y `Perimetro() float64`.
-
-3. Creá un *struct* `Rectangulo` con dos puntos: `EsqInfIzq` y `EsqSupDer`. Implementá `NewRectangulo(infIzq, supDer Punto) Rectangulo` y los métodos de `Figura`.
-
-4. Creá un *struct* `Circulo` con `Centro` (`Punto`) y `Radio` (`float64`). Implementá `NewCirculo(centro Punto, radio float64) Circulo` y los métodos de `Figura` usando `math.Pi`.
-
-5. Creá un *struct* `Cuadrado` que incruste (`embedding`) un `Rectangulo`. Implementá `NewCuadrado(infIzq Punto, lado float64) Cuadrado`. `Cuadrado` usa `Area()` y `Perimetro()` de `Rectangulo` mediante la promoción de métodos del *embedding*.
-
-6. Escribí un `main` que cree un `Rectangulo` de (0,0) a (3,4), un `Circulo` con centro en (0,0) y radio 5, y un `Cuadrado` desde (0,0) de lado 4. Almacenalos en `[]Figura` e imprimí área y perímetro de cada uno.
-
-```go
-// Salida esperada:
-// Rectángulo: área = 12, perímetro = 14
-// Círculo: área = 78.54, perímetro = 31.42
-// Cuadrado: área = 16, perímetro = 16
-```
-
-Los esqueletos de estos ejercicios están en `08-structs-interfaces/ejercicios/figuras/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+Los ejercicios de este capítulo están en `08-structs-interfaces/ejercicios/notificaciones/`
+del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+El directorio contiene un `README.md` con el enunciado y los esqueletos
+para resolverlo.

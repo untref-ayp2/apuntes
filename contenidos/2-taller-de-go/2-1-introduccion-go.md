@@ -15,7 +15,7 @@ width: 200px
 ---
 ```
 
-Los creadores de Go, [Robert Griesemer](https://en.wikipedia.org/wiki/Robert_Griesemer), [Rob Pike](https://en.wikipedia.org/wiki/Rob_Pike) y [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson), han dicho que aunque la sintaxis del lenguaje está inspirada principalmente en C y en Python y en menor medida en Java, el objetivo siempre fue crear un nuevo lenguaje simple y eficiente. Go fue diseñado para ambientes altamente productivos y concurrentes (es decir donde varios programas se ejecutan al mismo tiempo y comparten recursos). Fue liberado como código abierto y está disponible para todos los sistemas operativos.
+Los creadores de Go, [Robert Griesemer](https://en.wikipedia.org/wiki/Robert_Griesemer), [Rob Pike](https://en.wikipedia.org/wiki/Rob_Pike) y [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson), han dicho que aunque la sintaxis del lenguaje está inspirada principalmente en C y en Python, y en menor medida en Java, el objetivo siempre fue crear un nuevo lenguaje simple y eficiente. Go fue diseñado para ambientes altamente productivos y concurrentes (es decir, donde varios programas se ejecutan al mismo tiempo y comparten recursos). Fue liberado como código abierto y está disponible para todos los sistemas operativos.
 
 ```{admonition} Atención
 ---
@@ -133,7 +133,7 @@ obtendremos como resultado:
 ¡Hola mundo!
 ```
 
-Aquí vemos un ejemplo de una función simple que recibe 2 argumentos de tipo `int` y devuelve un nuevo valor de tipo `int`.
+Aquí vemos un ejemplo de una función simple que recibe dos argumentos de tipo `int` y devuelve un nuevo valor de tipo `int`.
 
 ```go
 func sumar(a, b int) int {
@@ -175,11 +175,14 @@ Go ofrece un servicio *online* llamado Playground [https://go.dev/play](https://
 
 2. Cloná el repositorio `taller-go`, ubicate en el directorio `01-introduccion/ejemplos/00-hola/` y ejecutá el programa con `go run main.go`. ¿Qué salida se obtiene?
 
-3. Andá al [Go Playground](https://go.dev/play/), escribí un programa que sume los números `42` y `18` e imprima el resultado, luego ejecutalo y compartí el *link* haciendo click en el botón _Share_.
+3. Andá al [Go Playground](https://go.dev/play/), escribí un programa que sume los números `42` y `18` e imprima el resultado, luego ejecutalo y compartí el *link* haciendo *clic* en el botón _Share_.
 
 4. Modificá el archivo `main.go` de `01-introduccion/ejemplos/00-hola/` para que el saludo diga tu nombre en lugar de `"mundo"`, ejecutalo nuevamente y verificá que la salida refleje el cambio.
 
-Los esqueletos de estos ejercicios están en `01-introduccion/ejercicios/` del repositorio taller-go.
+Los enunciados completos y esqueletos de los ejercicios con código están en
+`01-introduccion/ejercicios/` del repositorio
+[taller-go](https://github.com/untref-ayp2/taller-go.git).
+Cada subdirectorio contiene un `README.md` con el enunciado.
 
 ## Repositorio del taller de Go
 

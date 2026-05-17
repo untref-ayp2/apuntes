@@ -366,5 +366,6 @@ ______________________________________________________________________
 ## Normas del Proyecto
 
 - **NO abrir PRs** sin autorización expresa del usuario
+- **NO commitear** sin autorización expresa del usuario. Esperar a que el usuario indique explícitamente "commiteá" o "hacé commit".
 - Los commits se hacen directamente a la rama de trabajo
 - Solo crear PR cuando el trabajo esté completo y el usuario lo solicite

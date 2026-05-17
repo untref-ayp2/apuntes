@@ -72,7 +72,7 @@ func main() {
 el nro. ingresado debe ser mayor o igual a cero, en su lugar se recibió: -1
 ```
 
-En este ejemplo, la función retorna un error más informativo que incluye el valor de entrada que causó el problema. Este tipo de mensajes con contexto son de gran ayuda para depuración y *logging*.
+En este ejemplo, la función retorna un error más informativo que incluye el valor de entrada que causó el problema. Este tipo de mensajes con contexto es de gran ayuda para depuración y *logging*.
 
 
 En los dos ejemplos anteriores, podemos observar la forma típica en la que se maneja un error en Go. Van a encontrar `if err != nil` en múltiples lugares de un programa de Go.
@@ -348,27 +348,7 @@ con archivos.
 
 ## Ejercicios
 
-1. **División segura.** Escribí una función `dividir(a, b int) (int, error)` que
-   retorne el resultado de a/b y un error si b es cero. Usá `errors.New`.
-
-2. **Clasificar nota.** Escribí una función `clasificar(nota int) (string, error)`
-   que devuelva "aprobado" si nota >= 4, "desaprobado" si nota < 4, o un error
-   con `fmt.Errorf` si la nota está fuera del rango 0-10 (incluyendo el valor
-   inválido en el mensaje).
-
-3. **Buscar producto.** Declará un error centinela `ErrProductoNoEncontrado`.
-   Escribí una función `buscarProducto(codigos []string, target string) (string, error)`
-   que recorra el slice y devuelva el código si existe, o `ErrProductoNoEncontrado`
-   en caso contrario.
-
-4. **Saldo insuficiente.** Definí un struct `SaldoInsuficienteError` con campos
-   `Saldo` y `Monto` (ambos `float64`) que implemente `error`. Escribí una
-   función `extraer(saldo, monto float64) (float64, error)` que devuelva el
-   saldo restante o un `SaldoInsuficienteError` si el monto supera al saldo.
-
-5. **Leer configuración.** Escribí una función `leerConfig(ruta string) (string, error)`
-   que llame a `os.ReadFile(ruta)` (del paquete `os`). Si hay error, agregale
-   contexto con `fmt.Errorf` y `%w` indicando que falló al leer la configuración.
-   En el `main`, usá `errors.Is` para detectar el error original.
-
-Los esqueletos de estos ejercicios están en `10-errores/ejercicios/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+Los ejercicios de este capítulo están en `10-errores/ejercicios/`
+del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+Cada directorio contiene un `README.md` con el enunciado y los esqueletos
+para resolverlo.

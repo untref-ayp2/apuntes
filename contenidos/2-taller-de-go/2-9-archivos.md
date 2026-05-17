@@ -148,14 +148,7 @@ func main() {
 
 ## Ejercicios
 
-1. Escribí un programa que lea un archivo de texto y muestre por pantalla la cantidad de líneas que contiene.
-
-2. Escribí una función `CopiarArchivo(origen, destino string) error` que copie el contenido de un archivo a otro. Usá `os.ReadFile` y `os.WriteFile`.
-
-3. Escribí un programa que lea un archivo `numeros.txt` donde cada línea contiene un número entero, los sume y muestre el resultado. Usá `bufio.Scanner` y `strconv.Atoi` para convertir cada línea a `int`.
-
-4. Escribí una función `AgregarLinea(archivo, linea string) error` que agregue una línea al final de un archivo existente. Usá `os.OpenFile` con la bandera `os.O_APPEND|os.O_WRONLY`.
-
-5. Escribí un programa que dado un archivo de texto, genere otro archivo donde cada línea esté numerada (similar al ejemplo de `bufio.Scanner`).
-
-Los esqueletos de estos ejercicios están en `09-archivos/ejercicios/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+Los ejercicios de este capítulo están en `09-archivos/ejercicios/`
+del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+Cada directorio contiene un `README.md` con el enunciado y los esqueletos
+para resolverlo.

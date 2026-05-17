@@ -259,9 +259,10 @@ if _, ok := conjunto["manzana"]; ok {
 
 ## Ejercicios
 
-1. Escribir una función `ContarPalabras` que cuente las palabras en un string y devuelva un mapa que mapee las palabras a su número de ocurrencias. La función `Split` del paquete `strings` puede ser útil.
-2. Escribir una función que compare dos mapas de cadenas y devuelva `true` si los mapas contienen las mismas claves y los mismos valores. Usa el siguiente prototipo: `func Igual(x, y map[string]int) bool`.
-3. Los anagramas son palabras que tienen las mismas letras pero en un orden diferente. Escribir una función `Anagramas` que tome dos strings y devuelva `true` si son anagramas. Usa el siguiente prototipo: `func Anagramas(s1, s2 string) bool`. La complejidad del algoritmo debe ser $O(n)$, donde n es la longitud de los strings.
+Los ejercicios de este capítulo están en `06-maps/ejercicios/`
+del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+Cada directorio contiene un `README.md` con el enunciado y los esqueletos
+para resolverlo.
 
 ## Enlaces recomendados
 
@@ -269,8 +270,6 @@ if _, ok := conjunto["manzana"]; ok {
 - [Go by Example: Maps](https://gobyexample.com/maps)
 - [The Go Programming Language Specification: Map types](https://golang.org/ref/spec#Map_types)
 
-[^1]: Durante el curso veremos qué es y como funciona una tabla de *hash*.
+[^1]: Durante el curso veremos qué es y cómo funciona una tabla de *hash*.
 
 [^2]: Más adelante estudiaremos los conjuntos como estructura de datos. Por ahora nos alcanza con saber que los conjuntos no pueden tener valores repetidos.
-
-Los esqueletos de estos ejercicios están en `06-maps/ejercicios/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).

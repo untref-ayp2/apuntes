@@ -53,7 +53,7 @@ len(numeros)
 7
 ```
 
-Para recorrer un _array_ en Go existe la instrucción `range`, que genera un iterador sobre el array devolviendo el índice (`i`) y el valor (`v`), en cada iteración del `for`, veamos un ejemplo:
+Para recorrer un _array_ en Go existe la instrucción `range`, que genera un iterador sobre el array devolviendo el índice (`i`) y el valor (`v`), en cada iteración del `for`. Veamos un ejemplo:
 
 ```go
 nombres := [4]string{"Fabián", "Martín", "Valeria", "Santiago"}
@@ -321,7 +321,7 @@ class: only-dark-mode
 Modificar x también afecta a y al compartir el arreglo subyacente.
 ```
 
-También, si el _slice_ sobre el que agregamos el nuevo elemento no tiene más capacidad para agregar elementos, se crea un nuevo _slice_ con aproximadamente el doble de capacidad y se copian los elementos del slice original:
+También si el _slice_ sobre el que agregamos el nuevo elemento no tiene más capacidad para agregar elementos, se crea un nuevo _slice_ con aproximadamente el doble de capacidad y se copian los elementos del slice original:
 
 ```go
 y = append(y, 4)
@@ -367,13 +367,11 @@ y = [0 1 2 3 4]
 
 ## Ejercicios
 
-1. Escriba una función `invertir` que invierta un slice. Por ejemplo, el slice `[1, 2, 3, 4]` invertido sería `[4, 3, 2, 1]`.
-2. Escriba una función `rotar` que rote un slice en un número `n` de posiciones. Por ejemplo, el slice `[1, 2, 3, 4, 5]` rotado en 2 posiciones sería `[3, 4, 5, 1, 2]`.
-3. Escriba una función `eliminar` que elimine un elemento de un slice. Por ejemplo, el slice `[1, 2, 3, 4, 5]` eliminando el elemento en la posición 2 sería `[1, 2, 4, 5]`.
-4. Escriba una función `eliminarDuplicados` que elimine los elementos duplicados de un slice. Por ejemplo, el slice `[1, 2, 2, 3, 4, 4, 5]` sin duplicados sería `[1, 2, 3, 4, 5]`.
+Los ejercicios de este capítulo están en `05-arreglos-slices/ejercicios/`
+del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+Cada directorio contiene un `README.md` con el enunciado y los esqueletos
+para resolverlo.
 
 ## Enlaces recomendados
 
 - [Go Slices: usage and internals](https://go.dev/blog/slices-intro) - Un artículo que explica el uso y la estructura interna de los _slices_ en Go.
-
-Los esqueletos de estos ejercicios están en `05-arreglos-slices/ejercicios/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
