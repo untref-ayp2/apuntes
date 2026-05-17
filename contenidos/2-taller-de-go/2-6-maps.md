@@ -272,3 +272,5 @@ if _, ok := conjunto["manzana"]; ok {
 [^1]: Durante el curso veremos qué es y como funciona una tabla de *hash*.
 
 [^2]: Más adelante estudiaremos los conjuntos como estructura de datos. Por ahora nos alcanza con saber que los conjuntos no pueden tener valores repetidos.
+
+Los esqueletos de estos ejercicios están en `06-maps/ejercicios/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).

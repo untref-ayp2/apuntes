@@ -375,3 +375,5 @@ y = [0 1 2 3 4]
 ## Enlaces recomendados
 
 - [Go Slices: usage and internals](https://go.dev/blog/slices-intro) - Un artículo que explica el uso y la estructura interna de los _slices_ en Go.
+
+Los esqueletos de estos ejercicios están en `05-arreglos-slices/ejercicios/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).

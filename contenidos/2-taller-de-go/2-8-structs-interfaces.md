@@ -271,3 +271,28 @@ Ana López trabajó 8 horas
 ```
 
 Una misma variable concreta (`ana`) puede verse a través de distintas interfaces: como `Caminante` para moverse o como `Trabajador` para trabajar. Esto es polimorfismo: el código que usa la interfaz queda desacoplado del tipo concreto.
+
+## Ejercicios
+
+1. Definí un *struct* `Punto` con campos `X` e `Y` de tipo `float64`. Implementá una función `NuevoPunto(x, y float64) Punto` que cree un nuevo punto, y un método `(p Punto) DistanciaOrigen() float64` que devuelva el cuadrado de la distancia al origen ($X^2 + Y^2$).
+
+2. Implementá un sistema de figuras geométricas:
+
+   a. Definí una interfaz `Figura` con los métodos `Area() float64` y `Perimetro() float64`.
+
+   b. Creá un *struct* `Rectangulo` con campos `Ancho` y `Alto` (`float64`). Implementá la interfaz `Figura`.
+
+   c. Creá un *struct* `Circulo` con campo `Radio` (`float64`). Implementá la interfaz `Figura` usando `math.Pi`.
+
+   d. Creá un *struct* `Cuadrado` que incruste (`embedding`) un `Rectangulo`. Implementá una función `NuevoCuadrado(lado float64) Cuadrado`.
+
+   e. Escribí una función `main` que cree un `Rectangulo` de 3×4, un `Circulo` de radio 5 y un `Cuadrado` de lado 4, los almacene en un `[]Figura`, e imprima área y perímetro de cada uno.
+
+```go
+// Salida esperada:
+// Rectángulo: área = 12, perímetro = 14
+// Círculo: área = 78.54, perímetro = 31.42
+// Cuadrado: área = 16, perímetro = 16
+```
+
+Los esqueletos de estos ejercicios están en `08-structs-interfaces/ejercicios/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).

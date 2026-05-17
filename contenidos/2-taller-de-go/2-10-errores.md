@@ -371,3 +371,4 @@ con archivos.
    contexto con `fmt.Errorf` y `%w` indicando que falló al leer la configuración.
    En el `main`, usá `errors.Is` para detectar el error original.
 
+Los esqueletos de estos ejercicios están en `10-errores/ejercicios/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).

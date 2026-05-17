@@ -273,3 +273,4 @@ class: hint
 Se recomienda recrear el ejemplo previamente presentado y ejecutarlo para corroborar que todo funciona correctamente.
 ```
 
+Los ejemplos de este capítulo están en `02-paquetes-y-modulos/ejemplos/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).

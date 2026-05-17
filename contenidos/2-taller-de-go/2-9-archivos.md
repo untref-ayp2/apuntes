@@ -157,3 +157,5 @@ func main() {
 4. Escribí una función `AgregarLinea(archivo, linea string) error` que agregue una línea al final de un archivo existente. Usá `os.OpenFile` con la bandera `os.O_APPEND|os.O_WRONLY`.
 
 5. Escribí un programa que dado un archivo de texto, genere otro archivo donde cada línea esté numerada (similar al ejemplo de `bufio.Scanner`).
+
+Los esqueletos de estos ejercicios están en `09-archivos/ejercicios/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).

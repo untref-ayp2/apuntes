@@ -366,4 +366,4 @@ for i := 0; i < 10; i++ {
 
 5. Dado un slice de enteros `[]int{3, 7, 2, 9, 5}`, usá `range` para encontrar e imprimir el valor máximo.
 
-Los esqueletos de estos ejercicios están en `03-elementos-basicos/ejercicios/` del repositorio taller-go. Las soluciones están disponibles en la rama `soluciones`.
+Los esqueletos de estos ejercicios están en `03-elementos-basicos/ejercicios/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
