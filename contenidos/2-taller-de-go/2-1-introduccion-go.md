@@ -177,12 +177,14 @@ Go ofrece un servicio *online* llamado Playground [https://go.dev/play](https://
 
 3. Andá al [Go Playground](https://go.dev/play/), escribí un programa que sume los números `42` y `18` e imprima el resultado, luego ejecutalo y compartí el *link* haciendo *clic* en el botón _Share_.
 
-4. Modificá el archivo `main.go` de `01-introduccion/ejemplos/00-hola/` para que el saludo diga tu nombre en lugar de `"mundo"`, ejecutalo nuevamente y verificá que la salida refleje el cambio.
+4. Modificá el archivo `main.go` de `01-introduccion/ejercicios/saludo-personalizado/`
+   para que la función `saludar(nombre string)` devuelva `"¡Hola, <nombre>!"`,
+   ejecutalo y verificá que pase el test ejecutando `go test` en ese directorio.
 
-Los enunciados completos y esqueletos de los ejercicios con código están en
-`01-introduccion/ejercicios/` del repositorio
-[taller-go](https://github.com/untref-ayp2/taller-go.git).
-Cada subdirectorio contiene un `README.md` con el enunciado.
+El enunciado completo y el esqueleto de este ejercicio están en
+`01-introduccion/ejercicios/saludo-personalizado/` del repositorio
+[taller-go](https://github.com/untref-ayp2/taller-go.git),
+con tests para validar tu solución.
 
 ## Repositorio del taller de Go
 
