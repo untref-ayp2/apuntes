@@ -4,51 +4,352 @@ label: tad
 
 # Tipos Abstractos de Datos
 
-Podemos imaginar un Tipo Abstracto de Datos (TAD) o _Abstract Data Type_ (ADT) en inglés, como una caja negra, la que puede contener valores y manipularlos, es decir realizar acciones con esos valores, por ejemplo ordenarlos, buscar un elemento dado, etc.
+## Definición
 
-```{note}
+Podemos imaginar un Tipo Abstracto de Datos (TAD) o _Abstract Data Type_ (ADT) en inglés,
+como una **caja negra** que contiene valores y define un conjunto de operaciones para
+manipularlos. Quien usa el TAD solo conoce **qué** operaciones puede realizar, pero no
+**cómo** están implementadas internamente.
+
+```{admonition} Definición
 ---
-class: definition
+class: hint
 ---
-Definición
+Un **TAD** es un modelo matemático caracterizado por:
+
+*   **Valores**: los datos que se pueden almacenar y manipular.
+*   **Operaciones**: las acciones que se pueden realizar sobre esos datos.
 ```
 
-Un TAD es un modelo matemático caracterizado por:
+En un TAD distinguimos dos capas: la **estructura interna** donde realmente se almacenan
+los datos, y la **interfaz** que expone hacia afuera las operaciones disponibles. Esta
+separación es fundamental: quien usa el TAD solo necesita conocer la interfaz, no los
+detalles internos.
 
-Un conjunto de valores
-: Son los datos que se pueden manipular.
+Por ejemplo, un conjunto es un TAD que permite agregar elementos, consultar si un
+elemento pertenece o eliminarlos. No tenemos acceso directo a la estructura interna que
+lo implementa, solo podemos usar las operaciones que define su interfaz.
 
-Un conjunto de operaciones
-: Son las acciones que se pueden hacer sobre los datos.
+## Características de un TAD
 
+### Abstracción
+
+La abstracción implica definir un conjunto de operaciones que pueden realizarse sobre un
+tipo de dato, sin revelar cómo se implementan internamente.
+
+### Ocultamiento de información
+
+Es el mecanismo que permite ocultar los detalles de implementación, encapsulando los
+datos y las operaciones en una única estructura y exponiendo solo una interfaz bien
+definida.
+
+La **abstracción** se logra mediante el **ocultamiento de información**.
+
+### Interfaz
+
+Es la parte visible del TAD, que define cómo se puede interactuar con él. La interfaz es
+el **contrato** que el TAD ofrece a sus usuarios.
+
+### Comportamiento
+
+Es el conjunto de operaciones que se pueden realizar sobre un TAD y los efectos que
+producen.
+
+El **comportamiento** de un TAD se define a través de su **interfaz**.
+
+### Invariante de representación
+
+El **invariante de representación** (o simplemente *invariante*) es una condición lógica
+que debe cumplirse para todo estado **válido** del TAD. Es como una regla interna que
+garantiza la integridad y coherencia de la estructura de datos.
+
+Por ejemplo, en un TAD que modela un `Reloj` de 24 horas, el invariante podría ser que
+la hora esté siempre entre 0 y 23. Si alguna primitiva dejara la hora en 25, el
+invariante estaría roto.
+
+```{admonition} Primitivas
+---
+class: note
+---
+Cada operación del TAD se denomina **primitiva**. Las primitivas son las únicas
+operaciones disponibles para manipular el estado interno del TAD.
 ```
 
-En un TAD podemos distinguir dos capas, la estructura interna donde realmente se almacenan los datos y la interfaz que expone hacia afuera, hacia el usuario del TAD, las operaciones que se pueden realizar con esos datos.
+#### El invariante durante la ejecución de una primitiva
 
-Por ejemplo son TAD las listas, conjuntos y grafos. Se puede interactuar con estos TAD a través de un conjunto de operaciones definidas para cada uno. En un conjunto podemos chequear si un elemento pertenece al mismo, o agregar o sacar elementos. A una lista le podemos solicitar que nos pase el siguiente elemento, pero no deberíamos tener acceso a la estructura interna del TAD, es decir a la estructura de datos que sirve como contenedor para almacenarlos, y mucho menos a manipular esa estructura contenedor usando otras operaciones distintas de las que están definidas en el TAD.
+El invariante debe cumplirse **siempre**, con una salvedad importante: **durante la
+ejecución de una primitiva el invariante puede dejar de cumplirse temporalmente**. Esto
+es aceptable siempre que la primitiva lo **restablezca** antes de finalizar.
 
-Las principales características de un TAD son:
+Supongamos un TAD con dos campos `a` y `b`, donde el invariante es `a == b`. Si una
+primitiva ejecuta primero `a = a + 1` y luego `b = b + 1`, entre ambas operaciones el
+invariante no se cumple. Esto es válido siempre que al terminar la primitiva la igualdad
+se cumpla nuevamente.
 
-Abstracción
-: En un TAD, la abstracción implica definir un conjunto de operaciones que pueden realizarse sobre un tipo de dato, sin revelar cómo se implementan estas operaciones internamente.
+#### Atomicidad de las primitivas
 
-Ocultamiento de información
-: Es el mecanismo que permite ocultar los detalles de la implementación, encapsulando los datos y las operaciones en una única estructura y exponiendo solo una interfaz bien definida.
+Las primitivas deben ser **atómicas**: deben ejecutarse por completo o no tener ningún
+efecto. Si una primitiva falla a mitad de camino, el TAD debe quedar en el mismo estado
+válido en el que estaba antes de ejecutarla. En otras palabras, una primitiva debe dejar
+el invariante intacto, sin importar si la operación se completó exitosamente o no.
 
-Es decir la **abstracción** se logra mediante el **ocultamiento de información**.
+```{admonition} Importante
+---
+class: important
+---
+Un TAD cuyas primitivas no son atómicas puede dejar el invariante en un estado
+inconsistente. Decimos entonces que el TAD está **roto**.
+```
 
-Interfaz
-: Es la parte visible del TAD, que define como se puede interactuar con él.
+## Ejemplo paso a paso: TAD Contador
 
-Comportamiento
-: Es el conjunto de operaciones que se puede realizar en un TAD.
+Vamos a construir un TAD `Contador` que mantiene un valor entero que puede
+incrementarse o decrementarse dentro de un rango fijo.
 
-Es decir el **comportamiento** de un TAD se define a través de su **interfaz**
+### 1. Definir los valores
 
-Invariante de representación
-: Es una condición lógica que siempre debe cumplirse para cualquier estado válido del TAD. Es como una regla interna que garantiza la integridad y coherencia de la estructura de datos.
+El Contador necesita tres valores enteros:
 
-Por ejemplo en una lista de elementos todos los elementos tienen un sucesor y un predecesor salvo el primero y el último de la lista. El primero sólo tiene sucesor y el último sólo tiene predecesor. **Si no se cumple el invariante, entonces el TAD está "roto"**. Volviendo al ejemplo de la lista, si por algun motivo algún elemento intermedio pierde la referencia a su sucesor la lista queda inutilizable.
+* `minimo`: el valor más chico que puede tomar el contador.
+* `maximo`: el valor más grande que puede tomar el contador.
+* `actual`: el valor actual del contador.
 
-Go cuenta con `struct` e `interface` para definir nuevos tipos abstractos de datos. Las estructuras nos permiten definir un conjunto de valores y un conjunto de operaciones asociadas a esas estructuras. Algunas de las operaciones pueden ser públicas, es decir, formar parte de la interfaz del TAD o ser privadas, para uso interno. Las interfaces permiten que varios tipos de datos que presentan el mismo comportamiento puedan manipularse como un único tipo.
+Además, para analizar el invariante vamos a llevar la cuenta de cuántas veces se
+modificó el contador exitosamente:
+
+* `cambios`: cantidad total de modificaciones realizadas.
+
+### 2. Definir las operaciones (primitivas)
+
+| Primitiva | Descripción |
+|---|---|
+| `NuevoContador(min, max)` | Crea un contador con `actual = min` |
+| `Incrementar()` | Aumenta `actual` en 1, si no supera `maximo` |
+| `Decrementar()` | Disminuye `actual` en 1, si no es menor que `minimo` |
+| `Valor()` | Devuelve el valor actual |
+| `Cambios()` | Devuelve la cantidad de modificaciones |
+
+### 3. Definir el invariante
+
+El invariante del Contador tiene dos partes:
+
+1. `minimo <= actual <= maximo`: el valor actual siempre está dentro del rango.
+2. `cambios` es igual a la cantidad de veces que se ejecutaron `Incrementar` o
+   `Decrementar` con éxito.
+
+### 4. Analizar las transiciones de estado
+
+Analicemos cada primitiva y cómo afecta al invariante.
+
+**Constructor `NuevoContador(min, max)`**:
+
+```
+estado inicial:  (ninguno)
+   ↓  validar que min <= max
+   ↓  actual = min
+   ↓  cambios = 0
+estado final:    actual = min, cambios = 0
+```
+
+Después del constructor, el invariante se cumple: `min <= actual <= max` y `cambios`
+es 0 (todavía no hubo modificaciones).
+
+**Primitiva `Incrementar()`**:
+
+```
+estado inicial:  min <= actual <= max, cambios = n
+   ↓  ¿actual < maximo?
+   │   ├── No → devolver error (el estado no cambia)
+   │   └── Sí → actual++             ←  el invariante se mantiene
+   │            cambios++            ←  ¡el invariante podria romperse!
+   ↓                                 ←  (explicacion a continuacion)
+estado final:    min <= actual <= max, cambios = n + 1
+```
+
+¿En qué momento podría no cumplirse el invariante? En esta implementación simple, tanto
+`actual++` como `cambios++` son operaciones elementales y al finalizar la primitiva el
+invariante se cumple. El punto importante es que el orden de las operaciones importa:
+si primero incrementáramos `cambios` y después `actual`, y la primitiva fallara entre
+medio, quedaríamos con `cambios` desactualizado. Por eso las primitivas deben diseñarse
+para que, si algo sale mal, el estado vuelva atrás.
+
+### 5. Implementación en Go
+
+```{code-block} go
+---
+linenos: true
+---
+package contador
+
+import "errors"
+
+type Contador struct {
+	actual  int
+	minimo  int
+	maximo  int
+	cambios int
+}
+
+func NuevoContador(min, max int) (*Contador, error) {
+	if min > max {
+		return nil, errors.New("minimo no puede ser mayor que maximo")
+	}
+	return &Contador{
+		actual:  min,
+		minimo:  min,
+		maximo:  max,
+		cambios: 0,
+	}, nil
+}
+
+func (c *Contador) Incrementar() error {
+	if c.actual >= c.maximo {
+		return errors.New("el contador ya alcanzó el máximo")
+	}
+	c.actual++
+	c.cambios++
+	return nil
+}
+
+func (c *Contador) Decrementar() error {
+	if c.actual <= c.minimo {
+		return errors.New("el contador ya alcanzó el mínimo")
+	}
+	c.actual--
+	c.cambios++
+	return nil
+}
+
+func (c *Contador) Valor() int {
+	return c.actual
+}
+
+func (c *Contador) Cambios() int {
+	return c.cambios
+}
+```
+
+```{admonition} Código en el repositorio
+---
+class: tip
+---
+Este ejemplo completo con tests está disponible en
+[`taller-tad/01-tipos-abstractos-de-datos/ejemplos/contador/`](https://github.com/untref-ayp2/taller-tad/tree/main/01-tipos-abstractos-de-datos/ejemplos/contador).
+```
+
+### 6. Verificar el invariante en cada primitiva
+
+**`NuevoContador`**: valida que `min <= max` antes de crear el contador. Si la
+validación falla, devuelve error y no se crea ningún contador (atomicidad). Si tiene
+éxito, `actual = min` y `cambios = 0`. Invariante: ✅.
+
+**`Incrementar`**: verifica que `actual < maximo`. Si no, devuelve error sin modificar
+nada (atomicidad). Si sí, incrementa `actual` y `cambios`. Al terminar, `actual` sigue
+siendo `<= maximo` (porque verificamos antes) y `cambios` aumentó en 1. Invariante: ✅.
+
+**`Decrementar`**: análogo a `Incrementar` pero con `minimo`. Invariante: ✅.
+
+**`Valor` y `Cambios`**: solo lectura, no modifican el estado. Invariante: ✅.
+
+### 7. Atomicidad en la práctica
+
+Observá el patrón que usan `Incrementar` y `Decrementar`:
+
+1. **Validar** la condición que protege el invariante.
+2. Si no se cumple → **error** sin modificar nada.
+3. Si se cumple → **modificar** el estado.
+
+Este patrón garantiza atomicidad: la primitiva se ejecuta por completo (modifica el
+estado) o no tiene efecto (devuelve error). Nunca queda un estado intermedio donde
+el invariante esté roto.
+
+```{admonition} Nota
+---
+class: tip
+---
+En Go, el constructor devuelve un puntero `*Contador` y un `error`. Esta convención
+permite que el constructor valide los parámetros y, si algo falla, devuelva un error
+sin haber creado ningún estado inconsistente.
+```
+
+## Go: `struct` e `interface` para definir TADs
+
+Go cuenta con `struct` e `interface` para definir nuevos tipos abstractos de datos. Las
+estructuras nos permiten definir un conjunto de valores y operaciones asociadas. Algunas
+operaciones pueden ser públicas (forman parte de la interfaz del TAD) y otras privadas
+(para uso interno). Las interfaces permiten que varios tipos que presentan el mismo
+comportamiento puedan manipularse como un único tipo.
+
+En el ejemplo del Contador, `Contador` es un `struct` con campos en minúscula
+(`actual`, `minimo`, `maximo`, `cambios`). Al estar en minúscula son privados: nadie
+fuera del paquete `contador` puede accederlos directamente. Las funciones y métodos
+con mayúscula (`NuevoContador`, `Incrementar`, `Valor`) son públicos: forman la
+interfaz del TAD.
+
+## Ejercicios
+
+### 1. TAD Fracción
+
+Implementar un TAD `Fraccion` que represente un número racional.
+
+**Valores**: numerador y denominador (enteros).
+
+**Operaciones**:
+
+* `NuevaFraccion(num, den int) (*Fraccion, error)` — constructor
+* `Sumar(f *Fraccion) *Fraccion` — devuelve una nueva fracción con la suma
+* `Restar(f *Fraccion) *Fraccion` — devuelve una nueva fracción con la resta
+* `Multiplicar(f *Fraccion) *Fraccion` — devuelve una nueva fracción con el producto
+* `Dividir(f *Fraccion) (*Fraccion, error)` — devuelve una nueva fracción con el cociente
+* `Valor() float64` — devuelve el valor en punto flotante
+* `String() string` — devuelve la representación como cadena `"num/den"`
+
+**Invariante**:
+
+* El denominador nunca debe ser 0.
+* La fracción debe mantenerse siempre simplificada (usar el algoritmo de Euclides para
+  calcular el máximo común divisor).
+
+**Preguntas**:
+
+* ¿En qué momento de las operaciones podría no cumplirse el invariante?
+* ¿Cómo garantiza la atomicidad en cada primitiva?
+
+### 2. TAD Reloj
+
+Implementar un TAD `Reloj` que represente la hora del día en formato de 24 horas.
+
+**Valores**: hora, minuto y segundo (enteros).
+
+**Operaciones**:
+
+* `NuevoReloj(h, m, s int) (*Reloj, error)` — constructor con validación
+* `AvanzarUnSegundo()` — incrementa el reloj en 1 segundo, manejando correctamente el
+  cambio de minuto, hora y el reinicio a `00:00:00` al llegar a `23:59:59`
+* `Hora() int` — devuelve la hora
+* `Minuto() int` — devuelve el minuto
+* `Segundo() int` — devuelve el segundo
+* `String() string` — devuelve la hora formateada como `"HH:MM:SS"`
+
+**Invariante**:
+
+* `0 <= hora <= 23`
+* `0 <= minuto <= 59`
+* `0 <= segundo <= 59`
+
+**Preguntas**:
+
+* En `AvanzarUnSegundo()`, cuando se pasa de `23:59:59` a `00:00:00`, ¿hay algún
+  momento en que el invariante no se cumpla?
+* ¿Cómo harías para que la primitiva sea atómica?
+
+```{admonition} Repositorios relacionados
+---
+class: tip
+---
+*   **Ejercicios y ejemplos**: [`untref-ayp2/taller-tad`](https://github.com/untref-ayp2/taller-tad) —
+    contiene los esqueletos, tests y ejemplos resueltos de este capítulo.
+*   **Contratos**: [`untref-ayp2/data-structures`](https://github.com/untref-ayp2/data-structures) —
+    interfaces de las estructuras de datos que implementaremos en capítulos
+    siguientes.
 ```

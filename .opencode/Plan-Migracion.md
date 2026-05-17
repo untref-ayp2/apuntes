@@ -38,18 +38,18 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 2  | `contenidos/1-presentacion/1-1-introduccion.md` | ✅ Revisado | — |
 | 3  | `contenidos/1-presentacion/1-2-memoria.md` | ✅ Revisado | — |
 | 4  | `contenidos/1-presentacion/1-3-analisis-de-algoritmos.md` | ✅ Revisado | — |
-| 5  | `contenidos/2-taller-de-go/2-1-introduccion-go.md` | ⬜ Pendiente | `taller-go`, `taller-resuelto` |
-| 6  | `contenidos/2-taller-de-go/2-2-paquetes-y-modulos.md` | ⬜ Pendiente | `taller-go` |
-| 7  | `contenidos/2-taller-de-go/2-3-elementos-basicos.md` | ⬜ Pendiente | `taller-go` |
-| 8  | `contenidos/2-taller-de-go/2-4-funciones.md` | ⬜ Pendiente | `taller-go` |
-| 9  | `contenidos/2-taller-de-go/2-5-arreglos-slices.md` | ⬜ Pendiente | `taller-go` |
-| 10 | `contenidos/2-taller-de-go/2-6-maps.md` | ⬜ Pendiente | `taller-go` |
-| 11 | `contenidos/2-taller-de-go/2-7-punteros.md` | ⬜ Pendiente | `taller-go` |
-| 12 | `contenidos/2-taller-de-go/2-8-structs-interfaces.md` | ⬜ Pendiente | `taller-go` |
-| 13 | `contenidos/2-taller-de-go/2-9-archivos.md` | ⬜ Pendiente | `taller-go` |
-| 14 | `contenidos/2-taller-de-go/2-10-errores.md` | ⬜ Pendiente | `taller-go` |
-| 15 | `contenidos/2-taller-de-go/2-11-oop.md` | ⬜ Pendiente | `taller-go` |
-| 16 | `contenidos/3-estructuras-de-datos/3-1-tad.md` | ⬜ Pendiente | `data-structures` |
+| 5  | `contenidos/2-taller-de-go/2-1-introduccion-go.md` | ✅ Revisado | `taller-go`, `taller-resuelto` |
+| 6  | `contenidos/2-taller-de-go/2-2-paquetes-y-modulos.md` | ✅ Revisado | `taller-go` |
+| 7  | `contenidos/2-taller-de-go/2-3-elementos-basicos.md` | ✅ Revisado | `taller-go` |
+| 8  | `contenidos/2-taller-de-go/2-4-funciones.md` | ✅ Revisado | `taller-go` |
+| 9  | `contenidos/2-taller-de-go/2-5-arreglos-slices.md` | ✅ Revisado | `taller-go` |
+| 10 | `contenidos/2-taller-de-go/2-6-maps.md` | ✅ Revisado | `taller-go` |
+| 11 | `contenidos/2-taller-de-go/2-7-punteros.md` | ✅ Revisado | `taller-go` |
+| 12 | `contenidos/2-taller-de-go/2-8-structs-interfaces.md` | ✅ Revisado | `taller-go` |
+| 13 | `contenidos/2-taller-de-go/2-9-archivos.md` | ✅ Revisado | `taller-go` |
+| 14 | `contenidos/2-taller-de-go/2-10-errores.md` | ✅ Revisado | `taller-go` |
+| 15 | `contenidos/2-taller-de-go/2-11-oop.md` | ✅ Revisado | `taller-go` |
+| 16 | `contenidos/3-estructuras-de-datos/3-1-tad.md` | ✅ Revisado | `data-structures`, `taller-tad` |
 | 17 | `contenidos/3-estructuras-de-datos/3-2-pilas-colas.md` | ⬜ Pendiente | `guia-pilas-colas`, `data-structures` |
 | 18 | `contenidos/3-estructuras-de-datos/3-3-listas.md` | ⬜ Pendiente | `guia-listas`, `data-structures` |
 | 19 | `contenidos/3-estructuras-de-datos/3-4-conjuntos.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
@@ -81,7 +81,7 @@ debe buscar recursos en estos repos para referenciar o incluir en el apunte.
 
 | Capítulo | Guías de ejercicios | Código de ejemplo |
 |---|---|---|
-| 3-1 TAD | — | `data-structures` |
+| 3-1 TAD | `taller-tad` | `data-structures` |
 | 3-2 Pilas y Colas | `guia-pilas-colas` | `data-structures` |
 | 3-3 Listas | `guia-listas`, `guia-listas-resuelta` | `data-structures` |
 | 3-4 Conjuntos | `guia-conjuntos-hashtable-diccionarios` | — |
@@ -148,8 +148,8 @@ Estado actual (jb2-martin):
     1-1-introduccion   ✅
     1-2-memoria        ✅
     1-3-analisis       ✅
-    2-Taller de Go     ⬜ 11 archivos
-    3-Estructuras      ⬜ 12 archivos
+    2-Taller de Go     ✅ 11 archivos
+    3-Estructuras      ✅ 1 / ⬜ 11 archivos
     4-Diseño Alg.      ⬜ 7 archivos
     5-Taller Git       ⬜
     bibliografia       ⬜
