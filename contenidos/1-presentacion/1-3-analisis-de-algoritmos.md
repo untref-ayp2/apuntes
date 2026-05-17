@@ -12,12 +12,12 @@ Para un problema cualquiera, puede existir más de un algoritmo que lo resuelva.
 ---
 class: note
 ---
-Los recursos que consumen un algoritmo son tiempo y espacio (memoria). El mismo problema se puede resolver, en la misma computadora, en minutos o en años, de acuerdo al algoritmo que se implemente.
+Los recursos que consume un algoritmo son tiempo y espacio (memoria). El mismo problema se puede resolver, en la misma computadora, en minutos o en años, de acuerdo al algoritmo que se implemente.
 ```
 
 Otro aspecto a tener en cuenta al analizar algoritmos es la **simplicidad**. Un algoritmo simple es más fácil de entender, adaptar y mantener, por eso a veces prima la simplicidad a la hora de elegir un algoritmo.
 
-La **simplicidad** y la **eficiencia** no son conceptos antagónicos. Es decir un algoritmo puede ser simple y eficiente a la vez. Estas métricas sirven principalmente para comparar algoritmos entre sí y así poder elegir el más adecuado para una situación concreta.
+La **simplicidad** y la **eficiencia** no son conceptos antagónicos. Es decir, un algoritmo puede ser simple y eficiente a la vez. Estas métricas sirven principalmente para comparar algoritmos entre sí y así poder elegir el más adecuado para una situación concreta.
 
 ## Complejidad
 
@@ -28,7 +28,7 @@ class: hint
 La **complejidad** es una propiedad de un algoritmo que nos indica como escala la cantidad de recursos que se necesitan a medida que aumenta el volumen de los datos.
 ```
 
-En esta definición de **complejidad** entra en juego una variable más, la cantidad o el tamaño de los datos, por ejemplo si tenemos que ordenar pocos datos, y rara vez se agregan nuevos datos o se modifican los existentes, quizás prime la simplicidad del algoritmo a la hora de elegir alguno de los algoritmos de ordenamiento, pero si tenemos que ordenar millones de datos, donde además se agregan cientos o miles de datos y se modifican otros muy frecuentemente, es probable que nos interese analizar cuanto tiempo va a demorar y cuanta memoria o espacio en disco vamos a necesitar y más aún, cuánto más necesitaremos a medida que aumente el volumen de datos, es decir es probable que prime la **eficiencia** a la hora de elegir.
+En esta definición de **complejidad** entra en juego una variable más, la cantidad o el tamaño de los datos, por ejemplo si tenemos que ordenar pocos datos, y rara vez se agregan nuevos datos o se modifican los existentes, quizás prime la simplicidad del algoritmo a la hora de elegir alguno de los algoritmos de ordenamiento, pero si tenemos que ordenar millones de datos, donde además se agregan cientos o miles de datos y se modifican otros muy frecuentemente, es probable que nos interese analizar cuánto tiempo va a demorar y cuánta memoria o espacio en disco vamos a necesitar y más aún, cuánto más necesitaremos a medida que aumente el volumen de datos, es decir, es probable que prime la **eficiencia** a la hora de elegir.
 
 Informalmente hablando, cuanto mayor sea la **complejidad** de un algoritmo, será menos **eficiente** en el uso de los recursos.
 
@@ -52,11 +52,11 @@ Muchas veces se cae en la tentación de pensar que a medida que aumente la capac
 
 En esta primera aproximación al estudio del análisis de algoritmos, nos vamos a enfocar en la **complejidad temporal**. Como la complejidad temporal es una métrica independiente del hardware donde se ejecuta el programa, normalmente se estima contando la cantidad de operaciones elementales que realiza el algoritmo bajo análisis para completar el cálculo, teniendo en cuenta que cada unidad elemental requiere una cantidad fija de tiempo, que por simplicidad se asume como una unidad de tiempo.
 
-Como la cantidad de operaciones elementales que debe realizar depende de los datos, se toma siempre el peor caso, para poder obtener una cota confiable. Por ejemplo si hay que buscar un elemento en un arreglo desordenado, no queda otra que buscar el elemento en todas las posiciones del arreglo. En el peor caso se deberá recorrer todo el arreglo para encontrar el elemento en la última posición escrutada o poder concluir que el elemento no se encuentra, es probable que si ejecutamos nuestro algoritmo muchas veces, algunas veces lo encuentre antes de recorrer todo el arreglo, pero como buscamos una cota, **se toma siempre el peor caso.**
+Como la cantidad de operaciones elementales que debe realizar depende de los datos, se toma siempre el peor caso, para poder obtener una cota confiable. Por ejemplo si hay que buscar un elemento en un arreglo desordenado, no queda otra que buscar el elemento en todas las posiciones del arreglo. En el peor caso se deberá recorrer todo el arreglo para encontrar el elemento en la última posición escrutada o poder concluir que el elemento no se encuentra, es probable que si ejecutamos nuestro algoritmo muchas veces, algunas veces lo encuentre antes de recorrer todo el arreglo, pero como buscamos una cota, **se toma siempre el peor caso**.
 
 ## Cota Superior Asintótica (O grande)
 
-La cota superior asintótica, O grande o _Big-O_ en inglés, es parte de la familia de notaciones asintóticas, también conocidas como notaciones de Bachmann-Landau. En ciencias de la computación, la O grande, permite clasificar a los algoritmos de acuerdo a como aumenta la cantidad de recursos que necesita en la medida que aumenta el tamaño de la entrada, es decir nos permite clasificar algoritmos en el límite, cuando el tamaño de la entrada tiende a infinito. Sea $T(n)$ la función que indica cuanto tiempo va a tardar un algoritmo en función del tamaño de la entrada $n$, donde $n$ es un número natural, entonces:
+La cota superior asintótica, O grande o _Big-O_ en inglés, es parte de la familia de notaciones asintóticas, también conocidas como notaciones de Bachmann-Landau. En ciencias de la computación, la O grande, permite clasificar a los algoritmos de acuerdo a como aumenta la cantidad de recursos que necesita en la medida que aumenta el tamaño de la entrada, es decir nos permite clasificar algoritmos en el límite, cuando el tamaño de la entrada tiende a infinito. Sea $T(n)$ la función que indica cuánto tiempo va a tardar un algoritmo en función del tamaño de la entrada $n$, donde $n$ es un número natural, entonces:
 
 ```{admonition} Definición
 ---
@@ -165,7 +165,7 @@ $$
 ```
 
 ```{admonition} Propiedad de la suma
---- 
+---
 class: dropdown
 ---
 Si,
@@ -349,12 +349,11 @@ $$
 
 ya que evaluar la condición del ciclo, `i < len(arreglo)`, también es $O(1)$ (donde $n$ es la longitud del arreglo).
 
-La línea 11 también es $O(1)$.
+La línea 7 también es $O(1)$.
 
 $$
 T(n) = O(1) + O(n) + O(1) = O(n)
 $$
-
 
 #### Búsqueda Binaria
 
@@ -391,7 +390,7 @@ func busquedaBinaria(lista []int, elemento int) int {
 }
 ```
 
-Para analizar la búsqueda binaria, la primera observación que podemos realizar es que los condicionales son $O(1)$. Siguiendo el mismo razonamiento, todas las instrucciones que se realizan afuera del ciclo `for` también son OE. Por lo tanto podemos plantear la siguiente ecuación de recurrencia:
+Para analizar la búsqueda binaria, la primera observación que podemos realizar es que los condicionales son $O(1)$. Siguiendo el mismo razonamiento, todas las instrucciones que se realizan fuera del ciclo `for` también son OE. Por lo tanto podemos plantear la siguiente ecuación de recurrencia:
 
 $$
 T(n) = T \left( \frac{n}{2} \right) + c

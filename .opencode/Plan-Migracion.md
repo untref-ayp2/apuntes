@@ -37,7 +37,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 1  | `contenidos/introduccion.md` | ✅ Revisado | — |
 | 2  | `contenidos/1-presentacion/1-1-introduccion.md` | ✅ Revisado | — |
 | 3  | `contenidos/1-presentacion/1-2-memoria.md` | ✅ Revisado | — |
-| 4  | `contenidos/1-presentacion/1-3-analisis-de-algoritmos.md` | ⬜ Pendiente | — |
+| 4  | `contenidos/1-presentacion/1-3-analisis-de-algoritmos.md` | ✅ Revisado | — |
 | 5  | `contenidos/2-taller-de-go/2-1-introduccion-go.md` | ⬜ Pendiente | `taller-go`, `taller-resuelto` |
 | 6  | `contenidos/2-taller-de-go/2-2-paquetes-y-modulos.md` | ⬜ Pendiente | `taller-go` |
 | 7  | `contenidos/2-taller-de-go/2-3-elementos-basicos.md` | ⬜ Pendiente | `taller-go` |
@@ -147,7 +147,7 @@ Estado actual (jb2-martin):
     introduccion.md    ✅
     1-1-introduccion   ✅
     1-2-memoria        ✅
-    1-3-analisis       ⬜
+    1-3-analisis       ✅
     2-Taller de Go     ⬜ 11 archivos
     3-Estructuras      ⬜ 12 archivos
     4-Diseño Alg.      ⬜ 7 archivos
