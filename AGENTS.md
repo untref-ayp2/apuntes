@@ -363,6 +363,41 @@ Este proyecto usa **MyST** (mystmd) en lugar de Jupyter Book v1.
 
 ______________________________________________________________________
 
+## Arquitectura de Repositorios de Apoyo (definido 2026-05-17)
+
+Los capítulos 3-x y 4-x usan dos tipos de repositorios en `github.com/untref-ayp2`:
+
+| Tipo | Repositorio | Uso del alumno | Contenido |
+|---|---|---|---|
+| Contratos | `data-structures` | Forkea, implementa interfaces localmente | Interfaces + tests. Sin implementaciones. |
+| Talleres | `taller-*` (ej: `taller-tad`) | Clona o fork | `NN-tema/ejemplos/` y `NN-tema/ejercicios/` con esqueletos y tests. |
+
+### Mecanismo de dependencia
+
+El `go.mod` de cada `taller-*` declara un `replace` para apuntar al fork local de
+`data-structures`:
+
+```go
+require github.com/untref-ayp2/data-structures v0.0.0
+
+replace github.com/untref-ayp2/data-structures => ../data-structures
+```
+Esto permite que el alumno implemente las interfaces en su fork y los ejercicios del
+taller consuman su propia implementación.
+
+### `{code-file}` no soportado
+
+`{code-file}` era una directiva de Sphinx (JBv1). En mystmd **no está disponible**.
+Para incluir código de repos externos en el apunte, usar `{code-block}` inline y
+agregar una admonition con link al archivo en GitHub.
+
+### Repositorios archivados
+
+- `data-structures-old` — anterior repo de estructuras, archivado
+- `examples`, `snippets`, `guia-*` — históricos, solo como referencia
+
+______________________________________________________________________
+
 ## Normas del Proyecto
 
 - **NO abrir PRs** sin autorización expresa del usuario

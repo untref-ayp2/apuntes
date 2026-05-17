@@ -91,7 +91,7 @@ Sin match exacto, buscar con `contenidos/**/*${termino}*.md`.
 
 - Admonitions: formato unificado `{admonition}` con `class:`. No usar shorthand (`{note}`, `{important}`, etc.)
 - Figures: ` ```{figure} ``, campos `name:`, `class:`, `width:`. Pares light/dark completos
-- Code blocks: `{code-block}` o `{code-file}` con `:language:` y `:linenos:` cuando corresponda
+- Code blocks: solo `{code-block}` con `linenos: true` y `language:`. `{code-file}` **NO es soportado** en mystmd (era de JBv1/Sphinx)
 - Labels de ejercicios: `ej-{seccion}-{numero}`
 - Frontmatter YAML: mínimo `label:`
 
@@ -99,18 +99,35 @@ Sin match exacto, buscar con `contenidos/**/*${termino}*.md`.
 
 Solo para capítulos 3-x y 4-x (Estructuras de Datos o Diseño de Algoritmos).
 
-1. Consultar `github.com/untref-ayp2` para encontrar repositorios relevantes al tema del capítulo:
-   - Guías de ejercicios: `guia-*` (ej: `guia-pilas-colas`, `guia-abb`, `guia-backtracking`)
-   - Código de ejemplo: `examples/` (subdirectorios como `recursividad`, `avidos`, `backtracking`)
-   - Data structures: `data-structures`
-   - Repos archivados: `snippets`, `clase-4-*`, `examenes`
+### Arquitectura de repositorios
+
+Se usan dos tipos de repositorios:
+
+- **`data-structures`**: forkear, implementar interfaces, correr tests. Template en
+  `github.com/untref-ayp2/data-structures`. Contiene solo interfaces y tests, sin
+  implementaciones concretas.
+- **`taller-*`** (ej: `taller-tad`, `taller-pilas-colas`): clonar o forkear. Contiene
+  ejemplos resueltos y ejercicios con esqueletos que usan o complementan
+  `data-structures`.
+
+Los alumnos apuntan su fork de `data-structures` desde `taller-*` mediante `replace`
+en `go.mod`.
+
+Archivado: `data-structures-old` (reemplazado por el nuevo `data-structures`).
+
+### Revisión de contenido de apoyo
+
+1. Consultar `github.com/untref-ayp2` para encontrar repositorios relevantes al tema:
+   - `data-structures` — interfaces y tests de estructuras de datos
+   - `taller-*` — ejercicios y ejemplos del capítulo
+   - `taller-go` — ejercicios del Taller de Go
+   - Archivados: `examples`, `snippets`, `examenes`, `guia-*` (referencia histórica)
 2. Usar la sección "Vinculación con Repositorios Externos" de `Plan-Migracion.md`
    para identificar qué repos corresponden al capítulo.
 3. Para cada repo encontrado, revisar su `README.md` y estructura de directorios
    para identificar:
-   - Ejercicios que podrían citarse o referenciarse desde el apunte
+   - Esqueletos/tests para ejercicios que podrían citarse en el apunte
    - Código de ejemplo que complemente la teoría del capítulo
-   - Soluciones de guías que podrían incluirse como `{code-file}`
 4. Presentar los hallazgos como tabla de sugerencias.
 5. Preguntar al usuario antes de incorporar cualquier recurso:
    "¿Querés que explore el repo `X` en detalle para buscar contenido para incluir?"
