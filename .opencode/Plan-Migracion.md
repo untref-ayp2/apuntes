@@ -122,6 +122,13 @@ Reemplazar `custom.css` con el de EDD. Incluye reglas `only-light-mode` / `only-
 - ✅ MapaDeMemoria: agregado Segmento de Datos
 - Pendiente: ~30 imágenes (ABB, AVL, Listas, Patrones, Recursión, Backtracking, Heap, Misc). Usar skill `diagramas-svg`.
 
+### Arquitectura de repos de apoyo (definido 17/05/2026)
+- ✅ `data-structures` (nuevo): interfaces + tests, alumnos forkear e implementar
+- ✅ `taller-tad` (nuevo): ejercicios y ejemplos del capítulo 3-1
+- ✅ `data-structures-old` archivado (renombrado)
+- 📝 Poblar `data-structures` con más interfaces a medida que se revisen capítulos 3-x
+- 📝 Crear `taller-*` adicionales según se avance en la revisión
+
 ### Limpieza
 - `requirements.txt`: remover `sphinx-proof`, `sphinx-thebe`, `myst-parser`
 - Directorios legacy: `assets/geogebra/`, `assets/xfig/`
@@ -130,7 +137,7 @@ Reemplazar `custom.css` con el de EDD. Incluye reglas `only-light-mode` / `only-
 
 ### CI/CD
 - GitHub Actions: agregar paso `make pdf` con instalación de `typst`
-- Cambiar target del deploy a `main` cuando esté listo
+- ✅ Target del deploy cambiado a `main` (17/05/2026)
 
 ---
 
@@ -141,6 +148,7 @@ Estado actual (jb2-martin):
 
   Infraestructura:
     Build + PDF        ✅ script + template + fuentes
+    Deploy target      ✅ main (desactivado jb2-martin)
     CSS light/dark     🔶 pendiente completar
 
   Revisión de contenido (09/05/2026):
@@ -156,5 +164,6 @@ Estado actual (jb2-martin):
 
   Admonitions          🔶 ~34 pendientes
   Figuras l/d          🔶 ~30 pendientes
+  Repos apoyo          ✅ data-structures + taller-tad creados
   Dependencias         🔶 con restos JBv1
 ```
