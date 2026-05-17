@@ -6,11 +6,21 @@ description: Revisa ortografía, gramática, conceptos e imágenes SVG de un cap
 
 Revisa un capítulo del apunte AyP2 en **modo plan**: solo muestra sugerencias, NUNCA modifica archivos ni ejecuta builds.
 
-**Uso:** `/revisar-contenido <capítulo>` donde `<capítulo>` puede ser el número de sección (ej: `1-3`, `2-6`), un nombre corto (ej: `punteros`, `abb`) o el nombre del archivo.
+**Uso:** `/revisar-contenido [capítulo]` donde `[capítulo]` puede ser el número de sección (ej: `1-3`, `2-6`), un nombre corto (ej: `punteros`, `abb`) o el nombre del archivo. Si se omite el argumento, se detecta automáticamente el próximo capítulo pendiente.
+
+## Detección automática del próximo capítulo
+
+Si no se pasa argumento, determinar el archivo a revisar así:
+
+1. Leer `.opencode/Plan-Migracion.md`
+2. Ubicar la tabla "Prioridad Alta — Revisión de Contenido"
+3. Buscar el primer capítulo con estado `⬜ Pendiente`
+4. Usar ese archivo como objetivo de la revisión
+5. Si todos están revisados, informar que no hay pendientes y terminar
 
 ## Resolución del capítulo
 
-Usar esta tabla para determinar el archivo a revisar según el argumento:
+Usar esta tabla para determinar el archivo a revisar según el argumento (si se especificó):
 
 | Si dice... | Archivo |
 |---|---|
@@ -20,14 +30,15 @@ Usar esta tabla para determinar el archivo a revisar según el argumento:
 | `1-3` o `1-3-analisis` | `contenidos/1-presentacion/1-3-analisis-de-algoritmos.md` |
 | `2-1` o `2-1-intro-go` | `contenidos/2-taller-de-go/2-1-introduccion-go.md` |
 | `2-2` o `2-2-paquetes` | `contenidos/2-taller-de-go/2-2-paquetes-y-modulos.md` |
-| `2-3` o `2-3-arreglos` | `contenidos/2-taller-de-go/2-3-arreglos-slices.md` |
-| `2-4` o `2-4-maps` | `contenidos/2-taller-de-go/2-4-maps.md` |
-| `2-5` o `2-5-funciones` | `contenidos/2-taller-de-go/2-5-funciones.md` |
-| `2-6` o `2-6-punteros` | `contenidos/2-taller-de-go/2-6-punteros.md` |
-| `2-7` o `2-7-structs` | `contenidos/2-taller-de-go/2-7-structs-interfaces.md` |
-| `2-8` o `2-8-archivos` | `contenidos/2-taller-de-go/2-8-archivos.md` |
-| `2-9` o `2-9-errores` | `contenidos/2-taller-de-go/2-9-errores.md` |
-| `2-10` o `2-10-oop` | `contenidos/2-taller-de-go/2-10-oop.md` |
+| `2-3` o `2-3-elementos` | `contenidos/2-taller-de-go/2-3-elementos-basicos.md` |
+| `2-4` o `2-4-funciones` | `contenidos/2-taller-de-go/2-4-funciones.md` |
+| `2-5` o `2-5-arreglos` | `contenidos/2-taller-de-go/2-5-arreglos-slices.md` |
+| `2-6` o `2-6-maps` | `contenidos/2-taller-de-go/2-6-maps.md` |
+| `2-7` o `2-7-punteros` | `contenidos/2-taller-de-go/2-7-punteros.md` |
+| `2-8` o `2-8-structs` | `contenidos/2-taller-de-go/2-8-structs-interfaces.md` |
+| `2-9` o `2-9-archivos` | `contenidos/2-taller-de-go/2-9-archivos.md` |
+| `2-10` o `2-10-errores` | `contenidos/2-taller-de-go/2-10-errores.md` |
+| `2-11` o `2-11-oop` | `contenidos/2-taller-de-go/2-11-oop.md` |
 | `3-1` o `3-1-tad` | `contenidos/3-estructuras-de-datos/3-1-tad.md` |
 | `3-2` o `3-2-pilas` | `contenidos/3-estructuras-de-datos/3-2-pilas-colas.md` |
 | `3-3` o `3-3-listas` | `contenidos/3-estructuras-de-datos/3-3-listas.md` |
