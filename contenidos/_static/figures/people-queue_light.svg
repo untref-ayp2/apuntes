@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 280">
+  <defs>
+    <style>
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 20px; text-anchor: middle; fill: #333333; }
+      .head { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
+      .body { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
+      .counter { fill: #f0f2f5; stroke: #333333; stroke-width: 2; stroke-dasharray: 5,3; }
+      .label { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 12px; text-anchor: middle; fill: #333333; }
+      .arrow { stroke: #333333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#333333" />
+    </marker>
+  </defs>
+
+  <rect width="500" height="280" fill="#f0f2f5" rx="5" />
+
+  <text x="250" y="35" class="title">Cola de Espera</text>
+
+  <!-- Counter / register -->
+  <rect x="20" y="80" width="60" height="120" rx="4" class="counter" />
+  <text x="50" y="145" class="label">Caja</text>
+
+  <!-- Arrow showing direction -->
+  <line x1="85" y1="110" x2="120" y2="110" class="arrow" />
+
+  <!-- Person 1 (being served) - blue -->
+  <circle cx="155" cy="115" r="20" class="head" />
+  <rect x="140" y="135" width="30" height="55" rx="5" class="body" />
+  <text x="155" y="209" class="label">Persona 1</text>
+
+  <!-- Person 2 - green -->
+  <circle cx="245" cy="115" r="20" fill="#e1ffe1" stroke="#2e8b57" stroke-width="2" />
+  <rect x="230" y="135" width="30" height="55" rx="5" fill="#e1ffe1" stroke="#2e8b57" stroke-width="2" />
+  <text x="245" y="209" class="label">Persona 2</text>
+
+  <!-- Person 3 - orange -->
+  <circle cx="335" cy="115" r="20" fill="#fff4e1" stroke="#f6ad55" stroke-width="2" />
+  <rect x="320" y="135" width="30" height="55" rx="5" fill="#fff4e1" stroke="#f6ad55" stroke-width="2" />
+  <text x="335" y="209" class="label">Persona 3</text>
+
+  <!-- Person 4 - red -->
+  <circle cx="425" cy="115" r="20" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
+  <rect x="410" y="135" width="30" height="55" rx="5" fill="#ffe1e1" stroke="#e9967a" stroke-width="2" />
+  <text x="425" y="209" class="label">Persona 4</text>
+
+  <!-- FIFO label -->
+  <text x="250" y="255" class="label" font-style="italic">FIFO: primero en llegar, primero en ser atendido</text>
+</svg>

@@ -40,12 +40,12 @@ func TestPushAndPop(t *testing.T) {
 	}
 }
 
-func TestPeek(t *testing.T) {
+func TestTop(t *testing.T) {
 	var s Stack[string]
 	s.Push("a")
 	s.Push("b")
 
-	val, err := s.Peek()
+	val, err := s.Top()
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -53,8 +53,8 @@ func TestPeek(t *testing.T) {
 		t.Errorf("expected 'b', got %s", val)
 	}
 
-	// Peek should not remove the element
-	val2, err := s.Peek()
+	// Top should not remove the element
+	val2, err := s.Top()
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -86,9 +86,9 @@ func TestPopEmptyStack(t *testing.T) {
 	}
 }
 
-func TestPeekEmptyStack(t *testing.T) {
+func TestTopEmptyStack(t *testing.T) {
 	var s Stack[int]
-	_, err := s.Peek()
+	_, err := s.Top()
 	if err == nil {
 		t.Error("expected error when peeking from empty stack, got nil")
 	}
