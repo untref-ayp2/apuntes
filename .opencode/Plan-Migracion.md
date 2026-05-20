@@ -50,7 +50,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 14 | `contenidos/2-taller-de-go/2-10-errores.md` | ✅ Revisado | `taller-go` |
 | 15 | `contenidos/2-taller-de-go/2-11-oop.md` | ✅ Revisado | `taller-go` |
 | 16 | `contenidos/3-estructuras-de-datos/3-1-tad.md` | ✅ Revisado | `data-structures`, `taller-tad` |
-| 17 | `contenidos/3-estructuras-de-datos/3-2-pilas-colas.md` | ⬜ Pendiente | `guia-pilas-colas`, `data-structures` |
+| 17 | `contenidos/3-estructuras-de-datos/3-2-pilas-colas.md` | ✅ Revisado | `taller-tad`, `data-structures` |
 | 18 | `contenidos/3-estructuras-de-datos/3-3-listas.md` | ⬜ Pendiente | `guia-listas`, `data-structures` |
 | 19 | `contenidos/3-estructuras-de-datos/3-4-conjuntos.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
 | 20 | `contenidos/3-estructuras-de-datos/3-5-mapa-de-bits.md` | ⬜ Pendiente | — |
@@ -82,7 +82,7 @@ debe buscar recursos en estos repos para referenciar o incluir en el apunte.
 | Capítulo | Guías de ejercicios | Código de ejemplo |
 |---|---|---|
 | 3-1 TAD | `taller-tad` | `data-structures` |
-| 3-2 Pilas y Colas | `guia-pilas-colas` | `data-structures` |
+| 3-2 Pilas y Colas | `taller-tad` (ejercicios en `02-pilas-colas/`) | `data-structures` |
 | 3-3 Listas | `guia-listas`, `guia-listas-resuelta` | `data-structures` |
 | 3-4 Conjuntos | `guia-conjuntos-hashtable-diccionarios` | — |
 | 3-5 Mapa de bits | — | — |

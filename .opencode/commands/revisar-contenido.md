@@ -104,37 +104,43 @@ Solo para capítulos 3-x y 4-x (Estructuras de Datos o Diseño de Algoritmos).
 
 Se usan dos tipos de repositorios:
 
-- **`data-structures`**: forkear, implementar interfaces, correr tests. Template en
-  `github.com/untref-ayp2/data-structures`. Contiene solo interfaces y tests, sin
-  implementaciones concretas.
-- **`taller-*`** (ej: `taller-tad`, `taller-pilas-colas`): clonar o forkear. Contiene
-  ejemplos resueltos y ejercicios con esqueletos que usan o complementan
-  `data-structures`.
+- **`data-structures`**: template en `github.com/untref-ayp2/data-structures`.
+  Contiene las interfaces (contratos), los esqueletos a implementar
+  (ej: `SliceStack[T]`) y los tests que verifican la implementación.
+  Los alumnos forkear e implementan los esqueletos en su copia.
+- **`taller-tad`**: template en `github.com/untref-ayp2/taller-tad`. Repositorio
+  único para todos los capítulos 3.X. Contiene ejemplos resueltos (en `ejemplos/`)
+  y ejercicios que *usan* las estructuras de `data-structures` (en `ejercicios/`).
+  Los subdirectorios están numerados por capítulo:
+  `01-tipos-abstractos-de-datos/`, `02-pilas-colas/`, etc.
 
-Los alumnos apuntan su fork de `data-structures` desde `taller-*` mediante `replace`
-en `go.mod`.
+Los alumnos apuntan su fork de `data-structures` desde `taller-tad` mediante
+`replace` en `go.mod`.
 
-Archivado: `data-structures-old` (reemplazado por el nuevo `data-structures`).
+Archivados: `data-structures-old` (reemplazado), `guia-*` (reemplazadas por `taller-tad`).
 
 ### Revisión de contenido de apoyo
 
 1. Consultar `github.com/untref-ayp2` para encontrar repositorios relevantes al tema:
-   - `data-structures` — interfaces y tests de estructuras de datos
-   - `taller-*` — ejercicios y ejemplos del capítulo
+   - `data-structures` — interfaces, esqueletos y tests
+   - `taller-tad` — ejemplos y ejercicios que usan `data-structures`
    - `taller-go` — ejercicios del Taller de Go
-   - Archivados: `examples`, `snippets`, `examenes`, `guia-*` (referencia histórica)
+   - Archivados: `examples`, `snippets`, `examenes`, `guia-*`, `data-structures-old`
 2. Usar la sección "Vinculación con Repositorios Externos" de `Plan-Migracion.md`
    para identificar qué repos corresponden al capítulo.
 3. Para cada repo encontrado, revisar su `README.md` y estructura de directorios
    para identificar:
    - Esqueletos/tests para ejercicios que podrían citarse en el apunte
    - Código de ejemplo que complemente la teoría del capítulo
-4. Presentar los hallazgos como tabla de sugerencias.
-5. Preguntar al usuario antes de incorporar cualquier recurso:
+4. Verificar que la sección de ejercicios del apunte **NO** incluya enunciados
+   inline (ni tablas, ni listas, ni descripciones). Solo debe referenciar el
+   directorio del repo `taller-tad`. Los enunciados van en `README.md` del repo.
+5. Presentar los hallazgos como tabla de sugerencias.
+6. Preguntar al usuario antes de incorporar cualquier recurso:
    "¿Querés que explore el repo `X` en detalle para buscar contenido para incluir?"
    - Si el usuario dice que sí, explorar el repo y listar archivos concretos.
    - Si el usuario dice que no, saltar ese repo.
-6. NO modificar ningún archivo del apunte durante este paso.
+7. NO modificar ningún archivo del apunte durante este paso.
 
 ### 6. Revisión de imágenes SVG
 
