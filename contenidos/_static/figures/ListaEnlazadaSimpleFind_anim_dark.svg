@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 800 520"
+   width="100%"
+   height="520"
+   version="1.1"
+   id="svg-find-dark"
+   xmlns="http://www.w3.org/2000/svg">
+  <defs id="defs">
+    <style id="style">
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 20px; text-anchor: middle; font-weight: bold; fill: #e0e0e0; }
+      .code { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 16px; fill: #e0e0e0; text-anchor: middle; dominant-baseline: central; }
+      .variable-node { fill: #2d3748; stroke: #63b3ed; stroke-width: 2; }
+      .value-node { fill: #4a5568; stroke: #fc8181; stroke-width: 2; }
+      .arrow { stroke: #e0e0e0; stroke-width: 2; marker-end: url(#arrowhead); }
+      .dashed-arrow { stroke: #e0e0e0; stroke-width: 2; stroke-dasharray: 5,5; marker-end: url(#arrowhead); }
+      .note { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 16px; fill: #a0a0a0; text-anchor: middle; dominant-baseline: central; font-style: italic; }
+      .pointer { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 16px; fill: #e0e0e0; text-anchor: middle; font-weight: bold; }
+
+      .status-text { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 15px; text-anchor: start; fill: #e0e0e0; }
+      .code-panel { fill: #2d2d2d; stroke: #555555; stroke-width: 1.5; rx: 6; }
+      .code-line { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 14px; text-anchor: start; fill: #aaaaaa; }
+      .code-line-active { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 14px; text-anchor: start; fill: #93c5fd; font-weight: bold; }
+      .code-highlight { fill: #1e3a5f; stroke: #63b3ed; stroke-width: 1; rx: 3; }
+      .step-indicator { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 13px; text-anchor: middle; fill: #888888; }
+      .pointer-triangle { fill: #fc8181; stroke: none; }
+      .pointer-text { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 12px; text-anchor: middle; fill: #fc8181; }
+      .highlight-green { fill: #1b4332; stroke: #28a745; stroke-width: 2; rx: 6; }
+      .highlight-red { fill: #4a1a1a; stroke: #dc3545; stroke-width: 2; rx: 6; }
+      .result-ok { fill: #28a745; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 16px; text-anchor: start; font-weight: bold; }
+      .result-fail { fill: #dc3545; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 16px; text-anchor: start; }
+      .checkmark { fill: #28a745; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 20px; font-weight: bold; }
+      .crossmark { fill: #dc3545; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 20px; font-weight: bold; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto" viewBox="0 0 10 7" preserveAspectRatio="xMidYMid">
+      <polygon points="0,7 0,0 10,3.5" fill="#e0e0e0" />
+    </marker>
+    <marker id="arrowhead-2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto" viewBox="0 0 10 7" preserveAspectRatio="xMidYMid">
+      <polygon points="0,0 10,3.5 0,7" fill="#e0e0e0" />
+    </marker>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="800" height="520" fill="#1e1e1e" rx="10" id="bg" />
+
+  <!-- ===== BASE: ListaEnlazadaSimple_dark.svg (coords simplificadas) ===== -->
+
+  <text x="400" y="34" class="title" id="title">Lista Enlazada Simple — Find (Contains)</text>
+
+  <g id="g12" transform="translate(-67.694701,-0.229271)">
+    <rect x="80" y="120" width="60" height="40" rx="5" class="variable-node" id="rect2" />
+    <text x="110" y="140" class="code" id="text2">E1</text>
+  </g>
+  <g id="g13" transform="translate(-67.694701,-0.229271)">
+    <rect x="200" y="120" width="60" height="40" rx="5" class="value-node" id="rect3" />
+    <text x="230" y="140" class="code" id="text3">E2</text>
+  </g>
+  <g id="g14" transform="translate(-67.694701,-0.229271)">
+    <rect x="320" y="120" width="60" height="40" rx="5" class="variable-node" id="rect4" />
+    <text x="350" y="140" class="code" id="text4">E3</text>
+  </g>
+  <g id="g15" transform="translate(-67.694701,-0.229271)">
+    <rect x="440" y="120" width="60" height="40" rx="5" class="value-node" id="rect5" />
+    <text x="470" y="140" class="code" id="text5">E4</text>
+  </g>
+
+  <line x1="72.305298" y1="139.77074" x2="127.3053" y2="139.77074" class="arrow" id="line5" style="stroke-width:1.5;stroke-dasharray:none" />
+  <line x1="192.3053" y1="139.77074" x2="247.3053" y2="139.77074" class="arrow" id="line6" style="stroke-width:1.5;stroke-dasharray:none" />
+  <line x1="312.3053" y1="139.77074" x2="367.3053" y2="139.77074" class="arrow" id="line7" style="stroke-width:1.5;stroke-dasharray:none" />
+  <line x1="432.3053" y1="139.77074" x2="477.3053" y2="139.77074" class="arrow" id="line8" style="stroke-width:1.5;stroke-dasharray:none" />
+
+  <text x="502.63202" y="138.42619" class="note" id="text-nil">nil</text>
+
+  <text x="416.03967" y="81.874138" class="note" id="tail-label">tail</text>
+  <text x="29.914673" y="81.874138" class="note" id="head-label">head</text>
+
+  <path style="fill:none;fill-rule:evenodd;stroke:#a9a9a9;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:2, 1;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#arrowhead)" d="m 30.252105,88.206764 15.46219,25.546216" id="arrow-head" />
+  <path style="fill:none;fill-rule:evenodd;stroke:#a9a9a9;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:2, 1;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#arrowhead-2)" d="M 420.79833,88.206764 405.33614,113.75298" id="arrow-tail" />
+
+  <!-- ===== PANEL DE CÓDIGO ===== -->
+
+  <g id="code-panel">
+    <rect x="30" y="220" width="740" height="180" class="code-panel" />
+    <text x="50" y="245" style="font-family: ui-sans-serif, system-ui, sans-serif; font-size: 15px; text-anchor: start; fill: #aaaaaa; font-weight: bold;">Código</text>
+    <line x1="50" y1="253" x2="750" y2="253" stroke="#444444" stroke-width="1" />
+
+    <g id="code-line-1">
+      <rect x="45" y="264" width="720" height="22" class="code-highlight" style="opacity: 0;" id="cl-high-1" />
+      <text x="50" y="280" class="code-line" id="cl-text-1">  Find(buscado):</text>
+    </g>
+    <g id="code-line-2">
+      <rect x="45" y="286" width="720" height="22" class="code-highlight" style="opacity: 0;" id="cl-high-2" />
+      <text x="50" y="302" class="code-line" id="cl-text-2">      actual := Head()</text>
+    </g>
+    <g id="code-line-3">
+      <rect x="45" y="308" width="720" height="22" class="code-highlight" style="opacity: 0;" id="cl-high-3" />
+      <text x="50" y="324" class="code-line" id="cl-text-3">      mientras actual != nulo:</text>
+    </g>
+    <g id="code-line-4">
+      <rect x="45" y="330" width="720" height="22" class="code-highlight" style="opacity: 0;" id="cl-high-4" />
+      <text x="50" y="346" class="code-line" id="cl-text-4">          si actual.dato == buscado:</text>
+    </g>
+    <g id="code-line-5">
+      <rect x="45" y="352" width="720" height="22" class="code-highlight" style="opacity: 0;" id="cl-high-5" />
+      <text x="50" y="368" class="code-line" id="cl-text-5">              retornar true</text>
+    </g>
+    <g id="code-line-6">
+      <rect x="45" y="374" width="720" height="22" class="code-highlight" style="opacity: 0;" id="cl-high-6" />
+      <text x="50" y="390" class="code-line" id="cl-text-6">          actual = actual.siguiente</text>
+    </g>
+  </g>
+
+  <!-- Status bar -->
+  <rect x="30" y="415" width="740" height="36" fill="#2d2d2d" stroke="#555555" stroke-width="1" rx="4" id="status-bg" />
+  <text x="50" y="437" class="status-text" id="status-text">Buscando elemento E3...</text>
+
+  <!-- Step counter -->
+  <text x="400" y="475" class="step-indicator" id="step-counter">Paso 0/7 — Haz clic en cualquier parte para avanzar</text>
+
+  <!-- ===== STEP OVERLAYS ===== -->
+
+  <g id="step-0"></g>
+
+  <g id="step-1" display="none">
+    <line x1="12.3" y1="88" x2="30" y2="120" stroke="#63b3ed" stroke-width="2" marker-end="url(#arrowhead)" />
+    <polygon points="42.3,173 32.3,183 52.3,183" class="pointer-triangle" />
+    <text x="42.3" y="196" class="pointer-text">actual</text>
+  </g>
+
+  <g id="step-2" display="none">
+    <line x1="12.3" y1="88" x2="30" y2="120" stroke="#63b3ed" stroke-width="2" marker-end="url(#arrowhead)" />
+    <polygon points="42.3,173 32.3,183 52.3,183" class="pointer-triangle" />
+    <text x="42.3" y="196" class="pointer-text">actual</text>
+    <text x="80" y="107" class="checkmark">&#10003;</text>
+    <text x="42.3" y="210" class="result-ok" style="font-size: 13px;">actual ≠ nil</text>
+  </g>
+
+  <g id="step-3" display="none">
+    <line x1="12.3" y1="88" x2="30" y2="120" stroke="#63b3ed" stroke-width="2" marker-end="url(#arrowhead)" />
+    <polygon points="42.3,173 32.3,183 52.3,183" class="pointer-triangle" />
+    <text x="42.3" y="196" class="pointer-text">actual</text>
+    <rect x="12.3" y="119.8" width="60" height="40" class="highlight-red" />
+    <text x="42.3" y="139.8" class="code" fill="#e0e0e0">E1</text>
+    <text x="75" y="107" class="crossmark">&#10007;</text>
+    <text x="42.3" y="210" class="result-fail" style="font-size: 13px;">E1 ≠ E3</text>
+  </g>
+
+  <g id="step-4" display="none">
+    <line x1="72.3" y1="139.8" x2="127.3" y2="139.8" stroke="#63b3ed" stroke-width="2" marker-end="url(#arrowhead)" />
+    <polygon points="162.3,173 152.3,183 172.3,183" class="pointer-triangle" />
+    <text x="162.3" y="196" class="pointer-text">actual</text>
+    <text x="162.3" y="210" class="result-ok" style="font-size: 13px;">actual = E2</text>
+  </g>
+
+  <g id="step-5" display="none">
+    <polygon points="162.3,173 152.3,183 172.3,183" class="pointer-triangle" />
+    <text x="162.3" y="196" class="pointer-text">actual</text>
+    <rect x="132.3" y="119.8" width="60" height="40" class="highlight-red" />
+    <text x="162.3" y="139.8" class="code" fill="#e0e0e0">E2</text>
+    <text x="200" y="107" class="checkmark">&#10003;</text>
+    <text x="195" y="124" class="checkmark" style="font-size: 13px;">actual ≠ nil</text>
+    <text x="195" y="144" class="crossmark" style="font-size: 13px;">E2 ≠ E3</text>
+    <text x="162.3" y="210" class="result-fail" style="font-size: 13px;">E2 ≠ E3</text>
+  </g>
+
+  <g id="step-6" display="none">
+    <line x1="192.3" y1="139.8" x2="247.3" y2="139.8" stroke="#63b3ed" stroke-width="2" marker-end="url(#arrowhead)" />
+    <polygon points="282.3,173 272.3,183 292.3,183" class="pointer-triangle" />
+    <text x="282.3" y="196" class="pointer-text">actual</text>
+    <text x="282.3" y="210" class="result-ok" style="font-size: 13px;">actual = E3</text>
+  </g>
+
+  <g id="step-7" display="none">
+    <polygon points="282.3,173 272.3,183 292.3,183" class="pointer-triangle" />
+    <text x="282.3" y="196" class="pointer-text">actual</text>
+    <rect x="252.3" y="119.8" width="60" height="40" class="highlight-green" />
+    <text x="282.3" y="139.8" class="code" fill="#e0e0e0">E3</text>
+    <text x="320" y="107" class="checkmark">&#10003;</text>
+    <text x="315" y="124" class="checkmark" style="font-size: 13px;">actual ≠ nil</text>
+    <text x="315" y="144" class="checkmark" style="font-size: 13px;">E3 == buscado</text>
+    <text x="282.3" y="210" class="result-ok" style="font-size: 13px;">¡E3 encontrado!</text>
+  </g>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script><![CDATA[
+    var currentStep = 0;
+    var totalSteps = 7;
+    function showStep(n) {
+      for (var i = 0; i <= totalSteps; i++) {
+        var el = document.getElementById('step-' + i);
+        if (el) el.setAttribute('display', 'none');
+      }
+      for (var j = 1; j <= 6; j++) {
+        var hl = document.getElementById('cl-high-' + j);
+        var tx = document.getElementById('cl-text-' + j);
+        if (hl) hl.setAttribute('style', 'opacity: 0');
+        if (tx) tx.setAttribute('class', 'code-line');
+      }
+      var el = document.getElementById('step-' + n);
+      if (el) el.setAttribute('display', 'inline');
+      var statuses = [
+        'Se invoca Find(buscado=E3)',
+        'actual := Head()  →  actual apunta a E1',
+        'actual != nil?  →  true',
+        'actual.dato == E3?  →  false (E1 ≠ E3)',
+        'actual = actual.siguiente  →  actual apunta a E2',
+        'actual.dato == E3?  →  false (E2 ≠ E3)',
+        'actual = actual.siguiente  →  actual apunta a E3',
+        'actual.dato == E3?  →  true  →  ¡E3 encontrado!'
+      ];
+      var highlights = [[1],[2],[3],[4],[6],[3,4],[6],[3,4,5]];
+      if (statuses[n]) document.getElementById('status-text').textContent = statuses[n];
+      document.getElementById('step-counter').textContent = 'Paso ' + n + '/' + totalSteps + ' — Haz clic en cualquier parte para avanzar';
+      var hls = highlights[n] || [];
+      for (var k = 0; k < hls.length; k++) {
+        var lineNum = hls[k];
+        var hlEl = document.getElementById('cl-high-' + lineNum);
+        var txEl = document.getElementById('cl-text-' + lineNum);
+        if (hlEl) hlEl.setAttribute('style', 'opacity: 1');
+        if (txEl) txEl.setAttribute('class', 'code-line-active');
+      }
+      currentStep = n;
+    }
+    function nextStep() {
+      var next = currentStep + 1;
+      if (next > totalSteps) next = 0;
+      showStep(next);
+    }
+    showStep(0);
+  ]]></script>
+
+  <!-- Click overlay -->
+  <rect x="0" y="0" width="800" height="520" fill="transparent" style="cursor: pointer;" onclick="nextStep()" />
+</svg>

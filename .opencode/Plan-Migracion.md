@@ -51,7 +51,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 15 | `contenidos/2-taller-de-go/2-11-oop.md` | ✅ Revisado | `taller-go` |
 | 16 | `contenidos/3-estructuras-de-datos/3-1-tad.md` | ✅ Revisado | `data-structures`, `taller-tad` |
 | 17 | `contenidos/3-estructuras-de-datos/3-2-pilas-colas.md` | ✅ Revisado | `taller-tad`, `data-structures` |
-| 18 | `contenidos/3-estructuras-de-datos/3-3-listas.md` | ⬜ Pendiente | `guia-listas`, `data-structures` |
+| 18 | `contenidos/3-estructuras-de-datos/3-3-listas.md` | 🔄 En preparación | `data-structures`, `taller-tad` |
 | 19 | `contenidos/3-estructuras-de-datos/3-4-conjuntos.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
 | 20 | `contenidos/3-estructuras-de-datos/3-5-mapa-de-bits.md` | ⬜ Pendiente | — |
 | 21 | `contenidos/3-estructuras-de-datos/3-6-tablas-de-hashing.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
@@ -83,7 +83,7 @@ debe buscar recursos en estos repos para referenciar o incluir en el apunte.
 |---|---|---|
 | 3-1 TAD | `taller-tad` | `data-structures` |
 | 3-2 Pilas y Colas | `taller-tad` (ejercicios en `02-pilas-colas/`) | `data-structures` |
-| 3-3 Listas | `guia-listas`, `guia-listas-resuelta` | `data-structures` |
+| 3-3 Listas | `taller-tad` (`03-listas/`) | `data-structures` (`list/`) |
 | 3-4 Conjuntos | `guia-conjuntos-hashtable-diccionarios` | — |
 | 3-5 Mapa de bits | — | — |
 | 3-6 Tablas de Hashing | `guia-conjuntos-hashtable-diccionarios` | — |
@@ -117,10 +117,12 @@ Reemplazar `custom.css` con el de EDD. Incluye reglas `only-light-mode` / `only-
 ### Estandarizar Admonitions
 - 34 `{admonition}` sin normalizar, 5 `{note}`, 5 `{important}`, 2 con HTML legacy
 - Unificar títulos y convertir legacy
+- **Definiciones**: usar `{admonition} Definición` con `class: hint`. Ejemplo en `1-3-analisis-de-algoritmos.md:24-29`
 
 ### Figuras — Pares Light/Dark
 - ✅ MapaDeMemoria: agregado Segmento de Datos
-- Pendiente: ~30 imágenes (ABB, AVL, Listas, Patrones, Recursión, Backtracking, Heap, Misc). Usar skill `diagramas-svg`.
+- ✅ Listas (8 figuras): completado 21/05/2026
+- Pendiente: ~22 imágenes (ABB, AVL, Patrones, Recursión, Backtracking, Heap, Misc). Usar skill `diagramas-svg`.
 
 ### Arquitectura de repos de apoyo (definido 17/05/2026)
 - ✅ `data-structures` (nuevo): interfaces + tests, alumnos forkear e implementar
@@ -157,13 +159,13 @@ Estado actual (jb2-martin):
     1-2-memoria        ✅
     1-3-analisis       ✅
     2-Taller de Go     ✅ 11 archivos
-    3-Estructuras      ✅ 1 / ⬜ 11 archivos
+    3-Estructuras      ✅ 2 / 🔄 1 / ⬜ 9 archivos
     4-Diseño Alg.      ⬜ 7 archivos
     5-Taller Git       ⬜
     bibliografia       ⬜
 
   Admonitions          🔶 ~34 pendientes
   Figuras l/d          🔶 ~30 pendientes
-  Repos apoyo          ✅ data-structures + taller-tad creados
+  Repos apoyo          ✅ data-structures + taller-tad creados + list/
   Dependencias         🔶 con restos JBv1
 ```

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 526.38653 180.7563"
+   width="526.38654"
+   height="180.7563"
+   version="1.1"
+   id="svg10"
+   sodipodi:docname="ListaEnlazadaSimple_light.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview10"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.4875"
+     inkscape:cx="252.10084"
+     inkscape:cy="208.06723"
+     inkscape:window-width="1896"
+     inkscape:window-height="994"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg10" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 20px; text-anchor: middle; font-weight: bold; fill: #333333; }
+      .code { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 16px; fill: #333333; text-anchor: middle; dominant-baseline: central; }
+      .variable-node { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
+      .value-node { fill: #ffe1e1; stroke: #e9967a; stroke-width: 2; }
+      .arrow { stroke: #333333; stroke-width: 2; marker-end: url(#arrowhead); }
+      .dashed-arrow { stroke: #333333; stroke-width: 2; stroke-dasharray: 5,5; marker-end: url(#arrowhead); }
+      .note { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 16px; fill: #666666; text-anchor: middle; dominant-baseline: central; font-style: italic; }
+      .pointer { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 16px; fill: #333333; text-anchor: middle; font-weight: bold; }
+    </style>
+    <marker
+       id="arrowhead"
+       markerWidth="10"
+       markerHeight="7"
+       refX="10"
+       refY="3.5"
+       orient="auto"
+       viewBox="0 0 10 7"
+       preserveAspectRatio="xMidYMid">
+      <polygon
+         points="0,7 0,0 10,3.5 "
+         fill="#333333"
+         id="polygon1" />
+    </marker>
+    <marker
+       id="arrowhead-2"
+       markerWidth="10"
+       markerHeight="7"
+       refX="10"
+       refY="3.5"
+       orient="auto"
+       viewBox="0 0 10 7"
+       preserveAspectRatio="xMidYMid">
+      <polygon
+         points="0,0 10,3.5 0,7 "
+         fill="#333333"
+         id="polygon1-9" />
+    </marker>
+  </defs>
+  <!-- Nodos -->
+  <!-- Flechas entre nodos -->
+  <!-- nil -->
+  <!-- head -->
+  <!-- tail -->
+  <rect
+     width="526.38654"
+     height="180.7563"
+     fill="#f0f2f5"
+     id="rect1"
+     x="0"
+     y="0"
+     style="stroke-width:0.689739" />
+  <text
+     x="244.02698"
+     y="34.770729"
+     class="title"
+     id="text1">Lista Enlazada Simple</text>
+  <g
+     id="g12"
+     transform="translate(-67.694701,-0.229271)">
+    <rect
+       x="80"
+       y="120"
+       width="60"
+       height="40"
+       rx="5"
+       class="variable-node"
+       id="rect2" />
+    <text
+       x="110"
+       y="140"
+       class="code"
+       id="text2">E1</text>
+  </g>
+  <g
+     id="g13"
+     transform="translate(-67.694701,-0.229271)">
+    <rect
+       x="200"
+       y="120"
+       width="60"
+       height="40"
+       rx="5"
+       class="value-node"
+       id="rect3" />
+    <text
+       x="230"
+       y="140"
+       class="code"
+       id="text3">E2</text>
+  </g>
+  <g
+     id="g14"
+     transform="translate(-67.694701,-0.229271)">
+    <rect
+       x="320"
+       y="120"
+       width="60"
+       height="40"
+       rx="5"
+       class="variable-node"
+       id="rect4" />
+    <text
+       x="350"
+       y="140"
+       class="code"
+       id="text4">E3</text>
+  </g>
+  <g
+     id="g15"
+     transform="translate(-67.694701,-0.229271)">
+    <rect
+       x="440"
+       y="120"
+       width="60"
+       height="40"
+       rx="5"
+       class="value-node"
+       id="rect5" />
+    <text
+       x="470"
+       y="140"
+       class="code"
+       id="text5">E4</text>
+  </g>
+  <line
+     x1="72.305298"
+     y1="139.77074"
+     x2="127.3053"
+     y2="139.77074"
+     class="arrow"
+     id="line5"
+     style="stroke-width:1.5;stroke-dasharray:none" />
+  <line
+     x1="192.3053"
+     y1="139.77074"
+     x2="247.3053"
+     y2="139.77074"
+     class="arrow"
+     id="line6"
+     style="stroke-width:1.5;stroke-dasharray:none" />
+  <line
+     x1="312.3053"
+     y1="139.77074"
+     x2="367.3053"
+     y2="139.77074"
+     class="arrow"
+     id="line7"
+     style="stroke-width:1.5;stroke-dasharray:none" />
+  <line
+     x1="432.3053"
+     y1="139.77074"
+     x2="477.3053"
+     y2="139.77074"
+     class="arrow"
+     id="line8"
+     style="stroke-width:1.5;stroke-dasharray:none" />
+  <text
+     x="502.63202"
+     y="138.42619"
+     class="note"
+     id="text8">nil</text>
+  <text
+     x="416.03967"
+     y="81.874138"
+     class="note"
+     id="text8-7"
+     style="font-style:italic;font-size:16px;font-family:menlo, consola, 'DejaVu Sans Mono';dominant-baseline:central;text-anchor:middle;fill:#666666">tail</text>
+  <text
+     x="29.914673"
+     y="81.874138"
+     class="note"
+     id="text8-5"
+     style="font-style:italic;font-size:16px;font-family:menlo, consola, 'DejaVu Sans Mono';dominant-baseline:central;text-anchor:middle;fill:#666666">head</text>
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#a9a9a9;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:2, 1;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#arrowhead)"
+     d="m 30.252105,88.206764 15.46219,25.546216"
+     id="path1"
+     inkscape:connector-type="polyline"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#a9a9a9;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:2, 1;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#arrowhead-2)"
+     d="M 420.79833,88.206764 405.33614,113.75298"
+     id="path1-2"
+     inkscape:connector-type="polyline"
+     inkscape:connector-curvature="0" />
+</svg>
