@@ -35,7 +35,7 @@
     <style
        id="style-ld-dark">
       .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 20px; text-anchor: middle; font-weight: bold; fill: #e0e0e0; }
-      .arrow { stroke: #e0e0e0; stroke-width: 2; marker-end: url(#arrowhead); fill: none; }
+      .arrow { stroke: #e0e0e0; stroke-width: 1.25; marker-end: url(#arrowhead); fill: none; }
       .note { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; text-anchor: middle; font-style: italic; fill: #a0a0a0; }
       .cell-prev { fill: #2d3748; stroke: #63b3ed; stroke-width: 1.5; }
       .cell-data { fill: #4a5568; stroke: #fc8181; stroke-width: 1.5; }
@@ -496,7 +496,7 @@
          y2="105.24736"
          class="arrow"
          id="line11"
-         style="fill:none;stroke:#e0e0e0;stroke-width:2;marker-end:url(#arrowhead-5)" />
+         style="fill:none;stroke:#e0e0e0;stroke-width:1.25;marker-end:url(#arrowhead-5)" />
     </g>
     <text
        x="622.51044"
@@ -512,27 +512,27 @@
        y2="96.529266"
        class="arrow"
        id="line11-8"
-       style="fill:none;stroke:#e0e0e0;stroke-width:2;marker-end:url(#arrowhead-5-9)"
+       style="fill:none;stroke:#e0e0e0;stroke-width:1.25;marker-end:url(#arrowhead-5-9)"
        transform="translate(-17.073171,8.7180939)" />
     <path
        d="m 291.16184,122.59326 q -62.96503,29.43761 -125.93007,0"
        class="arrow"
        id="path15"
-       style="fill:none;stroke:#e0e0e0;stroke-width:2;stroke-dasharray:none;marker-end:url(#arrowhead-5)" />
+       style="fill:none;stroke:#e0e0e0;stroke-width:1.25;stroke-dasharray:none;marker-end:url(#arrowhead-5)" />
     <path
        d="m 461.16184,122.59326 q -62.96503,29.43761 -125.93007,0"
        class="arrow"
        id="path16"
-       style="fill:none;stroke:#e0e0e0;stroke-width:2;stroke-dasharray:none;marker-end:url(#arrowhead-5)" />
+       style="fill:none;stroke:#e0e0e0;stroke-width:1.25;stroke-dasharray:none;marker-end:url(#arrowhead-5)" />
     <path
        d="m 379.07825,80.95353 q 61.44155,-29.48149 122.88312,0"
        class="arrow"
        id="path15-1-9"
-       style="fill:none;stroke:#e0e0e0;stroke-width:2;stroke-dasharray:none;marker-end:url(#arrowhead-7-9-0)" />
+       style="fill:none;stroke:#e0e0e0;stroke-width:1.25;stroke-dasharray:none;marker-end:url(#arrowhead-7-9-0)" />
     <path
        d="m 206.22231,81.50682 q 61.44155,-29.48149 122.88311,0"
        class="arrow"
        id="path15-1-9-1"
-       style="fill:none;stroke:#e0e0e0;stroke-width:2;stroke-dasharray:none;marker-end:url(#arrowhead-7-9-2-1)" />
+       style="fill:none;stroke:#e0e0e0;stroke-width:1.25;stroke-dasharray:none;marker-end:url(#arrowhead-7-9-2-1)" />
   </g>
 </svg>

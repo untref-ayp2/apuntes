@@ -36,6 +36,8 @@ make clean     # elimina build artifacts
 5. Compila con `typst compile`
 6. Mueve PDF a `contenidos/exports/apunte-ayp2.pdf`
 
+**Importante:** `contenidos/exports/apunte-ayp2.pdf` se incluye siempre en los commits (no es un artifact descartable).
+
 ## MyST y contenido
 
 ### Frontmatter

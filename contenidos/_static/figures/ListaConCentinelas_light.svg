@@ -35,7 +35,7 @@
     <style
        id="style-ld-light">
       .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 20px; text-anchor: middle; font-weight: bold; fill: #333333; }
-      .arrow { stroke: #333333; stroke-width: 2; marker-end: url(#arrowhead); fill: none; }
+      .arrow { stroke: #333333; stroke-width: 1.25; marker-end: url(#arrowhead); fill: none; }
       .note { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; text-anchor: middle; font-style: italic; fill: #666666; }
       .cell-prev { fill: #e1f5ff; stroke: #4682b4; stroke-width: 1.5; }
       .cell-data { fill: #ffe1e1; stroke: #e9967a; stroke-width: 1.5; }
@@ -421,32 +421,32 @@
        style="fill:#ffe1e1;fill-opacity:1;stroke:#e9967a;stroke-opacity:1" />
   </g>
   <path
-     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead)"
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead)"
      d="m 119.5122,96.341463 c 63.09269,-56.821543 87.17538,-20.76214 117.68292,0"
      id="path12"
      sodipodi:nodetypes="cc" />
   <path
-     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead-6)"
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead-6)"
      d="m 275.13262,96.299593 c 63.09269,-56.821543 87.17538,-20.76214 117.68292,0"
      id="path12-5"
      sodipodi:nodetypes="cc" />
   <path
-     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead-6-0)"
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead-6-0)"
      d="m 433.23019,96.445934 c 63.09269,-56.821543 87.17538,-20.76214 117.68292,0"
      id="path12-5-7"
      sodipodi:nodetypes="cc" />
   <path
-     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead-6-0-1)"
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead-6-0-1)"
      d="m 512.70895,136.89988 c -63.09269,56.82154 -87.17538,20.76214 -117.68292,0"
      id="path12-5-7-7"
      sodipodi:nodetypes="cc" />
   <path
-     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead-6-0-1-2)"
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead-6-0-1-2)"
      d="m 353.41628,137.26573 c -63.09269,56.82154 -87.17538,20.76214 -117.68292,0"
      id="path12-5-7-7-1"
      sodipodi:nodetypes="cc" />
   <path
-     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead-6-0-1-2-0)"
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead-6-0-1-2-0)"
      d="m 196.80653,136.46086 c -63.09269,56.82154 -87.17538,20.76214 -117.682924,0"
      id="path12-5-7-7-1-5"
      sodipodi:nodetypes="cc" />

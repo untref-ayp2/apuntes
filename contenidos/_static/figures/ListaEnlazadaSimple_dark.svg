@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   viewBox="0 0 677.64703 224.45378"
-   width="677.64703"
-   height="224.45378"
+   viewBox="0 0 610 180"
+   width="610"
+   height="180"
    version="1.1"
-   id="svg10"
+   id="svg-ld-dark"
    sodipodi:docname="ListaEnlazadaSimple_dark.svg"
    inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -12,7 +12,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
-     id="namedview10"
+     id="namedview1"
      pagecolor="#ffffff"
      bordercolor="#000000"
      borderopacity="0.25"
@@ -20,27 +20,25 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="1.4875"
-     inkscape:cx="326.38655"
-     inkscape:cy="230.92437"
-     inkscape:window-width="1896"
-     inkscape:window-height="994"
+     inkscape:zoom="1.4540984"
+     inkscape:cx="304.65614"
+     inkscape:cy="89.746336"
+     inkscape:window-width="2538"
+     inkscape:window-height="1350"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg10" />
+     inkscape:current-layer="svg-ld-dark" />
   <defs
-     id="defs1">
+     id="defs-ld-dark">
     <style
-       id="style1">
+       id="style-ld-dark">
       .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 20px; text-anchor: middle; font-weight: bold; fill: #e0e0e0; }
-      .code { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 16px; fill: #e0e0e0; text-anchor: middle; dominant-baseline: central; }
-      .variable-node { fill: #2d3748; stroke: #63b3ed; stroke-width: 2; }
-      .value-node { fill: #4a5568; stroke: #fc8181; stroke-width: 2; }
-      .arrow { stroke: #e0e0e0; stroke-width: 2; marker-end: url(#arrowhead); }
-      .dashed-arrow { stroke: #e0e0e0; stroke-width: 2; stroke-dasharray: 5,5; marker-end: url(#arrowhead); }
-      .note { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 16px; fill: #a0a0a0; text-anchor: middle; dominant-baseline: central; font-style: italic; }
-      .pointer { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 16px; fill: #e0e0e0; text-anchor: middle; font-weight: bold; }
+      .arrow { stroke: #e0e0e0; stroke-width: 1.25; marker-end: url(#arrowhead); fill: none; }
+      .note { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; text-anchor: middle; font-style: italic; fill: #a0a0a0; }
+      .cell-data { fill: #4a5568; stroke: #fc8181; stroke-width: 1.5; }
+      .cell-next { fill: #2d3748; stroke: #63b3ed; stroke-width: 1.5; }
+      .cell-label { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 16px; text-anchor: middle; fill: #e0e0e0; }
     </style>
     <marker
        id="arrowhead"
@@ -56,166 +54,195 @@
          fill="#e0e0e0"
          id="polygon1" />
     </marker>
+    <marker
+       id="arrowhead-3"
+       markerWidth="10"
+       markerHeight="7"
+       refX="10"
+       refY="3.5"
+       orient="auto"
+       viewBox="0 0 10 7"
+       preserveAspectRatio="xMidYMid">
+      <polygon
+         points="0,0 10,3.5 0,7 "
+         fill="#e0e0e0"
+         id="polygon1-6" />
+    </marker>
   </defs>
   <rect
-     width="677.64703"
-     height="224.45378"
+     width="610"
+     height="180"
      fill="#1e1e1e"
+     rx="8.5853662"
      id="rect1"
      x="0"
-     y="0"
-     style="stroke-width:0.872068" />
-  <!-- Nodos -->
-  <!-- Flechas entre nodos -->
+     y="0" />
+  <text
+     x="305"
+     y="35"
+     class="title"
+     id="text1">Lista Enlazada Simple</text>
+  <!-- E1: data + sig -->
+  <rect
+     x="80"
+     y="90"
+     width="40"
+     height="40"
+     class="cell-data"
+     id="rect-e1-data" />
+  <text
+     x="100"
+     y="115"
+     class="cell-label"
+     id="text-e1">E1</text>
+  <rect
+     x="120"
+     y="90"
+     width="40"
+     height="40"
+     class="cell-next"
+     id="rect-e1-next" />
+  <text
+     x="140"
+     y="112"
+     class="note"
+     id="text-e1-sig">sig</text>
+  <!-- E2: data + sig -->
+  <rect
+     x="200"
+     y="90"
+     width="40"
+     height="40"
+     class="cell-data"
+     id="rect-e2-data" />
+  <text
+     x="220"
+     y="115"
+     class="cell-label"
+     id="text-e2">E2</text>
+  <rect
+     x="240"
+     y="90"
+     width="40"
+     height="40"
+     class="cell-next"
+     id="rect-e2-next" />
+  <text
+     x="260"
+     y="112"
+     class="note"
+     id="text-e2-sig">sig</text>
+  <!-- E3: data + sig -->
+  <rect
+     x="320"
+     y="90"
+     width="40"
+     height="40"
+     class="cell-data"
+     id="rect-e3-data" />
+  <text
+     x="340"
+     y="115"
+     class="cell-label"
+     id="text-e3">E3</text>
+  <rect
+     x="360"
+     y="90"
+     width="40"
+     height="40"
+     class="cell-next"
+     id="rect-e3-next" />
+  <text
+     x="380"
+     y="112"
+     class="note"
+     id="text-e3-sig">sig</text>
+  <!-- E4: data + sig -->
+  <rect
+     x="440"
+     y="90"
+     width="40"
+     height="40"
+     class="cell-data"
+     id="rect-e4-data" />
+  <text
+     x="460"
+     y="115"
+     class="cell-label"
+     id="text-e4">E4</text>
+  <rect
+     x="480"
+     y="90"
+     width="40"
+     height="40"
+     class="cell-next"
+     id="rect-e4-next" />
+  <text
+     x="500"
+     y="112"
+     class="note"
+     id="text-e4-sig">sig</text>
+  <!-- Arrows between nodes -->
+  <line
+     x1="160"
+     y1="110"
+     x2="195"
+     y2="110"
+     class="arrow"
+     id="arrow-1" />
+  <line
+     x1="280"
+     y1="110"
+     x2="315"
+     y2="110"
+     class="arrow"
+     id="arrow-2" />
+  <line
+     x1="400"
+     y1="110"
+     x2="435"
+     y2="110"
+     class="arrow"
+     id="arrow-3" />
+  <line
+     x1="520"
+     y1="110"
+     x2="545"
+     y2="110"
+     class="arrow"
+     id="arrow-4" />
   <!-- nil -->
+  <text
+     x="557"
+     y="114"
+     class="note"
+     id="text-nil">nil</text>
   <!-- head -->
+  <text
+     x="94.418945"
+     y="60.55806"
+     class="note"
+     id="text-head">head</text>
+  <line
+     x1="115.14752"
+     y1="55.882923"
+     x2="131.76343"
+     y2="80.86116"
+     class="arrow"
+     id="line-head"
+     style="stroke-dasharray:2.5, 1.25;stroke-dashoffset:0;stroke:#888888;stroke-opacity:1" />
   <!-- tail -->
-  <g
-     id="g18"
-     transform="translate(-69.922606,16.259835)">
-    <text
-       x="400"
-       y="35"
-       class="title"
-       id="text1">Lista Enlazada Simple</text>
-    <g
-       id="g17">
-      <g
-         id="g16">
-        <g
-           id="g12"
-           transform="translate(88.27832)">
-          <rect
-             x="80"
-             y="120"
-             width="60"
-             height="40"
-             rx="5"
-             class="variable-node"
-             id="rect2" />
-          <text
-             x="110"
-             y="140"
-             class="code"
-             id="text2">E1</text>
-        </g>
-        <g
-           id="g13"
-           transform="translate(88.27832)">
-          <rect
-             x="200"
-             y="120"
-             width="60"
-             height="40"
-             rx="5"
-             class="value-node"
-             id="rect3" />
-          <text
-             x="230"
-             y="140"
-             class="code"
-             id="text3">E2</text>
-        </g>
-        <g
-           id="g14"
-           transform="translate(88.27832)">
-          <rect
-             x="320"
-             y="120"
-             width="60"
-             height="40"
-             rx="5"
-             class="variable-node"
-             id="rect4" />
-          <text
-             x="350"
-             y="140"
-             class="code"
-             id="text4">E3</text>
-        </g>
-        <g
-           id="g15"
-           transform="translate(88.27832)">
-          <rect
-             x="440"
-             y="120"
-             width="60"
-             height="40"
-             rx="5"
-             class="value-node"
-             id="rect5" />
-          <text
-             x="470"
-             y="140"
-             class="code"
-             id="text5">E4</text>
-        </g>
-        <line
-           x1="228.27832"
-           y1="140"
-           x2="283.27832"
-           y2="140"
-           class="arrow"
-           id="line5" />
-        <line
-           x1="348.27832"
-           y1="140"
-           x2="403.27832"
-           y2="140"
-           class="arrow"
-           id="line6" />
-        <line
-           x1="468.27832"
-           y1="140"
-           x2="523.27832"
-           y2="140"
-           class="arrow"
-           id="line7" />
-        <line
-           x1="588.27832"
-           y1="140"
-           x2="633.27832"
-           y2="140"
-           class="arrow"
-           id="line8" />
-      </g>
-      <text
-         x="637.76471"
-         y="167.56302"
-         class="note"
-         id="text8">nil</text>
-      <g
-         id="g10"
-         transform="translate(118.19238)">
-        <text
-           x="80"
-           y="70"
-           class="pointer"
-           id="text9">head</text>
-        <line
-           x1="80"
-           y1="80"
-           x2="80"
-           y2="115"
-           class="dashed-arrow"
-           id="line9" />
-      </g>
-      <g
-         id="g11"
-         transform="translate(118.3877)">
-        <text
-           x="440"
-           y="70"
-           class="pointer"
-           id="text10">tail</text>
-        <line
-           x1="440"
-           y1="80"
-           x2="440"
-           y2="115"
-           class="dashed-arrow"
-           id="line10" />
-      </g>
-    </g>
-  </g>
+  <text
+     x="511.72656"
+     y="60.585403"
+     class="note"
+     id="text-tail">tail</text>
+  <line
+     x1="497.67969"
+     y1="60.904221"
+     x2="481.06378"
+     y2="85.882462"
+     class="arrow"
+     id="line-tail"
+     style="fill:none;stroke:#888888;stroke-width:1.25;marker-end:url(#arrowhead-3);stroke-dasharray:2.5, 1.25;stroke-dashoffset:0;stroke-opacity:1" />
 </svg>

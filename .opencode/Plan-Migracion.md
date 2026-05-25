@@ -51,7 +51,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 15 | `contenidos/2-taller-de-go/2-11-oop.md` | ✅ Revisado | `taller-go` |
 | 16 | `contenidos/3-estructuras-de-datos/3-1-tad.md` | ✅ Revisado | `data-structures`, `taller-tad` |
 | 17 | `contenidos/3-estructuras-de-datos/3-2-pilas-colas.md` | ✅ Revisado | `taller-tad`, `data-structures` |
-| 18 | `contenidos/3-estructuras-de-datos/3-3-listas.md` | 🔄 En preparación | `data-structures`, `taller-tad` |
+| 18 | `contenidos/3-estructuras-de-datos/3-3-listas.md` | ✅ Revisado | `data-structures`, `taller-tad` |
 | 19 | `contenidos/3-estructuras-de-datos/3-4-conjuntos.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
 | 20 | `contenidos/3-estructuras-de-datos/3-5-mapa-de-bits.md` | ⬜ Pendiente | — |
 | 21 | `contenidos/3-estructuras-de-datos/3-6-tablas-de-hashing.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
@@ -159,7 +159,7 @@ Estado actual (jb2-martin):
     1-2-memoria        ✅
     1-3-analisis       ✅
     2-Taller de Go     ✅ 11 archivos
-    3-Estructuras      ✅ 2 / 🔄 1 / ⬜ 9 archivos
+    3-Estructuras      ✅ 3 / 🔄 0 / ⬜ 9 archivos
     4-Diseño Alg.      ⬜ 7 archivos
     5-Taller Git       ⬜
     bibliografia       ⬜

@@ -4,79 +4,192 @@ label: listas
 
 # Listas Enlazadas
 
-Las listas enlazadas son estructuras de datos que permiten almacenar una colección de elementos, en posiciones de memoria **no necesariamente contiguas**. Cada elemento de una lista se almacena en un nodo que contiene un campo de dato y uno o dos punteros a otros nodos.
+Las listas enlazadas son estructuras de datos que permiten almacenar una colección de elementos en posiciones de memoria **no necesariamente contiguas**. Cada elemento se guarda en un nodo que contiene un campo de dato y uno o dos punteros a otros nodos. Los nodos se enlazan entre sí para formar la secuencia.
 
-Los nodos están enlazados entre sí para formar la lista. Son estructuras de datos **dinámicas**, que pueden crecer a medida que se le agregan datos y reducirse cuando se eliminan.
+Son estructuras **dinámicas**: pueden crecer a medida que se agregan datos y reducirse cuando se eliminan. A diferencia de los arreglos, no requieren bloques contiguos de memoria ni reasignaciones costosas al cambiar de tamaño.
 
-Algunos usos de las listas enlazadas pueden ser:
+Algunos usos frecuentes:
 
 Algoritmos de manipulación de texto
-: Las listas enlazadas son útiles en aplicaciones y algoritmos de procesamiento de texto, como editores de texto, donde la inserción y eliminación de caracteres o líneas se realizan con frecuencia.
+: Las listas enlazadas son útiles en procesamiento de texto, donde la inserción y eliminación de caracteres o líneas se realizan con frecuencia. Cada línea del documento puede ser un nodo; insertar o borrar una línea solo requiere reenlazar punteros, sin desplazar el resto del contenido.
 
 Undo y redo en aplicaciones
-: Las listas enlazadas dobles son útiles para implementar funciones de deshacer y rehacer en aplicaciones de software, ya que permiten navegar hacia adelante y hacia atrás en el historial de acciones realizadas.
+: Las listas enlazadas dobles permiten navegar hacia adelante y atrás en el historial de acciones. Cada acción es un nodo; la doble vinculación permite moverse en ambas direcciones en tiempo constante.
 
 Listas de reproducción
-: Algunas aplicaciones utilizan listas circulares para implementar las funciones de avanzar y retroceder en listas de reproducción infinitas.
+: Una lista circular permite reproducir canciones en ciclo infinito. Al llegar al final, se vuelve al principio sin necesidad de reiniciar manualmente. Algunas implementaciones combinan listas dobles (para avanzar/retroceder) con comportamiento circular (para repetición continua).
+
+Existen cuatro variantes principales de listas enlazadas, que se diferencian en la cantidad de punteros por nodo, cómo se marcan los extremos y cómo se recorren. Cada variante tiene fortalezas y debilidades según la operación que se quiera optimizar.
+
+## Lista Enlazada Simple
+
+```{admonition} Definición
+---
+class: hint
+---
+Una lista enlazada simple es una estructura lineal donde cada nodo tiene un **sucesor**, salvo el último cuyo puntero es `nil`. La lista vacía no contiene nodos y su tamaño es 0.
+
+El nodo almacena:
+- **Dato**: el valor del elemento.
+- **Siguiente**: puntero al próximo nodo de la secuencia.
+```
+
+```{figure} ../_static/figures/ListaEnlazadaSimple_light.svg
+---
+width: 100%
+class: only-light-mode
+name: ssl-estructura
+---
+Lista Enlazada Simple
+```
+
+```{figure} ../_static/figures/ListaEnlazadaSimple_dark.svg
+---
+width: 100%
+class: only-dark-mode
+---
+Lista Enlazada Simple
+```
+
+```{code-block} go
+---
+linenos: true
+---
+type node[T any] struct {
+    data T
+    next *node[T]
+}
+```
+
+```{code-block} go
+---
+linenos: true
+---
+type List[T comparable] struct {
+    head *node[T]
+    tail *node[T]
+    size int
+}
+```
+
+Notar que el nodo se parametriza con `[T any]` porque solo almacena y enlaza datos, sin necesidad de compararlos. La lista, en cambio, usa `[T comparable]`, ya que, como veremos a continuación, algunas operaciones necesitan comparar elementos con `==` para encontrar un dato buscado.
+
+Cuando una operación como `Head()` o `Tail()` se ejecuta sobre una lista vacía, debe devolver el **valor cero** del tipo `T` (no `nil`, que solo es válido para punteros, *slices*, *maps* y canales). En Go, el valor cero se obtiene con `var zero T`:
+
+```{code-block} go
+:linenos: true
+
+var zero T
+/*
+    0       para int
+    0.0     para float
+    ""      para string
+    false   para bool
+    nil     para punteros, slices, maps y canales
+*/
+```
+
+## Lista Enlazada Doble
+
+```{admonition} Definición
+---
+class: hint
+---
+Una lista enlazada doble es una estructura lineal donde cada nodo tiene un **sucesor** y un **predecesor**, salvo el primero (sin predecesor) y el último (sin sucesor).
+
+El nodo almacena:
+- **Dato**: el valor del elemento.
+- **Siguiente**: puntero al próximo nodo.
+- **Previo / Anterior**: puntero al nodo predecesor.
+```
+
+```{figure} ../_static/figures/ListaEnlazadaDoble_light.svg
+---
+width: 100%
+class: only-light-mode
+name: dll-estructura
+---
+Lista Enlazada Doble
+```
+
+```{figure} ../_static/figures/ListaEnlazadaDoble_dark.svg
+---
+width: 100%
+class: only-dark-mode
+---
+Lista Enlazada Doble
+```
+
+```{code-block} go
+---
+linenos: true
+---
+type node[T any] struct {
+    data T
+    next *node[T]
+    prev *node[T]
+}
+```
+
+```{code-block} go
+---
+linenos: true
+---
+type List[T comparable] struct {
+    head *node[T]
+    tail *node[T]
+    size int
+}
+```
+
+## Lista Enlazada Circular
+
+```{admonition} Definición
+---
+class: hint
+---
+Una lista enlazada circular es una estructura donde el último nodo se enlaza al primero, formando un ciclo. Puede implementarse con enlaces simples o dobles.
+
+En una lista circular doble:
+- El sucesor del último nodo es el primero.
+- El predecesor del primero es el último.
+- No hay marcador de fin: el recorrido puede continuar indefinidamente.
+
+El nodo es el mismo que el de la lista doble (`node[T]` con `next` y `prev`).
+```
+
+```{figure} ../_static/figures/ListaEnlazadaCircularDoble_light.svg
+---
+width: 100%
+class: only-light-mode
+name: cll-estructura
+---
+Lista Enlazada Circular Doble
+```
+
+```{figure} ../_static/figures/ListaEnlazadaCircularDoble_dark.svg
+---
+width: 100%
+class: only-dark-mode
+---
+Lista Enlazada Circular Doble
+```
+
+Al ser cíclica, basta con mantener un único puntero a la cabeza: la cola se obtiene como `head.prev`. Esto ahorra un campo en la estructura.
+
+```{code-block} go
+---
+linenos: true
+---
+type List[T comparable] struct {
+    head *node[T]  // único puntero necesario
+    size int
+}
+```
 
 ## Interfaz común
 
-Si bien las listas son muy versátiles y su comportamiento se adapta a las necesidades del programador, vamos a definir un conjunto de operaciones, a los fines didácticos, para comprender cual es el comportamiento esperado de este TAD:
-
-### Operaciones de consulta
-
-Size()
-: Devuelve la cantidad de nodos de la lista.
-
-IsEmpty()
-: Devuelve `true` si la lista no tiene elementos.
-
-Contains(data T)
-: Devuelve `true` si el elemento está presente en la lista.
-
-Head()
-: Devuelve el dato del primer nodo. Si la lista está vacía devuelve el valor cero y `false`.
-
-Tail()
-: Devuelve el dato del último nodo. Si la lista está vacía devuelve el valor cero y `false`.
-
-### Operaciones de inserción
-
-Prepend(data T)
-: Agrega un nodo con el dato al inicio de la lista.
-
-Append(data T)
-: Agrega un nodo con el dato al final de la lista.
-
-InsertAfter(target, data T)
-: Busca `target` e inserta un nodo con `data` a continuación. Devuelve `false` si no encuentra `target`.
-
-InsertBefore(target, data T)
-: Busca `target` e inserta un nodo con `data` antes. Devuelve `false` si no encuentra `target`.
-
-### Operaciones de eliminación
-
-RemoveFirst()
-: Elimina el primer nodo. Devuelve `false` si la lista está vacía.
-
-RemoveLast()
-: Elimina el último nodo. Devuelve `false` si la lista está vacía.
-
-Remove(data T)
-: Busca y elimina la primera ocurrencia del elemento. Devuelve `false` si no lo encuentra.
-
-### Operaciones varias
-
-Values()
-: Devuelve un slice con los datos en el orden de la lista.
-
-Clear()
-: Elimina todos los nodos y deja la lista vacía.
-
-String()
-: Devuelve una representación textual de la lista.
-
-Cada variante implementa esta interfaz con distintas estructuras internas y distintas complejidades.
+Si bien las listas son versátiles y no existe un único comportamiento estándar para todas, vamos a definir una interfaz común para los tipos de lista que veremos a continuación. El objetivo es didáctico: acordar un conjunto de operaciones típicas que nos permita comparar implementaciones.
 
 ```{code-block} go
 ---
@@ -110,382 +223,670 @@ type List[T comparable] interface {
 }
 ```
 
-## Lista Enlazada Simple
+La mayoría de las operaciones de inserción, eliminación y búsqueda dependen de un método interno `find` que recorre la lista en busca de un elemento. Este método es **privado** (en Go, minúscula inicial) porque devuelve un puntero a un nodo interno, y no debería exponerse fuera de la lista. A continuación se muestra su implementación en cada variante; las operaciones del resto de la sección lo referencian.
 
-```{admonition} Definición
----
-class: hint
----
-Una lista enlazada simple es una estructura de datos lineal donde cada nodo de la lista tiene un sucesor, salvo el último. Por definición la lista vacía es la que no contiene datos y su tamaño es 0.
-
-El nodo de una lista enlazada simple tiene dos campos:
-
-Dato
-: El valor que se almacena en el nodo.
-
-Puntero (o enlace)
-: Una referencia a la dirección de memoria del siguiente nodo en la secuencia.
-```
-
-En su implementación más común se mantienen punteros a la cabeza y a la cola, y un contador de tamaño. Esto permite que las operaciones sobre los extremos sean $O(1)$.
-
-```{figure} ../_static/figures/ListaEnlazadaSimpleImplementacion_light.svg
----
-width: 100%
-class: only-light-mode
-name: ssl-implementacion
----
-Implementación de una Lista Enlazada Simple, con punteros a la cabeza y la cola
-```
-
-```{figure} ../_static/figures/ListaEnlazadaSimpleImplementacion_dark.svg
----
-width: 100%
-class: only-dark-mode
-name: ssl-implementacion
----
-Implementación de una Lista Enlazada Simple, con punteros a la cabeza y la cola
-```
-
-### Búsqueda
-
-Para buscar un elemento se recorre la lista desde la cabeza hasta encontrar el elemento o llegar al final.
-
-```{code-block}
----
-linenos: true
----
-Find(buscado):
-    actual := Head()
-    mientras actual != nulo:
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
+find(buscado):
+    actual := head
+    mientras actual != nil:
         si actual.dato == buscado:
             retornar actual
         actual = actual.siguiente
-    retornar nulo
+    retornar nil
 ```
-
-### Inserción después de un elemento
-
-InsertAfter enlaza el nuevo nodo corrigiendo primero su `siguiente` y luego el del nodo actual.
-
-```{figure} ../_static/figures/ListaEnlazadaSimpleInsercion_light.svg
----
-width: 100%
-class: only-light-mode
-name: ssl-insercion
----
-Inserción en una Lista Enlazada Simple
+:::
+:::{tab-item} Doble
+```{code-block} text
+find(buscado):
+    actual := head
+    mientras actual != nil:
+        si actual.dato == buscado:
+            retornar actual
+        actual = actual.siguiente
+    retornar nil
 ```
-
-```{figure} ../_static/figures/ListaEnlazadaSimpleInsercion_dark.svg
----
-width: 100%
-class: only-dark-mode
-name: ssl-insercion
----
-Inserción en una Lista Enlazada Simple
+:::
+:::{tab-item} Circular
+```{code-block} text
+find(buscado):
+    si IsEmpty():
+        retornar nil
+    actual := head
+    para i := 0; i < tamaño; i++:
+        si actual.dato == buscado:
+            retornar actual
+        actual = actual.siguiente
+    retornar nil
 ```
+:::
+::::
 
-```{code-block}
----
-linenos: true
----
-InsertAfter(buscado, elemento):
-    nuevo := NuevoNodo(elemento)
-    actual := Find(buscado)
-    si actual != nulo:
-        nuevo.siguiente = actual.siguiente
-        actual.siguiente = nuevo
-        tamaño++
-        retornar true
-    retornar false
+### Consulta
+
+Size()
+: Devuelve la cantidad de nodos de la lista.
+
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
+Size():
+    retornar size
 ```
+:::
+:::{tab-item} Doble
+```{code-block} text
+Size():
+    retornar size
+```
+:::
+:::{tab-item} Circular
+```{code-block} text
+Size():
+    retornar size
+```
+:::
+::::
+
+IsEmpty()
+: Devuelve `true` si la lista no tiene elementos.
+
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
+IsEmpty():
+    retornar size == 0
+```
+:::
+:::{tab-item} Doble
+```{code-block} text
+IsEmpty():
+    retornar size == 0
+```
+:::
+:::{tab-item} Circular
+```{code-block} text
+IsEmpty():
+    retornar size == 0
+```
+:::
+::::
+
+Contains(data T)
+: Devuelve `true` si el elemento está presente (solo la primera ocurrencia).
+
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
+Contains(buscado):
+    retornar find(buscado) != nil
+```
+:::
+:::{tab-item} Doble
+```{code-block} text
+Contains(buscado):
+    retornar find(buscado) != nil
+```
+:::
+:::{tab-item} Circular
+```{code-block} text
+Contains(buscado):
+    retornar find(buscado) != nil
+```
+:::
+::::
+
+Head()
+: Devuelve el dato del primer nodo. Si la lista está vacía devuelve el valor cero y `false`.
+
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
+Head():
+    si IsEmpty():
+        retornar zero, falso
+    retornar head.dato, verdadero
+```
+:::
+:::{tab-item} Doble
+```{code-block} text
+Head():
+    si IsEmpty():
+        retornar zero, falso
+    retornar head.dato, verdadero
+```
+:::
+:::{tab-item} Circular
+```{code-block} text
+Head():
+    si IsEmpty():
+        retornar zero, falso
+    retornar head.dato, verdadero
+```
+:::
+::::
+
+Tail()
+: Devuelve el dato del último nodo. En la lista circular se obtiene desde `head.prev`.
+
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
+Tail():
+    si IsEmpty():
+        retornar zero, falso
+    retornar tail.dato, verdadero
+```
+:::
+:::{tab-item} Doble
+```{code-block} text
+Tail():
+    si IsEmpty():
+        retornar zero, falso
+    retornar tail.dato, verdadero
+```
+:::
+:::{tab-item} Circular
+```{code-block} text
+Tail():
+    si IsEmpty():
+        retornar zero, falso
+    retornar head.prev.dato, verdadero
+```
+:::
+::::
+
+### Inserción
+
+Prepend(data T)
+: Agrega un nodo con el dato al inicio de la lista.
+
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
+Prepend(dato):
+    nuevo := NuevoNodo(dato)
+    nuevo.siguiente = head
+    head = nuevo
+    si tail == nil:
+        tail = nuevo
+    tamaño++
+```
+:::
+:::{tab-item} Doble
+```{code-block} text
+Prepend(dato):
+    nuevo := NuevoNodo(dato)
+    nuevo.siguiente = head
+    si head != nil:
+        head.prev = nuevo
+    head = nuevo
+    si tail == nil:
+        tail = nuevo
+    tamaño++
+```
+:::
+:::{tab-item} Circular
+```{code-block} text
+Prepend(dato):
+    nuevo := NuevoNodo(dato)
+    si IsEmpty():
+        nuevo.siguiente = nuevo
+        nuevo.prev = nuevo
+    sino:
+        cola := head.prev
+        nuevo.siguiente = head
+        nuevo.prev = cola
+        head.prev = nuevo
+        cola.siguiente = nuevo
+    head = nuevo
+    tamaño++
+```
+:::
+::::
+
+La lista simple solo actualiza `head` y `tail` en caso de lista vacía.
+La doble además debe enlazar `prev` del `head` anterior.
+La circular requiere mantener el ciclo, enlazando el nuevo nodo con `head` y con la cola (`head.prev`).
+
+Append(data T)
+: Agrega un nodo con el dato al final de la lista.
+
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
+Append(dato):
+    nuevo := NuevoNodo(dato)
+    si tail != nil:
+        tail.siguiente = nuevo
+    tail = nuevo
+    si head == nil:
+        head = nuevo
+    tamaño++
+```
+:::
+:::{tab-item} Doble
+```{code-block} text
+Append(dato):
+    nuevo := NuevoNodo(dato)
+    nuevo.prev = tail
+    si tail != nil:
+        tail.siguiente = nuevo
+    tail = nuevo
+    si head == nil:
+        head = nuevo
+    tamaño++
+```
+:::
+:::{tab-item} Circular
+```{code-block} text
+Append(dato):
+    si IsEmpty():
+        Prepend(dato)
+        retornar
+    cola := head.prev
+    nuevo := NuevoNodo(dato)
+    nuevo.prev = cola
+    nuevo.siguiente = head
+    cola.siguiente = nuevo
+    head.prev = nuevo
+    tamaño++
+```
+:::
+::::
+
+InsertAfter(target, data T)
+: Busca `target` e inserta un nodo con `data` a continuación. Devuelve `false` si no encuentra `target`.
+
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
+InsertAfter(buscado, dato):
+    actual := find(buscado)
+    si actual == nil:
+        retornar falso
+    nuevo := NuevoNodo(dato)
+    nuevo.siguiente = actual.siguiente
+    actual.siguiente = nuevo
+    si actual == tail:
+        tail = nuevo
+    tamaño++
+    retornar verdadero
+```
+:::
+:::{tab-item} Doble
+```{code-block} text
+InsertAfter(buscado, dato):
+    actual := find(buscado)
+    si actual == nil:
+        retornar falso
+    nuevo := NuevoNodo(dato)
+    nuevo.siguiente = actual.siguiente
+    nuevo.prev = actual
+    actual.siguiente = nuevo
+    si nuevo.siguiente != nil:
+        nuevo.siguiente.prev = nuevo
+    sino:
+        tail = nuevo
+    tamaño++
+    retornar verdadero
+```
+:::
+:::{tab-item} Circular
+```{code-block} text
+InsertAfter(buscado, dato):
+    actual := find(buscado)
+    si actual == nil:
+        retornar falso
+    nuevo := NuevoNodo(dato)
+    nuevo.siguiente = actual.siguiente
+    nuevo.prev = actual
+    actual.siguiente.prev = nuevo
+    actual.siguiente = nuevo
+    tamaño++
+    retornar verdadero
+```
+:::
+::::
+
+InsertBefore(target, data T)
+: Busca `target` e inserta un nodo con `data` antes. Devuelve `false` si no encuentra `target`.
+
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
+InsertBefore(buscado, dato):
+    si head == nil:
+        retornar falso
+    si head.dato == buscado:
+        Prepend(dato)
+        retornar verdadero
+    actual := head
+    mientras actual.siguiente != nil:
+        si actual.siguiente.dato == buscado:
+            nuevo := NuevoNodo(dato)
+            nuevo.siguiente = actual.siguiente
+            actual.siguiente = nuevo
+            tamaño++
+            retornar verdadero
+        actual = actual.siguiente
+    retornar falso
+```
+:::
+:::{tab-item} Doble
+```{code-block} text
+InsertBefore(buscado, dato):
+    actual := find(buscado)
+    si actual == nil:
+        retornar falso
+    nuevo := NuevoNodo(dato)
+    nuevo.prev = actual.prev
+    nuevo.siguiente = actual
+    actual.prev = nuevo
+    si nuevo.prev != nil:
+        nuevo.prev.siguiente = nuevo
+    sino:
+        head = nuevo
+    tamaño++
+    retornar verdadero
+```
+:::
+:::{tab-item} Circular
+```{code-block} text
+InsertBefore(buscado, dato):
+    actual := find(buscado)
+    si actual == nil:
+        retornar falso
+    nuevo := NuevoNodo(dato)
+    nuevo.prev = actual.prev
+    nuevo.siguiente = actual
+    actual.prev.siguiente = nuevo
+    actual.prev = nuevo
+    si actual == head:
+        head = nuevo
+    tamaño++
+    retornar verdadero
+```
+:::
+::::
+
+En la lista simple `InsertBefore` requiere recorrer la lista buscando al predecesor porque no hay puntero `prev`.
+En la lista doble y circular, una vez encontrado el nodo, el reenlace es $O(1)$ gracias al puntero `prev`.
 
 ### Eliminación
 
-Para eliminar un elemento se debe encontrar su predecesor y actualizar su enlace `siguiente`. `RemoveLast` es $O(n)$ porque incluso con puntero a la cola necesita encontrar el anteúltimo nodo.
+RemoveFirst()
+: Elimina el primer nodo. Devuelve `false` si la lista está vacía.
 
-```{figure} ../_static/figures/ListaEnlazadaSimpleEliminacion_light.svg
----
-width: 100%
-class: only-light-mode
-name: ssl-eliminacion
----
-Eliminación de un elemento en una Lista Enlazada Simple
-```
-
-```{figure} ../_static/figures/ListaEnlazadaSimpleEliminacion_dark.svg
----
-width: 100%
-class: only-dark-mode
-name: ssl-eliminacion
----
-Eliminación de un elemento en una Lista Enlazada Simple
-```
-
-```{code-block}
----
-linenos: true
----
-Remove(buscado):
-    si IsEmpty():
-        retornar false
-    si Head().dato == buscado:
-        RemoveFirst()
-        retornar true
-    actual := Head()
-    mientras actual.siguiente != nulo:
-        si actual.siguiente.dato == buscado:
-            actual.siguiente = actual.siguiente.siguiente
-            si actual.siguiente == nulo:
-                Tail() = actual
-            tamaño--
-            retornar true
-        actual = actual.siguiente
-    retornar false
-```
-
-### Clear
-
-Clear solo requiere liberar los nodos y reiniciar los punteros. Como en simple solo se necesita descartar la cabeza, su complejidad es $O(1)$.
-
-```{code-block}
----
-linenos: true
----
-Clear():
-    head = nulo
-    tail = nulo
-    tamaño = 0
-```
-
-```{table} Orden de las Operaciones — Lista Simple
----
-width: 40%
-align: center
----
-|      Operación       | Orden  |
-| :------------------: | :----: |
-|     `Head`     | $O(1)$ |
-|     `Tail`     | $O(1)$ |
-|     `Size`     | $O(1)$ |
-|   `IsEmpty`    | $O(1)$ |
-|   `Prepend`    | $O(1)$ |
-|    `Append`    | $O(1)$ |
-| `InsertAfter`  | $O(n)$ |
-| `InsertBefore` | $O(n)$ |
-| `RemoveFirst`  | $O(1)$ |
-|  `RemoveLast`  | $O(n)$ |
-|    `Remove`    | $O(n)$ |
-|     `Find`     | $O(n)$ |
-|    `Clear`     | $O(1)$ |
-```
-
-Las operaciones que requieren recorrer la lista son $O(n)$. En particular, `RemoveLast` es $O(n)$ incluso con puntero a la cola, porque necesita encontrar el anteúltimo nodo.
-
-## Lista Enlazada Doble
-
-```{admonition} Definición
----
-class: hint
----
-Una lista enlazada doble es una estructura de datos lineal donde cada nodo tiene un sucesor y un predecesor, salvo el primero y el último.
-
-El nodo de una lista enlazada doble tiene tres campos:
-
-Dato
-: El valor que se almacena en el nodo.
-
-Puntero al sucesor
-: Una referencia a la dirección de memoria del siguiente nodo en la secuencia.
-
-Puntero al predecesor
-: Una referencia a la dirección de memoria del nodo anterior en la secuencia.
-```
-
-En la lista doble, cada nodo mantiene dos punteros: uno al sucesor y otro al predecesor. Esto permite avanzar y retroceder en tiempo constante $O(1)$.
-
-```{figure} ../_static/figures/ListaEnlazadaDoble_light.svg
----
-width: 100%
-class: only-light-mode
-name: lista-doble
----
-Lista Enlazada Doble
-```
-
-```{figure} ../_static/figures/ListaEnlazadaDoble_dark.svg
----
-width: 100%
-class: only-dark-mode
-name: lista-doble
----
-Lista Enlazada Doble
-```
-
-Al tener acceso directo al predecesor, operaciones como `RemoveLast` e `InsertBefore` se vuelven $O(1)$.
-
-### Inserción antes de un elemento
-
-InsertBefore en una lista doble no necesita recorrer desde la cabeza porque el nodo apunta a su predecesor.
-
-```{figure} ../_static/figures/ListaEnlazadaDobleInsercionBefore_light.svg
----
-width: 100%
-class: only-light-mode
-name: dll-insercion-before
----
-Inserción antes de un elemento en una Lista Enlazada Doble
-```
-
-```{figure} ../_static/figures/ListaEnlazadaDobleInsercionBefore_dark.svg
----
-width: 100%
-class: only-dark-mode
-name: dll-insercion-before
----
-Inserción antes de un elemento en una Lista Enlazada Doble
-```
-
-```{code-block}
----
-linenos: true
----
-InsertBefore(buscado, elemento):
-    actual := Find(buscado)
-    si actual != nulo:
-        nuevo := NuevoNodo(elemento)
-        nuevo.siguiente = actual
-        nuevo.prev = actual.prev
-        si actual.prev != nulo:
-            actual.prev.siguiente = nuevo
-        sino:
-            head = nuevo
-        actual.prev = nuevo
-        tamaño++
-        retornar true
-    retornar false
-```
-
-### RemoveLast
-
-RemoveLast accede directamente al anteúltimo nodo mediante `tail.prev`, eliminando la necesidad de recorrer la lista.
-
-```{code-block}
----
-linenos: true
----
-RemoveLast():
-    si IsEmpty():
-        retornar false
-    si tamaño == 1:
-        RemoveFirst()
-        retornar true
-    anteultimo := tail.prev
-    anteultimo.siguiente = nulo
-    tail = anteultimo
-    tamaño--
-    retornar true
-```
-
-```{table} Orden de las Operaciones — Lista Doble
----
-width: 40%
-align: center
----
-|      Operación       | Orden  |
-| :------------------: | :----: |
-|     `Head`     | $O(1)$ |
-|     `Tail`     | $O(1)$ |
-|     `Size`     | $O(1)$ |
-|   `IsEmpty`    | $O(1)$ |
-|   `Prepend`    | $O(1)$ |
-|    `Append`    | $O(1)$ |
-| `InsertAfter`  | $O(n)$ |
-| `InsertBefore` | $O(n)$ |
-| `RemoveFirst`  | $O(1)$ |
-|  `RemoveLast`  | $O(1)$ |
-|    `Remove`    | $O(n)$ |
-|     `Find`     | $O(n)$ |
-|    `Clear`     | $O(1)$ |
-```
-
-Si bien `InsertBefore` y `RemoveLast` mejoran respecto de la lista simple, las operaciones que requieren buscar un elemento (`Find`, `InsertAfter`, `InsertBefore`, `Remove`) siguen siendo $O(n)$ porque necesitan recorrer la lista.
-
-## Lista Enlazada Circular
-
-```{admonition} Definición
----
-class: hint
----
-Una lista enlazada circular es una estructura de datos donde el último nodo se enlaza al primero, formando un ciclo. Puede implementarse con enlaces simples o dobles.
-
-En una lista circular doble, el sucesor del último nodo es el primero, y el predecesor del primero es el último. Esto permite recorridos continuos sin necesidad de un marcador de fin.
-```
-
-En una lista circular el último nodo se enlaza al primero, formando un ciclo. Se utiliza para modelar colas, gestión de procesos de un sistema operativo y juegos, entre otras aplicaciones. Las listas circulares se pueden implementar con enlaces simples o dobles.
-
-```{figure} ../_static/figures/ListaEnlazadaCircularDoble_light.svg
----
-width: 100%
-class: only-light-mode
-name: lista-circular-doble
----
-Lista Enlazada Circular Doble
-```
-
-```{figure} ../_static/figures/ListaEnlazadaCircularDoble_dark.svg
----
-width: 100%
-class: only-dark-mode
-name: lista-circular-doble
----
-Lista Enlazada Circular Doble
-```
-
-Al ser cíclica, basta con mantener un puntero a la cabeza; la cola se obtiene como el predecesor de la cabeza.
-
-### Eliminación del primer elemento
-
-RemoveFirst en una lista circular doble requiere actualizar la cabeza y mantener el ciclo entre el nuevo primer nodo y el último.
-
-```{figure} ../_static/figures/ListaEnlazadaCircularEliminacionFirst_light.svg
----
-width: 100%
-class: only-light-mode
-name: cdll-remove-first
----
-Eliminación del primer elemento en una Lista Circular Doble
-```
-
-```{figure} ../_static/figures/ListaEnlazadaCircularEliminacionFirst_dark.svg
----
-width: 100%
-class: only-dark-mode
-name: cdll-remove-first
----
-Eliminación del primer elemento en una Lista Circular Doble
-```
-
-```{code-block}
----
-linenos: true
----
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
 RemoveFirst():
     si IsEmpty():
-        retornar false
-    si size == 1:
-        head = nulo
+        retornar falso
+    head = head.siguiente
+    si head == nil:
+        tail = nil
+    tamaño--
+    retornar verdadero
+```
+:::
+:::{tab-item} Doble
+```{code-block} text
+RemoveFirst():
+    si IsEmpty():
+        retornar falso
+    head = head.siguiente
+    si head != nil:
+        head.prev = nil
+    sino:
+        tail = nil
+    tamaño--
+    retornar verdadero
+```
+:::
+:::{tab-item} Circular
+```{code-block} text
+RemoveFirst():
+    si IsEmpty():
+        retornar falso
+    si tamaño == 1:
+        head = nil
     sino:
         cola := head.prev
         head = head.siguiente
         head.prev = cola
         cola.siguiente = head
     tamaño--
-    retornar true
+    retornar verdadero
 ```
+:::
+::::
 
-## Implementaciones con Centinelas
+RemoveLast()
+: Elimina el último nodo. Devuelve `false` si la lista está vacía.
+
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
+RemoveLast():
+    si IsEmpty():
+        retornar falso
+    si head == tail:
+        head = nil
+        tail = nil
+        tamaño = 0
+        retornar verdadero
+    actual := head
+    mientras actual.siguiente != tail:
+        actual = actual.siguiente
+    actual.siguiente = nil
+    tail = actual
+    tamaño--
+    retornar verdadero
+```
+:::
+:::{tab-item} Doble
+```{code-block} text
+RemoveLast():
+    si IsEmpty():
+        retornar falso
+    tail = tail.prev
+    si tail != nil:
+        tail.siguiente = nil
+    sino:
+        head = nil
+    tamaño--
+    retornar verdadero
+```
+:::
+:::{tab-item} Circular
+```{code-block} text
+RemoveLast():
+    si IsEmpty():
+        retornar falso
+    si tamaño == 1:
+        head = nil
+    sino:
+        cola := head.prev
+        anteultimo := cola.prev
+        anteultimo.siguiente = head
+        head.prev = anteultimo
+    tamaño--
+    retornar verdadero
+```
+:::
+::::
+
+`RemoveLast` es $O(n)$ en la lista simple porque debe recorrer hasta el anteúltimo nodo, mientras que en doble y circular es $O(1)$ gracias al puntero `prev`.
+
+Remove(data T)
+: Busca y elimina la **primera** ocurrencia del elemento. Si hay elementos duplicados, solo se elimina el primero que se encuentra. Devuelve `false` si no lo encuentra.
+
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
+Remove(dato):
+    si IsEmpty():
+        retornar falso
+    si head.dato == dato:
+        RemoveFirst()
+        retornar verdadero
+    actual := head
+    mientras actual.siguiente != nil:
+        si actual.siguiente.dato == dato:
+            actual.siguiente = actual.siguiente.siguiente
+            si actual.siguiente == nil:
+                tail = actual
+            tamaño--
+            retornar verdadero
+        actual = actual.siguiente
+    retornar falso
+```
+:::
+:::{tab-item} Doble
+```{code-block} text
+Remove(dato):
+    actual := find(dato)
+    si actual == nil:
+        retornar falso
+    si actual.prev != nil:
+        actual.prev.siguiente = actual.siguiente
+    sino:
+        head = actual.siguiente
+    si actual.siguiente != nil:
+        actual.siguiente.prev = actual.prev
+    sino:
+        tail = actual.prev
+    tamaño--
+    retornar verdadero
+```
+:::
+:::{tab-item} Circular
+```{code-block} text
+Remove(dato):
+    si IsEmpty():
+        retornar falso
+    actual := head
+    para i := 0; i < tamaño; i++:
+        si actual.dato == dato:
+            actual.prev.siguiente = actual.siguiente
+            actual.siguiente.prev = actual.prev
+            si actual == head:
+                head = actual.siguiente
+            tamaño--
+            retornar verdadero
+        actual = actual.siguiente
+    retornar falso
+```
+:::
+::::
+
+La lista simple debe tratar como caso especial la eliminación de la cabeza (no hay predecesor) y la actualización de `tail`. En doble y circular, el puntero `prev` permite reenlazar simétricamente, aunque en doble aún se verifican extremos.
+
+### Recorrido
+
+Values()
+: Devuelve un slice con los datos en el orden de la lista.
+
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
+Values():
+    resultado := []
+    actual := head
+    mientras actual != nil:
+        resultado.agregar(actual.dato)
+        actual = actual.siguiente
+    retornar resultado
+```
+:::
+:::{tab-item} Doble
+```{code-block} text
+Values():
+    resultado := []
+    actual := head
+    mientras actual != nil:
+        resultado.agregar(actual.dato)
+        actual = actual.siguiente
+    retornar resultado
+```
+:::
+:::{tab-item} Circular
+```{code-block} text
+Values():
+    si IsEmpty():
+        retornar []
+    resultado := []
+    actual := head
+    para i := 0; i < tamaño; i++:
+        resultado.agregar(actual.dato)
+        actual = actual.siguiente
+    retornar resultado
+```
+:::
+::::
+
+### Utilidad
+
+Clear()
+: Elimina todos los nodos y deja la lista vacía.
+
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
+Clear():
+    head = nil
+    tail = nil
+    tamaño = 0
+```
+:::
+:::{tab-item} Doble
+```{code-block} text
+Clear():
+    head = nil
+    tail = nil
+    tamaño = 0
+```
+:::
+:::{tab-item} Circular
+```{code-block} text
+Clear():
+    head = nil
+    tamaño = 0
+```
+:::
+::::
+
+String()
+: Devuelve una representación textual de la lista.
+
+::::{tab-set}
+:::{tab-item} Simple
+```{code-block} text
+String():
+    elementos := Values()
+    retornar "[" + elementos.join(", ") + "]"
+```
+:::
+:::{tab-item} Doble
+```{code-block} text
+String():
+    elementos := Values()
+    retornar "[" + elementos.join(", ") + "]"
+```
+:::
+:::{tab-item} Circular
+```{code-block} text
+String():
+    elementos := Values()
+    retornar "[" + elementos.join(", ") + "]"
+```
+:::
+::::
+
+## Lista con Centinelas
 
 ```{admonition} Definición
 ---
@@ -494,13 +895,10 @@ class: hint
 Los centinelas son nodos ficticios que se colocan al principio y al final de la lista. No contienen datos útiles y su propósito es eliminar los casos especiales en las operaciones de inserción y eliminación.
 
 En una lista con centinelas:
-
-- La cabeza real es el sucesor del centinela inicial.
-- La cola real es el predecesor del centinela final.
+- La cabeza real es el sucesor del centinela frontal.
+- La cola real es el predecesor del centinela trasero.
 - Una lista vacía tiene los dos centinelas apuntándose entre sí.
 ```
-
-Los centinelas son nodos ficticios que no contienen datos y se agregan al principio y al final de la lista. Su propósito es estandarizar las operaciones eliminando los casos especiales de lista vacía, cabeza y cola.
 
 ```{figure} ../_static/figures/ListaConCentinelas_light.svg
 ---
@@ -515,80 +913,209 @@ Lista Enlazada Doble con Centinelas
 ---
 width: 100%
 class: only-dark-mode
-name: lista-centinelas
 ---
 Lista Enlazada Doble con Centinelas
 ```
 
-En una lista vacía con centinelas, los dos nodos ficticios se apuntan entre sí:
-
-```{figure} ../_static/figures/ListaVaciaCentinelas_light.svg
----
-width: 100%
-class: only-light-mode
-name: lista-vacia-centinelas
----
-Lista Vacía con Centinelas
-```
-
-```{figure} ../_static/figures/ListaVaciaCentinelas_dark.svg
----
-width: 100%
-class: only-dark-mode
-name: lista-vacia-centinelas
----
-Lista Vacía con Centinelas
-```
-
-### Remove con centinelas
-
-Al tener centinelas, `Remove` no necesita verificar si el nodo a eliminar es la cabeza o la cola. La presencia de los nodos ficticios garantiza que siempre hay un nodo anterior y un nodo siguiente.
-
-```{code-block}
+```{code-block} go
 ---
 linenos: true
 ---
-Remove(buscado):
-    actual := Find(buscado)
-    si actual != nulo:
-        actual.prev.siguiente = actual.siguiente
-        actual.siguiente.prev = actual.prev
-        tamaño--
-        retornar true
-    retornar false
+type List[T comparable] struct {
+    head *node[T]  // centinela frontal
+    tail *node[T]  // centinela trasero
+    size int
+}
 ```
 
-### Clear con centinelas
+Los centinelas eliminan los casos borde de lista vacía, cabeza y cola. Al inicializar la lista, `head.siguiente = tail` y `tail.prev = head`. Como los centinelas nunca son `nil`, toda inserción o eliminación ocurre siempre entre dos nodos reales o ficticios, y las operaciones se vuelven uniformes.
 
-Clear solo debe re-enlazar los centinelas entre sí, sin necesidad de liberar cada nodo.
+find
+: Al no haber `nil`, el recorrido va desde `head.siguiente` hasta llegar al centinela `tail`.
 
-```{code-block}
----
-linenos: true
----
+```{code-block} text
+find(buscado):
+    actual := head.siguiente
+    mientras actual != tail:
+        si actual.dato == buscado:
+            retornar actual
+        actual = actual.siguiente
+    retornar nil
+```
+
+IsEmpty
+: La lista vacía se detecta cuando  `size ==0` o los centinelas se apuntan entre sí.
+
+```{code-block} text
+IsEmpty():
+    retornar head.siguiente == tail
+```
+
+Head / Tail
+: El primer dato está en `head.siguiente` y el último en `tail.prev`.
+
+```{code-block} text
+Head():
+    si IsEmpty():
+        retornar zero, falso
+    retornar head.siguiente.dato, verdadero
+
+Tail():
+    si IsEmpty():
+        retornar zero, falso
+    retornar tail.prev.dato, verdadero
+```
+
+InsertBefore
+: No necesita verificar si `actual` es la cabeza real porque el centinela `head` garantiza que `actual.prev` nunca es `nil`.
+
+```{code-block} text
+InsertBefore(buscado, dato):
+    actual := find(buscado)
+    si actual == nil:
+        retornar falso
+    nuevo := NuevoNodo(dato)
+    nuevo.prev = actual.prev
+    nuevo.siguiente = actual
+    actual.prev.siguiente = nuevo
+    actual.prev = nuevo
+    tamaño++
+    retornar verdadero
+```
+
+InsertAfter
+: Como `actual.siguiente` nunca es `nil` (puede ser `tail`), no hay caso especial de cola.
+
+```{code-block} text
+InsertAfter(buscado, dato):
+    actual := find(buscado)
+    si actual == nil:
+        retornar falso
+    nuevo := NuevoNodo(dato)
+    nuevo.siguiente = actual.siguiente
+    nuevo.prev = actual
+    actual.siguiente.prev = nuevo
+    actual.siguiente = nuevo
+    tamaño++
+    retornar verdadero
+```
+
+Prepend
+: Inserta entre el centinela `head` y el primer nodo real. No puede delegar en `InsertBefore` porque busca por valor y fallaría con datos duplicados.
+
+```{code-block} text
+Prepend(dato):
+    nuevo := NuevoNodo(dato)
+    nuevo.siguiente = head.siguiente
+    nuevo.prev = head
+    head.siguiente.prev = nuevo
+    head.siguiente = nuevo
+    tamaño++
+```
+
+Append
+: Inserta entre el último nodo real y el centinela `tail`.
+
+```{code-block} text
+Append(dato):
+    nuevo := NuevoNodo(dato)
+    nuevo.siguiente = tail
+    nuevo.prev = tail.prev
+    tail.prev.siguiente = nuevo
+    tail.prev = nuevo
+    tamaño++
+```
+
+Remove
+: No necesita verificar si el nodo es `head` o `tail` real. Los centinelas aseguran que `actual.prev` y `actual.siguiente` siempre existen.
+
+```{code-block} text
+Remove(dato):
+    actual := find(dato)
+    si actual == nil:
+        retornar falso
+    actual.prev.siguiente = actual.siguiente
+    actual.siguiente.prev = actual.prev
+    tamaño--
+    retornar verdadero
+```
+
+RemoveFirst
+: Reenlaza el centinela `head` con el segundo nodo real. No puede delegar en `Remove` por el mismo problema de los duplicados.
+
+```{code-block} text
+RemoveFirst():
+    si IsEmpty():
+        retornar falso
+    head.siguiente = head.siguiente.siguiente
+    head.siguiente.prev = head
+    tamaño--
+    retornar verdadero
+```
+
+RemoveLast
+: Reenlaza el centinela `tail` con el anteúltimo nodo real.
+
+```{code-block} text
+RemoveLast():
+    si IsEmpty():
+        retornar falso
+    tail.prev = tail.prev.prev
+    tail.prev.siguiente = tail
+    tamaño--
+    retornar verdadero
+```
+
+Clear
+: Solo reenlaza los centinelas entre sí.
+
+```{code-block} text
 Clear():
     head.siguiente = tail
     tail.prev = head
     tamaño = 0
 ```
 
-Esta técnica simplifica el código porque operaciones como `InsertBefore` o `Remove` ya no necesitan verificar si el nodo es la cabeza o la cola: los centinelas garantizan que siempre hay un nodo anterior y un nodo siguiente.
+**Ventajas frente a las versiones sin centinelas:**
 
-## Cuándo usar cada tipo
+- `InsertBefore` e `InsertAfter` sin verificar extremos.
+- `Prepend` y `Append` con código simétrico, sin casos de lista vacía.
+- `Remove` sin verificar `head`/`tail`.
+- `RemoveFirst` y `RemoveLast` con código simétrico.
+- `Clear` solo reenlaza los centinelas.
+- `IsEmpty` es simplemente comparar punteros.
 
-| Criterio | Simple | Doble | Circular | Centinelas |
-|----------|--------|-------|----------|------------|
-| Memoria por nodo | 1 puntero | 2 punteros | 1 o 2 punteros | 2 + 2 nodos fijos |
-| Recorrido | solo hacia adelante | ambas direcciones | continuo | ambas direcciones |
-| `RemoveLast` eficiente | no | sí | depende | sí |
-| `InsertBefore` eficiente | no | sí | sí (doble) | sí |
-| Código sin casos borde | no | no | no | sí |
-| Ideal para | memoria limitada, solo forward | navegación bidireccional | rondas, turnos, playlists | implementar Stack/Queue |
+La principal desventaja es el costo de memoria de dos nodos adicionales, que es despreciable en la mayoría de los escenarios.
+
+```{table} Comparación de algunas de las operaciones según la variante
+---
+align: center
+---
+| Operación        | Simple     | Doble      | Circular   | Centinelas |
+| :--------------- | :--------: | :--------: | :--------: | :--------: |
+| `Head`           | $O(1)$     | $O(1)$     | $O(1)$     | $O(1)$     |
+| `Tail`           | $O(1)$     | $O(1)$     | $O(1)$     | $O(1)$     |
+| `Prepend`        | $O(1)$     | $O(1)$     | $O(1)$     | $O(1)$     |
+| `Append`         | $O(1)$     | $O(1)$     | $O(1)$     | $O(1)$     |
+| `InsertAfter`    | $O(n)$     | $O(n)$     | $O(n)$     | $O(n)$     |
+| `InsertBefore`   | $O(n)$     | $O(n)$     | $O(n)$     | $O(n)$     |
+| `RemoveFirst`    | $O(1)$     | $O(1)$     | $O(1)$     | $O(1)$     |
+| `RemoveLast`     | $O(n)$     | $O(1)$     | $O(1)$     | $O(1)$     |
+| `Remove`         | $O(n)$     | $O(n)$     | $O(n)$     | $O(n)$     |
+| `find`           | $O(n)$     | $O(n)$     | $O(n)$     | $O(n)$     |
+| `Clear`          | $O(1)$     | $O(1)$     | $O(1)$     | $O(1)$     |
+```
+
+La complejidad asintótica de las operaciones que requieren búsqueda es $O(n)$ en todas las variantes. La diferencia está en las constantes y en la cantidad de casos especiales que debe manejar el código: la lista simple requiere verificaciones constantes de `nil` en los extremos, mientras que los centinelas las eliminan por completo.
 
 ## Ejercicios
 
-Los ejercicios de este capítulo están en `03-listas/ejercicios/` del repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
+1. **Implementar las listas enlazadas** — Completar los esqueletos de `SinglyLinkedList`,
+   `DoublyLinkedList`, `CircularLinkedList` y `SentinelLinkedList` en el repositorio
+   [`data-structures`](https://github.com/untref-ayp2/data-structures), paquete `list/`.
 
-[▶ Animación: Find interactivo (abrir en nueva pestaña)](../_static/figures/ListaEnlazadaSimpleFind_anim_light.svg){.only-light-mode target=_blank}
+2. **Resolver ejercicios de uso** — Los ejercicios de este capítulo están en
+   `03-listas/ejercicios/` del repositorio
+   [`taller-tad`](https://github.com/untref-ayp2/taller-tad).
 
-[▶ Animación: Find interactivo (abrir en nueva pestaña)](../_static/figures/ListaEnlazadaSimpleFind_anim_dark.svg){.only-dark-mode target=_blank}
+

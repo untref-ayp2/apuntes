@@ -44,7 +44,7 @@
        id="style1">
       .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 20px; text-anchor: middle; font-weight: bold; fill: #e0e0e0; }
       .code { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 16px; text-anchor: middle; fill: #e0e0e0; }
-      .arrow { stroke: #e0e0e0; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .arrow { stroke: #e0e0e0; stroke-width: 1.25; fill: none; marker-end: url(#arrowhead); }
       .dashed-arrow { stroke: #e0e0e0; stroke-width: 1.5; stroke-dasharray: 5,4; fill: none; marker-end: url(#arrowhead); }
       .cell-prev { fill: #2d3748; stroke: #63b3ed; stroke-width: 1.5; }
       .cell-data { fill: #4a5568; stroke: #fc8181; stroke-width: 1.5; }
@@ -335,34 +335,34 @@
          y2="132.82407"
          class="arrow"
          id="line11"
-         style="fill:none;stroke:#e0e0e0;stroke-width:2;marker-end:url(#arrowhead-5)" />
+         style="fill:none;stroke:#e0e0e0;stroke-width:1.25;marker-end:url(#arrowhead-5)" />
       <path
          d="m 349.84947,150.16998 q -62.96503,29.43761 -125.93007,0"
          class="arrow"
          id="path15"
-         style="fill:none;stroke:#e0e0e0;stroke-width:2;stroke-dasharray:none;marker-end:url(#arrowhead-5)" />
+         style="fill:none;stroke:#e0e0e0;stroke-width:1.25;stroke-dasharray:none;marker-end:url(#arrowhead-5)" />
       <path
          d="m 519.84947,150.16998 q -62.96503,29.43761 -125.93007,0"
          class="arrow"
          id="path16"
-         style="fill:none;stroke:#e0e0e0;stroke-width:2;stroke-dasharray:none;marker-end:url(#arrowhead-5)" />
+         style="fill:none;stroke:#e0e0e0;stroke-width:1.25;stroke-dasharray:none;marker-end:url(#arrowhead-5)" />
       <path
          d="m 437.76588,108.53025 q 61.44155,-29.481492 122.88312,0"
          class="arrow"
          id="path15-1-9"
-         style="fill:none;stroke:#e0e0e0;stroke-width:2;stroke-dasharray:none;marker-end:url(#arrowhead-7-9)" />
+         style="fill:none;stroke:#e0e0e0;stroke-width:1.25;stroke-dasharray:none;marker-end:url(#arrowhead-7-9)" />
       <path
          d="m 264.90994,109.08354 q 61.44155,-29.481494 122.88311,0"
          class="arrow"
          id="path15-1-9-1"
-         style="fill:none;stroke:#e0e0e0;stroke-width:2;stroke-dasharray:none;marker-end:url(#arrowhead-7-9-2)" />
+         style="fill:none;stroke:#e0e0e0;stroke-width:1.25;stroke-dasharray:none;marker-end:url(#arrowhead-7-9-2)" />
       <path
-         style="fill:none;fill-rule:evenodd;stroke:#e0e0e0;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead-5)"
+         style="fill:none;fill-rule:evenodd;stroke:#e0e0e0;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead-5)"
          d="M 601.21951,108.60976 C 485.77563,43.001404 361.30185,26.260736 218.29268,109.82927"
          id="path18"
          sodipodi:nodetypes="cc" />
       <path
-         style="fill:none;fill-rule:evenodd;stroke:#e0e0e0;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead)"
+         style="fill:none;fill-rule:evenodd;stroke:#e0e0e0;stroke-width:1.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#arrowhead)"
          d="m 181.09756,150.07317 c 124.40609,55.33055 249.66172,91.33421 380.48781,0.60976"
          id="path19"
          sodipodi:nodetypes="cc" />
