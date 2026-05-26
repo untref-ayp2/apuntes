@@ -67,7 +67,7 @@ Agregar `<defs>` con `<style>` conteniendo las clases CSS:
 ### Tamaños de Fuente (obligatorios)
 
 - `.title`: **20px**
-- `.code_example`: **18px**
+- `.code-example`: **18px**
 - `.code`: **16px**
 
 Guarda los cambios en los archivos.
