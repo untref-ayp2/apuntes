@@ -61,9 +61,9 @@ Usá esta tabla para determinar el archivo a revisar según el argumento (si se 
 | `3-1` o `3-1-tad` | `contenidos/3-estructuras-de-datos/3-1-tad.md` |
 | `3-2` o `3-2-pilas` | `contenidos/3-estructuras-de-datos/3-2-pilas-colas.md` |
 | `3-3` o `3-3-listas` | `contenidos/3-estructuras-de-datos/3-3-listas.md` |
-| `3-4` o `3-4-conjuntos` | `contenidos/3-estructuras-de-datos/3-4-conjuntos.md` |
-| `3-5` o `3-5-mapa-bits` | `contenidos/3-estructuras-de-datos/3-5-mapa-de-bits.md` |
-| `3-6` o `3-6-hashing` | `contenidos/3-estructuras-de-datos/3-6-tablas-de-hashing.md` |
+| `3-4` o `3-4-mapa-bits` | `contenidos/3-estructuras-de-datos/3-4-mapa-de-bits.md` |
+| `3-5` o `3-5-hashing` | `contenidos/3-estructuras-de-datos/3-5-tablas-de-hashing.md` |
+| `3-6` o `3-6-conjuntos` | `contenidos/3-estructuras-de-datos/3-6-conjuntos.md` |
 | `3-7` o `3-7-diccionarios` | `contenidos/3-estructuras-de-datos/3-7-diccionarios.md` |
 | `3-8` o `3-8-arboles` | `contenidos/3-estructuras-de-datos/3-8-arboles.md` |
 | `3-9` o `3-9-abb` | `contenidos/3-estructuras-de-datos/3-9-abb.md` |

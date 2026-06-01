@@ -62,9 +62,9 @@ project:
         - file: 3-estructuras-de-datos/3-1-tad.md
         - file: 3-estructuras-de-datos/3-2-pilas-colas.md
         - file: 3-estructuras-de-datos/3-3-listas.md
-        - file: 3-estructuras-de-datos/3-5-mapa-de-bits.md
-        - file: 3-estructuras-de-datos/3-6-tablas-de-hashing.md
-        - file: 3-estructuras-de-datos/3-4-conjuntos.md
+        - file: 3-estructuras-de-datos/3-4-mapa-de-bits.md
+        - file: 3-estructuras-de-datos/3-5-tablas-de-hashing.md
+        - file: 3-estructuras-de-datos/3-6-conjuntos.md
         - file: 3-estructuras-de-datos/3-7-diccionarios.md
         - file: 3-estructuras-de-datos/3-8-arboles.md
         - file: 3-estructuras-de-datos/3-9-abb.md

@@ -52,9 +52,9 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 16 | `contenidos/3-estructuras-de-datos/3-1-tad.md` | ✅ Revisado | `data-structures`, `taller-tad` |
 | 17 | `contenidos/3-estructuras-de-datos/3-2-pilas-colas.md` | ✅ Revisado | `taller-tad`, `data-structures` |
 | 18 | `contenidos/3-estructuras-de-datos/3-3-listas.md` | ✅ Revisado | `data-structures`, `taller-tad` |
-| 19 | `contenidos/3-estructuras-de-datos/3-4-conjuntos.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
-| 20 | `contenidos/3-estructuras-de-datos/3-5-mapa-de-bits.md` | ⬜ Pendiente | — |
-| 21 | `contenidos/3-estructuras-de-datos/3-6-tablas-de-hashing.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
+| 19 | `contenidos/3-estructuras-de-datos/3-6-conjuntos.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
+| 20 | `contenidos/3-estructuras-de-datos/3-4-mapa-de-bits.md` | ⬜ Pendiente | — |
+| 21 | `contenidos/3-estructuras-de-datos/3-5-tablas-de-hashing.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
 | 22 | `contenidos/3-estructuras-de-datos/3-7-diccionarios.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
 | 23 | `contenidos/3-estructuras-de-datos/3-8-arboles.md` | ⬜ Pendiente | `guia-arboles-binarios`, `data-structures` |
 | 24 | `contenidos/3-estructuras-de-datos/3-9-abb.md` | ⬜ Pendiente | `guia-abb`, `data-structures` |
