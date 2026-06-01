@@ -49,27 +49,28 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 13 | `contenidos/2-taller-de-go/2-9-archivos.md` | ✅ Revisado | `taller-go` |
 | 14 | `contenidos/2-taller-de-go/2-10-errores.md` | ✅ Revisado | `taller-go` |
 | 15 | `contenidos/2-taller-de-go/2-11-oop.md` | ✅ Revisado | `taller-go` |
-| 16 | `contenidos/3-estructuras-de-datos/3-1-tad.md` | ✅ Revisado | `data-structures`, `taller-tad` |
-| 17 | `contenidos/3-estructuras-de-datos/3-2-pilas-colas.md` | ✅ Revisado | `taller-tad`, `data-structures` |
-| 18 | `contenidos/3-estructuras-de-datos/3-3-listas.md` | ✅ Revisado | `data-structures`, `taller-tad` |
-| 19 | `contenidos/3-estructuras-de-datos/3-6-conjuntos.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
+| 16 | `contenidos/2-taller-de-go/2-12-genericos.md` | ✅ Revisado | `taller-go` |
+| 17 | `contenidos/3-estructuras-de-datos/3-1-tad.md` | ✅ Revisado | `data-structures`, `taller-tad` |
+| 18 | `contenidos/3-estructuras-de-datos/3-2-pilas-colas.md` | ✅ Revisado | `taller-tad`, `data-structures` |
+| 19 | `contenidos/3-estructuras-de-datos/3-3-listas.md` | ✅ Revisado | `data-structures`, `taller-tad` |
 | 20 | `contenidos/3-estructuras-de-datos/3-4-mapa-de-bits.md` | ⬜ Pendiente | — |
 | 21 | `contenidos/3-estructuras-de-datos/3-5-tablas-de-hashing.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
-| 22 | `contenidos/3-estructuras-de-datos/3-7-diccionarios.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
-| 23 | `contenidos/3-estructuras-de-datos/3-8-arboles.md` | ⬜ Pendiente | `guia-arboles-binarios`, `data-structures` |
-| 24 | `contenidos/3-estructuras-de-datos/3-9-abb.md` | ⬜ Pendiente | `guia-abb`, `data-structures` |
-| 25 | `contenidos/3-estructuras-de-datos/3-10-arboles-balanceados.md` | ⬜ Pendiente | `guia-abb-balanceados` |
-| 26 | `contenidos/3-estructuras-de-datos/3-11-monticulo-binario.md` | ⬜ Pendiente | `guia-monticulos-binarios` |
-| 27 | `contenidos/3-estructuras-de-datos/3-12-iteradores-abb.md` | ⬜ Pendiente | `guia-abb` |
-| 28 | `contenidos/4-diseno-de-algoritmos/4-1-recursividad.md` | ⬜ Pendiente | `guia-algoritmos`, `examples` |
-| 29 | `contenidos/4-diseno-de-algoritmos/4-2-patrones-de-diseno.md` | ⬜ Pendiente | `guia-patrones`, `examples` |
-| 30 | `contenidos/4-diseno-de-algoritmos/4-3-algoritmos-avidos.md` | ⬜ Pendiente | `guia-avidos`, `examples` |
-| 31 | `contenidos/4-diseno-de-algoritmos/4-4-backtracking.md` | ⬜ Pendiente | `guia-backtracking`, `examples` |
-| 32 | `contenidos/4-diseno-de-algoritmos/4-5-programacion-dinamica.md` | ⬜ Pendiente | `guia-algoritmos`, `examples` |
-| 33 | `contenidos/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos.md` | ⬜ Pendiente | `guia-ordenamientos-recursivos`, `examples` |
-| 34 | `contenidos/4-diseno-de-algoritmos/4-7-ordenamientos-lineales.md` | ⬜ Pendiente | `examples` |
-| 35 | `contenidos/5-taller-de-git/5-1-introduccion-git.md` | ⬜ Pendiente | — |
-| 36 | `contenidos/bibliografia.md` | ⬜ Pendiente | — |
+| 22 | `contenidos/3-estructuras-de-datos/3-6-conjuntos.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
+| 23 | `contenidos/3-estructuras-de-datos/3-7-diccionarios.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
+| 24 | `contenidos/3-estructuras-de-datos/3-8-arboles.md` | ⬜ Pendiente | `guia-arboles-binarios`, `data-structures` |
+| 25 | `contenidos/3-estructuras-de-datos/3-9-abb.md` | ⬜ Pendiente | `guia-abb`, `data-structures` |
+| 26 | `contenidos/3-estructuras-de-datos/3-10-arboles-balanceados.md` | ⬜ Pendiente | `guia-abb-balanceados` |
+| 27 | `contenidos/3-estructuras-de-datos/3-11-monticulo-binario.md` | ⬜ Pendiente | `guia-monticulos-binarios` |
+| 28 | `contenidos/3-estructuras-de-datos/3-12-iteradores-abb.md` | ⬜ Pendiente | `guia-abb` |
+| 29 | `contenidos/4-diseno-de-algoritmos/4-1-recursividad.md` | ⬜ Pendiente | `guia-algoritmos`, `examples` |
+| 30 | `contenidos/4-diseno-de-algoritmos/4-2-patrones-de-diseno.md` | ⬜ Pendiente | `guia-patrones`, `examples` |
+| 31 | `contenidos/4-diseno-de-algoritmos/4-3-algoritmos-avidos.md` | ⬜ Pendiente | `guia-avidos`, `examples` |
+| 32 | `contenidos/4-diseno-de-algoritmos/4-4-backtracking.md` | ⬜ Pendiente | `guia-backtracking`, `examples` |
+| 33 | `contenidos/4-diseno-de-algoritmos/4-5-programacion-dinamica.md` | ⬜ Pendiente | `guia-algoritmos`, `examples` |
+| 34 | `contenidos/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos.md` | ⬜ Pendiente | `guia-ordenamientos-recursivos`, `examples` |
+| 35 | `contenidos/4-diseno-de-algoritmos/4-7-ordenamientos-lineales.md` | ⬜ Pendiente | `examples` |
+| 36 | `contenidos/5-taller-de-git/5-1-introduccion-git.md` | ⬜ Pendiente | — |
+| 37 | `contenidos/bibliografia.md` | ⬜ Pendiente | — |
 
 ---
 
@@ -84,9 +85,9 @@ debe buscar recursos en estos repos para referenciar o incluir en el apunte.
 | 3-1 TAD | `taller-tad` | `data-structures` |
 | 3-2 Pilas y Colas | `taller-tad` (ejercicios en `02-pilas-colas/`) | `data-structures` |
 | 3-3 Listas | `taller-tad` (`03-listas/`) | `data-structures` (`list/`) |
-| 3-4 Conjuntos | `guia-conjuntos-hashtable-diccionarios` | — |
-| 3-5 Mapa de bits | — | — |
-| 3-6 Tablas de Hashing | `guia-conjuntos-hashtable-diccionarios` | — |
+| 3-4 Mapa de bits | — | — |
+| 3-5 Tablas de Hashing | `guia-conjuntos-hashtable-diccionarios` | — |
+| 3-6 Conjuntos | `guia-conjuntos-hashtable-diccionarios` | — |
 | 3-7 Diccionarios | `guia-conjuntos-hashtable-diccionarios` | — |
 | 3-8 Árboles | `guia-arboles-binarios`, `guia-arboles-binarios-resuelta` | `data-structures` |
 | 3-9 ABB | `guia-abb`, `guia-abb-resuelta` | `data-structures` |
@@ -158,7 +159,7 @@ Estado actual (jb2-martin):
     1-1-introduccion   ✅
     1-2-memoria        ✅
     1-3-analisis       ✅
-    2-Taller de Go     ✅ 11 archivos
+    2-Taller de Go     ✅ 12 archivos
     3-Estructuras      ✅ 3 / 🔄 0 / ⬜ 9 archivos
     4-Diseño Alg.      ⬜ 7 archivos
     5-Taller Git       ⬜
