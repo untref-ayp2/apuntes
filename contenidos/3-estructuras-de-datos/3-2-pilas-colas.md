@@ -19,7 +19,7 @@ Un TAD dinámico es un TAD que puede modificar su tamaño, es decir, el espacio 
 
 Es una estructura del tipo **LIFO** (_Last In First Out_) es decir el último elemento que ingresó en la pila será el primer elemento en salir. Por ejemplo, en una pila de libros, si queremos agregar un nuevo libro debemos colocarlo encima de la pila, sobre el último libro. A su vez el último libro de la pila es el único al que le podemos ver su portada y sacar de la pila. Por lo tanto para sacar el libro de abajo de la pila, primero hay que sacar uno por uno todos los libros que están apilados sobre él.
 
-```{figure} ../_static/figures/book-stack_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-2-pilas-colas/book-stack_light.svg
 ---
 width: 300px
 name: pila-libros
@@ -28,7 +28,7 @@ class: only-light-mode
 Pila de Libros
 ```
 
-```{figure} ../_static/figures/book-stack_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-2-pilas-colas/book-stack_dark.svg
 ---
 width: 300px
 class: only-dark-mode
@@ -208,7 +208,7 @@ func main() {
 
 Es una estructura del tipo **FIFO (First In First Out)** es decir el primer elemento en ingresar en la cola es el primero en salir. Un ejemplo clásico del uso de esta estructura es para modelar una cola de personas, por ejemplo en la caja de un supermercado. La última persona que llega se coloca al final de la cola y espera su turno para ser atendida.
 
-```{figure} ../_static/figures/people-queue_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-2-pilas-colas/people-queue_light.svg
 ---
 width: 500px
 name: cola-personas
@@ -217,7 +217,7 @@ class: only-light-mode
 Cola de Espera
 ```
 
-```{figure} ../_static/figures/people-queue_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-2-pilas-colas/people-queue_dark.svg
 ---
 width: 500px
 class: only-dark-mode

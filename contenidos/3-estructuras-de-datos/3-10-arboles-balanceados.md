@@ -48,7 +48,7 @@ En la siguiente figura se muestra un árbol binario de búsqueda y los factores 
 
 Si bien la raíz está balanceada, el árbol no es AVL ya que hay varios nodos que están desbalanceados. En este caso, el nodo 54 tiene un factor de balanceo de -2, lo que significa que su subárbol derecho es dos veces más alto que su subárbol izquierdo. Por lo tanto, el árbol no cumple con la condición de balanceo.
 
-```{figure} ../_static/figures/AVL-FB.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVL-FB.svg
 ---
 name: AVL-FB
 ---
@@ -63,7 +63,7 @@ Las rotaciones pueden ser simples o dobles. Las rotaciones simples son suficient
 
 Supongamos que tenemos un árbol AVL como el de la figura que usaremos para graficar las rotaciones.
 
-```{figure} ../_static/figures/AVL.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVL.svg
 ---
 name: AVL
 ---
@@ -74,7 +74,7 @@ name: AVL
 
 Supongamos que en {ref}`AVL` se inserta el (18), lo que desbalancea el nodo (23). Si observamos el (23) se desbalanceo cuando se insertó un elemento a la izquierda de su subárbol izquierdo y este desbalanceo solo es local, ya que tanto el (17) como el (50) permanecen balanceados.
 
-```{figure} ../_static/figures/AVLIZQIZQ.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQIZQ.svg
 ---
 name: AVLIZQIZQ
 ---
@@ -83,7 +83,7 @@ Desbalanceo Izquierda-Izquierda de un nodo
 
 Para restaurar el equilibrio del nodo (23) se debe realizar una rotación simple a la derecha del (23). Esta rotación involucra a tres nodos el (23), el (19) y el recién insertado (18). En la siguiente figura se observa la rotación simple a derecha.
 
-```{figure} ../_static/figures/AVLRotacionSimpleDerecha.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLRotacionSimpleDerecha.svg
 ---
 name: AVLRSD
 ---
@@ -92,7 +92,7 @@ Rotación simple a derecha
 
 Una vez realizada la rotación, todo el árbol queda restaurado, como se observa en la siguiente figura.
 
-```{figure} ../_static/figures/AVLRestauradoRSD.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLRestauradoRSD.svg
 ---
 name: AVLRestauradoRSD
 ---
@@ -103,7 +103,7 @@ AVL restaurado luego de una rotación simple a derecha
 
 Analogamente cuando en un nodo se produce un desbalance por la inserción de un elemento a la derecha de su hijo derecho, se puede reestablecer el balance con una rotación simple a izquierda.
 
-```{figure} ../_static/figures/AVLDERDER.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERDER.svg
 ---
 name: AVLDERDER
 ---
@@ -112,14 +112,14 @@ Desbalanceo Derecha-Derecha de un nodo
 
 En la figura al insertar el nodo (70) de desbalancea el nodo (54), que se puede volver a balancear con una rotación a la izquierda del nodo (54)
 
-```{figure} ../_static/figures/AVLRotacionSimpleIzquierda.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLRotacionSimpleIzquierda.svg
 ---
 name: AVLRSI
 ---
 Rotación simple a izquierda
 ```
 
-```{figure} ../_static/figures/AVLRestauradoRSI.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLRestauradoRSI.svg
 ---
 name: AVLRestauradoRSI
 ---
@@ -132,7 +132,7 @@ Cuando el desbalance se produce al insertar un elemento a la derecha del hijo iz
 
 En la siguiente figura al insertar el (16), se desbalanceó el (17). Parados en el (17) el desbalance se produce al insertar un elemento a la derecha de su hijo izquierdo.
 
-```{figure} ../_static/figures/AVLIZQDER.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER.svg
 ---
 name: AVLIZQDER
 ---
@@ -141,7 +141,7 @@ Desbalanceo Izquierda-Derecha de un nodo
 
 Para restaurar el balance se preciso realizar dos rotaciones simples, la primera es rotar el hijo izquierdo del nodo desbalanceado, es decir el (12) a la izquierda (aunque el (12) se encuentre balanceado) y luego rotar el nodo desbalanceado originalmente a la derecha.
 
-```{figure} ../_static/figures/AVLIZQDER-1.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER-1.svg
 ---
 name: AVLIZQDER-1
 ---
@@ -150,7 +150,7 @@ Desbalanceo Izquierda-Derecha, rotación a izquierda del hijo del nodo desbalanc
 
 Luego de la primera rotación a izquierda queda:
 
-```{figure} ../_static/figures/AVLIZQDER-2.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER-2.svg
 ---
 name: AVLIZQDER-2
 ---
@@ -159,7 +159,7 @@ Desbalanceo Izquierda-Derecha, luego de la rotación a izquierda.
 
 Luego se rota el (17) a derecha. Se observa que el (14) que pasará a ocupar la posición actual del (17) ya tiene un hijo derecho (16) que deberá reacomodarse como hijo izquierdo del (17)
 
-```{figure} ../_static/figures/AVLIZQDER-3.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER-3.svg
 ---
 name: AVLIZQDER-3
 ---
@@ -168,7 +168,7 @@ Desbalanceo Izquierda-Derecha, rotación a derecha del nodo desbalanceado
 
 Finalmente el árbol rebalanceado queda como en la siguiente figura
 
-```{figure} ../_static/figures/AVLIZQDER-4.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER-4.svg
 ---
 name: AVLIZQDER-4
 ---
@@ -179,7 +179,7 @@ Desbalanceo Izquierda-Derecha, árbol rebalanceado
 
 En la siguiente figura se observa que al insertar el (73) se desbalancea el nodo (72). El (73) se insertó bajando una vez a la derecha y dos veces a la izquierda desde el (72), es decir la inserción fue derecha-izquierda, por lo que para reestablecer el balance se deberá realizar una rotación doble derecha-izquierda del (72)
 
-```{figure} ../_static/figures/AVLDERIZQ.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERIZQ.svg
 ---
 name: AVLDERIZQ
 ---
@@ -188,7 +188,7 @@ Desbalanceo Derecha-Izquierda de un nodo
 
 En la siguiente figura se observa los nodos involucrados en la rotación doble; que se puede realizar como dos rotaciones simples como en el ejemplo anterior o directamente en un único paso, donde el (74) pasará a ocupar la posición del (72).
 
-```{figure} ../_static/figures/AVLDERIZQ-1.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERIZQ-1.svg
 ---
 name: AVLDERIZQ-1
 ---
@@ -197,7 +197,7 @@ Desbalanceo Derecha-Izquierda, nodos involucrados en la rotación derecha-izquie
 
 Como (74) tiene un hijo izquierdo, el nodo (73) recién agregado, entonces deberá ir al subárbol derecho del (72) para mantener la propiedad de búsqueda del ABB, y la única ubicación posible es como hijo derecho del (72), como se observa en la siguiente figura.
 
-```{figure} ../_static/figures/AVLDERIZQ-2.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERIZQ-2.svg
 ---
 name: AVLDERIZQ-2
 ---

@@ -58,7 +58,7 @@ Veremos en más profundidad algunos de estos patrones.
 
 ## Patrón _Adapter_
 
-```{figure} ../_static/figures/PatronAdapter.svg
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronAdapter.svg
 ---
 name: adapter
 ---
@@ -69,7 +69,7 @@ El patrón _adapter_ permite reutilizar código heredado o _legacy_ cuya interfa
 
 En la figura {ref}`adapter2` se observan los siguientes componentes.
 
-```{figure} ../_static/figures/PatronAdapter2_light.svg
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronAdapter2_light.svg
 ---
 name: adapter2
 class: only-light-mode
@@ -77,7 +77,7 @@ class: only-light-mode
 Diagrama de Clases del Patrón _Adapter_
 ```
 
-```{figure} ../_static/figures/PatronAdapter2_dark.svg
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronAdapter2_dark.svg
 ---
 name: adapter2
 class: only-dark-mode
@@ -169,7 +169,7 @@ Nuestra empresa ha concretado la venta del robot a un cliente que necesita incor
 
 ## Patrón _Composite_
 
-```{figure} ../_static/figures/PatronComposite.svg
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronComposite.svg
 ---
 name: composite
 ---
@@ -178,7 +178,7 @@ Patrón _Composite_
 
 El patrón _composite_ permite tratar tanto a objetos individuales como a composiciones de objetos de manera uniforme. Esto significa que se pueden tratar tanto a un objeto simple como a un grupo de objetos de la misma manera, sin tener que distinguir entre ellos. Lo que simplifica el diseño y la implementación de estructuras jerárquicas de objetos.
 
-```{figure} ../_static/figures/PatronComposite2_light.svg
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronComposite2_light.svg
 ---
 name: composite2
 class: only-light-mode
@@ -186,7 +186,7 @@ class: only-light-mode
 Diagrama de Clase del Patrón _Composite_
 ```
 
-```{figure} ../_static/figures/PatronComposite2_dark.svg
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronComposite2_dark.svg
 ---
 name: composite2
 class: only-dark-mode
@@ -291,14 +291,14 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
 
    Por ejemplo queremos calcular el área de un tren compuesto por una locomotora y dos vagones, cada uno con su respectiva estructura de figuras.
 
-   ```{figure} ../_static/figures/PatronTren_light.svg
+   ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronTren_light.svg
    ---
    class: only-light-mode
    ---
    Ejemplo de tren compuesto por figuras
    ```
 
-   ```{figure} ../_static/figures/PatronTren_dark.svg
+   ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronTren_dark.svg
    ---
    class: only-dark-mode
    ---
@@ -336,7 +336,7 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
 
 ## Patrón _Iterator_
 
-```{figure} ../_static/figures/PatronIterator.svg
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronIterator.svg
 ---
 name: iterator
 ---

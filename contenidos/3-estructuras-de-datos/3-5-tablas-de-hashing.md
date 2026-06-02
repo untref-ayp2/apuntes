@@ -6,7 +6,7 @@ label: hashing
 
 Las tablas de _hash_ son estructuras de datos eficientes para almacenar y recuperar información. Emplean una función _hash_ para convertir claves en índices dentro de un arreglo, permitiendo un acceso a los datos en tiempo promedio constante ($O(1)$[^1]). Esto las hace ideales para implementar diccionarios, conjuntos y otras estructuras que demandan búsquedas rápidas. Una tabla de _hash_ extiende la idea de un arreglo tradicional, posibilitando el uso de claves de cualquier tipo para acceder a sus posiciones, gracias a la función _hash_ que asigna cada clave a un índice específico en el arreglo. La eficacia de esta estructura depende de una función _hash_ que sea rápida y distribuya las claves de manera uniforme en el arreglo. La siguiente imagen ilustra los componentes de una tabla de _hash_.
 
-```{figure} ../_static/figures/TablaHash1_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHash1_light.svg
 ---
 name: tabla_hash
 class: only-light-mode
@@ -14,7 +14,7 @@ class: only-light-mode
 Esquema de una tabla de _hash_.
 ```
 
-```{figure} ../_static/figures/TablaHash1_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHash1_dark.svg
 ---
 name: tabla_hash
 class: only-dark-mode
@@ -62,7 +62,7 @@ Esta técnica requiere poder distinguir entre posiciones vacías en la tabla y p
 
 En la siguiente figura se grafica la inserción de un elemento en una tabla de _hash_ cerrada.
 
-```{figure} ../_static/figures/TablaHashInsercion_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashInsercion_light.svg
 ---
 name: tabla_hash_insercion_cerrada
 class: only-light-mode
@@ -70,7 +70,7 @@ class: only-light-mode
 Inserción en una tabla de _hash_ cerrada.
 ```
 
-```{figure} ../_static/figures/TablaHashInsercion_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashInsercion_dark.svg
 ---
 name: tabla_hash_insercion_cerrada
 class: only-dark-mode
@@ -86,7 +86,7 @@ La eliminación de un elemento en una tabla de _hash_ cerrada es un poco más co
 
 Esto se conoce como _marcador de eliminación_ y permite que la búsqueda continúe sin problemas. Sin embargo, esto puede aumentar el tiempo de búsqueda si hay muchos elementos eliminados en la tabla de _hash_.
 
-```{figure} ../_static/figures/TablaHashEliminacion_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashEliminacion_light.svg
 ---
 name: tabla_hash_eliminacion_cerrada
 class: only-light-mode
@@ -94,7 +94,7 @@ class: only-light-mode
 Eliminación en una tabla de _hash_ cerrada.
 ```
 
-```{figure} ../_static/figures/TablaHashEliminacion_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashEliminacion_dark.svg
 ---
 name: tabla_hash_eliminacion_cerrada
 class: only-dark-mode
@@ -112,7 +112,7 @@ En la figura se observa que al eliminar el elemento en la posición 10, se marca
 
 La búsqueda de un elemento en una tabla de _hash_ cerrada es similar a la inserción. Se utiliza la función de _hash_ para calcular el índice y luego se busca el elemento en esa posición. Si el elemento no se encuentra en la posición calculada, se incrementa el índice en 1 hasta encontrar el elemento o una posición vacía. Si se encuentra una posición eliminada, la búsqueda continua.
 
-```{figure} ../_static/figures/TablaHashBusquedaCerrada_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashBusquedaCerrada_light.svg
 ---
 name: tabla_hash_busqueda_cerrada
 class: only-light-mode
@@ -120,7 +120,7 @@ class: only-light-mode
 Búsqueda en una tabla de _hash_ cerrada.
 ```
 
-```{figure} ../_static/figures/TablaHashBusquedaCerrada_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashBusquedaCerrada_dark.svg
 ---
 name: tabla_hash_busqueda_cerrada
 class: only-dark-mode
@@ -149,7 +149,7 @@ Algunas propiedades de la aritmética modular son:
 
 El _hashing_ abierto, es una técnica fundamental para el manejo de colisiones en tablas de _hash_. En contraste con el direccionamiento cerrado, donde todos los elementos se almacenan directamente dentro del arreglo subyacente, el _hashing_ abierto utiliza una estructura de datos adicional (generalmente una lista enlazada). En cada posición del arreglo se encuentra una lista enlazada para almacenar los elementos que colisionan en ese índice. Cuando dos o más claves diferentes se "mapean" a la misma posición en la tabla, en lugar de buscar otra posición en el arreglo, simplemente se añaden los nuevos elementos a la lista existente en esa posición. Esto significa que múltiples elementos pueden residir en la misma posición del arreglo, encadenados en una lista.
 
-```{figure} ../_static/figures/TablaHashAbierta_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashAbierta_light.svg
 ---
 name: tabla_hash_abierta
 class: only-light-mode
@@ -157,7 +157,7 @@ class: only-light-mode
 Tabla de _hash_abierta.
 ```
 
-```{figure} ../_static/figures/TablaHashAbierta_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashAbierta_dark.svg
 ---
 name: tabla_hash_abierta
 class: only-dark-mode

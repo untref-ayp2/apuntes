@@ -8,7 +8,7 @@ Los diccionarios son una estructura de datos que permiten almacenar pares de ele
 
 Podemos pensar a los diccionarios como una guía telefónica, donde el nombre de la persona es la clave y el número de teléfono es el valor asociado y podemos buscar rapidamente un número utilizando un índice para no tener que recorrer toda la guía telefónica.
 
-```{figure} ../_static/figures/Diccionario.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-7-diccionarios/Diccionario.svg
 ---
 width: 300px
 name: diccionario

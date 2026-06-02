@@ -57,7 +57,7 @@ Los montículos o _heaps_ en inglés, son estructuras de datos que permiten acce
 
 Existen diferentes tipos de montículos (binario, fibonacci, suave (_soft_), etc.), pero todos comparten la propiedad de que el elemento que se encuentra en la cima es el mayor o el menor de toda la estructura. En nuestro curso nos enfocaremos en los montículos binarios.
 
-```{figure} ../_static/figures/HeapRopa.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/HeapRopa.svg
 ---
 width: 300px
 name: Monticulo
@@ -75,7 +75,7 @@ Propiedad de Orden
 
 En la siguiente figura se puede ver un heap de mínimos donde se cumplen ambas propiedades. El elemento $A$ es el menor de toda la estructura y se encuentra en la raíz. Analogamente el menor de sus descendientes por la izquierda es el elemento $D$ y se encuentra en la raíz del subárbol izquierdo y por el lado derecho el elemento $M$ es el menor del subárbol derecho.
 
-```{figure} ../_static/figures/HeapMinimos_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/HeapMinimos_light.svg
 ---
 width: 300px
 name: heap-de-minimos
@@ -84,7 +84,7 @@ class: only-light-mode
 Montículo Binario de Mínimos
 ```
 
-```{figure} ../_static/figures/HeapMinimos_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/HeapMinimos_dark.svg
 ---
 width: 300px
 name: heap-de-minimos
@@ -103,7 +103,7 @@ Cómo es un árbol **completo e izquierdista** entonces el arreglo que se usa co
 
 En la siguiente figura se observa como se puede usar un arreglo para mantener un montículo binario. La raíz se encuentra en la posición 0, el hijo izquierdo de la raíz en la posición 1, el hijo derecho de la raíz en la posición 2 y así sucesivamente.
 
-```{figure} ../_static/figures/HeapMinimosRepresentacion_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/HeapMinimosRepresentacion_light.svg
 ---
 width: 300px
 name: heap-representacion
@@ -112,7 +112,7 @@ class: only-light-mode
 Representación con arreglos de un Montículo Binario de Mínimos
 ```
 
-```{figure} ../_static/figures/HeapMinimosRepresentacion_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/HeapMinimosRepresentacion_dark.svg
 ---
 width: 300px
 name: heap-representacion
@@ -173,7 +173,7 @@ Para reestrablecer la propiedad de orden se realiza la operación `upHeap` desde
 
 En el ejemplo de la figura primero intercambia el 9 con el 5. Es decir en el arreglo que representa el heap intercambia los elementos y luego compara la posición 4 con su padre que se encuentra en la posición 1. Cómo el $9$ es mayor que el $7$ los intercambia nuevamente. Finalmente compara la posición 1 con su padre, la raíz en la posición 0, y cómo $10$ es mayor que $9$ termina la operación `upHeap`.
 
-```{figure} ../_static/figures/HeapInsercion_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/HeapInsercion_light.svg
 ---
 name: heap-insercion
 class: only-light-mode
@@ -181,7 +181,7 @@ class: only-light-mode
 Inserción en un Heap de Máximos
 ```
 
-```{figure} ../_static/figures/HeapInsercion_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/HeapInsercion_dark.svg
 ---
 name: heap-insercion
 class: only-dark-mode
@@ -244,7 +244,7 @@ Esta operación hace que se pierda la propiedad de orden, para reestablecerla se
 
 En la figura a continuación, se observa el proceso de eliminación de la raíz en un montículo de máximos
 
-```{figure} ../_static/figures/HeapEliminacion_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/HeapEliminacion_light.svg
 ---
 name: heap-eliminacion
 class: only-light-mode
@@ -252,7 +252,7 @@ class: only-light-mode
 Eliminación en un Heap de Máximos
 ```
 
-```{figure} ../_static/figures/HeapEliminacion_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/HeapEliminacion_dark.svg
 ---
 name: heap-eliminacion
 class: only-dark-mode

@@ -8,7 +8,7 @@ Los conjuntos son estructuras de datos que permiten almacenar elementos de forma
 
 Por definición dos conjuntos son iguales si tienen los mismos elementos, sin importar el orden en que se encuentren. Por otro lado, dos conjuntos son distintos si tienen al menos un elemento diferente.
 
-```{figure} ../_static/figures/conjuntos/diagrama-venn.drawio.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-6-conjuntos/diagrama-venn.drawio.svg
 ---
 name: Conjuntos
 class: dark-light

@@ -10,7 +10,7 @@ Una de las implementaciones más eficientes de mapas de bits es el uso de númer
 
 Los mapas de bits se utilizan en diversas aplicaciones, como la representación de conjuntos, la compresión de datos y la implementación de algoritmos de búsqueda. Son especialmente útiles en situaciones donde se requiere un acceso rápido a los elementos y se tiene un conjunto limitado de posibles valores.
 
-```{figure} ../_static/figures/MapaDeBitsQuorum_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-4-mapa-de-bits/MapaDeBitsQuorum_light.svg
 ---
 width: 500px
 class: only-light-mode
@@ -19,7 +19,7 @@ name: quorum
 Quórum en una sesión del Congreso.
 ```
 
-```{figure} ../_static/figures/MapaDeBitsQuorum_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-4-mapa-de-bits/MapaDeBitsQuorum_dark.svg
 ---
 width: 500px
 class: only-dark-mode

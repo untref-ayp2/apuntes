@@ -1,0 +1,13 @@
+<svg width="120" height="150" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="100" height="40" fill="#e1f5ff" stroke="#4682b4" stroke-width="2"/>
+  <text x="60" y="30" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">ptr</text>
+  <text x="60" y="45" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#333333" text-anchor="middle">*Elem</text>
+  
+  <rect x="10" y="50" width="100" height="40" fill="#e6f4ea" stroke="#8fbc8f" stroke-width="2"/>
+  <text x="60" y="70" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">len</text>
+  <text x="60" y="85" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#333333" text-anchor="middle">int</text>
+  
+  <rect x="10" y="90" width="100" height="40" fill="#ffe1e1" stroke="#e9967a" stroke-width="2"/>
+  <text x="60" y="110" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">cap</text>
+  <text x="60" y="125" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#333333" text-anchor="middle">int</text>
+</svg>

@@ -12,7 +12,7 @@ Una propiedad esencial de los árboles es la existencia de un único camino que 
 
 Consideremos el árbol genérico ilustrado: el nodo $A$ representa la **raíz**, mientras que $D$, $C$, $N$ y $K$ son las **hojas** y los nodos $R$ y $Z$ son **nodos internos**.
 
-```{figure} ../_static/figures/Arbol_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-8-arboles/Arbol_light.svg
 ---
 width: 80%
 name: arbol
@@ -21,7 +21,7 @@ class: only-light-mode
 Árbol de datos
 ```
 
-```{figure} ../_static/figures/Arbol_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-8-arboles/Arbol_dark.svg
 ---
 width: 80%
 name: arbol
@@ -50,7 +50,7 @@ En la figura anterior, el árbol tiene una altura de 2, ya que el camino más la
 
 Los árboles binarios son árboles donde cada nodo tiene a lo sumo dos hijos. Estos hijos se denominan hijo izquierdo e hijo derecho. Los árboles binarios son ampliamente utilizados en informática debido a su simplicidad y eficiencia en diversas operaciones.
 
-```{figure} ../_static/figures/ArbolBinario.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-8-arboles/ArbolBinario.svg
 ---
 name: ArbolBinario
 ---

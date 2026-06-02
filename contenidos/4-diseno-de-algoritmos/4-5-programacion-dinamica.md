@@ -56,7 +56,7 @@ func Fibonacci(n int) int {
 
 En la línea 5 se observa que la función `Fibonacci` se llama a sí misma dos veces, lo que provoca que se realicen cálculos redundantes. Por ejemplo, al calcular `Fibonacci(5)`, se realizan las siguientes llamadas:
 
-```{figure} ../_static/figures/programacion-dinamica/fibonacci-recursivo.drawio.svg
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-5-programacion-dinamica/fibonacci-recursivo.drawio.svg
 ---
 name: fibonacci-recursivo
 class: dark-light
@@ -112,7 +112,7 @@ En este caso donde la tabla es en realidad un arreglo, se puede estimar la compl
 
 ## Problema de la mochila (_Knapsack Problem_)
 
-```{figure} ../_static/figures/Mochila00.svg
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-5-programacion-dinamica/Mochila00.svg
 ---
 width: 600px
 name: mochila

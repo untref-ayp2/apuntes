@@ -348,7 +348,7 @@ Aunque la altura máxima de un árbol es $\log (n)$, la mayoría de los nodos en
 
 Por ejemplo, en la siguiente figura se observa un arreglo como un árbol.
 
-```{figure} ../_static/figures/Heapify01.svg
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos/Heapify01.svg
 ---
 width: 600px
 name: Heapify01
@@ -370,7 +370,7 @@ En resumen, a pesar de que una sola operación de downHeap puede tomar $O(\log n
 
 En la siguiente figura se observa el arreglo convertido en un _heap_ de máximos.
 
-```{figure} ../_static/figures/Heapify02.svg
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos/Heapify02.svg
 ---
 width: 600px
 name: Heapify02

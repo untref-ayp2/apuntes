@@ -153,7 +153,7 @@ También podemos especificar el tipo explícitamente si hace falta:
 Contiene[int](numeros, 30)
 ```
 
-```{figure} ../_static/figures/generics_light.svg
+```{figure} ../_static/figures/2-taller-de-go/2-12-genericos/generics_light.svg
 ---
 class: only-light-mode
 width: 80%
@@ -162,7 +162,7 @@ name: generics-concept
 Los tipos parametrizables permiten que una misma función trabaje con diferentes tipos concretos.
 ```
 
-```{figure} ../_static/figures/generics_dark.svg
+```{figure} ../_static/figures/2-taller-de-go/2-12-genericos/generics_dark.svg
 ---
 class: only-dark-mode
 width: 80%

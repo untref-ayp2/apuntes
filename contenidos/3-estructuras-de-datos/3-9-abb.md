@@ -19,7 +19,7 @@ En la siguiente figura se muestran dos árboles binarios, el de la izquierda cum
 
 El subárbol de la izquierda cuya raíz es (2) si es ABB y el de la derecha cuya raiz es (9) también es ABB, sin embargo el árbol completo no es un ABB.
 
-```{figure} ../_static/figures/ABB.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-9-abb/ABB.svg
 ---
 name: abb
 ---
@@ -29,7 +29,7 @@ El recorrido inorden de un árbol binario de búsqueda produce una secuencia ord
 
 Por ejemplo en la siguiente figura se muestran dos árboles binarios de búsqueda que tienen el mismo recorrido inorden: 1, 2, 3, 5, 7, 9. Los árboles son diferentes porque los elementos se insertaron en diferente orden, sin embargo al ser un ABB el recorrido inorden es el mismo.
 
-```{figure} ../_static/figures/ABBInorden.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-9-abb/ABBInorden.svg
 ---
 name: abbinorden
 ---
@@ -122,7 +122,7 @@ La eliminación de un nodo en un árbol binario de búsqueda es un poco más com
 El nodo a eliminar es una hoja (no tiene hijos)
 : En este caso, simplemente se elimina el nodo. En el ejemplo se elimina la hoja (6).
 
-```{figure} ../_static/figures/ABBEliminacion-1.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-9-abb/ABBEliminacion-1.svg
 ---
 name: eliminacion1
 ---
@@ -132,7 +132,7 @@ Eliminación de un nodo hoja
 El nodo a eliminar tiene un solo hijo
 : En este caso, se reemplaza reemplaza el nodo a eliminar por su hijo. Esto se hace actualizando el puntero del padre del nodo a eliminar para que apunte al hijo del nodo a eliminar. En el ejemplo se elimina el nodo (5) que tiene sólo un hijo izquierdo (3) y se reemplaza por su hijo.
 
-```{figure} ../_static/figures/ABBEliminacion-2.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-9-abb/ABBEliminacion-2.svg
 ---
 name: eliminacion2
 ---
@@ -144,7 +144,7 @@ El nodo a eliminar tiene dos hijos
 
 En la siguiente figura se observa la eliminación de la raíz del árbol, el nodo (7).
 
-```{figure} ../_static/figures/ABBEliminacion-3.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-9-abb/ABBEliminacion-3.svg
 ---
 name: eliminacion3
 ---
@@ -228,7 +228,7 @@ h =
 
 En la siguiente figura se observa un árbol binario de búsqueda completo (con todos los nodos en todos los niveles) y perfectamente balanceado, donde cada nodo tiene dos hijos y la altura del árbol es mínima. En este caso, el árbol tiene una altura de 3 y contiene 15 nodos.
 
-```{figure} ../_static/figures/ABBBalanceado.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-9-abb/ABBBalanceado.svg
 ---
 name: arbolbalanceado
 ---
@@ -246,7 +246,7 @@ La altura $h$ de un árbol binario completo y balanceado se puede calcular como:
 
 Por otro lado, en el peor de los casos, un árbol binario de búsqueda puede degenerar en una lista enlazada, lo que resulta en una altura de $O(n)$ y un tiempo de ejecución de $O(n)$ para las operaciones. Esto ocurre cuando los nodos se insertan en orden ascendente o descendente, lo que provoca que el árbol se convierta en una estructura lineal. En la siguiente figura se observa un árbol binario que degeneró en una lista
 
-```{figure} ../_static/figures/ABBDegenerado.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-9-abb/ABBDegenerado.svg
 ---
 name: ABBDegenerado
 ---

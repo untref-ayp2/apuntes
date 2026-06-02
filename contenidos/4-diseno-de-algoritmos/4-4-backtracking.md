@@ -16,7 +16,7 @@ Con esta técnica también se pueden encontrar todas las soluciones posibles a u
 
 El problema de las N reinas consiste en colocar $N$ reinas en un tablero de ajedrez de $N \times N$ de tal manera que ninguna reina ataque a otra. Esto significa que no pueden estar en la misma fila, columna o diagonal. En la siguente figura se muestra una solución para el caso de tableros de $8 \times 8$ donde se colocan $8$ reinas.
 
-```{figure} ../_static/figures/NReinasSolucion.svg
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-4-backtracking/NReinasSolucion.svg
 ---
 width: 60%
 name: sol.n.reinas
@@ -90,7 +90,7 @@ Para resolver un problema con _backtracking_, se deben identificar y definir los
 
 : Para chequear si hay ya una reina en la misma columna basta con revisar los valores del arreglo `solucionParcial` para asegurarse que la columna candidata no está atacada por otra reina, es decir no puede haber dos valores iguales en el arreglo y para chequear si hay una reina en alguna de las dos diagonales que se pueden generar en cualquier posición del tablero, se puede usar la propiedad de que en todas las diagonales directas, por nombrarlas de alguna forma, las de color azul, $fila - columna = constante$. Mientras que para las diagonales inversas, las de color rojo, se cumple que $fila + columna = constante$. Ver la figura a continuación.
 
-```{figure} ../_static/figures/NReinasDiagonal.svg
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-4-backtracking/NReinasDiagonal.svg
 ---
 width: 70%
 name: sol.n.reinas.diagonal
@@ -168,7 +168,7 @@ Como caso general se puede pensar que la complejidad es $O(N^M)$, donde $N$ es e
 
 En la figura a continuación se muestra un árbol de búsqueda para el caso de $N=3$ y $M=3$. En este caso, se puede ver que el árbol tiene una profundidad de 3 y en cada nivel hay 3 opciones posibles.
 
-```{figure} ../_static/figures/BacktrackingOrden.svg
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-4-backtracking/BacktrackingOrden.svg
 ---
 width: 70%
 name: BacktrackingOrden
@@ -192,7 +192,7 @@ La implementación de _backtracking_ puede ser sencilla y elegante, como se ha v
 
 3. Escribir un programa para resolver sudokus usando _backtracking_. El sudoku es un rompecabezas de lógica que consiste en llenar una cuadrícula de 9x9 con números del 1 al 9, de tal manera que cada fila, cada columna y cada una de las nueve subcuadrículas de 3x3 contengan todos los dígitos del 1 al 9 sin repetir. En general se inicia de un tablero parcialmente lleno, como el que se muestra a continuación.
 
-```{figure} ../_static/figures/Sudoku.svg
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-4-backtracking/Sudoku.svg
 ---
 width: 100%
 name: Sudoku

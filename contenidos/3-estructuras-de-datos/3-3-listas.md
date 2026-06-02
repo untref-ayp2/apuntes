@@ -34,7 +34,7 @@ El nodo almacena:
 - **Siguiente**: puntero al próximo nodo de la secuencia.
 ```
 
-```{figure} ../_static/figures/ListaEnlazadaSimple_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaEnlazadaSimple_light.svg
 ---
 width: 100%
 class: only-light-mode
@@ -43,7 +43,7 @@ name: ssl-estructura
 Lista Enlazada Simple
 ```
 
-```{figure} ../_static/figures/ListaEnlazadaSimple_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaEnlazadaSimple_dark.svg
 ---
 width: 100%
 class: only-dark-mode
@@ -103,7 +103,7 @@ El nodo almacena:
 - **Previo / Anterior**: puntero al nodo predecesor.
 ```
 
-```{figure} ../_static/figures/ListaEnlazadaDoble_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaEnlazadaDoble_light.svg
 ---
 width: 100%
 class: only-light-mode
@@ -112,7 +112,7 @@ name: dll-estructura
 Lista Enlazada Doble
 ```
 
-```{figure} ../_static/figures/ListaEnlazadaDoble_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaEnlazadaDoble_dark.svg
 ---
 width: 100%
 class: only-dark-mode
@@ -158,7 +158,7 @@ En una lista circular doble:
 El nodo es el mismo que el de la lista doble (`node[T]` con `next` y `prev`).
 ```
 
-```{figure} ../_static/figures/ListaEnlazadaCircularDoble_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaEnlazadaCircularDoble_light.svg
 ---
 width: 100%
 class: only-light-mode
@@ -167,7 +167,7 @@ name: cll-estructura
 Lista Enlazada Circular Doble
 ```
 
-```{figure} ../_static/figures/ListaEnlazadaCircularDoble_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaEnlazadaCircularDoble_dark.svg
 ---
 width: 100%
 class: only-dark-mode
@@ -900,7 +900,7 @@ En una lista con centinelas:
 - Una lista vacía tiene los dos centinelas apuntándose entre sí.
 ```
 
-```{figure} ../_static/figures/ListaConCentinelas_light.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaConCentinelas_light.svg
 ---
 width: 100%
 class: only-light-mode
@@ -909,7 +909,7 @@ name: lista-centinelas
 Lista Enlazada Doble con Centinelas
 ```
 
-```{figure} ../_static/figures/ListaConCentinelas_dark.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaConCentinelas_dark.svg
 ---
 width: 100%
 class: only-dark-mode

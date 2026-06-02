@@ -89,7 +89,7 @@ Podemos imaginar que un _slice_ es como una ventana que podemos deslizar sobre u
 var s []byte
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-struct_light.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-struct_light.svg
 ---
 name: slice-struct-light
 class: only-light-mode
@@ -97,7 +97,7 @@ class: only-light-mode
 Estructura interna de un _slice_.
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-struct_dark.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-struct_dark.svg
 ---
 name: slice-struct-dark
 class: only-dark-mode
@@ -109,7 +109,7 @@ Estructura interna de un _slice_.
 s = make([]byte, 5, 5)
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-1_light.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-1_light.svg
 ---
 name: slice-1-light
 class: only-light-mode
@@ -117,7 +117,7 @@ class: only-light-mode
 _Slice_ de longitud 5 y capacidad 5: El arreglo subyacente tiene tamaño 5 y la ventana del slice "ve" todo el arreglo.
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-1_dark.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-1_dark.svg
 ---
 name: slice-1-dark
 class: only-dark-mode
@@ -131,7 +131,7 @@ A medida que hacemos _slicing_ de `s`, observamos los cambios en la estructura d
 s = s[2:4]
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-2_light.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-2_light.svg
 ---
 name: slice-2-light
 class: only-light-mode
@@ -139,7 +139,7 @@ class: only-light-mode
 _Slice_ de longitud 2 y capacidad 3: La ventana del slice ahora ve desde la posición 2 del arreglo subyacente hasta la posición 3 (longitud 2, el último elemento no se incluye). Sin embargo, la capacidad es 3, lo que indica que el slice todavía puede crecer una posición más sobre el mismo arreglo.
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-2_dark.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-2_dark.svg
 ---
 name: slice-2-dark
 class: only-dark-mode
@@ -153,7 +153,7 @@ El _slicing_ no copia los datos del _slice_. En su lugar, crea un nuevo valor de
 s = s[:cap(s)]
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-3_light.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-3_light.svg
 ---
 name: slice-3-light
 class: only-light-mode
@@ -161,7 +161,7 @@ class: only-light-mode
 _Slice_ de longitud 3 y capacidad 3: Ahora la ventana del slice se agrandó y ve desde la posición 2 hasta el final del arreglo subyacente.
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-3_dark.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-3_dark.svg
 ---
 name: slice-3-dark
 class: only-dark-mode
@@ -198,7 +198,7 @@ t2 = [Abril Mayo Junio]
 invierno = [Junio Julio Agosto]
 ```
 
-```{figure} ../_static/figures/arreglos-slices/overlapping-slices_light.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/overlapping-slices_light.svg
 ---
 name: overlaping-slices-light
 class: only-light-mode
@@ -206,7 +206,7 @@ class: only-light-mode
 Dos _slices_ sobre el mismo array de meses.
 ```
 
-```{figure} ../_static/figures/arreglos-slices/overlapping-slices_dark.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/overlapping-slices_dark.svg
 ---
 name: overlaping-slices-dark
 class: only-dark-mode
@@ -278,7 +278,7 @@ x = [0 1 2]
 y = [0 1 2 3]
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-1_light.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-1_light.svg
 ---
 name: slice-append-entangled-1-light
 class: only-light-mode
@@ -286,7 +286,7 @@ class: only-light-mode
 Slices x e y comparten el mismo arreglo subyacente.
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-1_dark.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-1_dark.svg
 ---
 name: slice-append-entangled-1-dark
 class: only-dark-mode
@@ -305,7 +305,7 @@ x = [0 1 2 4]
 y = [0 1 2 4]
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-2_light.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-2_light.svg
 ---
 name: slice-append-entangled-2-light
 class: only-light-mode
@@ -313,7 +313,7 @@ class: only-light-mode
 Modificar x también afecta a y al compartir el arreglo subyacente.
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-2_dark.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-2_dark.svg
 ---
 name: slice-append-entangled-2-dark
 class: only-dark-mode
@@ -334,7 +334,7 @@ x = [0 1 2 4]
 y = [0 1 2 4 4]
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-3_light.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-3_light.svg
 ---
 name: slice-append-entangled-3-light
 class: only-light-mode
@@ -342,7 +342,7 @@ class: only-light-mode
 Al superar la capacidad, y apunta a un nuevo arreglo subyacente.
 ```
 
-```{figure} ../_static/figures/arreglos-slices/slice-append-entangled-3_dark.svg
+```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-3_dark.svg
 ---
 name: slice-append-entangled-3-dark
 class: only-dark-mode

@@ -55,7 +55,7 @@ En la figura a continuación, se muestra un esquema de la memoria de un proceso 
 
 En el diagrama el ***stack*** se ubica en la parte superior de la memoria y crece hacia abajo; cuando no puede crecer más se produce un error de desbordamiento de pila (*stack overflow*). El ***heap*** se ubica en la parte inferior de la memoria, sobre los segmentos de código y datos y crece hacia arriba.
 
-```{figure} ../_static/figures/MemoriaSegmentos_light.svg
+```{figure} ../_static/figures/1-presentacion/1-2-memoria/MemoriaSegmentos_light.svg
 ---
 width: 50%
 class: only-light-mode
@@ -63,7 +63,7 @@ class: only-light-mode
 Segmentos de Memoria de un Proceso en Ejecución
 ```
 
-```{figure} ../_static/figures/MemoriaSegmentos_dark.svg
+```{figure} ../_static/figures/1-presentacion/1-2-memoria/MemoriaSegmentos_dark.svg
 ---
 width: 50%
 class: only-dark-mode
@@ -120,7 +120,7 @@ func main() {
 
 El **Stack**, el **Heap** y el **Segmento de Datos** presentarán el siguiente estado:
 
-```{figure} ../_static/figures/MapaDeMemoria_light.svg
+```{figure} ../_static/figures/1-presentacion/1-2-memoria/MapaDeMemoria_light.svg
 ---
 name: mapa-memoria-Santi
 width: 100%
@@ -129,7 +129,7 @@ class: only-light-mode
 Mapa de Memoria
 ```
 
-```{figure} ../_static/figures/MapaDeMemoria_dark.svg
+```{figure} ../_static/figures/1-presentacion/1-2-memoria/MapaDeMemoria_dark.svg
 ---
 name: mapa-memoria-Santi
 width: 100%

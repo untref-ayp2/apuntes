@@ -8,7 +8,7 @@ label: intro-go
 
 Go es un lenguaje de programación desarrollado por Google y lanzado oficialmente en 2009. Es un lenguaje compilado, es decir, una vez escrito el código fuente se debe traducir a código máquina para poder ejecutarlo; esta operación de traducción se conoce como compilación.
 
-```{figure} ../_static/figures/Go-Logo_Blue.svg
+```{figure} ../_static/figures/2-taller-de-go/2-1-introduccion-go/Go-Logo_Blue.svg
 ---
 align: center
 width: 200px
@@ -66,14 +66,14 @@ Para liberar la memoria reservada en el *heap*, Go utiliza un **recolector de ba
 
 Este enfoque evita errores críticos como las **fugas de memoria** (*memory leaks*) —olvidar liberar la memoria que reservamos— o el acceso a **punteros colgantes** (*dangling pointers*) —intentar usar memoria que el programa ya liberó—.
 
-```{figure} ../_static/figures/garbage_collector_light.svg
+```{figure} ../_static/figures/2-taller-de-go/2-1-introduccion-go/garbage_collector_light.svg
 ---
 class: only-light-mode
 ---
 Funcionamiento del Garbage Collector: rastreo y liberación de objetos inalcanzables.
 ```
 
-```{figure} ../_static/figures/garbage_collector_dark.svg
+```{figure} ../_static/figures/2-taller-de-go/2-1-introduccion-go/garbage_collector_dark.svg
 ---
 class: only-dark-mode
 ---

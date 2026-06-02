@@ -75,7 +75,7 @@ En la declaración `var pa *int`, el asterisco forma parte del tipo (`*int` sign
 
 La siguiente figura muestra cómo se relacionan las variables `pa` y `a` en memoria:
 
-```{figure} ../_static/figures/puntero-direccion_light.svg
+```{figure} ../_static/figures/2-taller-de-go/2-7-punteros/puntero-direccion_light.svg
 ---
 class: only-light-mode
 width: 90%
@@ -83,7 +83,7 @@ width: 90%
 Variables `pa` y `a` en memoria.
 ```
 
-```{figure} ../_static/figures/puntero-direccion_dark.svg
+```{figure} ../_static/figures/2-taller-de-go/2-7-punteros/puntero-direccion_dark.svg
 ---
 class: only-dark-mode
 width: 90%
