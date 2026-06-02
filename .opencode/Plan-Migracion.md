@@ -53,7 +53,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 17 | `contenidos/3-estructuras-de-datos/3-1-tad.md` | ✅ Revisado | `data-structures`, `taller-tad` |
 | 18 | `contenidos/3-estructuras-de-datos/3-2-pilas-colas.md` | ✅ Revisado | `taller-tad`, `data-structures` |
 | 19 | `contenidos/3-estructuras-de-datos/3-3-listas.md` | ✅ Revisado | `data-structures`, `taller-tad` |
-| 20 | `contenidos/3-estructuras-de-datos/3-4-mapa-de-bits.md` | ⬜ Pendiente | — |
+| 20 | `contenidos/3-estructuras-de-datos/3-4-mapa-de-bits.md` | ✅ Revisado | `data-structures`, `taller-tad` |
 | 21 | `contenidos/3-estructuras-de-datos/3-5-tablas-de-hashing.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
 | 22 | `contenidos/3-estructuras-de-datos/3-6-conjuntos.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
 | 23 | `contenidos/3-estructuras-de-datos/3-7-diccionarios.md` | ⬜ Pendiente | `guia-conjuntos-hashtable-diccionarios` |
@@ -85,7 +85,7 @@ debe buscar recursos en estos repos para referenciar o incluir en el apunte.
 | 3-1 TAD | `taller-tad` | `data-structures` |
 | 3-2 Pilas y Colas | `taller-tad` (ejercicios en `02-pilas-colas/`) | `data-structures` |
 | 3-3 Listas | `taller-tad` (`03-listas/`) | `data-structures` (`list/`) |
-| 3-4 Mapa de bits | — | — |
+| 3-4 Mapa de bits | `taller-tad` (`04-mapa-de-bits/`) | `data-structures` (`bitmap/`) |
 | 3-5 Tablas de Hashing | `guia-conjuntos-hashtable-diccionarios` | — |
 | 3-6 Conjuntos | `guia-conjuntos-hashtable-diccionarios` | — |
 | 3-7 Diccionarios | `guia-conjuntos-hashtable-diccionarios` | — |
@@ -160,7 +160,7 @@ Estado actual (jb2-martin):
     1-2-memoria        ✅
     1-3-analisis       ✅
     2-Taller de Go     ✅ 12 archivos
-    3-Estructuras      ✅ 3 / 🔄 0 / ⬜ 9 archivos
+    3-Estructuras      ✅ 4 / 🔄 0 / ⬜ 8 archivos
     4-Diseño Alg.      ⬜ 7 archivos
     5-Taller Git       ⬜
     bibliografia       ⬜
