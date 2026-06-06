@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="445.922"
+   height="280"
+   viewBox="0 0 445.922 280"
+   version="1.1"
+   id="svg28"
+   sodipodi:docname="diccionario_light.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview28"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:lockguides="false"
+     inkscape:zoom="1.128"
+     inkscape:cx="286.79078"
+     inkscape:cy="-23.492908"
+     inkscape:window-width="2544"
+     inkscape:window-height="1354"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg28" />
+  <defs
+     id="defs2">
+    <style
+       id="style1">
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 20px; text-anchor: middle; fill: #333333; }
+      .code { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 13px; fill: #333333; }
+      .variable-node { fill: #e1f5ff; stroke: #4682b4; stroke-width: 1.5; }
+      .value-node { fill: #ffe1e1; stroke: #e9967a; stroke-width: 1.5; }
+      .arrow { stroke: #333333; stroke-width: 2; marker-end: url(#arrowhead); }
+      .arrow-dashed { stroke: #666666; stroke-width: 1.5; stroke-dasharray: 4,4; marker-end: url(#arrowhead-small); }
+      .note { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 13px; fill: #666666; text-anchor: middle; }
+      .header { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: bold; fill: #333333; text-anchor: middle; }
+    </style>
+    <marker
+       id="arrowhead"
+       markerWidth="6"
+       markerHeight="5"
+       refX="6"
+       refY="2.5"
+       orient="auto">
+      <polygon
+         points="6,2.5 0,5 0,0 "
+         fill="#333333"
+         id="polygon1" />
+    </marker>
+    <marker
+       id="arrowhead-small"
+       markerWidth="5"
+       markerHeight="4"
+       refX="5"
+       refY="2"
+       orient="auto">
+      <polygon
+         points="5,2 0,4 0,0 "
+         fill="#666666"
+         id="polygon2" />
+    </marker>
+  </defs>
+  <!-- Fondo principal -->
+  <!-- Pestañas del Índice (detrás de la página derecha) -->
+  <!-- A-D -->
+  <!-- E-H -->
+  <!-- I-L -->
+  <!-- M-O (Resaltada) -->
+  <!-- P-S -->
+  <!-- T-Z -->
+  <!-- Cuerpo del libro (Páginas abiertas) -->
+  <!-- Página Izquierda -->
+  <!-- Página Derecha -->
+  <!-- Línea divisoria central (lomo del libro) -->
+  <!-- Contenido Página Izquierda (Búsqueda) -->
+  <!-- Icono Lupa decorativo -->
+  <!-- Flujo de búsqueda (Línea punteada de búsqueda al índice M-O) -->
+  <!-- Contenido Página Derecha (Página del libro de la sección M-O) -->
+  <!-- Registro 1: Manuel -->
+  <!-- Registro 2: Maria (Resaltado/Encontrado) -->
+  <!-- Registro 3: Oscar -->
+  <!-- Flecha de acceso desde el índice M-O al registro "Maria" -->
+  <!-- Notas Clave / Valor en la página derecha -->
+  <rect
+     width="99.919983%"
+     height="100%"
+     fill="#f0f2f5"
+     id="rect2"
+     x="7.0281985e-09"
+     y="-4.7471618e-09"
+     style="stroke-width:0.9996" />
+  <g
+     id="g30"
+     transform="translate(2.9609985,5.9199219)">
+    <text
+       class="title"
+       x="219.62891"
+       y="32"
+       id="text2">Diccionario</text>
+    <g
+       id="g29">
+      <rect
+         x="220"
+         y="50"
+         width="180"
+         height="200"
+         fill="#ffffff"
+         stroke="#b0b0b0"
+         stroke-width="1.5"
+         rx="5"
+         id="rect10" />
+      <g
+         id="g28">
+        <rect
+           x="40"
+           y="50"
+           width="180"
+           height="200"
+           fill="#ffffff"
+           stroke="#b0b0b0"
+           stroke-width="1.5"
+           rx="5"
+           id="rect9" />
+        <line
+           x1="220"
+           y1="50"
+           x2="220"
+           y2="250"
+           stroke="#d0d0d0"
+           stroke-width="3"
+           id="line10" />
+        <line
+           x1="220"
+           y1="50"
+           x2="220"
+           y2="250"
+           stroke="#a0a0a0"
+           stroke-width="1"
+           stroke-dasharray="3, 3"
+           id="line11" />
+        <text
+           class="header"
+           x="130"
+           y="78"
+           id="text11">BÚSQUEDA</text>
+        <rect
+           x="55"
+           y="100"
+           width="150"
+           height="75"
+           rx="5"
+           fill="#f8f9fa"
+           stroke="#dcdcdc"
+           stroke-width="1"
+           id="rect11" />
+        <text
+           class="note"
+           x="130"
+           y="118"
+           font-size="11"
+           fill="#777777"
+           id="text12">Clave a buscar:</text>
+        <g
+           id="g13">
+          <rect
+             class="variable-node"
+             x="90"
+             y="128"
+             width="80"
+             height="24"
+             rx="3"
+             id="rect12" />
+          <text
+             class="code"
+             x="130"
+             y="144"
+             text-anchor="middle"
+             font-weight="bold"
+             id="text13">&quot;Maria&quot;</text>
+        </g>
+        <circle
+           cx="75"
+           cy="140"
+           r="5"
+           fill="none"
+           stroke="#666666"
+           stroke-width="1.5"
+           id="circle13" />
+        <line
+           x1="78.5"
+           y1="143.5"
+           x2="84"
+           y2="149"
+           stroke="#666666"
+           stroke-width="1.5"
+           id="line13" />
+        <text
+           class="note"
+           x="130"
+           y="200"
+           font-size="11"
+           fill="#777777"
+           id="text14">El índice permite</text>
+        <text
+           class="note"
+           x="130"
+           y="215"
+           font-size="11"
+           fill="#777777"
+           id="text15">acceso directo O(1)</text>
+      </g>
+      <g
+         id="g20"
+         transform="translate(0,-18)">
+        <text
+           class="code"
+           x="235"
+           y="112"
+           text-anchor="start"
+           fill="#888888"
+           id="text18">&quot;Manuel&quot;</text>
+        <text
+           class="code"
+           x="300"
+           y="112"
+           text-anchor="start"
+           fill="#aaaaaa"
+           id="text19">...</text>
+        <text
+           class="code"
+           x="325"
+           y="112"
+           text-anchor="start"
+           fill="#888888"
+           id="text20">555-0199</text>
+      </g>
+      <g
+         id="g22">
+        <!-- Fondo resaltado para la fila -->
+        <rect
+           x="225"
+           y="123"
+           width="170"
+           height="28"
+           rx="4"
+           fill="#ffe1e1"
+           stroke="#e9967a"
+           stroke-width="1"
+           id="rect20" />
+        <text
+           class="code"
+           x="235"
+           y="141"
+           text-anchor="start"
+           font-weight="bold"
+           fill="#0b3c5d"
+           id="text21">&quot;Maria&quot;</text>
+        <line
+           x1="290"
+           y1="137"
+           x2="315"
+           y2="137"
+           stroke="#e9967a"
+           stroke-width="1.5"
+           marker-end="url(#arrowhead-small)"
+           id="line21" />
+        <text
+           class="code"
+           x="325"
+           y="141"
+           text-anchor="start"
+           font-weight="bold"
+           fill="#b22222"
+           id="text22">555-5678</text>
+      </g>
+      <g
+         id="g25"
+         transform="translate(0,14)">
+        <text
+           class="code"
+           x="235"
+           y="172"
+           text-anchor="start"
+           fill="#888888"
+           id="text23">&quot;Oscar&quot;</text>
+        <text
+           class="code"
+           x="300"
+           y="172"
+           text-anchor="start"
+           fill="#aaaaaa"
+           id="text24">...</text>
+        <text
+           class="code"
+           x="325"
+           y="172"
+           text-anchor="start"
+           fill="#888888"
+           id="text25">555-9012</text>
+      </g>
+      <rect
+         class="variable-node"
+         x="235"
+         y="210"
+         width="55"
+         height="18"
+         rx="2"
+         id="rect26" />
+      <text
+         x="262.5"
+         y="223"
+         font-family="sans-serif"
+         font-size="10px"
+         fill="#333333"
+         text-anchor="middle"
+         id="text27">Clave</text>
+      <rect
+         class="value-node"
+         x="325"
+         y="210"
+         width="55"
+         height="18"
+         rx="2"
+         id="rect27" />
+      <text
+         x="352.5"
+         y="223"
+         font-family="sans-serif"
+         font-size="10px"
+         fill="#333333"
+         text-anchor="middle"
+         id="text28">Valor</text>
+    </g>
+  </g>
+</svg>
