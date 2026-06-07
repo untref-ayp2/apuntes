@@ -17,6 +17,8 @@ project:
   authors:
     - name: Cátedra de Algoritmos y Programación II
   github: untref-ayp2/apuntes
+  static_files:
+    - _static/applets
   abstract: "Apuntes de la materia Algoritmos y Programación II - UNTREF"
   copyright: "2025"
   license: CC-BY-SA-4.0

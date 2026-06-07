@@ -125,6 +125,103 @@ Usar clases CSS en `<defs><style>` para mantener consistencia y facilitar manten
 - Alineación de texto: `text-anchor="middle"` o `text-anchor="left"`
 - Ruteo de líneas: usar estilo Manhattan
 
+---
+
+## Diagramas de Árboles
+
+Para diagramas de árboles binarios y expresiones, usar estas clases adicionales.
+Los colores coinciden con la paleta de los applets interactivos del capítulo 3-8.
+
+### Clases para árboles
+
+| Clase               | Descripción                                           | Ámbito              |
+| ------------------- | ----------------------------------------------------- | ------------------- |
+| `.edge`             | Arista entre nodos del árbol                          | ArbolBinario        |
+| `.tree-edge`        | Arista gruesa entre nodos (árbol genérico)            | Arbol               |
+| `.tree-arrowhead`   | Punta de flecha en aristas del árbol genérico         | Arbol               |
+| `.op-node`          | Nodo de operación (+, −, *, etc.)                     | ArbolBinario        |
+| `.num-node`         | Nodo de número o valor                                | ArbolBinario        |
+| `.node-circle`      | Círculo de nodo en árbol genérico                     | Arbol               |
+| `.node-text`        | Texto dentro de nodos (monospace, bold)               | Arbol / ArbolBinario |
+| `.annotation-text`  | Anotaciones externas (profundidad, nivel, etc.)       | Arbol               |
+| `.pointer-line`     | Línea de puntero desde una anotación                  | Arbol               |
+| `.pointer-arrowhead`| Punta de flecha del puntero                           | Arbol               |
+| `.dashed-line`      | Línea punteada para marcar niveles/profundidad        | Arbol               |
+
+### Colores para árboles — Light
+
+| Elemento                  | Fill         | Stroke       | Stroke-width |
+| ------------------------- | ------------ | ------------ | ------------ |
+| Nodos operación (`op-node`) | `#e1f5ff`  | `#4682b4`    | 2.5          |
+| Nodos número (`num-node`) | `#ffe1e1`    | `#e9967a`    | 2.5          |
+| Nodo genérico (`node-circle`) | `#ffe1e1` | `#e9967a`    | 20*          |
+| Arista (`edge`)           | —            | `#333333`    | 2            |
+| Arista género (`tree-edge`) | —          | `#333333`    | 18*          |
+| Flecha arista             | `#333333`    | `#333333`    | 8*           |
+| Línea puntero             | —            | `#87cfff`    | 14*          |
+| Flecha puntero            | `#e1f5ff`    | `#87cfff`    | 8*           |
+| Línea punteada            | —            | `#333333`    | 14*          |
+| Texto en nodos            | `#333333`    | —            | —            |
+| Anotaciones               | `#333333`    | —            | —            |
+
+\* *Valores para viewBox `0 0 4801 3535` (Arbol). Ajustar proporcionalmente según el viewBox.*
+
+### Colores para árboles — Dark
+
+| Elemento                  | Fill         | Stroke       | Stroke-width |
+| ------------------------- | ------------ | ------------ | ------------ |
+| Nodos operación (`op-node`) | `#2d3748` | `#63b3ed`    | 2.5          |
+| Nodos número (`num-node`) | `#4a5568`    | `#fc8181`    | 2.5          |
+| Nodo genérico (`node-circle`) | `#4a5568` | `#fc8181`    | 20*          |
+| Arista (`edge`)           | —            | `#e0e0e0`    | 2            |
+| Arista género (`tree-edge`) | —          | `#e0e0e0`    | 18*          |
+| Flecha arista             | `#e0e0e0`    | `#e0e0e0`    | 8*           |
+| Línea puntero             | —            | `#87cfff`    | 14*          |
+| Flecha puntero            | `#2d3748`    | `#87cfff`    | 8*           |
+| Línea punteada            | —            | `#e0e0e0`    | 14*          |
+| Texto en nodos            | `#e0e0e0`    | —            | —            |
+| Anotaciones               | `#e0e0e0`    | —            | —            |
+
+\* *Valores para viewBox `0 0 4801 3535` (Arbol). Ajustar proporcionalmente según el viewBox.*
+
+### Ejemplo de árbol binario (light)
+
+```xml
+<defs>
+  <style>
+    .edge { stroke: #333333; stroke-width: 2; fill: none; }
+    .op-node { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2.5; }
+    .num-node { fill: #ffe1e1; stroke: #e9967a; stroke-width: 2.5; }
+    .text { fill: #333333; font-family: monospace; font-size: 22px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
+  </style>
+</defs>
+<line class="edge" x1="260" y1="50" x2="100" y2="140"/>
+<circle class="op-node" cx="260" cy="50" r="24"/>
+<text class="text" x="260" y="50">+</text>
+<circle class="num-node" cx="100" cy="140" r="24"/>
+<text class="text" x="100" y="140">a</text>
+```
+
+### Ejemplo de árbol binario (dark)
+
+```xml
+<defs>
+  <style>
+    .edge { stroke: #e0e0e0; stroke-width: 2; fill: none; }
+    .op-node { fill: #2d3748; stroke: #63b3ed; stroke-width: 2.5; }
+    .num-node { fill: #4a5568; stroke: #fc8181; stroke-width: 2.5; }
+    .text { fill: #e0e0e0; font-family: monospace; font-size: 22px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
+  </style>
+</defs>
+<line class="edge" x1="260" y1="50" x2="100" y2="140"/>
+<circle class="op-node" cx="260" cy="50" r="24"/>
+<text class="text" x="260" y="50">+</text>
+<circle class="num-node" cx="100" cy="140" r="24"/>
+<text class="text" x="100" y="140">a</text>
+```
+
+---
+
 ## Reglas de Archivos
 
 1. **Siempre crear versión light y dark**: cada diagrama debe tener `_light.svg` y `_dark.svg`

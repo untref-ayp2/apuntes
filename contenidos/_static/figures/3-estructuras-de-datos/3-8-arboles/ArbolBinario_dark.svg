@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="349"
+   height="332"
+   viewBox="0 0 349 332"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="ArbolBinario_dark.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     id="namedview8"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="3.4246988"
+     inkscape:cx="174.6139"
+     inkscape:cy="166"
+     inkscape:window-width="2544"
+     inkscape:window-height="1348"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <style
+     id="style1">
+    .edge { stroke: #e0e0e0; stroke-width: 2; fill: none; }
+    .op-node { fill: #2d3748; stroke: #63b3ed; stroke-width: 2.5; }
+    .num-node { fill: #4a5568; stroke: #fc8181; stroke-width: 2.5; }
+    .text { fill: #e0e0e0; font-family: monospace; font-size: 22px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
+  </style>
+  <!-- Aristas -->
+  <line
+     class="edge"
+     x1="150"
+     y1="76"
+     x2="70"
+     y2="114"
+     id="line1" />
+  <line
+     class="edge"
+     x1="150"
+     y1="76"
+     x2="250"
+     y2="114"
+     id="line2" />
+  <line
+     class="edge"
+     x1="250"
+     y1="166"
+     x2="200"
+     y2="204"
+     id="line3" />
+  <line
+     class="edge"
+     x1="250"
+     y1="166"
+     x2="300"
+     y2="204"
+     id="line4" />
+  <!-- Raíz: * (operación) -->
+  <circle
+     class="op-node"
+     cx="150"
+     cy="50"
+     r="26"
+     id="circle4" />
+  <text
+     class="text"
+     x="150"
+     y="50"
+     id="text4"
+     style="font-size:18.6667px"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
+       id="tspan8">*</tspan></text>
+  <!-- Hijo izquierdo: 3 (número) -->
+  <circle
+     class="num-node"
+     cx="70"
+     cy="140"
+     r="26"
+     id="circle5" />
+  <text
+     class="text"
+     x="70"
+     y="140"
+     id="text5"
+     style="font-size:18.6667px"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
+       id="tspan9">3</tspan></text>
+  <!-- Hijo derecho: - (operación) -->
+  <circle
+     class="op-node"
+     cx="250"
+     cy="140"
+     r="26"
+     id="circle6" />
+  <text
+     class="text"
+     x="250"
+     y="140"
+     id="text6"
+     style="font-size:18.6667px"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
+       id="tspan10">−</tspan></text>
+  <!-- Hijo izquierdo de -: 5 -->
+  <circle
+     class="num-node"
+     cx="200"
+     cy="230"
+     r="26"
+     id="circle7" />
+  <text
+     class="text"
+     x="200"
+     y="230"
+     id="text7"
+     style="font-size:18.6667px"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
+       id="tspan11">5</tspan></text>
+  <!-- Hijo derecho de -: 3 -->
+  <circle
+     class="num-node"
+     cx="300"
+     cy="230"
+     r="26"
+     id="circle8" />
+  <text
+     class="text"
+     x="300"
+     y="230"
+     id="text8"
+     style="font-size:18.6667px"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
+       id="tspan12">3</tspan></text>
+</svg>

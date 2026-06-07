@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recorridos de Árbol Binario</title>
+<style>
+:root {
+  --bg: #1a1b2e;
+  --fg: #e0e0e0;
+  --border: #374151;
+  --btn-bg: #2d3748;
+  --btn-hover: #374151;
+  --btn-active: #4a5568;
+  --btn-disabled: #1f2937;
+  --btn-text: #e0e0e0;
+  --node-num-fill: #4a5568;
+  --node-num-stroke: #fc8181;
+  --node-op-fill: #2d3748;
+  --node-op-stroke: #63b3ed;
+  --node-enter-bg: #5a4a00;
+  --node-enter-stroke: #ffc107;
+  --node-done-bg: #1e3a2f;
+  --node-done-stroke: #48c774;
+  --highlight: #60a5fa;
+  --seq-done: #48c774;
+  --seq-pending: #6b7280;
+}
+
+/* SVG node styles */
+.tree-edge{stroke:var(--border);stroke-width:2}
+.node-text{fill:var(--fg);font-family:monospace;font-size:16px;font-weight:700;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.node-circle.num{fill:var(--node-num-fill);stroke:var(--node-num-stroke);stroke-width:2.5}
+.node-circle.op{fill:var(--node-op-fill);stroke:var(--node-op-stroke);stroke-width:2.5}
+.node-circle.enter{fill:var(--node-enter-bg);stroke:var(--node-enter-stroke)}
+.node-circle.done{fill:var(--node-done-bg);stroke:var(--node-done-stroke)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+.applet{display:flex;flex-direction:column;padding:8px;gap:6px;width:100%;max-width:100%;margin:0 auto;flex:1;min-height:0;overflow:hidden}
+.header{font-size:14px;font-weight:700;text-align:center;padding:4px 12px;background:var(--btn-bg);border-radius:6px;border:1px solid var(--border);width:100%;flex-shrink:0}
+.main{display:flex;flex:1;min-height:0;gap:8px;width:100%;overflow:hidden}
+.tree-wrap{flex:1;min-width:0;display:flex;justify-content:center;align-items:center;overflow:hidden}
+.tree-wrap svg{width:100%;height:100%}
+.sidebar{display:flex;flex-direction:column;gap:8px;flex-shrink:0;width:auto;min-width:120px;justify-content:center}
+.controls{display:flex;flex-direction:row;gap:4px;flex-wrap:wrap;justify-content:center}
+.controls button{width:38px;height:32px;border:1px solid var(--border);border-radius:6px;background:var(--btn-bg);color:var(--btn-text);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.15s;padding:0}
+.controls button:hover:not(:disabled){background:var(--btn-hover)}
+.controls button:active:not(:disabled){background:var(--btn-active)}
+.controls button:disabled{opacity:0.4;cursor:default}
+.speed-wrap{display:flex;align-items:center;gap:3px;font-size:11px;flex:1 1 100%;justify-content:center;white-space:nowrap}
+.speed-wrap input[type=range]{width:48px;height:4px;accent-color:var(--highlight)}
+.legend{display:flex;flex-direction:column;gap:3px;font-size:11px;align-items:flex-start}
+.legend-item{display:flex;align-items:center;gap:4px}
+.legend-dot{width:12px;height:12px;border-radius:50%;border:2px solid;flex-shrink:0}
+.legend-dot.idle{border-color:var(--node-num-stroke);background:var(--node-num-fill)}
+.legend-dot.num{border-color:var(--node-num-stroke);background:var(--node-num-fill)}
+.legend-dot.op{border-color:var(--node-op-stroke);background:var(--node-op-fill)}
+.legend-dot.enter{border-color:var(--node-enter-stroke);background:var(--node-enter-bg)}
+.legend-dot.done{border-color:var(--node-done-stroke);background:var(--node-done-bg)}
+.info{padding:6px 10px;border:1px solid var(--border);border-radius:6px;width:100%;display:flex;flex-wrap:wrap;gap:3px 12px;align-items:baseline;font-size:12px;flex-shrink:0}
+.info .seq{flex:1 1 100%;font-family:'Courier New',monospace;font-size:13px;min-height:1.3em;word-break:break-all}
+.info .seq .done{color:var(--seq-done);font-weight:700}
+.info .seq .pending{color:var(--seq-pending)}
+.info .meta{display:flex;gap:12px;flex-wrap:wrap}
+.info .meta span{white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="applet" id="app">
+<div class="header" id="header">Preorden (Raíz → Izquierda → Derecha)</div>
+<div class="main">
+<div class="tree-wrap"><svg id="tree" viewBox="0 0 520 380" xmlns="http://www.w3.org/2000/svg"></svg></div>
+<div class="sidebar">
+<div class="controls">
+<button id="btnStart" title="Ir al inicio">⏮</button>
+<button id="btnPrev" title="Paso anterior">◀</button>
+<button id="btnNext" title="Paso siguiente">▶</button>
+<button id="btnPlay" title="Reproducción automática">▶▶</button>
+<div class="speed-wrap">
+<label for="speed">Vel:</label>
+<input type="range" id="speed" min="400" max="3000" value="1500" step="100">
+<span id="speedLabel">1.5s</span>
+</div>
+</div>
+<div class="legend">
+<div class="legend-item"><span class="legend-dot num"></span><span class="legend-dot op"></span> No visitado</div>
+<div class="legend-item"><span class="legend-dot enter"></span> En proceso</div>
+<div class="legend-item"><span class="legend-dot done"></span> Procesado</div>
+</div>
+</div>
+</div>
+<div class="info">
+<div class="seq" id="seq"><span class="pending">[ ]</span></div>
+<div class="meta">
+<span id="stepLabel">Paso 0 / 0</span>
+<span id="actionLabel">—</span>
+</div>
+</div>
+</div>
+<script>
+const TRAVERSALS = {
+  preorden: {
+    label: 'Preorden (Raíz → Izquierda → Derecha)',
+    seqLabel: 'Preorden',
+    order: ['+', 'a', '*', '-', 'b', 'c', 'd']
+  },
+  inorden: {
+    label: 'Inorden (Izquierda → Raíz → Derecha)',
+    seqLabel: 'Inorden',
+    order: ['a', '+', 'b', '-', 'c', '*', 'd']
+  },
+  postorden: {
+    label: 'Postorden (Izquierda → Derecha → Raíz)',
+    seqLabel: 'Postorden',
+    order: ['a', 'b', 'c', '-', 'd', '*', '+']
+  }
+};
+
+const tree = {
+  id:'+', val:'+', type:'op',
+  x:260, y:50,
+  left:{ id:'a', val:'a', type:'num', x:100, y:140, left:null, right:null },
+  right:{
+    id:'*', val:'*', type:'op', x:400, y:140,
+    left:{
+      id:'-', val:'−', type:'op', x:280, y:230,
+      left:{ id:'b', val:'b', type:'num', x:210, y:320, left:null, right:null },
+      right:{ id:'c', val:'c', type:'num', x:350, y:320, left:null, right:null }
+    },
+    right:{ id:'d', val:'d', type:'num', x:460, y:230, left:null, right:null }
+  }
+};
+
+const edges = [
+  {x1:260,y1:50,x2:100,y2:140},
+  {x1:260,y1:50,x2:400,y2:140},
+  {x1:400,y1:140,x2:280,y2:230},
+  {x1:400,y1:140,x2:460,y2:230},
+  {x1:280,y1:230,x2:210,y2:320},
+  {x1:280,y1:230,x2:350,y2:320}
+];
+
+const R = 28;
+
+function* genSteps(node, type) {
+  if (!node) return;
+  yield {action:'enter', node};
+  if (type === 'preorden') yield {action:'process', node};
+  yield* genSteps(node.left, type);
+  if (type === 'inorden') {
+    yield {action:'enter', node};
+    yield {action:'process', node};
+  }
+  yield* genSteps(node.right, type);
+  if (type === 'postorden') {
+    yield {action:'enter', node};
+    yield {action:'process', node};
+  }
+}
+
+function buildSteps(root, type) {
+  const raw = [];
+  for (const s of genSteps(root, type)) raw.push(s);
+  const steps = [];
+  const processed = new Set();
+  const seq = [];
+  let currentId = null;
+  for (const s of raw) {
+    if (s.action === 'enter') {
+      currentId = s.node.id;
+    } else if (s.action === 'process') {
+      processed.add(s.node.id);
+      seq.push(s.node.val);
+      currentId = s.node.id;
+    }
+    steps.push({
+      currentNode: currentId,
+      processed: new Set(processed),
+      seq: [...seq],
+      node: s.node,
+      action: s.action
+    });
+  }
+  steps.push({currentNode:null, processed:new Set(processed), seq:[...seq], node:null, action:'done'});
+  return steps;
+}
+
+function collectNodes(n, arr) {
+  if (!n) return;
+  arr.push(n);
+  collectNodes(n.left, arr);
+  collectNodes(n.right, arr);
+}
+
+const allNodes = [];
+collectNodes(tree, allNodes);
+const nodeById = {};
+allNodes.forEach(n => nodeById[n.id] = n);
+
+// SVG build
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('tree');
+
+edges.forEach(e => {
+  const line = document.createElementNS(SVG_NS, 'line');
+  line.setAttribute('x1', e.x1); line.setAttribute('y1', e.y1);
+  line.setAttribute('x2', e.x2); line.setAttribute('y2', e.y2);
+  line.classList.add('tree-edge');
+  svg.appendChild(line);
+});
+
+allNodes.forEach(n => {
+  const g = document.createElementNS(SVG_NS, 'g');
+  g.id = 'node-' + n.id;
+  const circle = document.createElementNS(SVG_NS, 'circle');
+  circle.setAttribute('cx', n.x);
+  circle.setAttribute('cy', n.y);
+  circle.setAttribute('r', R);
+  circle.classList.add('node-circle', n.type === 'op' ? 'op' : 'num');
+  g.appendChild(circle);
+  const text = document.createElementNS(SVG_NS, 'text');
+  text.setAttribute('x', n.x);
+  text.setAttribute('y', n.y);
+  text.classList.add('node-text');
+  text.textContent = n.val;
+  g.appendChild(text);
+  svg.appendChild(g);
+});
+
+// State
+let steps = [];
+let currentStep = -1;
+let playing = false;
+let timer = null;
+let speed = 1500;
+
+const tipo = 'preorden';
+document.getElementById('header').textContent = TRAVERSALS[tipo].label;
+
+steps = buildSteps(tree, tipo);
+
+const btnStart = document.getElementById('btnStart');
+const btnPrev = document.getElementById('btnPrev');
+const btnNext = document.getElementById('btnNext');
+const btnPlay = document.getElementById('btnPlay');
+const speedInput = document.getElementById('speed');
+const speedLabel = document.getElementById('speedLabel');
+const stepLabel = document.getElementById('stepLabel');
+const actionLabel = document.getElementById('actionLabel');
+const seqEl = document.getElementById('seq');
+
+speedInput.addEventListener('input', () => {
+  speed = parseInt(speedInput.value);
+  speedLabel.textContent = (speed / 1000).toFixed(1) + 's';
+  if (playing) { stop(); play(); }
+});
+
+function render(idx) {
+  const data = (idx >= 0 && idx < steps.length) ? steps[idx] : null;
+  const seqArr = data ? data.seq : [];
+  const processed = data ? data.processed : new Set();
+  const currId = data ? data.currentNode : null;
+
+  allNodes.forEach(n => {
+    const g = document.getElementById('node-' + n.id);
+    const circle = g.querySelector('circle');
+    if (processed.has(n.id)) {
+      circle.classList.add('done');
+      circle.classList.remove('enter', 'idle');
+    } else if (n.id === currId) {
+      circle.classList.add('enter');
+      circle.classList.remove('done', 'idle');
+    } else {
+      circle.classList.add('idle');
+      circle.classList.remove('enter', 'done');
+    }
+  });
+
+  if (seqArr.length === 0) {
+    seqEl.innerHTML = '<span class="pending">[ ]</span>';
+  } else {
+    const total = TRAVERSALS[tipo].order;
+    let html = '';
+    total.forEach((v, i) => {
+      if (i < seqArr.length) {
+        html += `<span class="done">${v}</span>`;
+      } else {
+        html += `<span class="pending">${v}</span>`;
+      }
+      if (i < total.length - 1) html += ' ';
+    });
+    seqEl.innerHTML = `[ ${html} ]`;
+  }
+
+  const totalSteps = steps.length;
+  if (idx < 0 || idx >= totalSteps) {
+    stepLabel.textContent = 'Paso — / —';
+    actionLabel.textContent = '—';
+  } else if (data && data.action === 'done') {
+    stepLabel.textContent = `Paso ${Math.min(idx+1, totalSteps)} / ${totalSteps}`;
+    actionLabel.textContent = '✓ Recorrido completo';
+  } else if (data) {
+    stepLabel.textContent = `Paso ${idx+1} / ${totalSteps}`;
+    const nodeVal = data.node ? data.node.val : '—';
+    if (data.action === 'enter') {
+      actionLabel.textContent = `Entrar a ${nodeVal}`;
+    } else {
+      actionLabel.textContent = `Procesar ${nodeVal}`;
+    }
+  }
+
+  btnStart.disabled = (idx <= 0);
+  btnPrev.disabled = (idx <= 0);
+  btnNext.disabled = (idx >= totalSteps - 1);
+}
+
+function goTo(n) {
+  if (n < 0) n = 0;
+  if (n >= steps.length) n = steps.length - 1;
+  currentStep = n;
+  render(currentStep);
+}
+
+function next() {
+  if (currentStep < steps.length - 1) goTo(currentStep + 1);
+}
+
+function prev() {
+  if (currentStep > 0) goTo(currentStep - 1);
+}
+
+function start() { goTo(0); }
+
+function play() {
+  if (playing) return;
+  if (currentStep >= steps.length - 1) goTo(0);
+  playing = true;
+  btnPlay.textContent = '⏸';
+  function tick() {
+    if (!playing) return;
+    if (currentStep < steps.length - 1) {
+      next();
+      timer = setTimeout(tick, speed);
+    } else {
+      stop();
+    }
+  }
+  timer = setTimeout(tick, speed);
+}
+
+function stop() {
+  playing = false;
+  btnPlay.textContent = '▶▶';
+  if (timer) { clearTimeout(timer); timer = null; }
+}
+
+function togglePlay() {
+  if (playing) stop(); else play();
+}
+
+btnStart.addEventListener('click', start);
+btnPrev.addEventListener('click', prev);
+btnNext.addEventListener('click', next);
+btnPlay.addEventListener('click', togglePlay);
+
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+  if (e.key === ' ') { e.preventDefault(); togglePlay(); }
+  if (e.key === 'Home') { e.preventDefault(); start(); }
+});
+
+goTo(0);
+</script>
+</body>
+</html>

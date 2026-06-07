@@ -44,20 +44,34 @@ Nivel
 Grado
 : El grado de un nodo es el número de hijos que tiene. Un nodo hoja tiene un grado de $0$, mientras que la raíz puede tener un grado mayor o igual a $0$.
 
-En la figura anterior, el árbol tiene una altura de 2, ya que el camino más largo desde la raíz hasta las hojas $C$, $D$ o $K$, que son las más profundas del árbol, tiene una longitud de 2. La raíz $A$ tiene un grado de 3, ya que tiene tres hijos: $R$, $N$ y $Z$, estos nodos son hermanos ya que tienen el mismo padre. El nodo $R$ tiene un grado de 2, ya que tiene dos hijos: $D$ y $C$. El nodo $C$ es una hoja, por lo que su grado es 0. La profundidad de los nodos $R$, $N$ y $Z$ es 1, ya que está a un nivel de la raíz, a su vez $N$ también es una hoja.
+En la figura anterior, el árbol tiene una altura de 2, ya que el camino más largo desde la raíz hasta las hojas $C$, $D$ o $K$, que son las más profundas del árbol, tiene una longitud de 2. La raíz $A$ tiene un grado de 3, ya que tiene tres hijos: $R$, $N$ y $Z$. Estos nodos son hermanos ya que tienen el mismo padre. El nodo $R$ tiene un grado de 2, ya que tiene dos hijos: $D$ y $C$. El nodo $C$ es una hoja, por lo que su grado es 0. La profundidad de los nodos $R$, $N$ y $Z$ es 1, ya que están a un nivel de la raíz. A su vez, $N$ también es una hoja.
 
 ## Árboles binarios
 
 Los árboles binarios son árboles donde cada nodo tiene a lo sumo dos hijos. Estos hijos se denominan hijo izquierdo e hijo derecho. Los árboles binarios son ampliamente utilizados en informática debido a su simplicidad y eficiencia en diversas operaciones.
 
-```{figure} ../_static/figures/3-estructuras-de-datos/3-8-arboles/ArbolBinario.svg
+```{figure} ../_static/figures/3-estructuras-de-datos/3-8-arboles/ArbolBinario_light.svg
 ---
+width: 50%
 name: ArbolBinario
+class: only-light-mode
 ---
 Árbol Binario
 ```
 
-```{card} Definición de Árbol Binario
+```{figure} ../_static/figures/3-estructuras-de-datos/3-8-arboles/ArbolBinario_dark.svg
+---
+width: 50%
+name: ArbolBinario
+class: only-dark-mode
+---
+Árbol Binario
+```
+
+```{admonition} Definición de Árbol Binario
+---
+class: hint
+---
 Un árbol binario es por definición:
 
 - Un árbol vacío, o
@@ -84,6 +98,7 @@ El siguiente seudocódigo ilustra la implementación del recorrido preorden como
 ---
 caption: Preorden
 linenos: true
+language: text
 ---
 FUNCION Preorden(raiz)
     SI raiz ES nulo ENTONCES
@@ -96,22 +111,25 @@ FIN FUNCION
 ```
 
 `Procesar(raiz)`
-: Representa una operación genérica que se aplica al nodo actual. Esta operación puede variar según la implementación, por ejemplo podría ser imprimir el valor del nodo o añadirlo a una lista.
+: Representa una operación genérica que se aplica al nodo actual. Esta operación puede variar según la implementación, por ejemplo, podría ser imprimir el valor del nodo o añadirlo a una lista.
 
-llamadas recursivas
+Llamadas recursivas
 : Las líneas 6 y 7 realizan las llamadas recursivas para aplicar el recorrido preorden a los subárboles izquierdo y derecho del nodo actual, respectivamente.
 
-Por ejemplo en el siguiente video se observa el recorrido preorden. Cuando el nodo se pinta de amarillo significa que se llamó a la función `preorden` con ese nodo y cuando el nodo se pinta de verde significa que el nodo fue visitado (línea 4 del seudocódigo).
+<div class="only-html">
 
-<p class="align-center">
-  <video src="../_static/videos/preorden.mp4" width="300" controls autoplay loop></video>
-</p>
+En el siguiente applet interactivo se observa el recorrido preorden. Se puede avanzar o retroceder paso a paso, ir al inicio, o reproducir automáticamente. Cuando el nodo se pinta de amarillo significa que se llamó a la función `preorden` con ese nodo y cuando se pinta de verde significa que el nodo fue visitado (línea 5 del seudocódigo).
 
-$$
-+ \; a \; * \; - \; b \; c \; d
-$$
+<div class="only-light-mode">
+<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-preorden_light.html" width="100%" height="560px"></iframe>
+</div>
+<div class="only-dark-mode">
+<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-preorden_dark.html" width="100%" height="560px"></iframe>
+</div>
 
-#### Inorden (Iquierda - Raíz - Derecha)
+</div>
+
+#### Inorden (Izquierda - Raíz - Derecha)
 
 El recorrido inorden visita primero de forma recursiva todos los nodos del subárbol izquierdo, luego procesa el nodo raíz, y finalmente recorre recursivamente el subárbol derecho. La secuencia de visita es: subárbol izquierdo, nodo raíz, subárbol derecho.
 
@@ -121,6 +139,7 @@ El siguiente seudocódigo muestra la implementación del recorrido inorden:
 ---
 caption: Inorden
 linenos: true
+language: text
 ---
 FUNCION Inorden (raiz)
     SI raiz ES nulo ENTONCES
@@ -128,19 +147,22 @@ FUNCION Inorden (raiz)
     FIN SI
     Inorden(raiz.izquierdo) // Visitar el subárbol izquierdo
     Procesar(raiz)          // Visitar el nodo actual
-    Inorder(raiz.derecho)   // Visitar el subárbol derecho
+    Inorden(raiz.derecho)   // Visitar el subárbol derecho
 FIN FUNCION
 ```
 
+<div class="only-html">
+
 Ejemplo de recorrido inorden:
 
-<p class="align-center">
-  <video src="../_static/videos/inorden.mp4" width="300" controls autoplay loop></video>
-</p>
+<div class="only-light-mode">
+<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-inorden_light.html" width="100%" height="560px"></iframe>
+</div>
+<div class="only-dark-mode">
+<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-inorden_dark.html" width="100%" height="560px"></iframe>
+</div>
 
-$$
-a \; + \; b \; - \; c \; * \; d
-$$
+</div>
 
 #### Postorden (Izquierda - Derecha - Raíz)
 
@@ -152,6 +174,7 @@ El seudocódigo para el recorrido postorden se presenta a continuación:
 ---
 caption: Postorden
 linenos: true
+language: text
 ---
 FUNCION Postorden (raiz)
     SI raiz ES nulo ENTONCES
@@ -163,29 +186,27 @@ FUNCION Postorden (raiz)
 FIN FUNCION
 ```
 
+<div class="only-html">
+
 Ejemplo de recorrido postorden:
 
-<p class="align-center">
-  <video src="../_static/videos/postorden.mp4" width="300" controls autoplay loop></video>
-</p>
+<div class="only-light-mode">
+<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-postorden_light.html" width="100%" height="560px"></iframe>
+</div>
+<div class="only-dark-mode">
+<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-postorden_dark.html" width="100%" height="560px"></iframe>
+</div>
 
-$$
-a \; b \; c \; - \; d \; * \; +
-$$
+</div>
 
 ## Ejercicios
 
-1. Dados los siguientes recorridos de un árbol binario, graficar el árbol binario correspondiente.
+1. **Implementar árbol binario** — Completar el esqueleto de `TreeNode[T]` en el repositorio
+   [`data-structures`](https://github.com/untref-ayp2/data-structures),
+   paquete `tree/`. El nodo debe permitir almacenar un valor genérico y
+   mantener referencias a sus hijos izquierdo y derecho.
 
-   - Preorden: A, B, D, E, C, F, G
-   - Inorden: D, B, E, A, F, C, G
-
-2. Dados los siguientes recorridos de un árbol binario, graficar el árbol binario correspondiente.
-
-   - Inorden: G, A, E, F, C, B, D
-   - Postorden: G, E, A, C, D, B, F
-
-3. Dados los siguientes recorridos de un árbol binario, graficar el árbol binario correspondiente.
-
-   - Preorden: E, A, F, C, B, G, D
-   - Postorden: F, C, A, G, D, B, E
+2. **Resolver ejercicios de aplicación** — Los ejercicios de este capítulo
+   están en
+   [`08-arboles/ejercicios/`](https://github.com/untref-ayp2/taller-tad/tree/main/08-arboles/ejercicios)
+   del repositorio [`taller-tad`](https://github.com/untref-ayp2/taller-tad).

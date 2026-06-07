@@ -44,6 +44,9 @@ def fix_line_for_typst(line):
 
 def fix_content_for_typst(content):
     """Apply Typst-compatible math fixes to full file content."""
+    # Remove only-html blocks (interactive applets, not suitable for PDF)
+    content = strip_only_html_blocks(content)
+
     # Fix \left\lfloor ... \right\rfloor and \lfloor ... \rfloor
     # Use \s* to handle both spaced and non-spaced cases
     content = re.sub(
@@ -86,6 +89,33 @@ def fix_content_for_typst(content):
     )
 
     return content
+
+
+def strip_only_html_blocks(content):
+    """Remove <div class="only-html">...</div> blocks (interactive applets for PDF)."""
+    result = []
+    i = 0
+    while i < len(content):
+        pos = content.find('<div class="only-html">', i)
+        if pos == -1:
+            result.append(content[i:])
+            break
+        result.append(content[i:pos])
+        i = pos + len('<div class="only-html">')
+        depth = 1
+        while i < len(content) and depth > 0:
+            next_open = content.find('<div', i)
+            next_close = content.find('</div>', i)
+            if next_close == -1:
+                i = len(content)
+                break
+            if next_open != -1 and next_open < next_close:
+                depth += 1
+                i = next_open + 4
+            else:
+                depth -= 1
+                i = next_close + 6
+    return "".join(result)
 
 
 def process_file(filepath):

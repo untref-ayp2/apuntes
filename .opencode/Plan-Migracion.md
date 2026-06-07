@@ -57,7 +57,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 21 | `contenidos/3-estructuras-de-datos/3-5-tablas-de-hashing.md` | ✅ Revisado | `data-structures`, `taller-tad` |
 | 22 | `contenidos/3-estructuras-de-datos/3-6-conjuntos.md` | ✅ Revisado | `data-structures`, `taller-tad` |
 | 23 | `contenidos/3-estructuras-de-datos/3-7-diccionarios.md` | ✅ Revisado | `data-structures`, `taller-tad` |
-| 24 | `contenidos/3-estructuras-de-datos/3-8-arboles.md` | ⬜ Pendiente | `guia-arboles-binarios`, `data-structures` |
+| 24 | `contenidos/3-estructuras-de-datos/3-8-arboles.md` | ✅ Revisado | `taller-tad`, `data-structures` |
 | 25 | `contenidos/3-estructuras-de-datos/3-9-abb.md` | ⬜ Pendiente | `guia-abb`, `data-structures` |
 | 26 | `contenidos/3-estructuras-de-datos/3-10-arboles-balanceados.md` | ⬜ Pendiente | `guia-abb-balanceados` |
 | 27 | `contenidos/3-estructuras-de-datos/3-11-monticulo-binario.md` | ⬜ Pendiente | `guia-monticulos-binarios` |
