@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Operaciones en ABB</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --fg: #1a1a2e;
+  --border: #d1d5db;
+  --btn-bg: #f3f4f6;
+  --btn-hover: #e5e7eb;
+  --btn-active: #d1d5db;
+  --btn-disabled: #e5e7eb;
+  --btn-text: #374151;
+  --btn-primary: #1d4ed8;
+  --btn-primary-hover: #1e40af;
+  --node-fill: #e1f5ff;
+  --node-stroke: #4682b4;
+  --insert-fill: #d4edda;
+  --insert-stroke: #28a745;
+  --highlight-fill: #fff3cd;
+  --highlight-stroke: #ffc107;
+  --slot-stroke: #9ca3af;
+  --highlight: #1d4ed8;
+  --error-fill: #ffe1e1;
+  --error-stroke: #e9967a;
+  --found-fill: #d4edda;
+  --found-stroke: #28a745;
+  --deleted-fill: #f1f1f1;
+  --deleted-stroke: #d1d5db;
+  --cmp-done: #059669;
+  --mode-active-bg: #1d4ed8;
+  --mode-active-text: #ffffff;
+  --toggle-active-bg: #1d4ed8;
+  --toggle-active-text: #ffffff;
+}
+
+.tree-edge{stroke:var(--border);stroke-width:2}
+.node-text{fill:var(--fg);font-family:monospace;font-size:16px;font-weight:700;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.node-circle{stroke-width:2.5}
+.node-circle.idle{fill:var(--node-fill);stroke:var(--node-stroke)}
+.node-circle.highlight{fill:var(--highlight-fill);stroke:var(--highlight-stroke);stroke-width:3}
+.node-circle.found{fill:var(--found-fill);stroke:var(--found-stroke)}
+.node-circle.inserted{fill:var(--insert-fill);stroke:var(--insert-stroke)}
+.node-circle.deleted{fill:var(--deleted-fill);stroke:var(--deleted-stroke);stroke-width:2;opacity:0.5}
+.node-circle.slot{fill:transparent;stroke:var(--slot-stroke);stroke-dasharray:5,3}
+.node-circle.dup{fill:var(--error-fill);stroke:var(--error-stroke)}
+.node-circle.toodeep{fill:var(--error-fill);stroke:var(--error-stroke)}
+.node-circle.swapped{fill:var(--found-fill);stroke:var(--found-stroke)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+.applet{display:flex;flex-direction:column;padding:8px;gap:6px;width:100%;max-width:100%;margin:0 auto;flex:1;min-height:0;overflow:hidden}
+.header{font-size:14px;font-weight:700;text-align:center;padding:4px 12px;background:var(--btn-bg);border-radius:6px;border:1px solid var(--border);width:100%;flex-shrink:0}
+.main{display:flex;flex:1;min-height:0;gap:8px;width:100%;overflow:hidden}
+.tree-wrap{flex:1;min-width:0;display:flex;justify-content:center;align-items:center;overflow:hidden}
+.tree-wrap svg{width:100%;height:100%}
+.sidebar{display:flex;flex-direction:column;gap:6px;flex-shrink:0;width:auto;min-width:150px;justify-content:flex-start}
+.modes{display:flex;gap:2px}
+.modes button{flex:1;padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--btn-bg);color:var(--btn-text);font-size:11px;cursor:pointer;font-weight:600;transition:background .15s}
+.modes button.active{background:var(--mode-active-bg);color:var(--mode-active-text);border-color:var(--mode-active-bg)}
+.modes button:hover:not(.active){background:var(--btn-hover)}
+.input-group{display:flex;flex-direction:column;gap:4px;font-size:12px}
+.input-group input{padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--fg);font-size:14px;width:100%;text-align:center}
+.toggle-group{display:flex;flex-direction:column;gap:3px;font-size:11px}
+.toggle-group .toggle-row{display:flex;gap:2px}
+.toggle-group button{flex:1;padding:3px 6px;border:1px solid var(--border);border-radius:4px;background:var(--btn-bg);color:var(--btn-text);font-size:11px;cursor:pointer;font-weight:600;transition:background .15s}
+.toggle-group button.active{background:var(--toggle-active-bg);color:var(--toggle-active-text);border-color:var(--toggle-active-bg)}
+.toggle-group button:hover:not(.active){background:var(--btn-hover)}
+.separator{height:1px;background:var(--border);margin:2px 0}
+.clear-btn{width:100%;padding:4px 8px;border:1px solid var(--error-stroke);border-radius:4px;background:transparent;color:var(--error-stroke);font-size:11px;cursor:pointer;font-weight:600;transition:background .15s}
+.clear-btn:hover{background:var(--error-fill)}
+.controls{display:flex;flex-direction:row;gap:4px;flex-wrap:wrap;justify-content:center}
+.controls button{width:36px;height:30px;border:1px solid var(--border);border-radius:6px;background:var(--btn-bg);color:var(--btn-text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;padding:0}
+.controls button:hover:not(:disabled){background:var(--btn-hover)}
+.controls button:active:not(:disabled){background:var(--btn-active)}
+.controls button:disabled{opacity:.4;cursor:default}
+.speed-wrap{display:flex;align-items:center;gap:3px;font-size:11px;flex:1 1 100%;justify-content:center;white-space:nowrap}
+.speed-wrap input[type=range]{width:48px;height:4px;accent-color:var(--highlight)}
+
+.legend{display:flex;flex-direction:column;gap:2px;font-size:10px;align-items:flex-start}
+.legend-item{display:flex;align-items:center;gap:4px}
+.legend-dot{width:10px;height:10px;border-radius:50%;border:2px solid;flex-shrink:0}
+.legend-dot.idle{border-color:var(--node-stroke);background:var(--node-fill)}
+.legend-dot.highlight{border-color:var(--highlight-stroke);background:var(--highlight-fill)}
+.legend-dot.found{border-color:var(--found-stroke);background:var(--found-fill)}
+.legend-dot.inserted{border-color:var(--insert-stroke);background:var(--insert-fill)}
+.legend-dot.deleted{border-color:var(--deleted-stroke);background:var(--deleted-fill)}
+.legend-dot.slot{border-color:var(--slot-stroke);background:transparent}
+.info{padding:6px 10px;border:1px solid var(--border);border-radius:6px;width:100%;display:flex;flex-wrap:wrap;gap:3px 12px;align-items:baseline;font-size:12px;flex-shrink:0}
+.info .path{flex:1 1 100%;font-family:'Courier New',monospace;font-size:13px;min-height:1.3em;word-break:break-all}
+.info .path .done{color:var(--cmp-done);font-weight:700}
+.info .path .pending{color:var(--slot-stroke)}
+.info .meta{display:flex;gap:12px;flex-wrap:wrap}
+.info .meta span{white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="applet">
+<div class="header">Operaciones en Árbol Binario de Búsqueda</div>
+<div class="main">
+<div class="tree-wrap"><svg id="tree" viewBox="0 0 520 450" xmlns="http://www.w3.org/2000/svg"></svg></div>
+<div class="sidebar">
+<div class="modes" id="modeSelector">
+<button class="mode-btn active" data-mode="insert">Insertar</button>
+<button class="mode-btn" data-mode="search">Buscar</button>
+<button class="mode-btn" data-mode="delete">Eliminar</button>
+</div>
+<div class="input-group">
+<label for="valInput">Valor:</label>
+<input type="number" id="valInput" value="100">
+<button id="btnClear" class="clear-btn">Vaciar árbol</button>
+</div>
+<div class="toggle-group" id="succPredToggle">
+<label>Reemplazar por:</label>
+<div class="toggle-row">
+<button class="toggle-btn active" data-value="sucesor">Sucesor</button>
+<button class="toggle-btn" data-value="predecesor">Predecesor</button>
+</div>
+</div>
+<div class="separator"></div>
+<div class="controls">
+<div class="speed-wrap">
+<label for="speed">Vel:</label>
+<input type="range" id="speed" min="400" max="3000" value="1500" step="100">
+<span id="speedLabel">0.5 p/s</span>
+</div>
+</div>
+<div class="separator"></div>
+<div class="legend">
+<div class="legend-item"><span class="legend-dot idle"></span> No visitado</div>
+<div class="legend-item"><span class="legend-dot highlight"></span> Comparando</div>
+<div class="legend-item"><span class="legend-dot found"></span> Encontrado</div>
+<div class="legend-item"><span class="legend-dot inserted"></span> Insertado</div>
+<div class="legend-item"><span class="legend-dot slot"></span> Vacío</div>
+</div>
+</div>
+</div>
+<div class="info">
+<div class="path" id="path"><span class="pending">Árbol vacío. Insertá un valor para empezar.</span></div>
+<div class="meta">
+<span id="stepLabel">Paso — / —</span>
+<span id="msgDisplay">—</span>
+</div>
+</div>
+</div>
+<script>
+var SVG_NS='http://www.w3.org/2000/svg';
+var svg=document.getElementById('tree');
+var R=18;
+var LEVEL_OFFSETS=[0,100,78,56,38,22];
+var SVG_W=520;
+var MARGIN=22;
+var Y_OFFSET=65;
+var ROOT_X=260;
+var ROOT_Y=45;
+var nextId=1;
+var tree=null;
+var steps=[];
+var curStep=-1;
+var playing=false;
+var timer=null;
+var speedVal=1500;
+var opSnapshot=null;
+var opFinalTree=null;
+
+var valInput=document.getElementById('valInput');
+var btnClear=document.getElementById('btnClear');
+
+var spdInput=document.getElementById('speed');
+var spdLabel=document.getElementById('speedLabel');
+var stepLabel=document.getElementById('stepLabel');
+var msgDisp=document.getElementById('msgDisplay');
+var pathEl=document.getElementById('path');
+var modeBtns=document.querySelectorAll('#modeSelector .mode-btn');
+var toggleBtns=document.querySelectorAll('#succPredToggle .toggle-btn');
+var succPredToggle=document.getElementById('succPredToggle');
+
+var currentMode='insert';
+var succPredChoice='sucesor';
+
+modeBtns.forEach(function(b){
+  b.addEventListener('click',function(){
+    modeBtns.forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    currentMode=b.dataset.mode;
+    succPredToggle.style.display=currentMode==='delete'?'flex':'none';
+  });
+});
+toggleBtns.forEach(function(b){
+  b.addEventListener('click',function(){
+    toggleBtns.forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    succPredChoice=b.dataset.value;
+  });
+});
+succPredToggle.style.display='none';
+
+function cloneTree(n){
+  if(!n)return null;
+  return{id:n.id,val:n.val,x:n.x,y:n.y,minX:n.minX,maxX:n.maxX,left:cloneTree(n.left),right:cloneTree(n.right)};
+}
+function collectNodes(n,a){
+  if(!n)return;
+  a.push(n);
+  collectNodes(n.left,a);
+  collectNodes(n.right,a);
+}
+function getEdges(n,a){
+  if(!n)return;
+  if(n.left){a.push({x1:n.x,y1:n.y,x2:n.left.x,y2:n.left.y});getEdges(n.left,a);}
+  if(n.right){a.push({x1:n.x,y1:n.y,x2:n.right.x,y2:n.right.y});getEdges(n.right,a);}
+}
+function childPos(parent,dir){
+  var x=dir==='left'?(parent.minX+parent.x)/2:(parent.x+parent.maxX)/2;
+  return{x:x,y:parent.y+Y_OFFSET,minX:dir==='left'?parent.minX:parent.x,maxX:dir==='left'?parent.x:parent.maxX};
+}
+function findNode(root,id){
+  if(!root)return null;
+  if(root.id===id)return root;
+  return findNode(root.left,id)||findNode(root.right,id);
+}
+function findParent(root,id,parent){
+  if(!root)return null;
+  if(root.left&&root.left.id===id)return root;
+  if(root.right&&root.right.id===id)return root;
+  return findParent(root.left,id,root)||findParent(root.right,id,root);
+}
+function removeNode(root,id){
+  if(!root)return null;
+  if(root.id===id)return null;
+  var p=findParent(root,id);
+  if(!p)return root;
+  if(p.left&&p.left.id===id)p.left=null;
+  else if(p.right&&p.right.id===id)p.right=null;
+  return root;
+}
+function replaceWithChild(root,targetId){
+  if(!root)return null;
+  if(root.id===targetId){
+    var child=root.left||root.right;
+    if(!child)return null;
+    child.x=root.x;child.y=root.y;
+    child.minX=root.minX;child.maxX=root.maxX;
+    return child;
+  }
+  var p=findParent(root,targetId);
+  if(!p)return root;
+  var target=p.left&&p.left.id===targetId?p.left:p.right;
+  var child=target.left||target.right;
+  if(p.left&&p.left.id===targetId)p.left=child;
+  else p.right=child;
+  return root;
+}
+function relayoutTree(root){
+  if(!root)return;
+  root.x=ROOT_X;root.y=ROOT_Y;
+  root.minX=MARGIN;root.maxX=SVG_W-MARGIN;
+  function relayout(n){
+    if(!n)return;
+    if(n.left){
+      n.left.x=(n.minX+n.x)/2;
+      n.left.y=n.y+Y_OFFSET;
+      n.left.minX=n.minX;
+      n.left.maxX=n.x;
+      relayout(n.left);
+    }
+    if(n.right){
+      n.right.x=(n.x+n.maxX)/2;
+      n.right.y=n.y+Y_OFFSET;
+      n.right.minX=n.x;
+      n.right.maxX=n.maxX;
+      relayout(n.right);
+    }
+  }
+  relayout(root);
+}
+function treeHeight(root){
+  if(!root)return 0;
+  return 1+Math.max(treeHeight(root.left),treeHeight(root.right));
+}
+function getNodeLevel(root,id,lvl){
+  if(!root)return 0;
+  if(!lvl)lvl=1;
+  if(root.id===id)return lvl;
+  var l=root.left?getNodeLevel(root.left,id,lvl+1):0;
+  if(l)return l;
+  return root.right?getNodeLevel(root.right,id,lvl+1):0;
+}
+function minNode(root){
+  if(!root)return null;
+  while(root.left)root=root.left;
+  return root;
+}
+function maxNode(root){
+  if(!root)return null;
+  while(root.right)root=root.right;
+  return root;
+}
+function addStep(arr,type,props){
+  var s={type:type};
+  for(var k in props){s[k]=props[k];}
+  arr.push(s);
+}
+function generateInsertSteps(curTree,val){
+  var stepsArr=[];
+  var treeSnapshot=cloneTree(curTree);
+  var modified=null;
+  var pathVals=[];
+  addStep(stepsArr,'start',{msg:'Insertar '+val+' en el ABB',path:[],tree:cloneTree(treeSnapshot)});
+  if(!treeSnapshot){
+    var nid=nextId++;
+    modified={id:nid,val:val,x:ROOT_X,y:ROOT_Y,left:null,right:null,minX:MARGIN,maxX:SVG_W-MARGIN};
+    addStep(stepsArr,'insert',{msg:'Insertar '+val+' como raíz',highlightId:nid,insertedId:nid,path:[],tree:cloneTree(modified)});
+    addStep(stepsArr,'done',{msg:'✓ '+val+' insertado como raíz',path:[val],tree:cloneTree(modified)});
+    return stepsArr;
+  }
+  var cur=treeSnapshot;
+  var lvl=1;
+  while(cur){
+    pathVals.push(cur.val);
+    if(val===cur.val){
+      addStep(stepsArr,'compare',{msg:'Comparar '+val+' con '+cur.val,highlightId:cur.id,path:pathVals.slice(),tree:cloneTree(treeSnapshot)});
+      addStep(stepsArr,'dup',{msg:'¡'+val+' ya existe! No se permiten duplicados.',highlightId:cur.id,path:pathVals.slice(),tree:cloneTree(treeSnapshot)});
+      return stepsArr;
+    }
+    addStep(stepsArr,'compare',{msg:'Comparar '+val+' con '+cur.val,highlightId:cur.id,path:pathVals.slice(),tree:modified?cloneTree(modified):cloneTree(treeSnapshot)});
+    if(val<cur.val){
+      addStep(stepsArr,'direction',{msg:val+' < '+cur.val+' → subárbol izquierdo',highlightId:cur.id,path:pathVals.slice(),tree:modified?cloneTree(modified):cloneTree(treeSnapshot)});
+      if(cur.left){
+        cur=cur.left;lvl++;
+      }else{
+        if(lvl>=4){
+          addStep(stepsArr,'toodeep',{msg:'El árbol no puede superar los 4 niveles de profundidad',highlightId:cur.id,path:pathVals.slice(),tree:cloneTree(treeSnapshot)});
+          return stepsArr;
+        }
+        var pos=childPos(cur,'left');
+        var nid=nextId++;
+        addStep(stepsArr,'slot',{msg:'Subárbol izquierdo de '+cur.val+' vacío. Insertar aquí.',slotX:pos.x,slotY:pos.y,path:pathVals.slice(),tree:modified?cloneTree(modified):cloneTree(treeSnapshot)});
+        modified=cloneTree(treeSnapshot);
+        var p=findNode(modified,cur.id);
+        var nn={id:nid,val:val,x:pos.x,y:pos.y,left:null,right:null,minX:pos.minX,maxX:pos.maxX};
+        p.left=nn;
+        addStep(stepsArr,'insert',{msg:'Insertar '+val+' como hijo izquierdo de '+cur.val,highlightId:nid,insertedId:nid,path:pathVals.slice(),tree:cloneTree(modified)});
+        pathVals.push(val);
+        addStep(stepsArr,'done',{msg:'✓ Inserción de '+val+' completada',path:pathVals.slice(),tree:cloneTree(modified)});
+        return stepsArr;
+      }
+    }else{
+      addStep(stepsArr,'direction',{msg:val+' > '+cur.val+' → subárbol derecho',highlightId:cur.id,path:pathVals.slice(),tree:modified?cloneTree(modified):cloneTree(treeSnapshot)});
+      if(cur.right){
+        cur=cur.right;lvl++;
+      }else{
+        if(lvl>=4){
+          addStep(stepsArr,'toodeep',{msg:'El árbol no puede superar los 4 niveles de profundidad',highlightId:cur.id,path:pathVals.slice(),tree:cloneTree(treeSnapshot)});
+          return stepsArr;
+        }
+        var pos=childPos(cur,'right');
+        var nid=nextId++;
+        addStep(stepsArr,'slot',{msg:'Subárbol derecho de '+cur.val+' vacío. Insertar aquí.',slotX:pos.x,slotY:pos.y,path:pathVals.slice(),tree:modified?cloneTree(modified):cloneTree(treeSnapshot)});
+        modified=cloneTree(treeSnapshot);
+        var p=findNode(modified,cur.id);
+        var nn={id:nid,val:val,x:pos.x,y:pos.y,left:null,right:null,minX:pos.minX,maxX:pos.maxX};
+        p.right=nn;
+        addStep(stepsArr,'insert',{msg:'Insertar '+val+' como hijo derecho de '+cur.val,highlightId:nid,insertedId:nid,path:pathVals.slice(),tree:cloneTree(modified)});
+        pathVals.push(val);
+        addStep(stepsArr,'done',{msg:'✓ Inserción de '+val+' completada',path:pathVals.slice(),tree:cloneTree(modified)});
+        return stepsArr;
+      }
+    }
+  }
+  return stepsArr;
+}
+function generateSearchSteps(curTree,val){
+  var stepsArr=[];
+  var pathVals=[];
+  addStep(stepsArr,'start',{msg:'Buscar '+val+' en el ABB',path:[],tree:cloneTree(curTree)});
+  if(!curTree){
+    addStep(stepsArr,'notfound',{msg:'Árbol vacío. No hay nada que buscar.',path:[],tree:null});
+    return stepsArr;
+  }
+  var cur=cloneTree(curTree);
+  while(cur){
+    pathVals.push(cur.val);
+    if(val===cur.val){
+      addStep(stepsArr,'compare',{msg:'Comparar '+val+' con '+cur.val,highlightId:cur.id,path:pathVals.slice(),tree:cloneTree(curTree)});
+      addStep(stepsArr,'found',{msg:'✓ ¡'+val+' encontrado!',highlightId:cur.id,foundId:cur.id,path:pathVals.slice(),tree:cloneTree(curTree)});
+      addStep(stepsArr,'done',{msg:'Búsqueda completada',path:pathVals.slice(),tree:cloneTree(curTree)});
+      return stepsArr;
+    }
+    addStep(stepsArr,'compare',{msg:'Comparar '+val+' con '+cur.val,highlightId:cur.id,path:pathVals.slice(),tree:cloneTree(curTree)});
+    if(val<cur.val){
+      addStep(stepsArr,'direction',{msg:val+' < '+cur.val+' → subárbol izquierdo',highlightId:cur.id,path:pathVals.slice(),tree:cloneTree(curTree)});
+      if(cur.left){
+        cur=cur.left;
+      }else{
+        var pos=childPos(cur,'left');
+        addStep(stepsArr,'slot',{msg:val+' no encontrado. Estaría como hijo izquierdo de '+cur.val,slotX:pos.x,slotY:pos.y,path:pathVals.slice(),tree:cloneTree(curTree)});
+        addStep(stepsArr,'done',{msg:'✗ '+val+' no está en el ABB',path:pathVals.slice(),tree:cloneTree(curTree)});
+        return stepsArr;
+      }
+    }else{
+      addStep(stepsArr,'direction',{msg:val+' > '+cur.val+' → subárbol derecho',highlightId:cur.id,path:pathVals.slice(),tree:cloneTree(curTree)});
+      if(cur.right){
+        cur=cur.right;
+      }else{
+        var pos=childPos(cur,'right');
+        addStep(stepsArr,'slot',{msg:val+' no encontrado. Estaría como hijo derecho de '+cur.val,slotX:pos.x,slotY:pos.y,path:pathVals.slice(),tree:cloneTree(curTree)});
+        addStep(stepsArr,'done',{msg:'✗ '+val+' no está en el ABB',path:pathVals.slice(),tree:cloneTree(curTree)});
+        return stepsArr;
+      }
+    }
+  }
+  return stepsArr;
+}
+function generateDeleteSteps(curTree,val,choice){
+  var stepsArr=[];
+  var pathVals=[];
+  addStep(stepsArr,'start',{msg:'Eliminar '+val+' del ABB',path:[],tree:cloneTree(curTree)});
+  if(!curTree){
+    addStep(stepsArr,'notfound',{msg:'Árbol vacío. No hay nada que eliminar.',path:[]});
+    return stepsArr;
+  }
+  var cur=cloneTree(curTree);
+  var foundNode=null;
+  while(cur){
+    pathVals.push(cur.val);
+    if(val===cur.val){
+      foundNode=cur;
+      addStep(stepsArr,'compare',{msg:'Comparar '+val+' con '+cur.val,highlightId:cur.id,path:pathVals.slice(),tree:cloneTree(curTree)});
+      break;
+    }
+    addStep(stepsArr,'compare',{msg:'Comparar '+val+' con '+cur.val,highlightId:cur.id,path:pathVals.slice(),tree:cloneTree(curTree)});
+    if(val<cur.val){
+      addStep(stepsArr,'direction',{msg:val+' < '+cur.val+' → subárbol izquierdo',highlightId:cur.id,path:pathVals.slice(),tree:cloneTree(curTree)});
+      if(cur.left){cur=cur.left;}else{break;}
+    }else{
+      addStep(stepsArr,'direction',{msg:val+' > '+cur.val+' → subárbol derecho',highlightId:cur.id,path:pathVals.slice(),tree:cloneTree(curTree)});
+      if(cur.right){cur=cur.right;}else{break;}
+    }
+  }
+  if(!foundNode){
+    addStep(stepsArr,'notfound',{msg:'✗ '+val+' no está en el ABB',path:pathVals.slice(),tree:cloneTree(curTree)});
+    return stepsArr;
+  }
+  addStep(stepsArr,'found',{msg:'✓ '+val+' encontrado. Preparando eliminación...',highlightId:foundNode.id,foundId:foundNode.id,path:pathVals.slice(),tree:cloneTree(curTree)});
+  var childCount=(foundNode.left?1:0)+(foundNode.right?1:0);
+  if(childCount===0){
+    addStep(stepsArr,'case',{msg:val+' es hoja → eliminar directamente',caseType:'leaf',highlightId:foundNode.id,path:pathVals.slice(),tree:cloneTree(curTree)});
+    var after=removeNode(cloneTree(curTree),foundNode.id);
+    if(after)relayoutTree(after);
+    addStep(stepsArr,'remove',{msg:'✓ Eliminar '+val,highlightId:foundNode.id,removedId:foundNode.id,path:pathVals.slice(),tree:after?cloneTree(after):null});
+    addStep(stepsArr,'done',{msg:'✓ '+val+' eliminado correctamente',path:pathVals.slice(),tree:after?cloneTree(after):null});
+  }else if(childCount===1){
+    addStep(stepsArr,'case',{msg:val+' tiene 1 hijo → reemplazar con su hijo',caseType:'onechild',highlightId:foundNode.id,path:pathVals.slice(),tree:cloneTree(curTree)});
+    var after=replaceWithChild(cloneTree(curTree),foundNode.id);
+    if(after)relayoutTree(after);
+    addStep(stepsArr,'replace',{msg:'✓ Reemplazar '+val+' con su hijo',targetId:foundNode.id,path:pathVals.slice(),tree:after?cloneTree(after):null});
+    addStep(stepsArr,'done',{msg:'✓ '+val+' eliminado correctamente',path:pathVals.slice(),tree:after?cloneTree(after):null});
+  }else{
+    addStep(stepsArr,'case',{msg:val+' tiene 2 hijos → buscar '+choice,caseType:'twochildren',highlightId:foundNode.id,path:pathVals.slice(),tree:cloneTree(curTree)});
+    var other=null;
+    if(choice==='sucesor'){
+      other=minNode(foundNode.right);
+    }else{
+      other=maxNode(foundNode.left);
+    }
+    if(!other){
+      addStep(stepsArr,'done',{msg:'Error: no se encontró '+choice,path:pathVals.slice(),tree:cloneTree(curTree)});
+      return stepsArr;
+    }
+    pathVals.push(other.val);
+    var swapped=cloneTree(curTree);
+    var fn=findNode(swapped,foundNode.id);
+    var on=findNode(swapped,other.id);
+    var tmp=fn.val;fn.val=on.val;on.val=tmp;
+    addStep(stepsArr,'choose',{msg:choice==='sucesor'?'Sucesor de '+val+': '+other.val:'Predecesor de '+val+': '+other.val,highlightId:other.id,swapA:foundNode.id,swapB:other.id,path:pathVals.slice(),tree:cloneTree(curTree)});
+    addStep(stepsArr,'swap',{msg:'Intercambiar '+foundNode.val+' ↔ '+other.val,swapA:foundNode.id,swapB:other.id,path:pathVals.slice(),tree:cloneTree(swapped)});
+    var equivVal=on.val;
+    var equivNode=null;
+    if(choice==='sucesor'){
+      equivNode=findNode(swapped,other.id);
+    }else{
+      equivNode=findNode(swapped,other.id);
+    }
+    var equivChild=(equivNode.left?1:0)+(equivNode.right?1:0);
+    var after=null;
+    if(equivChild===0){
+      after=removeNode(swapped,equivNode.id);
+      if(after)relayoutTree(after);
+      addStep(stepsArr,'remove',{msg:'Eliminar '+equivNode.val+' (hoja) del subárbol',highlightId:equivNode.id,removedId:equivNode.id,path:pathVals.slice(),tree:after?cloneTree(after):null});
+    }else{
+      after=replaceWithChild(swapped,equivNode.id);
+      if(after)relayoutTree(after);
+      addStep(stepsArr,'replace',{msg:'Eliminar '+equivNode.val+' (reemplazar con su hijo)',targetId:equivNode.id,path:pathVals.slice(),tree:after?cloneTree(after):null});
+    }
+    addStep(stepsArr,'done',{msg:'✓ '+val+' eliminado correctamente',path:pathVals.slice(),tree:after?cloneTree(after):null});
+  }
+  return stepsArr;
+}
+function render(idx){
+  svg.innerHTML='';
+  if(!steps||steps.length===0){
+    stepLabel.textContent='Paso — / —';
+    msgDisp.textContent='—';
+    pathEl.innerHTML='<span class="pending">Árbol vacío. Insertá un valor para empezar.</span>';
+    return;
+  }
+  if(idx<0||idx>=steps.length){
+    stepLabel.textContent='Paso — / —';
+    msgDisp.textContent='—';
+    pathEl.innerHTML='<span class="pending">[ ]</span>';
+    return;
+  }
+  var s=steps[idx];
+  var displayTree=s.tree||null;
+  var msg=s.msg||'';
+  var pathVals=s.path||[];
+  var hid=s.highlightId||null;
+  var foundId=s.foundId||null;
+  var slotX=s.slotX||null;
+  var slotY=s.slotY||null;
+  var insertedId=s.insertedId||null;
+  var removedId=s.removedId||null;
+  var swapA=s.swapA||null;
+  var swapB=s.swapB||null;
+  var targetId=s.targetId||null;
+  var isDup=s.type==='dup';
+  var isTooDeep=s.type==='toodeep';
+  if(displayTree){
+    var nodes=[];
+    collectNodes(displayTree,nodes);
+    var edges=[];
+    getEdges(displayTree,edges);
+    edges.forEach(function(e){
+      var l=document.createElementNS(SVG_NS,'line');
+      l.setAttribute('x1',e.x1);l.setAttribute('y1',e.y1);
+      l.setAttribute('x2',e.x2);l.setAttribute('y2',e.y2);
+      l.classList.add('tree-edge');
+      svg.appendChild(l);
+    });
+    nodes.forEach(function(n){
+      var g=document.createElementNS(SVG_NS,'g');
+      g.id='node-'+n.id;
+      var c=document.createElementNS(SVG_NS,'circle');
+      c.setAttribute('cx',n.x);c.setAttribute('cy',n.y);c.setAttribute('r',R);
+      var cls='node-circle';
+      if(n.id===removedId){
+        cls+=' deleted';
+      }else if(n.id===foundId){
+        cls+=' found';
+      }else if(n.id===insertedId){
+        cls+=' inserted';
+      }else if(n.id===hid&&isDup){
+        cls+=' dup';
+      }else if(n.id===hid&&isTooDeep){
+        cls+=' toodeep';
+      }else if(n.id===hid){
+        cls+=' highlight';
+      }else if(n.id===swapA||n.id===swapB){
+        cls+=' swapped';
+      }else{
+        cls+=' idle';
+      }
+      c.setAttribute('class',cls);
+      g.appendChild(c);
+      var t=document.createElementNS(SVG_NS,'text');
+      t.setAttribute('x',n.x);t.setAttribute('y',n.y);
+      t.classList.add('node-text');
+      t.textContent=n.val;
+      g.appendChild(t);
+      svg.appendChild(g);
+    });
+  }
+  if(slotX!==null&&slotY!==null){
+    var c=document.createElementNS(SVG_NS,'circle');
+    c.setAttribute('cx',slotX);c.setAttribute('cy',slotY);c.setAttribute('r',R);
+    c.classList.add('node-circle','slot');
+    svg.appendChild(c);
+  }
+  var pathStr='';
+  if(!pathVals||pathVals.length===0){
+    pathStr='<span class="pending">[ ]</span>';
+  }else{
+    pathStr='';
+    pathVals.forEach(function(v,i){
+      if(i<pathVals.length-1)pathStr+='<span class="done">'+v+'</span> <span class="pending">→</span> ';
+      else pathStr+='<span class="done">'+v+'</span>';
+    });
+  }
+  pathEl.innerHTML=pathStr;
+  msgDisp.textContent=msg;
+  stepLabel.textContent='Paso '+(idx+1)+' / '+steps.length;
+}
+function goTo(n){
+  if(n<0)n=0;
+  if(n>=steps.length)n=steps.length-1;
+  curStep=n;
+  render(curStep);
+}
+function next(){if(curStep<steps.length-1)goTo(curStep+1);}
+function play(){
+  if(playing)return;
+  if(curStep>=steps.length-1)goTo(0);
+  playing=true;
+  function tick(){
+    if(!playing)return;
+    if(curStep<steps.length-1){next();timer=setTimeout(tick,speedVal);}
+    else stop();
+  }
+  timer=setTimeout(tick,speedVal);
+}
+function stop(){
+  playing=false;
+  if(timer){clearTimeout(timer);timer=null;}
+}
+function execute(){
+  var val=parseInt(valInput.value);
+  if(isNaN(val))return;
+  stop();
+  var mode=currentMode;
+  var result=null;
+  if(mode==='insert'){
+    result=generateInsertSteps(tree,val);
+  }else if(mode==='search'){
+    result=generateSearchSteps(tree,val);
+  }else{
+    result=generateDeleteSteps(tree,val,succPredChoice);
+  }
+  steps=result||[];
+  curStep=-1;
+  if(steps.length>0){
+    var lastStep=steps[steps.length-1];
+    if(lastStep.tree!==undefined){
+      tree=cloneTree(lastStep.tree);
+    }
+  }
+  goTo(0);play();
+}
+function clearTree(){
+  stop();
+  tree=null;
+  steps=[];
+  nextId=1;
+  goTo(-1);
+}
+btnClear.addEventListener('click',clearTree);
+spdInput.addEventListener('input',function(){
+  speedVal=3400-parseInt(spdInput.value);
+  spdLabel.textContent=(1000/speedVal).toFixed(1)+' p/s';
+  if(playing){stop();play();}
+});
+valInput.addEventListener('keydown',function(e){
+  if(e.key==='Enter'){e.preventDefault();execute();}
+});
+render(-1);
+</script>
+</body>
+</html>

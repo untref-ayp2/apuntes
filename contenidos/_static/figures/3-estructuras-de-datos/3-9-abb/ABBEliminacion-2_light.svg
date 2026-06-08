@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160">
+  <defs>
+    <style>
+      .bg { fill: #f0f2f5; }
+      .edge { stroke: #333333; stroke-width: 1.5; fill: none; }
+      .node-circle { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
+      .node-text { fill: #333333; font-family: monospace; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
+      .deleted-circle { fill: #ffe1e1; stroke: #e9967a; stroke-width: 2; stroke-dasharray: 4,2; }
+      .deleted-text { fill: #e9967a; font-family: monospace; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
+      .cross { stroke: #e9967a; stroke-width: 2; }
+      .label { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10px; fill: #666666; text-anchor: middle; font-style: italic; }
+      .arrow { stroke: #666666; stroke-width: 1.5; fill: none; }
+      .arrowhead { fill: #666666; }
+    </style>
+  </defs>
+  <rect class="bg" width="400" height="160" rx="6"/>
+  <text class="label" x="88" y="12">Antes</text>
+  <text class="label" x="312" y="12">Después</text>
+  <line class="edge" x1="88" y1="28" x2="48" y2="68"/>
+  <line class="edge" x1="88" y1="28" x2="128" y2="68"/>
+  <line class="edge" x1="48" y1="68" x2="28" y2="108"/>
+  <circle class="node-circle" cx="88" cy="28" r="16"/>
+  <text class="node-text" x="88" y="28">7</text>
+  <circle class="deleted-circle" cx="48" cy="68" r="16"/>
+  <text class="deleted-text" x="48" y="68">5</text>
+  <line class="cross" x1="39" y1="59" x2="57" y2="77"/>
+  <line class="cross" x1="57" y1="59" x2="39" y2="77"/>
+  <circle class="node-circle" cx="28" cy="108" r="16"/>
+  <text class="node-text" x="28" y="108">3</text>
+  <circle class="node-circle" cx="128" cy="68" r="16"/>
+  <text class="node-text" x="128" y="68">9</text>
+  <line class="arrow" x1="168" y1="68" x2="216" y2="68"/>
+  <polygon class="arrowhead" points="214,63 224,68 214,73"/>
+  <line class="edge" x1="312" y1="28" x2="272" y2="68"/>
+  <line class="edge" x1="312" y1="28" x2="352" y2="68"/>
+  <circle class="node-circle" cx="312" cy="28" r="16"/>
+  <text class="node-text" x="312" y="28">7</text>
+  <circle class="node-circle" cx="272" cy="68" r="16"/>
+  <text class="node-text" x="272" y="68">3</text>
+  <circle class="node-circle" cx="352" cy="68" r="16"/>
+  <text class="node-text" x="352" y="68">9</text>
+  <text class="label" x="312" y="152">Eliminación de (5) con un solo hijo</text>
+</svg>

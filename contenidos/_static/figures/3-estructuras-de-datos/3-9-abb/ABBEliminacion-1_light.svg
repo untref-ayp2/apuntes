@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 110">
+  <defs>
+    <style>
+      .bg { fill: #f0f2f5; }
+      .edge { stroke: #333333; stroke-width: 1; fill: none; }
+      .node-circle { fill: #e1f5ff; stroke: #4682b4; stroke-width: 1.25; }
+      .node-text { fill: #333333; font-family: monospace; font-size: 8px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
+      .deleted-circle { fill: #ffe1e1; stroke: #e9967a; stroke-width: 1.25; stroke-dasharray: 3,2; }
+      .deleted-text { fill: #e9967a; font-family: monospace; font-size: 8px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
+      .note { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 7px; fill: #666666; text-anchor: middle; font-style: italic; }
+      .cross { stroke: #e9967a; stroke-width: 1.25; }
+    </style>
+  </defs>
+  <rect class="bg" width="160" height="110" rx="4"/>
+  <line class="edge" x1="80" y1="12.5" x2="40" y2="37.5"/>
+  <line class="edge" x1="80" y1="12.5" x2="120" y2="37.5"/>
+  <line class="edge" x1="40" y1="37.5" x2="15" y2="62.5"/>
+  <line class="edge" x1="40" y1="37.5" x2="65" y2="62.5"/>
+  <line class="edge" x1="120" y1="37.5" x2="145" y2="62.5"/>
+  <line class="edge" x1="65" y1="62.5" x2="80" y2="87.5"/>
+  <circle class="node-circle" cx="80" cy="12.5" r="10"/><text class="node-text" x="80" y="12.5">7</text>
+  <circle class="node-circle" cx="40" cy="37.5" r="10"/><text class="node-text" x="40" y="37.5">3</text>
+  <circle class="node-circle" cx="120" cy="37.5" r="10"/><text class="node-text" x="120" y="37.5">9</text>
+  <circle class="node-circle" cx="15" cy="62.5" r="10"/><text class="node-text" x="15" y="62.5">2</text>
+  <circle class="node-circle" cx="65" cy="62.5" r="10"/><text class="node-text" x="65" y="62.5">5</text>
+  <circle class="node-circle" cx="145" cy="62.5" r="10"/><text class="node-text" x="145" y="62.5">10</text>
+  <circle class="deleted-circle" cx="80" cy="87.5" r="10"/>
+  <text class="deleted-text" x="80" y="87.5">6</text>
+  <line class="cross" x1="73.5" y1="81" x2="86.5" y2="94"/>
+  <line class="cross" x1="86.5" y1="81" x2="73.5" y2="94"/>
+  <text class="note" x="80" y="107.5">Eliminación de hoja (6)</text>
+</svg>

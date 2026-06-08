@@ -199,14 +199,140 @@ Ejemplo de recorrido postorden:
 
 </div>
 
+### Implementación
+
+A continuación se presentan las estructuras que definen un árbol binario en Go: el nodo y el árbol que lo contiene. El tipo `T` es genérico, lo que permite almacenar cualquier tipo de valor sin imponer restricciones de orden.
+
+```{code-block} go
+---
+linenos: true
+---
+package tree
+
+// TreeNode representa un nodo de un árbol binario.
+type TreeNode[T any] struct {
+    Value T
+    Left  *TreeNode[T]
+    Right *TreeNode[T]
+}
+```
+
+```{code-block} go
+---
+linenos: true
+---
+package tree
+
+// BinaryTree representa un árbol binario genérico.
+type BinaryTree[T any] struct {
+    Root *TreeNode[T]
+}
+```
+
+El árbol posee una referencia a la raíz, mientras que los nodos se encargan de enlazar los subárboles. La pregunta al implementar las operaciones (recorridos, altura, cantidad de nodos) es **quién** las ejecuta: el árbol o los nodos.
+
+#### Operaciones delegadas en los nodos
+
+En este enfoque, cada nodo es responsable de aplicar la operación sobre sí mismo y sus descendientes. El árbol solo inicia el proceso invocando al nodo raíz.
+
+```{code-block}
+---
+caption: Recorrido inorden delegado al nodo (pseudocódigo)
+linenos: true
+language: text
+---
+FUNCION TreeNode.Inorden(resultado)
+    SI this.izquierdo NO es nulo ENTONCES
+        this.izquierdo.Inorden(resultado)
+    FIN SI
+    resultado.agregar(this.valor)
+    SI this.derecho NO es nulo ENTONCES
+        this.derecho.Inorden(resultado)
+    FIN SI
+FIN FUNCION
+
+FUNCION BinaryTree.Inorden()
+    resultado = []
+    SI this.raiz NO es nula ENTONCES
+        this.raiz.Inorden(resultado)
+    FIN SI
+    RETORNAR resultado
+FIN FUNCION
+```
+
+El árbol actúa como mero punto de entrada: crea el slice vacío y lo pasa al nodo raíz, que lo completa recursivamente. Cada nodo visita a sus hijos antes o después de procesarse según el tipo de recorrido.
+
+**Ventajas:**
+
+- Cada nodo encapsula su propia lógica de recorrido.
+- No se necesita pasar el árbol como contexto en las llamadas recursivas.
+- El código del nodo es autónomo y reutilizable en otros contextos.
+
+**Desventajas:**
+
+- El nodo debe conocer el propósito de la operación (ej: acumular en un slice), lo que acopla la estructura del nodo a la operación concreta.
+- Si se agrega un nuevo recorrido, hay que modificar el nodo.
+
+#### Operaciones gestionadas por el árbol
+
+En este enfoque, el árbol implementa la lógica recursiva y el nodo solo expone sus campos. El árbol recorre la estructura comparando valores desde la raíz.
+
+```{code-block}
+---
+caption: Recorrido inorden gestionado por el árbol (pseudocódigo)
+linenos: true
+language: text
+---
+FUNCION BinaryTree.inordenRecursivo(nodo, resultado)
+    SI nodo ES nulo ENTONCES
+        RETORNAR
+    FIN SI
+    este.inordenRecursivo(nodo.izquierdo, resultado)
+    resultado.agregar(nodo.valor)
+    este.inordenRecursivo(nodo.derecho, resultado)
+FIN FUNCION
+```
+
+El árbol tiene el control completo del recorrido y usa el nodo solo como dato. La función recursiva es un método privado del árbol.
+
+**Ventajas:**
+
+- El nodo es una estructura pasiva (POJO/Plain Old Go struct): solo almacena datos.
+- Las operaciones están centralizadas en el árbol, facilitando su mantenimiento.
+- Se puede cambiar la lógica del recorrido sin modificar el nodo.
+
+**Desventajas:**
+
+- El árbol necesita acceder a los campos internos del nodo (Left, Right), lo que crea un acoplamiento estructural.
+- Cada operación duplica la lógica de navegación (izquierda/derecha).
+
+#### Comparación
+
+| Aspecto | Delegado al nodo | Gestionado por el árbol |
+|---|---|---|
+| Responsabilidad | Cada nodo procesa sus hijos | El árbol dirige el recorrido |
+| Acoplamiento | El nodo conoce la operación | El árbol conoce la estructura del nodo |
+| Modularidad | Alta (nodo autónomo) | Baja (lógica centralizada) |
+| Extensibilidad | Agregar operaciones requiere modificar el nodo | Agregar operaciones solo requiere modificar el árbol |
+| Nodo | Activo (tiene métodos) | Pasivo (solo datos) |
+
+Ambos enfoques son válidos. La elección depende del contexto: si se prioriza que el nodo sea una estructura de datos pura, conviene gestionar las operaciones desde el árbol. Si se busca que el nodo sea una entidad activa capaz de manipularse a sí misma, la delegación es más natural.
+
+```{note}
+En los ejercicios de este capítulo se opta por el enfoque de **delegación en los nodos**.
+```
+
 ## Ejercicios
 
-1. **Implementar árbol binario** — Completar el esqueleto de `TreeNode[T]` en el repositorio
+1. **Implementar árbol binario** — Completar los esqueletos de `TreeNode[T]` y `BinaryTree[T]` en el repositorio
    [`data-structures`](https://github.com/untref-ayp2/data-structures),
    paquete `tree/`. El nodo debe permitir almacenar un valor genérico y
-   mantener referencias a sus hijos izquierdo y derecho.
+   mantener referencias a sus hijos izquierdo y derecho. Los recorridos y el
+   cálculo de altura deben implementarse mediante métodos delegados al nodo.
+   El árbol debe proveer los métodos públicos que inician cada operación
+   desde la raíz.
 
 2. **Resolver ejercicios de aplicación** — Los ejercicios de este capítulo
    están en
-   [`08-arboles/ejercicios/`](https://github.com/untref-ayp2/taller-tad/tree/main/08-arboles/ejercicios)
+    [`08-arboles/ejercicios/`](https://github.com/untref-ayp2/taller-tad/tree/main/08-arboles/ejercicios)
    del repositorio [`taller-tad`](https://github.com/untref-ayp2/taller-tad).

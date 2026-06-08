@@ -21,6 +21,8 @@ fmt:
 .PHONY: build
 build: clean pdf
 	cd contenidos && myst build --execute
+	mkdir -p contenidos/_build/site/public/applets
+	cp -r contenidos/_static/applets/. contenidos/_build/site/public/applets/
 
 ## pdf: genera PDF con pre-procesamiento (scripts/build_pdf.py)
 .PHONY: pdf
@@ -32,7 +34,10 @@ pdf:
 clean:
 	cd contenidos && myst clean --all --yes
 
-## start: inicia el servidor de desarrollo ejecutando las celdas
+## start: construye el sitio y arranca el servidor de desarrollo
 .PHONY: start
 start:
-	cd contenidos && myst start --execute
+	cd contenidos && myst build --execute
+	mkdir -p contenidos/_build/site/public/applets
+	cp -r contenidos/_static/applets/. contenidos/_build/site/public/applets/
+	cd contenidos && myst start

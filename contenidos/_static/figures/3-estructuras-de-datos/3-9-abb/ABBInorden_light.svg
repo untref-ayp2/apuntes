@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="580" height="220" viewBox="0 0 580 220" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .edge { stroke: #333333; stroke-width: 2; fill: none; }
+      .variable-node { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
+      .text { fill: #333333; font-family: monospace; font-size: 16px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
+      .label { fill: #333333; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 15px; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <!-- ======= LEFT TREE: Árbol 1 ======= -->
+  <!-- Level 0→1 -->
+  <line class="edge" x1="135" y1="20" x2="80" y2="58"/>
+  <line class="edge" x1="135" y1="20" x2="190" y2="58"/>
+  <!-- Level 1→2 -->
+  <line class="edge" x1="80" y1="58" x2="52" y2="96"/>
+  <line class="edge" x1="80" y1="58" x2="108" y2="96"/>
+  <!-- Level 2→3 -->
+  <line class="edge" x1="108" y1="96" x2="80" y2="134"/>
+
+  <!-- Nodes -->
+  <circle class="variable-node" cx="135" cy="20" r="18"/>
+  <circle class="variable-node" cx="80" cy="58" r="18"/>
+  <circle class="variable-node" cx="190" cy="58" r="18"/>
+  <circle class="variable-node" cx="52" cy="96" r="18"/>
+  <circle class="variable-node" cx="108" cy="96" r="18"/>
+  <circle class="variable-node" cx="80" cy="134" r="18"/>
+
+  <!-- Text -->
+  <text class="text" x="135" y="20">7</text>
+  <text class="text" x="80" y="58">2</text>
+  <text class="text" x="190" y="58">9</text>
+  <text class="text" x="52" y="96">1</text>
+  <text class="text" x="108" y="96">5</text>
+  <text class="text" x="80" y="134">3</text>
+
+  <text class="label" x="135" y="190">Árbol 1</text>
+
+  <!-- ======= RIGHT TREE: Árbol 2 ======= -->
+  <!-- Level 0→1 -->
+  <line class="edge" x1="425" y1="20" x2="370" y2="58"/>
+  <line class="edge" x1="425" y1="20" x2="480" y2="58"/>
+  <!-- Level 1→2 -->
+  <line class="edge" x1="370" y1="58" x2="398" y2="96"/>
+  <line class="edge" x1="480" y1="58" x2="508" y2="96"/>
+  <!-- Level 2→3 -->
+  <line class="edge" x1="508" y1="96" x2="480" y2="134"/>
+
+  <!-- Nodes -->
+  <circle class="variable-node" cx="425" cy="20" r="18"/>
+  <circle class="variable-node" cx="370" cy="58" r="18"/>
+  <circle class="variable-node" cx="480" cy="58" r="18"/>
+  <circle class="variable-node" cx="398" cy="96" r="18"/>
+  <circle class="variable-node" cx="508" cy="96" r="18"/>
+  <circle class="variable-node" cx="480" cy="134" r="18"/>
+
+  <!-- Text -->
+  <text class="text" x="425" y="20">3</text>
+  <text class="text" x="370" y="58">1</text>
+  <text class="text" x="480" y="58">5</text>
+  <text class="text" x="398" y="96">2</text>
+  <text class="text" x="508" y="96">9</text>
+  <text class="text" x="480" y="134">7</text>
+
+  <text class="label" x="425" y="190">Árbol 2</text>
+</svg>

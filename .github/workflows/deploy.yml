@@ -49,6 +49,8 @@ jobs:
       - name: Build the book
         run: |
           cd contenidos && myst build --html --execute --execute-parallel 2
+          mkdir -p _build/html/applets
+          cp -r _static/applets/. _build/html/applets/
           touch _build/html/.nojekyll
 
       # Upload the book's HTML as an artifact
