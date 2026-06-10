@@ -58,7 +58,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 22 | `contenidos/3-estructuras-de-datos/3-6-conjuntos.md` | ✅ Revisado | `data-structures`, `taller-tad` |
 | 23 | `contenidos/3-estructuras-de-datos/3-7-diccionarios.md` | ✅ Revisado | `data-structures`, `taller-tad` |
 | 24 | `contenidos/3-estructuras-de-datos/3-8-arboles.md` | ✅ Revisado | `taller-tad`, `data-structures` |
-| 25 | `contenidos/3-estructuras-de-datos/3-9-abb.md` | ⬜ Pendiente | `guia-abb`, `data-structures` |
+| 25 | `contenidos/3-estructuras-de-datos/3-9-abb.md` | ✅ Revisado | `guia-abb`, `data-structures` |
 | 26 | `contenidos/3-estructuras-de-datos/3-10-arboles-balanceados.md` | ⬜ Pendiente | `guia-abb-balanceados` |
 | 27 | `contenidos/3-estructuras-de-datos/3-11-monticulo-binario.md` | ⬜ Pendiente | `guia-monticulos-binarios` |
 | 28 | `contenidos/3-estructuras-de-datos/3-12-iteradores-abb.md` | ⬜ Pendiente | `guia-abb` |
@@ -160,7 +160,7 @@ Estado actual (jb2-martin):
     1-2-memoria        ✅
     1-3-analisis       ✅
     2-Taller de Go     ✅ 12 archivos
-    3-Estructuras      ✅ 7 / 🔄 0 / ⬜ 5 archivos
+    3-Estructuras      ✅ 8 / 🔄 0 / ⬜ 4 archivos
     4-Diseño Alg.      ⬜ 7 archivos
     5-Taller Git       ⬜
     bibliografia       ⬜

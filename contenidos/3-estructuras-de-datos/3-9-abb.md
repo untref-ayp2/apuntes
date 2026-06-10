@@ -34,7 +34,7 @@ class: only-dark-mode
 
 El recorrido inorden de un árbol binario de búsqueda produce una secuencia ordenada de los valores almacenados en el árbol. Esto se debe a que, al visitar el subárbol izquierdo, el nodo raíz y luego el subárbol derecho, se garantiza que los nodos se procesen en orden ascendente.
 
-Por ejemplo, en la siguiente figura se muestran dos árboles binarios de búsqueda que tienen el mismo recorrido inorden: 1, 2, 3, 5, 7, 9. Los árboles son diferentes porque los elementos se insertaron en diferente orden, sin embargo al ser un ABB el recorrido inorden es el mismo.
+Por ejemplo, en la siguiente figura se muestran dos árboles binarios de búsqueda que tienen el mismo recorrido inorden: 1, 2, 3, 5, 7, 9. Los árboles son diferentes porque los elementos se insertaron en diferente orden; sin embargo, al ser un ABB, el recorrido inorden es el mismo.
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-9-abb/ABBInorden_light.svg
 ---
@@ -196,7 +196,7 @@ En el ejemplo se eligió reemplazar la raíz con el predecesor y eliminar el nod
 ---
 class: important
 ---
-Cuando se elimina un nodo con dos hijos, el nodo no se elimina directamente, sino que se reemplaza por su predecesor o sucesor. Esto asegura mantener la estructura del ABB
+Cuando se elimina un nodo con dos hijos, el nodo no se elimina directamente, sino que se reemplaza por su predecesor o sucesor. Esto asegura mantener la estructura del ABB.
 ```
 
 A continuación se presenta el algoritmo de eliminación de un nodo en un árbol binario de búsqueda:
