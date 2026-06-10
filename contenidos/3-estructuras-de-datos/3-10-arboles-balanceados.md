@@ -4,7 +4,7 @@ label: arboles-balanceados
 
 # Árboles Binarios de Búsqueda Balanceados
 
-Una de las propiedades fundamentales de los árboles binarios de búsqueda es que preservan al orden de los elementos, y por lo tanto se pueden usar como contenedores de datos para implementar estructuras más complejas que requieran mantener el orden de los elementos, como por ejemplo diccionarios, listas ordenadas, etc.
+Una de las propiedades fundamentales de los árboles binarios de búsqueda es que preservan el orden de los elementos, y por lo tanto se pueden usar como contenedores de datos para implementar estructuras más complejas que requieran mantener el orden de los elementos, como por ejemplo diccionarios, listas ordenadas, etc.
 
 La eficiencia de las operaciones de búsqueda, inserción y eliminación en un árbol binario de búsqueda depende en gran medida de su altura. En el peor de los casos, las operaciones pueden ser de orden lineal $O(n)$. Para evitar esto, se utilizan árboles binarios de búsqueda balanceados, que mantienen la altura del árbol en un nivel logarítmico $O(log (n))$ al garantizar que la diferencia entre las alturas de los subárboles izquierdo y derecho sea mínima.
 
@@ -72,7 +72,7 @@ name: AVL
 
 ### Rotación simple a derecha
 
-Supongamos que en {ref}`AVL` se inserta el (18), lo que desbalancea el nodo (23). Si observamos el (23) se desbalanceo cuando se insertó un elemento a la izquierda de su subárbol izquierdo y este desbalanceo solo es local, ya que tanto el (17) como el (50) permanecen balanceados.
+Supongamos que en {ref}`AVL` se inserta el (18), lo que desbalancea el nodo (23). Si observamos el (23) se desbalanceó cuando se insertó un elemento a la izquierda de su subárbol izquierdo y este desbalanceo solo es local, ya que tanto el (17) como el (50) permanecen balanceados.
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQIZQ.svg
 ---
@@ -81,7 +81,7 @@ name: AVLIZQIZQ
 Desbalanceo Izquierda-Izquierda de un nodo
 ```
 
-Para restaurar el equilibrio del nodo (23) se debe realizar una rotación simple a la derecha del (23). Esta rotación involucra a tres nodos el (23), el (19) y el recién insertado (18). En la siguiente figura se observa la rotación simple a derecha.
+Para restaurar el equilibrio del nodo (23) se debe realizar una rotación simple a la derecha del (23). Esta rotación involucra a tres nodos: el (23), el (19) y el recién insertado (18). En la siguiente figura se observa la rotación simple a derecha.
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLRotacionSimpleDerecha.svg
 ---
@@ -101,7 +101,7 @@ AVL restaurado luego de una rotación simple a derecha
 
 ### Rotación simple a izquierda
 
-Analogamente cuando en un nodo se produce un desbalance por la inserción de un elemento a la derecha de su hijo derecho, se puede reestablecer el balance con una rotación simple a izquierda.
+Análogamente cuando en un nodo se produce un desbalance por la inserción de un elemento a la derecha de su hijo derecho, se puede restablecer el balance con una rotación simple a izquierda.
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERDER.svg
 ---
@@ -110,7 +110,7 @@ name: AVLDERDER
 Desbalanceo Derecha-Derecha de un nodo
 ```
 
-En la figura al insertar el nodo (70) de desbalancea el nodo (54), que se puede volver a balancear con una rotación a la izquierda del nodo (54)
+En la figura al insertar el nodo (70) se desbalancea el nodo (54), que se puede volver a balancear con una rotación a la izquierda del nodo (54)
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLRotacionSimpleIzquierda.svg
 ---
@@ -128,7 +128,7 @@ AVL restaurado luego de una rotación simple a izquierda
 
 ### Rotación doble izquierda-derecha
 
-Cuando el desbalance se produce al insertar un elemento a la derecha del hijo izquierdo de un nodo se debe realizar una rotación doble. Las rotaciones doble se componen de dos rotaciones simples, en este caso de una rotación simple a la izquierda seguida de una rotación simple a la derecha.
+Cuando el desbalance se produce al insertar un elemento a la derecha del hijo izquierdo de un nodo se debe realizar una rotación doble. Las rotaciones dobles se componen de dos rotaciones simples, en este caso de una rotación simple a la izquierda seguida de una rotación simple a la derecha.
 
 En la siguiente figura al insertar el (16), se desbalanceó el (17). Parados en el (17) el desbalance se produce al insertar un elemento a la derecha de su hijo izquierdo.
 
@@ -139,7 +139,7 @@ name: AVLIZQDER
 Desbalanceo Izquierda-Derecha de un nodo
 ```
 
-Para restaurar el balance se preciso realizar dos rotaciones simples, la primera es rotar el hijo izquierdo del nodo desbalanceado, es decir el (12) a la izquierda (aunque el (12) se encuentre balanceado) y luego rotar el nodo desbalanceado originalmente a la derecha.
+Para restaurar el balance se precisó realizar dos rotaciones simples, la primera es rotar el hijo izquierdo del nodo desbalanceado, es decir el (12) a la izquierda (aunque el (12) se encuentre balanceado) y luego rotar el nodo desbalanceado originalmente a la derecha.
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER-1.svg
 ---
@@ -177,7 +177,7 @@ Desbalanceo Izquierda-Derecha, árbol rebalanceado
 
 ### Rotación doble derecha-izquierda
 
-En la siguiente figura se observa que al insertar el (73) se desbalancea el nodo (72). El (73) se insertó bajando una vez a la derecha y dos veces a la izquierda desde el (72), es decir la inserción fue derecha-izquierda, por lo que para reestablecer el balance se deberá realizar una rotación doble derecha-izquierda del (72)
+En la siguiente figura se observa que al insertar el (73) se desbalancea el nodo (72). El (73) se insertó bajando una vez a la derecha y una vez a la izquierda desde el (72), es decir la inserción fue derecha-izquierda, por lo que para reestablecer el balance se deberá realizar una rotación doble derecha-izquierda del (72)
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERIZQ.svg
 ---
@@ -211,14 +211,21 @@ class: Important
 Las rotaciones son operaciones locales que solo afectan a un pequeño número de nodos en el árbol. Cuando se inserta un nuevo nodo, en el camino de regreso a la raíz, se verifica el balanceo de cada nodo y se realizan las rotaciones necesarias. Siempre las rotaciones se realizan en el camino de regreso a la raíz, es decir, desde el nodo recién insertado hasta la raíz del árbol.
 ```
 
-En el siguiente enlace encontrarán un visualizador de árboles AVL que permite ver cómo se realizan las rotaciones y el balanceo del árbol en tiempo real:
+<div class="only-html">
 
-[Visualizador de Árboles AVL](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html).
+### Visualizador de árbol AVL interactivo
+
+Ingresá uno o más valores separados por coma y presioná Insertar. Usá "Paso a paso" para avanzar una operación a la vez, o "Reproducir" para ver la secuencia completa automáticamente. Las flechas del teclado adelantan/retroceden paso a paso, y la barra espaciadora inicia/pausa la reproducción.
+
+<div class="only-light-mode">
+<iframe src="/applets/3-estructuras-de-datos/3-10-arboles-balanceados/avl-visualizer_light.html" width="100%" height="520px"></iframe>
+</div>
+<div class="only-dark-mode">
+<iframe src="/applets/3-estructuras-de-datos/3-10-arboles-balanceados/avl-visualizer_dark.html" width="100%" height="520px"></iframe>
+</div>
+
+</div>
 
 ## Ejercicios
 
-1. Dado el siguiente árbol AVL, inserte los siguientes elementos en el árbol y dibuje el árbol resultante después de cada inserción: 10, 20, 30, 40, 50, 25.
-2. Dado el siguiente árbol AVL, elimine los siguientes elementos del árbol y dibuje el árbol resultante después de cada eliminación: 30, 20, 10.
-3. Dado el siguiente árbol AVL, determine el factor de balanceo de cada nodo y dibuje el árbol resultante después de cada rotación necesaria para mantener el equilibrio: 10, 20, 30, 40, 50, 25.
-4. Escribir un método en árbol binario de búsqueda con el nombre `esAVL` que devuelva `true` si el árbol es AVL y `false` en caso contrario.
-5. Implementar un árbol AVL en Go y realizar las operaciones de inserción, eliminación y búsqueda.
+Los ejercicios de este capítulo están en la guía de trabajos prácticos [guia-abb-balanceados](https://github.com/untref-ayp2/guia-abb-balanceados).

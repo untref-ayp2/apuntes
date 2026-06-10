@@ -62,7 +62,7 @@ body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,sa
 .info .meta span{white-space:nowrap}
 ```
 
-## Distribución (Tree a la izquierda, Controles a la derecha)
+## Distribución (Árbol a la izquierda, Controles a la derecha)
 
 El layout horizontal evita scrollbars porque el árbol ocupa el espacio sobrante vertical:
 
@@ -70,48 +70,69 @@ El layout horizontal evita scrollbars porque el árbol ocupa el espacio sobrante
 +--------------------------------------------------+
 |                    Header                          |
 +----------------------------------+----------------+
-|                                  | ⏮ ◀ ▶ ▶▶    |
-|           Tree SVG               | Vel: [===]    |
-|          (flex: 1)               |                |
+|                                  | [Insertar]     |
+|                                  | [Buscar  ]     |
+|          Árbol                   | Valor: [___] ↵ |
+|         (flex: 1)                | [Vaciar árbol] |
+|                                  | ────────────── |
+|                                  | ⏮ ◀ ▶ >>     |
+|                                  | Vel: [===] p/s |
+|                                  | ────────────── |
 |                                  | ● No visitado  |
-|                                  | ● En proceso   |
-|                                  | ● Procesado    |
+|                                  | ● Comparando   |
+|                                  | : etc.         |
 +----------------------------------+----------------+
-|           Info (secuencia + paso)                 |
+|           Info (descripción + paso)               |
 +--------------------------------------------------+
 ```
 
-### HTML del layout
+### HTML del layout (estándar para applets con inserción/búsqueda)
 
 ```html
-<div class="applet" id="app">
-  <div class="header" id="header">Título del Recorrido</div>
+<div class="applet">
+  <div class="header">Título del Applet</div>
   <div class="main">
-    <div class="tree-wrap"><svg id="tree" viewBox="0 0 W H" xmlns="http://www.w3.org/2000/svg"></svg></div>
+    <div class="tree-wrap"><canvas id="treeCanvas"></canvas></div>
     <div class="sidebar">
+      <div class="modes" id="modeSelector">
+        <button class="mode-btn active" data-mode="insert">Insertar</button>
+        <button class="mode-btn" data-mode="search">Buscar</button>
+      </div>
+      <div class="input-group">
+        <label for="valInput">Valor:</label>
+        <div class="input-row">
+          <input type="text" id="valInput" placeholder="Ej: 10,20,30" autofocus>
+          <span class="enter-hint">↵</span>
+        </div>
+        <button id="btnClear" class="clear-btn">Vaciar árbol</button>
+      </div>
+      <div class="separator"></div>
       <div class="controls">
-        <button id="btnStart" title="Ir al inicio">⏮</button>
+        <button id="btnFirst" title="Ir al inicio">⏮</button>
         <button id="btnPrev" title="Paso anterior">◀</button>
         <button id="btnNext" title="Paso siguiente">▶</button>
-        <button id="btnPlay" title="Reproducción automática">▶▶</button>
-        <div class="speed-wrap">
-          <label for="speed">Vel:</label>
-          <input type="range" id="speed" min="400" max="3000" value="1500" step="100">
-          <span id="speedLabel">1.5s</span>
-        </div>
+        <button id="btnSkip" title="Reproducir automático">>></button>
       </div>
+      <div class="speed-wrap">
+        <label for="speedSlider">Vel:</label>
+        <input type="range" id="speedSlider" min="400" max="3000" value="1500" step="100">
+        <span id="speedLabel">0.5 p/s</span>
+      </div>
+      <div class="separator"></div>
       <div class="legend">
         <div class="legend-item"><span class="legend-dot idle"></span> No visitado</div>
-        <div class="legend-item"><span class="legend-dot enter"></span> En proceso</div>
-        <div class="legend-item"><span class="legend-dot done"></span> Procesado</div>
+        <div class="legend-item"><span class="legend-dot highlight"></span> Comparando</div>
+        <div class="legend-item"><span class="legend-dot inserted"></span> Insertado</div>
+        <div class="legend-item"><span class="legend-dot error"></span> Desbalance</div>
+        <div class="legend-item"><span class="legend-dot rot"></span> Rotando</div>
       </div>
     </div>
   </div>
   <div class="info">
-    <div class="seq" id="seq"><span class="pending">[ ]</span></div>
+    <div class="path" id="desc">Mensaje de estado inicial.</div>
     <div class="meta">
-      <span id="stepLabel">Paso 0 / 0</span>
-      <span id="actionLabel">—</span>
+      <span id="stepCounter">Paso — / —</span>
+      <span id="treeInfo">—</span>
     </div>
   </div>
 </div>
@@ -133,6 +154,169 @@ main (tree + sidebar): iframe_height - 90
 
 El SVG se escala automáticamente al espacio disponible vía `flex: 1`.
 Usar `:height: 560px` en el `{iframe}` como valor base, ajustable ±30px.
+
+## Interfaz de control estándar
+
+Todos los applets deben seguir esta interfaz de control unificada para mantener consistencia visual y funcional.
+
+### Modos de operación
+
+Selector de modo como botones (no radio buttons). El activo se pinta con `--mode-active-bg` (azul).
+
+```css
+.modes{display:flex;gap:2px}
+.modes button{flex:1;padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--btn-bg);color:var(--btn-text);font-size:11px;cursor:pointer;font-weight:600;transition:background .15s}
+.modes button.active{background:var(--mode-active-bg);color:var(--mode-active-text);border-color:var(--mode-active-bg)}
+.modes button:hover:not(.active){background:var(--btn-hover)}
+```
+
+```js
+var modeBtns=document.querySelectorAll('#modeSelector button');
+modeBtns.forEach(function(b){
+  b.addEventListener('click',function(){
+    if(isPlaying)return;
+    modeBtns.forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    currentMode=b.dataset.mode;
+  });
+});
+```
+
+### Input de valores
+
+Acepta valores separados por coma. Muestra ↵ como hint visual.
+
+```css
+.input-group{display:flex;flex-direction:column;gap:4px;font-size:12px}
+.input-row{display:flex;align-items:center;gap:4px}
+.input-row input{flex:1;padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--fg);font-size:14px;width:100%}
+.enter-hint{font-size:14px;color:var(--slot-stroke);flex-shrink:0}
+.clear-btn{width:100%;padding:4px 8px;border:1px solid var(--error-stroke);border-radius:4px;background:transparent;color:var(--error-stroke);font-size:11px;cursor:pointer;font-weight:600;transition:background .15s}
+.clear-btn:hover{background:var(--error-fill)}
+```
+
+### Separador
+
+```css
+.separator{height:1px;background:var(--border);margin:2px 0}
+```
+
+### Navegación
+
+Botones: ⏮ (ir al inicio), ◀ (paso anterior), ▶ (paso siguiente), >> (reproducción automática).
+El botón >> cambia a ⏸ mientras reproduce.
+
+```css
+.controls{display:flex;flex-direction:row;gap:4px;flex-wrap:wrap;justify-content:center}
+.controls button{width:36px;height:30px;border:1px solid var(--border);border-radius:6px;background:var(--btn-bg);color:var(--btn-text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;padding:0}
+.controls button:hover:not(:disabled){background:var(--btn-hover)}
+.controls button:active:not(:disabled){background:var(--btn-active)}
+.controls button:disabled{opacity:.4;cursor:default}
+.controls button.playing{background:var(--error-stroke);color:#fff;border-color:var(--error-stroke)}
+.controls button.playing:hover{filter:brightness(1.1)}
+```
+
+```js
+function updateBtns(){
+  var atS=currentStep<=0,atE=currentStep>=steps.length-1,hasS=steps.length>0;
+  btnFirst.disabled=atS||!hasS||isPlaying;
+  btnPrev.disabled=atS||!hasS||isPlaying;
+  btnNext.disabled=(!hasS&&pendingValues.length===0)||(atE&&pendingValues.length===0)||isPlaying;
+  btnSkip.disabled=pendingValues.length===0&&atE;
+}
+```
+
+### Velocidad (pasos por segundo)
+
+Slider invertido: `speedVal = 3400 - slider.value`. A izquierda = lento (0.3 p/s), a derecha = rápido (2.5 p/s).
+Solo afecta a la reproducción automática (>>).
+
+```css
+.speed-wrap{display:flex;align-items:center;gap:3px;font-size:11px;flex:1 1 100%;justify-content:center;white-space:nowrap}
+.speed-wrap input[type=range]{width:48px;height:4px;accent-color:var(--highlight)}
+```
+
+```js
+var speedVal=1900;
+speedSlider.addEventListener('input',function(){
+  speedVal=3400-parseInt(this.value);
+  speedLabel.textContent=(1000/speedVal).toFixed(1)+' p/s';
+  if(isPlaying){stopPlay();startPlay();}
+});
+```
+
+### Cola de operaciones
+
+Cuando el usuario ingresa varios valores separados por coma, se encolan y se procesan uno por uno al presionar ▶ o >>.
+
+```js
+var pendingValues=[];
+
+function parseAndEnq(inp){
+  var nums=inp.split(',').map(function(s){return s.trim()}).filter(function(s){return s.length>0}).map(function(s){return parseInt(s,10)}).filter(function(n){return Number.isInteger(n)&&n>0});
+  if(nums.length===0){descEl.textContent='⚠ Ingresá números enteros positivos separados por coma.';return;}
+  pendingValues.push.apply(pendingValues,nums);
+  valInput.value='';
+  descEl.textContent=nums.length+' valor'+(nums.length!==1?'es':'')+' encolado'+(nums.length!==1?'s':'')+'. Usá ▶ o >> para procesar'+(nums.length!==1?'los':'lo')+'.';
+  updateBtns();
+}
+```
+
+### Auto‑play (>>)
+
+```js
+var isPlaying=false;
+var playTimer=null;
+
+function tick(){
+  if(!isPlaying)return;
+  if(currentStep>=steps.length-1){
+    if(pendingValues.length>0){var val=pendingValues.shift();procIns(val);}
+    else{stopPlay();return;}
+  }
+  if(currentStep<steps.length-1){goNext();playTimer=setTimeout(tick,speedVal);}
+  else stopPlay();
+}
+function startPlay(){
+  if(currentStep>=steps.length-1&&pendingValues.length===0)return;
+  isPlaying=true;
+  btnSkip.textContent='⏸';btnSkip.classList.add('playing');
+  updateBtns();
+  playTimer=setTimeout(tick,speedVal);
+}
+function stopPlay(){
+  isPlaying=false;
+  if(playTimer){clearTimeout(playTimer);playTimer=null;}
+  btnSkip.textContent='>>';btnSkip.classList.remove('playing');
+  updateBtns();
+}
+function hdlSkip(){
+  if(isPlaying){stopPlay();return;}
+  if(currentStep>=steps.length-1&&pendingValues.length===0)return;
+  startPlay();
+}
+```
+
+### Atajos de teclado
+
+```js
+document.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT')return;
+  if(e.key==='ArrowRight'){e.preventDefault();hdlNext();}
+  if(e.key==='ArrowLeft'){e.preventDefault();goPrev();}
+  if(e.key==='Home'){e.preventDefault();goFirst();}
+  if(e.key===' '||e.key==='End'){e.preventDefault();hdlSkip();}
+});
+```
+
+### Info (barra inferior)
+
+```css
+.info{padding:6px 10px;border:1px solid var(--border);border-radius:6px;width:100%;display:flex;flex-wrap:wrap;gap:3px 12px;align-items:baseline;font-size:12px;flex-shrink:0}
+.info .path{flex:1 1 100%;font-family:'Courier New',monospace;font-size:13px;min-height:1.3em;word-break:break-all}
+.info .meta{display:flex;gap:12px;flex-wrap:wrap}
+.info .meta span{white-space:nowrap}
+```
 
 ## SVG del árbol
 
@@ -227,24 +411,206 @@ allNodes.forEach(n => {
 | Enter (activo) | `#fff3cd`  | `#ffc107`    | `#5a4a00` | `#ffc107`   |
 | Done (procesado)| `#d4edda` | `#28a745`    | `#1e3a2f` | `#48c774`   |
 
-## Controles
+## Dibujo dinámico con Canvas
 
-### Botones
+Para applets donde la estructura crece/modifica dinámicamente (inserción AVL, ABB, etc.),
+se usa `<canvas>` en lugar de SVG. En cada paso se recalcula el layout del árbol completo
+para que los nodos se redistribuyan según el tamaño actual del canvas.
 
-```css
-.controls{display:flex;flex-direction:row;gap:4px;flex-wrap:wrap;justify-content:center}
-.controls button{width:38px;height:32px;border:1px solid var(--border);border-radius:6px;background:var(--btn-bg);color:var(--btn-text);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.15s;padding:0}
-.controls button:hover:not(:disabled){background:var(--btn-hover)}
-.controls button:active:not(:disabled){background:var(--btn-active)}
-.controls button:disabled{opacity:0.4;cursor:default}
-```
-
-### Velocidad
+### Canvas con HiDPI
 
 ```css
-.speed-wrap{display:flex;align-items:center;gap:3px;font-size:11px;flex:1 1 100%;justify-content:center;white-space:nowrap}
-.speed-wrap input[type=range]{width:48px;height:4px;accent-color:var(--highlight)}
+.tree-wrap canvas{width:100%;height:100%}
 ```
+
+```js
+var canvas=document.getElementById('treeCanvas');
+var ctx=canvas.getContext('2d');
+
+function resizeCanvas(){
+  var rect=canvas.parentElement.getBoundingClientRect();
+  var dpr=window.devicePixelRatio||1;
+  canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;
+  canvas.style.width=rect.width+'px';canvas.style.height=rect.height+'px';
+  canvas._w=rect.width;canvas._h=rect.height;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+}
+window.addEventListener('resize',resizeCanvas);
+```
+
+### Layout dinámico (in-order)
+
+Cada nodo guarda `px`, `py` (posición calculada). El layout se recalcula desde cero
+en cada `drawTree()` usando un recorrido in-order para distribuir horizontalmente
+y la profundidad para la vertical:
+
+```js
+var NODE_R=18;     // radio del nodo
+var LEVEL_H=65;    // separación vertical entre niveles
+
+function countN(n){return n?1+countN(n.left)+countN(n.right):0}
+
+function layL(n,d,p){
+  if(!n)return;
+  layL(n.left,d+1,p);
+  n._in=p.c++;   // orden in-order
+  n._dep=d;       // profundidad
+  layL(n.right,d+1,p);
+}
+
+function layT(tree,w,h){
+  if(!tree)return;
+  var total=countN(tree);if(!total)return;
+  layL(tree,0,{c:0});
+  var mx=30,my=30,xR=w-2*mx;                         // márgenes
+  var mD=function md(n){return n?1+Math.max(md(n.left),md(n.right)):0}(tree);
+  var sY=Math.min(LEVEL_H,(h-2*my)/Math.max(mD,1));  // separación vertical
+  (function pn(n){
+    if(!n)return;
+    n.px=mx+(total>1?(n._in/(total-1))*xR:w/2-mx);  // posición X según orden
+    n.py=my+n._dep*sY;                                 // posición Y según profundidad
+    pn(n.left);pn(n.right);
+  })(tree);
+}
+```
+
+Esto asegura que el árbol siempre ocupe el espacio disponible sin solapamientos,
+adaptándose a cualquier cantidad de nodos.
+
+### Dibujar el árbol (aristas + nodos + balanceo)
+
+```js
+var cssVar=function(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()};
+
+function drawTree(tree,highlights,bfArr){
+  var w=canvas._w,h=canvas._h;
+  ctx.clearRect(0,0,w,h);
+  if(!tree)return;
+  layT(tree,w,h);  // recalcula layout
+
+  // Mapa de highlights y factores de balanceo
+  var hlM={};if(highlights)highlights.forEach(function(h){hlM[h.id]=h.t});
+  var bfM={};if(bfArr)bfArr.forEach(function(b){bfM[b.id]=b.fb});
+
+  // 1. Aristas
+  (function drE(n){
+    if(!n)return;
+    if(n.left){
+      ctx.beginPath();ctx.moveTo(n.px,n.py);ctx.lineTo(n.left.px,n.left.py);
+      ctx.strokeStyle=cssVar('--border');ctx.lineWidth=2;ctx.stroke();
+      drE(n.left);
+    }
+    if(n.right){
+      ctx.beginPath();ctx.moveTo(n.px,n.py);ctx.lineTo(n.right.px,n.right.py);
+      ctx.strokeStyle=cssVar('--border');ctx.lineWidth=2;ctx.stroke();
+      drE(n.right);
+    }
+  })(tree);
+
+  // 2. Nodos con colores según estado
+  var clr={
+    idle:{fill:cssVar('--node-fill'),stroke:cssVar('--node-stroke')},
+    cmp:{fill:cssVar('--highlight-fill'),stroke:cssVar('--highlight-stroke')},
+    ins:{fill:cssVar('--insert-fill'),stroke:cssVar('--insert-stroke')},
+    bal:{fill:cssVar('--bal-fill'),stroke:cssVar('--bal-stroke')},
+    unb:{fill:cssVar('--error-fill'),stroke:cssVar('--error-stroke')},
+    rot:{fill:cssVar('--rot-fill'),stroke:cssVar('--rot-stroke')},
+    don:{fill:cssVar('--don-fill'),stroke:cssVar('--don-stroke')}
+  };
+
+  (function drN(n){
+    if(!n)return;
+    var t=hlM[n.id]||'idle',c=clr[t]||clr.idle;
+    ctx.beginPath();ctx.arc(n.px,n.py,NODE_R,0,Math.PI*2);
+    ctx.fillStyle=c.fill;ctx.fill();
+    ctx.strokeStyle=c.stroke;ctx.lineWidth=t==='idle'?2:3;ctx.stroke();
+    ctx.fillStyle=cssVar('--node-text');
+    ctx.font='bold 14px monospace';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(n.val,n.px,n.py);
+    // Factor de balanceo (opcional, para árboles balanceados)
+    var fb=bfM[n.id];
+    if(fb!==undefined){
+      ctx.font='11px system-ui,sans-serif';
+      ctx.fillStyle=Math.abs(fb)>1?cssVar('--fb-bad'):cssVar('--fb-ok');
+      ctx.textAlign='left';ctx.textBaseline='bottom';
+      ctx.fillText('fb='+(fb>0?'+':'')+fb,n.px+NODE_R+4,n.py-NODE_R+14);
+    }
+    drN(n.left);drN(n.right);
+  })(tree);
+}
+```
+
+Todos los colores se resuelven con `cssVar()` para que el cambio entre light/dark
+sea automático al abrir el archivo correspondiente.
+
+### Paso a paso con snapshot
+
+Cada paso contiene un snapshot del árbol (clonado) más metadatos:
+
+```js
+var steps=[];
+var currentStep=-1;
+
+// Cada paso
+{desc:'Descripción textual',tree:cloneT(arbol),hl:[{id:nodeId,t:'cmp'}],bf:[{id:nodeId,fb:1}],done:false}
+```
+
+El `tree` se clona con `cloneT()` para que cada paso sea independiente:
+
+```js
+function cloneT(n){
+  if(!n)return null;
+  var c=new Node(n.val);c.height=n.height;c.id=n.id;
+  c.left=cloneT(n.left);c.right=cloneT(n.right);
+  return c;
+}
+```
+
+### Renderizar un paso
+
+```js
+function renderStep(idx){
+  if(idx<0||idx>=steps.length){
+    if(idx===-1&&steps.length===0){
+      ctx.clearRect(0,0,canvas._w||400,canvas._h||300);
+      descEl.textContent='Árbol vacío.';
+      stepCounterEl.textContent='Paso — / —';
+      treeInfoEl.textContent='—';
+    }
+    updateBtns();return;
+  }
+  var s=steps[idx];
+  drawTree(s.tree,s.hl,s.bf);
+  descEl.textContent=s.desc;
+  stepCounterEl.textContent='Paso '+(idx+1)+' / '+steps.length;
+  var total=s.tree?countN(s.tree):0;
+  treeInfoEl.textContent=total+' nodo'+(total!==1?'s':'')+(s.tree?', altura '+s.tree.height:'');
+  updateBtns();
+}
+```
+
+## Controles (applets sin inserción/búsqueda)
+
+Para applets de solo visualización (recorridos, ordenamientos, etc.) que no necesitan
+modo insertar/buscar, se puede usar una versión simplificada:
+
+```html
+<div class="controls">
+  <button id="btnFirst" title="Ir al inicio">⏮</button>
+  <button id="btnPrev" title="Paso anterior">◀</button>
+  <button id="btnNext" title="Paso siguiente">▶</button>
+  <button id="btnSkip" title="Reproducir automático">>></button>
+</div>
+<div class="speed-wrap">
+  <label for="speedSlider">Vel:</label>
+  <input type="range" id="speedSlider" min="400" max="3000" value="1500" step="100">
+  <span id="speedLabel">0.5 p/s</span>
+</div>
+```
+
+La lógica de navegación, auto‑play y atajos de teclado es la misma que en la
+[interfaz estándar](#interfaz-de-control-estándar).
 
 ### Leyenda
 
@@ -347,75 +713,68 @@ recorridos-arbol-postorden_light.html  → const tipo = 'postorden';
 recorridos-arbol-postorden_dark.html   → const tipo = 'postorden';
 ```
 
-## Atajos de teclado
-
-```js
-document.addEventListener('keydown', e => {
-  if (e.target.tagName === 'INPUT') return;
-  if (e.key === 'ArrowRight') { e.preventDefault(); next(); }
-  if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
-  if (e.key === ' ') { e.preventDefault(); togglePlay(); }
-  if (e.key === 'Home') { e.preventDefault(); start(); }
-});
-```
+Los atajos de teclado se definen en la [interfaz estándar](#interfaz-de-control-estándar).
 
 ## Modo oscuro
 
-La página usa `data-theme="dark"` o clase `.dark` en `<html>` para cambiar a modo oscuro
-(no usa `prefers-color-scheme`). Como los iframes no heredan esto, se necesitan
-versiones `-dark.html` separadas.
+Los iframes no heredan el tema del sitio padre, por lo que se necesitan
+archivos separados `_light.html` y `_dark.html` con colores fijos (sin `@media`).
 
 ### Crear versión dark
 
 1. Copiar el archivo light a `*_dark.html`
-2. Reemplazar los colores de `:root` con los valores dark (desde `@media (prefers-color-scheme:dark)`)
-3. Eliminar el bloque `@media (prefers-color-scheme:dark)` por completo
+2. Reemplazar los colores de `:root` con los valores dark de la tabla de colores
 
 ### Archivos generados
 
 ```
 applets/X-tema/X-Y-tema/
-├── mi-applet-preorden_light.html        (light)
-├── mi-applet-preorden_dark.html         (dark, colores oscuros forzados)
-├── mi-applet-inorden_light.html         (light)
-├── mi-applet-inorden_dark.html          (dark)
+├── mi-applet_light.html         (light)
+├── mi-applet_dark.html          (dark, colores oscuros forzados)
 └── ...
 ```
 
 El sufijo `_light` o `_dark` va al final, antes de la extensión, siguiendo la
 convención de las figuras SVG (`Arbol_light.svg`, `Arbol_dark.svg`).
 
-```css
-:root {
-  --bg: #ffffff;
-  --fg: #1a1a2e;
-  --border: #d1d5db;
-  --btn-bg: #f3f4f6;
-  --btn-hover: #e5e7eb;
-  --btn-active: #d1d5db;
-  --btn-disabled: #e5e7eb;
-  --btn-text: #374151;
-  --highlight: #1d4ed8;
-  --seq-done: #059669;
-  --seq-pending: #9ca3af;
-  /* colores de nodos en sección correspondiente */
-}
-@media (prefers-color-scheme:dark) {
-:root {
-  --bg: #1a1b2e;
-  --fg: #e0e0e0;
-  --border: #374151;
-  --btn-bg: #2d3748;
-  --btn-hover: #374151;
-  --btn-active: #4a5568;
-  --btn-disabled: #1f2937;
-  --btn-text: #e0e0e0;
-  --highlight: #60a5fa;
-  --seq-done: #48c774;
-  --seq-pending: #6b7280;
-}
-}
-```
+### Paleta de colores
+
+| Variable | Light | Dark |
+|---|---|---|
+| `--bg` | `#ffffff` | `#1a1b2e` |
+| `--fg` | `#1a1a2e` | `#e0e0e0` |
+| `--border` | `#d1d5db` | `#374151` |
+| `--btn-bg` | `#f3f4f6` | `#2d3748` |
+| `--btn-hover` | `#e5e7eb` | `#374151` |
+| `--btn-active` | `#d1d5db` | `#4a5568` |
+| `--btn-disabled` | `#e5e7eb` | `#1f2937` |
+| `--btn-text` | `#374151` | `#e0e0e0` |
+| `--highlight` | `#1d4ed8` | `#60a5fa` |
+| `--node-fill` | `#e1f5ff` | `#2d3748` |
+| `--node-stroke` | `#4682b4` | `#63b3ed` |
+| `--insert-fill` | `#d4edda` | `#1e3a2f` |
+| `--insert-stroke` | `#28a745` | `#48c774` |
+| `--highlight-fill` | `#fff3cd` | `#5a4a00` |
+| `--highlight-stroke` | `#ffc107` | `#ffc107` |
+| `--error-fill` | `#ffe1e1` | `#4a5568` |
+| `--error-stroke` | `#e9967a` | `#fc8181` |
+| `--found-fill` | `#d4edda` | `#1e3a2f` |
+| `--found-stroke` | `#28a745` | `#48c774` |
+| `--mode-active-bg` | `#1d4ed8` | `#60a5fa` |
+| `--mode-active-text` | `#ffffff` | `#1a1b2e` |
+| `--cmp-done` | `#059669` | `#48c774` |
+| `--slot-stroke` | `#9ca3af` | `#6b7280` |
+| `--bal-fill` | `#f3f4f6` | `#2d3748` |
+| `--bal-stroke` | `#9ca3af` | `#9ca3af` |
+| `--rot-fill` | `#fff3cd` | `#5a4a00` |
+| `--rot-stroke` | `#fd7e14` | `#fd7e14` |
+| `--don-fill` | `#d4edda` | `#1e3a2f` |
+| `--don-stroke` | `#28a745` | `#48c774` |
+| `--node-text` | `#1a1a2e` | `#e0e0e0` |
+| `--fb-ok` | `#059669` | `#48c774` |
+| `--fb-bad` | `#dc2626` | `#fc8181` |
+| `--btn-primary` | `#1d4ed8` | `#60a5fa` |
+| `--btn-primary-hover` | `#1e40af` | `#3b82f6` |
 
 ## Organización de archivos
 
@@ -551,20 +910,22 @@ function render(idx) {
   }
 
   // Estado botones
-  btnStart.disabled = (idx <= 0);
+  btnFirst.disabled = (idx <= 0);
   btnPrev.disabled = (idx <= 0);
   btnNext.disabled = (idx >= steps.length - 1);
 }
 ```
 
-## Variables globales y helpers
+## Variables globales y helpers (recorridos)
+
+Para applets de solo visualización (sin cola de pendientes), se usa una versión simplificada:
 
 ```js
 let steps = [];
 let currentStep = -1;
-let playing = false;
-let timer = null;
-let speed = 1500;
+let isPlaying = false;
+let playTimer = null;
+let speedVal = 1900;
 
 function goTo(n) {
   if (n < 0) n = 0;
@@ -573,46 +934,54 @@ function goTo(n) {
   render(currentStep);
 }
 
-function next() { if (currentStep < steps.length - 1) goTo(currentStep + 1); }
-function prev() { if (currentStep > 0) goTo(currentStep - 1); }
-function start() { goTo(0); }
+function goNext() { if (currentStep < steps.length - 1) goTo(currentStep + 1); }
+function goPrev() { if (currentStep > 0) goTo(currentStep - 1); }
+function goFirst() { goTo(0); }
 
-function play() {
-  if (playing) return;
-  if (currentStep >= steps.length - 1) goTo(0);
-  playing = true;
-  btnPlay.textContent = '⏸';
-  function tick() {
-    if (!playing) return;
-    if (currentStep < steps.length - 1) { next(); timer = setTimeout(tick, speed); }
-    else { stop(); }
-  }
-  timer = setTimeout(tick, speed);
+function tick() {
+  if (!isPlaying) return;
+  if (currentStep < steps.length - 1) { goNext(); playTimer = setTimeout(tick, speedVal); }
+  else stopPlay();
 }
-
-function stop() {
-  playing = false;
-  btnPlay.textContent = '▶▶';
-  if (timer) { clearTimeout(timer); timer = null; }
+function startPlay() {
+  if (currentStep >= steps.length - 1) return;
+  isPlaying = true;
+  btnSkip.textContent = '⏸'; btnSkip.classList.add('playing');
+  playTimer = setTimeout(tick, speedVal);
 }
-
-function togglePlay() { if (playing) stop(); else play(); }
+function stopPlay() {
+  isPlaying = false;
+  if (playTimer) { clearTimeout(playTimer); playTimer = null; }
+  btnSkip.textContent = '>>'; btnSkip.classList.remove('playing');
+}
+function hdlSkip() {
+  if (isPlaying) { stopPlay(); return; }
+  if (currentStep >= steps.length - 1) return;
+  startPlay();
+}
 ```
+
+Para applets con cola de pendientes (inserción de valores), ver la [interfaz estándar](#interfaz-de-control-estándar).
 
 ## Verificación
 
 - [ ] El applet ocupa todo el viewport del iframe sin scrollbars
 - [ ] Layout: header + main(tree + sidebar) + info
 - [ ] El árbol usa `flex: 1` para ocupar espacio sobrante
-- [ ] Controles a la derecha en la sidebar (⏮ ◀ ▶ ▶▶, Vel, leyenda)
-- [ ] La info (secuencia + paso) queda abajo del todo
-- [ ] SVG con `viewBox` que coincide con coordenadas de nodos/aristas
-- [ ] `R >= 28` para nodos visibles
-- [ ] Tres recorridos vía `?tipo=preorden|inorden|postorden`
-- [ ] `enter` (amarillo) → `process` (verde), retroceso implícito
-- [ ] Play automático con slider de velocidad (400–3000ms)
-- [ ] Atajos de teclado: ← → paso, Space play/pausa, Home inicio
-- [ ] Modo claro/oscuro vía `prefers-color-scheme`
+- [ ] Controles a la derecha en la sidebar siguiendo la interfaz estándar
+- [ ] Modo selector como botones (Insertar/Buscar), activo en azul
+- [ ] Input acepta valores separados por coma con ↵ hint
+- [ ] Botón "Vaciar árbol" para reiniciar
+- [ ] Separadores entre secciones de la sidebar
+- [ ] Navegación: ⏮ ◀ ▶ >> (>> cambia a ⏸ al reproducir)
+- [ ] Speed slider con etiqueta en p/s, solo afecta a >>
+- [ ] Cola de pendientes: se ingresan varios valores, se procesan uno por uno
+- [ ] La info (descripción + paso) queda abajo del todo
+- [ ] SVG con `viewBox` que coincide con coordenadas de nodos/aristas (si usa SVG)
+- [ ] Canvas con `cssVar()` para resolución de colores (si usa Canvas)
+- [ ] Play automático con slider de velocidad (400–3000ms, invertido 3400-valor)
+- [ ] Atajos de teclado: ← → paso, Space/End play/pausa, Home inicio
+- [ ] Archivos `_light.html` y `_dark.html` separados sin `@media`
 - [ ] `myst.yml` incluye `project.static_files: [_static/applets]`
 - [ ] `{iframe}` usa ruta absoluta `/applets/...` y `:height:` fijo
 - [ ] Placeholder PNG generado para PDF

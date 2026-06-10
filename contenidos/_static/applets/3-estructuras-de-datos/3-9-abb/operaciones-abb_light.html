@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Operaciones en ABB</title>
+<title>Árbol Binario de Búsqueda</title>
 <style>
 :root {
   --bg: #ffffff;
@@ -35,8 +35,8 @@
   --mode-active-text: #ffffff;
   --toggle-active-bg: #1d4ed8;
   --toggle-active-text: #ffffff;
+  --node-text: #1a1a2e;
 }
-
 .tree-edge{stroke:var(--border);stroke-width:2}
 .node-text{fill:var(--fg);font-family:monospace;font-size:16px;font-weight:700;text-anchor:middle;dominant-baseline:central;pointer-events:none}
 .node-circle{stroke-width:2.5}
@@ -62,7 +62,9 @@ body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,sa
 .modes button.active{background:var(--mode-active-bg);color:var(--mode-active-text);border-color:var(--mode-active-bg)}
 .modes button:hover:not(.active){background:var(--btn-hover)}
 .input-group{display:flex;flex-direction:column;gap:4px;font-size:12px}
-.input-group input{padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--fg);font-size:14px;width:100%;text-align:center}
+.input-row{display:flex;align-items:center;gap:4px}
+.input-row input{flex:1;padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--fg);font-size:14px;width:100%}
+.enter-hint{font-size:14px;color:var(--slot-stroke);flex-shrink:0}
 .toggle-group{display:flex;flex-direction:column;gap:3px;font-size:11px}
 .toggle-group .toggle-row{display:flex;gap:2px}
 .toggle-group button{flex:1;padding:3px 6px;border:1px solid var(--border);border-radius:4px;background:var(--btn-bg);color:var(--btn-text);font-size:11px;cursor:pointer;font-weight:600;transition:background .15s}
@@ -76,9 +78,10 @@ body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,sa
 .controls button:hover:not(:disabled){background:var(--btn-hover)}
 .controls button:active:not(:disabled){background:var(--btn-active)}
 .controls button:disabled{opacity:.4;cursor:default}
+.controls button.playing{background:var(--error-stroke);color:#fff;border-color:var(--error-stroke)}
+.controls button.playing:hover{filter:brightness(1.1)}
 .speed-wrap{display:flex;align-items:center;gap:3px;font-size:11px;flex:1 1 100%;justify-content:center;white-space:nowrap}
 .speed-wrap input[type=range]{width:48px;height:4px;accent-color:var(--highlight)}
-
 .legend{display:flex;flex-direction:column;gap:2px;font-size:10px;align-items:flex-start}
 .legend-item{display:flex;align-items:center;gap:4px}
 .legend-dot{width:10px;height:10px;border-radius:50%;border:2px solid;flex-shrink:0}
@@ -98,7 +101,7 @@ body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,sa
 </head>
 <body>
 <div class="applet">
-<div class="header">Operaciones en Árbol Binario de Búsqueda</div>
+<div class="header">Árbol Binario de Búsqueda</div>
 <div class="main">
 <div class="tree-wrap"><svg id="tree" viewBox="0 0 520 450" xmlns="http://www.w3.org/2000/svg"></svg></div>
 <div class="sidebar">
@@ -108,8 +111,11 @@ body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,sa
 <button class="mode-btn" data-mode="delete">Eliminar</button>
 </div>
 <div class="input-group">
-<label for="valInput">Valor:</label>
-<input type="number" id="valInput" value="100">
+<label for="valInput">Valor(es):</label>
+<div class="input-row">
+<input type="text" id="valInput" placeholder="ej: 10, 20, 30">
+<span class="enter-hint">↵</span>
+</div>
 <button id="btnClear" class="clear-btn">Vaciar árbol</button>
 </div>
 <div class="toggle-group" id="succPredToggle">
@@ -121,11 +127,15 @@ body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,sa
 </div>
 <div class="separator"></div>
 <div class="controls">
-<div class="speed-wrap">
-<label for="speed">Vel:</label>
-<input type="range" id="speed" min="400" max="3000" value="1500" step="100">
-<span id="speedLabel">0.5 p/s</span>
+<button id="btnFirst" title="Ir al inicio">⏮</button>
+<button id="btnPrev" title="Paso anterior">◀</button>
+<button id="btnNext" title="Paso siguiente">▶</button>
+<button id="btnSkip" title="Reproducir automático">>></button>
 </div>
+<div class="speed-wrap">
+<label for="speedSlider">Vel:</label>
+<input type="range" id="speedSlider" min="400" max="3000" value="1500" step="100">
+<span id="speedLabel">0.5 p/s</span>
 </div>
 <div class="separator"></div>
 <div class="legend">
@@ -162,13 +172,16 @@ var curStep=-1;
 var playing=false;
 var timer=null;
 var speedVal=1500;
-var opSnapshot=null;
-var opFinalTree=null;
+var pendingValues=[];
+var playTimer=null;
 
 var valInput=document.getElementById('valInput');
 var btnClear=document.getElementById('btnClear');
-
-var spdInput=document.getElementById('speed');
+var btnFirst=document.getElementById('btnFirst');
+var btnPrev=document.getElementById('btnPrev');
+var btnNext=document.getElementById('btnNext');
+var btnSkip=document.getElementById('btnSkip');
+var spdInput=document.getElementById('speedSlider');
 var spdLabel=document.getElementById('speedLabel');
 var stepLabel=document.getElementById('stepLabel');
 var msgDisp=document.getElementById('msgDisplay');
@@ -182,6 +195,7 @@ var succPredChoice='sucesor';
 
 modeBtns.forEach(function(b){
   b.addEventListener('click',function(){
+    if(playing)return;
     modeBtns.forEach(function(x){x.classList.remove('active');});
     b.classList.add('active');
     currentMode=b.dataset.mode;
@@ -598,27 +612,23 @@ function goTo(n){
   if(n>=steps.length)n=steps.length-1;
   curStep=n;
   render(curStep);
+  updateBtns();
 }
-function next(){if(curStep<steps.length-1)goTo(curStep+1);}
-function play(){
-  if(playing)return;
-  if(curStep>=steps.length-1)goTo(0);
-  playing=true;
-  function tick(){
-    if(!playing)return;
-    if(curStep<steps.length-1){next();timer=setTimeout(tick,speedVal);}
-    else stop();
-  }
-  timer=setTimeout(tick,speedVal);
+function goFirst(){goTo(0);}
+function goPrev(){if(curStep>0)goTo(curStep-1);}
+function goNext(){
+  if(curStep<steps.length-1){goTo(curStep+1);return;}
+  if(pendingValues.length>0){var val=pendingValues.shift();procIns(val);}
 }
-function stop(){
-  playing=false;
-  if(timer){clearTimeout(timer);timer=null;}
+function updateBtns(){
+  var atS=curStep<=0,atE=curStep>=steps.length-1,hasS=steps.length>0;
+  btnFirst.disabled=atS||!hasS||playing;
+  btnPrev.disabled=atS||!hasS||playing;
+  btnNext.disabled=(!hasS&&pendingValues.length===0)||(atE&&pendingValues.length===0)||playing;
+  btnSkip.disabled=pendingValues.length===0&&atE;
 }
-function execute(){
-  var val=parseInt(valInput.value);
-  if(isNaN(val))return;
-  stop();
+function procIns(val){
+  stopPlay();
   var mode=currentMode;
   var result=null;
   if(mode==='insert'){
@@ -636,25 +646,77 @@ function execute(){
       tree=cloneTree(lastStep.tree);
     }
   }
-  goTo(0);play();
+  goTo(0);
+  startPlay();
+}
+function parseAndEnq(inp){
+  var nums=inp.split(',').map(function(s){return s.trim()}).filter(function(s){return s.length>0}).map(function(s){return parseInt(s,10)}).filter(function(n){return Number.isInteger(n)&&n>0});
+  if(nums.length===0){msgDisp.textContent='⚠ Ingresá números enteros positivos separados por coma.';return;}
+  pendingValues.push.apply(pendingValues,nums);
+  valInput.value='';
+  msgDisp.textContent=nums.length+' valor'+(nums.length!==1?'es':'')+' encolado'+(nums.length!==1?'s':'')+'. Usá ▶ o >> para procesar'+(nums.length!==1?'los':'lo')+'.';
+  updateBtns();
+}
+function tick(){
+  if(!playing)return;
+  if(curStep>=steps.length-1){
+    if(pendingValues.length>0){var val=pendingValues.shift();procIns(val);playTimer=setTimeout(tick,speedVal);}
+    else{stopPlay();return;}
+  }
+  if(curStep<steps.length-1){goNext();playTimer=setTimeout(tick,speedVal);}
+  else stopPlay();
+}
+function startPlay(){
+  if(pendingValues.length===0&&curStep>=steps.length-1)return;
+  playing=true;
+  btnSkip.textContent='⏸';btnSkip.classList.add('playing');
+  updateBtns();
+  playTimer=setTimeout(tick,speedVal);
+}
+function stopPlay(){
+  playing=false;
+  if(playTimer){clearTimeout(playTimer);playTimer=null;}
+  btnSkip.textContent='>>';btnSkip.classList.remove('playing');
+  updateBtns();
+}
+function hdlSkip(){
+  if(playing){stopPlay();return;}
+  if(pendingValues.length===0&&curStep>=steps.length-1)return;
+  startPlay();
 }
 function clearTree(){
-  stop();
+  stopPlay();
   tree=null;
   steps=[];
   nextId=1;
+  pendingValues=[];
   goTo(-1);
+  render(-1);
+  updateBtns();
 }
 btnClear.addEventListener('click',clearTree);
+btnFirst.addEventListener('click',goFirst);
+btnPrev.addEventListener('click',goPrev);
+btnNext.addEventListener('click',goNext);
+btnSkip.addEventListener('click',hdlSkip);
 spdInput.addEventListener('input',function(){
   speedVal=3400-parseInt(spdInput.value);
   spdLabel.textContent=(1000/speedVal).toFixed(1)+' p/s';
-  if(playing){stop();play();}
+  if(playing){stopPlay();startPlay();}
 });
 valInput.addEventListener('keydown',function(e){
-  if(e.key==='Enter'){e.preventDefault();execute();}
+  if(e.target.tagName!=='INPUT')return;
+  if(e.key==='Enter'){e.preventDefault();parseAndEnq(valInput.value);}
+});
+document.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT')return;
+  if(e.key==='ArrowRight'){e.preventDefault();goNext();}
+  if(e.key==='ArrowLeft'){e.preventDefault();goPrev();}
+  if(e.key==='Home'){e.preventDefault();goFirst();}
+  if(e.key===' '||e.key==='End'){e.preventDefault();hdlSkip();}
 });
 render(-1);
+updateBtns();
 </script>
 </body>
 </html>

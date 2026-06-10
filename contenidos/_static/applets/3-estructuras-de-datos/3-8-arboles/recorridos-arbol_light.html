@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recorridos de Árbol Binario</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --fg: #1a1a2e;
+  --border: #d1d5db;
+  --btn-bg: #f3f4f6;
+  --btn-hover: #e5e7eb;
+  --btn-active: #d1d5db;
+  --btn-disabled: #e5e7eb;
+  --btn-text: #374151;
+  --node-num-fill: #ffe1e1;
+  --node-num-stroke: #e9967a;
+  --node-op-fill: #e1f5ff;
+  --node-op-stroke: #4682b4;
+  --node-enter-bg: #fff3cd;
+  --node-enter-stroke: #ffc107;
+  --node-done-bg: #d4edda;
+  --node-done-stroke: #28a745;
+  --highlight: #1d4ed8;
+  --mode-active-bg: #1d4ed8;
+  --mode-active-text: #ffffff;
+  --seq-done: #059669;
+  --seq-pending: #9ca3af;
+  --error-stroke: #e9967a;
+}
+.tree-edge{stroke:var(--border);stroke-width:2}
+.node-text{fill:var(--fg);font-family:monospace;font-size:16px;font-weight:700;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.node-circle.num{fill:var(--node-num-fill);stroke:var(--node-num-stroke);stroke-width:2.5}
+.node-circle.op{fill:var(--node-op-fill);stroke:var(--node-op-stroke);stroke-width:2.5}
+.node-circle.enter{fill:var(--node-enter-bg);stroke:var(--node-enter-stroke)}
+.node-circle.done{fill:var(--node-done-bg);stroke:var(--node-done-stroke)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+.applet{display:flex;flex-direction:column;padding:8px;gap:6px;width:100%;max-width:100%;margin:0 auto;flex:1;min-height:0;overflow:hidden}
+.header{font-size:14px;font-weight:700;text-align:center;padding:4px 12px;background:var(--btn-bg);border-radius:6px;border:1px solid var(--border);width:100%;flex-shrink:0}
+.main{display:flex;flex:1;min-height:0;gap:8px;width:100%;overflow:hidden}
+.tree-wrap{flex:1;min-width:0;display:flex;justify-content:center;align-items:center;overflow:hidden}
+.tree-wrap svg{width:100%;height:100%}
+.sidebar{display:flex;flex-direction:column;gap:8px;flex-shrink:0;width:auto;min-width:120px;justify-content:center}
+.modes{display:flex;flex-direction:column;gap:2px}
+.modes button{padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--btn-bg);color:var(--btn-text);font-size:11px;cursor:pointer;font-weight:600;transition:background .15s}
+.modes button.active{background:var(--mode-active-bg);color:var(--mode-active-text);border-color:var(--mode-active-bg)}
+.modes button:hover:not(.active){background:var(--btn-hover)}
+.separator{height:1px;background:var(--border);margin:2px 0}
+.controls{display:flex;flex-direction:row;gap:4px;flex-wrap:wrap;justify-content:center}
+.controls button{width:36px;height:30px;border:1px solid var(--border);border-radius:6px;background:var(--btn-bg);color:var(--btn-text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;padding:0}
+.controls button:hover:not(:disabled){background:var(--btn-hover)}
+.controls button:active:not(:disabled){background:var(--btn-active)}
+.controls button:disabled{opacity:.4;cursor:default}
+.controls button.playing{background:var(--error-stroke);color:#fff;border-color:var(--error-stroke)}
+.controls button.playing:hover{filter:brightness(1.1)}
+.speed-wrap{display:flex;align-items:center;gap:3px;font-size:11px;flex:1 1 100%;justify-content:center;white-space:nowrap}
+.speed-wrap input[type=range]{width:48px;height:4px;accent-color:var(--highlight)}
+.legend{display:flex;flex-direction:column;gap:3px;font-size:11px;align-items:flex-start}
+.legend-item{display:flex;align-items:center;gap:4px}
+.legend-dot{width:12px;height:12px;border-radius:50%;border:2px solid;flex-shrink:0}
+.legend-dot.num{border-color:var(--node-num-stroke);background:var(--node-num-fill)}
+.legend-dot.op{border-color:var(--node-op-stroke);background:var(--node-op-fill)}
+.legend-dot.enter{border-color:var(--node-enter-stroke);background:var(--node-enter-bg)}
+.legend-dot.done{border-color:var(--node-done-stroke);background:var(--node-done-bg)}
+.info{padding:6px 10px;border:1px solid var(--border);border-radius:6px;width:100%;display:flex;flex-wrap:wrap;gap:3px 12px;align-items:baseline;font-size:12px;flex-shrink:0}
+.info .seq{flex:1 1 100%;font-family:'Courier New',monospace;font-size:13px;min-height:1.3em;word-break:break-all}
+.info .seq .done{color:var(--seq-done);font-weight:700}
+.info .seq .pending{color:var(--seq-pending)}
+.info .meta{display:flex;gap:12px;flex-wrap:wrap}
+.info .meta span{white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="applet">
+<div class="header" id="header">Recorridos de Árbol Binario</div>
+<div class="main">
+<div class="tree-wrap"><svg id="tree" viewBox="0 0 520 380" xmlns="http://www.w3.org/2000/svg"></svg></div>
+<div class="sidebar">
+<div class="modes" id="modeSelector">
+<button class="mode-btn active" data-mode="preorden">Preorden</button>
+<button class="mode-btn" data-mode="inorden">Inorden</button>
+<button class="mode-btn" data-mode="postorden">Postorden</button>
+</div>
+<div class="separator"></div>
+<div class="controls">
+<button id="btnFirst" title="Ir al inicio">⏮</button>
+<button id="btnPrev" title="Paso anterior">◀</button>
+<button id="btnNext" title="Paso siguiente">▶</button>
+<button id="btnSkip" title="Reproducir automático">>></button>
+</div>
+<div class="speed-wrap">
+<label for="speedSlider">Vel:</label>
+<input type="range" id="speedSlider" min="400" max="3000" value="1500" step="100">
+<span id="speedLabel">0.5 p/s</span>
+</div>
+<div class="separator"></div>
+<div class="legend">
+<div class="legend-item"><span class="legend-dot num"></span><span class="legend-dot op"></span> No visitado</div>
+<div class="legend-item"><span class="legend-dot enter"></span> En proceso</div>
+<div class="legend-item"><span class="legend-dot done"></span> Procesado</div>
+</div>
+</div>
+</div>
+<div class="info">
+<div class="seq" id="seq"><span class="pending">[ ]</span></div>
+<div class="meta">
+<span id="stepLabel">Paso — / —</span>
+<span id="actionLabel">—</span>
+</div>
+</div>
+</div>
+<script>
+var TRAVERSALS={preorden:{label:'Preorden (Raíz → Izquierda → Derecha)',order:['+','a','*','-','b','c','d']},inorden:{label:'Inorden (Izquierda → Raíz → Derecha)',order:['a','+','b','-','c','*','d']},postorden:{label:'Postorden (Izquierda → Derecha → Raíz)',order:['a','b','c','-','d','*','+']}};
+
+var tree={id:'+',val:'+',type:'op',x:260,y:50,left:{id:'a',val:'a',type:'num',x:100,y:140,left:null,right:null},right:{id:'*',val:'*',type:'op',x:400,y:140,left:{id:'-',val:'−',type:'op',x:280,y:230,left:{id:'b',val:'b',type:'num',x:210,y:320,left:null,right:null},right:{id:'c',val:'c',type:'num',x:350,y:320,left:null,right:null}},right:{id:'d',val:'d',type:'num',x:460,y:230,left:null,right:null}}};
+var edges=[{x1:260,y1:50,x2:100,y2:140},{x1:260,y1:50,x2:400,y2:140},{x1:400,y1:140,x2:280,y2:230},{x1:400,y1:140,x2:460,y2:230},{x1:280,y1:230,x2:210,y2:320},{x1:280,y1:230,x2:350,y2:320}];
+
+var R=28,SVG_NS='http://www.w3.org/2000/svg',svg=document.getElementById('tree');
+var allNodes=[];
+(function cn(n){if(!n)return;allNodes.push(n);cn(n.left);cn(n.right);})(tree);
+var nodeById={};allNodes.forEach(function(n){nodeById[n.id]=n;});
+
+edges.forEach(function(e){
+  var l=document.createElementNS(SVG_NS,'line');
+  l.setAttribute('x1',e.x1);l.setAttribute('y1',e.y1);
+  l.setAttribute('x2',e.x2);l.setAttribute('y2',e.y2);
+  l.classList.add('tree-edge');svg.appendChild(l);
+});
+allNodes.forEach(function(n){
+  var g=document.createElementNS(SVG_NS,'g');g.id='node-'+n.id;
+  var c=document.createElementNS(SVG_NS,'circle');
+  c.setAttribute('cx',n.x);c.setAttribute('cy',n.y);c.setAttribute('r',R);
+  c.classList.add('node-circle',n.type==='op'?'op':'num');g.appendChild(c);
+  var t=document.createElementNS(SVG_NS,'text');
+  t.setAttribute('x',n.x);t.setAttribute('y',n.y);
+  t.classList.add('node-text');t.textContent=n.val;g.appendChild(t);
+  svg.appendChild(g);
+});
+
+var currentMode='preorden';
+var steps=[];
+var curStep=-1;
+var playing=false;
+var timer=null;
+var speedVal=1500;
+
+var headerEl=document.getElementById('header');
+var btnFirst=document.getElementById('btnFirst');
+var btnPrev=document.getElementById('btnPrev');
+var btnNext=document.getElementById('btnNext');
+var btnSkip=document.getElementById('btnSkip');
+var spdInput=document.getElementById('speedSlider');
+var spdLabel=document.getElementById('speedLabel');
+var stepLabel=document.getElementById('stepLabel');
+var actionLabel=document.getElementById('actionLabel');
+var seqEl=document.getElementById('seq');
+var modeBtns=document.querySelectorAll('#modeSelector .mode-btn');
+
+function genSteps(node,type){
+  var raw=[];
+  (function gs(n){
+    if(!n)return;
+    raw.push({action:'enter',node:n});
+    if(type==='preorden')raw.push({action:'process',node:n});
+    gs(n.left);
+    if(type==='inorden'){raw.push({action:'enter',node:n});raw.push({action:'process',node:n});}
+    gs(n.right);
+    if(type==='postorden'){raw.push({action:'enter',node:n});raw.push({action:'process',node:n});}
+  })(node);
+  return raw;
+}
+
+function buildSteps(root,type){
+  var raw=genSteps(root,type);
+  var result=[];var processed={};var seq=[];var currentId=null;
+  raw.forEach(function(s){
+    if(s.action==='enter'){currentId=s.node.id;}
+    else if(s.action==='process'){processed[s.node.id]=true;seq.push(s.node.val);currentId=s.node.id;}
+    result.push({currentNode:currentId,processed:Object.assign({},processed),seq:seq.slice(),node:s.node,action:s.action});
+  });
+  result.push({currentNode:null,processed:Object.assign({},processed),seq:seq.slice(),node:null,action:'done'});
+  return result;
+}
+
+function setMode(mode){
+  if(mode===currentMode)return;
+  if(playing)stopPlay();
+  currentMode=mode;
+  headerEl.textContent=TRAVERSALS[mode].label;
+  steps=buildSteps(tree,mode);
+  curStep=-1;
+  goTo(0);
+  updateBtns();
+}
+
+modeBtns.forEach(function(b){
+  b.addEventListener('click',function(){
+    if(playing)return;
+    modeBtns.forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    setMode(b.dataset.mode);
+  });
+});
+
+function render(idx){
+  var data=(idx>=0&&idx<steps.length)?steps[idx]:null;
+  var seqArr=data?data.seq:[];
+  var processed=data?data.processed:{};
+  var currId=data?data.currentNode:null;
+  allNodes.forEach(function(n){
+    var g=document.getElementById('node-'+n.id);
+    var circle=g.querySelector('circle');
+    if(processed[n.id]){circle.classList.add('done');circle.classList.remove('enter','idle');}
+    else if(n.id===currId){circle.classList.add('enter');circle.classList.remove('done','idle');}
+    else{circle.classList.add('idle');circle.classList.remove('enter','done');}
+  });
+  if(seqArr.length===0){seqEl.innerHTML='<span class="pending">[ ]</span>';}
+  else{
+    var total=TRAVERSALS[currentMode].order;
+    var html='';
+    total.forEach(function(v,i){
+      html+='<span class="'+(i<seqArr.length?'done':'pending')+'">'+v+'</span>';
+      if(i<total.length-1)html+=' ';
+    });
+    seqEl.innerHTML='[ '+html+' ]';
+  }
+  if(idx<0||idx>=steps.length){
+    stepLabel.textContent='Paso — / —';
+    actionLabel.textContent='—';
+  }else if(data&&data.action==='done'){
+    stepLabel.textContent='Paso '+(idx+1)+' / '+steps.length;
+    actionLabel.textContent='✓ Recorrido completo';
+  }else if(data){
+    stepLabel.textContent='Paso '+(idx+1)+' / '+steps.length;
+    actionLabel.textContent=data.action==='enter'?'Entrar a '+data.node.val:'Procesar '+data.node.val;
+  }
+}
+
+function goTo(n){
+  if(n<0)n=0;
+  if(n>=steps.length)n=steps.length-1;
+  curStep=n;
+  render(curStep);
+  updateBtns();
+}
+function goFirst(){goTo(0);}
+function goPrev(){if(curStep>0)goTo(curStep-1);}
+function goNext(){if(curStep<steps.length-1)goTo(curStep+1);}
+function updateBtns(){
+  var atS=curStep<=0,atE=curStep>=steps.length-1,hasS=steps.length>0;
+  btnFirst.disabled=atS||!hasS||playing;
+  btnPrev.disabled=atS||!hasS||playing;
+  btnNext.disabled=atE||!hasS||playing;
+  btnSkip.disabled=atE;
+}
+function tick(){
+  if(!playing)return;
+  if(curStep<steps.length-1){goNext();timer=setTimeout(tick,speedVal);}
+  else stopPlay();
+}
+function startPlay(){
+  if(curStep>=steps.length-1)return;
+  playing=true;
+  btnSkip.textContent='⏸';btnSkip.classList.add('playing');
+  updateBtns();
+  timer=setTimeout(tick,speedVal);
+}
+function stopPlay(){
+  playing=false;
+  if(timer){clearTimeout(timer);timer=null;}
+  btnSkip.textContent='>>';btnSkip.classList.remove('playing');
+  updateBtns();
+}
+function hdlSkip(){
+  if(playing){stopPlay();return;}
+  if(curStep>=steps.length-1)return;
+  startPlay();
+}
+btnFirst.addEventListener('click',goFirst);
+btnPrev.addEventListener('click',goPrev);
+btnNext.addEventListener('click',goNext);
+btnSkip.addEventListener('click',hdlSkip);
+spdInput.addEventListener('input',function(){
+  speedVal=3400-parseInt(spdInput.value);
+  spdLabel.textContent=(1000/speedVal).toFixed(1)+' p/s';
+  if(playing){stopPlay();startPlay();}
+});
+document.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT')return;
+  if(e.key==='ArrowRight'){e.preventDefault();goNext();}
+  if(e.key==='ArrowLeft'){e.preventDefault();goPrev();}
+  if(e.key==='Home'){e.preventDefault();goFirst();}
+  if(e.key===' '||e.key==='End'){e.preventDefault();hdlSkip();}
+});
+steps=buildSteps(tree,currentMode);
+goTo(0);
+updateBtns();
+</script>
+</body>
+</html>

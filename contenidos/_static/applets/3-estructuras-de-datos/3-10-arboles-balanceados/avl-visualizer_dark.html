@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visualizador AVL</title>
+<style>
+:root{--bg:#1a1b2e;--fg:#e0e0e0;--border:#374151;--btn-bg:#2d3748;--btn-hover:#374151;--btn-active:#4a5568;--btn-disabled:#1f2937;--btn-text:#e0e0e0;--btn-primary:#60a5fa;--btn-primary-hover:#3b82f6;--node-fill:#2d3748;--node-stroke:#63b3ed;--insert-fill:#1e3a2f;--insert-stroke:#48c774;--highlight-fill:#5a4a00;--highlight-stroke:#ffc107;--slot-stroke:#6b7280;--highlight:#60a5fa;--error-fill:#4a5568;--error-stroke:#fc8181;--found-fill:#1e3a2f;--found-stroke:#48c774;--cmp-done:#48c774;--bal-fill:#2d3748;--bal-stroke:#9ca3af;--rot-fill:#5a4a00;--rot-stroke:#fd7e14;--don-fill:#1e3a2f;--don-stroke:#48c774;--node-text:#e0e0e0;--fb-ok:#48c774;--fb-bad:#fc8181;--mode-active-bg:#60a5fa;--mode-active-text:#1a1b2e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+.applet{display:flex;flex-direction:column;padding:8px;gap:6px;width:100%;max-width:100%;flex:1;min-height:0;overflow:hidden}
+.header{font-size:14px;font-weight:700;text-align:center;padding:4px 12px;background:var(--btn-bg);border-radius:6px;border:1px solid var(--border);width:100%;flex-shrink:0}
+.main{display:flex;flex:1;min-height:0;gap:8px;width:100%;overflow:hidden}
+.tree-wrap{flex:1;min-width:0;display:flex;justify-content:center;align-items:center;overflow:hidden}
+.tree-wrap canvas{width:100%;height:100%}
+.sidebar{display:flex;flex-direction:column;gap:6px;flex-shrink:0;width:auto;min-width:150px;justify-content:flex-start}
+.modes{display:flex;gap:2px}
+.modes button{flex:1;padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--btn-bg);color:var(--btn-text);font-size:11px;cursor:pointer;font-weight:600;transition:background .15s}
+.modes button.active{background:var(--mode-active-bg);color:var(--mode-active-text);border-color:var(--mode-active-bg)}
+.modes button:hover:not(.active){background:var(--btn-hover)}
+.input-group{display:flex;flex-direction:column;gap:4px;font-size:12px}
+.input-row{display:flex;align-items:center;gap:4px}
+.input-row input{flex:1;padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--fg);font-size:14px;width:100%}
+.enter-hint{font-size:14px;color:var(--slot-stroke);flex-shrink:0}
+.clear-btn{width:100%;padding:4px 8px;border:1px solid var(--error-stroke);border-radius:4px;background:transparent;color:var(--error-stroke);font-size:11px;cursor:pointer;font-weight:600;transition:background .15s}
+.clear-btn:hover{background:var(--error-fill)}
+.separator{height:1px;background:var(--border);margin:2px 0}
+.controls{display:flex;flex-direction:row;gap:4px;flex-wrap:wrap;justify-content:center}
+.controls button{width:36px;height:30px;border:1px solid var(--border);border-radius:6px;background:var(--btn-bg);color:var(--btn-text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;padding:0}
+.controls button:hover:not(:disabled){background:var(--btn-hover)}
+.controls button:active:not(:disabled){background:var(--btn-active)}
+.controls button:disabled{opacity:.4;cursor:default}
+.controls button.playing{background:var(--error-stroke);color:#fff;border-color:var(--error-stroke)}
+.controls button.playing:hover{filter:brightness(1.1)}
+.speed-wrap{display:flex;align-items:center;gap:3px;font-size:11px;flex:1 1 100%;justify-content:center;white-space:nowrap}
+.speed-wrap input[type=range]{width:48px;height:4px;accent-color:var(--highlight)}
+.legend{display:flex;flex-direction:column;gap:2px;font-size:10px;align-items:flex-start}
+.legend-item{display:flex;align-items:center;gap:4px}
+.legend-dot{width:10px;height:10px;border-radius:50%;border:2px solid;flex-shrink:0}
+.legend-dot.idle{border-color:var(--node-stroke);background:var(--node-fill)}
+.legend-dot.highlight{border-color:var(--highlight-stroke);background:var(--highlight-fill)}
+.legend-dot.inserted{border-color:var(--insert-stroke);background:var(--insert-fill)}
+.legend-dot.error{border-color:var(--error-stroke);background:var(--error-fill)}
+.legend-dot.rot{border-color:var(--rot-stroke);background:var(--rot-fill)}
+.info{padding:6px 10px;border:1px solid var(--border);border-radius:6px;width:100%;display:flex;flex-wrap:wrap;gap:3px 12px;align-items:baseline;font-size:12px;flex-shrink:0}
+.info .path{flex:1 1 100%;font-family:'Courier New',monospace;font-size:13px;min-height:1.3em;word-break:break-all}
+.info .meta{display:flex;gap:12px;flex-wrap:wrap}
+.info .meta span{white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="applet">
+<div class="header">Árbol AVL</div>
+<div class="main">
+<div class="tree-wrap"><canvas id="treeCanvas"></canvas></div>
+<div class="sidebar">
+<div class="modes" id="modeSelector">
+<button class="mode-btn active" data-mode="insert">Insertar</button>
+<button class="mode-btn" data-mode="search">Buscar</button>
+</div>
+<div class="input-group">
+<label for="valInput">Valor:</label>
+<div class="input-row">
+<input type="text" id="valInput" placeholder="Ej: 10,20,30" autofocus>
+<span class="enter-hint">↵</span>
+</div>
+<button id="btnClear" class="clear-btn">Vaciar árbol</button>
+</div>
+<div class="separator"></div>
+<div class="controls">
+<button id="btnFirst" title="Ir al inicio">⏮</button>
+<button id="btnPrev" title="Paso anterior">◀</button>
+<button id="btnNext" title="Paso siguiente">▶</button>
+<button id="btnSkip" title="Reproducir automático">>></button>
+</div>
+<div class="speed-wrap">
+<label for="speedSlider">Vel:</label>
+<input type="range" id="speedSlider" min="400" max="3000" value="1500" step="100">
+<span id="speedLabel">0.5 p/s</span>
+</div>
+<div class="separator"></div>
+<div class="legend">
+<div class="legend-item"><span class="legend-dot idle"></span> No visitado</div>
+<div class="legend-item"><span class="legend-dot highlight"></span> Comparando</div>
+<div class="legend-item"><span class="legend-dot inserted"></span> Insertado</div>
+<div class="legend-item"><span class="legend-dot error"></span> Desbalance</div>
+<div class="legend-item"><span class="legend-dot rot"></span> Rotando</div>
+</div>
+</div>
+</div>
+<div class="info">
+<div class="path" id="desc">Árbol vacío. Elegí un modo e ingresá valores.</div>
+<div class="meta">
+<span id="stepCounter">Paso — / —</span>
+<span id="treeInfo">—</span>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var canvas=document.getElementById('treeCanvas');
+var ctx=canvas.getContext('2d');
+var descEl=document.getElementById('desc');
+var stepCounterEl=document.getElementById('stepCounter');
+var treeInfoEl=document.getElementById('treeInfo');
+var valInput=document.getElementById('valInput');
+var btnClear=document.getElementById('btnClear');
+var btnFirst=document.getElementById('btnFirst');
+var btnPrev=document.getElementById('btnPrev');
+var btnNext=document.getElementById('btnNext');
+var btnSkip=document.getElementById('btnSkip');
+var speedSlider=document.getElementById('speedSlider');
+var speedLabel=document.getElementById('speedLabel');
+var modeBtns=document.querySelectorAll('#modeSelector button');
+
+var currentMode='insert';
+var cssVar=function(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()};
+var nodeIdCounter=0;
+var root=null;
+var steps=[];
+var currentStep=-1;
+var pendingValues=[];
+var isPlaying=false;
+var playTimer=null;
+var speedVal=1900;
+
+var NODE_R=18;
+var LEVEL_H=65;
+
+modeBtns.forEach(function(b){
+  b.addEventListener('click',function(){
+    if(isPlaying)return;
+    modeBtns.forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    currentMode=b.dataset.mode;
+    valInput.placeholder=currentMode==='insert'?'Ej: 10,20,30':'Ej: 10';
+    valInput.focus();
+  });
+});
+
+function Node(val){
+  this.val=val;
+  this.left=null;
+  this.right=null;
+  this.height=1;
+  this.id=nodeIdCounter++;
+  this.px=0;
+  this.py=0;
+}
+
+function getH(n){return n?n.height:0}
+function getB(n){return n?getH(n.left)-getH(n.right):0}
+function updH(n){n.height=1+Math.max(getH(n.left),getH(n.right))}
+
+function rotR(y){
+  var x=y.left;if(!x)return y;
+  var T2=x.right;x.right=y;y.left=T2;
+  updH(y);updH(x);return x;
+}
+function rotL(x){
+  var y=x.right;if(!y)return x;
+  var T2=y.left;y.left=x;x.right=T2;
+  updH(x);updH(y);return y;
+}
+function cloneT(n){
+  if(!n)return null;
+  var c=new Node(n.val);c.height=n.height;c.id=n.id;
+  c.left=cloneT(n.left);c.right=cloneT(n.right);
+  return c;
+}
+
+function genInsSteps(curRoot,val){
+  var out=[];
+  var localRoot=curRoot?cloneT(curRoot):null;
+
+  // depth limit check
+  if(localRoot){
+    var exceeds=false,limitNode=null;
+    (function walk(n,lvl){
+      if(val===n.val)return;
+      if(lvl>=4){exceeds=true;if(val<n.val&&!n.left||val>n.val&&!n.right)limitNode=n;return;}
+      if(val<n.val){if(n.left)walk(n.left,lvl+1);}
+      else{if(n.right)walk(n.right,lvl+1);}
+    })(localRoot,1);
+    if(exceeds){
+      var hl=limitNode?[{id:limitNode.id,t:'unb'}]:[];
+      out.push({desc:'⚠ El árbol no puede superar los 4 niveles de profundidad. '+val+' no se insertó.',tree:cloneT(localRoot),hl:hl,bf:[],done:true});
+      return{steps:out,finalRoot:localRoot};
+    }
+  }
+
+  function snap(){return localRoot?cloneT(localRoot):null}
+
+  function ins(node,parent,dir){
+    if(!node){
+      var nn=new Node(val);
+      if(!parent){
+        localRoot=nn;
+        out.push({desc:'Insertando '+val+' como raíz',tree:cloneT(nn),hl:[{id:nn.id,t:'ins'}],bf:[],done:false});
+        return nn;
+      }
+      out.push({desc:'Insertando '+val+' como hijo '+(dir==='left'?'izquierdo':'derecho')+' de '+parent.val,tree:snap(),hl:[{id:nn.id,t:'ins'},{id:parent.id,t:'par'}],bf:[],done:false});
+      return nn;
+    }
+    if(val===node.val){
+      out.push({desc:'El valor '+val+' ya existe',tree:snap(),hl:[],bf:[],done:true});
+      return node;
+    }
+    var cmpDir=val<node.val?'izquierda':'derecha';
+    out.push({desc:'Comparando '+val+' con '+node.val+': va a la '+cmpDir,tree:snap(),hl:[{id:node.id,t:'cmp'}],bf:[],done:false});
+    if(val<node.val)node.left=ins(node.left,node,'left');
+    else node.right=ins(node.right,node,'right');
+    updH(node);
+    var fb=getB(node);
+    out.push({desc:'Actualizando '+node.val+': altura='+node.height+', fb='+(fb>0?'+':'')+fb,tree:snap(),hl:[{id:node.id,t:'bal'}],bf:[{id:node.id,fb:fb}],done:false});
+
+    if(fb>1){
+      if(val<node.left.val){
+        var lc=node.left,subR=lc.right;
+        var reloc=subR?' El subárbol derecho de '+lc.val+' pasa a ser hijo izquierdo de '+node.val+'.':'.';
+        out.push({desc:'⚠ Desbalance en '+node.val+' (fb=+'+fb+'). Rotación simple derecha: '+lc.val+' sube.'+reloc+' '+node.val+' pasa a ser hijo derecho de '+lc.val,tree:snap(),hl:[{id:node.id,t:'unb'},{id:lc.id,t:'rot'}],bf:[{id:node.id,fb:fb}],done:false});
+        var ns=rotR(node);
+        if(parent)parent[dir]=ns;else localRoot=ns;
+        out.push({desc:'✓ Rotación simple derecha completa. '+ns.val+' es raíz del subárbol, '+ns.right.val+' es su hijo derecho',tree:snap(),hl:[{id:ns.id,t:'don'}],bf:[{id:ns.id,fb:getB(ns)}],done:false});
+        return ns;
+      }else{
+        var lc=node.left,mid=lc.right,midL=mid?mid.left:null;
+        var s1e=midL?' El subárbol izquierdo de '+mid.val+' pasa a ser hijo derecho de '+lc.val+'.':'.';
+        out.push({desc:'⚠ Desbalance en '+node.val+' (fb=+'+fb+'). Rotación doble IZQ-DER — Paso 1: rotación simple izquierda de '+lc.val+'. '+mid.val+' sube, '+lc.val+' pasa a ser hijo izquierdo de '+mid.val+s1e,tree:snap(),hl:[{id:lc.id,t:'rot'}],bf:[{id:node.id,fb:fb}],done:false});
+        node.left=rotL(lc);
+        var nL=node.left,nLR=nL?nL.right:null;
+        var s2e=nLR?' El subárbol derecho de '+nL.val+' pasa a ser hijo izquierdo de '+node.val+'.':'.';
+        out.push({desc:'Paso 1 completo. Paso 2: rotación simple derecha de '+node.val+': '+nL.val+' sube.'+s2e+' '+node.val+' pasa a ser hijo derecho de '+nL.val,tree:snap(),hl:[{id:node.id,t:'rot'}],bf:[],done:false});
+        var ns=rotR(node);
+        if(parent)parent[dir]=ns;else localRoot=ns;
+        out.push({desc:'✓ Rotación doble IZQ-DER completa. '+ns.val+' es la nueva raíz del subárbol',tree:snap(),hl:[{id:ns.id,t:'don'}],bf:[{id:ns.id,fb:getB(ns)}],done:false});
+        return ns;
+      }
+    }else if(fb<-1){
+      if(val>node.right.val){
+        var rc=node.right,subL=rc.left;
+        var reloc=subL?' El subárbol izquierdo de '+rc.val+' pasa a ser hijo derecho de '+node.val+'.':'.';
+        out.push({desc:'⚠ Desbalance en '+node.val+' (fb='+fb+'). Rotación simple izquierda: '+rc.val+' sube.'+reloc+' '+node.val+' pasa a ser hijo izquierdo de '+rc.val,tree:snap(),hl:[{id:node.id,t:'unb'},{id:rc.id,t:'rot'}],bf:[{id:node.id,fb:fb}],done:false});
+        var ns=rotL(node);
+        if(parent)parent[dir]=ns;else localRoot=ns;
+        out.push({desc:'✓ Rotación simple izquierda completa. '+ns.val+' es raíz del subárbol, '+ns.left.val+' es su hijo izquierdo',tree:snap(),hl:[{id:ns.id,t:'don'}],bf:[{id:ns.id,fb:getB(ns)}],done:false});
+        return ns;
+      }else{
+        var rc=node.right,mid=rc.left,midR=mid?mid.right:null;
+        var s1e=midR?' El subárbol derecho de '+mid.val+' pasa a ser hijo izquierdo de '+rc.val+'.':'.';
+        out.push({desc:'⚠ Desbalance en '+node.val+' (fb='+fb+'). Rotación doble DER-IZQ — Paso 1: rotación simple derecha de '+rc.val+'. '+mid.val+' sube, '+rc.val+' pasa a ser hijo derecho de '+mid.val+s1e,tree:snap(),hl:[{id:rc.id,t:'rot'}],bf:[{id:node.id,fb:fb}],done:false});
+        node.right=rotR(rc);
+        var nR=node.right,nRL=nR?nR.left:null;
+        var s2e=nRL?' El subárbol izquierdo de '+nR.val+' pasa a ser hijo derecho de '+node.val+'.':'.';
+        out.push({desc:'Paso 1 completo. Paso 2: rotación simple izquierda de '+node.val+': '+nR.val+' sube.'+s2e+' '+node.val+' pasa a ser hijo izquierdo de '+nR.val,tree:snap(),hl:[{id:node.id,t:'rot'}],bf:[],done:false});
+        var ns=rotL(node);
+        if(parent)parent[dir]=ns;else localRoot=ns;
+        out.push({desc:'✓ Rotación doble DER-IZQ completa. '+ns.val+' es la nueva raíz del subárbol',tree:snap(),hl:[{id:ns.id,t:'don'}],bf:[{id:ns.id,fb:getB(ns)}],done:false});
+        return ns;
+      }
+    }
+    if(fb===0)out.push({desc:node.val+' queda con fb=0, altura no cambia → detenemos ascenso',tree:snap(),hl:[{id:node.id,t:'bal'}],bf:[{id:node.id,fb:fb}],done:false});
+    return node;
+  }
+
+  if(!localRoot){
+    var nn=new Node(val);localRoot=nn;
+    out.push({desc:'Insertando '+val+' como raíz',tree:cloneT(nn),hl:[{id:nn.id,t:'ins'}],bf:[],done:false});
+  }else localRoot=ins(localRoot,null,null);
+  if(out.length>0)out[out.length-1].done=true;
+  return{steps:out,finalRoot:localRoot};
+}
+
+function genSearchSteps(curRoot,val){
+  var out=[];
+  var node=curRoot;
+  while(node){
+    out.push({desc:'Buscando '+val+': comparando con '+node.val,tree:cloneT(curRoot),hl:[{id:node.id,t:'cmp'}],bf:[],done:false});
+    if(val===node.val){
+      out.push({desc:'✓ '+val+' encontrado en el árbol',tree:cloneT(curRoot),hl:[{id:node.id,t:'don'}],bf:[],done:true});
+      return out;
+    }
+    node=val<node.val?node.left:node.right;
+  }
+  out.push({desc:'✗ '+val+' no se encuentra en el árbol',tree:cloneT(curRoot),hl:[],bf:[],done:true});
+  return out;
+}
+
+function resizeCanvas(){
+  var rect=canvas.parentElement.getBoundingClientRect();
+  var dpr=window.devicePixelRatio||1;
+  canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;
+  canvas.style.width=rect.width+'px';canvas.style.height=rect.height+'px';
+  canvas._w=rect.width;canvas._h=rect.height;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+}
+
+function countN(n){return n?1+countN(n.left)+countN(n.right):0}
+
+function layL(n,d,p){
+  if(!n)return;
+  layL(n.left,d+1,p);n._in=p.c++;n._dep=d;layL(n.right,d+1,p);
+}
+function layT(tree,w,h){
+  if(!tree)return;
+  var total=countN(tree);if(!total)return;
+  layL(tree,0,{c:0});
+  var mx=30,my=30,xR=w-2*mx;
+  var mD=function md(n){return n?1+Math.max(md(n.left),md(n.right)):0}(tree);
+  var sY=Math.min(LEVEL_H,(h-2*my)/Math.max(mD,1));
+  (function pn(n){
+    if(!n)return;
+    n.px=mx+(total>1?(n._in/(total-1))*xR:w/2-mx);
+    n.py=my+n._dep*sY;
+    pn(n.left);pn(n.right);
+  })(tree);
+}
+
+function drawTree(tree,hl,bfA){
+  var w=canvas._w,h=canvas._h;
+  ctx.clearRect(0,0,w,h);
+  if(!tree)return;
+  layT(tree,w,h);
+  var hlM={};if(hl)hl.forEach(function(h){hlM[h.id]=h.t});
+  var bfM={};if(bfA)bfA.forEach(function(b){bfM[b.id]=b.fb});
+
+  (function drE(n){
+    if(!n)return;
+    if(n.left){
+      ctx.beginPath();ctx.moveTo(n.px,n.py);ctx.lineTo(n.left.px,n.left.py);
+      ctx.strokeStyle=cssVar('--border');ctx.lineWidth=2;ctx.stroke();
+      drE(n.left);
+    }
+    if(n.right){
+      ctx.beginPath();ctx.moveTo(n.px,n.py);ctx.lineTo(n.right.px,n.right.py);
+      ctx.strokeStyle=cssVar('--border');ctx.lineWidth=2;ctx.stroke();
+      drE(n.right);
+    }
+  })(tree);
+
+  var clr={
+    idle:{fill:cssVar('--node-fill'),stroke:cssVar('--node-stroke')},
+    cmp:{fill:cssVar('--highlight-fill'),stroke:cssVar('--highlight-stroke')},
+    par:{fill:cssVar('--highlight-fill'),stroke:cssVar('--highlight-stroke')},
+    ins:{fill:cssVar('--insert-fill'),stroke:cssVar('--insert-stroke')},
+    bal:{fill:cssVar('--bal-fill'),stroke:cssVar('--bal-stroke')},
+    unb:{fill:cssVar('--error-fill'),stroke:cssVar('--error-stroke')},
+    rot:{fill:cssVar('--rot-fill'),stroke:cssVar('--rot-stroke')},
+    don:{fill:cssVar('--don-fill'),stroke:cssVar('--don-stroke')}
+  };
+
+  (function drN(n){
+    if(!n)return;
+    var t=hlM[n.id]||'idle',c=clr[t]||clr.idle;
+    ctx.beginPath();ctx.arc(n.px,n.py,NODE_R,0,Math.PI*2);
+    ctx.fillStyle=c.fill;ctx.fill();
+    ctx.strokeStyle=c.stroke;ctx.lineWidth=t==='idle'?2:3;ctx.stroke();
+    ctx.fillStyle=cssVar('--node-text');
+    ctx.font='bold 14px monospace';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(n.val,n.px,n.py);
+    var fb=bfM[n.id];
+    if(fb!==undefined){
+      ctx.font='11px system-ui,sans-serif';
+      ctx.fillStyle=Math.abs(fb)>1?cssVar('--fb-bad'):cssVar('--fb-ok');
+      ctx.textAlign='left';ctx.textBaseline='bottom';
+      ctx.fillText('fb='+(fb>0?'+':'')+fb,n.px+NODE_R+4,n.py-NODE_R+14);
+    }
+    drN(n.left);drN(n.right);
+  })(tree);
+}
+
+function renderStep(idx){
+  if(idx<0||idx>=steps.length){
+    if(idx===-1&&steps.length===0){
+      ctx.clearRect(0,0,canvas._w||400,canvas._h||300);
+      descEl.textContent='Árbol vacío. Elegí un modo e ingresá valores.';
+      stepCounterEl.textContent='Paso — / —';
+      treeInfoEl.textContent='—';
+    }
+    updateBtns();return;
+  }
+  var s=steps[idx];
+  drawTree(s.tree,s.hl,s.bf);
+  descEl.textContent=s.desc;
+  stepCounterEl.textContent='Paso '+(idx+1)+' / '+steps.length;
+  var total=s.tree?countN(s.tree):0;
+  var h=s.tree?s.tree.height:0;
+  treeInfoEl.textContent=total+' nodo'+(total!==1?'s':'')+', altura '+h;
+  updateBtns();
+}
+
+function updateBtns(){
+  var atS=currentStep<=0,atE=currentStep>=steps.length-1,hasS=steps.length>0;
+  btnFirst.disabled=atS||!hasS||isPlaying;
+  btnPrev.disabled=atS||!hasS||isPlaying;
+  btnNext.disabled=(!hasS&&pendingValues.length===0)||(atE&&pendingValues.length===0)||isPlaying;
+  btnSkip.disabled=pendingValues.length===0&&atE;
+}
+function goTo(n){
+  if(n<0)n=0;if(n>=steps.length)n=steps.length-1;
+  currentStep=n;renderStep(currentStep);
+}
+function goNext(){if(currentStep<steps.length-1){goTo(currentStep+1);return true}return false}
+function goPrev(){if(currentStep>0)goTo(currentStep-1)}
+function goFirst(){goTo(0)}
+function procIns(val){
+  var curRoot=steps.length>0?steps[steps.length-1].tree:null;
+  var r=genInsSteps(curRoot,val);
+  r.steps.forEach(function(s){s._val=val});
+  steps.push.apply(steps,r.steps);
+}
+function hdlNext(){
+  if(isPlaying)return;
+  if(currentStep<steps.length-1)goNext();
+  else if(pendingValues.length>0){
+    var val=pendingValues.shift();procIns(val);
+    if(currentStep<0)goTo(0);else goNext();
+  }
+}
+function tick(){
+  if(!isPlaying)return;
+  if(currentStep>=steps.length-1){
+    if(pendingValues.length>0){var val=pendingValues.shift();procIns(val);}
+    else{stopPlay();return;}
+  }
+  if(currentStep<steps.length-1){goNext();playTimer=setTimeout(tick,speedVal);}
+  else stopPlay();
+}
+function startPlay(){
+  if(currentStep>=steps.length-1&&pendingValues.length===0)return;
+  isPlaying=true;
+  btnSkip.textContent='⏸';btnSkip.classList.add('playing');
+  updateBtns();
+  playTimer=setTimeout(tick,speedVal);
+}
+function stopPlay(){
+  isPlaying=false;
+  if(playTimer){clearTimeout(playTimer);playTimer=null;}
+  btnSkip.textContent='>>';btnSkip.classList.remove('playing');
+  updateBtns();
+}
+function hdlSkip(){
+  if(isPlaying){stopPlay();return;}
+  if(currentStep>=steps.length-1&&pendingValues.length===0)return;
+  startPlay();
+}
+function parseAndEnq(inp){
+  var nums=inp.split(',').map(function(s){return s.trim()}).filter(function(s){return s.length>0}).map(function(s){return parseInt(s,10)}).filter(function(n){return Number.isInteger(n)&&n>0});
+  if(nums.length===0){descEl.textContent='⚠ Ingresá números enteros positivos separados por coma.';return;}
+  pendingValues.push.apply(pendingValues,nums);
+  valInput.value='';
+  descEl.textContent=nums.length+' valor'+(nums.length!==1?'es':'')+' encolado'+(nums.length!==1?'s':'')+'. Usá ▶ o >> para procesar'+(nums.length!==1?'los':'lo')+'.';
+  updateBtns();
+}
+function searchVal(val){
+  if(!val||val<=0){descEl.textContent='⚠ Ingresá un número entero positivo para buscar.';return;}
+  var curRoot=steps.length>0?steps[steps.length-1].tree:null;
+  if(!curRoot){descEl.textContent='✗ El árbol está vacío.';return;}
+  var sSteps=genSearchSteps(curRoot,val);
+  steps.push.apply(steps,sSteps);
+  if(currentStep<0)goTo(0);else goNext();
+}
+function clearAll(){
+  stopPlay();
+  nodeIdCounter=0;root=null;steps=[];pendingValues=[];currentStep=-1;
+  ctx.clearRect(0,0,canvas._w||400,canvas._h||300);
+  descEl.textContent='Árbol limpiado. Elegí un modo e ingresá valores.';
+  stepCounterEl.textContent='Paso — / —';treeInfoEl.textContent='—';
+  updateBtns();
+}
+
+speedSlider.addEventListener('input',function(){
+  speedVal=3400-parseInt(this.value);
+  speedLabel.textContent=(1000/speedVal).toFixed(1)+' p/s';
+  if(isPlaying){stopPlay();startPlay();}
+});
+
+valInput.addEventListener('keydown',function(e){
+  if(e.key==='Enter'){
+    if(isPlaying)return;
+    var inp=valInput.value.trim();
+    if(!inp){descEl.textContent='⚠ Ingresá un valor.';return;}
+    if(currentMode==='insert')parseAndEnq(inp);
+    else{
+      var val=parseInt(inp,10);
+      if(!Number.isInteger(val)||val<=0){descEl.textContent='⚠ Ingresá un número entero positivo.';return;}
+      searchVal(val);valInput.value='';
+    }
+  }
+});
+
+btnNext.addEventListener('click',hdlNext);
+btnSkip.addEventListener('click',hdlSkip);
+btnPrev.addEventListener('click',goPrev);
+btnFirst.addEventListener('click',goFirst);
+btnClear.addEventListener('click',clearAll);
+
+window.addEventListener('resize',function(){
+  resizeCanvas();
+  if(currentStep>=0&&currentStep<steps.length)renderStep(currentStep);
+  else ctx.clearRect(0,0,canvas._w||400,canvas._h||300);
+});
+
+document.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT')return;
+  if(e.key==='ArrowRight'){e.preventDefault();hdlNext();}
+  if(e.key==='ArrowLeft'){e.preventDefault();goPrev();}
+  if(e.key==='Home'){e.preventDefault();goFirst();}
+  if(e.key===' '||e.key==='End'){e.preventDefault();hdlSkip();}
+});
+
+resizeCanvas();
+updateBtns();
+})();
+</script>
+</body>
+</html>

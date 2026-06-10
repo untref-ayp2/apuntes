@@ -116,18 +116,7 @@ FIN FUNCION
 Llamadas recursivas
 : Las líneas 6 y 7 realizan las llamadas recursivas para aplicar el recorrido preorden a los subárboles izquierdo y derecho del nodo actual, respectivamente.
 
-<div class="only-html">
 
-En el siguiente applet interactivo se observa el recorrido preorden. Se puede avanzar o retroceder paso a paso, ir al inicio, o reproducir automáticamente. Cuando el nodo se pinta de amarillo significa que se llamó a la función `preorden` con ese nodo y cuando se pinta de verde significa que el nodo fue visitado (línea 5 del seudocódigo).
-
-<div class="only-light-mode">
-<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-preorden_light.html" width="100%" height="560px"></iframe>
-</div>
-<div class="only-dark-mode">
-<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-preorden_dark.html" width="100%" height="560px"></iframe>
-</div>
-
-</div>
 
 #### Inorden (Izquierda - Raíz - Derecha)
 
@@ -151,18 +140,7 @@ FUNCION Inorden (raiz)
 FIN FUNCION
 ```
 
-<div class="only-html">
 
-Ejemplo de recorrido inorden:
-
-<div class="only-light-mode">
-<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-inorden_light.html" width="100%" height="560px"></iframe>
-</div>
-<div class="only-dark-mode">
-<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-inorden_dark.html" width="100%" height="560px"></iframe>
-</div>
-
-</div>
 
 #### Postorden (Izquierda - Derecha - Raíz)
 
@@ -188,13 +166,13 @@ FIN FUNCION
 
 <div class="only-html">
 
-Ejemplo de recorrido postorden:
+En el siguiente applet interactivo se puede seleccionar entre los tres recorridos (Preorden, Inorden, Postorden). Se puede avanzar o retroceder paso a paso, ir al inicio, o reproducir automáticamente. Cuando el nodo se pinta de amarillo significa que se llamó a la función con ese nodo y cuando se pinta de verde significa que el nodo fue procesado.
 
 <div class="only-light-mode">
-<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-postorden_light.html" width="100%" height="560px"></iframe>
+<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol_light.html" width="100%" height="560px"></iframe>
 </div>
 <div class="only-dark-mode">
-<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-postorden_dark.html" width="100%" height="560px"></iframe>
+<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol_dark.html" width="100%" height="560px"></iframe>
 </div>
 
 </div>
