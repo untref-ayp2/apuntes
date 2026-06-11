@@ -77,8 +77,9 @@ Notar que el nodo se parametriza con `[T any]` porque solo almacena y enlaza dat
 Cuando una operación como `Head()` o `Tail()` se ejecuta sobre una lista vacía, debe devolver el **valor cero** del tipo `T` (no `nil`, que solo es válido para punteros, *slices*, *maps* y canales). En Go, el valor cero se obtiene con `var zero T`:
 
 ```{code-block} go
-:linenos: true
-
+---
+linenos: true
+---
 var zero T
 /*
     0       para int
@@ -225,8 +226,9 @@ type List[T comparable] interface {
 
 La mayoría de las operaciones de inserción, eliminación y búsqueda dependen de un método interno `find` que recorre la lista en busca de un elemento. Este método es **privado** (en Go, minúscula inicial) porque devuelve un puntero a un nodo interno, y no debería exponerse fuera de la lista. A continuación se muestra su implementación en cada variante; las operaciones del resto de la sección lo referencian.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 find(buscado):
     actual := head
@@ -236,8 +238,10 @@ find(buscado):
         actual = actual.siguiente
     retornar nil
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 find(buscado):
     actual := head
@@ -247,8 +251,10 @@ find(buscado):
         actual = actual.siguiente
     retornar nil
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 find(buscado):
     si IsEmpty():
@@ -260,6 +266,7 @@ find(buscado):
         actual = actual.siguiente
     retornar nil
 ```
+
 :::
 ::::
 
@@ -268,132 +275,162 @@ find(buscado):
 Size()
 : Devuelve la cantidad de nodos de la lista.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 Size():
     retornar size
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 Size():
     retornar size
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 Size():
     retornar size
 ```
+
 :::
 ::::
 
 IsEmpty()
 : Devuelve `true` si la lista no tiene elementos.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 IsEmpty():
     retornar size == 0
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 IsEmpty():
     retornar size == 0
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 IsEmpty():
     retornar size == 0
 ```
+
 :::
 ::::
 
 Contains(data T)
 : Devuelve `true` si el elemento está presente (solo la primera ocurrencia).
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 Contains(buscado):
     retornar find(buscado) != nil
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 Contains(buscado):
     retornar find(buscado) != nil
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 Contains(buscado):
     retornar find(buscado) != nil
 ```
+
 :::
 ::::
 
 Head()
 : Devuelve el dato del primer nodo. Si la lista está vacía devuelve el valor cero y `false`.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 Head():
     si IsEmpty():
         retornar zero, falso
     retornar head.dato, verdadero
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 Head():
     si IsEmpty():
         retornar zero, falso
     retornar head.dato, verdadero
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 Head():
     si IsEmpty():
         retornar zero, falso
     retornar head.dato, verdadero
 ```
+
 :::
 ::::
 
 Tail()
 : Devuelve el dato del último nodo. En la lista circular se obtiene desde `head.prev`.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 Tail():
     si IsEmpty():
         retornar zero, falso
     retornar tail.dato, verdadero
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 Tail():
     si IsEmpty():
         retornar zero, falso
     retornar tail.dato, verdadero
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 Tail():
     si IsEmpty():
         retornar zero, falso
     retornar head.prev.dato, verdadero
 ```
+
 :::
 ::::
 
@@ -402,8 +439,9 @@ Tail():
 Prepend(data T)
 : Agrega un nodo con el dato al inicio de la lista.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 Prepend(dato):
     nuevo := NuevoNodo(dato)
@@ -413,8 +451,10 @@ Prepend(dato):
         tail = nuevo
     tamaño++
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 Prepend(dato):
     nuevo := NuevoNodo(dato)
@@ -426,8 +466,10 @@ Prepend(dato):
         tail = nuevo
     tamaño++
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 Prepend(dato):
     nuevo := NuevoNodo(dato)
@@ -443,6 +485,7 @@ Prepend(dato):
     head = nuevo
     tamaño++
 ```
+
 :::
 ::::
 
@@ -453,8 +496,9 @@ La circular requiere mantener el ciclo, enlazando el nuevo nodo con `head` y con
 Append(data T)
 : Agrega un nodo con el dato al final de la lista.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 Append(dato):
     nuevo := NuevoNodo(dato)
@@ -465,8 +509,10 @@ Append(dato):
         head = nuevo
     tamaño++
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 Append(dato):
     nuevo := NuevoNodo(dato)
@@ -478,8 +524,10 @@ Append(dato):
         head = nuevo
     tamaño++
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 Append(dato):
     si IsEmpty():
@@ -493,14 +541,16 @@ Append(dato):
     head.prev = nuevo
     tamaño++
 ```
+
 :::
 ::::
 
 InsertAfter(target, data T)
 : Busca `target` e inserta un nodo con `data` a continuación. Devuelve `false` si no encuentra `target`.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 InsertAfter(buscado, dato):
     actual := find(buscado)
@@ -514,8 +564,10 @@ InsertAfter(buscado, dato):
     tamaño++
     retornar verdadero
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 InsertAfter(buscado, dato):
     actual := find(buscado)
@@ -532,8 +584,10 @@ InsertAfter(buscado, dato):
     tamaño++
     retornar verdadero
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 InsertAfter(buscado, dato):
     actual := find(buscado)
@@ -547,14 +601,16 @@ InsertAfter(buscado, dato):
     tamaño++
     retornar verdadero
 ```
+
 :::
 ::::
 
 InsertBefore(target, data T)
 : Busca `target` e inserta un nodo con `data` antes. Devuelve `false` si no encuentra `target`.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 InsertBefore(buscado, dato):
     si head == nil:
@@ -573,8 +629,10 @@ InsertBefore(buscado, dato):
         actual = actual.siguiente
     retornar falso
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 InsertBefore(buscado, dato):
     actual := find(buscado)
@@ -591,8 +649,10 @@ InsertBefore(buscado, dato):
     tamaño++
     retornar verdadero
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 InsertBefore(buscado, dato):
     actual := find(buscado)
@@ -608,6 +668,7 @@ InsertBefore(buscado, dato):
     tamaño++
     retornar verdadero
 ```
+
 :::
 ::::
 
@@ -619,8 +680,9 @@ En la lista doble y circular, una vez encontrado el nodo, el reenlace es $O(1)$ 
 RemoveFirst()
 : Elimina el primer nodo. Devuelve `false` si la lista está vacía.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 RemoveFirst():
     si IsEmpty():
@@ -631,8 +693,10 @@ RemoveFirst():
     tamaño--
     retornar verdadero
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 RemoveFirst():
     si IsEmpty():
@@ -645,8 +709,10 @@ RemoveFirst():
     tamaño--
     retornar verdadero
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 RemoveFirst():
     si IsEmpty():
@@ -661,14 +727,16 @@ RemoveFirst():
     tamaño--
     retornar verdadero
 ```
+
 :::
 ::::
 
 RemoveLast()
 : Elimina el último nodo. Devuelve `false` si la lista está vacía.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 RemoveLast():
     si IsEmpty():
@@ -686,8 +754,10 @@ RemoveLast():
     tamaño--
     retornar verdadero
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 RemoveLast():
     si IsEmpty():
@@ -700,8 +770,10 @@ RemoveLast():
     tamaño--
     retornar verdadero
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 RemoveLast():
     si IsEmpty():
@@ -716,6 +788,7 @@ RemoveLast():
     tamaño--
     retornar verdadero
 ```
+
 :::
 ::::
 
@@ -724,8 +797,9 @@ RemoveLast():
 Remove(data T)
 : Busca y elimina la **primera** ocurrencia del elemento. Si hay elementos duplicados, solo se elimina el primero que se encuentra. Devuelve `false` si no lo encuentra.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 Remove(dato):
     si IsEmpty():
@@ -744,8 +818,10 @@ Remove(dato):
         actual = actual.siguiente
     retornar falso
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 Remove(dato):
     actual := find(dato)
@@ -762,8 +838,10 @@ Remove(dato):
     tamaño--
     retornar verdadero
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 Remove(dato):
     si IsEmpty():
@@ -780,6 +858,7 @@ Remove(dato):
         actual = actual.siguiente
     retornar falso
 ```
+
 :::
 ::::
 
@@ -790,8 +869,9 @@ La lista simple debe tratar como caso especial la eliminación de la cabeza (no 
 Values()
 : Devuelve un slice con los datos en el orden de la lista.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 Values():
     resultado := []
@@ -801,8 +881,10 @@ Values():
         actual = actual.siguiente
     retornar resultado
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 Values():
     resultado := []
@@ -812,8 +894,10 @@ Values():
         actual = actual.siguiente
     retornar resultado
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 Values():
     si IsEmpty():
@@ -825,6 +909,7 @@ Values():
         actual = actual.siguiente
     retornar resultado
 ```
+
 :::
 ::::
 
@@ -833,56 +918,68 @@ Values():
 Clear()
 : Elimina todos los nodos y deja la lista vacía.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 Clear():
     head = nil
     tail = nil
     tamaño = 0
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 Clear():
     head = nil
     tail = nil
     tamaño = 0
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 Clear():
     head = nil
     tamaño = 0
 ```
+
 :::
 ::::
 
 String()
 : Devuelve una representación textual de la lista.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
+
 ```{code-block} text
 String():
     elementos := Values()
     retornar "[" + elementos.join(", ") + "]"
 ```
+
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
+
 ```{code-block} text
 String():
     elementos := Values()
     retornar "[" + elementos.join(", ") + "]"
 ```
+
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
+
 ```{code-block} text
 String():
     elementos := Values()
     retornar "[" + elementos.join(", ") + "]"
 ```
+
 :::
 ::::
 
@@ -944,7 +1041,7 @@ find(buscado):
 ```
 
 IsEmpty
-: La lista vacía se detecta cuando  `size ==0` o los centinelas se apuntan entre sí.
+: La lista vacía se detecta cuando `size ==0` o los centinelas se apuntan entre sí.
 
 ```{code-block} text
 IsEmpty():
@@ -1117,5 +1214,3 @@ La complejidad asintótica de las operaciones que requieren búsqueda es $O(n)$ 
 2. **Resolver ejercicios de uso** — Los ejercicios de este capítulo están en
    `03-listas/ejercicios/` del repositorio
    [`taller-tad`](https://github.com/untref-ayp2/taller-tad).
-
-

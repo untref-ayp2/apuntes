@@ -59,7 +59,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 23 | `contenidos/3-estructuras-de-datos/3-7-diccionarios.md` | ✅ Revisado | `data-structures`, `taller-tad` |
 | 24 | `contenidos/3-estructuras-de-datos/3-8-arboles.md` | ✅ Revisado | `taller-tad`, `data-structures` |
 | 25 | `contenidos/3-estructuras-de-datos/3-9-abb.md` | ✅ Revisado | `guia-abb`, `data-structures` |
-| 26 | `contenidos/3-estructuras-de-datos/3-10-arboles-balanceados.md` | ⬜ Pendiente | `guia-abb-balanceados` |
+| 26 | `contenidos/3-estructuras-de-datos/3-10-arboles-balanceados.md` | ✅ Revisado | `data-structures` |
 | 27 | `contenidos/3-estructuras-de-datos/3-11-monticulo-binario.md` | ⬜ Pendiente | `guia-monticulos-binarios` |
 | 28 | `contenidos/3-estructuras-de-datos/3-12-iteradores-abb.md` | ⬜ Pendiente | `guia-abb` |
 | 29 | `contenidos/4-diseno-de-algoritmos/4-1-recursividad.md` | ⬜ Pendiente | `guia-algoritmos`, `examples` |

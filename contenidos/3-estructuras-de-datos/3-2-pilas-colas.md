@@ -322,4 +322,3 @@ repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
 Antes de resolverlos hay que implementar `SliceStack[T]` y `SliceQueue[T]`
 en el repositorio [data-structures](https://github.com/untref-ayp2/data-structures),
 que contiene las interfaces y los esqueletos.
-

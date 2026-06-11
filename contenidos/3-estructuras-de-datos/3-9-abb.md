@@ -83,7 +83,6 @@ FUNCION InsertarABB(raiz, valor)
 FIN FUNCION
 ```
 
-
 1. Se compara el valor a insertar con la raíz. Si es menor se desciende al subárbol izquierdo; si es mayor, al derecho.
 2. Se repite el proceso recursivamente hasta encontrar un subárbol vacío donde insertar el nuevo nodo.
 3. Una vez encontrada la posición, se inserta el nodo como hoja del árbol.
@@ -467,17 +466,17 @@ En esta variante, el árbol binario subyacente provee las operaciones estructura
 
 ### Comparación
 
-| Aspecto | Desde cero | Por composición |
-|---|---|---|
-| Dependencias | Ninguna | `data-structures/tree` |
-| Control interno | Total | Limitado por la API del árbol genérico |
-| Cantidad de código | Mayor | Menor |
-| Reutilización | Baja | Alta (recorridos, altura, etc.) |
-| Curva de aprendizaje | Directa | Requiere conocer la API del árbol binario |
-| Acoplamiento | Fuerte entre nodo y ABB | Débil: el ABB solo añade semántica de orden |
-| Mantenimiento | Mayor (cada cambio impacta en todo) | Menor (los cambios se encapsulan en el árbol genérico) |
-| Flexibilidad | Máxima | Limitada por la interfaz del árbol genérico |
-| Ideal para | Aprendizaje y experimentación | Proyectos que priorizan la reutilización |
+| Aspecto              | Desde cero                          | Por composición                                        |
+| -------------------- | ----------------------------------- | ------------------------------------------------------ |
+| Dependencias         | Ninguna                             | `data-structures/tree`                                 |
+| Control interno      | Total                               | Limitado por la API del árbol genérico                 |
+| Cantidad de código   | Mayor                               | Menor                                                  |
+| Reutilización        | Baja                                | Alta (recorridos, altura, etc.)                        |
+| Curva de aprendizaje | Directa                             | Requiere conocer la API del árbol binario              |
+| Acoplamiento         | Fuerte entre nodo y ABB             | Débil: el ABB solo añade semántica de orden            |
+| Mantenimiento        | Mayor (cada cambio impacta en todo) | Menor (los cambios se encapsulan en el árbol genérico) |
+| Flexibilidad         | Máxima                              | Limitada por la interfaz del árbol genérico            |
+| Ideal para           | Aprendizaje y experimentación       | Proyectos que priorizan la reutilización               |
 
 ## Ejercicios
 

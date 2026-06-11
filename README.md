@@ -18,23 +18,27 @@ Si deseas desarrollar y/o compilar el apunte de Algoritmos y Programación II, n
 3. **Instalar dependencias del sistema**:
 
    - **Typst** (compilador de PDF):
+
      - **Arch / CachyOS**: `sudo pacman -S typst`
      - **Debian / Ubuntu**: `sudo apt install typst`
      - **macOS**: `brew install typst`
      - O descargar desde <https://github.com/typst/typst/releases>
 
    - **MyST** (build system):
+
      ```sh
      npm install -g mystmd
      ```
 
    - **Fuente Roboto** (necesaria para el PDF):
+
      - **Arch / CachyOS**: `sudo pacman -S ttf-roboto`
      - **Debian / Ubuntu**: `sudo apt install fonts-roboto`
      - **Fedora**: `sudo dnf install google-roboto-fonts`
      - **macOS**: `brew install --cask font-roboto`
 
 4. **Instalar `make`** (opcional, pero facilita los comandos):
+
    - En sistemas Unix ya suele estar instalado.
    - En Windows: `winget install -e --id GnuWin32.Make`
 
@@ -42,15 +46,15 @@ Si deseas desarrollar y/o compilar el apunte de Algoritmos y Programación II, n
 
 ### Con `make` (recomendado)
 
-| Comando       | Qué hace                                           |
-| ------------- | -------------------------------------------------- |
-| `make build`  | Compila HTML + PDF (limpia y reconstruye todo)     |
-| `make pdf`    | Genera solo el PDF (vía `scripts/build_pdf.py`)    |
-| `make start`  | Inicia servidor de desarrollo con recarga en vivo  |
-| `make clean`  | Elimina archivos generados por la compilación      |
-| `make fmt`    | Formatea Markdown y Python                         |
-| `make install`| Instala dependencias Python                        |
-| `make help`   | Muestra todos los comandos disponibles             |
+| Comando        | Qué hace                                          |
+| -------------- | ------------------------------------------------- |
+| `make build`   | Compila HTML + PDF (limpia y reconstruye todo)    |
+| `make pdf`     | Genera solo el PDF (vía `scripts/build_pdf.py`)   |
+| `make start`   | Inicia servidor de desarrollo con recarga en vivo |
+| `make clean`   | Elimina archivos generados por la compilación     |
+| `make fmt`     | Formatea Markdown y Python                        |
+| `make install` | Instala dependencias Python                       |
+| `make help`    | Muestra todos los comandos disponibles            |
 
 ### Sin `make`
 

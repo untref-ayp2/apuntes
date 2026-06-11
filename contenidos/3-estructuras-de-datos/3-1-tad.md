@@ -110,24 +110,24 @@ incrementarse o decrementarse dentro de un rango fijo.
 
 El Contador necesita tres valores enteros:
 
-* `minimo`: el valor más chico que puede tomar el contador.
-* `maximo`: el valor más grande que puede tomar el contador.
-* `actual`: el valor actual del contador.
+- `minimo`: el valor más chico que puede tomar el contador.
+- `maximo`: el valor más grande que puede tomar el contador.
+- `actual`: el valor actual del contador.
 
 Además, para analizar el invariante vamos a llevar la cuenta de cuántas veces se
 modificó el contador exitosamente:
 
-* `cambios`: cantidad total de modificaciones realizadas.
+- `cambios`: cantidad total de modificaciones realizadas.
 
 ### 2. Definir las operaciones (primitivas)
 
-| Primitiva | Descripción |
-|---|---|
-| `NuevoContador(min, max)` | Crea un contador con `actual = min` |
-| `Incrementar()` | Aumenta `actual` en 1, si no supera `maximo` |
-| `Decrementar()` | Disminuye `actual` en 1, si no es menor que `minimo` |
-| `Valor()` | Devuelve el valor actual |
-| `Cambios()` | Devuelve la cantidad de modificaciones |
+| Primitiva                 | Descripción                                          |
+| ------------------------- | ---------------------------------------------------- |
+| `NuevoContador(min, max)` | Crea un contador con `actual = min`                  |
+| `Incrementar()`           | Aumenta `actual` en 1, si no supera `maximo`         |
+| `Decrementar()`           | Disminuye `actual` en 1, si no es menor que `minimo` |
+| `Valor()`                 | Devuelve el valor actual                             |
+| `Cambios()`               | Devuelve la cantidad de modificaciones               |
 
 ### 3. Definir el invariante
 

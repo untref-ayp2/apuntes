@@ -104,8 +104,8 @@ def strip_only_html_blocks(content):
         i = pos + len('<div class="only-html">')
         depth = 1
         while i < len(content) and depth > 0:
-            next_open = content.find('<div', i)
-            next_close = content.find('</div>', i)
+            next_open = content.find("<div", i)
+            next_close = content.find("</div>", i)
             if next_close == -1:
                 i = len(content)
                 break
@@ -171,7 +171,10 @@ def process_file(filepath):
 
                         elif block_type == "code-cell":
                             content_str = "".join(buffer)
-                            if "show_dijkstra_step_by_step" in content_str or "show_bellman_ford_step_by_step" in content_str:
+                            if (
+                                "show_dijkstra_step_by_step" in content_str
+                                or "show_bellman_ford_step_by_step" in content_str
+                            ):
                                 new_lines.append(buffer[0])
                                 indent = buffer[0][: len(buffer[0]) - len(buffer[0].lstrip())]
                                 new_lines.append(f"{indent}---\n")
@@ -275,8 +278,7 @@ def post_process_typst():
                     content = f.read()
 
                 new_content = (
-                    content
-                    .replace("arrow.r.double", "=>")
+                    content.replace("arrow.r.double", "=>")
                     .replace("arrow.r", "->")
                     .replace("repeat-header: true", "repeat-header: false")
                     # Fix LaTeX math commands not converted by MyST
@@ -337,9 +339,7 @@ def main():
     env = os.environ.copy()
     orig_path = env.get("PATH", "")
     # Find and remove dirs containing typst from PATH
-    new_path = ":".join(
-        d for d in orig_path.split(":") if not os.path.exists(os.path.join(d, "typst"))
-    )
+    new_path = ":".join(d for d in orig_path.split(":") if not os.path.exists(os.path.join(d, "typst")))
     env["PATH"] = new_path
 
     cwd = TEMP_DIR

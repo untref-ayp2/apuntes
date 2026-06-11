@@ -116,8 +116,6 @@ FIN FUNCION
 Llamadas recursivas
 : Las líneas 6 y 7 realizan las llamadas recursivas para aplicar el recorrido preorden a los subárboles izquierdo y derecho del nodo actual, respectivamente.
 
-
-
 #### Inorden (Izquierda - Raíz - Derecha)
 
 El recorrido inorden visita primero de forma recursiva todos los nodos del subárbol izquierdo, luego procesa el nodo raíz, y finalmente recorre recursivamente el subárbol derecho. La secuencia de visita es: subárbol izquierdo, nodo raíz, subárbol derecho.
@@ -139,8 +137,6 @@ FUNCION Inorden (raiz)
     Inorden(raiz.derecho)   // Visitar el subárbol derecho
 FIN FUNCION
 ```
-
-
 
 #### Postorden (Izquierda - Derecha - Raíz)
 
@@ -286,13 +282,13 @@ El árbol tiene el control completo del recorrido y usa el nodo solo como dato. 
 
 #### Comparación
 
-| Aspecto | Delegado al nodo | Gestionado por el árbol |
-|---|---|---|
-| Responsabilidad | Cada nodo procesa sus hijos | El árbol dirige el recorrido |
-| Acoplamiento | El nodo conoce la operación | El árbol conoce la estructura del nodo |
-| Modularidad | Alta (nodo autónomo) | Baja (lógica centralizada) |
-| Extensibilidad | Agregar operaciones requiere modificar el nodo | Agregar operaciones solo requiere modificar el árbol |
-| Nodo | Activo (tiene métodos) | Pasivo (solo datos) |
+| Aspecto         | Delegado al nodo                               | Gestionado por el árbol                              |
+| --------------- | ---------------------------------------------- | ---------------------------------------------------- |
+| Responsabilidad | Cada nodo procesa sus hijos                    | El árbol dirige el recorrido                         |
+| Acoplamiento    | El nodo conoce la operación                    | El árbol conoce la estructura del nodo               |
+| Modularidad     | Alta (nodo autónomo)                           | Baja (lógica centralizada)                           |
+| Extensibilidad  | Agregar operaciones requiere modificar el nodo | Agregar operaciones solo requiere modificar el árbol |
+| Nodo            | Activo (tiene métodos)                         | Pasivo (solo datos)                                  |
 
 Ambos enfoques son válidos. La elección depende del contexto: si se prioriza que el nodo sea una estructura de datos pura, conviene gestionar las operaciones desde el árbol. Si se busca que el nodo sea una entidad activa capaz de manipularse a sí misma, la delegación es más natural.
 
@@ -312,5 +308,5 @@ En los ejercicios de este capítulo se opta por el enfoque de **delegación en l
 
 2. **Resolver ejercicios de aplicación** — Los ejercicios de este capítulo
    están en
-    [`08-arboles/ejercicios/`](https://github.com/untref-ayp2/taller-tad/tree/main/08-arboles/ejercicios)
+   [`08-arboles/ejercicios/`](https://github.com/untref-ayp2/taller-tad/tree/main/08-arboles/ejercicios)
    del repositorio [`taller-tad`](https://github.com/untref-ayp2/taller-tad).

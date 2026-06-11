@@ -35,6 +35,7 @@ func main() {
     fmt.Println(p2.nombre, p2.apellido)
 }
 ```
+
 ```output
 Marcelo 27
 Laura Medina
@@ -66,6 +67,7 @@ func main() {
     fmt.Println(p.edad)
 }
 ```
+
 ```output
 Ana López
 31
@@ -83,6 +85,7 @@ func main() {
     fmt.Println(p.nombre)
 }
 ```
+
 ```output
 Laura
 María
@@ -91,16 +94,17 @@ María
 Go permite acceder a los campos sin dereferenciar explícitamente el puntero. `p.nombre` equivale a `(*p).nombre`. Es azúcar sintáctico.
 
 Los punteros a struct son útiles para:
+
 - Evitar copiar la estructura al pasarla como parámetro
 - Poder modificar los campos desde otra función o método
 
 ### Receptores: puntero vs. valor
 
-| Receptor valor | Receptor puntero |
-|---|---|
-| No modifica el original | Modifica el original |
-| Copia la *struct* | No copia (más eficiente) |
-| Útil para consultas | Útil para mutaciones |
+| Receptor valor          | Receptor puntero         |
+| ----------------------- | ------------------------ |
+| No modifica el original | Modifica el original     |
+| Copia la *struct*       | No copia (más eficiente) |
+| Útil para consultas     | Útil para mutaciones     |
 
 Go aplica azúcar sintáctico: si definimos un método con receptor puntero y lo llamamos sobre una variable no puntero, Go lo convierte automáticamente.
 
@@ -111,6 +115,7 @@ func main() {
     fmt.Println(p.edad)    // 31
 }
 ```
+
 ```output
 31
 ```
@@ -135,6 +140,7 @@ func main() {
     fmt.Println(p.nombre, p.apellido, p.edad)
 }
 ```
+
 ```output
 Laura Medina 25
 ```
@@ -146,8 +152,6 @@ Estas funciones reemplazan el rol de los constructores o fábricas estáticas.
 Como mencionamos anteriormente, en Go existe el concepto de interfaces, pero estas funcionan de forma algo diferente a como lo hacen en Java.
 
 Un tipo `interface` se define como un conjunto de firmas de método[^firma]. Un valor de ese tipo de interfaz puede contener cualquier valor que implemente todos esos métodos.
-
-[^firma]: Una **firma de método** (o firma de función) es la declaración de su nombre, parámetros y tipo de retorno, sin incluir el cuerpo. Por ejemplo, en `func (p *Persona) Avanzar(pasos int)`, la firma es `Avanzar(pasos int)`. La implementación (el cuerpo) no forma parte de la firma.
 
 ### Implementación de interfaces
 
@@ -181,6 +185,7 @@ func main() {
     RealizarRecorrido(&p)
 }
 ```
+
 ```output
 Marcelo avanzó 5 pasos
 Marcelo giró 180.0 grados
@@ -217,6 +222,7 @@ func main() {
     HacerCaminar(&Perro{nombre: "Rex"})
 }
 ```
+
 ```output
 Ana avanzó 10 pasos
 Ana giró 90.0 grados
@@ -244,6 +250,7 @@ func main() {
     fmt.Println(p.Trabajar(8))
 }
 ```
+
 ```output
 Laura trabajó 8 horas
 ```
@@ -265,6 +272,7 @@ func main() {
     fmt.Println(t.Trabajar(8))
 }
 ```
+
 ```output
 Ana avanzó 5 pasos
 Ana López trabajó 8 horas
@@ -278,3 +286,5 @@ Los ejercicios de este capítulo están en `08-structs-interfaces/ejercicios/not
 del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
 El directorio contiene un `README.md` con el enunciado y los esqueletos
 para resolverlo.
+
+[^firma]: Una **firma de método** (o firma de función) es la declaración de su nombre, parámetros y tipo de retorno, sin incluir el cuerpo. Por ejemplo, en `func (p *Persona) Avanzar(pasos int)`, la firma es `Avanzar(pasos int)`. La implementación (el cuerpo) no forma parte de la firma.

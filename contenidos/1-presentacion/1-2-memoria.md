@@ -85,6 +85,7 @@ class: note
 ---
 El acceso a las variables que se encuentran en el ***stack*** es más directo y más rápido, mientras que el acceso a los datos en el ***heap*** es más lento ya que se deben referenciar desde el ***stack***, pero permite estructuras de datos más grandes y persistentes.
 ```
+
 Veamos un ejemplo, dado el siguiente fragmento de código:
 
 ```{code-block} go
@@ -181,7 +182,7 @@ ______________________________________________________________________
   ```
 
   - **Almacenamiento:** **Stack**
-   - **Justificación:** `p3` es un puntero a `p2`, definido como variable local en `main`. Se almacena en el ***stack*** y apunta a la misma estructura `Persona` que `p2`. A través de `p3` se modifican `p2.apellido` a `"Martinez"` y `p2.direccion` a `Direccion{"Av. Corrientes", "CABA", "Buenos Aires", 1050}`.
+  - **Justificación:** `p3` es un puntero a `p2`, definido como variable local en `main`. Se almacena en el ***stack*** y apunta a la misma estructura `Persona` que `p2`. A través de `p3` se modifican `p2.apellido` a `"Martinez"` y `p2.direccion` a `Direccion{"Av. Corrientes", "CABA", "Buenos Aires", 1050}`.
 
   ______________________________________________________________________
 
@@ -199,13 +200,13 @@ ______________________________________________________________________
 
 **Resumen general:**
 
-| Variable | Ubicación                               | Justificación                                     |
-| -------- | --------------------------------------- | ------------------------------------------------- |
-| `num`    | Segmento de Datos                       | Variable global simple.                           |
-| `p1`     | Segmento de Datos (header) / Heap (str) | Estructura global, contenido de cadenas en heap.  |
-| `p2`     | Stack (estructura) / Heap (cadenas)     | Variable local, contenido de cadenas en heap.     |
+| Variable | Ubicación                               | Justificación                                    |
+| -------- | --------------------------------------- | ------------------------------------------------ |
+| `num`    | Segmento de Datos                       | Variable global simple.                          |
+| `p1`     | Segmento de Datos (header) / Heap (str) | Estructura global, contenido de cadenas en heap. |
+| `p2`     | Stack (estructura) / Heap (cadenas)     | Variable local, contenido de cadenas en heap.    |
 | `p3`     | Stack                                   | Puntero local a `p2`.                            |
-| `p4`     | Stack (estructura) / Heap (cadenas)     | Variable local, contenido de cadenas en heap.     |
+| `p4`     | Stack (estructura) / Heap (cadenas)     | Variable local, contenido de cadenas en heap.    |
 
 En Go, el **compilador y el recolector de basura (GC)** optimizan el uso del stack y el heap. Las estructuras simples y de corta duración suelen estar en el stack, mientras que los datos más complejos o de mayor duración (como cadenas) se almacenan en el heap.
 

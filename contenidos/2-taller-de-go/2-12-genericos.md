@@ -370,14 +370,14 @@ func (d *Dicc[K, V]) Get(clave K) (V, bool) {
 
 ## Resumen
 
-| Concepto | Sintaxis | Ejemplo |
-|---|---|---|
-| Parámetro de tipo | `[T any]` | `func Imprimir[T any](arr []T)` |
-| Constraint `comparable` | `[T comparable]` | `func Contiene[T comparable](arr []T, elem T) bool` |
-| Constraint personalizado | `type X interface { ~int \| ~string }` | `func Maximo[T Ordenable](arr []T) T` |
-| Función comparadora | Parámetro `func(T, T) bool` | `func Ordenar[T any](arr []T, menor func(T, T) bool)` |
-| Struct genérico | `type Nombre[T any] struct { ... }` | `type Caja[T any] struct { valor T }` |
-| Múltiples parámetros | `[K comparable, V any]` | `type Dicc[K comparable, V any] struct { ... }` |
+| Concepto                 | Sintaxis                               | Ejemplo                                               |
+| ------------------------ | -------------------------------------- | ----------------------------------------------------- |
+| Parámetro de tipo        | `[T any]`                              | `func Imprimir[T any](arr []T)`                       |
+| Constraint `comparable`  | `[T comparable]`                       | `func Contiene[T comparable](arr []T, elem T) bool`   |
+| Constraint personalizado | `type X interface { ~int \| ~string }` | `func Maximo[T Ordenable](arr []T) T`                 |
+| Función comparadora      | Parámetro `func(T, T) bool`            | `func Ordenar[T any](arr []T, menor func(T, T) bool)` |
+| Struct genérico          | `type Nombre[T any] struct { ... }`    | `type Caja[T any] struct { valor T }`                 |
+| Múltiples parámetros     | `[K comparable, V any]`                | `type Dicc[K comparable, V any] struct { ... }`       |
 
 ## Ejercicios
 

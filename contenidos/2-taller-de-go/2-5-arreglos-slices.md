@@ -77,6 +77,7 @@ Los _slices_ (o tajadas) en castellano representan secuencias de longitud variab
 Los _arreglos_ y los _slices_ están estrechamente relacionados. Un _slice_ es una estructura de datos ligera que da acceso a una subsecuencia (o a todos) los elementos de un arreglo. Ese arreglo se conoce como el **arreglo subyacente** del _slice_.
 
 Un _slice_ tiene tres componentes internos:
+
 - **puntero**: apunta al primer elemento del arreglo accesible desde el _slice_ (no necesariamente el elemento 0 del arreglo)
 - **longitud** (`len`): cantidad de elementos que contiene el _slice_
 - **capacidad** (`cap`): cantidad máxima de elementos disponibles desde esa posición hasta el final del arreglo subyacente
@@ -179,6 +180,7 @@ meses := [12]string{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
 El operador _slice_ `s[i:j]` crea un nuevo _slice_ con los elementos desde `i` hasta `j-1` del _array_ o _slice_ `s`, donde $0 \leq i \leq j \leq \texttt{cap(s)}$ y el resultado tiene `j-i` elementos. Si se omite `i`, se toma 0; si se omite `j`, se toma `len(s)`.
 
 Sobre `meses`, podemos crear slices que referencien subconjuntos. Por ejemplo:
+
 - `meses[0:12]` y `meses[:]` abarcan **todos** los meses
 - `meses[1:]` abarca de Febrero a Diciembre
 

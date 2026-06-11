@@ -141,8 +141,11 @@ Los colores coinciden con la paleta de los applets interactivos del capítulo 3-
 | `.tree-arrowhead`   | Punta de flecha en aristas del árbol genérico         | Arbol               |
 | `.op-node`          | Nodo de operación (+, −, *, etc.)                     | ArbolBinario        |
 | `.num-node`         | Nodo de número o valor                                | ArbolBinario        |
-| `.node-circle`      | Círculo de nodo en árbol genérico                     | Arbol               |
-| `.node-text`        | Texto dentro de nodos (monospace, bold)               | Arbol / ArbolBinario |
+| `.node-circle`      | Círculo de nodo en árbol binario                      | Arbol               |
+| `.node-text`        | Texto dentro de nodos (monospace, 14px, bold)         | Arbol / ArbolBinario |
+| `.fb-label`         | Etiqueta de factor de balanceo (sans-serif, 12px)     | AVL                 |
+| `.fb-bal`           | Color verde para nodos balanceados                    | AVL                 |
+| `.fb-unbal`         | Color rojo para nodos desbalanceados                  | AVL                 |
 | `.annotation-text`  | Anotaciones externas (profundidad, nivel, etc.)       | Arbol               |
 | `.pointer-line`     | Línea de puntero desde una anotación                  | Arbol               |
 | `.pointer-arrowhead`| Punta de flecha del puntero                           | Arbol               |
@@ -150,39 +153,47 @@ Los colores coinciden con la paleta de los applets interactivos del capítulo 3-
 
 ### Colores para árboles — Light
 
-| Elemento                  | Fill         | Stroke       | Stroke-width |
-| ------------------------- | ------------ | ------------ | ------------ |
-| Nodos operación (`op-node`) | `#e1f5ff`  | `#4682b4`    | 2.5          |
-| Nodos número (`num-node`) | `#ffe1e1`    | `#e9967a`    | 2.5          |
-| Nodo genérico (`node-circle`) | `#ffe1e1` | `#e9967a`    | 20*          |
-| Arista (`edge`)           | —            | `#333333`    | 2            |
-| Arista género (`tree-edge`) | —          | `#333333`    | 18*          |
-| Flecha arista             | `#333333`    | `#333333`    | 8*           |
-| Línea puntero             | —            | `#87cfff`    | 14*          |
-| Flecha puntero            | `#e1f5ff`    | `#87cfff`    | 8*           |
-| Línea punteada            | —            | `#333333`    | 14*          |
-| Texto en nodos            | `#333333`    | —            | —            |
-| Anotaciones               | `#333333`    | —            | —            |
+| Elemento                         | Fill         | Stroke       | Stroke-width |
+| -------------------------------- | ------------ | ------------ | ------------ |
+| Nodo ABB/AVL (`node-circle`)     | `#e1f5ff`    | `#4682b4`    | 2.5          |
+| Nodo operación (`op-node`)       | `#e1f5ff`    | `#4682b4`    | 2.5          |
+| Nodo número (`num-node`)         | `#ffe1e1`    | `#e9967a`    | 2.5          |
+| Nodo árbol genérico (`node-circle`) | `#ffe1e1`| `#e9967a`    | 20*          |
+| Arista (`edge`)                  | —            | `#333333`    | 2            |
+| Arista género (`tree-edge`)      | —            | `#333333`    | 18*          |
+| Flecha arista                    | `#333333`    | `#333333`    | 8*           |
+| Línea puntero                    | —            | `#87cfff`    | 14*          |
+| Flecha puntero                   | `#e1f5ff`    | `#87cfff`    | 8*           |
+| Línea punteada                   | —            | `#333333`    | 14*          |
+| Texto en nodos (`node-text`)     | `#333333`    | —            | —            |
+| Etiqueta fb balanceado (`fb-bal`)| `#2e8b57`    | —            | —            |
+| Etiqueta fb desbalanceado (`fb-unbal`)| `#c53030`| —            | —            |
+| Anotaciones                      | `#333333`    | —            | —            |
 
 \* *Valores para viewBox `0 0 4801 3535` (Arbol). Ajustar proporcionalmente según el viewBox.*
 
 ### Colores para árboles — Dark
 
-| Elemento                  | Fill         | Stroke       | Stroke-width |
-| ------------------------- | ------------ | ------------ | ------------ |
-| Nodos operación (`op-node`) | `#2d3748` | `#63b3ed`    | 2.5          |
-| Nodos número (`num-node`) | `#4a5568`    | `#fc8181`    | 2.5          |
-| Nodo genérico (`node-circle`) | `#4a5568` | `#fc8181`    | 20*          |
-| Arista (`edge`)           | —            | `#e0e0e0`    | 2            |
-| Arista género (`tree-edge`) | —          | `#e0e0e0`    | 18*          |
-| Flecha arista             | `#e0e0e0`    | `#e0e0e0`    | 8*           |
-| Línea puntero             | —            | `#87cfff`    | 14*          |
-| Flecha puntero            | `#2d3748`    | `#87cfff`    | 8*           |
-| Línea punteada            | —            | `#e0e0e0`    | 14*          |
-| Texto en nodos            | `#e0e0e0`    | —            | —            |
-| Anotaciones               | `#e0e0e0`    | —            | —            |
+| Elemento                         | Fill         | Stroke       | Stroke-width |
+| -------------------------------- | ------------ | ------------ | ------------ |
+| Nodo ABB/AVL (`node-circle`)     | `#2d3748`    | `#63b3ed`    | 2.5          |
+| Nodo operación (`op-node`)       | `#2d3748`    | `#63b3ed`    | 2.5          |
+| Nodo número (`num-node`)         | `#4a5568`    | `#fc8181`    | 2.5          |
+| Nodo árbol genérico (`node-circle`) | `#4a5568`| `#fc8181`    | 20*          |
+| Arista (`edge`)                  | —            | `#e0e0e0`    | 2            |
+| Arista género (`tree-edge`)      | —            | `#e0e0e0`    | 18*          |
+| Flecha arista                    | `#e0e0e0`    | `#e0e0e0`    | 8*           |
+| Línea puntero                    | —            | `#87cfff`    | 14*          |
+| Flecha puntero                   | `#2d3748`    | `#87cfff`    | 8*           |
+| Línea punteada                   | —            | `#e0e0e0`    | 14*          |
+| Texto en nodos (`node-text`)     | `#e0e0e0`    | —            | —            |
+| Etiqueta fb balanceado (`fb-bal`)| `#68d391`    | —            | —            |
+| Etiqueta fb desbalanceado (`fb-unbal`)| `#fc8181`| —            | —            |
+| Anotaciones                      | `#e0e0e0`    | —            | —            |
 
 \* *Valores para viewBox `0 0 4801 3535` (Arbol). Ajustar proporcionalmente según el viewBox.*
+
+> **Nota sobre `node-circle`**: Para árboles de búsqueda (ABB/AVL) usar la fila azul (como `op-node`). La fila roja es para árboles genéricos sin relación de orden.
 
 ### Ejemplo de árbol binario (light)
 
@@ -219,6 +230,145 @@ Los colores coinciden con la paleta de los applets interactivos del capítulo 3-
 <circle class="num-node" cx="100" cy="140" r="24"/>
 <text class="text" x="100" y="140">a</text>
 ```
+
+### Convenciones para árboles binarios de búsqueda (ABB/AVL)
+
+Los diagramas de ABB y AVL siguen convenciones específicas para que todos los árboles del apunte tengan el mismo estilo visual.
+
+#### Estilo de nodos
+
+| Propiedad          | Light                       | Dark                        |
+| ------------------ | --------------------------- | --------------------------- |
+| Fill               | `#e1f5ff`                   | `#2d3748`                   |
+| Stroke             | `#4682b4` (ancho 2.5)       | `#63b3ed` (ancho 2.5)       |
+| Forma              | Círculo, `r="18"`           | Círculo, `r="18"`           |
+| Texto interior     | Monospace 14px bold         | Monospace 14px bold         |
+| Color texto        | `#333333`                   | `#e0e0e0`                   |
+
+Usar clases `.node-circle` y `.node-text`.
+
+#### Etiquetas de factor de balanceo (AVL)
+
+Colocar la etiqueta `fb = X` junto a cada nodo:
+
+| Etiqueta        | Clase      | Light     | Dark      |
+| --------------- | ---------- | --------- | --------- |
+| Balanceado      | `fb-bal`   | `#2e8b57` | `#68d391` |
+| Desbalanceado   | `fb-unbal` | `#c53030` | `#fc8181` |
+
+Posicionamiento:
+- **Derecha del nodo**: `x="cx + r + 6"` con `text-anchor: start` (default)
+- **Izquierda del nodo**: `x="cx - r - 6"` con `style="text-anchor: end"` (cuando la etiqueta derecha se superpone con otro nodo)
+
+Usar fuente `sans-serif` 12px bold con clase `.fb-label`.
+
+#### Disposición de niveles
+
+Para que el árbol sea legible y muestre claramente la relación padre-hijo izquierdo/derecho:
+
+1. **Los hijos deben desplazarse diagonalmente** del padre, nunca alineados verticalmente
+2. **Separación vertical decreciente** a medida que se baja de nivel (ej: 70→65→60→55px entre niveles 0→1→2→3→4)
+3. **Ocupar todo el ancho** del viewBox, espaciando los nodos para que no se superpongan
+4. **El árbol debe ser un BST válido**: cada nodo debe estar en la posición correcta según su valor y el orden del árbol
+
+Ejemplo de separaciones para 5 niveles (viewBox ~700×360):
+```
+Nivel 0 → Nivel 1: Δy = 70px
+Nivel 1 → Nivel 2: Δy = 65px
+Nivel 2 → Nivel 3: Δy = 60px
+Nivel 3 → Nivel 4: Δy = 55px
+```
+
+Desplazamiento horizontal (restar para hijo izquierdo, sumar para hijo derecho):
+```
+Nivel 0 → Nivel 1: ±130-150px
+Nivel 1 → Nivel 2: ±75-90px
+Nivel 2 → Nivel 3: ±45-55px
+Nivel 3 → Nivel 4: ±25-30px
+```
+
+Ajustar según la cantidad de nodos y el viewBox.
+
+#### Ejemplo completo: AVL-FB
+
+Estructura del árbol:
+```
+        50
+      /    \
+    17      76
+   /  \    /
+  9   23  54
+   \  /    \
+   14 19    72
+  /        /
+ 12       67
+```
+
+**Light:**
+
+```xml
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360">
+  <defs>
+    <style>
+      .bg { fill: #f0f2f5; }
+      .edge { stroke: #333333; stroke-width: 2; fill: none; }
+      .node-circle { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2.5; }
+      .node-text { fill: #333333; font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 14px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
+      .fb-label { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 12px; font-weight: bold; text-anchor: start; dominant-baseline: central; }
+      .fb-bal { fill: #2e8b57; }
+      .fb-unbal { fill: #c53030; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="700" height="360" rx="8"/>
+
+  <line class="edge" x1="350" y1="45" x2="200" y2="115"/>
+  <line class="edge" x1="350" y1="45" x2="500" y2="115"/>
+  <line class="edge" x1="200" y1="115" x2="110" y2="180"/>
+  <line class="edge" x1="200" y1="115" x2="290" y2="180"/>
+  <line class="edge" x1="500" y1="115" x2="410" y2="180"/>
+  <line class="edge" x1="110" y1="180" x2="165" y2="240"/>
+  <line class="edge" x1="290" y1="180" x2="235" y2="240"/>
+  <line class="edge" x1="410" y1="180" x2="465" y2="240"/>
+  <line class="edge" x1="165" y1="240" x2="135" y2="295"/>
+  <line class="edge" x1="465" y1="240" x2="435" y2="295"/>
+
+  <circle class="node-circle" cx="350" cy="45" r="18"/><text class="node-text" x="350" y="45">50</text>
+  <text class="fb-label fb-bal" x="376" y="41">fb = 0</text>
+
+  <circle class="node-circle" cx="200" cy="115" r="18"/><text class="node-text" x="200" y="115">17</text>
+  <text class="fb-label fb-bal" x="226" y="111">fb = +1</text>
+
+  <circle class="node-circle" cx="500" cy="115" r="18"/><text class="node-text" x="500" y="115">76</text>
+  <text class="fb-label fb-unbal" x="526" y="111">fb = +3</text>
+
+  <circle class="node-circle" cx="110" cy="180" r="18"/><text class="node-text" x="110" y="180">9</text>
+  <text class="fb-label fb-unbal" x="136" y="176">fb = -2</text>
+
+  <circle class="node-circle" cx="290" cy="180" r="18"/><text class="node-text" x="290" y="180">23</text>
+  <text class="fb-label fb-bal" x="316" y="176">fb = +1</text>
+
+  <circle class="node-circle" cx="410" cy="180" r="18"/><text class="node-text" x="410" y="180">54</text>
+  <text class="fb-label fb-unbal" x="436" y="176">fb = -2</text>
+
+  <circle class="node-circle" cx="165" cy="240" r="18"/><text class="node-text" x="165" y="240">14</text>
+  <text class="fb-label fb-bal" x="141" y="236" style="text-anchor: end;">fb = +1</text>
+
+  <circle class="node-circle" cx="235" cy="240" r="18"/><text class="node-text" x="235" y="240">19</text>
+  <text class="fb-label fb-bal" x="261" y="236">fb = 0</text>
+
+  <circle class="node-circle" cx="465" cy="240" r="18"/><text class="node-text" x="465" y="240">72</text>
+  <text class="fb-label fb-bal" x="491" y="236">fb = +1</text>
+
+  <circle class="node-circle" cx="135" cy="295" r="18"/><text class="node-text" x="135" y="295">12</text>
+  <text class="fb-label fb-bal" x="161" y="291">fb = 0</text>
+
+  <circle class="node-circle" cx="435" cy="295" r="18"/><text class="node-text" x="435" y="295">67</text>
+  <text class="fb-label fb-bal" x="461" y="291">fb = 0</text>
+</svg>
+```
+
+**Dark:** mismas coordenadas, cambiar colores según tabla Dark de árboles.
 
 ---
 

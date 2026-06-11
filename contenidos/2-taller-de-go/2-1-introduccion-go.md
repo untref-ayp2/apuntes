@@ -213,4 +213,3 @@ git pull
 - [Documentación basada en ejemplos](https://gobyexample.com/)
 - [Go FAQ](https://go.dev/doc/faq)
 - [Go Playground](https://go.dev/play/) (entorno online para ejecutar código en Go)
-

@@ -8,15 +8,15 @@ label: elementos-basicos
 
 Go ofrece un conjunto de tipos de datos básicos (o primitivos) que cubren la mayoría de las necesidades.
 
-| Categoría | Tipos | Descripción |
-|-----------|-------|-------------|
-| Booleanos | `bool` | `true` o `false` |
-| Cadenas | `string` | Texto Unicode inmutable |
-| Enteros con signo | `int`, `int8`, `int16`, `int32`, `int64` | Tamaño fijo según el sufijo |
-| Enteros sin signo | `uint`, `uint8`, `uint16`, `uint32`, `uint64` | Solo valores positivos |
-| Punto flotante | `float32`, `float64` | Números decimales |
-| Complejos | `complex64`, `complex128` | Números complejos |
-| _Alias_ | `byte` (= `uint8`), `rune` (= `int32`) | Para trabajar con bytes y caracteres Unicode |
+| Categoría         | Tipos                                         | Descripción                                  |
+| ----------------- | --------------------------------------------- | -------------------------------------------- |
+| Booleanos         | `bool`                                        | `true` o `false`                             |
+| Cadenas           | `string`                                      | Texto Unicode inmutable                      |
+| Enteros con signo | `int`, `int8`, `int16`, `int32`, `int64`      | Tamaño fijo según el sufijo                  |
+| Enteros sin signo | `uint`, `uint8`, `uint16`, `uint32`, `uint64` | Solo valores positivos                       |
+| Punto flotante    | `float32`, `float64`                          | Números decimales                            |
+| Complejos         | `complex64`, `complex128`                     | Números complejos                            |
+| _Alias_           | `byte` (= `uint8`), `rune` (= `int32`)        | Para trabajar con bytes y caracteres Unicode |
 
 Los tipos `int` y `uint` tienen un tamaño que depende de la arquitectura del sistema: 32 bits en sistemas de 32 bits y 64 bits en sistemas de 64 bits.
 
@@ -51,11 +51,11 @@ var activo bool
 
 Si no se asigna un valor inicial, la variable toma el **valor cero** de su tipo:
 
-| Tipo | Valor cero |
-|------|-----------|
-| `int`, `float64`, etc. | `0` |
-| `string` | `""` (cadena vacía) |
-| `bool` | `false` |
+| Tipo                   | Valor cero          |
+| ---------------------- | ------------------- |
+| `int`, `float64`, etc. | `0`                 |
+| `string`               | `""` (cadena vacía) |
+| `bool`                 | `false`             |
 
 ```go
 var edad int       // edad == 0

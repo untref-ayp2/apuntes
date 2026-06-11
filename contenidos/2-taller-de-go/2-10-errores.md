@@ -11,8 +11,9 @@ Por eso, en Go es común que los errores sean devueltos "normalmente" desde una 
 ## Crear errores simples
 
 ```{code-block} go
-:linenos:
-
+---
+linenos:
+---
 package main
 
 import (
@@ -45,8 +46,9 @@ el nro. ingresado debe ser mayor o igual a cero
 Además, Go incluye en el paquete `fmt` la función `fmt.Errorf`, que permite crear errores con mensajes formateados, similar a `fmt.Sprintf`. Esto es muy útil para **agregar información dinámica** al mensaje de error.
 
 ```{code-block} go
-:linenos:
-
+---
+linenos:
+---
 package main
 
 import "fmt"
@@ -74,7 +76,6 @@ el nro. ingresado debe ser mayor o igual a cero, en su lugar se recibió: -1
 
 En este ejemplo, la función retorna un error más informativo que incluye el valor de entrada que causó el problema. Este tipo de mensajes con contexto es de gran ayuda para depuración y *logging*.
 
-
 En los dos ejemplos anteriores, podemos observar la forma típica en la que se maneja un error en Go. Van a encontrar `if err != nil` en múltiples lugares de un programa de Go.
 
 ## La interfaz `error`
@@ -82,8 +83,9 @@ En los dos ejemplos anteriores, podemos observar la forma típica en la que se m
 Internamente, `error` es una **interfaz** incorporada en el lenguaje:
 
 ```{code-block} go
-:linenos:
-
+---
+linenos:
+---
 type error interface {
     Error() string
 }
@@ -94,8 +96,9 @@ Cualquier tipo que implemente `Error() string` cumple automáticamente la interf
 Si definís tu propio tipo con un método `Error() string`, también podés usarlo como error. Esto permite crear errores con más información:
 
 ```{code-block} go
-:linenos:
-
+---
+linenos:
+---
 package main
 
 import "fmt"
@@ -134,8 +137,9 @@ Acá `ErrEdad` implementa la interfaz `error` porque tiene `Error() string`. La 
 Un patrón muy común en Go es definir errores como **variables globales** (llamados errores centinela). Sirven para comparar con `==` y saber exactamente qué error ocurrió:
 
 ```{code-block} go
-:linenos:
-
+---
+linenos:
+---
 package main
 
 import (
@@ -174,8 +178,9 @@ Fijate que `ErrNotFound` se declara afuera de cualquier función, como variable 
 Cuando necesitás que un error lleve **más información** que solo un mensaje, podés definir un struct que implemente la interfaz `error`:
 
 ```{code-block} go
-:linenos:
-
+---
+linenos:
+---
 package main
 
 import "fmt"
@@ -219,8 +224,9 @@ Esto es útil porque quien recibe el error puede **consultar los campos** del `V
 Muchas veces una función llama a otra que puede fallar, y queremos **agregar contexto** al error original sin perderlo. Go permite esto con `fmt.Errorf` y el verbo `%w`:
 
 ```{code-block} go
-:linenos:
-
+---
+linenos:
+---
 package main
 
 import (
@@ -277,8 +283,9 @@ Como viste en el capítulo 2-8, las funciones del paquete `os` devuelven un
 **agregar contexto** al error con `%w` para saber en qué operación falló:
 
 ```{code-block} go
-:linenos:
-
+---
+linenos:
+---
 package main
 
 import (
@@ -311,8 +318,9 @@ error al leer mensaje.txt: open mensaje.txt: no such file or directory
 Lo mismo al escribir:
 
 ```{code-block} go
-:linenos:
-
+---
+linenos:
+---
 package main
 
 import (

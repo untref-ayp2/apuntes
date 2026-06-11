@@ -35,47 +35,47 @@ categorías: operaciones sobre los elementos y operaciones entre conjuntos.
 
 `Add(e T)`
 : Agrega el elemento `e` al conjunto. Si ya existe, no tiene efecto. Debe ser
-  $O(1)$ promedio.
+$O(1)$ promedio.
 
 `Remove(e T)`
 : Elimina el elemento `e` del conjunto. Si no existe, no tiene efecto. Debe ser
-  $O(1)$ promedio.
+$O(1)$ promedio.
 
 `Size() int`
 : Devuelve la cantidad de elementos del conjunto. Debe ser $O(1)$.
 
 `Values() []T`
 : Devuelve un slice con todos los elementos del conjunto, sin un orden definido.
-  Debe ser $O(n)$.
+Debe ser $O(n)$.
 
 `String() string`
 : Devuelve una representación textual del conjunto, por ejemplo `{1, 2, 3}`.
-  Debe ser $O(n)$.
+Debe ser $O(n)$.
 
 ## Operaciones entre conjuntos
 
 `Union(other Set[T]) Set[T]`
 : Devuelve un nuevo conjunto con los elementos de ambos conjuntos. Debe ser
-  $O(n + m)$.
+$O(n + m)$.
 
 `Intersection(other Set[T]) Set[T]`
 : Devuelve un nuevo conjunto con los elementos comunes a ambos conjuntos. Debe
-  ser $O(\min(n, m))$.
+ser $O(\min(n, m))$.
 
 `Difference(other Set[T]) Set[T]`
 : Devuelve un nuevo conjunto con los elementos que están en el receptor pero no
-  en `other`. Debe ser $O(n)$.
+en `other`. Debe ser $O(n)$.
 
 `SymmetricDifference(other Set[T]) Set[T]`
 : Devuelve un nuevo conjunto con los elementos que están en uno de los conjuntos
-  pero no en ambos. Debe ser $O(n + m)$.
+pero no en ambos. Debe ser $O(n + m)$.
 
 `Subset(other Set[T]) bool`
 : Verifica si el receptor es subconjunto de `other`. Debe ser $O(n)$.
 
 `Superset(other Set[T]) bool`
 : Verifica si el receptor es superconjunto de `other`, es decir, si `other` es
-  subconjunto del receptor. Debe ser $O(m)$.
+subconjunto del receptor. Debe ser $O(m)$.
 
 ## Interfaz
 
@@ -213,15 +213,15 @@ La siguiente tabla compara las complejidades del conjunto ordenado según
 la estructura subyacente. Se incluye también el conjunto con _hash_ como
 referencia:
 
-| Operación | Conjunto con _hash_ | Lista enlazada | Slice ordenado | Árbol AVL |
-|---|---|---|---|---|
-| `Add` | $O(1)$ prom. | $O(n)$ | $O(n)$ | $O(\log n)$ |
-| `Remove` | $O(1)$ prom. | $O(n)$ | $O(n)$ | $O(\log n)$ |
-| `Contains` | $O(1)$ prom. | $O(n)$ | $O(\log n)$ | $O(\log n)$ |
-| `Size` | $O(1)$ | $O(1)$ | $O(1)$ | $O(1)$ |
-| `Values` | $O(n)$ | $O(n)$ | $O(n)$ | $O(n)$ |
-| `Union` | $O(n + m)$ | $O(n + m)$ | $O(n + m)$ | $O(n + m)$ |
-| `Intersection` | $O(\min(n, m))$ | $O(n + m)$ | $O(n + m)$ | $O(n + m)$ |
+| Operación      | Conjunto con _hash_ | Lista enlazada | Slice ordenado | Árbol AVL   |
+| -------------- | ------------------- | -------------- | -------------- | ----------- |
+| `Add`          | $O(1)$ prom.        | $O(n)$         | $O(n)$         | $O(\log n)$ |
+| `Remove`       | $O(1)$ prom.        | $O(n)$         | $O(n)$         | $O(\log n)$ |
+| `Contains`     | $O(1)$ prom.        | $O(n)$         | $O(\log n)$    | $O(\log n)$ |
+| `Size`         | $O(1)$              | $O(1)$         | $O(1)$         | $O(1)$      |
+| `Values`       | $O(n)$              | $O(n)$         | $O(n)$         | $O(n)$      |
+| `Union`        | $O(n + m)$          | $O(n + m)$     | $O(n + m)$     | $O(n + m)$  |
+| `Intersection` | $O(\min(n, m))$     | $O(n + m)$     | $O(n + m)$     | $O(n + m)$  |
 
 Las operaciones binarias (`Union`, `Intersection`, etc.) se benefician del
 orden: pueden resolverse recorriendo ambas estructuras en simultáneo

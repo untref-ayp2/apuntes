@@ -29,6 +29,7 @@ make clean     # elimina build artifacts
 ## Build PDF
 
 `scripts/build_pdf.py`:
+
 1. Copia `contenidos/` a directorio temporal
 2. Pre-procesa .md (elimina `only-dark-mode`, convierte `dropdown` a texto, `admonition` a `note`)
 3. Genera Typst con `myst build --execute --typst`
@@ -66,21 +67,23 @@ func ejemplo() error {
 ```
 ````
 
-Siempre que sea posible incluir `func main()` y la salida esperada en ` ```output `.
+Siempre que sea posible incluir `func main()` y la salida esperada en ```` ```output ````.
 
 ### Ejercicios y soluciones
 
 Labels con formato `ej-{seccion}-{numero}`. Ejercicios numerados como listas planas son aceptables si no tienen solución asociada.
 
 ```{exercise}
-:label: ej-pilas-1
-
+---
+label: ej-pilas-1
+---
 Enunciado aquí.
 ```
 
 ```{solution}
-:label: sol-ej-pilas-1
-
+---
+label: sol-ej-pilas-1
+---
 func respuesta() error {
     return nil
 }
@@ -119,6 +122,17 @@ Clases: `note`, `hint`, `important`, `warning`, `tip`, `caution`, `dropdown`.
 
 `{code-file}` era de Sphinx (JBv1). En mystmd **no funciona**. Usar `{code-block}` inline con link al archivo en GitHub.
 
+### Referencias cruzadas entre capítulos
+
+Usar `{ref}` (por el título) en lugar de `{numref}` (por el número), para que las referencias no se rompan si se reordenan los capítulos:
+
+```markdown
+{ref}`arboles`
+{ref}`arboles-binarios-de-busqueda`
+```
+
+El `label` de cada capítulo está en su frontmatter (archivo `X-Y-tema.md` línea 2).
+
 ## Convenciones
 
 ### Ortografía
@@ -150,10 +164,10 @@ Clases: `note`, `hint`, `important`, `warning`, `tip`, `caution`, `dropdown`.
 
 Los capítulos 3-x y 4-x usan dos tipos de repositorios en `github.com/untref-ayp2`:
 
-| Tipo | Ejemplo | Uso del alumno |
-|---|---|---|
-| Contratos | `data-structures` | Forkea, implementa interfaces localmente |
-| Talleres | `taller-*` (ej: `taller-tad`) | Clona o fork, contiene esqueletos + tests |
+| Tipo      | Ejemplo                       | Uso del alumno                            |
+| --------- | ----------------------------- | ----------------------------------------- |
+| Contratos | `data-structures`             | Forkea, implementa interfaces localmente  |
+| Talleres  | `taller-*` (ej: `taller-tad`) | Clona o fork, contiene esqueletos + tests |
 
 ### `go.mod replace`
 

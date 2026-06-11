@@ -26,19 +26,19 @@ Concepto de diccionario como una agenda telefónica indexada.
 
 ## Relación con las tablas de *hash*
 
-En la práctica, la forma estándar y más eficiente de implementar el TAD Diccionario es mediante una **tabla de *hash*** (estructura que ya estudiamos en detalle en el capítulo [Tablas de hash](3-5-tablas-de-hashing.md)). 
+En la práctica, la forma estándar y más eficiente de implementar el TAD Diccionario es mediante una **tabla de *hash*** (estructura que ya estudiamos en detalle en el capítulo [Tablas de hash](3-5-tablas-de-hashing.md)).
 
 Como vimos, una tabla de *hash* utiliza una función de dispersión para mapear las claves a posiciones específicas en un arreglo subyanente. Gracias a esto, un diccionario implementado sobre una tabla de *hash* nos garantiza un costo de tiempo promedio constante ($O(1)$) para las operaciones de inserción, búsqueda y eliminación:
 
-| Operación | Complejidad Promedio |
-| :---: | :---: |
-| Insertar/Actualizar (`Set`) | $O(1)$ |
-| Obtener (`Get`) | $O(1)$ |
-| Eliminar (`Delete`) | $O(1)$ |
-| Verificar existencia (`Contains`) | $O(1)$ |
-| Tamaño (`Size`) | $O(1)$ |
-| Listar Claves (`Keys`) | $O(n)$ |
-| Listar Valores (`Values`) | $O(n)$ |
+|             Operación             | Complejidad Promedio |
+| :-------------------------------: | :------------------: |
+|    Insertar/Actualizar (`Set`)    |        $O(1)$        |
+|          Obtener (`Get`)          |        $O(1)$        |
+|        Eliminar (`Delete`)        |        $O(1)$        |
+| Verificar existencia (`Contains`) |        $O(1)$        |
+|          Tamaño (`Size`)          |        $O(1)$        |
+|      Listar Claves (`Keys`)       |        $O(n)$        |
+|     Listar Valores (`Values`)     |        $O(n)$        |
 
 ## Interfaz en Go
 
@@ -110,7 +110,7 @@ delete(edades, "Juan")
 
 ### Verificación de existencia (El *idiom* de la coma-ok)
 
-En Go, si intentamos acceder a una clave que no existe en el mapa, el lenguaje no genera un pánico ni un error: nos devuelve el valor cero del tipo del valor (por ejemplo, `0` si el tipo de valor es `int`, o `""` si es `string`). 
+En Go, si intentamos acceder a una clave que no existe en el mapa, el lenguaje no genera un pánico ni un error: nos devuelve el valor cero del tipo del valor (por ejemplo, `0` si el tipo de valor es `int`, o `""` si es `string`).
 
 Para poder distinguir entre una clave que realmente tiene asociado el valor cero y una clave que no existe en absoluto, Go provee la sintaxis especial conocida como el *idiom* de la *comma-ok*:
 
@@ -138,10 +138,10 @@ for nombre, edad := range edades {
 
 Al momento de construir estructuras que satisfagan nuestra interfaz `Dictionary` en la cursada, existen dos aproximaciones principales:
 
-1.  **Envoltura de `map` de Go**:
-    Se puede implementar la interfaz construyendo un *struct* que encapsule un mapa nativo de Go. Esta es la forma más rápida y directa, delegando la lógica de dispersión y colisiones al compilador.
-2.  **Uso de la `HashTable` de la cursada**:
-    Se puede implementar la interfaz encapsulando la estructura genérica `HashTable` que implementamos en el capítulo 3-5 (ya sea la versión con sondeo lineal o la de encadenamiento separado). Al hacerlo, el diccionario simplemente actúa como una capa de abstracción sobre los métodos ya testeados de la tabla de *hash*.
+1. **Envoltura de `map` de Go**:
+   Se puede implementar la interfaz construyendo un *struct* que encapsule un mapa nativo de Go. Esta es la forma más rápida y directa, delegando la lógica de dispersión y colisiones al compilador.
+2. **Uso de la `HashTable` de la cursada**:
+   Se puede implementar la interfaz encapsulando la estructura genérica `HashTable` que implementamos en el capítulo 3-5 (ya sea la versión con sondeo lineal o la de encadenamiento separado). Al hacerlo, el diccionario simplemente actúa como una capa de abstracción sobre los métodos ya testeados de la tabla de *hash*.
 
 ## Inyección de la estructura base por constructor
 
