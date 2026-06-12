@@ -89,17 +89,6 @@ p[0] = 99
 En este fragmento se agregan elementos a la pila usando la función `append` de Go y luego se modifica un elemento arbitrariamente.
 ````
 
-deja expuesto el contenedor de datos y se podría manipular con operaciones propias de slices.
-
-```go
-var p Stack[int]
-p = append(p, 1)
-p = append(p, 2)
-p[0] = 99
-```
-
-En este fragmento se agregan elementos a la pila usando la función `append` de Go y luego se modifica un elemento arbitrarimente.
-
 A continuación se define el TAD Stack, que internamente estará implementado sobre un arreglo dinámico o slice de Go.
 
 ```go

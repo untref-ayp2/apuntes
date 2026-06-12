@@ -217,7 +217,7 @@ func duplicarElementos(arr []int) {
 nums := []int{1, 2, 3, 4}
 duplicarElementos(nums)
 fmt.Println(nums)
-````
+```
 
 ```output
 [2 4 6 8]
@@ -242,7 +242,7 @@ fmt.Println(*contador)
 
 *contador++
 fmt.Println(*contador)
-````
+```
 
 ```output
 42

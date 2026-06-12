@@ -255,11 +255,11 @@ El módulo se aplica al resultado final para asegurar que el valor hash esté de
 
 ### Interfaz `HashTable`
 
-:::\{dropdown} Ver código completo (`interface.go`)
+:::{dropdown} Ver código completo (`interface.go`)
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package hashtable
 
@@ -299,11 +299,11 @@ type HashTable[K comparable, V any] interface {
 
 ### Tipos y operaciones públicas
 
-:::\{dropdown} Ver código completo (`hashtable.go`)
+:::{dropdown} Ver código completo (`hashtable.go`)
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package hashtable
 
@@ -494,11 +494,11 @@ func (ht *HashTableOpenAddressing[K, V]) String() string {
 
 ### Funciones internas
 
-:::\{dropdown} Ver código completo (`internal.go`)
+:::{dropdown} Ver código completo (`internal.go`)
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package hashtable
 
