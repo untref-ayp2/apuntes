@@ -22,16 +22,4 @@ El objetivo de la materia es desarrollar y profundizar habilidades que nos permi
 - Comunicar de forma efectiva, tanto oral como escrita, los conceptos y soluciones empleados para resolver problemas.
 - Desarrollar una actitud proactiva y de aprendizaje continuo en el campo de la informática.
 
-## Equipo Docente
-
-- [Martín Albarracín Franzone](mailto:mafranzone@untref.edu.ar)
-- [Valeria Becker](mailto:vbecker@untref.edu.ar)
-- [Leonardo Blautzik](mailto:lblautzik@untref.edu.ar)
-- [Federico Gasior](mailto:federicogasior@gmail.com)
-- [Fabián Lagorio](mailto:falago@gmail.com)
-- [Hernán Lanzillotta](mailto:nla715@gmail.com)
-- [Santiago Rojo](mailto:tiagox@gmail.com)
-- [Guido Rombolá](mailto:guidorombola@gmail.com)
-- [Lucas Videla](mailto:videla.lucas@gmail.com)
-
 ***¡Bienvenidos a AyP2!***
