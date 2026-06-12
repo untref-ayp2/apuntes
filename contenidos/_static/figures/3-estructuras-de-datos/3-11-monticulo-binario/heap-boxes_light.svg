@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360">
+  <defs>
+    <style>
+      .bg { fill: #f0f2f5; }
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 20px; text-anchor: middle; fill: #333333; }
+      .box-value { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 16px; font-weight: bold; text-anchor: middle; fill: #333333; }
+      .box-name { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 11px; text-anchor: middle; fill: #555555; }
+      .arrow { stroke: #333333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .note { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 12px; fill: #666666; text-anchor: start; font-style: italic; }
+      .tag-text { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 12px; font-weight: bold; text-anchor: middle; fill: #744210; }
+      .flap { stroke-opacity: 0.4; stroke-width: 1; }
+      .tape { fill: #ffffff; opacity: 0.25; }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#333333" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="480" height="360" rx="5" />
+  <text x="240" y="28" class="title">Pirámide de Cajas</text>
+
+  <!-- Tag: ⭐ MÁXIMA PRIORIDAD -->
+  <rect x="165" y="42" width="150" height="28" rx="4" fill="#fff8dc" stroke="#d69e2e" stroke-width="2" />
+  <text x="240" y="61" class="tag-text">⭐ MÁXIMA PRIORIDAD</text>
+  <line x1="240" y1="70" x2="240" y2="85" stroke="#d69e2e" stroke-width="1.5" stroke-dasharray="3,2" />
+
+  <!-- Level 0 (cima) -->
+  <!-- Box 95 — azul cielo -->
+  <rect x="200" y="85" width="80" height="42" rx="4" fill="#d4eaff" stroke="#4682b4" stroke-width="2" />
+  <line x1="200" y1="100" x2="280" y2="100" class="flap" stroke="#4682b4" />
+  <rect x="234" y="85" width="12" height="42" class="tape" />
+  <text x="240" y="105" class="box-value">95</text>
+  <text x="240" y="119" class="box-name">Caja A</text>
+
+  <!-- Level 1 -->
+  <!-- Box 82 — azul medio -->
+  <rect x="155" y="140" width="80" height="40" rx="4" fill="#b3d9ff" stroke="#3a7bd5" stroke-width="2" />
+  <line x1="155" y1="154" x2="235" y2="154" class="flap" stroke="#3a7bd5" />
+  <rect x="189" y="140" width="12" height="40" class="tape" />
+  <text x="195" y="159" class="box-value">82</text>
+  <text x="195" y="173" class="box-name">Caja B</text>
+
+  <!-- Box 73 — verde menta -->
+  <rect x="245" y="140" width="80" height="40" rx="4" fill="#b3f0e0" stroke="#38a89d" stroke-width="2" />
+  <line x1="245" y1="154" x2="325" y2="154" class="flap" stroke="#38a89d" />
+  <rect x="279" y="140" width="12" height="40" class="tape" />
+  <text x="285" y="159" class="box-value">73</text>
+  <text x="285" y="173" class="box-name">Caja C</text>
+
+  <!-- Level 2 -->
+  <!-- Box 50 — verde claro -->
+  <rect x="110" y="195" width="85" height="38" rx="4" fill="#c6f6d5" stroke="#2e8b57" stroke-width="2" />
+  <line x1="110" y1="208" x2="195" y2="208" class="flap" stroke="#2e8b57" />
+  <rect x="146" y="195" width="12" height="38" class="tape" />
+  <text x="152.5" y="214" class="box-value">50</text>
+  <text x="152.5" y="227" class="box-name">Caja D</text>
+
+  <!-- Box 41 — lima -->
+  <rect x="205" y="195" width="75" height="38" rx="4" fill="#e2f0c2" stroke="#6b8e23" stroke-width="2" />
+  <line x1="205" y1="208" x2="280" y2="208" class="flap" stroke="#6b8e23" />
+  <rect x="236" y="195" width="12" height="38" class="tape" />
+  <text x="242.5" y="214" class="box-value">41</text>
+  <text x="242.5" y="227" class="box-name">Caja E</text>
+
+  <!-- Box 30 — amarillo -->
+  <rect x="290" y="195" width="75" height="38" rx="4" fill="#fefcbf" stroke="#d69e2e" stroke-width="2" />
+  <line x1="290" y1="208" x2="365" y2="208" class="flap" stroke="#d69e2e" />
+  <rect x="321" y="195" width="12" height="38" class="tape" />
+  <text x="327.5" y="214" class="box-value">30</text>
+  <text x="327.5" y="227" class="box-name">Caja F</text>
+
+  <!-- Level 3 -->
+  <!-- Box 22 — durazno -->
+  <rect x="82" y="250" width="70" height="36" rx="4" fill="#feebc0" stroke="#ed8936" stroke-width="2" />
+  <line x1="82" y1="263" x2="152" y2="263" class="flap" stroke="#ed8936" />
+  <rect x="111" y="250" width="12" height="36" class="tape" />
+  <text x="117" y="268" class="box-value">22</text>
+  <text x="117" y="280" class="box-name">Caja G</text>
+
+  <!-- Box 15 — coral -->
+  <rect x="162" y="250" width="70" height="36" rx="4" fill="#ffd4c0" stroke="#e67635" stroke-width="2" />
+  <line x1="162" y1="263" x2="232" y2="263" class="flap" stroke="#e67635" />
+  <rect x="191" y="250" width="12" height="36" class="tape" />
+  <text x="197" y="268" class="box-value">15</text>
+  <text x="197" y="280" class="box-name">Caja H</text>
+
+  <!-- Box 10 — rojo claro -->
+  <rect x="242" y="250" width="70" height="36" rx="4" fill="#ffc4c4" stroke="#e53e3e" stroke-width="2" />
+  <line x1="242" y1="263" x2="312" y2="263" class="flap" stroke="#e53e3e" />
+  <rect x="271" y="250" width="12" height="36" class="tape" />
+  <text x="277" y="268" class="box-value">10</text>
+  <text x="277" y="280" class="box-name">Caja I</text>
+
+  <!-- Box 5 — lavanda -->
+  <rect x="322" y="250" width="70" height="36" rx="4" fill="#e8c4ff" stroke="#805ad5" stroke-width="2" />
+  <line x1="322" y1="263" x2="392" y2="263" class="flap" stroke="#805ad5" />
+  <rect x="351" y="250" width="12" height="36" class="tape" />
+  <text x="357" y="268" class="box-value">5</text>
+  <text x="357" y="280" class="box-name">Caja J</text>
+
+  <!-- Arrow -->
+  <line x1="435" y1="273" x2="435" y2="106" class="arrow" />
+  <text x="420" y="96" class="note">cima</text>
+</svg>

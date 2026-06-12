@@ -6,6 +6,9 @@ project:
   lang: es
   title: Apuntes de Algoritmos y Programación II
   description: Apuntes de la materia Algoritmos y Programación II - UNTREF
+  proof:
+    algorithm:
+      prefix: "Algoritmo"
   keywords:
     [
       "algoritmos",

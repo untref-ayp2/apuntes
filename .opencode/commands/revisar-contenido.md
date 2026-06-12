@@ -121,7 +121,8 @@ Leé el archivo de principio a fin para tener contexto general antes de revisar.
 
 - Admonitions: formato `{admonition}` con `class:`. NO usar shorthand (`{note}`, `{important}`, etc.)
 - Figures: ```` ```{figure} ``, campos ````name:`, `class:`, `width:\`. Pares light/dark completos
-- Code blocks: solo `{code-block}` con `linenos: true` y `language:`. `{code-file}` no existe en mystmd (era de JBv1/Sphinx)
+- Code blocks: `{code-block}` con `linenos: true`, `language: text` y `caption:` para pseudocódigo. NO usar `{prf:algorithm}` ni otros proof directives. `{code-file}` no existe en mystmd (era de JBv1/Sphinx)
+- Pseudocódigo: usar **formato capitalizado en español** con `FUNCION`/`FIN FUNCION`, `SI`/`ENTONCES`/`SINO`/`FIN SI`, `MIENTRAS`/`HACER`/`FIN MIENTRAS`, `RETORNAR`, `SALIR`, `Y`. Indentación con 4 espacios y operador de asignación `←`.
 - Labels de ejercicios: `ej-{seccion}-{numero}`
 - Frontmatter YAML: mínimo `label:`
 

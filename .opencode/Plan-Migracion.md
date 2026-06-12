@@ -60,7 +60,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 24 | `contenidos/3-estructuras-de-datos/3-8-arboles.md` | ✅ Revisado | `taller-tad`, `data-structures` |
 | 25 | `contenidos/3-estructuras-de-datos/3-9-abb.md` | ✅ Revisado | `guia-abb`, `data-structures` |
 | 26 | `contenidos/3-estructuras-de-datos/3-10-arboles-balanceados.md` | ✅ Revisado | `data-structures` |
-| 27 | `contenidos/3-estructuras-de-datos/3-11-monticulo-binario.md` | ⬜ Pendiente | `guia-monticulos-binarios` |
+| 27 | `contenidos/3-estructuras-de-datos/3-11-monticulo-binario.md` | ✅ Revisado | `data-structures`, `taller-tad` |
 | 28 | `contenidos/3-estructuras-de-datos/3-12-iteradores-abb.md` | ⬜ Pendiente | `guia-abb` |
 | 29 | `contenidos/4-diseno-de-algoritmos/4-1-recursividad.md` | ⬜ Pendiente | `guia-algoritmos`, `examples` |
 | 30 | `contenidos/4-diseno-de-algoritmos/4-2-patrones-de-diseno.md` | ⬜ Pendiente | `guia-patrones`, `examples` |
@@ -92,7 +92,7 @@ debe buscar recursos en estos repos para referenciar o incluir en el apunte.
 | 3-8 Árboles | `guia-arboles-binarios`, `guia-arboles-binarios-resuelta` | `data-structures` |
 | 3-9 ABB | `guia-abb`, `guia-abb-resuelta` | `data-structures` |
 | 3-10 Árboles Balanceados | `guia-abb-balanceados`, `guia-abb-balanceados-resuelta` | — |
-| 3-11 Montículo Binario | `guia-monticulos-binarios`, `guia-monticulos-binarios-resuelta` | — |
+| 3-11 Montículo Binario | `taller-tad` (`10-monticulo-binario/`) | `data-structures` (`heap/`, `priorityqueue/`) |
 | 3-12 Iteradores ABB | `guia-abb`, `guia-abb-resuelta` | — |
 | 4-1 Recursividad | `guia-algoritmos` | `examples/recursividad` |
 | 4-2 Patrones de Diseño | `guia-patrones`, `guia-patrones-resuelta` | `examples/patrones` |
@@ -160,7 +160,7 @@ Estado actual (jb2-martin):
     1-2-memoria        ✅
     1-3-analisis       ✅
     2-Taller de Go     ✅ 12 archivos
-    3-Estructuras      ✅ 8 / 🔄 0 / ⬜ 4 archivos
+    3-Estructuras      ✅ 9 / 🔄 0 / ⬜ 3 archivos
     4-Diseño Alg.      ⬜ 7 archivos
     5-Taller Git       ⬜
     bibliografia       ⬜

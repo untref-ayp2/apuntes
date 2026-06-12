@@ -262,6 +262,12 @@ Posicionamiento:
 
 Usar fuente `sans-serif` 12px bold con clase `.fb-label`.
 
+#### ViewBox por defecto
+
+Usar **`0 0 700 360`** como viewBox base para diagramas de árboles binarios de 5 niveles (ABB/AVL). Para árboles más pequeños (3-4 niveles) se puede reducir la altura a `300` o `280`, pero **mantener el ancho en `700`** para que la escala sea consistente con el resto del capítulo.
+
+**Importante**: si el viewBox es demasiado pequeño (ej. `400×220`), el árbol se ve desproporcionadamente grande al renderizarse sin `width` fijo. Usar `700` de ancho da el mismo factor de escala que los AVL del capítulo 3-10, que no usan `width` explícito.
+
 #### Disposición de niveles
 
 Para que el árbol sea legible y muestre claramente la relación padre-hijo izquierdo/derecho:
@@ -271,7 +277,7 @@ Para que el árbol sea legible y muestre claramente la relación padre-hijo izqu
 3. **Ocupar todo el ancho** del viewBox, espaciando los nodos para que no se superpongan
 4. **El árbol debe ser un BST válido**: cada nodo debe estar en la posición correcta según su valor y el orden del árbol
 
-Ejemplo de separaciones para 5 niveles (viewBox ~700×360):
+Ejemplo de separaciones para 5 niveles (viewBox `0 0 700 360`):
 ```
 Nivel 0 → Nivel 1: Δy = 70px
 Nivel 1 → Nivel 2: Δy = 65px

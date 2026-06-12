@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visualizador de Montículo Binario</title>
+<style>
+:root{--bg:#fff;--fg:#1a1a2e;--border:#d1d5db;--btn-bg:#f3f4f6;--btn-hover:#e5e7eb;--btn-active:#d1d5db;--btn-disabled:#e5e7eb;--btn-text:#374151;--btn-primary:#1d4ed8;--btn-primary-hover:#1e40af;--node-fill:#e1f5ff;--node-stroke:#4682b4;--insert-fill:#d4edda;--insert-stroke:#28a745;--highlight-fill:#fff3cd;--highlight-stroke:#ffc107;--slot-stroke:#9ca3af;--highlight:#1d4ed8;--error-fill:#ffe1e1;--error-stroke:#e9967a;--found-fill:#d4edda;--found-stroke:#28a745;--cmp-done:#059669;--bal-fill:#f3f4f6;--bal-stroke:#9ca3af;--rot-fill:#fff3cd;--rot-stroke:#fd7e14;--don-fill:#d4edda;--don-stroke:#28a745;--node-text:#1a1a2e;--fb-ok:#059669;--fb-bad:#dc2626;--mode-active-bg:#1d4ed8;--mode-active-text:#fff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+.applet{display:flex;flex-direction:column;padding:8px;gap:6px;width:100%;max-width:100%;flex:1;min-height:0;overflow:hidden}
+.header{font-size:14px;font-weight:700;text-align:center;padding:4px 12px;background:var(--btn-bg);border-radius:6px;border:1px solid var(--border);width:100%;flex-shrink:0}
+.main{display:flex;flex:1;min-height:0;gap:8px;width:100%;overflow:hidden}
+.tree-wrap{flex:1;min-width:0;display:flex;justify-content:center;align-items:center;overflow:hidden}
+.tree-wrap canvas{width:100%;height:100%}
+.sidebar{display:flex;flex-direction:column;gap:6px;flex-shrink:0;width:auto;min-width:150px;justify-content:flex-start}
+.modes{display:flex;gap:2px}
+.modes button{flex:1;padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--btn-bg);color:var(--btn-text);font-size:11px;cursor:pointer;font-weight:600;transition:background .15s}
+.modes button.active{background:var(--mode-active-bg);color:var(--mode-active-text);border-color:var(--mode-active-bg)}
+.modes button:hover:not(.active){background:var(--btn-hover)}
+.input-group{display:flex;flex-direction:column;gap:4px;font-size:12px}
+.input-row{display:flex;align-items:center;gap:4px}
+.input-row input{flex:1;padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--fg);font-size:14px;width:100%}
+.input-row input:disabled{opacity:.4;cursor:default}
+.enter-hint{font-size:14px;color:var(--slot-stroke);flex-shrink:0}
+.remove-btn{width:100%;padding:6px 8px;border:1px solid var(--mode-active-bg);border-radius:4px;background:var(--mode-active-bg);color:var(--mode-active-text);font-size:12px;cursor:pointer;font-weight:600;transition:background .15s;text-align:center}
+.remove-btn:hover{filter:brightness(1.1)}
+.remove-btn:disabled{opacity:.4;cursor:default;filter:none}
+.clear-btn{width:100%;padding:4px 8px;border:1px solid var(--error-stroke);border-radius:4px;background:transparent;color:var(--error-stroke);font-size:11px;cursor:pointer;font-weight:600;transition:background .15s}
+.clear-btn:hover{background:var(--error-fill)}
+.separator{height:1px;background:var(--border);margin:2px 0}
+.controls{display:flex;flex-direction:row;gap:4px;flex-wrap:wrap;justify-content:center}
+.controls button{width:36px;height:30px;border:1px solid var(--border);border-radius:6px;background:var(--btn-bg);color:var(--btn-text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;padding:0}
+.controls button:hover:not(:disabled){background:var(--btn-hover)}
+.controls button:active:not(:disabled){background:var(--btn-active)}
+.controls button:disabled{opacity:.4;cursor:default}
+.controls button.playing{background:var(--error-stroke);color:#fff;border-color:var(--error-stroke)}
+.controls button.playing:hover{filter:brightness(1.1)}
+.speed-wrap{display:flex;align-items:center;gap:3px;font-size:11px;flex:1 1 100%;justify-content:center;white-space:nowrap}
+.speed-wrap input[type=range]{width:48px;height:4px;accent-color:var(--highlight)}
+.legend{display:flex;flex-direction:column;gap:2px;font-size:10px;align-items:flex-start}
+.legend-item{display:flex;align-items:center;gap:4px}
+.legend-dot{width:10px;height:10px;border-radius:50%;border:2px solid;flex-shrink:0}
+.legend-dot.idle{border-color:var(--node-stroke);background:var(--node-fill)}
+.legend-dot.highlight{border-color:var(--highlight-stroke);background:var(--highlight-fill)}
+.legend-dot.inserted{border-color:var(--insert-stroke);background:var(--insert-fill)}
+.legend-dot.swapped{border-color:var(--rot-stroke);background:var(--rot-fill)}
+.legend-dot.done{border-color:var(--don-stroke);background:var(--don-fill)}
+.info{padding:6px 10px;border:1px solid var(--border);border-radius:6px;width:100%;display:flex;flex-wrap:wrap;gap:3px 12px;align-items:baseline;font-size:12px;flex-shrink:0}
+.info .path{flex:1 1 100%;font-family:'Courier New',monospace;font-size:13px;min-height:1.3em;word-break:break-all}
+.info .meta{display:flex;gap:12px;flex-wrap:wrap}
+.info .meta span{white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="applet">
+<div class="header">Montículo Binario — Visualización</div>
+<div class="main">
+<div class="tree-wrap"><canvas id="treeCanvas"></canvas></div>
+<div class="sidebar">
+<div class="modes" id="heapTypeSelector">
+<button class="mode-btn active" data-heaptype="min">Mínimo</button>
+<button class="mode-btn" data-heaptype="max">Máximo</button>
+</div>
+<div class="input-group" id="inputGroup">
+<label for="valInput">Valor:</label>
+<div class="input-row">
+<input type="text" id="valInput" placeholder="Ej: -5,10,20 — Enter ↵" autofocus>
+<span class="enter-hint">↵</span>
+</div>
+</div>
+<button id="btnRemove" class="remove-btn">Remover cima</button>
+<button id="btnClear" class="clear-btn">Vaciar montículo</button>
+<div class="separator"></div>
+<div class="controls">
+<button id="btnFirst" title="Ir al inicio">⏮</button>
+<button id="btnPrev" title="Paso anterior">◀</button>
+<button id="btnNext" title="Paso siguiente">▶</button>
+<button id="btnSkip" title="Reproducir automático">>></button>
+</div>
+<div class="speed-wrap">
+<label for="speedSlider">Vel:</label>
+<input type="range" id="speedSlider" min="400" max="3000" value="1500" step="100">
+<span id="speedLabel">0.5 p/s</span>
+</div>
+<div class="separator"></div>
+<div class="legend">
+<div class="legend-item"><span class="legend-dot idle"></span> No visitado</div>
+<div class="legend-item"><span class="legend-dot highlight"></span> Comparando</div>
+<div class="legend-item"><span class="legend-dot inserted"></span> Nuevo</div>
+<div class="legend-item"><span class="legend-dot swapped"></span> Intercambiando</div>
+<div class="legend-item"><span class="legend-dot done"></span> Posicionado</div>
+</div>
+</div>
+</div>
+<div class="info">
+<div class="path" id="desc">Montículo vacío. Elegí tipo (mínimo/máximo) e ingresá valores.</div>
+<div class="meta">
+<span id="stepCounter">Paso — / —</span>
+<span id="heapInfo">—</span>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var canvas=document.getElementById('treeCanvas');
+var ctx=canvas.getContext('2d');
+var descEl=document.getElementById('desc');
+var stepCounterEl=document.getElementById('stepCounter');
+var heapInfoEl=document.getElementById('heapInfo');
+var valInput=document.getElementById('valInput');
+var btnRemove=document.getElementById('btnRemove');
+var btnClear=document.getElementById('btnClear');
+var btnFirst=document.getElementById('btnFirst');
+var btnPrev=document.getElementById('btnPrev');
+var btnNext=document.getElementById('btnNext');
+var btnSkip=document.getElementById('btnSkip');
+var speedSlider=document.getElementById('speedSlider');
+var speedLabel=document.getElementById('speedLabel');
+var heapTypeBtns=document.querySelectorAll('#heapTypeSelector button');
+
+
+var isMinHeap=true;
+var heapArr=[];
+var steps=[];
+var currentStep=-1;
+var pendingValues=[];
+var ops=[];
+var isPlaying=false;
+var playTimer=null;
+var speedVal=1900;
+var NODE_R=18;
+var LEVEL_H=60;
+var MAX_ELEMENTS=15;
+var ARRAY_BOX_W=48;
+var ARRAY_BOX_H=34;
+
+var cssVar=function(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()};
+
+heapTypeBtns.forEach(function(b){
+  b.addEventListener('click',function(){
+    if(isPlaying)return;
+    heapTypeBtns.forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    isMinHeap=b.dataset.heaptype==='min';
+    clearAll();
+    descEl.textContent='Tipo cambiado a montículo de '+(isMinHeap?'mínimos':'máximos')+'.';
+    valInput.focus();
+  });
+});
+
+function cloneArr(a){return a.slice()}
+
+function shouldUpSwap(child,parent){
+  return isMinHeap?child<parent:child>parent;
+}
+function shouldDownSwap(parent,child){
+  return isMinHeap?parent>child:parent<child;
+}
+
+function genInsSteps(arr,val){
+  var out=[];
+  if(arr.length>=MAX_ELEMENTS){
+    out.push({desc:'⚠ El montículo alcanzó el máximo de '+MAX_ELEMENTS+' elementos.',arr:cloneArr(arr),hl:[],done:true});
+    return out;
+  }
+  var a=cloneArr(arr);
+  a.push(val);
+  var idx=a.length-1;
+  out.push({desc:'Insertando '+val+' al final (índice '+idx+')',arr:cloneArr(a),hl:[{idx:idx,t:'ins'}],done:false});
+  while(idx>0){
+    var p=Math.floor((idx-1)/2);
+    out.push({desc:'Comparando '+a[idx]+' con su padre '+a[p],arr:cloneArr(a),hl:[{idx:idx,t:'cmp'},{idx:p,t:'cmp'}],done:false});
+    if(shouldUpSwap(a[idx],a[p])){
+      var tmp=a[idx];a[idx]=a[p];a[p]=tmp;
+      out.push({desc:'↕ Intercambiando '+a[idx]+' con '+a[p],arr:cloneArr(a),hl:[{idx:idx,t:'swap'},{idx:p,t:'swap'}],done:false});
+      idx=p;
+    }else{
+      out.push({desc:'✓ '+a[idx]+' ya está en la posición correcta',arr:cloneArr(a),hl:[{idx:idx,t:'don'}],done:true});
+      return out;
+    }
+  }
+  out.push({desc:'✓ '+a[0]+' llegó a la cima',arr:cloneArr(a),hl:[{idx:0,t:'don'}],done:true});
+  return out;
+}
+
+function genRemSteps(arr){
+  var out=[];
+  if(arr.length===0){
+    out.push({desc:'⚠ El montículo está vacío.',arr:[],hl:[],done:true});
+    return out;
+  }
+  var a=cloneArr(arr);
+  var rootVal=a[0];
+  if(a.length===1){
+    a.pop();
+    out.push({desc:'✓ Eliminando la cima ('+rootVal+'). Montículo vacío.',arr:cloneArr(a),hl:[],done:true});
+    return out;
+  }
+  var lastVal=a[a.length-1];
+  out.push({desc:'Reemplazando cima ('+rootVal+') con último ('+lastVal+')',arr:cloneArr(a),hl:[{idx:0,t:'cmp'},{idx:a.length-1,t:'cmp'}],done:false});
+  a[0]=a[a.length-1];
+  a.pop();
+  out.push({desc:'Último elemento eliminado. Reordenando desde la cima ('+a[0]+')',arr:cloneArr(a),hl:[{idx:0,t:'ins'}],done:false});
+  var n=a.length;
+  var i=0;
+  while(true){
+    var left=2*i+1;
+    var right=2*i+2;
+    var best=i;
+    if(left<n&&shouldDownSwap(a[best],a[left]))best=left;
+    if(right<n&&shouldDownSwap(a[best],a[right]))best=right;
+    if(best!==i){
+      out.push({desc:'Comparando '+a[i]+' con '+(best===left?'hijo izquierdo':'hijo derecho')+' '+a[best],arr:cloneArr(a),hl:[{idx:i,t:'cmp'},{idx:best,t:'cmp'}],done:false});
+      var tmp=a[i];a[i]=a[best];a[best]=tmp;
+      out.push({desc:'↕ Intercambiando '+a[i]+' con '+a[best],arr:cloneArr(a),hl:[{idx:i,t:'swap'},{idx:best,t:'swap'}],done:false});
+      i=best;
+    }else{
+      out.push({desc:'✓ Montículo reordenado. Cima: '+a[0],arr:cloneArr(a),hl:[{idx:i,t:'don'}],done:true});
+      break;
+    }
+  }
+  return out;
+}
+
+function resizeCanvas(){
+  var rect=canvas.parentElement.getBoundingClientRect();
+  var dpr=window.devicePixelRatio||1;
+  canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;
+  canvas.style.width=rect.width+'px';canvas.style.height=rect.height+'px';
+  canvas._w=rect.width;canvas._h=rect.height;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+}
+
+function layHeapTree(n,w,h){
+  var pos=new Array(15);
+  var mx=30,my=26;
+  var lvlH=LEVEL_H;
+  var idx=0;
+  for(var lvl=0;lvl<4;lvl++){
+    var inLvl=1<<lvl;
+    for(var j=0;j<inLvl;j++){
+      var x=mx+(w-2*mx)*(j+0.5)/inLvl;
+      var y=my+lvl*lvlH;
+      pos[idx]={x:x,y:y};
+      idx++;
+    }
+  }
+  return pos;
+}
+
+function drawTree(arr,w,h){
+  ctx.clearRect(0,0,w,h);
+  var n=arr.length;
+  if(n===0)return;
+  var treeH=h*0.72;
+  var gapY=20;
+  var arrayTop=treeH+gapY;
+  var arrayH=h-arrayTop;
+  var pos=layHeapTree(n,w,treeH);
+  if(!pos)return;
+  // edges
+  for(var i=1;i<n;i++){
+    var p=Math.floor((i-1)/2);
+    ctx.beginPath();ctx.moveTo(pos[p].x,pos[p].y+NODE_R);ctx.lineTo(pos[i].x,pos[i].y-NODE_R);
+    ctx.strokeStyle=cssVar('--border');ctx.lineWidth=1.5;ctx.stroke();
+  }
+  // nodes
+  for(var i=0;i<n;i++){
+    ctx.beginPath();ctx.arc(pos[i].x,pos[i].y,NODE_R,0,Math.PI*2);
+    ctx.fillStyle=cssVar('--node-fill');ctx.fill();
+    ctx.strokeStyle=cssVar('--node-stroke');ctx.lineWidth=2;ctx.stroke();
+    ctx.fillStyle=cssVar('--node-text');
+    ctx.font='bold 14px monospace';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(arr[i],pos[i].x,pos[i].y);
+  }
+  // array
+  var boxW=Math.min(ARRAY_BOX_W,(w-40)/Math.max(n,1));
+  var totalW=n*boxW;
+  var startX=(w-totalW)/2;
+  var boxY=arrayTop+8;
+  var boxH=ARRAY_BOX_H;
+  // indices
+  ctx.font='11px system-ui,sans-serif';
+  ctx.fillStyle=cssVar('--slot-stroke');
+  ctx.textAlign='center';ctx.textBaseline='bottom';
+  for(var i=0;i<n;i++){
+    ctx.fillText(i,startX+i*boxW+boxW/2,boxY-3);
+  }
+  // boxes
+  for(var i=0;i<n;i++){
+    ctx.strokeStyle=cssVar('--node-stroke');ctx.lineWidth=1.5;
+    ctx.fillStyle=cssVar('--bg');
+    ctx.fillRect(startX+i*boxW,boxY,boxW,boxH);
+    ctx.strokeRect(startX+i*boxW,boxY,boxW,boxH);
+    ctx.fillStyle=cssVar('--node-text');
+    ctx.font='bold 14px monospace';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(arr[i],startX+i*boxW+boxW/2,boxY+boxH/2);
+  }
+}
+
+function drawStep(arr,hl){
+  var w=canvas._w,h=canvas._h;
+  ctx.clearRect(0,0,w,h);
+  var n=arr.length;
+  var treeH=h*0.72;
+  var gapY=20;
+  var arrayTop=treeH+gapY;
+  var arrayH=h-arrayTop;
+  var pos=layHeapTree(n,w,treeH);
+  if(n===0){
+    ctx.fillStyle=cssVar('--slot-stroke');
+    ctx.font='14px system-ui,sans-serif';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('(vacío)',w/2,(treeH)/2);
+    // array empty
+    ctx.fillText('[ ]',w/2,arrayTop+8+ARRAY_BOX_H/2);
+    return;
+  }
+  var hlM={};
+  if(hl)hl.forEach(function(h){hlM[h.idx]=h.t});
+
+  var clr={
+    idle:{fill:cssVar('--node-fill'),stroke:cssVar('--node-stroke')},
+    cmp:{fill:cssVar('--highlight-fill'),stroke:cssVar('--highlight-stroke')},
+    ins:{fill:cssVar('--insert-fill'),stroke:cssVar('--insert-stroke')},
+    swap:{fill:cssVar('--rot-fill'),stroke:cssVar('--rot-stroke')},
+    don:{fill:cssVar('--don-fill'),stroke:cssVar('--don-stroke')}
+  };
+
+  // edges
+  for(var i=1;i<n;i++){
+    var p=Math.floor((i-1)/2);
+    ctx.beginPath();ctx.moveTo(pos[p].x,pos[p].y+NODE_R);ctx.lineTo(pos[i].x,pos[i].y-NODE_R);
+    ctx.strokeStyle=cssVar('--border');ctx.lineWidth=1.5;ctx.stroke();
+  }
+  // nodes
+  for(var i=0;i<n;i++){
+    var t=hlM[i]||'idle',c=clr[t]||clr.idle;
+    ctx.beginPath();ctx.arc(pos[i].x,pos[i].y,NODE_R,0,Math.PI*2);
+    ctx.fillStyle=c.fill;ctx.fill();
+    ctx.strokeStyle=c.stroke;ctx.lineWidth=t==='idle'?2:3;ctx.stroke();
+    ctx.fillStyle=cssVar('--node-text');
+    ctx.font='bold 14px monospace';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(arr[i],pos[i].x,pos[i].y);
+  }
+  // separator line
+  ctx.beginPath();ctx.moveTo(8,arrayTop);ctx.lineTo(w-8,arrayTop);
+  ctx.strokeStyle=cssVar('--border');ctx.lineWidth=1;ctx.setLineDash([4,4]);
+  ctx.stroke();ctx.setLineDash([]);
+
+  // array
+  var boxW=Math.min(ARRAY_BOX_W,(w-40)/Math.max(n,1));
+  var totalW=n*boxW;
+  var startX=(w-totalW)/2;
+  var boxY=arrayTop+8;
+  var boxH=ARRAY_BOX_H;
+  // indices
+  var idxFontSize=Math.min(11,Math.max(8,boxW*0.28));
+  ctx.font=idxFontSize+'px system-ui,sans-serif';
+  ctx.fillStyle=cssVar('--slot-stroke');
+  ctx.textAlign='center';ctx.textBaseline='bottom';
+  for(var i=0;i<n;i++){
+    ctx.fillText(i,startX+i*boxW+boxW/2,boxY-3);
+  }
+  // boxes
+  var valFontSize=Math.min(14,Math.max(10,boxW*0.34));
+  for(var i=0;i<n;i++){
+    var t=hlM[i]||'idle',c=clr[t]||clr.idle;
+    ctx.fillStyle=c.fill;
+    ctx.fillRect(startX+i*boxW,boxY,boxW,boxH);
+    ctx.strokeStyle=c.stroke;ctx.lineWidth=t==='idle'?1.5:2.5;
+    ctx.strokeRect(startX+i*boxW,boxY,boxW,boxH);
+    ctx.fillStyle=cssVar('--node-text');
+    ctx.font='bold '+valFontSize+'px monospace';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(arr[i],startX+i*boxW+boxW/2,boxY+boxH/2);
+  }
+}
+
+function renderStep(idx){
+  if(idx<0||idx>=steps.length){
+    if(idx===-1&&steps.length===0){
+      drawStep([],[]);
+      descEl.textContent='Montículo vacío. Elegí tipo (mínimo/máximo) e ingresá valores.';
+      stepCounterEl.textContent='Paso — / —';
+      heapInfoEl.textContent='—';
+    }
+    updateBtns();return;
+  }
+  var s=steps[idx];
+  drawStep(s.arr,s.hl);
+  descEl.textContent=s.desc;
+  stepCounterEl.textContent='Paso '+(idx+1)+' / '+steps.length;
+  var n=s.arr.length;
+  heapInfoEl.textContent=n+' elemento'+(n!==1?'s':'');
+  updateBtns();
+}
+
+function updateBtns(){
+  var atS=currentStep<=0,atE=currentStep>=steps.length-1,hasS=steps.length>0;
+  var canUndo=ops.length>0&&ops[ops.length-1].type==='insert'&&currentStep>=ops[ops.length-1].start+1;
+  btnFirst.disabled=!canUndo||isPlaying;
+  btnPrev.disabled=atS||!hasS||isPlaying;
+  var canNext=(hasS&&!atE)||pendingValues.length>0;
+  btnNext.disabled=!canNext||isPlaying;
+  btnSkip.disabled=pendingValues.length===0&&(atE||!hasS);
+  var done=pendingValues.length===0&&atE;
+  var busy=(hasS&&!done)||isPlaying;
+  valInput.disabled=busy;
+  btnRemove.disabled=heapArr.length===0||busy;
+}
+
+function goTo(n){
+  if(n<0)n=0;if(n>=steps.length)n=steps.length-1;
+  currentStep=n;renderStep(currentStep);
+}
+function goNext(){
+  if(currentStep<steps.length-1){goTo(currentStep+1);return true}
+  return false;
+}
+function goPrev(){
+  if(currentStep>0)goTo(currentStep-1);
+}
+function goFirst(){
+  for(var i=ops.length-1;i>=0;i--){
+    if(ops[i].type==='insert'&&currentStep>=ops[i].start+1){
+      var start=ops[i].start;
+      steps.length=start;
+      ops.length=i;
+      updateLastHeap();
+      if(steps.length>0)goTo(steps.length-1);else goTo(-1);
+      return;
+    }else{break;}
+  }
+  goTo(0);
+}
+
+function updateLastHeap(){
+  if(steps.length>0){
+    var last=steps[steps.length-1];
+    heapArr=cloneArr(last.arr);
+  }else{
+    heapArr=[];
+  }
+}
+
+function procIns(val){
+  ops.push({start:steps.length,type:'insert'});
+  var curArr=steps.length>0?cloneArr(steps[steps.length-1].arr):cloneArr(heapArr);
+  var r=genInsSteps(curArr,val);
+  r.forEach(function(s){s._val=val});
+  steps.push.apply(steps,r);
+  updateLastHeap();
+}
+
+function procRem(){
+  var curArr=steps.length>0?cloneArr(steps[steps.length-1].arr):cloneArr(heapArr);
+  if(curArr.length===0){
+    descEl.textContent='⚠ El montículo está vacío.';
+    return;
+  }
+  ops.push({start:steps.length,type:'remove'});
+  var r=genRemSteps(curArr);
+  steps.push.apply(steps,r);
+  updateLastHeap();
+}
+
+function hdlNext(){
+  if(isPlaying)return;
+  if(currentStep<steps.length-1){goNext();return;}
+  if(pendingValues.length>0){
+    var val=pendingValues.shift();procIns(val);
+    if(currentStep<0)goTo(0);else goNext();
+  }
+}
+
+function tick(){
+  if(!isPlaying)return;
+  if(currentStep>=steps.length-1){
+    if(pendingValues.length>0){var val=pendingValues.shift();procIns(val);}
+    else{stopPlay();return;}
+  }
+  if(currentStep<steps.length-1){goNext();playTimer=setTimeout(tick,speedVal);}
+  else stopPlay();
+}
+
+function startPlay(){
+  if(currentStep>=steps.length-1&&pendingValues.length===0)return;
+  isPlaying=true;
+  btnSkip.textContent='⏸';btnSkip.classList.add('playing');
+  updateBtns();
+  playTimer=setTimeout(tick,speedVal);
+}
+function stopPlay(){
+  isPlaying=false;
+  if(playTimer){clearTimeout(playTimer);playTimer=null;}
+  btnSkip.textContent='>>';btnSkip.classList.remove('playing');
+  updateBtns();
+}
+function hdlSkip(){
+  if(isPlaying){stopPlay();return;}
+  if(currentStep>=steps.length-1&&pendingValues.length===0)return;
+  startPlay();
+}
+
+function parseAndEnq(inp){
+  var nums=inp.split(',').map(function(s){return s.trim()}).filter(function(s){return s.length>0}).map(function(s){return parseInt(s,10)}).filter(function(n){return Number.isInteger(n)&&n>=-999&&n<=999});
+  if(nums.length===0){descEl.textContent='⚠ Ingresá enteros de hasta 3 cifras (±999) separados por coma.';return;}
+
+  var curCount=heapArr.length+pendingValues.length;
+  var avail=MAX_ELEMENTS-curCount;
+  if(avail<=0){descEl.textContent='⚠ El montículo ya tiene '+MAX_ELEMENTS+' elementos (máximo).';return;}
+  var originalLen=nums.length;
+  if(nums.length>avail)nums=nums.slice(0,avail);
+  pendingValues.push.apply(pendingValues,nums);
+  valInput.value='';
+  var msg=nums.length+' valor'+(nums.length!==1?'es':'')+' encolado'+(nums.length!==1?'s':'')+'. Usá ▶ o >>.';
+  if(nums.length<originalLen)msg='⚠ Solo hay espacio para '+avail+'. '+msg;
+  descEl.textContent=msg;
+  updateBtns();
+}
+
+function clearAll(){
+  stopPlay();
+  heapArr=[];steps=[];pendingValues=[];ops=[];currentStep=-1;
+  drawStep([],[]);
+  descEl.textContent='Montículo limpiado. Elegí tipo (mínimo/máximo) e ingresá valores.';
+  stepCounterEl.textContent='Paso — / —';heapInfoEl.textContent='—';
+  updateBtns();
+}
+
+speedSlider.addEventListener('input',function(){
+  speedVal=3400-parseInt(this.value);
+  speedLabel.textContent=(1000/speedVal).toFixed(1)+' p/s';
+  if(isPlaying){stopPlay();startPlay();}
+});
+
+valInput.addEventListener('keydown',function(e){
+  if(e.key==='Enter'){
+    if(isPlaying)return;
+    var inp=valInput.value.trim();
+    if(!inp){descEl.textContent='⚠ Ingresá un valor.';return;}
+    parseAndEnq(inp);
+  }
+});
+
+btnRemove.addEventListener('click',function(){
+  if(isPlaying)return;
+  if(heapArr.length===0){descEl.textContent='⚠ El montículo está vacío.';return;}
+  procRem();
+  if(currentStep<0)goTo(0);else goNext();
+});
+
+btnNext.addEventListener('click',hdlNext);
+btnSkip.addEventListener('click',hdlSkip);
+btnPrev.addEventListener('click',goPrev);
+btnFirst.addEventListener('click',goFirst);
+btnClear.addEventListener('click',clearAll);
+
+window.addEventListener('resize',function(){
+  resizeCanvas();
+  if(currentStep>=0&&currentStep<steps.length)renderStep(currentStep);
+  else drawStep([],[]);
+});
+
+document.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT')return;
+  if(e.key==='ArrowRight'){e.preventDefault();hdlNext();}
+  if(e.key==='ArrowLeft'){e.preventDefault();goPrev();}
+  if(e.key==='Home'){e.preventDefault();goFirst();}
+  if(e.key===' '||e.key==='End'){e.preventDefault();hdlSkip();}
+});
+
+resizeCanvas();
+updateBtns();
+})();
+</script>
+</body>
+</html>
