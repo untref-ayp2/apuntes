@@ -6,8 +6,5 @@ matplotlib
 mdformat
 mdformat-black
 mdformat-myst
-myst-parser
 mystmd
-sphinx-proof
-sphinx-thebe
 tabulate

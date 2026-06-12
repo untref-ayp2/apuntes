@@ -2,10 +2,9 @@
 
 ## Diagnóstico General
 
-El repositorio tiene dos ramas principales:
+El repositorio tiene una rama principal:
 
-- **`main`**: versión publicada actual con Jupyter Book v1
-- **`jb2-martin`** (HEAD): migración a MyST/JBv2 en progreso
+- **`main`** (HEAD): versión publicada con MyST/JBv2. La rama `jb2-martin` se mergeó el 2026-06-12. Todo el trabajo futuro se realiza directamente en `main`.
 
 ### Estado de la migración técnica
 
@@ -13,7 +12,7 @@ El repositorio tiene dos ramas principales:
 | ----------------------- | -------------------------------- |
 | Build system            | ✅ Migrado a `myst build`        |
 | Config (`myst.yml`)     | ✅ Creado                        |
-| Archivos legacy         | ✅ `_config.yml`/`_toc.yml` quitados |
+| Archivos legacy         | ✅ Eliminados (`_config.yml`, `_toc.yml`, `assets/geogebra/`, `assets/xfig/`) |
 | Assets a `_static/`     | ✅ Imágenes movidas              |
 | CSS light/dark mode     | ✅ Reemplazado con el de EDD     |
 | JS sidebar              | ✅ Adaptado a MyST               |
@@ -23,7 +22,7 @@ El repositorio tiene dos ramas principales:
 | Figuras light/dark      | 🔶 ~50/80 imágenes convertidas   |
 | Admonitions             | 🔶 ~34 `{admonition}` sin normalizar |
 | GitHub Actions          | ✅ Migrado a myst                |
-| Dependencias            | 🔶 Tiene restos de JBv1          |
+| Dependencias            | ✅ Limpiadas (restos de JBv1 removidos) |
 
 ---
 
@@ -133,8 +132,8 @@ Reemplazar `custom.css` con el de EDD. Incluye reglas `only-light-mode` / `only-
 - 📝 Crear `taller-*` adicionales según se avance en la revisión
 
 ### Limpieza
-- `requirements.txt`: remover `sphinx-proof`, `sphinx-thebe`, `myst-parser`
-- Directorios legacy: `assets/geogebra/`, `assets/xfig/`
+- `requirements.txt`: ✅ removidos `sphinx-proof`, `sphinx-thebe`, `myst-parser`
+- Directorios legacy: ✅ `assets/geogebra/`, `assets/xfig/` eliminados
 - `myst.yml`: apuntar template Typst, agregar descarga PDF, logo, favicon
 - `bibliografia.md`: adaptar formato MyST
 
@@ -147,12 +146,13 @@ Reemplazar `custom.css` con el de EDD. Incluye reglas `only-light-mode` / `only-
 ## Resumen Visual
 
 ```
-Estado actual (jb2-martin):
+Estado actual (main):
 
   Infraestructura:
     Build + PDF        ✅ script + template + fuentes
-    Deploy target      ✅ main (desactivado jb2-martin)
+    Deploy target      ✅ main
     CSS light/dark     🔶 pendiente completar
+    Dependencias       ✅ limpiadas
 
   Revisión de contenido (09/05/2026):
     introduccion.md    ✅
