@@ -371,7 +371,7 @@ Los ejercicios de este capítulo se encuentran en el repositorio
 ### En taller-tad
 
 Los ejercicios de aplicación están en
-[`11-monticulo-binario/ejercicios/`](https://github.com/untref-ayp2/taller-tad/tree/main/10-monticulo-binario/ejercicios):
+[`10-monticulo-binario/ejercicios/`](https://github.com/untref-ayp2/taller-tad/tree/main/10-monticulo-binario/ejercicios):
 
 - **01-merge-listas**: fusionar K listas ordenadas en una sola usando una
   cola de prioridad.
