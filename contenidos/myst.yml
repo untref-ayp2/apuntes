@@ -2,7 +2,7 @@
 version: 1
 
 project:
-  id: ayp2-apuntes-2025
+  id: ayp2-apuntes
   lang: es
   title: Apuntes de Algoritmos y Programación II
   description: Apuntes de la materia Algoritmos y Programación II - UNTREF
