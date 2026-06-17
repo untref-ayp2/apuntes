@@ -86,8 +86,8 @@ project:
         - file: 4-diseno-de-algoritmos/4-7-ordenamientos-lineales.md
     - title: Anexos
       children:
-        - file: 5-taller-de-git/5-1-introduccion-git.md
-        - file: 3-estructuras-de-datos/3-12-iteradores-abb.md
+        - file: 5-anexos/5-1-introduccion-git.md
+        - file: 5-anexos/5-2-iteradores-abb.md
 
 
 

@@ -60,7 +60,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 25 | `contenidos/3-estructuras-de-datos/3-9-abb.md` | ✅ Revisado | `guia-abb`, `data-structures` |
 | 26 | `contenidos/3-estructuras-de-datos/3-10-arboles-balanceados.md` | ✅ Revisado | `data-structures` |
 | 27 | `contenidos/3-estructuras-de-datos/3-11-monticulo-binario.md` | ✅ Revisado | `data-structures`, `taller-tad` |
-| 28 | `contenidos/3-estructuras-de-datos/3-12-iteradores-abb.md` | ⬜ Pendiente | `guia-abb` |
+| 28 | `contenidos/5-anexos/5-2-iteradores-abb.md` | ⬜ Pendiente | `guia-abb` |
 | 29 | `contenidos/4-diseno-de-algoritmos/4-1-recursividad.md` | ⬜ Pendiente | `guia-algoritmos`, `examples` |
 | 30 | `contenidos/4-diseno-de-algoritmos/4-2-patrones-de-diseno.md` | ⬜ Pendiente | `guia-patrones`, `examples` |
 | 31 | `contenidos/4-diseno-de-algoritmos/4-3-algoritmos-avidos.md` | ⬜ Pendiente | `guia-avidos`, `examples` |
@@ -68,7 +68,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 33 | `contenidos/4-diseno-de-algoritmos/4-5-programacion-dinamica.md` | ⬜ Pendiente | `guia-algoritmos`, `examples` |
 | 34 | `contenidos/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos.md` | ⬜ Pendiente | `guia-ordenamientos-recursivos`, `examples` |
 | 35 | `contenidos/4-diseno-de-algoritmos/4-7-ordenamientos-lineales.md` | ⬜ Pendiente | `examples` |
-| 36 | `contenidos/5-taller-de-git/5-1-introduccion-git.md` | ⬜ Pendiente | — |
+| 36 | `contenidos/5-anexos/5-1-introduccion-git.md` | ⬜ Pendiente | — |
 | 37 | `contenidos/bibliografia.md` | ⬜ Pendiente | — |
 
 ---
@@ -92,7 +92,7 @@ debe buscar recursos en estos repos para referenciar o incluir en el apunte.
 | 3-9 ABB | `guia-abb`, `guia-abb-resuelta` | `data-structures` |
 | 3-10 Árboles Balanceados | `guia-abb-balanceados`, `guia-abb-balanceados-resuelta` | — |
 | 3-11 Montículo Binario | `taller-tad` (`10-monticulo-binario/`) | `data-structures` (`heap/`, `priorityqueue/`) |
-| 3-12 Iteradores ABB | `guia-abb`, `guia-abb-resuelta` | — |
+| 5-2 Iteradores ABB | `guia-abb`, `guia-abb-resuelta` | — |
 | 4-1 Recursividad | `guia-algoritmos` | `examples/recursividad` |
 | 4-2 Patrones de Diseño | `guia-patrones`, `guia-patrones-resuelta` | `examples/patrones` |
 | 4-3 Algoritmos Ávidos | `guia-avidos`, `guia-avidos-resuelta` | `examples/avidos` |

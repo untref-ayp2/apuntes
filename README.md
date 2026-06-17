@@ -83,7 +83,7 @@ El HTML generado queda en `contenidos/_build/html` y el PDF en `contenidos/expor
 │   ├── 2-taller-de-go/
 │   ├── 3-estructuras-de-datos/
 │   ├── 4-diseno-de-algoritmos/
-│   ├── 5-taller-de-git/
+│   ├── 5-anexos/
 │   └── bibliografia.md
 └── Plan-Migracion.md          # Plan de migración a MyST/JBv2
 ```

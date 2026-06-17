@@ -70,7 +70,7 @@ Usá esta tabla para determinar el archivo a revisar según el argumento (si se 
 | `3-9` o `3-9-abb`                    | `contenidos/3-estructuras-de-datos/3-9-abb.md`                      |
 | `3-10` o `3-10-balanceados`          | `contenidos/3-estructuras-de-datos/3-10-arboles-balanceados.md`     |
 | `3-11` o `3-11-heap`                 | `contenidos/3-estructuras-de-datos/3-11-monticulo-binario.md`       |
-| `3-12` o `3-12-iteradores`           | `contenidos/3-estructuras-de-datos/3-12-iteradores-abb.md`          |
+| `5-2` o `5-2-iteradores`             | `contenidos/5-anexos/5-2-iteradores-abb.md`                            |
 | `4-1` o `4-1-recursividad`           | `contenidos/4-diseno-de-algoritmos/4-1-recursividad.md`             |
 | `4-2` o `4-2-patrones`               | `contenidos/4-diseno-de-algoritmos/4-2-patrones-de-diseno.md`       |
 | `4-3` o `4-3-avidos`                 | `contenidos/4-diseno-de-algoritmos/4-3-algoritmos-avidos.md`        |
@@ -78,7 +78,7 @@ Usá esta tabla para determinar el archivo a revisar según el argumento (si se 
 | `4-5` o `4-5-programacion-dinamica`  | `contenidos/4-diseno-de-algoritmos/4-5-programacion-dinamica.md`    |
 | `4-6` o `4-6-ordenamientos-rec`      | `contenidos/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos.md` |
 | `4-7` o `4-7-ordenamientos-lineales` | `contenidos/4-diseno-de-algoritmos/4-7-ordenamientos-lineales.md`   |
-| `5-1` o `5-1-git`                    | `contenidos/5-taller-de-git/5-1-introduccion-git.md`                |
+| `5-1` o `5-1-git`                    | `contenidos/5-anexos/5-1-introduccion-git.md`                      |
 | `biblio` o `bibliografia`            | `contenidos/bibliografia.md`                                        |
 
 Sin match exacto, buscá con `contenidos/**/*${termino}*.md`.
