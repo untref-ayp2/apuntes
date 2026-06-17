@@ -4,7 +4,7 @@ label: patrones-diseno
 
 # Patrones de Diseño
 
-Los patrones de diseño son soluciones reutilizables para problemas comunes que surgen en el desarrollo de software. Estos patrones encapsulan buenas prácticas y ofrecen un enfoque probado para resolver problemas recurrentes, facilitando el diseño de sistemas más robustos y mantenibles.
+Los patrones de diseño son soluciones reutilizables para problemas comunes que surgen en el desarrollo de software. Estos patrones encapsulan buenas prácticas y ofrecen un enfoque probado para resolver problemas recurrentes, facilitando el diseño de sistemas más robustos y mantenibles {cite}`gamma2002patrones`.
 
 Los patrones no son exclusivos de las ciencias informáticas, sino que también se encuentran en otras disciplinas como la arquitectura, el diseño industrial y la ingeniería. En cada caso, los patrones representan soluciones probadas que se pueden adaptar a diferentes contextos, manteniendo su esencia y efectividad.
 
@@ -92,10 +92,10 @@ Interfaz
 : Define la interfaz esperada por el sistema nuevo.
 
 Adaptado
-: Representa la clase existente con la interfaz incompatible. En este ejemplo se observa que cuenta con el método `specifirequest()`.
+: Representa la clase existente con la interfaz incompatible. En este ejemplo se observa que cuenta con el método `specificRequest()`.
 
 Adaptador
-: Convierte la interfaz del _Adaptado_. Dentro del método `request()` en el _Adaptador_ se invoca el método específico del _Adaptado_ `specificrequest()`. Eventualmente puede realizar alguna transformación de datos o invocar otros métodos del _Adaptado_ para conseguir que `request()` cumpla con la interfaz esperada.
+: Convierte la interfaz del _Adaptado_. Dentro del método `request()` en el _Adaptador_ se invoca el método específico del _Adaptado_ `specificRequest()`. Eventualmente puede realizar alguna transformación de datos o invocar otros métodos del _Adaptado_ para conseguir que `request()` cumpla con la interfaz esperada.
 
 ### Cómo Proceder
 
@@ -294,6 +294,7 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
    ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronTren_light.svg
    ---
    class: only-light-mode
+   name: tren
    ---
    Ejemplo de tren compuesto por figuras
    ```
@@ -301,6 +302,7 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
    ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronTren_dark.svg
    ---
    class: only-dark-mode
+   name: tren
    ---
    Ejemplo de tren compuesto por figuras
    ```
@@ -340,7 +342,7 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
 ---
 name: iterator
 ---
-Patrón Iterador
+Patrón _Iterator_
 ```
 
 El patrón _Iterator_ o Iterador permite recorrer los elementos de una colección cualquiera sin exponer su estructura interna. El Iterador declara un conjunto de métodos o funciones para acceder secuencialmente a los elementos. Los métodos más comunes son:
@@ -459,11 +461,11 @@ func (i *IteradorLista) Siguiente() {
     i.actual = i.actual.Siguiente
 }
 
-   func (i IteradorLista) HaySiguiente() bool {
-       return i.actual != nil
-   }
+func (i *IteradorLista) HaySiguiente() bool {
+    return i.actual != nil
+}
 
-   func (i IteradorLista) Actual() int {
+func (i *IteradorLista) Actual() int {
        return i.actual.Valor
    }
    ```
