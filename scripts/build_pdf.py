@@ -280,8 +280,12 @@ def post_process_typst():
                 new_content = (
                     content.replace("arrow.r.double", "=>")
                     .replace("arrow.r", "->")
+                    .replace("angle.l", "⟨")
+                    .replace("angle.r", "⟩")
                     .replace("repeat-header: true", "repeat-header: false")
                     # Fix LaTeX math commands not converted by MyST
+                    .replace("displaystyle ", "")
+                    .replace("displaystyle", "")
                     .replace("quad", " ")
                     .replace(" land ", " ∧ ")
                     .replace("∧  ", "∧ ")
