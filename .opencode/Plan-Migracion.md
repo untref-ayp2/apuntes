@@ -60,13 +60,13 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 25 | `contenidos/3-estructuras-de-datos/3-9-abb.md` | ✅ Revisado | `guia-abb`, `data-structures` |
 | 26 | `contenidos/3-estructuras-de-datos/3-10-arboles-balanceados.md` | ✅ Revisado | `data-structures` |
 | 27 | `contenidos/3-estructuras-de-datos/3-11-monticulo-binario.md` | ✅ Revisado | `data-structures`, `taller-tad` |
-| 28 | `contenidos/4-diseno-de-algoritmos/4-1-recursividad.md` | ⬜ Pendiente | `guia-algoritmos`, `examples` |
-| 29 | `contenidos/4-diseno-de-algoritmos/4-2-patrones-de-diseno.md` | ⬜ Pendiente | `guia-patrones`, `examples` |
-| 30 | `contenidos/4-diseno-de-algoritmos/4-3-algoritmos-avidos.md` | ⬜ Pendiente | `guia-avidos`, `examples` |
-| 31 | `contenidos/4-diseno-de-algoritmos/4-4-backtracking.md` | ⬜ Pendiente | `guia-backtracking`, `examples` |
-| 32 | `contenidos/4-diseno-de-algoritmos/4-5-programacion-dinamica.md` | ⬜ Pendiente | `guia-algoritmos`, `examples` |
-| 33 | `contenidos/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos.md` | ⬜ Pendiente | `guia-ordenamientos-recursivos`, `examples` |
-| 34 | `contenidos/4-diseno-de-algoritmos/4-7-ordenamientos-lineales.md` | ⬜ Pendiente | `examples` |
+| 28 | `contenidos/4-diseno-de-algoritmos/4-1-recursividad.md` | ✅ Revisado | `taller-algoritmos` |
+| 29 | `contenidos/4-diseno-de-algoritmos/4-2-patrones-de-diseno.md` | ⬜ Pendiente | `taller-algoritmos` |
+| 30 | `contenidos/4-diseno-de-algoritmos/4-3-algoritmos-avidos.md` | ⬜ Pendiente | `taller-algoritmos` |
+| 31 | `contenidos/4-diseno-de-algoritmos/4-4-backtracking.md` | ⬜ Pendiente | `taller-algoritmos` |
+| 32 | `contenidos/4-diseno-de-algoritmos/4-5-programacion-dinamica.md` | ⬜ Pendiente | `taller-algoritmos` |
+| 33 | `contenidos/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos.md` | ⬜ Pendiente | `taller-algoritmos` |
+| 34 | `contenidos/4-diseno-de-algoritmos/4-7-ordenamientos-lineales.md` | ⬜ Pendiente | `taller-algoritmos` |
 | 35 | `contenidos/5-anexos/5-1-introduccion-git.md` | ⬜ Pendiente | — |
 | 36 | `contenidos/5-anexos/5-2-iteradores-abb.md` | ⬜ Pendiente | `guia-abb` |
 | 37 | `contenidos/bibliografia.md` | ⬜ Pendiente | — |
@@ -93,16 +93,16 @@ debe buscar recursos en estos repos para referenciar o incluir en el apunte.
 | 3-10 Árboles Balanceados | `guia-abb-balanceados`, `guia-abb-balanceados-resuelta` | — |
 | 3-11 Montículo Binario | `taller-tad` (`10-monticulo-binario/`) | `data-structures` (`heap/`, `priorityqueue/`) |
 | 5-2 Iteradores ABB | `guia-abb`, `guia-abb-resuelta` | — |
-| 4-1 Recursividad | `guia-algoritmos` | `examples/recursividad` |
-| 4-2 Patrones de Diseño | `guia-patrones`, `guia-patrones-resuelta` | `examples/patrones` |
-| 4-3 Algoritmos Ávidos | `guia-avidos`, `guia-avidos-resuelta` | `examples/avidos` |
-| 4-4 Backtracking | `guia-backtracking`, `guia-backtracking-resuelta` | `examples/backtracking` |
-| 4-5 Programación Dinámica | `guia-algoritmos` | `examples/programacion_dinamica` |
-| 4-6 Ordenamientos Recursivos | `guia-ordenamientos-recursivos`, `guia-ordenamientos-recursivos-resuelta` | `examples/ordenam_rec` |
-| 4-7 Ordenamientos Lineales | — | `examples` |
+| 4-1 Recursividad | `taller-algoritmos` (`01-recursividad/ejercicios/`) | `taller-algoritmos` (`01-recursividad/ejemplos/`) |
+| 4-2 Patrones de Diseño | `taller-algoritmos` (`02-patrones-de-diseno/ejercicios/`) | — |
+| 4-3 Algoritmos Ávidos | `taller-algoritmos` (`03-algoritmos-avidos/ejercicios/`) | — |
+| 4-4 Backtracking | `taller-algoritmos` (`04-backtracking/ejercicios/`) | — |
+| 4-5 Programación Dinámica | `taller-algoritmos` (`05-programacion-dinamica/ejercicios/`) | — |
+| 4-6 Ordenamientos Recursivos | `taller-algoritmos` (`06-ordenamientos-recursivos/ejercicios/`) | — |
+| 4-7 Ordenamientos Lineales | `taller-algoritmos` (`07-ordenamientos-lineales/ejercicios/`) | — |
 
 Además, hay repositorios transversales útiles para múltiples capítulos:
-- `untref-ayp2/examples` (archivado): Código de ejemplo de toda la cursada
+- `untref-ayp2/examples` (archivado): Código de ejemplo de toda la cursada (reemplazado por `taller-algoritmos` para capítulos 4.x)
 - `untref-ayp2/snippets` (archivado): Fragmentos de código varios
 - `untref-ayp2/examenes` (archivado): Exámenes anteriores
 - `untref-ayp2/tp20252C`, `untref-ayp2/tp20252C-Resuelto`: Trabajos prácticos
@@ -161,12 +161,12 @@ Estado actual (main):
     1-3-analisis       ✅
     2-Taller de Go     ✅ 12 archivos
     3-Estructuras      ✅ 9 / 🔄 0 / ⬜ 3 archivos
-    4-Diseño Alg.      ⬜ 7 archivos
+    4-Diseño Alg.      ✅ 1 / ⬜ 6 archivos
     5-Taller Git       ⬜
     bibliografia       ⬜
 
   Admonitions          🔶 ~34 pendientes
   Figuras l/d          🔶 ~30 pendientes
-  Repos apoyo          ✅ data-structures + taller-tad creados + list/
+  Repos apoyo          ✅ data-structures + taller-tad + taller-algoritmos + list/
   Dependencias         🔶 con restos JBv1
 ```
