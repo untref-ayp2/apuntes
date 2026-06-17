@@ -54,7 +54,7 @@ Patrones de comportamiento
 : - Strategy
 : - Command
 
-Veremos en más profundidad algunos de estos patrones.
+Veremos con más profundidad algunos de estos patrones.
 
 ## Patrón _Adapter_
 
@@ -67,7 +67,7 @@ Patrón _Adapter_
 
 El patrón _adapter_ permite reutilizar código heredado o _legacy_ cuya interfaz no coincide con la esperada por el sistema en el que estamos trabajando. Este patrón actúa como un puente entre la interfaz existente y la requerida, permitiendo que componentes incompatibles trabajen juntos sin modificar su código original heredado.
 
-En la figura {ref}`adapter2` se observan los siguientes componentes.
+En la figura a continuación se observan los siguientes componentes.
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronAdapter2_light.svg
 ---
@@ -95,7 +95,7 @@ Adaptado
 : Representa la clase existente con la interfaz incompatible. En este ejemplo se observa que cuenta con el método `specifirequest()`.
 
 Adaptador
-: Convierte la interfaz del _Adaptado_. Dentro del método `request()` en el _Adapatador_ se invoca el método específico del _Adaptado_ `specificrequest()`. Eventualmente puede realizar alguna transformación de datos o invocar otros métodos del _Adaptado_ para conseguir que `request()` cumpla con la interfaz esperada.
+: Convierte la interfaz del _Adaptado_. Dentro del método `request()` en el _Adaptador_ se invoca el método específico del _Adaptado_ `specificrequest()`. Eventualmente puede realizar alguna transformación de datos o invocar otros métodos del _Adaptado_ para conseguir que `request()` cumpla con la interfaz esperada.
 
 ### Cómo Proceder
 
@@ -176,7 +176,7 @@ name: composite
 Patrón _Composite_
 ```
 
-El patrón _composite_ permite tratar tanto a objetos individuales como a composiciones de objetos de manera uniforme. Esto significa que se pueden tratar tanto a un objeto simple como a un grupo de objetos de la misma manera, sin tener que distinguir entre ellos. Lo que simplifica el diseño y la implementación de estructuras jerárquicas de objetos.
+El patrón _composite_ permite tratar tanto a objetos individuales como a composiciones de objetos de manera uniforme. Esto significa que se pueden tratar tanto a un objeto simple como a un grupo de objetos de la misma manera, sin tener que distinguir entre ellos. Esto simplifica el diseño y la implementación de estructuras jerárquicas de objetos.
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronComposite2_light.svg
 ---
@@ -352,7 +352,7 @@ El patrón _Iterator_ o Iterador permite recorrer los elementos de una colecció
 : Avanza el iterador al siguiente elemento
 
 `HaySiguiente()`
-: Devuelve `true` si todavía quedan elementos por recorrer en la colección o `false` en caso contario
+: Devuelve `true` si todavía quedan elementos por recorrer en la colección o `false` en caso contrario
 
 `Actual()`
 : Devuelve el elemento actual donde está el iterador
@@ -451,13 +451,13 @@ func (l *ListaEnlazada) InsertarAlInicio(valor int) {
        actual *Nodo
    }
 
-   func (i IteradorLista) Primero() {
-       i.actual = i.lista.Primero
-   }
+func (i *IteradorLista) Primero() {
+    i.actual = i.lista.Primero
+}
 
-   func (i IteradorLista) Siguiente() {
-       i.actual = i.actual.Siguiente
-   }
+func (i *IteradorLista) Siguiente() {
+    i.actual = i.actual.Siguiente
+}
 
    func (i IteradorLista) HaySiguiente() bool {
        return i.actual != nil
