@@ -4,6 +4,7 @@
 
 **NUNCA hacer commit ni push sin autorización explícita del usuario.**
 No abrir PRs sin autorización. Commits directamente a la rama de trabajo.
+Siempre incluir todos los cambios en el commit, salvo indicación expresa.
 
 ## Lineamientos generales
 

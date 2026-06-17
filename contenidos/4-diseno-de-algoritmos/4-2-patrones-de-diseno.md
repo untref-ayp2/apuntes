@@ -487,34 +487,9 @@ func (l *ListaEnlazada) InsertarAlInicio(valor int) {
 
 ## Ejercicios
 
-1. Dada la siguiente definición de una matriz de números enteros:
-
-   ```{code-block} go
-   ---
-   linenos: true
-   ---
-   type Matriz struct {
-       Filas int
-       Columnas int
-       Datos [][]int
-   }
-   ```
-
-   - Implementar un iterador que permita recorrer la matriz fila por fila.
-   - Implementar un iterador que permita recorrer la matriz columna por columna.
-
-   Los iteradores deben implementar la interfaz 'Iterador' definida anteriormente.
-
-2. Implementar un iterador para recorrer una lista enlazada doblemente, es decir que permita avanzar y retroceder en el recorrido de la lista.
-
-   ```{code-block} go
-   ---
-   linenos: true
-   ---
-   type IteradorDoble interface {
-       Anterior()
-       Siguiente()
-       HayAnterior() bool
-       HaySiguiente() bool
-   }
-   ```
+Los ejercicios de este capítulo están en el directorio
+[`02-patrones-de-diseno/ejercicios/`](https://github.com/untref-ayp2/taller-algoritmos/tree/main/02-patrones-de-diseno/ejercicios)
+del repositorio
+[`taller-algoritmos`](https://github.com/untref-ayp2/taller-algoritmos).
+Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests.
+Para resolverlos, cloná el repositorio, completá las funciones y ejecutá `go test ./...`.

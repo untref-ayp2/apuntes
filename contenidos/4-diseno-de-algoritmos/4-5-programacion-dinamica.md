@@ -259,17 +259,9 @@ En algunos casos la **tabulación** puede ser más fácil de implementar y enten
 
 ## Ejercicios
 
-1. Modificar el algoritmo de la serie de Fibonacci por tabulación para que utilice un arreglo de tamaño 2 en lugar de un arreglo de tamaño `n+1`. Esto se puede lograr utilizando dos variables para almacenar los dos últimos valores de la serie y actualizarlos en cada iteración.
-
-2. Implementar el problema de la mochila utilizando memorización. Dado un conjunto de objetos con peso y valor, y una capacidad de mochila, el objetivo es determinar el valor máximo que se puede obtener al incluir los objetos en la mochila. Utilizar un mapa para almacenar los resultados de los subproblemas a medida que se van calculando.
-
-   ```{admonition} Pista
-   ---
-   class: tip
-   ---
-   Se puede utilizar una función recursiva que tome como parámetros el índice del objeto actual, la capacidad restante de la mochila y un mapa para almacenar los resultados de los subproblemas. La función debe considerar dos casos: incluir el objeto actual o no incluirlo, y devolver el valor máximo obtenido en ambos casos.
-   ```
-
-3. Implementar el problema de la subcadena común más larga (Longest Common Subsequence) utilizando programación dinámica. Dado dos cadenas de caracteres, el objetivo es encontrar la longitud de la subcadena común más larga entre ellas. Por ejemplo, para las cadenas `"AGGTAB"` y `"GXTXAYB"`, la subcadena común más larga es `"GTAB"` y su longitud es 4.
-
-4. Implementar el problema de la suma de subconjuntos (Subset Sum Problem) utilizando programación dinámica. Dado un conjunto de números enteros y un número objetivo, el objetivo es determinar la cantidad de subconjuntos de los números que sume exactamente el número objetivo. Por ejemplo, para el conjunto `{3, 34, 4, 12, 5, 2}` y el número objetivo `9`, hay 2 subconjuntos que suman `9`: `{4, 5}` y `{3, 4, 2}`.
+Los ejercicios de este capítulo están en el directorio
+[`05-programacion-dinamica/ejercicios/`](https://github.com/untref-ayp2/taller-algoritmos/tree/main/05-programacion-dinamica/ejercicios)
+del repositorio
+[`taller-algoritmos`](https://github.com/untref-ayp2/taller-algoritmos).
+Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests.
+Para resolverlos, cloná el repositorio, completá las funciones y ejecutá `go test ./...`.

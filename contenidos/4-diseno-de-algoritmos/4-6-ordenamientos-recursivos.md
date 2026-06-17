@@ -406,6 +406,9 @@ Los algoritmos de ordenamiento, basados en comparaciones (es decir que deben com
 
 ## Ejercicios
 
-1. Implementar Mergesort, de forma genérica que reciba por parámetro un arreglo de elementos tipo `Ordered` y devuelva un arreglo ordenado
-2. Implementar Quicksort, de forma genérica que reciba por parámetro un arreglo de elementos tipo `Ordered` y ordene el arreglo _**In Place**_
-3. Implementar Heapsort, de forma genérica, que reciba por parámetro un arreglo de elementos tipo `Ordered` y ordene el arreglo _**In Place**_
+Los ejercicios de este capítulo están en el directorio
+[`06-ordenamientos-recursivos/ejercicios/`](https://github.com/untref-ayp2/taller-algoritmos/tree/main/06-ordenamientos-recursivos/ejercicios)
+del repositorio
+[`taller-algoritmos`](https://github.com/untref-ayp2/taller-algoritmos).
+Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests.
+Para resolverlos, cloná el repositorio, completá las funciones y ejecutá `go test ./...`.

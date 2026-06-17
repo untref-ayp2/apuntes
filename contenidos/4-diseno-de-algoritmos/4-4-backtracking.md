@@ -186,15 +186,9 @@ La implementación de _backtracking_ puede ser sencilla y elegante, como se ha v
 
 ## Ejercicios
 
-1. Modificar la implementación de las N reinas para que devuelva un arreglo de soluciones, con todas las soluciones encontradas.
-
-2. Implementar una solución para el problema del cambio de monedas usando _backtracking_. El problema consiste en entregar la menor cantidad de monedas posibles para un monto dado.
-
-3. Escribir un programa para resolver sudokus usando _backtracking_. El sudoku es un rompecabezas de lógica que consiste en llenar una cuadrícula de 9x9 con números del 1 al 9, de tal manera que cada fila, cada columna y cada una de las nueve subcuadrículas de 3x3 contengan todos los dígitos del 1 al 9 sin repetir. En general se inicia de un tablero parcialmente lleno, como el que se muestra a continuación.
-
-```{figure} ../_static/figures/4-diseno-de-algoritmos/4-4-backtracking/Sudoku.svg
----
-width: 100%
-name: Sudoku
----
-```
+Los ejercicios de este capítulo están en el directorio
+[`04-backtracking/ejercicios/`](https://github.com/untref-ayp2/taller-algoritmos/tree/main/04-backtracking/ejercicios)
+del repositorio
+[`taller-algoritmos`](https://github.com/untref-ayp2/taller-algoritmos).
+Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests.
+Para resolverlos, cloná el repositorio, completá las funciones y ejecutá `go test ./...`.

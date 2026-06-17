@@ -242,5 +242,9 @@ Como la lista de entrada de las tareas está ordenada por tiempo de finalizació
 
 ## Ejercicios
 
-1. **Cambio de moneda**: Implementar en Go en forma recursiva, el algoritmo ávido para el cambio de moneda. Analizar la complejidad del algoritmo.
-2. **Plan de actividades**: Implementar en Go en forma recursiva, el algoritmo ávido para el plan de actividades. Analizar la complejidad del algoritmo.
+Los ejercicios de este capítulo están en el directorio
+[`03-algoritmos-avidos/ejercicios/`](https://github.com/untref-ayp2/taller-algoritmos/tree/main/03-algoritmos-avidos/ejercicios)
+del repositorio
+[`taller-algoritmos`](https://github.com/untref-ayp2/taller-algoritmos).
+Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests.
+Para resolverlos, cloná el repositorio, completá las funciones y ejecutá `go test ./...`.

@@ -180,22 +180,9 @@ Es importante destacar que el algoritmo que se usa para ordenar los dígitos, en
 
 ## Ejercicios
 
-1. Ordenar en lápiz y papel el siguiente arreglo de números enteros utilizando el **Ordenamiento por Conteo**:
-
-   ```text
-   [5, 2, 9, 1, 5, 6]
-   ```
-
-2. Implementar el **Ordenamiento por Urnas** para ordenar el siguiente arreglo de números reales en el rango de $[0, 1]$ de mayor a menor:
-
-   ```text
-   [0.42, 0.32, 0.24, 0.56, 0.78, 0.12]
-   ```
-
-3. Utilizar el **Radix Sort** para ordenar el siguiente arreglo de números enteros de mayor a menor:
-
-   ```text
-   [170, 45, 75, 90, 802, 24, 2, 66]
-   ```
-
-4. Investigar otra variante del **Radix Sort** que empiece a ordenar por el dígito más significativo (MSD) en lugar del menos significativo (LSD) y explicar sus diferencias.
+Los ejercicios de este capítulo están en el directorio
+[`07-ordenamientos-lineales/ejercicios/`](https://github.com/untref-ayp2/taller-algoritmos/tree/main/07-ordenamientos-lineales/ejercicios)
+del repositorio
+[`taller-algoritmos`](https://github.com/untref-ayp2/taller-algoritmos).
+Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests.
+Para resolverlos, cloná el repositorio, completá las funciones y ejecutá `go test ./...`.
