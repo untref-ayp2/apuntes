@@ -6,15 +6,20 @@
 No abrir PRs sin autorización. Commits directamente a la rama de trabajo.
 Siempre incluir todos los cambios en el commit, salvo indicación expresa.
 
+## Guía de estilo
+
+**Consultar `ESTILOS.md`** para todas las convenciones de formato MyST, figuras SVG,
+admonitions, bloques de código, pseudocódigo, ejercicios, referencias cruzadas, citas y applets.
+Es la fuente canónica. Lo que sigue es un resumen mínimo.
+
 ## Lineamientos generales
 
 1. **Idioma**: español rioplatense
 2. **Tono**: moderadamente formal, amigable pero serio
-3. **Sintaxis**: MyST (Mark-up Your Structured Text)
-4. **Contenido**: en `contenidos/` — archivos `X-Y-tema.md`
-5. **Dependencias**: solo librerías de `requirements.txt`
-6. **Estáticos**: imágenes en `contenidos/_static/figures`
-7. **Citas**: agregar a `contenidos/references.bib`
+3. **Contenido**: en `contenidos/` — archivos `X-Y-tema.md`
+4. **Dependencias**: solo librerías de `requirements.txt`
+5. **Estáticos**: imágenes en `contenidos/_static/figures`, applets en `contenidos/_static/applets`
+6. **Citas**: agregar a `contenidos/references.bib`
 
 ## Comandos
 
@@ -32,134 +37,13 @@ make clean     # elimina build artifacts
 `scripts/build_pdf.py`:
 
 1. Copia `contenidos/` a directorio temporal
-2. Pre-procesa .md (elimina `only-dark-mode`, convierte `dropdown` a texto, `admonition` a `note`)
+2. Pre-procesa .md (elimina `only-dark-mode` y `<div class="only-html">`, convierte `admonition` a `note`, `dropdown` a texto)
 3. Genera Typst con `myst build --execute --typst`
 4. Post-procesa `.typ` (reemplaza `arrow.r` por `->`, etc.)
 5. Compila con `typst compile`
 6. Mueve PDF a `contenidos/exports/apunte-ayp2.pdf`
 
-**Importante:** `contenidos/exports/apunte-ayp2.pdf` se incluye siempre en los commits (no es un artifact descartable).
-
-## MyST y contenido
-
-### Frontmatter
-
-```yaml
----
-file: ruta/al/archivo.md
----
-```
-
-### Citas
-
-```markdown
-{cite}`referencia_bibtex`
-```
-
-### Bloques de código
-
-````markdown
-```{code-block} go
-:linenos:
-
-func ejemplo() error {
-    return nil
-}
-```
-````
-
-Siempre que sea posible incluir `func main()` y la salida esperada en ```` ```output ````.
-
-### Ejercicios y soluciones
-
-Labels con formato `ej-{seccion}-{numero}`. Ejercicios numerados como listas planas son aceptables si no tienen solución asociada.
-
-```{exercise}
----
-label: ej-pilas-1
----
-Enunciado aquí.
-```
-
-```{solution}
----
-label: sol-ej-pilas-1
----
-func respuesta() error {
-    return nil
-}
-```
-
-### Imágenes modo claro/oscuro
-
-Dos archivos: `_light.svg` y `_dark.svg`. Ver skill `diagramas-svg` en `.opencode/skills/diagramas-svg/SKILL.md`.
-
-```{figure} ../_static/figures/mi-diagrama_light.svg
----
-class: only-light-mode
----
-Mi Diagrama
-```
-
-```{figure} ../_static/figures/mi-diagrama_dark.svg
----
-class: only-dark-mode
----
-Mi Diagrama
-```
-
-### Admonitions
-
-```{admonition} Título
----
-class: note
----
-Tu contenido aquí
-```
-
-Clases: `note`, `hint`, `important`, `warning`, `tip`, `caution`, `dropdown`.
-
-### `{code-file}` no disponible
-
-`{code-file}` era de Sphinx (JBv1). En mystmd **no funciona**. Usar `{code-block}` inline con link al archivo en GitHub.
-
-### Referencias cruzadas entre capítulos
-
-Usar `{ref}` (por el título) en lugar de `{numref}` (por el número), para que las referencias no se rompan si se reordenan los capítulos:
-
-```markdown
-{ref}`arboles`
-{ref}`arboles-binarios-de-busqueda`
-```
-
-El `label` de cada capítulo está en su frontmatter (archivo `X-Y-tema.md` línea 2).
-
-## Convenciones
-
-### Ortografía
-
-- Extranjerismos (*struct*, *slice*, *interface*) en cursiva con `*palabra*`
-- "Go" va en mayúscula sin cursiva
-- Tildes correctas, concordancia género/número
-
-### Estilo Go
-
-- Docstrings en español, formato Go estándar
-- Line length: 100 caracteres
-- Encoding: UTF-8
-
-### Markdown
-
-- ATX-style headers (`#`, `##`, `###`)
-- Fenced code blocks con especificador de lenguaje
-- Líneas de código en `{code-block}`: máximo 80 columnas
-- `mdformat --number` habilita numeración de líneas
-
-### File naming
-
-- Markdown: `kebab-case` con número de sección, ej: `2-3-arreglos-slices.md`
-- Paquetes Go: lowercase (`stack`, `queue`)
-- Imágenes: nombres descriptivos en `contenidos/_static/figures/`
+**Importante:** `contenidos/exports/apunte-ayp2.pdf` se incluye siempre en los commits.
 
 ## Arquitectura de repositorios de apoyo
 
