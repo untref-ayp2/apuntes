@@ -65,29 +65,29 @@
 <rect x="10350" y="5625" width="2025" height="225" fill="#f9fcff"
 	stroke="#333333" stroke-width="8px"/>
 <!-- Line -->
-<rect x="2925" y="1125" width="2025" height="225" fill="#8ccc8c"
-	stroke="#333333" stroke-width="8px"/>
+<rect x="2925" y="1125" width="2025" height="225" fill="#e6f4ea"
+	stroke="#8fbc8f" stroke-width="8px"/>
 <!-- Line -->
-<rect x="4275" y="1575" width="1350" height="225" fill="#ea8c8c"
-	stroke="#333333" stroke-width="8px"/>
+<rect x="4275" y="1575" width="1350" height="225" fill="#ffe1e1"
+	stroke="#e9967a" stroke-width="8px"/>
 <!-- Line -->
-<rect x="2250" y="2025" width="4050" height="225" fill="#ea8c8c"
-	stroke="#333333" stroke-width="8px"/>
+<rect x="2250" y="2025" width="4050" height="225" fill="#ffe1e1"
+	stroke="#e9967a" stroke-width="8px"/>
 <!-- Line -->
-<rect x="4275" y="2925" width="4050" height="225" fill="#ea8c8c"
-	stroke="#333333" stroke-width="8px"/>
+<rect x="4275" y="2925" width="4050" height="225" fill="#ffe1e1"
+	stroke="#e9967a" stroke-width="8px"/>
 <!-- Line -->
-<rect x="3600" y="5175" width="8100" height="225" fill="#ea8c8c"
-	stroke="#333333" stroke-width="8px"/>
+<rect x="3600" y="5175" width="8100" height="225" fill="#ffe1e1"
+	stroke="#e9967a" stroke-width="8px"/>
 <!-- Line -->
-<rect x="5625" y="2475" width="1350" height="225" fill="#8ccc8c"
-	stroke="#333333" stroke-width="8px"/>
+<rect x="5625" y="2475" width="1350" height="225" fill="#e6f4ea"
+	stroke="#8fbc8f" stroke-width="8px"/>
 <!-- Line -->
-<rect x="5625" y="3375" width="2700" height="225" fill="#ea8c8c"
-	stroke="#333333" stroke-width="8px"/>
+<rect x="5625" y="3375" width="2700" height="225" fill="#ffe1e1"
+	stroke="#e9967a" stroke-width="8px"/>
 <!-- Line -->
-<rect x="6300" y="3825" width="2700" height="225" fill="#ea8c8c"
-	stroke="#333333" stroke-width="8px"/>
+<rect x="6300" y="3825" width="2700" height="225" fill="#ffe1e1"
+	stroke="#e9967a" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="2250" y="6390" fill="#333333" font-family="Helvetica" font-style="normal" font-weight="normal" font-size="216" text-anchor="middle">0</text>
 <!-- Text -->

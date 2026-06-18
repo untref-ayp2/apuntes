@@ -6,21 +6,21 @@ label: algoritmos-avidos
 
 Los algoritmos ávidos o _greedy_ en inglés, son algoritmos diseñados generalmente para resolver problemas de optimización. Los algoritmos que resuelven este tipo de problemas generalmente lo hacen en etapas, realizando, a cada paso, algunos cálculos hasta llegar al resultado buscado. Un algoritmo ávido o codicioso siempre hace la elección que parece mejor en el momento. Es decir, hace una elección localmente óptima con la esperanza de que esta elección conduzca a una solución globalmente óptima. En otras palabras con los datos que está procesando en ese momento, toma la mejor decisión posible.
 
-La estrategia ávida no siempre funciona, depende de la naturaleza del problema y de los datos, por lo que hay analizar bien el problema antes de seguir esta estrategia.
+La estrategia ávida no siempre funciona, depende de la naturaleza del problema y de los datos, por lo que hay que analizar bien el problema antes de seguir esta estrategia.
 
 La principal ventaja de este tipo de algoritmos es que es muy fácil de implementar y entender.
 
 Por ejemplo veamos a continuación un problema clásico:
 
-```{card} Cambio de moneda
+````{card} Cambio de moneda
 Un cajero automático tiene que ser capaz de entregar la cantidad de pesos que se le requiere utilizando la menor cantidad de billetes y monedas.
 
 +++
 
 **Optimización**: Entregar la mayor cantidad posible de los billetes de mayor denominación.
-```
+````
 
-Por ejemplo, en Argentina, a Mayo de 2024 se emplean monedas de \$1, \$2, \$5 y \$10, y billetes de \$10, \$20, \$50, \$100, \$200, \$500, \$1.000, \$2.000 y \$10.000. Si el cajero tiene que entregar \$5.528
+Por ejemplo, en Argentina, a mayo de 2024 se emplean monedas de \$1, \$2, \$5 y \$10, y billetes de \$10, \$20, \$50, \$100, \$200, \$500, \$1.000, \$2.000 y \$10.000. Si el cajero tiene que entregar \$5.528
 
 La solución será:
 
@@ -30,7 +30,10 @@ La solución será:
 
 En total se entregan 8 piezas.
 
-````{prf:algorithm} Cambio de moneda
+```{admonition} Algoritmo: Cambio de moneda
+---
+class: note
+---
 **Entrada**
 
 - `billetes`: lista con las denominaciones disponibles ordenada de mayor a menor.
@@ -38,22 +41,23 @@ En total se entregan 8 piezas.
 
 **Salida**
 
-- `cambio` : diccionario cuyas claves son las denominaciones y cuyo valor son las cantidades a entregar de cada denominación
+- `cambio`: diccionario cuyas claves son las denominaciones y cuyo valor son las cantidades a entregar de cada denominación
+```
 
 ```{code-block}
 ---
+caption: Algoritmo de cambio de moneda
 linenos: true
+language: text
 ---
 PARA CADA denominacion EN billetes HACER
     SI cantidad >= denominacion ENTONCES
-        cantidad_billetes := cantidad / denominacion
-        cambio[denominacion] := cantidad_billetes
-        cantidad := cantidad MOD denominacion
+        cantidad_billetes ← cantidad / denominacion
+        cambio[denominacion] ← cantidad_billetes
+        cantidad ← cantidad MOD denominacion
     FIN_SI
 FIN_PARA
 ```
-
-````
 
 A partir de este fragmento nos podemos preguntar:
 
@@ -134,7 +138,7 @@ Diagrama de actividades
 ```
 
 Paso 1
-: Se selecciona la tarea que termina primero de entre todas las tareas a planificar. En este caso la tarea 1. Inmeditamente las tareas 2, 3, 5, 10 se marcan como incompatibles, ya que se superponen con la tarea 1.
+: Se selecciona la tarea que termina primero de entre todas las tareas a planificar. En este caso la tarea 1. Inmediatamente las tareas 2, 3, 5, 10 se marcan como incompatibles, ya que se superponen con la tarea 1.
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-3-algoritmos-avidos/Greedy3_light.svg
 ---
@@ -211,22 +215,28 @@ Diagrama de actividades
 
 El algoritmo ávido para este problema es el siguiente:
 
-````{prf:algorithm} Plan de actividades
-**Entrada** : Lista de actividades ordenadas por tiempo de finalización
+```{admonition} Algoritmo: Plan de actividades
+---
+class: note
+---
+**Entrada**: Lista de actividades ordenadas por tiempo de finalización
 
-**Salida** : Lista de actividades seleccionadas
+**Salida**: Lista de actividades seleccionadas
+```
 
 ```{code-block}
 ---
+caption: Algoritmo de plan de actividades
 linenos: true
+language: text
 ---
-actividades_seleccionadas := []
-actividad_actual := actividades[0]
-actividades_seleccionadas = append(actividades_seleccionadas, actividad_actual)
+actividades_seleccionadas ← []
+actividad_actual ← actividades[0]
+actividades_seleccionadas ← actividades_seleccionadas + [actividad_actual]
 PARA CADA actividad EN actividades HACER
     SI actividad_inicio >= actividad_actual_fin ENTONCES
-        actividades_seleccionadas = append(actividades_seleccionadas, actividad)
-        actividad_actual := actividad
+        actividades_seleccionadas ← actividades_seleccionadas + [actividad]
+        actividad_actual ← actividad
     FIN_SI
 FIN_PARA
 ```
@@ -235,10 +245,8 @@ FIN_PARA
 ---
 class: hint
 ---
-Como la lista de entrada de las tareas está ordenada por tiempo de finalización, no hace falta programar la ecuación [](#compatibilidad2)
+Como la lista de entrada de las tareas está ordenada por tiempo de finalización, no hace falta programar la ecuación {eq}`compatibilidad2`
 ```
-
-````
 
 ## Ejercicios
 

@@ -9,13 +9,13 @@
 <g fill="none">
 <!-- Line -->
 <rect x="900" y="900" width="900" height="900" fill="#2d3748"
-	stroke="#e0e0e0" stroke-width="8px"/>
+	stroke="#63b3ed" stroke-width="8px"/>
 <!-- Line -->
 <rect x="900" y="2700" width="900" height="900" fill="#2d3748"
-	stroke="#e0e0e0" stroke-width="8px"/>
+	stroke="#63b3ed" stroke-width="8px"/>
 <!-- Line -->
 <rect x="900" y="1800" width="900" height="900" fill="#2d3748"
-	stroke="#e0e0e0" stroke-width="8px"/>
+	stroke="#63b3ed" stroke-width="8px"/>
 <!-- Line -->
 <rect x="1800" y="2700" width="900" height="900"
 	stroke="#e0e0e0" stroke-width="8px"/>
@@ -81,37 +81,37 @@
 	stroke="#e0e0e0" stroke-width="8px"/>
 <!-- Line -->
 <rect x="2700" y="900" width="900" height="900" fill="#2d3748"
-	stroke="#e0e0e0" stroke-width="8px"/>
+	stroke="#63b3ed" stroke-width="8px"/>
 <!-- Line -->
 <rect x="3600" y="900" width="900" height="900" fill="#2d3748"
-	stroke="#e0e0e0" stroke-width="8px"/>
+	stroke="#63b3ed" stroke-width="8px"/>
 <!-- Line -->
 <rect x="4500" y="900" width="900" height="900" fill="#2d3748"
-	stroke="#e0e0e0" stroke-width="8px"/>
+	stroke="#63b3ed" stroke-width="8px"/>
 <!-- Line -->
 <rect x="5400" y="900" width="900" height="900" fill="#2d3748"
-	stroke="#e0e0e0" stroke-width="8px"/>
+	stroke="#63b3ed" stroke-width="8px"/>
 <!-- Line -->
 <rect x="6300" y="900" width="900" height="900" fill="#2d3748"
-	stroke="#e0e0e0" stroke-width="8px"/>
+	stroke="#63b3ed" stroke-width="8px"/>
 <!-- Line -->
 <rect x="7200" y="900" width="900" height="900" fill="#2d3748"
-	stroke="#e0e0e0" stroke-width="8px"/>
+	stroke="#63b3ed" stroke-width="8px"/>
 <!-- Line -->
 <rect x="8100" y="900" width="900" height="900" fill="#2d3748"
-	stroke="#e0e0e0" stroke-width="8px"/>
+	stroke="#63b3ed" stroke-width="8px"/>
 <!-- Line -->
 <rect x="9000" y="900" width="900" height="900" fill="#2d3748"
-	stroke="#e0e0e0" stroke-width="8px"/>
+	stroke="#63b3ed" stroke-width="8px"/>
 <!-- Line -->
 <rect x="9900" y="900" width="900" height="900" fill="#2d3748"
-	stroke="#e0e0e0" stroke-width="8px"/>
+	stroke="#63b3ed" stroke-width="8px"/>
 <!-- Line -->
 <rect x="10800" y="900" width="900" height="900" fill="#2d3748"
-	stroke="#e0e0e0" stroke-width="8px"/>
+	stroke="#63b3ed" stroke-width="8px"/>
 <!-- Line -->
 <rect x="1800" y="900" width="900" height="900" fill="#2d3748"
-	stroke="#e0e0e0" stroke-width="8px"/>
+	stroke="#63b3ed" stroke-width="8px"/>
 <!-- Text -->
 <text xml:space="preserve" x="3150" y="3240" fill="#e0e0e0" font-family="Helvetica" font-style="normal" font-weight="bold" font-size="240" text-anchor="middle">5</text>
 <!-- Text -->

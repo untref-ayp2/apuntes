@@ -62,7 +62,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 27 | `contenidos/3-estructuras-de-datos/3-11-monticulo-binario.md` | ✅ Revisado | `data-structures`, `taller-tad` |
 | 28 | `contenidos/4-diseno-de-algoritmos/4-1-recursividad.md` | ✅ Revisado | `taller-algoritmos` |
 | 29 | `contenidos/4-diseno-de-algoritmos/4-2-patrones-de-diseno.md` |  ✅ Revisado | `taller-algoritmos` |
-| 30 | `contenidos/4-diseno-de-algoritmos/4-3-algoritmos-avidos.md` | ⬜ Pendiente | `taller-algoritmos` |
+| 30 | `contenidos/4-diseno-de-algoritmos/4-3-algoritmos-avidos.md` | ✅ Revisado | `taller-algoritmos` |
 | 31 | `contenidos/4-diseno-de-algoritmos/4-4-backtracking.md` | ⬜ Pendiente | `taller-algoritmos` |
 | 32 | `contenidos/4-diseno-de-algoritmos/4-5-programacion-dinamica.md` | ⬜ Pendiente | `taller-algoritmos` |
 | 33 | `contenidos/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos.md` | ⬜ Pendiente | `taller-algoritmos` |
