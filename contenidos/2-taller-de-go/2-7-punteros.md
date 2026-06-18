@@ -1,5 +1,4 @@
 ---
-file: 2-taller-de-go/2-7-punteros.md
 label: punteros
 ---
 
@@ -27,7 +26,10 @@ Trabajar con punteros implica dos operadores fundamentales:
 
 Veamos un ejemplo concreto:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 import "fmt"
 
 var a int = 7          // a es una variable int con valor 7
@@ -53,7 +55,10 @@ Acá ocurre lo siguiente:
 
 El operador `*` también permite **modificar** el valor apuntado:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 *pa = 99                      // Cambiamos el valor en la dirección apuntada
 fmt.Printf("a ahora vale %d (se modificó a través de *pa)\n", a)
 ```
@@ -97,7 +102,10 @@ Variables `pa` y `a` en memoria.
 
 En el capítulo de funciones vimos que los argumentos en Go siempre se pasan por valor: la función recibe una copia. Esto hace que el siguiente código no funcione como cabría esperar:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func duplicar(x int) {
     x = x * 2
 }
@@ -115,7 +123,10 @@ fmt.Println(a)
 
 Para modificar el original, necesitamos un puntero:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func duplicar(x *int) {
     *x = *x * 2
 }
@@ -147,7 +158,10 @@ Los punteros son útiles cuando necesitamos cambiar un valor desde otra función
 
 El valor cero de un puntero es `nil`. Un puntero `nil` es aquel que no tiene una dirección de memoria válida a la cual apuntar; no está inicializado o se le asignó `nil` explícitamente. Si intentamos desreferenciar un puntero `nil` con `*p`, el programa entra en pánico porque no hay una dirección de memoria válida de la cual leer:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 var p *int
 fmt.Println(p)
 ```
@@ -156,7 +170,10 @@ fmt.Println(p)
 <nil>
 ```
 
-```go
+```{code-block} go
+---
+linenos:
+---
 p = nil
 fmt.Println(*p) // panic!
 ```
@@ -167,7 +184,10 @@ panic: runtime error: invalid memory address or nil pointer dereference
 
 Siempre debemos verificar que un puntero no sea `nil` antes de desreferenciarlo:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 if p != nil {
     fmt.Println(*p)
 } else {
@@ -183,7 +203,10 @@ puntero nulo, no se puede desreferenciar
 
 Un arreglo en Go se pasa por valor: pasarlo a una función copia todos sus elementos. Para evitarlo, podemos pasar un puntero al arreglo:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func duplicarElementos(arr *[4]int) {
     for i := range arr {
         arr[i] *= 2
@@ -207,7 +230,8 @@ class: tip
 ---
 En la práctica, en lugar de pasar `*[N]T` se suele usar `[]T` (un slice). El slice ya contiene internamente un puntero al arreglo subyacente, como vimos en el capítulo de arreglos y slices. De hecho, lo siguiente es equivalente al ejemplo anterior pero usando slices:
 
-```go
+```{code-block} go
+:linenos:
 func duplicarElementos(arr []int) {
     for i := range arr {
         arr[i] *= 2
@@ -231,7 +255,10 @@ La diferencia es que cuando usamos `[]int`, el slice ya maneja internamente la c
 
 En Go es perfectamente válido que una función devuelva la dirección de una variable local:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func nuevoContador(valorInicial int) *int {
     c := valorInicial
     return &c

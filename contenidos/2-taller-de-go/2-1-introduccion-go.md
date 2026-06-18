@@ -10,9 +10,9 @@ Go es un lenguaje de programación desarrollado por Google y lanzado oficialment
 
 ```{figure} ../_static/figures/2-taller-de-go/2-1-introduccion-go/Go-Logo_Blue.svg
 ---
-align: center
-width: 200px
+width: 200
 ---
+Logo de Go.
 ```
 
 Los creadores de Go, [Robert Griesemer](https://en.wikipedia.org/wiki/Robert_Griesemer), [Rob Pike](https://en.wikipedia.org/wiki/Rob_Pike) y [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson), han dicho que aunque la sintaxis del lenguaje está inspirada principalmente en C y en Python, y en menor medida en Java, el objetivo siempre fue crear un nuevo lenguaje simple y eficiente. Go fue diseñado para ambientes altamente productivos y concurrentes (es decir, donde varios programas se ejecutan al mismo tiempo y comparten recursos). Fue liberado como código abierto y está disponible para todos los sistemas operativos.
@@ -50,7 +50,10 @@ Go utiliza principalmente dos áreas de memoria para almacenar datos:
 
 Para reservar memoria, el programador simplemente declara la variable; el compilador e incluso el ambiente de ejecución (*runtime*) se encargan de asignar el espacio necesario:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 var edad int                 // Reserva automática para un entero
 nombres := make([]string, 0) // Reserva dinámica para un slice
 ```
@@ -86,7 +89,10 @@ En la imagen los objetos 4, 5 y 6 ya no son referenciados por ninguna variable, 
 
 Go no es un lenguaje orientado a objetos, es decir, no hay clases ni objetos como en Java, por ejemplo, sino que utiliza `struct`, a la C, lo que nos permite definir nuevos tipos de datos.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 type Persona struct {
     Nombre string
     Edad   int
@@ -95,7 +101,10 @@ type Persona struct {
 
 Define una estructura de datos llamada `Persona` con dos campos: `Nombre` de tipo `string` y `Edad` de tipo `int`.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 var p Persona
 p.Nombre = "Fabián"
 p.Edad = 32
@@ -111,7 +120,10 @@ En el repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git) enco
 
 El siguiente fragmento se encuentra en el archivo `01-introduccion/ejemplos/00-hola/main.go`
 
-```go
+```{code-block} go
+---
+linenos:
+---
 package main
 
 import "fmt"
@@ -135,7 +147,10 @@ obtendremos como resultado:
 
 Aquí vemos un ejemplo de una función simple que recibe dos argumentos de tipo `int` y devuelve un nuevo valor de tipo `int`.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func sumar(a, b int) int {
     return a + b
 }
@@ -143,7 +158,10 @@ func sumar(a, b int) int {
 
 Para utilizar dicha función solo debemos invocarla por su nombre y proporcionarle los parámetros requeridos.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 fmt.Println(sumar(32, 7))
 ```
 
@@ -171,20 +189,8 @@ Go ofrece un servicio *online* llamado Playground [https://go.dev/play](https://
 
 ## Ejercicios
 
-1. Verificá si Go está instalado en tu PC ejecutando el comando `go version` en una terminal. Si no lo está, descargalo e instalalo desde [https://go.dev/dl/](https://go.dev/dl/).
-
-2. Cloná el repositorio `taller-go`, ubicate en el directorio `01-introduccion/ejemplos/00-hola/` y ejecutá el programa con `go run main.go`. ¿Qué salida se obtiene?
-
-3. Andá al [Go Playground](https://go.dev/play/), escribí un programa que sume los números `42` y `18` e imprima el resultado, luego ejecutalo y compartí el *link* haciendo *clic* en el botón _Share_.
-
-4. Modificá el archivo `main.go` de `01-introduccion/ejercicios/saludo-personalizado/`
-   para que la función `saludar(nombre string)` devuelva `"¡Hola, <nombre>!"`,
-   ejecutalo y verificá que pase el test ejecutando `go test` en ese directorio.
-
-El enunciado completo y el esqueleto de este ejercicio están en
-`01-introduccion/ejercicios/saludo-personalizado/` del repositorio
-[taller-go](https://github.com/untref-ayp2/taller-go.git),
-con tests para validar tu solución.
+Los ejercicios de este capítulo están en `01-introduccion-go/ejercicios/`
+del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
 
 ## Repositorio del taller de Go
 

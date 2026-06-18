@@ -14,7 +14,10 @@ Una función puede tomar cero o más parámetros, y puede devolver cero o más v
 
 Los parámetros se declaran con nombre y tipo, separados por coma:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func sumar(x int, y int) int {
     return x + y
 }
@@ -24,7 +27,10 @@ En este ejemplo, la función `sumar` toma dos parámetros de tipo `int` y devuel
 
 Si quisiéramos generar algo similar en Java deberíamos declarar una clase con métodos estáticos:
 
-```java
+```{code-block} java
+---
+linenos:
+---
 public class Matemática {
     public static int sumar(int a, int b) {
         return a + b;
@@ -36,7 +42,10 @@ public class Matemática {
 
 Cuando dos o más parámetros consecutivos comparten el mismo tipo, podemos declarar el tipo una sola vez al final:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func sumar(x, y int) int {
     return x + y
 }
@@ -46,7 +55,10 @@ func sumar(x, y int) int {
 
 Go permite definir funciones que aceptan una cantidad variable de argumentos con `...` antes del tipo. Estos se conocen como parámetros variádicos y se reciben como un _slice_ dentro de la función:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func sumar(nums ...int) int {
     total := 0
     for _, n := range nums {
@@ -56,7 +68,10 @@ func sumar(nums ...int) int {
 }
 ```
 
-```go
+```{code-block} go
+---
+linenos:
+---
 import "fmt"
 
 func main() {
@@ -74,13 +89,19 @@ func main() {
 
 En Go los argumentos siempre se pasan por valor. Esto significa que la función recibe una copia del valor original y cualquier modificación dentro de la función no afecta a la variable que se pasó como argumento:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func duplicar(x int) {
     x = x * 2
 }
 ```
 
-```go
+```{code-block} go
+---
+linenos:
+---
 a := 5
 duplicar(a)
 fmt.Println(a)
@@ -100,7 +121,10 @@ Los *slices* y los *maps* son casos especiales: la estructura que los representa
 
 Go permite devolver múltiples valores desde una función. Esto se usa frecuentemente para reportar errores junto con el resultado esperado:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 import "errors"
 
 func divisionSegura(dividendo, divisor float32) (float32, error) {
@@ -118,7 +142,10 @@ Cuando se devuelven múltiples valores, los tipos se encierran entre paréntesis
 
 Go permite asignar nombres a los valores de retorno. Estos nombres actúan como variables declaradas dentro de la función, inicializadas con su valor cero. Al usar `return` sin argumentos se devuelven automáticamente los valores actuales de esas variables:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func division(dividendo, divisor float32) (resultado float32, err error) {
     if divisor == 0.0 {
         err = errors.New("división por cero")
@@ -136,7 +163,10 @@ El retorno desnudo (`return` sin valores) es útil cuando los nombres de retorno
 
 Cuando una función devuelve múltiples valores y no necesitamos alguno de ellos, podemos ignorarlo con el identificador en blanco `_`:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 resultado, _ := divisionSegura(10, 2)
 ```
 
@@ -146,7 +176,10 @@ Esto evita tener que declarar variables que no se van a usar, lo que Go no permi
 
 Al ser "ciudadanos de primera clase", las funciones se pueden asignar a variables:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 f := sumar
 fmt.Println(f(3, 4))
 ```
@@ -157,7 +190,10 @@ fmt.Println(f(3, 4))
 
 La variable `f` tiene tipo `func(int, int) int`. También podemos declarar el tipo explícitamente:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 var operacion func(int, int) int
 operacion = sumar
 fmt.Println(operacion(10, 5))
@@ -169,7 +205,10 @@ Esto permite pasar funciones como argumentos a otras funciones, lo que es la bas
 
 Go soporta funciones sin nombre que se pueden definir en el lugar donde se necesitan:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func() {
     fmt.Println("función anónima")
 }()
@@ -177,7 +216,10 @@ func() {
 
 Los paréntesis al final invocan la función inmediatamente (IIFE). También se pueden asignar a una variable:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 saludar := func(nombre string) {
     fmt.Printf("Hola, %s\n", nombre)
 }

@@ -21,14 +21,20 @@ No hay restricciones sobre el tipo de valor `V`.
 
 Los tipos que se pueden usar como clave son aquellos comparables con `==`: booleanos, números, strings, punteros, canales, y tipos compuestos como *structs* cuyos campos sean todos comparables o *arrays* con elementos comparables. En cambio, los _slices_, mapas y funciones no son comparables y no se pueden usar como clave.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 // Válido
 m1 := make(map[string]int)
 m2 := make(map[int]string)
 m3 := make(map[[3]int]string) // array de 3 ints como clave
 ```
 
-```go
+```{code-block} go
+---
+linenos:
+---
 // Inválido: slice como clave (no compila)
 // m := make(map[[]string]int)
 ```
@@ -37,13 +43,19 @@ Los mapas son dinámicos, es decir, que pueden crecer o reducir la cantidad de e
 
 La función _built-in_ `make` se puede usar para reservar la memoria que usará un mapa:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 edades := make(map[string]int)
 ```
 
 También podemos crear un _mapa literal_ para crear un nuevo mapa con algunos pares clave/valor iniciales:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 edades := map[string]int{
     "alice": 31,
     "charlie": 34,
@@ -52,7 +64,10 @@ edades := map[string]int{
 
 Esto es equivalente a
 
-```go
+```{code-block} go
+---
+linenos:
+---
 edades := make(map[string]int)
 edades["alice"] = 31
 edades["charlie"] = 34
@@ -62,7 +77,10 @@ Una expresión alternativa para un nuevo mapa vacío es `map[string]int{}`.
 
 Cuando se conoce la cantidad aproximada de entradas, es más eficiente pre-asignar espacio con un segundo argumento en `make`:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 edades := make(map[string]int, 100) // capacidad inicial para ~100 entradas
 ```
 
@@ -70,7 +88,10 @@ Esto evita que el mapa tenga que redimensionar su tabla de *hash* internamente a
 
 Los valores de un mapa también pueden ser otros mapas. Por ejemplo, para asociar nombres de estudiantes con sus notas por materia:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 notas := map[string]map[string]int{
     "alice": {"matematica": 8, "lengua": 9},
 }
@@ -80,7 +101,10 @@ fmt.Println(notas["alice"]["matematica"]) // 8
 
 Si el mapa interior no está inicializado, asignar un valor produce un error. Por eso es común inicializarlo antes de usarlo:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 if _, ok := notas["bob"]; !ok {
     notas["bob"] = make(map[string]int)
 }
@@ -89,7 +113,10 @@ notas["bob"]["matematica"] = 7
 
 Los elementos de un mapa se acceden mediante la notación habitual de subíndice:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 edades["alice"] = 32
 edad := edades["alice"]
 fmt.Println(edad)
@@ -101,31 +128,46 @@ fmt.Println(edad)
 
 y se pueden eliminar con la función _built-in_ `delete`:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 delete(edades, "alice")
 ```
 
 Todas estas operaciones son seguras incluso si el elemento no está en el mapa; una búsqueda en un mapa utilizando una clave que no está presente devuelve el _valor cero_ para su tipo. Por ejemplo, lo siguiente funciona incluso cuando `"bob"` aún no es una clave en el mapa porque el valor de `edades["bob"]` será `0`.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 edades["bob"] = edades["bob"] + 1
 ```
 
 Las formas abreviadas de asignación `x += y` y `x++` también funcionan para los elementos de un mapa, por lo que podemos reescribir la declaración anterior como
 
-```go
+```{code-block} go
+---
+linenos:
+---
 edades["bob"] += 1
 ```
 
 o incluso de forma más concisa como
 
-```go
+```{code-block} go
+---
+linenos:
+---
 edades["bob"]++
 ```
 
 Para enumerar todos los pares clave/valor en el mapa, usamos un bucle `for` basado en `range`, similar a los que vimos para _slices_. Las iteraciones sucesivas del bucle hacen que las variables `name` y `age` se configuren con el siguiente par clave/valor:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 for name, age := range edades {
     fmt.Printf("%s\t%d\n", name, age)
 }
@@ -140,7 +182,10 @@ Los mapas en Go no están ordenados y si mostramos todos los pares clave/valor a
 
 Para enumerar los pares clave/valor en orden, debemos ordenar las claves explícitamente, por ejemplo, usando la función `Strings` del paquete `sort`:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 import "sort"
 
 var names []string
@@ -163,7 +208,10 @@ charlie  34
 
 Dado que conocemos el tamaño final de `names` desde el principio, es más eficiente asignar un array con el tamaño requerido de antemano. La siguiente declaración crea un _slice_ que inicialmente está vacío pero tiene la capacidad suficiente para contener todas las claves del mapa `edades`:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 names := make([]string, 0, len(edades))
 ```
 
@@ -171,7 +219,10 @@ En el primer bucle `range` mencionado anteriormente, solo necesitamos las claves
 
 El _valor cero_ para un tipo mapa es `nil`, es decir, nulo. En otras palabras el mapa no tiene memoria asignada y no se puede usar. Un mapa `nil` es diferente de un mapa vacío, que es un mapa que tiene memoria asignada pero no tiene claves.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 var edades map[string]int
 fmt.Println(edades == nil)
 fmt.Println(len(edades) == 0)
@@ -184,7 +235,10 @@ true
 
 La mayoría de las operaciones sobre mapas, incluyendo la recuperación, `delete`, `len` y los bucles `range`, son seguras de realizar en un mapa `nil`, ya que se comporta como un mapa vacío. Sin embargo, almacenar en un mapa `nil` provoca un error:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 edades["carol"] = 21
 ```
 
@@ -198,14 +252,20 @@ Antes de poder almacenar valores, se debe asignar memoria al mapa.
 
 Para muchos propósitos, eso está bien, pero a veces necesitamos saber si el elemento realmente estaba allí o no. Por ejemplo, si el tipo del elemento es numérico, podemos necesitar distinguir entre un elemento inexistente y un elemento que casualmente tiene el _valor cero_, utilizando una prueba como esta:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 age, ok := edades["bob"]
 if !ok { /* "bob" no es una clave en este mapa; age == 0. */ }
 ```
 
 Es muy común el siguiente patrón que combina las dos sentencias anteriores dentro de la condición del `if`, asignación y comparación en una sola línea:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 if age, ok := edades["bob"]; !ok { /* ... */ }
 ```
 
@@ -213,7 +273,10 @@ Utilizar un subíndice en un mapa en este contexto produce dos valores; el segun
 
 Al igual que con los _slices_, **los mapas no se pueden comparar entre sí**; la única comparación legal es con `nil`. Para verificar si dos mapas contienen las mismas claves y los mismos valores asociados, debemos escribir un bucle.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 x := map[string]int{"a": 1}
 y := map[string]int{"a": 1}
 fmt.Println(x == y)
@@ -227,7 +290,10 @@ Una aplicación común de los mapas es usarlos como un **conjunto** (_set_), es 
 
 La forma más sencilla es usar `map[Tipo]bool`:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 conjunto := make(map[string]bool)
 conjunto["manzana"] = true
 conjunto["pera"] = true
@@ -238,7 +304,10 @@ fmt.Println(conjunto["banana"])  // false (no está presente)
 
 Para verificar si un elemento pertenece al conjunto, usamos la sintaxis de dos valores:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 if conjunto["manzana"] {
     fmt.Println("manzana está en el conjunto")
 }
@@ -248,7 +317,10 @@ Para eliminar se usa `delete` como con cualquier mapa.
 
 Una variante más eficiente en memoria usa `struct{}` como tipo de valor, ya que `struct{}` ocupa 0 bytes (a diferencia de `bool` que ocupa 1). Esta es la forma preferida en código Go cuando la eficiencia importa:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 conjunto := make(map[string]struct{})
 conjunto["manzana"] = struct{}{}
 

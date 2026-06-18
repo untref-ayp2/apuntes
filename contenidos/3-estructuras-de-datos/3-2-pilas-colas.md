@@ -21,8 +21,6 @@ Es una estructura del tipo **LIFO** (_Last In First Out_) es decir el último el
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-2-pilas-colas/book-stack_light.svg
 ---
-width: 300px
-name: pila-libros
 class: only-light-mode
 ---
 Pila de Libros
@@ -30,7 +28,6 @@ Pila de Libros
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-2-pilas-colas/book-stack_dark.svg
 ---
-width: 300px
 class: only-dark-mode
 ---
 Pila de Libros
@@ -54,7 +51,10 @@ Todas las operaciones deben ser $O(1)$. Es decir de tiempo constante, independie
 
 Este comportamiento define la **interfaz** del tipo Pila, es decir las operaciones válidas que se pueden realizar sobre la misma. En código:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 type Stack[T any] interface {
     Push(val T)
     Pop() (T, error)
@@ -71,7 +71,8 @@ class: important
 ---
 Es fundamental ocultar la implementación para que no se pueda manipular el contenedor de datos con operaciones no permitidas. Por ejemplo, la definición:
 
-```go
+```{code-block} go
+:linenos:
 // Forma incorrecta de definir una pila,
 // porque no encapsula el contenedor de datos
 type Stack[T any] []T
@@ -79,7 +80,8 @@ type Stack[T any] []T
 
 deja expuesto el contenedor de datos y se podría manipular con operaciones propias de slices.
 
-```go
+```{code-block} go
+:linenos:
 var p Stack[int]
 p = append(p, 1)
 p = append(p, 2)
@@ -89,9 +91,12 @@ p[0] = 99
 En este fragmento se agregan elementos a la pila usando la función `append` de Go y luego se modifica un elemento arbitrariamente.
 ````
 
-A continuación se define el TAD Stack, que internamente estará implementado sobre un arreglo dinámico o slice de Go.
+A continuación se define el TAD Stack, que internamente estará implementado sobre un arreglo dinámico o *slice* de Go.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 import "errors"
 
 type Stack[T any] struct {
@@ -99,9 +104,12 @@ type Stack[T any] struct {
 }
 ```
 
-El contenedor de datos `data` está encapsulado dentro del `struct`, y su tipo depende del parámetro `T`.
+El contenedor de datos `data` está encapsulado dentro del *struct*, y su tipo depende del parámetro `T`.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func NewStack[T any]() *Stack[T] {
     return &Stack[T]{}
 }
@@ -109,7 +117,10 @@ func NewStack[T any]() *Stack[T] {
 
 `NewStack` crea una pila vacía. Reserva espacio en memoria para almacenar la pila y devuelve la dirección de memoria correspondiente.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func (s *Stack[T]) IsEmpty() bool {
     return len(s.data) == 0
 }
@@ -117,7 +128,10 @@ func (s *Stack[T]) IsEmpty() bool {
 
 `IsEmpty` chequea si la cantidad de elementos del contenedor de datos es igual a 0.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func (s *Stack[T]) Push(x T) {
     s.data = append(s.data, x)
 }
@@ -125,7 +139,10 @@ func (s *Stack[T]) Push(x T) {
 
 `Push` agrega siempre al final del arreglo el elemento que recibe.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func (s *Stack[T]) Pop() (T, error) {
     if s.IsEmpty() {
         var zero T
@@ -139,7 +156,10 @@ func (s *Stack[T]) Pop() (T, error) {
 
 `Pop` chequea si la pila está vacía. En ese caso devuelve el valor cero de `T` y un error. Caso contrario devuelve el elemento del tope y `nil`, y lo elimina de la pila.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func (s *Stack[T]) Top() (T, error) {
     if s.IsEmpty() {
         var zero T
@@ -153,7 +173,10 @@ func (s *Stack[T]) Top() (T, error) {
 
 A continuación un ejemplo de uso con `Stack[int]`:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 import "fmt"
 
 func main() {
@@ -179,7 +202,10 @@ func main() {
 
 Y el mismo `Stack[T]` puede usarse con `string`:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func main() {
     pila := NewStack[string]()
     pila.Push("uno")
@@ -199,17 +225,16 @@ Es una estructura del tipo **FIFO (First In First Out)** es decir el primer elem
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-2-pilas-colas/people-queue_light.svg
 ---
-width: 500px
-name: cola-personas
 class: only-light-mode
+width: 80%
 ---
 Cola de Espera
 ```
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-2-pilas-colas/people-queue_dark.svg
 ---
-width: 500px
 class: only-dark-mode
+width: 80%
 ---
 Cola de Espera
 ```
@@ -232,7 +257,10 @@ Todas las operaciones deben ser $O(1)$.
 
 Su interfaz en código es:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 type Queue[T any] interface {
     Enqueue(val T)
     Dequeue() (T, error)
@@ -241,9 +269,12 @@ type Queue[T any] interface {
 }
 ```
 
-Y su implementación sobre un slice:
+Y su implementación sobre un *slice*:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 import "errors"
 
 type Queue[T any] struct {
@@ -281,11 +312,14 @@ func (q *Queue[T]) IsEmpty() bool {
 }
 ```
 
-Nótese que `Dequeue` remueve el primer elemento del slice, lo cual en Go implica desplazar todos los elementos restantes una posición hacia la izquierda. Esto hace que `Dequeue` sea $O(n)$, no $O(1)$. Más adelante veremos cómo implementar una cola con $O(1)$ en todas sus operaciones.
+Nótese que `Dequeue` remueve el primer elemento del *slice*, lo cual en Go implica desplazar todos los elementos restantes una posición hacia la izquierda. Esto hace que `Dequeue` sea $O(n)$, no $O(1)$. Más adelante veremos cómo implementar una cola con $O(1)$ en todas sus operaciones.
 
 Ejemplo de uso:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func main() {
     cola := NewQueue[string]()
 

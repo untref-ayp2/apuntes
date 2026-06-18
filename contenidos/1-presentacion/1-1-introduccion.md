@@ -46,6 +46,6 @@ Semántica
 
 Algunos lenguajes de programación, al igual que los idiomas hablados, permiten expresar mejor algunos conceptos que otros, por eso, para elegir un lenguaje de programación hay que tener en cuenta varios aspectos, como la naturaleza del proyecto y la experticia del equipo de trabajo, entre otros.
 
-Teniendo en cuenta que esta materia es parte de la formación de ingenieras/os en computación, cuyo enfoque está en los sistemas integrados de hardware y software, elegimos Go como lenguaje por ser moderno, fácil de aprender y, a su vez, más cercano al hardware que otros lenguajes de alto nivel.
+Teniendo en cuenta que esta materia es parte de la formación de ingenieras/os en computación, cuyo enfoque está en los sistemas integrados de *hardware* y *software*, elegimos Go como lenguaje por ser moderno, fácil de aprender y, a su vez, más cercano al *hardware* que otros lenguajes de alto nivel.
 
 ***¡Bienvenidos a AyP2!***

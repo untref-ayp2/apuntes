@@ -12,13 +12,13 @@ La principal ventaja de este tipo de algoritmos es que es muy fácil de implemen
 
 Por ejemplo veamos a continuación un problema clásico:
 
-````{card} Cambio de moneda
+```{card} Cambio de moneda
 Un cajero automático tiene que ser capaz de entregar la cantidad de pesos que se le requiere utilizando la menor cantidad de billetes y monedas.
 
 +++
 
 **Optimización**: Entregar la mayor cantidad posible de los billetes de mayor denominación.
-````
+```
 
 Por ejemplo, en Argentina, a mayo de 2024 se emplean monedas de \$1, \$2, \$5 y \$10, y billetes de \$10, \$20, \$50, \$100, \$200, \$500, \$1.000, \$2.000 y \$10.000. Si el cajero tiene que entregar \$5.528
 
@@ -44,19 +44,17 @@ class: note
 - `cambio`: diccionario cuyas claves son las denominaciones y cuyo valor son las cantidades a entregar de cada denominación
 ```
 
-```{code-block}
+```{code-block} text
 ---
-caption: Algoritmo de cambio de moneda
-linenos: true
-language: text
+linenos:
 ---
 PARA CADA denominacion EN billetes HACER
     SI cantidad >= denominacion ENTONCES
         cantidad_billetes ← cantidad / denominacion
         cambio[denominacion] ← cantidad_billetes
         cantidad ← cantidad MOD denominacion
-    FIN_SI
-FIN_PARA
+    FIN SI
+FIN PARA
 ```
 
 A partir de este fragmento nos podemos preguntar:
@@ -105,7 +103,6 @@ Supongamos que tenemos las siguientes actividades, ordenadas por tiempo de final
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-3-algoritmos-avidos/Greedy1_light.svg
 ---
-name: actividades1
 class: only-light-mode
 ---
 Lista de actividades
@@ -113,7 +110,6 @@ Lista de actividades
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-3-algoritmos-avidos/Greedy1_dark.svg
 ---
-name: actividades1
 class: only-dark-mode
 ---
 Lista de actividades
@@ -123,7 +119,6 @@ A continuación el diagrama de actividades. En principio no hay ninguna activida
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-3-algoritmos-avidos/Greedy2_light.svg
 ---
-name: actividades2
 class: only-light-mode
 ---
 Diagrama de actividades
@@ -131,7 +126,6 @@ Diagrama de actividades
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-3-algoritmos-avidos/Greedy2_dark.svg
 ---
-name: actividades2
 class: only-dark-mode
 ---
 Diagrama de actividades
@@ -142,7 +136,6 @@ Paso 1
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-3-algoritmos-avidos/Greedy3_light.svg
 ---
-name: actividades3
 class: only-light-mode
 ---
 Diagrama de actividades
@@ -150,7 +143,6 @@ Diagrama de actividades
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-3-algoritmos-avidos/Greedy3_dark.svg
 ---
-name: actividades3
 class: only-dark-mode
 ---
 Diagrama de actividades
@@ -161,7 +153,6 @@ Paso 2
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-3-algoritmos-avidos/Greedy4_light.svg
 ---
-name: actividades4
 class: only-light-mode
 ---
 Diagrama de actividades
@@ -169,7 +160,6 @@ Diagrama de actividades
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-3-algoritmos-avidos/Greedy4_dark.svg
 ---
-name: actividades4
 class: only-dark-mode
 ---
 Diagrama de actividades
@@ -180,7 +170,6 @@ Paso 3
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-3-algoritmos-avidos/Greedy5_light.svg
 ---
-name: actividades5
 class: only-light-mode
 ---
 Diagrama de actividades
@@ -188,7 +177,6 @@ Diagrama de actividades
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-3-algoritmos-avidos/Greedy5_dark.svg
 ---
-name: actividades5
 class: only-dark-mode
 ---
 Diagrama de actividades
@@ -199,7 +187,6 @@ Paso 4
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-3-algoritmos-avidos/Greedy6_light.svg
 ---
-name: actividades6
 class: only-light-mode
 ---
 Diagrama de actividades
@@ -207,7 +194,6 @@ Diagrama de actividades
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-3-algoritmos-avidos/Greedy6_dark.svg
 ---
-name: actividades6
 class: only-dark-mode
 ---
 Diagrama de actividades
@@ -224,11 +210,9 @@ class: note
 **Salida**: Lista de actividades seleccionadas
 ```
 
-```{code-block}
+```{code-block} text
 ---
-caption: Algoritmo de plan de actividades
-linenos: true
-language: text
+linenos:
 ---
 actividades_seleccionadas ← []
 actividad_actual ← actividades[0]
@@ -237,8 +221,8 @@ PARA CADA actividad EN actividades HACER
     SI actividad_inicio >= actividad_actual_fin ENTONCES
         actividades_seleccionadas ← actividades_seleccionadas + [actividad]
         actividad_actual ← actividad
-    FIN_SI
-FIN_PARA
+    FIN SI
+FIN PARA
 ```
 
 ```{admonition} Observación

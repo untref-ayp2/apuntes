@@ -37,7 +37,7 @@ func main() {
 }
 ```
 
-```text
+```output
 el nro. ingresado debe ser mayor o igual a cero
 ```
 
@@ -70,7 +70,7 @@ func main() {
 }
 ```
 
-```text
+```output
 el nro. ingresado debe ser mayor o igual a cero, en su lugar se recibió: -1
 ```
 
@@ -126,7 +126,7 @@ func main() {
 }
 ```
 
-```text
+```output
 edad inválida: -5
 ```
 
@@ -167,7 +167,7 @@ func main() {
 }
 ```
 
-```text
+```output
 elemento no encontrado
 ```
 
@@ -213,7 +213,7 @@ func main() {
 }
 ```
 
-```text
+```output
 error en edad: -1 no es válido
 ```
 
@@ -257,7 +257,7 @@ func main() {
 }
 ```
 
-```text
+```output
 el archivo del usuario no existe
 ```
 
@@ -311,7 +311,7 @@ func main() {
 }
 ```
 
-```text
+```output
 error al leer mensaje.txt: open mensaje.txt: no such file or directory
 ```
 
@@ -346,7 +346,7 @@ func main() {
 }
 ```
 
-```text
+```output
 archivo escrito correctamente
 ```
 

@@ -10,7 +10,10 @@ En capítulos anteriores trabajamos con funciones y tipos concretos: una funció
 
 Supongamos que queremos una función que busque un elemento en un slice. Para enteros haríamos:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func ContieneInt(arr []int, elem int) bool {
     for _, v := range arr {
         if v == elem {
@@ -23,7 +26,10 @@ func ContieneInt(arr []int, elem int) bool {
 
 Si después necesitamos lo mismo para _strings_, escribimos otra función casi idéntica:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func ContieneString(arr []string, elem string) bool {
     for _, v := range arr {
         if v == elem {
@@ -47,7 +53,10 @@ Este problema de código repetido es el mismo que motiva el uso de plantillas (_
 
 Antes de que Go tuviera genéricos, la solución era usar el tipo vacío `interface{}` (que también puede escribirse como `any`). Como `interface{}` no impone ningún método, cualquier valor lo satisface:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func ContieneAny(arr []interface{}, elem interface{}) bool {
     for _, v := range arr {
         if v == elem {
@@ -64,7 +73,10 @@ Pero esta solución tiene problemas:
 - **Código verboso**: para usar el valor hay que preguntar por su tipo concreto con `valor.(Tipo)`, y si el tipo no coincide, el programa explota con un *panic*.
 - **Pérdida de información**: adentro del `interface{}` el compilador no sabe si hay un `int`, un `string` o lo que sea.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func main() {
     nums := []interface{}{10, 20, 30}
     fmt.Println(ContieneAny(nums, 20))    // true, funciona bien
@@ -83,7 +95,10 @@ El problema es que el compilador no nos protege: pasar un `string` donde deberí
 
 Desde Go 1.18, podemos escribir funciones que acepten cualquier tipo usando tipos parametrizables. La sintaxis usa corchetes `[]`:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func Contiene[T comparable](arr []T, elem T) bool {
     for _, v := range arr {
         if v == elem {
@@ -104,7 +119,10 @@ La restricción `comparable` indica que `T` debe soportar los operadores `==` y 
 
 Al llamar a la función, Go infiere el tipo automáticamente:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func main() {
     numeros := []int{10, 20, 30, 40, 50}
     fmt.Println(Contiene(numeros, 30))   // true
@@ -126,7 +144,10 @@ La misma función `Contiene` funciona con `int`, `string`, y cualquier otro tipo
 A diferencia de la solución con `interface{}`, acá el compilador no permite mezclar tipos:
 si declaramos un slice de enteros, solo podemos buscar enteros dentro de él:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func main() {
     numeros := []int{10, 20, 30}
     fmt.Println(Contiene(numeros, 20))    // bien: int con int
@@ -142,14 +163,20 @@ El error en compilación nos protege de equivocarnos antes de ejecutar el progra
 
 Al llamar a una función genérica, el compilador deduce los tipos parametrizables a partir de los argumentos:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 Contiene(numeros, 30)   // T se infiere como int
 Contiene(nombres, "Luis") // T se infiere como string
 ```
 
 También podemos especificar el tipo explícitamente si hace falta:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 Contiene[int](numeros, 30)
 ```
 
@@ -157,7 +184,6 @@ Contiene[int](numeros, 30)
 ---
 class: only-light-mode
 width: 80%
-name: generics-concept
 ---
 Los tipos parametrizables permiten que una misma función trabaje con diferentes tipos concretos.
 ```
@@ -166,7 +192,6 @@ Los tipos parametrizables permiten que una misma función trabaje con diferentes
 ---
 class: only-dark-mode
 width: 80%
-name: generics-concept-dark
 ---
 Los tipos parametrizables permiten que una misma función trabaje con diferentes tipos concretos.
 ```
@@ -179,7 +204,10 @@ Los _constraints_ definen qué operaciones puede hacer `T` dentro de la función
 
 `any` es un alias para `interface{}`. Acepta cualquier tipo, pero no permite ninguna operación específica sobre los valores (no se puede usar `==`, `<`, `+`, etc.):
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func Imprimir[T any](arr []T) {
     for _, v := range arr {
         fmt.Println(v)
@@ -193,7 +221,10 @@ Esta función solo puede usar operaciones válidas para cualquier tipo: asignar,
 
 `comparable` restringe `T` a tipos que soporten `==` y `!=`. Todos los tipos básicos (enteros, _strings_, booleanos) son comparables, así como punteros, _structs_ con campos comparables y arreglos.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func BuscarLineal[T comparable](arr []T, elem T) int {
     for i, v := range arr {
         if v == elem {
@@ -208,7 +239,10 @@ func BuscarLineal[T comparable](arr []T, elem T) int {
 
 Para operaciones como `<`, `>`, `<=`, `>=`, no existe un _constraint_ predefinido en la biblioteca estándar (hasta Go 1.21). Podemos definir el nuestro propio:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 type Ordenable interface {
     ~int | ~float64 | ~string
 }
@@ -218,7 +252,10 @@ El operador `~` indica que el tipo subyacente debe ser `int`, `float64` o `strin
 
 Ahora podemos escribir funciones que usen operadores de comparación:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func Maximo[T Ordenable](arr []T) T {
     max := arr[0]
     for _, v := range arr[1:] {
@@ -258,7 +295,10 @@ Los _constraints_ con uniones de tipos (`~int | ~float64 | ~string`) solo pueden
 
 En lugar de definir un _constraint_ personalizado, podemos pasar una función que compare elementos. Acá el tipo es `[T any]` porque no hacemos operaciones directamente sobre `T`: toda la lógica de comparación está dentro de la función `menor`, que recibe los `T` y decide el orden.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func OrdenarSeleccion[T any](arr []T, menor func(T, T) bool) {
     n := len(arr)
     for i := 0; i < n-1; i++ {
@@ -290,7 +330,10 @@ func main() {
 
 La función `menor` recibe dos elementos `T` y devuelve `true` si el primero debe ir antes que el segundo. Esto nos permite ordenar cualquier tipo, incluso _structs_ sin un orden natural:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 type Persona struct {
     Nombre string
     Edad   int
@@ -319,7 +362,10 @@ func main() {
 
 Los tipos parametrizables también funcionan con _structs_. Esto permite definir contenedores que almacenen valores de cualquier tipo:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 type Caja[T any] struct {
     valor T
 }
@@ -349,7 +395,10 @@ hola
 
 Un tipo genérico también puede tener múltiples parámetros:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 type Dicc[K comparable, V any] struct {
     datos map[K]V
 }

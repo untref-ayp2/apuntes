@@ -10,7 +10,10 @@ Trabajar con archivos es una tarea común en casi cualquier programa. Go provee 
 
 La forma más simple de leer un archivo de texto es con `os.ReadFile`, que lee todo el contenido de una sola vez y devuelve un `[]byte`:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 package main
 
 import (
@@ -34,7 +37,10 @@ func main() {
 
 Para escribir datos en un archivo, `os.WriteFile` recibe el nombre del archivo, los datos como `[]byte` y los permisos:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 package main
 
 import (
@@ -59,7 +65,10 @@ El tercer parámetro son los permisos en octal (`0644` significa lectura/escritu
 
 Para tener más control, podemos abrir un archivo con `os.Open` (solo lectura) u `os.Create` (escritura, trunca si existe). Es importante cerrar el archivo con `Close` cuando terminamos, generalmente usando `defer`:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 package main
 
 import (
@@ -86,7 +95,10 @@ func main() {
 
 Cuando el archivo es grande o queremos procesarlo línea por línea, `bufio.Scanner` es la herramienta adecuada:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 package main
 
 import (
@@ -122,7 +134,10 @@ func main() {
 
 Para escribir datos formateados en un archivo, podemos usar `fmt.Fprintf`, que es como `fmt.Printf` pero escribe en un archivo (o cualquier otro `io.Writer`):
 
-```go
+```{code-block} go
+---
+linenos:
+---
 package main
 
 import (

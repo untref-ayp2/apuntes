@@ -32,7 +32,7 @@ En esta definición de **complejidad** entra en juego una variable más, la cant
 
 Informalmente hablando, cuanto mayor sea la **complejidad** de un algoritmo, será menos **eficiente** en el uso de los recursos.
 
-La **complejidad** es independiente del hardware o la máquina donde se ejecuta el algoritmo. No debemos confundir **complejidad** con **rendimiento**.
+La **complejidad** es independiente del *hardware* o la máquina donde se ejecuta el algoritmo. No debemos confundir **complejidad** con **rendimiento**.
 
 ```{admonition} Nota
 ---
@@ -41,7 +41,7 @@ class: note
 El **rendimiento** es la capacidad de una computadora para realizar una determinada tarea en un tiempo dado
 ```
 
-El **rendimiento** sí depende del hardware. Por ejemplo en la medida que aumenta la velocidad del procesador, se necesitará menos tiempo para completar una tarea dada. En cambio la **complejidad** nos indica cuanto más tiempo o memoria va a requerir el algoritmo en función del tamaño de los datos.
+El **rendimiento** sí depende del *hardware*. Por ejemplo en la medida que aumenta la velocidad del procesador, se necesitará menos tiempo para completar una tarea dada. En cambio la **complejidad** nos indica cuanto más tiempo o memoria va a requerir el algoritmo en función del tamaño de los datos.
 
 ```{admonition} El mito de la computadora todopoderosa
 ---
@@ -50,7 +50,7 @@ class: hint
 Muchas veces se cae en la tentación de pensar que a medida que aumente la capacidad de procesamiento de las computadoras se podrá completar cualquier tarea en un tiempo aceptable. Esta afirmación es una falacia. Existen problemas muy bien conocidos que resultan intratables para las computadoras, es decir, que no importa que tanto aumente la capacidad de procesamiento, un pequeño aumento en el tamaño de los datos implica que el tiempo de ejecución aumente desmesuradamente, hasta el punto de hacer inviable el cálculo.
 ```
 
-En esta primera aproximación al estudio del análisis de algoritmos, nos vamos a enfocar en la **complejidad temporal**. Como la complejidad temporal es una métrica independiente del hardware donde se ejecuta el programa, normalmente se estima contando la cantidad de operaciones elementales que realiza el algoritmo bajo análisis para completar el cálculo, teniendo en cuenta que cada unidad elemental requiere una cantidad fija de tiempo, que por simplicidad se asume como una unidad de tiempo.
+En esta primera aproximación al estudio del análisis de algoritmos, nos vamos a enfocar en la **complejidad temporal**. Como la complejidad temporal es una métrica independiente del *hardware* donde se ejecuta el programa, normalmente se estima contando la cantidad de operaciones elementales que realiza el algoritmo bajo análisis para completar el cálculo, teniendo en cuenta que cada unidad elemental requiere una cantidad fija de tiempo, que por simplicidad se asume como una unidad de tiempo.
 
 Como la cantidad de operaciones elementales que debe realizar depende de los datos, se toma siempre el peor caso, para poder obtener una cota confiable. Por ejemplo si hay que buscar un elemento en un arreglo desordenado, no queda otra que buscar el elemento en todas las posiciones del arreglo. En el peor caso se deberá recorrer todo el arreglo para encontrar el elemento en la última posición escrutada o poder concluir que el elemento no se encuentra, es probable que si ejecutamos nuestro algoritmo muchas veces, algunas veces lo encuentre antes de recorrer todo el arreglo, pero como buscamos una cota, **se toma siempre el peor caso**.
 
@@ -85,7 +85,6 @@ $$
 
 ```{figure} ../_static/figures/1-presentacion/1-3-analisis-de-algoritmos/funcion_acotada_light.svg
 ---
-name: funcion-acotada
 class: only-light-mode
 ---
 Función Acotada: $T(n) \subset O(n)$
@@ -93,7 +92,6 @@ Función Acotada: $T(n) \subset O(n)$
 
 ```{figure} ../_static/figures/1-presentacion/1-3-analisis-de-algoritmos/funcion_acotada_dark.svg
 ---
-name: funcion-acotada
 class: only-dark-mode
 ---
 Función Acotada: $T(n) \subset O(n)$
@@ -103,7 +101,6 @@ A continuación se muestran algunas tasas de crecimiento de las funciones que co
 
 ```{figure} ../_static/figures/1-presentacion/1-3-analisis-de-algoritmos/comparacion_funciones_light.svg
 ---
-name: tasa-crecimiento
 class: only-light-mode
 ---
 Comparación de tasas de crecimiento
@@ -111,7 +108,6 @@ Comparación de tasas de crecimiento
 
 ```{figure} ../_static/figures/1-presentacion/1-3-analisis-de-algoritmos/comparacion_funciones_dark.svg
 ---
-name: tasa-crecimiento
 class: only-dark-mode
 ---
 Comparación de tasas de crecimiento
@@ -321,7 +317,7 @@ A continuación una implementación en Go:
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 func busquedaLineal(arreglo []int, objetivo int) int {
     for i := 0; i < len(arreglo); i++ {
@@ -370,7 +366,7 @@ Implementación en Go:
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 func busquedaBinaria(lista []int, elemento int) int {
     L := 0
@@ -406,30 +402,30 @@ $$
 Reemplazando obtenemos:
 
 Primera vuelta del ciclo
-: $$
+: \$$
 T(n) = T \left( \frac{2^k}{2} \right) + c = T(2^{k-1}) + c
-$$
+$\$
 
 Segunda vuelta del ciclo
-: $$
+: \$$
 T(n) = T(2^{k-2}) + 2 \, c
-$$
+$\$
 
 $$
 \dots
 $$
 
 Vuelta $i$ del ciclo
-: $$
+: \$$
 T(n) = T(2^{k-i}) + i \, c
-$$
+$\$
 
 entonces para $i = k$
 
 Vuelta $k$ del ciclo
-: $$
+: \$$
 T(n) = T(1) + k \, c
-$$
+$\$
 
 $T(1)$ es cuanto cuesta si el arreglo tiene tamaño 1, es decir `L == R`, y por lo tanto solo ejecuta una iteración del bucle para determinar si el elemento es el buscado o ajustar los índices para salir. Entonces $T(1) = O(1)$
 
@@ -447,119 +443,5 @@ Es decir al tener el arreglo ordenado, la búsqueda binaria necesita realizar mu
 
 ## Ejercicios
 
-### 1. Potencia iterativa
-
-Indique el tiempo de ejecución en notación O.
-
-```text
-Algoritmo Potencia(x, n)
-    resultado ← 1
-    Para i ← 0 hasta n-1:
-        resultado ← resultado * x
-    Fin Para
-    Devolver resultado
-Fin Algoritmo
-```
-
-### 2. Mostrar alumnos
-
-Indique el tiempo de ejecución en notación O.
-
-```text
-Algoritmo MostrarAlumnos(a)
-    i ← 0
-    Mientras i < longitud(a):
-        Imprimir a[i].nombre, " ", a[i].apellido
-        i ← i + 1
-    Fin Mientras
-Fin Algoritmo
-```
-
-### 3. Fragmentos de código
-
-Para cada uno de los siguientes fragmentos, dé un análisis en notación O del tiempo de ejecución.
-
-```text
-// Fragmento 1
-Para i ← 0 hasta n-1:
-    suma ← suma + 1
-Fin Para
-```
-
-```text
-// Fragmento 2
-Para i ← 0 hasta n-1, paso 2:
-    suma ← suma + 1
-Fin Para
-```
-
-```text
-// Fragmento 3
-Para i ← 0 hasta n-1:
-    Para j ← 0 hasta n-1:
-        suma ← suma + 1
-    Fin Para
-Fin Para
-```
-
-```text
-// Fragmento 4
-Para i ← 0 hasta n-1:
-    suma ← suma + 1
-Fin Para
-Para j ← 0 hasta n-1:
-    suma ← suma + 1
-Fin Para
-```
-
-```text
-// Fragmento 5
-Para i ← 0 hasta n-1:
-    Para j ← 0 hasta n²-1:
-        suma ← suma + 1
-    Fin Para
-Fin Para
-```
-
-```text
-// Fragmento 6
-Para i ← 0 hasta n-1:
-    Para j ← 0 hasta i-1:
-        suma ← suma + 1
-    Fin Para
-Fin Para
-```
-
-```text
-// Fragmento 7
-Para i ← 0 hasta n-1:
-    Para j ← 0 hasta n²-1:
-        Para k ← 0 hasta j-1:
-            suma ← suma + 1
-        Fin Para
-    Fin Para
-Fin Para
-```
-
-### 4. Subsecuencia contigua de suma máxima
-
-Dado un arreglo de números enteros (que puede contener positivos y negativos), escriba un algoritmo que encuentre la subsecuencia **contigua** cuya suma sea máxima y devuelva dicha suma.
-
-Por ejemplo, dado el arreglo `[-1, 2, 3, -4]`, las subsecuencias contiguas son:
-
-```text
-[-1]           → suma = -1
-[-1, 2]        → suma =  1
-[-1, 2, 3]     → suma =  4
-[-1, 2, 3, -4] → suma =  0
-[2]            → suma =  2
-[2, 3]         → suma =  5   ← máxima
-[2, 3, -4]     → suma =  1
-[3]            → suma =  3
-[3, -4]        → suma = -1
-[-4]           → suma = -4
-```
-
-La subsecuencia con suma máxima es `[2, 3]` cuya suma es `5`.
-
-Indique el tiempo de ejecución en notación O. Si encuentra más de una forma de hacerlo, plantee ambas y compare la eficiencia.
+Los ejercicios de este capítulo están en `03-analisis-de-algoritmos/ejercicios/`
+del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).

@@ -36,16 +36,14 @@ El nodo almacena:
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaEnlazadaSimple_light.svg
 ---
-width: 100%
-class: only-light-mode
 name: ssl-estructura
+class: only-light-mode
 ---
 Lista Enlazada Simple
 ```
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaEnlazadaSimple_dark.svg
 ---
-width: 100%
 class: only-dark-mode
 ---
 Lista Enlazada Simple
@@ -53,7 +51,7 @@ Lista Enlazada Simple
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 type node[T any] struct {
     data T
@@ -63,7 +61,7 @@ type node[T any] struct {
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 type List[T comparable] struct {
     head *node[T]
@@ -78,7 +76,7 @@ Cuando una operación como `Head()` o `Tail()` se ejecuta sobre una lista vacía
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 var zero T
 /*
@@ -106,16 +104,14 @@ El nodo almacena:
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaEnlazadaDoble_light.svg
 ---
-width: 100%
-class: only-light-mode
 name: dll-estructura
+class: only-light-mode
 ---
 Lista Enlazada Doble
 ```
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaEnlazadaDoble_dark.svg
 ---
-width: 100%
 class: only-dark-mode
 ---
 Lista Enlazada Doble
@@ -123,7 +119,7 @@ Lista Enlazada Doble
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 type node[T any] struct {
     data T
@@ -134,7 +130,7 @@ type node[T any] struct {
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 type List[T comparable] struct {
     head *node[T]
@@ -161,16 +157,14 @@ El nodo es el mismo que el de la lista doble (`node[T]` con `next` y `prev`).
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaEnlazadaCircularDoble_light.svg
 ---
-width: 100%
-class: only-light-mode
 name: cll-estructura
+class: only-light-mode
 ---
 Lista Enlazada Circular Doble
 ```
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaEnlazadaCircularDoble_dark.svg
 ---
-width: 100%
 class: only-dark-mode
 ---
 Lista Enlazada Circular Doble
@@ -180,7 +174,7 @@ Al ser cíclica, basta con mantener un único puntero a la cabeza: la cola se ob
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 type List[T comparable] struct {
     head *node[T]  // único puntero necesario
@@ -194,7 +188,7 @@ Si bien las listas son versátiles y no existe un único comportamiento estánda
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 type List[T comparable] interface {
     // Consulta
@@ -226,10 +220,13 @@ type List[T comparable] interface {
 
 La mayoría de las operaciones de inserción, eliminación y búsqueda dependen de un método interno `find` que recorre la lista en busca de un elemento. Este método es **privado** (en Go, minúscula inicial) porque devuelve un puntero a un nodo interno, y no debería exponerse fuera de la lista. A continuación se muestra su implementación en cada variante; las operaciones del resto de la sección lo referencian.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: find — Lista Simple
+---
 find(buscado):
     actual := head
     mientras actual != nil:
@@ -240,9 +237,12 @@ find(buscado):
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: find — Lista Doble
+---
 find(buscado):
     actual := head
     mientras actual != nil:
@@ -253,9 +253,12 @@ find(buscado):
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: find — Lista Circular
+---
 find(buscado):
     si IsEmpty():
         retornar nil
@@ -275,26 +278,35 @@ find(buscado):
 Size()
 : Devuelve la cantidad de nodos de la lista.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: Size — Lista Simple
+---
 Size():
     retornar size
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: Size — Lista Doble
+---
 Size():
     retornar size
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: Size — Lista Circular
+---
 Size():
     retornar size
 ```
@@ -305,26 +317,35 @@ Size():
 IsEmpty()
 : Devuelve `true` si la lista no tiene elementos.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: IsEmpty — Lista Simple
+---
 IsEmpty():
     retornar size == 0
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: IsEmpty — Lista Doble
+---
 IsEmpty():
     retornar size == 0
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: IsEmpty — Lista Circular
+---
 IsEmpty():
     retornar size == 0
 ```
@@ -335,26 +356,35 @@ IsEmpty():
 Contains(data T)
 : Devuelve `true` si el elemento está presente (solo la primera ocurrencia).
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: Contains — Lista Simple
+---
 Contains(buscado):
     retornar find(buscado) != nil
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: Contains — Lista Doble
+---
 Contains(buscado):
     retornar find(buscado) != nil
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: Contains — Lista Circular
+---
 Contains(buscado):
     retornar find(buscado) != nil
 ```
@@ -365,10 +395,13 @@ Contains(buscado):
 Head()
 : Devuelve el dato del primer nodo. Si la lista está vacía devuelve el valor cero y `false`.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: Head — Lista Simple
+---
 Head():
     si IsEmpty():
         retornar zero, falso
@@ -376,9 +409,12 @@ Head():
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: Head — Lista Doble
+---
 Head():
     si IsEmpty():
         retornar zero, falso
@@ -386,9 +422,12 @@ Head():
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: Head — Lista Circular
+---
 Head():
     si IsEmpty():
         retornar zero, falso
@@ -401,10 +440,13 @@ Head():
 Tail()
 : Devuelve el dato del último nodo. En la lista circular se obtiene desde `head.prev`.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: Tail — Lista Simple
+---
 Tail():
     si IsEmpty():
         retornar zero, falso
@@ -412,9 +454,12 @@ Tail():
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: Tail — Lista Doble
+---
 Tail():
     si IsEmpty():
         retornar zero, falso
@@ -422,9 +467,12 @@ Tail():
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: Tail — Lista Circular
+---
 Tail():
     si IsEmpty():
         retornar zero, falso
@@ -439,10 +487,13 @@ Tail():
 Prepend(data T)
 : Agrega un nodo con el dato al inicio de la lista.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: Prepend — Lista Simple
+---
 Prepend(dato):
     nuevo := NuevoNodo(dato)
     nuevo.siguiente = head
@@ -453,9 +504,12 @@ Prepend(dato):
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: Prepend — Lista Doble
+---
 Prepend(dato):
     nuevo := NuevoNodo(dato)
     nuevo.siguiente = head
@@ -468,9 +522,12 @@ Prepend(dato):
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: Prepend — Lista Circular
+---
 Prepend(dato):
     nuevo := NuevoNodo(dato)
     si IsEmpty():
@@ -496,10 +553,13 @@ La circular requiere mantener el ciclo, enlazando el nuevo nodo con `head` y con
 Append(data T)
 : Agrega un nodo con el dato al final de la lista.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: Append — Lista Simple
+---
 Append(dato):
     nuevo := NuevoNodo(dato)
     si tail != nil:
@@ -511,9 +571,12 @@ Append(dato):
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: Append — Lista Doble
+---
 Append(dato):
     nuevo := NuevoNodo(dato)
     nuevo.prev = tail
@@ -526,9 +589,12 @@ Append(dato):
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: Append — Lista Circular
+---
 Append(dato):
     si IsEmpty():
         Prepend(dato)
@@ -548,10 +614,13 @@ Append(dato):
 InsertAfter(target, data T)
 : Busca `target` e inserta un nodo con `data` a continuación. Devuelve `false` si no encuentra `target`.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: InsertAfter — Lista Simple
+---
 InsertAfter(buscado, dato):
     actual := find(buscado)
     si actual == nil:
@@ -566,9 +635,12 @@ InsertAfter(buscado, dato):
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: InsertAfter — Lista Doble
+---
 InsertAfter(buscado, dato):
     actual := find(buscado)
     si actual == nil:
@@ -586,9 +658,12 @@ InsertAfter(buscado, dato):
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: InsertAfter — Lista Circular
+---
 InsertAfter(buscado, dato):
     actual := find(buscado)
     si actual == nil:
@@ -608,10 +683,13 @@ InsertAfter(buscado, dato):
 InsertBefore(target, data T)
 : Busca `target` e inserta un nodo con `data` antes. Devuelve `false` si no encuentra `target`.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: InsertBefore — Lista Simple
+---
 InsertBefore(buscado, dato):
     si head == nil:
         retornar falso
@@ -631,9 +709,12 @@ InsertBefore(buscado, dato):
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: InsertBefore — Lista Doble
+---
 InsertBefore(buscado, dato):
     actual := find(buscado)
     si actual == nil:
@@ -651,9 +732,12 @@ InsertBefore(buscado, dato):
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: InsertBefore — Lista Circular
+---
 InsertBefore(buscado, dato):
     actual := find(buscado)
     si actual == nil:
@@ -680,10 +764,13 @@ En la lista doble y circular, una vez encontrado el nodo, el reenlace es $O(1)$ 
 RemoveFirst()
 : Elimina el primer nodo. Devuelve `false` si la lista está vacía.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: RemoveFirst — Lista Simple
+---
 RemoveFirst():
     si IsEmpty():
         retornar falso
@@ -695,9 +782,12 @@ RemoveFirst():
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: RemoveFirst — Lista Doble
+---
 RemoveFirst():
     si IsEmpty():
         retornar falso
@@ -711,9 +801,12 @@ RemoveFirst():
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: RemoveFirst — Lista Circular
+---
 RemoveFirst():
     si IsEmpty():
         retornar falso
@@ -734,10 +827,13 @@ RemoveFirst():
 RemoveLast()
 : Elimina el último nodo. Devuelve `false` si la lista está vacía.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: RemoveLast — Lista Simple
+---
 RemoveLast():
     si IsEmpty():
         retornar falso
@@ -756,9 +852,12 @@ RemoveLast():
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: RemoveLast — Lista Doble
+---
 RemoveLast():
     si IsEmpty():
         retornar falso
@@ -772,9 +871,12 @@ RemoveLast():
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: RemoveLast — Lista Circular
+---
 RemoveLast():
     si IsEmpty():
         retornar falso
@@ -797,10 +899,13 @@ RemoveLast():
 Remove(data T)
 : Busca y elimina la **primera** ocurrencia del elemento. Si hay elementos duplicados, solo se elimina el primero que se encuentra. Devuelve `false` si no lo encuentra.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: Remove — Lista Simple
+---
 Remove(dato):
     si IsEmpty():
         retornar falso
@@ -820,9 +925,12 @@ Remove(dato):
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: Remove — Lista Doble
+---
 Remove(dato):
     actual := find(dato)
     si actual == nil:
@@ -840,9 +948,12 @@ Remove(dato):
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: Remove — Lista Circular
+---
 Remove(dato):
     si IsEmpty():
         retornar falso
@@ -869,10 +980,13 @@ La lista simple debe tratar como caso especial la eliminación de la cabeza (no 
 Values()
 : Devuelve un slice con los datos en el orden de la lista.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: Values — Lista Simple
+---
 Values():
     resultado := []
     actual := head
@@ -883,9 +997,12 @@ Values():
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: Values — Lista Doble
+---
 Values():
     resultado := []
     actual := head
@@ -896,9 +1013,12 @@ Values():
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: Values — Lista Circular
+---
 Values():
     si IsEmpty():
         retornar []
@@ -918,10 +1038,13 @@ Values():
 Clear()
 : Elimina todos los nodos y deja la lista vacía.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: Clear — Lista Simple
+---
 Clear():
     head = nil
     tail = nil
@@ -929,9 +1052,12 @@ Clear():
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: Clear — Lista Doble
+---
 Clear():
     head = nil
     tail = nil
@@ -939,9 +1065,12 @@ Clear():
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: Clear — Lista Circular
+---
 Clear():
     head = nil
     tamaño = 0
@@ -953,28 +1082,37 @@ Clear():
 String()
 : Devuelve una representación textual de la lista.
 
-::::{tab-set}
-:::{tab-item} Simple
+::::\{tab-set}
+:::\{tab-item} Simple
 
 ```{code-block} text
+---
+caption: String — Lista Simple
+---
 String():
     elementos := Values()
     retornar "[" + elementos.join(", ") + "]"
 ```
 
 :::
-:::{tab-item} Doble
+:::\{tab-item} Doble
 
 ```{code-block} text
+---
+caption: String — Lista Doble
+---
 String():
     elementos := Values()
     retornar "[" + elementos.join(", ") + "]"
 ```
 
 :::
-:::{tab-item} Circular
+:::\{tab-item} Circular
 
 ```{code-block} text
+---
+caption: String — Lista Circular
+---
 String():
     elementos := Values()
     retornar "[" + elementos.join(", ") + "]"
@@ -999,16 +1137,14 @@ En una lista con centinelas:
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaConCentinelas_light.svg
 ---
-width: 100%
-class: only-light-mode
 name: lista-centinelas
+class: only-light-mode
 ---
 Lista Enlazada Doble con Centinelas
 ```
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-3-listas/ListaConCentinelas_dark.svg
 ---
-width: 100%
 class: only-dark-mode
 ---
 Lista Enlazada Doble con Centinelas
@@ -1016,7 +1152,7 @@ Lista Enlazada Doble con Centinelas
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 type List[T comparable] struct {
     head *node[T]  // centinela frontal
@@ -1031,9 +1167,12 @@ find
 : Al no haber `nil`, el recorrido va desde `head.siguiente` hasta llegar al centinela `tail`.
 
 ```{code-block} text
+---
+caption: find — Lista Simple
+---
 find(buscado):
-    actual := head.siguiente
-    mientras actual != tail:
+    actual := head
+    mientras actual != nil:
         si actual.dato == buscado:
             retornar actual
         actual = actual.siguiente
@@ -1044,6 +1183,9 @@ IsEmpty
 : La lista vacía se detecta cuando `size ==0` o los centinelas se apuntan entre sí.
 
 ```{code-block} text
+---
+caption: IsEmpty — Lista con Centinelas
+---
 IsEmpty():
     retornar head.siguiente == tail
 ```
@@ -1052,6 +1194,9 @@ Head / Tail
 : El primer dato está en `head.siguiente` y el último en `tail.prev`.
 
 ```{code-block} text
+---
+caption: Head / Tail — Lista con Centinelas
+---
 Head():
     si IsEmpty():
         retornar zero, falso
@@ -1067,6 +1212,9 @@ InsertBefore
 : No necesita verificar si `actual` es la cabeza real porque el centinela `head` garantiza que `actual.prev` nunca es `nil`.
 
 ```{code-block} text
+---
+caption: InsertBefore — Lista con Centinelas
+---
 InsertBefore(buscado, dato):
     actual := find(buscado)
     si actual == nil:
@@ -1084,6 +1232,9 @@ InsertAfter
 : Como `actual.siguiente` nunca es `nil` (puede ser `tail`), no hay caso especial de cola.
 
 ```{code-block} text
+---
+caption: InsertAfter — Lista con Centinelas
+---
 InsertAfter(buscado, dato):
     actual := find(buscado)
     si actual == nil:
@@ -1101,6 +1252,9 @@ Prepend
 : Inserta entre el centinela `head` y el primer nodo real. No puede delegar en `InsertBefore` porque busca por valor y fallaría con datos duplicados.
 
 ```{code-block} text
+---
+caption: Prepend — Lista con Centinelas
+---
 Prepend(dato):
     nuevo := NuevoNodo(dato)
     nuevo.siguiente = head.siguiente
@@ -1114,6 +1268,9 @@ Append
 : Inserta entre el último nodo real y el centinela `tail`.
 
 ```{code-block} text
+---
+caption: Append — Lista con Centinelas
+---
 Append(dato):
     nuevo := NuevoNodo(dato)
     nuevo.siguiente = tail
@@ -1127,6 +1284,9 @@ Remove
 : No necesita verificar si el nodo es `head` o `tail` real. Los centinelas aseguran que `actual.prev` y `actual.siguiente` siempre existen.
 
 ```{code-block} text
+---
+caption: Remove — Lista con Centinelas
+---
 Remove(dato):
     actual := find(dato)
     si actual == nil:
@@ -1141,6 +1301,9 @@ RemoveFirst
 : Reenlaza el centinela `head` con el segundo nodo real. No puede delegar en `Remove` por el mismo problema de los duplicados.
 
 ```{code-block} text
+---
+caption: RemoveFirst — Lista con Centinelas
+---
 RemoveFirst():
     si IsEmpty():
         retornar falso
@@ -1154,6 +1317,9 @@ RemoveLast
 : Reenlaza el centinela `tail` con el anteúltimo nodo real.
 
 ```{code-block} text
+---
+caption: RemoveLast — Lista con Centinelas
+---
 RemoveLast():
     si IsEmpty():
         retornar falso
@@ -1167,6 +1333,9 @@ Clear
 : Solo reenlaza los centinelas entre sí.
 
 ```{code-block} text
+---
+caption: Clear — Lista con Centinelas
+---
 Clear():
     head.siguiente = tail
     tail.prev = head
@@ -1207,10 +1376,8 @@ La complejidad asintótica de las operaciones que requieren búsqueda es $O(n)$ 
 
 ## Ejercicios
 
-1. **Implementar las listas enlazadas** — Completar los esqueletos de `SinglyLinkedList`,
-   `DoublyLinkedList`, `CircularLinkedList` y `SentinelLinkedList` en el repositorio
-   [`data-structures`](https://github.com/untref-ayp2/data-structures), paquete `list/`.
+Los ejercicios de este capítulo están en `03-listas/ejercicios/` del
+repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
 
-2. **Resolver ejercicios de uso** — Los ejercicios de este capítulo están en
-   `03-listas/ejercicios/` del repositorio
-   [`taller-tad`](https://github.com/untref-ayp2/taller-tad).
+Antes de comenzar, implementá las interfaces necesarias en tu fork de
+[data-structures](https://github.com/untref-ayp2/data-structures).

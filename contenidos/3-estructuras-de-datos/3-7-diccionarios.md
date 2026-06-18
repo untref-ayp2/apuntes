@@ -10,8 +10,8 @@ La analogía clásica para entender un diccionario es la de una agenda o guía t
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-7-diccionarios/diccionario_light.svg
 ---
-class: only-light-mode
 name: fig-diccionario-light
+class: only-light-mode
 ---
 Concepto de diccionario como una agenda telefónica indexada.
 ```
@@ -19,16 +19,15 @@ Concepto de diccionario como una agenda telefónica indexada.
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-7-diccionarios/diccionario_dark.svg
 ---
 class: only-dark-mode
-name: fig-diccionario-dark
 ---
 Concepto de diccionario como una agenda telefónica indexada.
 ```
 
 ## Relación con las tablas de *hash*
 
-En la práctica, la forma estándar y más eficiente de implementar el TAD Diccionario es mediante una **tabla de *hash*** (estructura que ya estudiamos en detalle en el capítulo [Tablas de hash](3-5-tablas-de-hashing.md)).
+En la práctica, la forma estándar y más eficiente de implementar el TAD Diccionario es mediante una **tabla de *hash*** (estructura que ya estudiamos en detalle en el capítulo {ref}`hashing`).
 
-Como vimos, una tabla de *hash* utiliza una función de dispersión para mapear las claves a posiciones específicas en un arreglo subyanente. Gracias a esto, un diccionario implementado sobre una tabla de *hash* nos garantiza un costo de tiempo promedio constante ($O(1)$) para las operaciones de inserción, búsqueda y eliminación:
+Como vimos, una tabla de *hash* utiliza una función de dispersión para mapear las claves a posiciones específicas en un arreglo subyacente. Gracias a esto, un diccionario implementado sobre una tabla de *hash* nos garantiza un costo de tiempo promedio constante ($O(1)$) para las operaciones de inserción, búsqueda y eliminación:
 
 |             Operación             | Complejidad Promedio |
 | :-------------------------------: | :------------------: |
@@ -46,7 +45,7 @@ Para formalizar este TAD dentro de nuestra biblioteca de estructuras de datos, d
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 package dictionary
 
@@ -85,7 +84,10 @@ Go no cuenta con un tipo de datos `Set` o `Stack` nativo, pero sí provee soport
 
 La sintaxis básica para declarar un mapa asociando claves de tipo `K` con valores de tipo `V` es:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 var m map[TipoClave]TipoValor
 ```
 
@@ -93,7 +95,10 @@ var m map[TipoClave]TipoValor
 
 Para poder operar con un mapa en Go es necesario inicializarlo previamente. La forma más común es utilizando la función interna `make()`:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 // Declaración e inicialización
 edades := make(map[string]int)
 
@@ -114,7 +119,10 @@ En Go, si intentamos acceder a una clave que no existe en el mapa, el lenguaje n
 
 Para poder distinguir entre una clave que realmente tiene asociado el valor cero y una clave que no existe en absoluto, Go provee la sintaxis especial conocida como el *idiom* de la *comma-ok*:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 if edad, ok := edades["Juan"]; ok {
     fmt.Printf("Juan tiene %d años\n", edad)
 } else {
@@ -128,7 +136,10 @@ Aquí, `ok` es un booleano que vale `true` si la clave existe en el mapa y `fals
 
 Para iterar sobre los pares de un mapa, utilizamos un bucle `for` combinado con la estructura `range`. Es muy importante recordar que **el recorrido de un mapa en Go es no determinista y desordenado** (el orden de los elementos cambia entre ejecuciones consecutivas para evitar que los programas dependan del orden interno de la tabla de *hash*):
 
-```go
+```{code-block} go
+---
+linenos:
+---
 for nombre, edad := range edades {
     fmt.Printf("%s tiene %d años\n", nombre, edad)
 }
@@ -149,9 +160,11 @@ En el esquema del repositorio `data-structures`, la implementación `HashMapDict
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
-func NewHashMapDictionary[K comparable, V any](table hashtable.HashTable[K, V]) *HashMapDictionary[K, V] {
+func NewHashMapDictionary[K comparable, V any](
+    table hashtable.HashTable[K, V],
+) *HashMapDictionary[K, V] {
     return &HashMapDictionary[K, V]{table: table}
 }
 ```
@@ -166,7 +179,7 @@ La siguiente porción de código muestra cómo usaríamos el diccionario con dis
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 // Diccionario con encadenamiento separado
 tablaEncadenada := hashtable.NewHashTableChaining[string, int]()
@@ -181,13 +194,8 @@ Este mismo patrón es el que aplicamos en el capítulo anterior con `NewHashTabl
 
 ## Ejercicios
 
-1. **Implementar diccionario** — Completar el esqueleto de `HashMapDictionary` en el repositorio
-   [`data-structures`](https://github.com/untref-ayp2/data-structures),
-   paquete `dictionary/`. La implementación debe apoyarse sobre una `HashTable` genérica
-   (inyectada por constructor), de modo que funcione con cualquier tipo de clave `K comparable`
-   y cualquier tipo de valor `V any`.
+Los ejercicios de este capítulo están en `07-diccionarios/ejercicios/` del
+repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
 
-2. **Resolver ejercicios de aplicación** — Los ejercicios de este capítulo
-   están en
-   [`07-diccionarios/ejercicios/`](https://github.com/untref-ayp2/taller-tad/tree/main/07-diccionarios/ejercicios)
-   del repositorio [`taller-tad`](https://github.com/untref-ayp2/taller-tad).
+Antes de comenzar, implementá las interfaces necesarias en tu fork de
+[data-structures](https://github.com/untref-ayp2/data-structures).

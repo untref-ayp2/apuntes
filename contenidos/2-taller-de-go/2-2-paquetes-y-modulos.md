@@ -12,7 +12,10 @@ Los paquetes organizan el código en forma lógica. Las variables, funciones y t
 
 Además de que todos los archivos estén en el mismo directorio, cada archivo que forma parte de un paquete debe declarar a qué paquete pertenece:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 package mipaquete
 ```
 
@@ -84,7 +87,10 @@ En Go existen distintos tipos de módulos que podemos importar, dependiendo de s
 
 Hasta ahora hemos utilizado mayormente este tipo de módulos. También podemos utilizar referencias a paquetes dentro de nuestro mismo módulo.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 package main
 
 import "github.com/untref-ayp2/miproyecto/saludo"
@@ -98,7 +104,10 @@ La ruta completa del import (`github.com/untref-ayp2/miproyecto/saludo`) indica 
 
 Otros tipos de módulos que podemos importar son los módulos de otros programadores, por ejemplo, podríamos pensar en utilizar un supuesto módulo de algoritmos de ordenamiento de la cátedra. Entonces, imaginemos que existe el módulo llamado `"untref.edu.ar/ayp2/busqueda"`. Podemos importarlo de la siguiente manera.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 package main
 
 import (
@@ -127,7 +136,10 @@ Hay varios puntos a notar:
 
 - Podemos renombrar la referencia que se crea al importar un paquete, ya sea por conveniencia como en el caso de que haya un conflicto de nombres entre paquetes de distintos módulos.
 
-  ```go
+  ```{code-block} go
+  ---
+  linenos:
+  ---
   import b "untref.edu.ar/ayp2/busqueda"
   ```
 
@@ -187,7 +199,10 @@ Usando cualquier método que les resulte conveniente creamos el archivo `main.go
 cat main.go
 ```
 
-```go
+```{code-block} go
+---
+linenos:
+---
 package main
 
 import (
@@ -274,3 +289,8 @@ Se recomienda recrear el ejemplo previamente presentado y ejecutarlo para corrob
 ```
 
 Los ejemplos de este capítulo están en `02-paquetes-y-modulos/ejemplos/` del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+
+## Ejercicios
+
+Los ejercicios de este capítulo están en `02-paquetes-y-modulos/ejercicios/`
+del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).

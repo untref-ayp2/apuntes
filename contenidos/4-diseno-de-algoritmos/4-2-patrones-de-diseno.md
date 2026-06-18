@@ -232,7 +232,7 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
    ---
    linenos: true
    ---
-   // Implementación de los tipos de datos que representan los elementos individuales
+    // Implementación de elementos individuales (Simple)
    import "math"
 
    type Rectangulo struct {
@@ -268,7 +268,7 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
    ---
    linenos: true
    ---
-   // Implementación de los tipos de datos que representan los elementos compuestos
+    // Implementación de elementos compuestos (Compuesto)
    // que contienen una colección de elementos
    type Grupo struct {
        Figuras []Figura

@@ -41,18 +41,22 @@ Sin match exacto, buscar con `contenidos/**/*${termino}*.md`.
 Revisar en este orden:
 
 ### 1. Ortografía y gramática
+
 - Tildes, puntuación, concordancia género/número
 - Extranjerismos sin cursiva (`*extranjerismo*`)
 - Artículo "el" ante "*heap*" y "*stack*"
 - Español rioplatense
 
 ### 2. Conceptos
+
 - Código Go: que compile y sea correcto
 - Diagramas: texto y valores coinciden con ejemplos
 - Consistencia entre secciones del capítulo
 
 ### 3. Formato MyST
+
 Validar contra `ESTILOS.md`:
+
 - Admonitions: `{admonition}` con `:class:`, nunca shorthand `{note}`
 - Code blocks: `{code-block}`, nunca `{code-file}`
 - Pseudocódigo: `FUNCION`/`FIN FUNCION`, `SI`/`ENTONCES`/`SINO`/`FIN SI`, `←`, 4 espacios
@@ -63,16 +67,19 @@ Validar contra `ESTILOS.md`:
 - Applets: envueltos en `<div class="only-html">`
 
 ### 4. Recursos externos (capítulos 3-x y 4-x)
+
 - Los enunciados NO van inline — solo referencia al repo
 - Verificar que los directorios referenciados existen en `github.com/untref-ayp2`
 - Repos: `data-structures` (contratos) y `taller-tad` (ejercicios)
 
 ### 5. Imágenes SVG
+
 - Pares light/dark completos
 - Clases CSS estándar (ver `ESTILOS.md` §4)
 - Colores corresponden al theme
 
 ### 6. Detección automática (sin argumento)
+
 Leer `.opencode/Plan-Migracion.md`, buscar primer capítulo ⬜ Pendiente.
 </review-instructions>
 
@@ -81,19 +88,25 @@ Leer `.opencode/Plan-Migracion.md`, buscar primer capítulo ⬜ Pendiente.
 ## Reporte de revisión: <archivo>
 
 ### 🔤 Ortografía y gramática
+
 - `archivo.md:XX` — descripción → sugerencia
 
 ### 🧠 Conceptos
+
 - `archivo.md:XX` — descripción → sugerencia
 
 ### 📋 Formato MyST
+
 - `archivo.md:XX` — descripción → sugerencia
 
 ### 🌐 Recursos externos
+
 - `untref-ayp2/repo` — descripción → sugerencia
 
 ### 🖼️ Imágenes SVG
+
 - `figura.svg` — ✅ Completo / ❌ Falta `_dark.svg`
+
 ```
 </output-format>
 
@@ -104,3 +117,4 @@ Leer `.opencode/Plan-Migracion.md`, buscar primer capítulo ⬜ Pendiente.
 4. Para el resto, solo señalar errores existentes
 5. Cada hallazgo debe incluir archivo y número de línea
 </rules>
+```

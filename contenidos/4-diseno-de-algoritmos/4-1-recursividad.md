@@ -9,10 +9,8 @@ label: recursividad
 En programación, la recursividad es una técnica donde **una función se llama a sí misma** dentro de su propia definición. Es como si la función se estuviera "descomponiendo" en versiones más pequeñas del mismo problema, hasta llegar a un **caso tan simple que se puede resolver directamente**.
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-1-recursividad/Recursion.svg
----
-width: 300px
-name: recursion
----
+:width: 70%
+
 Matryoshka.
 ```
 
@@ -38,9 +36,9 @@ La definición de factorial es claramente recursiva y se puede implementar en Go
 
 ```{code-block} go
 ---
-linenos: true
-emphasize-lines: 6, 9
+linenos:
 ---
+emphasize-lines: 6,9
 package main
 
 import "fmt"
@@ -57,25 +55,25 @@ func main() {
 }
 ```
 
+```output
+24
+```
+
 En la línea 6 se define el caso base, donde el factorial de 0 es 1. En la línea 9 se encuentra la llamada recursiva, donde el factorial de `n` es `n` multiplicado por el factorial de `n-1`. La función se llama a sí misma con un valor más pequeño.
 
 Para entender como funciona la recursión tenemos que observar la pila de ejecución. Si ejecutamos el código anterior, la pila de ejecución se verá de la siguiente manera:
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-1-recursividad/RecursionFactorial_light.svg
----
-width: 600px
-name: recursion-factorial
-class: only-light-mode
----
+:class: only-light-mode
+:width: 600px
+
 Pila de Ejecución - factorial(4).
 ```
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-1-recursividad/RecursionFactorial_dark.svg
----
-width: 600px
-name: recursion-factorial
-class: only-dark-mode
----
+:class: only-dark-mode
+:width: 600px
+
 Pila de Ejecución - factorial(4).
 ```
 
@@ -97,9 +95,9 @@ A continuación se muestra un ejemplo de recursión indirecta, donde dos funcion
 
 ```{code-block} go
 ---
-linenos: true
-emphasize-lines: 5, 12
+linenos:
 ---
+emphasize-lines: 5,12
 func esPar(n int) bool {
     if n == 0 { // El 0 es par
         return true
@@ -174,7 +172,10 @@ No todos los problemas se pueden resolver de esta manera, pero aquellos que sí,
 
 A modo de ejemplo vamos a implementar el algoritmo de búsqueda binaria, que es un algoritmo de búsqueda eficiente para encontrar un elemento específico en un arreglo ordenado. La búsqueda binaria divide el arreglo en mitades y compara el valor buscado con el elemento en el índice medio del arreglo. Si el valor buscado es menor que el elemento en el medio, la búsqueda se realiza en la mitad izquierda del arreglo. Si el valor buscado es mayor, la búsqueda se realiza en la mitad derecha del arreglo. Este proceso se repite hasta que el valor buscado se encuentre o el rango de búsqueda se reduzca a cero.
 
-```{important}
+```{admonition} Importante
+---
+class: important
+---
 Las partes en la que se subdivide la entrada de datos original deben ser aproximadamente iguales. En el caso de la búsqueda binaria, si el tamaño del arreglo original era impar, entonces una mitad tendrá un elemento más que la otra, lo cual no afecta a la aplicación de esta técnica.
 
 Esta técnica permite reducir drásticamente el tiempo de ejecución, es decir el orden de la función.
@@ -182,9 +183,9 @@ Esta técnica permite reducir drásticamente el tiempo de ejecución, es decir e
 
 ```{code-block} go
 ---
-linenos: true
-emphasize-lines: 2, 6, 9, 13
+linenos:
 ---
+emphasize-lines: 2,6,9,13
 func busquedaBinaria(array []int, inicio int, fin int, x int) int {
     if inicio > fin {
         return -1

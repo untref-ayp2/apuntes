@@ -12,7 +12,10 @@ El tamaño de un _array_ es definido al momento de su creación y determina su "
 
 Podemos declarar un array de la siguiente forma:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 var numeros [7]int
 ```
 
@@ -20,7 +23,10 @@ Aquí creamos una variable de tipo `[7]int` a la que referenciaremos con el nomb
 
 Para acceder a los elementos de un arreglo o modificarlos, utilizamos su índice. Tal como sucede en la mayoría de los lenguajes de programación, los índices en Go comienzan en `0` y terminan en `largo - 1`.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 numeros[0] = 42
 numeros[3] = 1337
 
@@ -33,7 +39,10 @@ fmt.Println(numeros[0] + numeros[3])
 
 En el caso de un _array_ de 7 elementos, podremos acceder a los elementos en los índices desde el `0` hasta el `6` inclusive. Intentar acceder a un índice fuera de este rango va a causar un error.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 numeros[7]
 ```
 
@@ -45,7 +54,10 @@ A diferencia de los _slices_ que veremos más adelante, cuando un _array_ es pas
 
 En Go para conocer el largo de un _array_ existe la función `len`.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 len(numeros)
 ```
 
@@ -55,7 +67,10 @@ len(numeros)
 
 Para recorrer un _array_ en Go existe la instrucción `range`, que genera un iterador sobre el array devolviendo el índice (`i`) y el valor (`v`), en cada iteración del `for`. Veamos un ejemplo:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 nombres := [4]string{"Fabián", "Martín", "Valeria", "Santiago"}
 
 for i, v := range nombres {
@@ -86,13 +101,15 @@ La longitud no puede superar la capacidad. Las funciones `len` y `cap` devuelven
 
 Podemos imaginar que un _slice_ es como una ventana que podemos deslizar sobre un arreglo y nos permite acceder a una parte del mismo.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 var s []byte
 ```
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-struct_light.svg
 ---
-name: slice-struct-light
 class: only-light-mode
 ---
 Estructura interna de un _slice_.
@@ -100,19 +117,20 @@ Estructura interna de un _slice_.
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-struct_dark.svg
 ---
-name: slice-struct-dark
 class: only-dark-mode
 ---
 Estructura interna de un _slice_.
 ```
 
-```go
+```{code-block} go
+---
+linenos:
+---
 s = make([]byte, 5, 5)
 ```
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-1_light.svg
 ---
-name: slice-1-light
 class: only-light-mode
 ---
 _Slice_ de longitud 5 y capacidad 5: El arreglo subyacente tiene tamaño 5 y la ventana del slice "ve" todo el arreglo.
@@ -120,7 +138,6 @@ _Slice_ de longitud 5 y capacidad 5: El arreglo subyacente tiene tamaño 5 y la 
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-1_dark.svg
 ---
-name: slice-1-dark
 class: only-dark-mode
 ---
 _Slice_ de longitud 5 y capacidad 5: El arreglo subyacente tiene tamaño 5 y la ventana del slice "ve" todo el arreglo.
@@ -128,13 +145,15 @@ _Slice_ de longitud 5 y capacidad 5: El arreglo subyacente tiene tamaño 5 y la 
 
 A medida que hacemos _slicing_ de `s`, observamos los cambios en la estructura de datos del _slice_ y su relación con el arreglo subyacente:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 s = s[2:4]
 ```
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-2_light.svg
 ---
-name: slice-2-light
 class: only-light-mode
 ---
 _Slice_ de longitud 2 y capacidad 3: La ventana del slice ahora ve desde la posición 2 del arreglo subyacente hasta la posición 3 (longitud 2, el último elemento no se incluye). Sin embargo, la capacidad es 3, lo que indica que el slice todavía puede crecer una posición más sobre el mismo arreglo.
@@ -142,7 +161,6 @@ _Slice_ de longitud 2 y capacidad 3: La ventana del slice ahora ve desde la posi
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-2_dark.svg
 ---
-name: slice-2-dark
 class: only-dark-mode
 ---
 _Slice_ de longitud 2 y capacidad 3: La ventana del slice ahora ve desde la posición 2 del arreglo subyacente hasta la posición 3 (longitud 2, el último elemento no se incluye). Sin embargo, la capacidad es 3, lo que indica que el slice todavía puede crecer una posición más sobre el mismo arreglo.
@@ -150,13 +168,15 @@ _Slice_ de longitud 2 y capacidad 3: La ventana del slice ahora ve desde la posi
 
 El _slicing_ no copia los datos del _slice_. En su lugar, crea un nuevo valor de _slice_ que apunta a otra porción del arreglo original. Esto hace que las operaciones con _slices_ sean tan eficientes como manipular índices de arreglos. Modificar los elementos de un _slice_ modifica los elementos del arreglo subyacente:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 s = s[:cap(s)]
 ```
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-3_light.svg
 ---
-name: slice-3-light
 class: only-light-mode
 ---
 _Slice_ de longitud 3 y capacidad 3: Ahora la ventana del slice se agrandó y ve desde la posición 2 hasta el final del arreglo subyacente.
@@ -164,7 +184,6 @@ _Slice_ de longitud 3 y capacidad 3: Ahora la ventana del slice se agrandó y ve
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-3_dark.svg
 ---
-name: slice-3-dark
 class: only-dark-mode
 ---
 _Slice_ de longitud 3 y capacidad 3: Ahora la ventana del slice se agrandó y ve desde la posición 2 hasta el final del arreglo subyacente.
@@ -172,7 +191,10 @@ _Slice_ de longitud 3 y capacidad 3: Ahora la ventana del slice se agrandó y ve
 
 Múltiples _slices_ pueden compartir el mismo array subyacente y pueden referirse a partes superpuestas de ese array. La siguiente figura muestra un array de cadenas para los meses del año y dos _slices_ superpuestos de este. El array se declara como:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 meses := [12]string{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
     "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}
 ```
@@ -186,12 +208,18 @@ Sobre `meses`, podemos crear slices que referencien subconjuntos. Por ejemplo:
 
 Definamos slices superpuestos para el segundo trimestre y el invierno:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 t2 := meses[3:6]
 invierno := meses[5:8]
 ```
 
-```go
+```{code-block} go
+---
+linenos:
+---
 fmt.Println("t2 =", t2, "\ninvierno =", invierno)
 ```
 
@@ -202,7 +230,6 @@ invierno = [Junio Julio Agosto]
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/overlapping-slices_light.svg
 ---
-name: overlaping-slices-light
 class: only-light-mode
 ---
 Dos _slices_ sobre el mismo array de meses.
@@ -210,7 +237,6 @@ Dos _slices_ sobre el mismo array de meses.
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/overlapping-slices_dark.svg
 ---
-name: overlaping-slices-dark
 class: only-dark-mode
 ---
 Dos _slices_ sobre el mismo array de meses.
@@ -218,7 +244,10 @@ Dos _slices_ sobre el mismo array de meses.
 
 Hacer _slicing_ más allá de `cap(s)` causa un pánico, pero hacer _slicing_ más allá de `len(s)` extiende el _slice_, por lo que el resultado puede ser más largo que el original:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 fmt.Println(invierno[:20])
 ```
 
@@ -226,7 +255,10 @@ fmt.Println(invierno[:20])
 panic: runtime error: slice bounds out of range [:20] with capacity 7
 ```
 
-```go
+```{code-block} go
+---
+linenos:
+---
 inviernoSinFin := invierno[:5]
 fmt.Println(inviernoSinFin)
 ```
@@ -241,7 +273,10 @@ Para agregar elementos a un _slice_ se usa la función `append`. Esta recibe un 
 
 Si el _slice_ resultante entra en la capacidad actual, `append` reutiliza el mismo arreglo subyacente. Si no entra, `append` crea un nuevo arreglo subyacente con capacidad aproximadamente el doble de la original, copia todos los elementos y luego agrega los nuevos.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 s := []int{1, 2, 3}
 fmt.Println(s, "\nlen =", len(s), "\ncap =", cap(s))
 ```
@@ -252,7 +287,10 @@ len = 3
 cap = 3
 ```
 
-```go
+```{code-block} go
+---
+linenos:
+---
 s = append(s, 4, 5)
 fmt.Println(s, "\nlen =", len(s), "\ncap =", cap(s))
 ```
@@ -265,7 +303,10 @@ cap = 6
 
 Puede darse el caso en el que, si tenemos dos _slices_ sobre un mismo _array_ subyacente, al agregar un elemento a uno de los _slices_, el otro también se vea modificado:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 x := make([]int, 0, 4)
 x = append(x, 0, 1, 2)
 
@@ -282,7 +323,6 @@ y = [0 1 2 3]
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-1_light.svg
 ---
-name: slice-append-entangled-1-light
 class: only-light-mode
 ---
 Slices x e y comparten el mismo arreglo subyacente.
@@ -290,13 +330,15 @@ Slices x e y comparten el mismo arreglo subyacente.
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-1_dark.svg
 ---
-name: slice-append-entangled-1-dark
 class: only-dark-mode
 ---
 Slices x e y comparten el mismo arreglo subyacente.
 ```
 
-```go
+```{code-block} go
+---
+linenos:
+---
 x = append(x, 4)
 
 fmt.Println("x =", x, "\ny =", y)
@@ -309,7 +351,6 @@ y = [0 1 2 4]
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-2_light.svg
 ---
-name: slice-append-entangled-2-light
 class: only-light-mode
 ---
 Modificar x también afecta a y al compartir el arreglo subyacente.
@@ -317,7 +358,6 @@ Modificar x también afecta a y al compartir el arreglo subyacente.
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-2_dark.svg
 ---
-name: slice-append-entangled-2-dark
 class: only-dark-mode
 ---
 Modificar x también afecta a y al compartir el arreglo subyacente.
@@ -325,7 +365,10 @@ Modificar x también afecta a y al compartir el arreglo subyacente.
 
 También si el _slice_ sobre el que agregamos el nuevo elemento no tiene más capacidad para agregar elementos, se crea un nuevo _slice_ con aproximadamente el doble de capacidad y se copian los elementos del slice original:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 y = append(y, 4)
 
 fmt.Println("x =", x, "\ny =", y)
@@ -338,7 +381,6 @@ y = [0 1 2 4 4]
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-3_light.svg
 ---
-name: slice-append-entangled-3-light
 class: only-light-mode
 ---
 Al superar la capacidad, y apunta a un nuevo arreglo subyacente.
@@ -346,7 +388,6 @@ Al superar la capacidad, y apunta a un nuevo arreglo subyacente.
 
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-3_dark.svg
 ---
-name: slice-append-entangled-3-dark
 class: only-dark-mode
 ---
 Al superar la capacidad, y apunta a un nuevo arreglo subyacente.
@@ -356,7 +397,10 @@ Cuando `y = append(y, 4)` superó la capacidad, `append` creó un nuevo arreglo 
 
 Por eso, modificar los valores de `y` ya no afecta a `x`:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 y[3] = 3
 
 fmt.Println("x =", x, "\ny =", y)

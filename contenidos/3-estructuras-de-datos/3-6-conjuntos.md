@@ -11,7 +11,6 @@ en que se encuentren.
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-6-conjuntos/diagrama-venn_light.svg
 ---
-name: Conjuntos
 class: only-light-mode
 ---
 Diagrama de Venn: dos conjuntos con intersección no vacía
@@ -19,7 +18,6 @@ Diagrama de Venn: dos conjuntos con intersección no vacía
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-6-conjuntos/diagrama-venn_dark.svg
 ---
-name: Conjuntos-dark
 class: only-dark-mode
 ---
 Diagrama de Venn: dos conjuntos con intersección no vacía
@@ -83,7 +81,7 @@ Todas estas operaciones definen la interfaz del TAD Conjunto:
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 type Set[T comparable] interface {
     // Operaciones sobre elementos
@@ -116,7 +114,10 @@ La forma más directa es usar un `map` nativo de Go con valores de tipo
 adicional (es un tipo de tamaño cero), esta combinación es el *idiom*
 recomendado en Go para representar conjuntos:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 type setMap[T comparable] struct {
     elements map[T]struct{}
 }
@@ -129,7 +130,7 @@ Las operaciones básicas se traducen naturalmente:
 - **Eliminar**: `delete(s.elements, elem)`
 - **Cantidad**: `len(s.elements)`
 
-Todas estas operaciones son $O(1)$ promedio gracias a la tabla de hash interna
+Todas estas operaciones son $O(1)$ promedio gracias a la tabla de *hash* interna
 de `map`. Las operaciones que recorren todos los elementos (`Values`, `String`,
 `Union`, etc.) son $O(n)$.
 
@@ -137,15 +138,18 @@ Esta implementación es la más simple y eficiente para la mayoría de los casos
 pero tiene una limitación: el tipo `T` debe ser `comparable` (como exige Go
 para las claves de un mapa).
 
-### Sobre una tabla de hash
+### Sobre una tabla de *hash*
 
-Un conjunto puede verse como una tabla de hash donde solo importan las claves
+Un conjunto puede verse como una tabla de *hash* donde solo importan las claves
 y el valor asociado es irrelevante. El repositorio
 [`data-structures`](https://github.com/untref-ayp2/data-structures) provee una
 implementación genérica de `HashTable[K comparable, V any]` que puede usarse
 como base:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 type setHash[T comparable] struct {
     table hashtable.HashTable[T, struct{}]
 }
@@ -153,7 +157,7 @@ type setHash[T comparable] struct {
 
 El comportamiento es análogo al de `map[T]struct{}` con la misma complejidad
 $O(1)$ promedio para las operaciones básicas. La ventaja es que al implementar
-la tabla de hash uno controla la función de hash, la política de colisiones y
+la tabla de *hash* uno controla la función de *hash*, la política de colisiones y
 el redimensionamiento, lo que permite adaptar el comportamiento a necesidades
 específicas.
 
@@ -242,7 +246,10 @@ elementos. En Go, los tipos nativos ordenados (enteros, flotantes,
 strings) pueden usar el constraint `cmp.Ordered` (disponible desde
 Go 1.21):
 
-```go
+```{code-block} go
+---
+linenos:
+---
 import "cmp"
 
 type SortedSetList[T cmp.Ordered] struct {
@@ -253,7 +260,10 @@ type SortedSetList[T cmp.Ordered] struct {
 Para tipos que no implementan `cmp.Ordered` se pasa una función de
 comparación:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 type SortedSetListFunc[T any] struct {
     list list.LinkedList[T]
     less func(a, b T) bool
@@ -302,12 +312,8 @@ ordenados son útiles.
 
 ## Ejercicios
 
-1. **Implementar conjuntos** — Completar los esqueletos de `MapSet`,
-   `HashTableSet` y `OrderedSet` en el repositorio
-   [`data-structures`](https://github.com/untref-ayp2/data-structures),
-   paquete `set/`.
+Los ejercicios de este capítulo están en `06-conjuntos/ejercicios/` del
+repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
 
-2. **Resolver ejercicios de aplicación** — Los ejercicios de este capítulo
-   están en
-   [`06-conjuntos/ejercicios/`](https://github.com/untref-ayp2/taller-tad/tree/main/06-conjuntos/ejercicios)
-   del repositorio [`taller-tad`](https://github.com/untref-ayp2/taller-tad).
+Antes de comenzar, implementá las interfaces necesarias en tu fork de
+[data-structures](https://github.com/untref-ayp2/data-structures).

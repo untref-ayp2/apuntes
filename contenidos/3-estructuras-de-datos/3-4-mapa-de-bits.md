@@ -12,18 +12,15 @@ Los mapas de bits se utilizan en diversas aplicaciones, como la representación 
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-4-mapa-de-bits/MapaDeBitsQuorum_light.svg
 ---
-width: 500px
-class: only-light-mode
 name: quorum
+class: only-light-mode
 ---
 Quórum en una sesión del Congreso.
 ```
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-4-mapa-de-bits/MapaDeBitsQuorum_dark.svg
 ---
-width: 500px
 class: only-dark-mode
-name: quorum
 ---
 Quórum en una sesión del Congreso.
 ```
@@ -72,7 +69,10 @@ Go soporta 6 operaciones binarias y una operación unaria que se pueden utilizar
 _AND_
 : El operador _AND_ (`&`) compara dos números bit a bit y devuelve un nuevo número donde cada bit es 1 si ambos bits de entrada son 1, y 0 en caso contrario. Por ejemplo:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 var a uint8 = 0b00001100 // 12
 var b uint8 = 0b00001010 // 10
 c := a & b               // 0b00001000 (8)
@@ -83,7 +83,10 @@ Esto significa que el resultado `c` tiene un 1 en la posición 3 (de derecha a i
 _OR_
 : El operador _OR_ (`|`) compara dos números bit a bit y devuelve un nuevo número donde cada bit es 1 si al menos uno de los bits de entrada es 1. Por ejemplo:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 var a uint8 = 0b00001100 // 12
 var b uint8 = 0b00001010 // 10
 c := a | b               // 0b00001110 (14)
@@ -94,7 +97,10 @@ Esto significa que el resultado `c` tiene un 1 en las posiciones 1, 2 y 3 porque
 _XOR_
 : El operador _OR Exclusivo_, _XOR_ (`^`) compara dos números bit a bit y devuelve un nuevo número donde cada bit es 1 si los bits de entrada son diferentes (uno es 1 y el otro es 0). Por ejemplo:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 var a uint8 = 0b00001100 // 12
 var b uint8 = 0b00001010 // 10
 c := a ^ b               // 0b00000110 (6)
@@ -105,7 +111,10 @@ Esto significa que el resultado `c` tiene un 1 en las posiciones 1 y 2 porque lo
 Desplazamiento a Izquierda o _Left Shift_
 : El operador de desplazamiento a la izquierda (`<<`) desplaza todos los bits de un número hacia la izquierda, llenando los bits vacíos con ceros. Por ejemplo:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 var a uint8 = 0b00000001 // 1
 b := a << 2              // 0b00000100 (4)
 ```
@@ -115,7 +124,10 @@ Esto significa que el resultado `b` tiene un 1 en la posición 2 porque se ha de
 Desplazamiento a Derecha o _Right Shift_
 : El operador de desplazamiento a la derecha (`>>`) desplaza todos los bits de un número hacia la derecha, llenando los bits vacíos con ceros. Por ejemplo:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 var a uint8 = 0b00001000 // 8
 b := a >> 2              // 0b00000010 (2)
 ```
@@ -125,7 +137,10 @@ Esto significa que el resultado `b` tiene un 1 en la posición 1 porque se ha de
 _NOT_
 : La única operación unaria es la negación o complemento (los 0 se cambian por 1 y viceversa). Esta operación se representa con el símbolo `^`. Por ejemplo:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 var a uint8 = 0b00001100 // 12
 b := ^a                  // ^a invierte los 8 bits: 0b11110011 (243)
 ```
@@ -137,7 +152,10 @@ Es por esto que los tipos sin signo (`uint8`, `uint16`, `uint32`, `uint64`) son 
 _AND NOT_ o _bit clear_
 : El operador _bit clear_ (`&^`) es una combinación de los operadores _AND_ y _NOT_. Este operador se utiliza para borrar bits específicos en un número. Es como realizar la operación AND entre el primer operando y el complemento del segundo. Por ejemplo:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 var a uint8 = 0b00001100 // 12
 var b uint8 = 0b00001010 // 10
 // ^b invierte los 8 bits (0b11110101), pero al hacer
@@ -184,10 +202,8 @@ width: 50%
 
 ## Ejercicios
 
-1. **Implementar BitMap** — Completar el esqueleto de `BitMap` en el repositorio
-   [`data-structures`](https://github.com/untref-ayp2/data-structures),
-   paquete `bitmap/`. El TAD debe soportar mapas de bits de 8, 32 y 64 bits.
+Los ejercicios de este capítulo están en `04-mapa-de-bits/ejercicios/` del
+repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
 
-2. **Resolver ejercicios de aplicación** — Los ejercicios de este capítulo están en
-   `04-mapa-de-bits/ejercicios/` del repositorio
-   [`taller-tad`](https://github.com/untref-ayp2/taller-tad).
+Antes de comenzar, implementá las interfaces necesarias en tu fork de
+[data-structures](https://github.com/untref-ayp2/data-structures).

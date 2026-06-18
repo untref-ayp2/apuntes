@@ -177,7 +177,7 @@ para que, si algo sale mal, el estado vuelva atrás.
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 package contador
 
@@ -272,15 +272,15 @@ permite que el constructor valide los parámetros y, si algo falla, devuelva un 
 sin haber creado ningún estado inconsistente.
 ```
 
-## Go: `struct` e `interface` para definir TADs
+## Go: *struct* e *interface* para definir TADs
 
-Go cuenta con `struct` e `interface` para definir nuevos tipos abstractos de datos. Las
+Go cuenta con *struct* e *interface* para definir nuevos tipos abstractos de datos. Las
 estructuras nos permiten definir un conjunto de valores y operaciones asociadas. Algunas
 operaciones pueden ser públicas (forman parte de la interfaz del TAD) y otras privadas
 (para uso interno). Las interfaces permiten que varios tipos que presentan el mismo
 comportamiento puedan manipularse como un único tipo.
 
-En el ejemplo del Contador, `Contador` es un `struct` con campos en minúscula
+En el ejemplo del Contador, `Contador` es un *struct* con campos en minúscula
 (`actual`, `minimo`, `maximo`, `cambios`). Al estar en minúscula son privados: nadie
 fuera del paquete `contador` puede accederlos directamente. Las funciones y métodos
 con mayúscula (`NuevoContador`, `Incrementar`, `Valor`) son públicos: forman la
@@ -299,20 +299,21 @@ uno hay dos carpetas:
 
 Para clonarlo:
 
-```console
+```{code-block} bash
 git clone https://github.com/untref-ayp2/taller-tad.git
 ```
 
 Para ejecutar los tests de un ejercicio:
 
-```console
+```{code-block} bash
 cd taller-tad/01-tipos-abstractos-de-datos/ejercicios/01-fraccion
 go test -v
 ```
 
 ## Ejercicios
 
-Los ejercicios de este capítulo están en `01-tipos-abstractos-de-datos/ejercicios/`
-del repositorio [`untref-ayp2/taller-tad`](https://github.com/untref-ayp2/taller-tad).
-Cada directorio contiene un `README.md` con el enunciado y los esqueletos para
-resolverlo.
+Los ejercicios de este capítulo están en `01-tipos-abstractos-de-datos/ejercicios/` del
+repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
+
+Antes de comenzar, implementá las interfaces necesarias en tu fork de
+[data-structures](https://github.com/untref-ayp2/data-structures).

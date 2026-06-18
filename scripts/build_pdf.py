@@ -291,6 +291,15 @@ def post_process_typst():
                     .replace("∧  ", "∧ ")
                 )
 
+                # Fix Typst raw text warnings: backtick fence followed by {
+                # without space is interpreted as a language tag
+                new_content = re.sub(
+                    r"^(\s*`{3,})(\{\w[\w-]*\})",
+                    r"\1 \2",
+                    new_content,
+                    flags=re.MULTILINE,
+                )
+
                 if content != new_content:
                     print(f"Fixed arrows in {file}")
                     with open(filepath, "w", encoding="utf-8") as f:

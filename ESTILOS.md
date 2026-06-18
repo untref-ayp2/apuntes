@@ -3,7 +3,7 @@
 Este documento es la fuente canónica de convenciones de estilo para el proyecto.
 Cualquier agente o colaborador debe consultarlo antes de escribir o modificar contenido.
 
----
+______________________________________________________________________
 
 ## 1. Estructura de capítulos
 
@@ -25,7 +25,7 @@ label: arreglos-slices
 - Nombres de archivo: `kebab-case` con número de sección (ej. `2-5-arreglos-slices.md`)
 - El `label` debe ser único y descriptivo en minúsculas con guiones (ej. `iteradores-abb`)
 
----
+______________________________________________________________________
 
 ## 2. Admonitions
 
@@ -52,15 +52,15 @@ Contenido aquí.
 
 **Clases disponibles:**
 
-| Clase        | Uso típico                            |
-| ------------ | ------------------------------------- |
-| `note`       | Nota informativa o aclaración         |
-| `hint`       | Sugerencia o pista                    |
-| `important`  | Dato relevante que no debe pasarse    |
-| `warning`    | Advertencia o precaución              |
-| `tip`        | Consejo práctico                      |
-| `caution`    | Peligro o riesgo                      |
-| `dropdown`   | Contenido colapsable (solo HTML)      |
+| Clase       | Uso típico                         |
+| ----------- | ---------------------------------- |
+| `note`      | Nota informativa o aclaración      |
+| `hint`      | Sugerencia o pista                 |
+| `important` | Dato relevante que no debe pasarse |
+| `warning`   | Advertencia o precaución           |
+| `tip`       | Consejo práctico                   |
+| `caution`   | Peligro o riesgo                   |
+| `dropdown`  | Contenido colapsable (solo HTML)   |
 
 **Restricciones del build PDF** (`scripts/build_pdf.py`):
 
@@ -69,7 +69,7 @@ Contenido aquí.
 3. Los bloques con `:class: only-dark-mode` se **eliminan completamente** del PDF.
 4. Los bloques `<div class="only-html">...</div>` se **eliminan completamente** del PDF. Usar este wrapper para contenido que solo funciona en HTML (applets, videos).
 
----
+______________________________________________________________________
 
 ## 3. Bloques de código
 
@@ -121,19 +121,19 @@ FIN FUNCION
 
 **Convenciones de pseudocódigo:**
 
-| Elemento       | Sintaxis                                   |
-| -------------- | ------------------------------------------ |
-| Función        | `FUNCION` / `FIN FUNCION`                  |
-| Condicional    | `SI` / `ENTONCES` / `SINO` / `FIN SI`      |
-| Bucle mientras | `MIENTRAS` / `HACER` / `FIN MIENTRAS`      |
-| Bucle para     | `PARA` / `HASTA` / `HACER` / `FIN PARA`    |
-| Retorno        | `RETORNAR`                                 |
-| Salida         | `SALIR`                                    |
-| Y lógico       | `Y`                                        |
-| Asignación     | `←` (U+2190)                               |
-| Indentación    | 4 espacios                                 |
+| Elemento       | Sintaxis                                |
+| -------------- | --------------------------------------- |
+| Función        | `FUNCION` / `FIN FUNCION`               |
+| Condicional    | `SI` / `ENTONCES` / `SINO` / `FIN SI`   |
+| Bucle mientras | `MIENTRAS` / `HACER` / `FIN MIENTRAS`   |
+| Bucle para     | `PARA` / `HASTA` / `HACER` / `FIN PARA` |
+| Retorno        | `RETORNAR`                              |
+| Salida         | `SALIR`                                 |
+| Y lógico       | `Y`                                     |
+| Asignación     | `←` (U+2190)                            |
+| Indentación    | 4 espacios                              |
 
----
+______________________________________________________________________
 
 ## 4. Figuras SVG
 
@@ -160,6 +160,20 @@ Descripción de la figura.
 
 Usar `:class: only-dark-mode` y `:class: only-light-mode` (no `only-dark` ni `only-light`).
 
+Se admiten modificadores adicionales como `:width:` (ej. `:width: 50%`) y `:height:` para ajustar
+el tamaño de la figura. Estos se declaran como directivas, no como YAML:
+
+````markdown
+```{figure} ../_static/figures/mi-diagrama_light.svg
+:name: mi-diagrama-light
+:class: only-light-mode
+:width: 50%
+
+Descripción de la figura.
+````
+
+````
+
 ### Clases CSS estándar
 
 | Clase            | Descripción                                  | text-anchor |
@@ -174,17 +188,17 @@ Usar `:class: only-dark-mode` y `:class: only-light-mode` (no `only-dark` ni `on
 
 **Clases para árboles:**
 
-| Clase               | Descripción                                       |
-| ------------------- | ------------------------------------------------- |
-| `.edge`             | Arista entre nodos del árbol                      |
-| `.tree-edge`        | Arista gruesa entre nodos (árbol genérico)        |
-| `.op-node`          | Nodo de operación (+, −, *, etc.)                 |
-| `.num-node`         | Nodo de número o valor                            |
-| `.node-circle`      | Círculo de nodo en árbol binario                  |
-| `.node-text`        | Texto dentro de nodos (monospace, 14px, bold)     |
-| `.fb-label`         | Etiqueta de factor de balanceo (sans-serif, 12px) |
-| `.fb-bal`           | Color verde para nodos balanceados (AVL)          |
-| `.fb-unbal`         | Color rojo para nodos desbalanceados (AVL)        |
+| Clase          | Descripción                                       |
+| -------------- | ------------------------------------------------- |
+| `.edge`        | Arista entre nodos del árbol                      |
+| `.tree-edge`   | Arista gruesa entre nodos (árbol genérico)        |
+| `.op-node`     | Nodo de operación (+, −, \*, etc.)                |
+| `.num-node`    | Nodo de número o valor                            |
+| `.node-circle` | Círculo de nodo en árbol binario                  |
+| `.node-text`   | Texto dentro de nodos (monospace, 14px, bold)     |
+| `.fb-label`    | Etiqueta de factor de balanceo (sans-serif, 12px) |
+| `.fb-bal`      | Color verde para nodos balanceados (AVL)          |
+| `.fb-unbal`    | Color rojo para nodos desbalanceados (AVL)        |
 
 ### Fuentes
 
@@ -193,35 +207,35 @@ Usar `:class: only-dark-mode` y `:class: only-light-mode` (no `only-dark` ni `on
 
 ### Paleta de colores — Light
 
-| Elemento                     | Fill        | Stroke      | Stroke-width |
-| ---------------------------- | ----------- | ----------- | ------------ |
-| Fondo principal              | `#f0f2f5`   | —           | —            |
-| Nodos azules (variables)     | `#e1f5ff`   | `#4682b4`   | 2            |
-| Nodos rojos (valores)        | `#ffe1e1`   | `#e9967a`   | 2            |
-| Nodos verdes                 | `#e1ffe1`   | `#2e8b57`   | 2            |
-| Nodos naranjas               | `#fff4e1`   | `#f6ad55`   | 2            |
-| Nodos morados                | `#f5e1ff`   | `#9f7aea`   | 2            |
-| Texto y líneas               | —           | `#333333`   | 2            |
-| Nodo árbol (ABB/AVL)         | `#e1f5ff`   | `#4682b4`   | 2.5          |
-| Arista árbol                 | —           | `#333333`   | 2            |
-| FB balanceado                | `#2e8b57`   | —           | —            |
-| FB desbalanceado             | `#c53030`   | —           | —            |
+| Elemento                 | Fill      | Stroke    | Stroke-width |
+| ------------------------ | --------- | --------- | ------------ |
+| Fondo principal          | `#f0f2f5` | —         | —            |
+| Nodos azules (variables) | `#e1f5ff` | `#4682b4` | 2            |
+| Nodos rojos (valores)    | `#ffe1e1` | `#e9967a` | 2            |
+| Nodos verdes             | `#e1ffe1` | `#2e8b57` | 2            |
+| Nodos naranjas           | `#fff4e1` | `#f6ad55` | 2            |
+| Nodos morados            | `#f5e1ff` | `#9f7aea` | 2            |
+| Texto y líneas           | —         | `#333333` | 2            |
+| Nodo árbol (ABB/AVL)     | `#e1f5ff` | `#4682b4` | 2.5          |
+| Arista árbol             | —         | `#333333` | 2            |
+| FB balanceado            | `#2e8b57` | —         | —            |
+| FB desbalanceado         | `#c53030` | —         | —            |
 
 ### Paleta de colores — Dark
 
-| Elemento                     | Fill        | Stroke      | Stroke-width |
-| ---------------------------- | ----------- | ----------- | ------------ |
-| Fondo principal              | `#1e1e1e`   | —           | —            |
-| Nodos azules (variables)     | `#2d3748`   | `#63b3ed`   | 2            |
-| Nodos rojos (valores)        | `#4a5568`   | `#fc8181`   | 2            |
-| Nodos verdes                 | `#285e61`   | `#68d391`   | 2            |
-| Nodos naranjas               | `#744210`   | `#f6ad55`   | 2            |
-| Nodos morados                | `#44337a`   | `#b794f4`   | 2            |
-| Texto y líneas               | —           | `#e0e0e0`   | 2            |
-| Nodo árbol (ABB/AVL)         | `#2d3748`   | `#63b3ed`   | 2.5          |
-| Arista árbol                 | —           | `#e0e0e0`   | 2            |
-| FB balanceado                | `#68d391`   | —           | —            |
-| FB desbalanceado             | `#fc8181`   | —           | —            |
+| Elemento                 | Fill      | Stroke    | Stroke-width |
+| ------------------------ | --------- | --------- | ------------ |
+| Fondo principal          | `#1e1e1e` | —         | —            |
+| Nodos azules (variables) | `#2d3748` | `#63b3ed` | 2            |
+| Nodos rojos (valores)    | `#4a5568` | `#fc8181` | 2            |
+| Nodos verdes             | `#285e61` | `#68d391` | 2            |
+| Nodos naranjas           | `#744210` | `#f6ad55` | 2            |
+| Nodos morados            | `#44337a` | `#b794f4` | 2            |
+| Texto y líneas           | —         | `#e0e0e0` | 2            |
+| Nodo árbol (ABB/AVL)     | `#2d3748` | `#63b3ed` | 2.5          |
+| Arista árbol             | —         | `#e0e0e0` | 2            |
+| FB balanceado            | `#68d391` | —         | —            |
+| FB desbalanceado         | `#fc8181` | —         | —            |
 
 ### Grosores de línea
 
@@ -250,16 +264,17 @@ imágenes PNG embebidas en base64 dentro del SVG (`<image xlink:href="data:image
 Ejemplo: `PatronAdapter.svg`, `Recursion.svg`, `Sudoku.svg`.
 
 Estas figuras:
+
 - **No** tienen par `_light`/`_dark` (son imágenes rasterizadas, no vectoriales).
 - Se referencian directamente sin la clase `only-light-mode`/`only-dark-mode`:
 
 ```markdown
 ![Diagrama de Adapter](../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronAdapter.svg)
-```
+````
 
 - El build PDF las incluye sin modificaciones porque no se aplica la lógica de pares light/dark.
 
----
+______________________________________________________________________
 
 ## 5. Ejercicios
 
@@ -294,7 +309,7 @@ Antes de comenzar, implementá las interfaces necesarias en tu fork de
 
 **Cuando se usan listas planas** sin `{exercise}`/`{solution}`, los labels no son necesarios.
 
----
+______________________________________________________________________
 
 ## 6. Referencias cruzadas
 
@@ -309,7 +324,7 @@ Las referencias por número se rompen si se reordenan los capítulos.
 El `label` de cada capítulo está en el frontmatter (archivo `X-Y-tema.md`, línea 2).
 El texto visible de la referencia es el título del capítulo destino (`# Título`).
 
----
+______________________________________________________________________
 
 ## 7. Citas
 
@@ -322,7 +337,7 @@ Formato `{cite}` con clave de `contenidos/references.bib`.
 
 Las entradas se agregan a `contenidos/references.bib` en formato BibTeX estándar.
 
----
+______________________________________________________________________
 
 ## 8. Applets
 
@@ -393,7 +408,7 @@ Usar `:height: 560px` como valor base, ajustable ±30px según el contenido del 
   circundante y las fórmulas LaTeX deben ser suficientes para entender el concepto
   sin el applet.
 
----
+______________________________________________________________________
 
 ## 9. Convenciones generales
 
@@ -456,17 +471,17 @@ body.dark .only-light-mode {
 
 También maneja estilos para dropdowns (`{admonition} :class: dropdown`) y citas ocultas.
 
----
+______________________________________________________________________
 
 ## Referencias rápidas
 
-| Qué                             | Usar                                    | NO usar                             |
-| ------------------------------- | --------------------------------------- | ----------------------------------- |
-| Admonition                      | `{admonition}` con `:class: note`       | `{note}` (shorthand)                |
-| Código fuente                   | `{code-block} go` con `:linenos:`       | `{code-file}`                       |
-| Pseudocódigo                    | `{code-block} text` con `:caption:`     | `{prf:algorithm}`                   |
-| Figura light/dark               | `{figure}` con `:class: only-light-mode` / `only-dark-mode` | Una sola figura sin par |
-| Referencia entre capítulos      | `{ref}``\`label\``                      | `{numref}``\`label\``               |
-| Cita bibliográfica              | `{cite}``\`clave\``                     | `[@clave]`                          |
-| Label de ejercicio              | `ej-{seccion}-{numero}`                 | Números sueltos sin prefijo         |
-| Applet light/dark               | `{iframe}` con `:class: only-light-mode` / `only-dark-mode` envuelto en `<div class="only-html">` | Un solo iframe sin par ni wrapper |
+| Qué                        | Usar                                                                                              | NO usar                           |
+| -------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------------- |
+| Admonition                 | `{admonition}` con `:class: note`                                                                 | `{note}` (shorthand)              |
+| Código fuente              | `{code-block} go` con `:linenos:`                                                                 | `{code-file}`                     |
+| Pseudocódigo               | `{code-block} text` con `:caption:`                                                               | `{prf:algorithm}`                 |
+| Figura light/dark          | `{figure}` con `:class: only-light-mode` / `only-dark-mode`                                       | Una sola figura sin par           |
+| Referencia entre capítulos | ``` {ref}``\ ```label\`\`                                                                         | ``` {numref}``\ ```label\`\`      |
+| Cita bibliográfica         | ``` {cite}``\ ```clave\`\`                                                                        | `[@clave]`                        |
+| Label de ejercicio         | `ej-{seccion}-{numero}`                                                                           | Números sueltos sin prefijo       |
+| Applet light/dark          | `{iframe}` con `:class: only-light-mode` / `only-dark-mode` envuelto en `<div class="only-html">` | Un solo iframe sin par ni wrapper |

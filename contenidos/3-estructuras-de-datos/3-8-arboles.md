@@ -14,8 +14,6 @@ Consideremos el árbol genérico ilustrado: el nodo $A$ representa la **raíz**,
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-8-arboles/Arbol_light.svg
 ---
-width: 80%
-name: arbol
 class: only-light-mode
 ---
 Árbol de datos
@@ -23,8 +21,6 @@ class: only-light-mode
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-8-arboles/Arbol_dark.svg
 ---
-width: 80%
-name: arbol
 class: only-dark-mode
 ---
 Árbol de datos
@@ -52,8 +48,6 @@ Los árboles binarios son árboles donde cada nodo tiene a lo sumo dos hijos. Es
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-8-arboles/ArbolBinario_light.svg
 ---
-width: 50%
-name: ArbolBinario
 class: only-light-mode
 ---
 Árbol Binario
@@ -61,8 +55,6 @@ class: only-light-mode
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-8-arboles/ArbolBinario_dark.svg
 ---
-width: 50%
-name: ArbolBinario
 class: only-dark-mode
 ---
 Árbol Binario
@@ -94,11 +86,9 @@ El recorrido preorden comienza visitando la raíz del árbol, seguido por la exp
 
 El siguiente seudocódigo ilustra la implementación del recorrido preorden como un método dentro de un nodo de un árbol binario, delegando la lógica del recorrido a cada nodo:
 
-```{code-block}
+```{code-block} text
 ---
-caption: Preorden
-linenos: true
-language: text
+linenos:
 ---
 FUNCION Preorden(raiz)
     SI raiz ES nulo ENTONCES
@@ -122,11 +112,9 @@ El recorrido inorden visita primero de forma recursiva todos los nodos del subá
 
 El siguiente seudocódigo muestra la implementación del recorrido inorden:
 
-```{code-block}
+```{code-block} text
 ---
-caption: Inorden
-linenos: true
-language: text
+linenos:
 ---
 FUNCION Inorden (raiz)
     SI raiz ES nulo ENTONCES
@@ -144,11 +132,9 @@ En el recorrido postorden, se exploran recursivamente el subárbol izquierdo, se
 
 El seudocódigo para el recorrido postorden se presenta a continuación:
 
-```{code-block}
+```{code-block} text
 ---
-caption: Postorden
-linenos: true
-language: text
+linenos:
 ---
 FUNCION Postorden (raiz)
     SI raiz ES nulo ENTONCES
@@ -164,12 +150,17 @@ FIN FUNCION
 
 En el siguiente applet interactivo se puede seleccionar entre los tres recorridos (Preorden, Inorden, Postorden). Se puede avanzar o retroceder paso a paso, ir al inicio, o reproducir automáticamente. Cuando el nodo se pinta de amarillo significa que se llamó a la función con ese nodo y cuando se pinta de verde significa que el nodo fue procesado.
 
-<div class="only-light-mode">
-<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol_light.html" width="100%" height="560px"></iframe>
-</div>
-<div class="only-dark-mode">
-<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol_dark.html" width="100%" height="560px"></iframe>
-</div>
+```{iframe} /applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol_light.html
+---
+class: only-light-mode
+---
+```
+
+```{iframe} /applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol_dark.html
+---
+class: only-dark-mode
+---
+```
 
 </div>
 
@@ -179,7 +170,7 @@ A continuación se presentan las estructuras que definen un árbol binario en Go
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 package tree
 
@@ -193,7 +184,7 @@ type TreeNode[T any] struct {
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 package tree
 
@@ -209,11 +200,9 @@ El árbol posee una referencia a la raíz, mientras que los nodos se encargan de
 
 En este enfoque, cada nodo es responsable de aplicar la operación sobre sí mismo y sus descendientes. El árbol solo inicia el proceso invocando al nodo raíz.
 
-```{code-block}
+```{code-block} text
 ---
-caption: Recorrido inorden delegado al nodo (pseudocódigo)
-linenos: true
-language: text
+linenos:
 ---
 FUNCION TreeNode.Inorden(resultado)
     SI this.izquierdo NO es nulo ENTONCES
@@ -234,7 +223,7 @@ FUNCION BinaryTree.Inorden()
 FIN FUNCION
 ```
 
-El árbol actúa como mero punto de entrada: crea el slice vacío y lo pasa al nodo raíz, que lo completa recursivamente. Cada nodo visita a sus hijos antes o después de procesarse según el tipo de recorrido.
+El árbol actúa como mero punto de entrada: crea el *slice* vacío y lo pasa al nodo raíz, que lo completa recursivamente. Cada nodo visita a sus hijos antes o después de procesarse según el tipo de recorrido.
 
 **Ventajas:**
 
@@ -244,18 +233,16 @@ El árbol actúa como mero punto de entrada: crea el slice vacío y lo pasa al n
 
 **Desventajas:**
 
-- El nodo debe conocer el propósito de la operación (ej: acumular en un slice), lo que acopla la estructura del nodo a la operación concreta.
+- El nodo debe conocer el propósito de la operación (ej: acumular en un *slice*), lo que acopla la estructura del nodo a la operación concreta.
 - Si se agrega un nuevo recorrido, hay que modificar el nodo.
 
 #### Operaciones gestionadas por el árbol
 
 En este enfoque, el árbol implementa la lógica recursiva y el nodo solo expone sus campos. El árbol recorre la estructura comparando valores desde la raíz.
 
-```{code-block}
+```{code-block} text
 ---
-caption: Recorrido inorden gestionado por el árbol (pseudocódigo)
-linenos: true
-language: text
+linenos:
 ---
 FUNCION BinaryTree.inordenRecursivo(nodo, resultado)
     SI nodo ES nulo ENTONCES
@@ -271,7 +258,7 @@ El árbol tiene el control completo del recorrido y usa el nodo solo como dato. 
 
 **Ventajas:**
 
-- El nodo es una estructura pasiva (POJO/Plain Old Go struct): solo almacena datos.
+- El nodo es una estructura pasiva (POJO/Plain Old Go *struct*): solo almacena datos.
 - Las operaciones están centralizadas en el árbol, facilitando su mantenimiento.
 - Se puede cambiar la lógica del recorrido sin modificar el nodo.
 
@@ -292,21 +279,17 @@ El árbol tiene el control completo del recorrido y usa el nodo solo como dato. 
 
 Ambos enfoques son válidos. La elección depende del contexto: si se prioriza que el nodo sea una estructura de datos pura, conviene gestionar las operaciones desde el árbol. Si se busca que el nodo sea una entidad activa capaz de manipularse a sí misma, la delegación es más natural.
 
-```{note}
+```{admonition} Nota
+---
+class: note
+---
 En los ejercicios de este capítulo se opta por el enfoque de **delegación en los nodos**.
 ```
 
 ## Ejercicios
 
-1. **Implementar árbol binario** — Completar los esqueletos de `TreeNode[T]` y `BinaryTree[T]` en el repositorio
-   [`data-structures`](https://github.com/untref-ayp2/data-structures),
-   paquete `tree/`. El nodo debe permitir almacenar un valor genérico y
-   mantener referencias a sus hijos izquierdo y derecho. Los recorridos y el
-   cálculo de altura deben implementarse mediante métodos delegados al nodo.
-   El árbol debe proveer los métodos públicos que inician cada operación
-   desde la raíz.
+Los ejercicios de este capítulo están en `08-arboles/ejercicios/` del
+repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
 
-2. **Resolver ejercicios de aplicación** — Los ejercicios de este capítulo
-   están en
-   [`08-arboles/ejercicios/`](https://github.com/untref-ayp2/taller-tad/tree/main/08-arboles/ejercicios)
-   del repositorio [`taller-tad`](https://github.com/untref-ayp2/taller-tad).
+Antes de comenzar, implementá las interfaces necesarias en tu fork de
+[data-structures](https://github.com/untref-ayp2/data-structures).

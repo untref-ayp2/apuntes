@@ -21,7 +21,6 @@ El árbol de la derecha, en cambio, no es un ABB. Su raíz también es (7), con 
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-9-abb/ABB_light.svg
 ---
-name: abb
 class: only-light-mode
 ---
 ```
@@ -38,7 +37,6 @@ Por ejemplo, en la siguiente figura se muestran dos árboles binarios de búsque
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-9-abb/ABBInorden_light.svg
 ---
-name: abbinorden
 class: only-light-mode
 ---
 Dos árboles binarios de búsqueda con el mismo recorrido inorden
@@ -65,11 +63,9 @@ La inserción en un árbol binario de búsqueda se realiza de manera recursiva. 
 
 Para insertar un nuevo nodo en un árbol binario de búsqueda, se sigue el siguiente algoritmo:
 
-```{code-block}
+```{code-block} text
 ---
-caption: Algoritmo de inserción en un árbol binario de búsqueda
-linenos: true
-language: text
+linenos:
 ---
 FUNCION InsertarABB(raiz, valor)
     SI raiz ES nula ENTONCES
@@ -100,11 +96,9 @@ La inserción de un nuevo nodo siempre se realiza en una hoja del árbol, es dec
 
 La búsqueda en un árbol binario de búsqueda también se realiza de manera recursiva. Se compara el valor buscado con el valor del nodo actual y se decide si ir al subárbol izquierdo o derecho. Si el valor es igual al del nodo actual, se ha encontrado el nodo, si en cambio se llega a un nodo nulo, el valor no está en el árbol.
 
-```{code-block}
+```{code-block} text
 ---
-caption: Algoritmo de búsqueda en un árbol binario de búsqueda
-linenos: true
-language: text
+linenos:
 ---
 FUNCION BuscarABB(raiz, valor)
     SI raiz ES nula ENTONCES
@@ -129,7 +123,6 @@ El nodo a eliminar es una hoja (no tiene hijos)
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-9-abb/ABBEliminacion-1_light.svg
 ---
 class: only-light-mode
-name: eliminacion1
 width: 50%
 ---
 Eliminación de un nodo hoja
@@ -149,7 +142,6 @@ El nodo a eliminar tiene un solo hijo
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-9-abb/ABBEliminacion-2_light.svg
 ---
 class: only-light-mode
-name: eliminacion2
 width: 80%
 ---
 Eliminación de un nodo con un solo hijo
@@ -171,7 +163,6 @@ En la siguiente figura se observa la eliminación de la raíz del árbol, el nod
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-9-abb/ABBEliminacion-3_light.svg
 ---
 class: only-light-mode
-name: eliminacion3
 width: 80%
 ---
 Eliminación de un nodo con dos hijos
@@ -200,45 +191,45 @@ Cuando se elimina un nodo con dos hijos, el nodo no se elimina directamente, sin
 
 A continuación se presenta el algoritmo de eliminación de un nodo en un árbol binario de búsqueda:
 
-```{code-block}
+```{code-block} text
 ---
-caption: Algoritmo de eliminación en un árbol binario de búsqueda
-linenos: true
-language: text
+linenos:
 ---
 FUNCION EliminarABB(raiz, valor)
     SI raiz ES nula ENTONCES
         RETORNAR nula
-    // Buscar el nodo a eliminar
     SINO SI valor < raiz.valor ENTONCES
         raiz.izquierdo ← EliminarABB(raiz.izquierdo, valor)
     SINO SI valor > raiz.valor ENTONCES
         raiz.derecho ← EliminarABB(raiz.derecho, valor)
-    SINO // Nodo encontrado
-        // Caso 1: Nodo a eliminar es una hoja
-        SI raiz.izquierdo ES nula Y raiz.derecho ES nula ENTONCES
+    SINO
+        // Nodo encontrado
+        SI raiz.izquierdo ES nula Y
+           raiz.derecho ES nula ENTONCES
+            // Caso 1: es una hoja
             RETORNAR nula
-        // Caso 2: Nodo a eliminar tiene un solo hijo
         SINO SI raiz.izquierdo ES nula ENTONCES
+            // Caso 2: tiene solo hijo derecho
             RETORNAR raiz.derecho
         SINO SI raiz.derecho ES nula ENTONCES
+            // Caso 2: tiene solo hijo izquierdo
             RETORNAR raiz.izquierdo
-        // Caso 3: Nodo a eliminar tiene dos hijos
         SINO
-            predecesor ← BuscarMaximo(raiz.izquierdo) // busca el mayor del subárbol izquierdo
+            // Caso 3: tiene dos hijos,
+            // se reemplaza por el predecesor
+            predecesor ← BuscarMaximo(raiz.izquierdo)
             raiz.valor ← predecesor.valor
-            raiz.izquierdo ← EliminarABB(raiz.izquierdo, predecesor.valor) // elimina el predecesor
+            raiz.izquierdo ← EliminarABB(
+                raiz.izquierdo, predecesor.valor)
         FIN SI
     FIN SI
     RETORNAR raiz
 FIN FUNCION
 ```
 
-```{code-block}
+```{code-block} text
 ---
-caption: Algoritmo de búsqueda del nodo máximo en un árbol binario de búsqueda
-linenos: true
-language: text
+linenos:
 ---
 FUNCION BuscarMaximo(raiz)
     SI raiz.derecho ES nula ENTONCES
@@ -255,12 +246,17 @@ FIN FUNCION
 
 Ingresá un valor y presioná Enter para ejecutar la operación seleccionada (insertar, buscar o eliminar). La animación avanza automáticamente paso a paso. Usá el control de velocidad para ajustar la rapidez de la animación.
 
-<div class="only-light-mode">
-<iframe src="/applets/3-estructuras-de-datos/3-9-abb/operaciones-abb_light.html" width="100%" height="520px"></iframe>
-</div>
-<div class="only-dark-mode">
-<iframe src="/applets/3-estructuras-de-datos/3-9-abb/operaciones-abb_dark.html" width="100%" height="520px"></iframe>
-</div>
+```{iframe} /applets/3-estructuras-de-datos/3-9-abb/operaciones-abb_light.html
+---
+class: only-light-mode
+---
+```
+
+```{iframe} /applets/3-estructuras-de-datos/3-9-abb/operaciones-abb_dark.html
+---
+class: only-dark-mode
+---
+```
 
 </div>
 
@@ -284,8 +280,8 @@ En la siguiente figura se observa un árbol binario de búsqueda completo (con t
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-9-abb/ABBBalanceado_light.svg
 ---
-class: only-light-mode
 name: arbolbalanceado
+class: only-light-mode
 ---
 Árbol binario de búsqueda equilibrado
 ```
@@ -311,7 +307,6 @@ Por otro lado, en el peor de los casos, un árbol binario de búsqueda puede deg
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-9-abb/ABBDegenerado_light.svg
 ---
 class: only-light-mode
-name: ABBDegenerado
 width: 70%
 ---
 Árbol binario de búsqueda degenerado
@@ -353,7 +348,7 @@ Este enfoque consiste en definir un nodo binario que contenga el valor, el hijo 
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 package binarysearchtree
 
@@ -367,7 +362,7 @@ type BinaryNode[T any] struct {
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 package binarysearchtree
 
@@ -403,7 +398,7 @@ En la implementación anterior las operaciones se manejan desde el árbol (`bst.
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 func (n *BinaryNode[T]) Insert(value T, cmp func(T, T) int) *BinaryNode[T] {
     if n == nil {
@@ -426,7 +421,7 @@ El segundo enfoque consiste en construir el ABB a partir de una implementación 
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 package binarysearchtree
 
@@ -480,12 +475,8 @@ En esta variante, el árbol binario subyacente provee las operaciones estructura
 
 ## Ejercicios
 
-1. **Implementar ABB por composición** — Completar el esqueleto de `BinarySearchTree[T]` en el repositorio
-   [`data-structures`](https://github.com/untref-ayp2/data-structures),
-   paquete `binarysearchtree/`. La implementación debe componer un `tree.BinaryTree[T]`
-   existente y agregar la semántica de orden. El ABB debe implementar inserción, búsqueda,
-   eliminación y reutilizar los recorridos y altura del árbol binario subyacente.
+Los ejercicios de este capítulo están en `09-abb/ejercicios/` del
+repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
 
-2. **Resolver los ejercicios de aplicación** — Los ejercicios de este capítulo están en
-   [`09-abb/ejercicios/`](https://github.com/untref-ayp2/taller-tad/tree/main/09-abb/ejercicios)
-   del repositorio [`taller-tad`](https://github.com/untref-ayp2/taller-tad).
+Antes de comenzar, implementá las interfaces necesarias en tu fork de
+[data-structures](https://github.com/untref-ayp2/data-structures).

@@ -8,7 +8,10 @@ label: structs-interfaces
 
 En Go las _structs_ son colecciones de campos. A diferencia de las clases en Java, una `struct` no soporta herencia, no tiene constructores explícitos ni métodos *static*. Sin embargo, puede tener métodos asociados (como veremos en breve) y puede incrustar otras _structs_ como forma de composición. Podríamos pensar en una `struct` como una clase liviana que agrupa datos, sin el peso de un sistema de herencia ni la maquinaria de POO tradicional.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 type Direccion struct {
     calle, ciudad, provincia string
     numero                   uint
@@ -23,7 +26,10 @@ type Persona struct {
 
 Para acceder a un campo de una estructura se usa la notación de punto, como lo hacemos para acceder a un atributo en Java. También podemos declarar una variable de tipo `struct` de forma literal.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func main() {
     var p1 Persona
     p1.nombre = "Marcelo"
@@ -47,7 +53,10 @@ Go no tiene clases como Java; sin embargo, permite definir métodos sobre cierto
 
 Un método es una función con un argumento especial **receptor**. El **receptor** aparece en su propia lista de argumentos entre la palabra clave `func` y el nombre del método.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func (p Persona) NombreCompleto() string {
     return p.nombre + " " + p.apellido
 }
@@ -59,7 +68,10 @@ func (p *Persona) CumplirAnios() {
 
 En este ejemplo, `NombreCompleto` tiene un receptor de tipo `Persona` llamado `p`. Al ser un receptor por valor, no modifica el original, solo accede a los campos. `CumplirAnios` tiene un receptor de tipo `*Persona` (puntero a `Persona`), necesario porque modifica el campo `edad`.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func main() {
     p := Persona{nombre: "Ana", apellido: "López", edad: 30}
     fmt.Println(p.NombreCompleto())
@@ -77,7 +89,10 @@ Ana López
 
 Podemos declarar una variable que sea un puntero a una estructura:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func main() {
     p := &Persona{nombre: "Laura", apellido: "Medina", edad: 25}
     fmt.Println(p.nombre)  // equivalente a (*p).nombre
@@ -108,7 +123,10 @@ Los punteros a struct son útiles para:
 
 Go aplica azúcar sintáctico: si definimos un método con receptor puntero y lo llamamos sobre una variable no puntero, Go lo convierte automáticamente.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func main() {
     p := Persona{nombre: "Ana", edad: 30}
     p.CumplirAnios()       // Go lo trata como (&p).CumplirAnios()
@@ -126,7 +144,10 @@ Regla práctica: usar receptor puntero cuando el método modifica el receptor o 
 
 Go no tiene un equivalente directo a *static* de Java ni métodos de clase. Para simular este comportamiento se utilizan **funciones del paquete**. Por convención, suelen llamarse `New<Tipo>`:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func NewPersona(nombre, apellido string, edad uint) Persona {
     return Persona{
         nombre:   nombre,
@@ -157,7 +178,10 @@ Un tipo `interface` se define como un conjunto de firmas de método[^firma]. Un 
 
 En Go la implementación es **implícita** (o estructural): no hace falta declarar `implements`. Un tipo implementa una interfaz simplemente teniendo los métodos que la interfaz exige.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 type Caminante interface {
     Avanzar(pasos int)
     Girar(grados float32)
@@ -174,7 +198,10 @@ func (p *Persona) Girar(grados float32) {
 
 Como `*Persona` implementa ambos métodos, automáticamente satisface la interfaz `Caminante`. Esto significa que una variable de tipo `*Persona` puede usarse donde se espere un `Caminante`.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func RealizarRecorrido(caminante Caminante) {
     caminante.Avanzar(5)
     caminante.Girar(180)
@@ -195,7 +222,10 @@ Notar que pasamos `&p` porque los métodos están definidos sobre `*Persona`, no
 
 Veamos otro tipo que también implemente `Caminante`:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 type Perro struct {
     nombre string
 }
@@ -211,7 +241,10 @@ func (perro *Perro) Girar(grados float32) {
 
 Tanto `*Persona` como `*Perro` implementan `Caminante`. Podemos escribir una misma función que trabaje con cualquiera de los dos:
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func HacerCaminar(c Caminante) {
     c.Avanzar(10)
     c.Girar(90)
@@ -236,7 +269,10 @@ La función `HacerCaminar` acepta cualquier tipo que implemente `Caminante`, sin
 
 Un mismo tipo puede implementar varias interfaces a la vez.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 type Trabajador interface {
     Trabajar(horas int) string
 }
@@ -261,7 +297,10 @@ Ahora `*Persona` implementa tanto `Caminante` como `Trabajador`.
 
 Una variable declarada con un tipo interfaz puede almacenar cualquier valor que la implemente.
 
-```go
+```{code-block} go
+---
+linenos:
+---
 func main() {
     ana := Persona{nombre: "Ana", apellido: "López", edad: 30}
 

@@ -8,7 +8,6 @@ Las tablas de _hash_ son estructuras de datos eficientes para almacenar y recupe
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHash1_light.svg
 ---
-name: tabla_hash
 class: only-light-mode
 ---
 Esquema de una tabla de _hash_.
@@ -16,7 +15,6 @@ Esquema de una tabla de _hash_.
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHash1_dark.svg
 ---
-name: tabla_hash
 class: only-dark-mode
 ---
 Esquema de una tabla de _hash_.
@@ -64,7 +62,6 @@ En la siguiente figura se grafica la inserción de un elemento en una tabla de _
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashInsercion_light.svg
 ---
-name: tabla_hash_insercion_cerrada
 class: only-light-mode
 ---
 Inserción en una tabla de _hash_ cerrada.
@@ -72,7 +69,6 @@ Inserción en una tabla de _hash_ cerrada.
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashInsercion_dark.svg
 ---
-name: tabla_hash_insercion_cerrada
 class: only-dark-mode
 ---
 Inserción en una tabla de _hash_ cerrada.
@@ -88,7 +84,6 @@ Esto se conoce como _marcador de eliminación_ y permite que la búsqueda contin
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashEliminacion_light.svg
 ---
-name: tabla_hash_eliminacion_cerrada
 class: only-light-mode
 ---
 Eliminación en una tabla de _hash_ cerrada.
@@ -96,7 +91,6 @@ Eliminación en una tabla de _hash_ cerrada.
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashEliminacion_dark.svg
 ---
-name: tabla_hash_eliminacion_cerrada
 class: only-dark-mode
 ---
 Eliminación en una tabla de _hash_ cerrada.
@@ -114,7 +108,6 @@ La búsqueda de un elemento en una tabla de _hash_ cerrada es similar a la inser
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashBusquedaCerrada_light.svg
 ---
-name: tabla_hash_busqueda_cerrada
 class: only-light-mode
 ---
 Búsqueda en una tabla de _hash_ cerrada.
@@ -122,7 +115,6 @@ Búsqueda en una tabla de _hash_ cerrada.
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashBusquedaCerrada_dark.svg
 ---
-name: tabla_hash_busqueda_cerrada
 class: only-dark-mode
 ---
 Búsqueda en una tabla de _hash_ cerrada.
@@ -151,7 +143,6 @@ El _hashing_ abierto es una técnica fundamental para el manejo de colisiones en
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashAbierta_light.svg
 ---
-name: tabla_hash_abierta
 class: only-light-mode
 ---
 Tabla de _hash_ abierta.
@@ -159,7 +150,6 @@ Tabla de _hash_ abierta.
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-5-tablas-de-hashing/TablaHashAbierta_dark.svg
 ---
-name: tabla_hash_abierta
 class: only-dark-mode
 ---
 Tabla de _hash_ abierta.
@@ -255,11 +245,11 @@ El módulo se aplica al resultado final para asegurar que el valor hash esté de
 
 ### Interfaz `HashTable`
 
-:::{dropdown} Ver código completo (`interface.go`)
+:::\{dropdown} Ver código completo (`interface.go`)
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 package hashtable
 
@@ -299,11 +289,11 @@ type HashTable[K comparable, V any] interface {
 
 ### Tipos y operaciones públicas
 
-:::{dropdown} Ver código completo (`hashtable.go`)
+:::\{dropdown} Ver código completo (`hashtable.go`)
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 package hashtable
 
@@ -494,11 +484,11 @@ func (ht *HashTableOpenAddressing[K, V]) String() string {
 
 ### Funciones internas
 
-:::{dropdown} Ver código completo (`internal.go`)
+:::\{dropdown} Ver código completo (`internal.go`)
 
 ```{code-block} go
 ---
-linenos: true
+linenos:
 ---
 package hashtable
 
