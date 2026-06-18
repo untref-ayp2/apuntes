@@ -243,6 +243,22 @@ Usar `:class: only-dark-mode` y `:class: only-light-mode` (no `only-dark` ni `on
 - El build PDF solo incluye los SVG `_light` (los `_dark` se descartan con los bloques `only-dark-mode`).
 - El script `build_pdf.py` limpia atributos `font-family` de los SVG para compatibilidad con Typst/resvg.
 
+### Excepción: figuras con imágenes rasterizadas embebidas
+
+Algunas figuras generadas con herramientas externas (Inkscape, diagrams.net) contienen
+imágenes PNG embebidas en base64 dentro del SVG (`<image xlink:href="data:image/png;base64,...">`).
+Ejemplo: `PatronAdapter.svg`, `Recursion.svg`, `Sudoku.svg`.
+
+Estas figuras:
+- **No** tienen par `_light`/`_dark` (son imágenes rasterizadas, no vectoriales).
+- Se referencian directamente sin la clase `only-light-mode`/`only-dark-mode`:
+
+```markdown
+![Diagrama de Adapter](../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronAdapter.svg)
+```
+
+- El build PDF las incluye sin modificaciones porque no se aplica la lógica de pares light/dark.
+
 ---
 
 ## 5. Ejercicios
@@ -404,6 +420,41 @@ Usar `:height: 560px` como valor base, ajustable ±30px según el contenido del 
 
 - `{cite}` para bibliografía (clave de `references.bib`)
 - `{ref}` para referencias cruzadas entre capítulos (no `{numref}`)
+
+### CSS personalizado
+
+El archivo `contenidos/_static/css/custom.css` implementa el mecanismo de light/dark mode
+que hace funcionar las clases `only-light-mode` y `only-dark-mode`. Se declara en `myst.yml`:
+
+```yaml
+site:
+  options:
+    style: _static/css/custom.css
+```
+
+**Lógica de toggling:**
+
+```css
+/* Default: light mode */
+.only-light-mode { display: block !important; }
+.only-dark-mode  { display: none  !important; }
+
+/* Dark mode: invertir visibilidad */
+html[data-theme="dark"] .only-dark-mode,
+html.dark .only-dark-mode,
+body[data-theme="dark"] .only-dark-mode,
+body.dark .only-dark-mode {
+    display: block !important;
+}
+html[data-theme="dark"] .only-light-mode,
+html.dark .only-light-mode,
+body[data-theme="dark"] .only-light-mode,
+body.dark .only-light-mode {
+    display: none !important;
+}
+```
+
+También maneja estilos para dropdowns (`{admonition} :class: dropdown`) y citas ocultas.
 
 ---
 
