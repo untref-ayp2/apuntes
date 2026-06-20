@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 560 440"
+   version="1.1"
+   id="svg97"
+   sodipodi:docname="NReinasDiagonal_light.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview97"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="2.5977273"
+     inkscape:cx="363.58705"
+     inkscape:cy="250.02625"
+     inkscape:window-width="2544"
+     inkscape:window-height="1354"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg97" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">
+      .bg { fill: #f0f2f5; }
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 18px; text-anchor: middle; fill: #333333; }
+      .cell-light { fill: #e1f5ff; }
+      .cell-dark { fill: #4682b4; }
+      .board-border { fill: none; stroke: #333333; stroke-width: 1.5; }
+      .row-label, .col-label { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 13px; fill: #333333; text-anchor: middle; dominant-baseline: central; }
+      .diag-main { fill: none; stroke: #4682b4; stroke-width: 3.5; }
+      .diag-inv { fill: none; stroke: #e9967a; stroke-width: 3.5; }
+      .diag-label-main { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 12px; fill: #4682b4; font-weight: bold; }
+      .diag-label-inv { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 12px; fill: #e9967a; font-weight: bold; }
+    </style>
+  </defs>
+  <rect
+     class="bg"
+     width="100%"
+     height="100%"
+     rx="8"
+     id="rect1"
+     x="759.89502"
+     y="76.990379" />
+  <!-- Main diagonal labels (blue) -->
+  <!-- Inverse diagonal labels (red) -->
+  <text
+     class="title"
+     x="297.41327"
+     y="27.887379"
+     id="text1">Diagonales del tablero (N=8)</text>
+  <rect
+     class="cell-light"
+     x="158.25317"
+     y="112.93988"
+     width="35"
+     height="35"
+     id="rect2" />
+  <rect
+     class="cell-dark"
+     x="193.25317"
+     y="112.93988"
+     width="35"
+     height="35"
+     id="rect3" />
+  <rect
+     class="cell-light"
+     x="228.25317"
+     y="112.93988"
+     width="35"
+     height="35"
+     id="rect4" />
+  <rect
+     class="cell-dark"
+     x="263.25317"
+     y="112.93988"
+     width="35"
+     height="35"
+     id="rect5" />
+  <rect
+     class="cell-light"
+     x="298.25317"
+     y="112.93988"
+     width="35"
+     height="35"
+     id="rect6" />
+  <rect
+     class="cell-dark"
+     x="333.25317"
+     y="112.93988"
+     width="35"
+     height="35"
+     id="rect7" />
+  <rect
+     class="cell-light"
+     x="368.25317"
+     y="112.93988"
+     width="35"
+     height="35"
+     id="rect8" />
+  <rect
+     class="cell-dark"
+     x="403.25317"
+     y="112.93988"
+     width="35"
+     height="35"
+     id="rect9" />
+  <rect
+     class="cell-dark"
+     x="158.25317"
+     y="147.93988"
+     width="35"
+     height="35"
+     id="rect10" />
+  <rect
+     class="cell-light"
+     x="193.25317"
+     y="147.93988"
+     width="35"
+     height="35"
+     id="rect11" />
+  <rect
+     class="cell-dark"
+     x="228.25317"
+     y="147.93988"
+     width="35"
+     height="35"
+     id="rect12" />
+  <rect
+     class="cell-light"
+     x="263.25317"
+     y="147.93988"
+     width="35"
+     height="35"
+     id="rect13" />
+  <rect
+     class="cell-dark"
+     x="298.25317"
+     y="147.93988"
+     width="35"
+     height="35"
+     id="rect14" />
+  <rect
+     class="cell-light"
+     x="333.25317"
+     y="147.93988"
+     width="35"
+     height="35"
+     id="rect15" />
+  <rect
+     class="cell-dark"
+     x="368.25317"
+     y="147.93988"
+     width="35"
+     height="35"
+     id="rect16" />
+  <rect
+     class="cell-light"
+     x="403.25317"
+     y="147.93988"
+     width="35"
+     height="35"
+     id="rect17" />
+  <rect
+     class="cell-light"
+     x="158.25317"
+     y="182.93988"
+     width="35"
+     height="35"
+     id="rect18" />
+  <rect
+     class="cell-dark"
+     x="193.25317"
+     y="182.93988"
+     width="35"
+     height="35"
+     id="rect19" />
+  <rect
+     class="cell-light"
+     x="228.25317"
+     y="182.93988"
+     width="35"
+     height="35"
+     id="rect20" />
+  <rect
+     class="cell-dark"
+     x="263.25317"
+     y="182.93988"
+     width="35"
+     height="35"
+     id="rect21" />
+  <rect
+     class="cell-light"
+     x="298.25317"
+     y="182.93988"
+     width="35"
+     height="35"
+     id="rect22" />
+  <rect
+     class="cell-dark"
+     x="333.25317"
+     y="182.93988"
+     width="35"
+     height="35"
+     id="rect23" />
+  <rect
+     class="cell-light"
+     x="368.25317"
+     y="182.93988"
+     width="35"
+     height="35"
+     id="rect24" />
+  <rect
+     class="cell-dark"
+     x="403.25317"
+     y="182.93988"
+     width="35"
+     height="35"
+     id="rect25" />
+  <rect
+     class="cell-dark"
+     x="158.25317"
+     y="217.93988"
+     width="35"
+     height="35"
+     id="rect26" />
+  <rect
+     class="cell-light"
+     x="193.25317"
+     y="217.93988"
+     width="35"
+     height="35"
+     id="rect27" />
+  <rect
+     class="cell-dark"
+     x="228.25317"
+     y="217.93988"
+     width="35"
+     height="35"
+     id="rect28" />
+  <rect
+     class="cell-light"
+     x="263.25317"
+     y="217.93988"
+     width="35"
+     height="35"
+     id="rect29" />
+  <rect
+     class="cell-dark"
+     x="298.25317"
+     y="217.93988"
+     width="35"
+     height="35"
+     id="rect30" />
+  <rect
+     class="cell-light"
+     x="333.25317"
+     y="217.93988"
+     width="35"
+     height="35"
+     id="rect31" />
+  <rect
+     class="cell-dark"
+     x="368.25317"
+     y="217.93988"
+     width="35"
+     height="35"
+     id="rect32" />
+  <rect
+     class="cell-light"
+     x="403.25317"
+     y="217.93988"
+     width="35"
+     height="35"
+     id="rect33" />
+  <rect
+     class="cell-light"
+     x="158.25317"
+     y="252.93988"
+     width="35"
+     height="35"
+     id="rect34" />
+  <rect
+     class="cell-dark"
+     x="193.25317"
+     y="252.93988"
+     width="35"
+     height="35"
+     id="rect35" />
+  <rect
+     class="cell-light"
+     x="228.25317"
+     y="252.93988"
+     width="35"
+     height="35"
+     id="rect36" />
+  <rect
+     class="cell-dark"
+     x="263.25317"
+     y="252.93988"
+     width="35"
+     height="35"
+     id="rect37" />
+  <rect
+     class="cell-light"
+     x="298.25317"
+     y="252.93988"
+     width="35"
+     height="35"
+     id="rect38" />
+  <rect
+     class="cell-dark"
+     x="333.25317"
+     y="252.93988"
+     width="35"
+     height="35"
+     id="rect39" />
+  <rect
+     class="cell-light"
+     x="368.25317"
+     y="252.93988"
+     width="35"
+     height="35"
+     id="rect40" />
+  <rect
+     class="cell-dark"
+     x="403.25317"
+     y="252.93988"
+     width="35"
+     height="35"
+     id="rect41" />
+  <rect
+     class="cell-dark"
+     x="158.25317"
+     y="287.93988"
+     width="35"
+     height="35"
+     id="rect42" />
+  <rect
+     class="cell-light"
+     x="193.25317"
+     y="287.93988"
+     width="35"
+     height="35"
+     id="rect43" />
+  <rect
+     class="cell-dark"
+     x="228.25317"
+     y="287.93988"
+     width="35"
+     height="35"
+     id="rect44" />
+  <rect
+     class="cell-light"
+     x="263.25317"
+     y="287.93988"
+     width="35"
+     height="35"
+     id="rect45" />
+  <rect
+     class="cell-dark"
+     x="298.25317"
+     y="287.93988"
+     width="35"
+     height="35"
+     id="rect46" />
+  <rect
+     class="cell-light"
+     x="333.25317"
+     y="287.93988"
+     width="35"
+     height="35"
+     id="rect47" />
+  <rect
+     class="cell-dark"
+     x="368.25317"
+     y="287.93988"
+     width="35"
+     height="35"
+     id="rect48" />
+  <rect
+     class="cell-light"
+     x="403.25317"
+     y="287.93988"
+     width="35"
+     height="35"
+     id="rect49" />
+  <rect
+     class="cell-light"
+     x="158.25317"
+     y="322.93988"
+     width="35"
+     height="35"
+     id="rect50" />
+  <rect
+     class="cell-dark"
+     x="193.25317"
+     y="322.93988"
+     width="35"
+     height="35"
+     id="rect51" />
+  <rect
+     class="cell-light"
+     x="228.25317"
+     y="322.93988"
+     width="35"
+     height="35"
+     id="rect52" />
+  <rect
+     class="cell-dark"
+     x="263.25317"
+     y="322.93988"
+     width="35"
+     height="35"
+     id="rect53" />
+  <rect
+     class="cell-light"
+     x="298.25317"
+     y="322.93988"
+     width="35"
+     height="35"
+     id="rect54" />
+  <rect
+     class="cell-dark"
+     x="333.25317"
+     y="322.93988"
+     width="35"
+     height="35"
+     id="rect55" />
+  <rect
+     class="cell-light"
+     x="368.25317"
+     y="322.93988"
+     width="35"
+     height="35"
+     id="rect56" />
+  <rect
+     class="cell-dark"
+     x="403.25317"
+     y="322.93988"
+     width="35"
+     height="35"
+     id="rect57" />
+  <rect
+     class="cell-dark"
+     x="158.25317"
+     y="357.93988"
+     width="35"
+     height="35"
+     id="rect58" />
+  <rect
+     class="cell-light"
+     x="193.25317"
+     y="357.93988"
+     width="35"
+     height="35"
+     id="rect59" />
+  <rect
+     class="cell-dark"
+     x="228.25317"
+     y="357.93988"
+     width="35"
+     height="35"
+     id="rect60" />
+  <rect
+     class="cell-light"
+     x="263.25317"
+     y="357.93988"
+     width="35"
+     height="35"
+     id="rect61" />
+  <rect
+     class="cell-dark"
+     x="298.25317"
+     y="357.93988"
+     width="35"
+     height="35"
+     id="rect62" />
+  <rect
+     class="cell-light"
+     x="333.25317"
+     y="357.93988"
+     width="35"
+     height="35"
+     id="rect63" />
+  <rect
+     class="cell-dark"
+     x="368.25317"
+     y="357.93988"
+     width="35"
+     height="35"
+     id="rect64" />
+  <rect
+     class="cell-light"
+     x="403.25317"
+     y="357.93988"
+     width="35"
+     height="35"
+     id="rect65" />
+  <rect
+     class="board-border"
+     x="158.25317"
+     y="112.93988"
+     width="280"
+     height="280"
+     id="rect66" />
+  <text
+     class="col-label"
+     x="175.75317"
+     y="100.93988"
+     id="text66">0</text>
+  <text
+     class="col-label"
+     x="210.75317"
+     y="100.93988"
+     id="text67">1</text>
+  <text
+     class="col-label"
+     x="245.75317"
+     y="100.93988"
+     id="text68">2</text>
+  <text
+     class="col-label"
+     x="280.75317"
+     y="100.93988"
+     id="text69">3</text>
+  <text
+     class="col-label"
+     x="315.75317"
+     y="100.93988"
+     id="text70">4</text>
+  <text
+     class="col-label"
+     x="350.75317"
+     y="100.93988"
+     id="text71">5</text>
+  <text
+     class="col-label"
+     x="385.75317"
+     y="100.93988"
+     id="text72">6</text>
+  <text
+     class="col-label"
+     x="420.75317"
+     y="100.93988"
+     id="text73">7</text>
+  <text
+     class="row-label"
+     x="143.25317"
+     y="130.43988"
+     id="text74">0</text>
+  <text
+     class="row-label"
+     x="143.25317"
+     y="165.43988"
+     id="text75">1</text>
+  <text
+     class="row-label"
+     x="143.25317"
+     y="200.43988"
+     id="text76">2</text>
+  <text
+     class="row-label"
+     x="143.25317"
+     y="235.43988"
+     id="text77">3</text>
+  <text
+     class="row-label"
+     x="143.25317"
+     y="270.43988"
+     id="text78">4</text>
+  <text
+     class="row-label"
+     x="143.25317"
+     y="305.43988"
+     id="text79">5</text>
+  <text
+     class="row-label"
+     x="143.25317"
+     y="340.43988"
+     id="text80">6</text>
+  <text
+     class="row-label"
+     x="143.25317"
+     y="375.43988"
+     id="text81">7</text>
+  <line
+     class="diag-main"
+     x1="158.25317"
+     y1="112.93988"
+     x2="438.25317"
+     y2="392.93988"
+     id="line81"
+     style="stroke:#46b470;stroke-opacity:1;stroke-width:3;stroke-dasharray:none" />
+  <line
+     class="diag-main"
+     x1="193.24643"
+     y1="112.93314"
+     x2="436.72009"
+     y2="356.79175"
+     id="line82"
+     style="stroke:#46b470;stroke-opacity:1;stroke-width:3;stroke-dasharray:none" />
+  <line
+     class="diag-main"
+     x1="228.89487"
+     y1="114.64455"
+     x2="436.54849"
+     y2="322.29822"
+     id="line83"
+     style="stroke:#46b482;stroke-opacity:1;stroke-width:3;stroke-dasharray:none" />
+  <line
+     class="diag-inv"
+     x1="437.69864"
+     y1="183.97122"
+     x2="229.66946"
+     y2="392.77029"
+     id="line84"
+     style="stroke-width:3.0055;stroke-dasharray:none" />
+  <line
+     class="diag-inv"
+     x1="437.35172"
+     y1="149.31816"
+     x2="194.63145"
+     y2="392.03842"
+     id="line85"
+     style="stroke-width:3;stroke-dasharray:none" />
+  <line
+     class="diag-inv"
+     x1="436.73361"
+     y1="114.07391"
+     x2="158.23294"
+     y2="390.651"
+     id="line86"
+     style="stroke-width:3;stroke-dasharray:none" />
+  <text
+     class="diag-label-main"
+     x="447.52612"
+     y="394.97488"
+     id="text86"><tspan
+       style="fill:#46b470;fill-opacity:1"
+       id="tspan97">f−c = 0</tspan></text>
+  <text
+     class="diag-label-main"
+     x="447.52612"
+     y="362.05447"
+     id="text87"
+     style="fill:#46b470;fill-opacity:1">f−c = −1</text>
+  <text
+     class="diag-label-main"
+     x="505.323"
+     y="327.51556"
+     text-anchor="end"
+     id="text90"
+     style="fill:#46b470;fill-opacity:1">f−c = -2</text>
+  <text
+     class="diag-label-inv"
+     x="447.66089"
+     y="118.07198"
+     id="text92">f+c = 7</text>
+  <text
+     class="diag-label-inv"
+     x="447.52612"
+     y="184.66866"
+     id="text94">f+c = 9</text>
+  <text
+     class="diag-label-inv"
+     x="447.5144"
+     y="152.53217"
+     id="text96">f+c = 8</text>
+</svg>

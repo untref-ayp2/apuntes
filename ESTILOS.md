@@ -297,7 +297,7 @@ del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
 
 Los ejercicios de este capítulo están en `03-listas/ejercicios/`
 del repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
-Antes de comenzar, implementá las interfaces necesarias en tu fork de
+Antes de comenzar, implementar las interfaces necesarias en tu fork de
 [data-structures](https://github.com/untref-ayp2/data-structures).
 ```
 
@@ -417,6 +417,14 @@ ______________________________________________________________________
 - ATX-style headers (`#`, `##`, `###`)
 - Fenced code blocks con especificador de lenguaje
 - `mdformat --number` para formateo automático con numeración de líneas
+
+### Voz verbal
+
+- **Instrucciones y descripciones**: usar siempre **infinitivo** o la construcción **«se puede + infinitivo»**.
+  No usar imperativo (ni voseo ni tú).
+- Correcto: «Usar los botones ◀ ▶ para avanzar», «Se puede clonar el repositorio»
+- Incorrecto: «Usá los botones», «Cloná el repositorio»
+- Excepción: el bloque `"Fijate que"` se reemplaza por `"Notar que"` o `"Observar que"`.
 
 ### Ortografía
 

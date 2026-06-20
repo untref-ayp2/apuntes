@@ -214,7 +214,7 @@ speedSlider.addEventListener('input',function(){
 function parseAndEnq(inp){
   var nums=inp.split(',').map(function(s){return s.trim()}).filter(function(s){return s.length>0})
     .map(function(s){return parseInt(s,10)}).filter(function(n){return Number.isInteger(n)&&n>0});
-  if(nums.length===0){descEl.textContent='⚠ Ingresá números enteros positivos separados por coma.';return;}
+  if(nums.length===0){descEl.textContent='⚠ Ingresar números enteros positivos separados por coma.';return;}
   pendingValues.push.apply(pendingValues,nums);
   valInput.value='';
   descEl.textContent=nums.length+' valor'+(nums.length!==1?'es':'')+' encolado'+(nums.length!==1?'s':'')+'.';

@@ -205,5 +205,5 @@ width: 50%
 Los ejercicios de este capítulo están en `04-mapa-de-bits/ejercicios/` del
 repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
 
-Antes de comenzar, implementá las interfaces necesarias en tu fork de
+Antes de comenzar, implementar las interfaces necesarias en tu fork de
 [data-structures](https://github.com/untref-ayp2/data-structures).

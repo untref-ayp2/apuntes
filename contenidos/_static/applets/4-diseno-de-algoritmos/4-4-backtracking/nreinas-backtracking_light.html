@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Backtracking — N Reinas (N=4)</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{background:#ffffff;color:#1a1a2e;font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5}
+
+.applet{display:flex;flex-direction:column;padding:8px;gap:6px}
+
+.header{font-size:14px;font-weight:700;text-align:center;padding:4px 12px;background:#f3f4f6;border-radius:6px;border:1px solid #d1d5db}
+
+.main{display:flex;gap:8px}
+
+.left-section{display:flex;flex-direction:column;width:280px;flex-shrink:0;gap:8px}
+
+#boardCanvas{width:280px;height:280px;flex-shrink:0;display:block}
+
+.tree-section{flex:1;display:flex;flex-direction:column;min-width:0}
+.tree-section canvas{flex:1;width:100%}
+
+.controls-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;padding:4px 0}
+
+.controls{display:flex;gap:4px}
+.controls button{width:36px;height:30px;border:1px solid #d1d5db;border-radius:6px;background:#f3f4f6;color:#374151;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;padding:0}
+.controls button:hover:not(:disabled){background:#e5e7eb}
+.controls button:disabled{opacity:.4;cursor:default}
+.controls button.playing{background:#dc2626;color:#fff;border-color:#dc2626}
+
+.speed-wrap{display:flex;align-items:center;gap:4px;font-size:12px;white-space:nowrap}
+.speed-wrap input[type=range]{width:80px;height:4px;accent-color:#1d4ed8}
+
+.info{padding:8px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:13px}
+.info .step-counter{font-weight:600;color:#1d4ed8;margin-bottom:2px;font-size:12px}
+.info .code-line-text{font-weight:400;color:#1d4ed8;font-family:'Courier New',monospace;font-size:11px;margin-left:8px;white-space:nowrap}
+.info .desc{color:#1a1a2e;min-height:2.5em}
+</style>
+</head>
+<body>
+<div class="applet">
+  <div class="header">Backtracking — Problema de las N Reinas (N=4)</div>
+  <div class="main">
+    <div class="left-section">
+      <canvas id="boardCanvas" width="280" height="280"></canvas>
+    </div>
+    <div class="tree-section">
+      <canvas id="treeCanvas"></canvas>
+    </div>
+  </div>
+  <div class="controls-row">
+    <div class="controls">
+      <button id="btnFirst" title="Ir al inicio">⏮</button>
+      <button id="btnPrev" title="Paso anterior">◀</button>
+      <button id="btnNext" title="Paso siguiente">▶</button>
+      <button id="btnPlay" title="Reproducir automático">▶▶</button>
+    </div>
+    <div class="speed-wrap">
+      <label for="speedSlider">Vel:</label>
+      <input type="range" id="speedSlider" min="50" max="2000" value="500" step="50">
+      <span id="speedLabel">2.0 p/s</span>
+    </div>
+  </div>
+  <div class="info">
+    <div class="step-counter" id="stepCounter"><span id="stepCounterNum">Paso 0 / 0</span> <span id="codeLineText" class="code-line-text"></span></div>
+    <div class="desc" id="desc">Cargando...</div>
+  </div>
+</div>
+<script>
+var N = 4;
+
+var LIGHT_CELL = '#e1f5ff';
+var DARK_CELL = '#4682b4';
+var HIGHLIGHT_FILL = 'rgba(255, 215, 0, 0.5)';
+var HIGHLIGHT_STROKE = '#e6a800';
+var CONFLICT_COLOR = '#dc2626';
+var QUEEN_FILL = '#ffffff';
+var QUEEN_STROKE = '#4682b4';
+var QUEEN_TEXT = '#1a1a2e';
+var LABEL_COLOR = '#555555';
+var DONE_FILL = '#d4edda';
+var DONE_STROKE = '#28a745';
+var BOARD_BORDER = '#4682b4';
+
+var TREE_NODE_FILL = '#e1f5ff';
+var TREE_NODE_STROKE = '#4682b4';
+var TREE_NODE_ACTIVE = '#fff3cd';
+var TREE_NODE_ACTIVE_STROKE = '#ffc107';
+var TREE_NODE_BACKTRACK = '#ffe1e1';
+var TREE_NODE_BACKTRACK_STROKE = '#e9967a';
+var TREE_NODE_DONE = '#d4edda';
+var TREE_NODE_DONE_STROKE = '#28a745';
+var TREE_EDGE_COLOR = '#9ca3af';
+var TREE_TEXT = '#1a1a2e';
+
+var PSEUDOCODE = [
+  'FUNCION backtracking(solucionParcial, ...)',
+  '    SI esSolucion(solucionParcial) ENTONCES',
+  '        mostrar(solucionParcial)',
+  '        SALIR',
+  '    SINO',
+  '        PARA CADA opcion posible HACER',
+  '            SI esFactible(opcion) ENTONCES',
+  '                registrar(solucionParcial, opcion)',
+  '                backtracking(solucionParcial, ...)',
+  '                borrar(opcion, solucionParcial)',
+  '            FIN SI',
+  '        FIN PARA',
+  '    FIN SI',
+  'FIN FUNCION'
+];
+
+var boardCanvas = document.getElementById('boardCanvas');
+var boardCtx = boardCanvas.getContext('2d');
+var treeCanvas = document.getElementById('treeCanvas');
+var treeCtx = treeCanvas.getContext('2d');
+var descEl = document.getElementById('desc');
+var stepCounterEl = document.getElementById('stepCounter');
+var stepCounterNum = document.getElementById('stepCounterNum');
+var codeLineTextEl = document.getElementById('codeLineText');
+var btnFirst = document.getElementById('btnFirst');
+var btnPrev = document.getElementById('btnPrev');
+var btnNext = document.getElementById('btnNext');
+var btnPlay = document.getElementById('btnPlay');
+var speedSlider = document.getElementById('speedSlider');
+var speedLabel = document.getElementById('speedLabel');
+
+var steps = [];
+var currentStep = 0;
+var isPlaying = false;
+var playTimer = null;
+var speedVal = 500;
+
+function generateSteps(n) {
+  var result = [];
+  var board = new Array(n).fill(-1);
+  var treeRoot = { id: 0, row: -1, col: -1, children: [], parent: null, status: 'root' };
+  var nodeId = 1;
+
+  result.push({
+    board: board.slice(),
+    tree: JSON.parse(JSON.stringify(treeRoot)),
+    action: 'start',
+    message: 'Comenzamos con un tablero vac\u00edo de ' + n + '\u00d7' + n + '. El algoritmo intentar\u00e1 colocar una reina en cada fila, de arriba hacia abajo, probando columnas de izquierda a derecha.',
+    highlightRow: 0,
+    highlightCol: -1,
+    conflicts: null,
+    currentNodeId: 0,
+    codeLine: 0
+  });
+
+  function isFeasible(row, col, conflicts) {
+    for (var i = 0; i < row; i++) {
+      if (board[i] === col) {
+        conflicts.push({row: i, col: board[i], type: 'columna'});
+        return false;
+      }
+      if (board[i] >= 0 && Math.abs(row - i) === Math.abs(col - board[i])) {
+        conflicts.push({row: i, col: board[i], type: 'diagonal'});
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function backtrack(row, parentNode) {
+    if (row === n) {
+      result.push({
+        board: board.slice(),
+        tree: JSON.parse(JSON.stringify(treeRoot)),
+        action: 'done',
+        message: '\u00a1Soluci\u00f3n encontrada! Se colocaron las ' + n + ' reinas exitosamente sin que ninguna ataque a otra.',
+        highlightRow: -1,
+        highlightCol: -1,
+        conflicts: null,
+        currentNodeId: parentNode.id,
+        codeLine: 2
+      });
+      return true;
+    }
+
+    for (var col = 0; col < n; col++) {
+      var conflicts = [];
+      var feasible = isFeasible(row, col, conflicts);
+
+      if (feasible) {
+        var nodeIdLocal = nodeId++;
+        var node = {
+          id: nodeIdLocal,
+          row: row,
+          col: col,
+          children: [],
+          parent: parentNode.id,
+          status: 'active'
+        };
+        parentNode.children.push(node);
+
+        board[row] = col;
+        var msg = 'Fila ' + row + ', columna ' + col + ': posici\u00f3n v\u00e1lida. Colocamos la reina y avanzamos a la fila ' + (row + 1) + '.';
+        result.push({
+          board: board.slice(),
+          tree: JSON.parse(JSON.stringify(treeRoot)),
+          action: 'place',
+          message: msg,
+          highlightRow: row,
+          highlightCol: col,
+          conflicts: null,
+          currentNodeId: nodeIdLocal,
+          codeLine: 7
+        });
+
+        var found = backtrack(row + 1, node);
+        if (found) return true;
+
+        board[row] = -1;
+        node.status = 'backtrack';
+        result.push({
+          board: board.slice(),
+          tree: JSON.parse(JSON.stringify(treeRoot)),
+          action: 'backtrack',
+          message: 'No se pudo completar desde la fila ' + (row + 1) + '. Retrocedemos (backtracking) y probamos la siguiente columna en la fila ' + row + '.',
+          highlightRow: row,
+          highlightCol: col,
+          conflicts: null,
+          currentNodeId: nodeIdLocal,
+          codeLine: 9
+        });
+      } else {
+        var conflictDesc = conflicts.map(function(c) {
+          return c.type + ' con reina en (' + c.row + ', ' + c.col + ')';
+        }).join('; ');
+        result.push({
+          board: board.slice(),
+          tree: JSON.parse(JSON.stringify(treeRoot)),
+          action: 'conflict',
+          message: 'Fila ' + row + ', columna ' + col + ': no es v\u00e1lida. Conflicto en ' + conflictDesc + '. Probamos la siguiente columna.',
+          highlightRow: row,
+          highlightCol: col,
+          conflicts: conflicts,
+          currentNodeId: parentNode.id,
+          codeLine: 6
+        });
+      }
+    }
+
+    return false;
+  }
+
+  backtrack(0, treeRoot);
+  return result;
+}
+
+function resizeCanvases() {
+  var dpr = window.devicePixelRatio || 1;
+
+  boardCanvas.width = 280 * dpr;
+  boardCanvas.height = 280 * dpr;
+  boardCanvas._size = 280;
+  boardCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  var treeRect = treeCanvas.getBoundingClientRect();
+  treeCanvas.width = treeRect.width * dpr;
+  treeCanvas.height = treeRect.height * dpr;
+  treeCanvas._w = treeRect.width;
+  treeCanvas._h = treeRect.height;
+  treeCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+function drawBoard(step) {
+  var size = 280;
+  boardCtx.clearRect(0, 0, size, size);
+
+  var n = N;
+  var labelSpace = size * 0.08;
+  var boardSize = size - labelSpace * 2;
+  var cellSize = boardSize / n;
+  var offsetX = labelSpace;
+  var offsetY = labelSpace;
+
+  for (var i = 0; i < n; i++) {
+    for (var j = 0; j < n; j++) {
+      var x = offsetX + j * cellSize;
+      var y = offsetY + i * cellSize;
+      boardCtx.fillStyle = (i + j) % 2 === 0 ? LIGHT_CELL : DARK_CELL;
+      boardCtx.fillRect(x, y, cellSize, cellSize);
+    }
+  }
+
+  boardCtx.strokeStyle = BOARD_BORDER;
+  boardCtx.lineWidth = 2;
+  boardCtx.strokeRect(offsetX, offsetY, boardSize, boardSize);
+
+  if (step.highlightRow >= 0 && step.highlightCol >= 0) {
+    var hx = offsetX + step.highlightCol * cellSize;
+    var hy = offsetY + step.highlightRow * cellSize;
+    boardCtx.fillStyle = HIGHLIGHT_FILL;
+    boardCtx.fillRect(hx, hy, cellSize, cellSize);
+    boardCtx.strokeStyle = HIGHLIGHT_STROKE;
+    boardCtx.lineWidth = 3;
+    boardCtx.strokeRect(hx + 1, hy + 1, cellSize - 2, cellSize - 2);
+  }
+
+  if (step.conflicts && step.conflicts.length > 0) {
+    var cx = offsetX + (step.highlightCol + 0.5) * cellSize;
+    var cy = offsetY + (step.highlightRow + 0.5) * cellSize;
+    boardCtx.save();
+    boardCtx.setLineDash([6, 4]);
+    boardCtx.lineWidth = 2.5;
+    boardCtx.strokeStyle = CONFLICT_COLOR;
+    for (var k = 0; k < step.conflicts.length; k++) {
+      var c = step.conflicts[k];
+      var tx = offsetX + (c.col + 0.5) * cellSize;
+      var ty = offsetY + (c.row + 0.5) * cellSize;
+      boardCtx.beginPath();
+      boardCtx.moveTo(cx, cy);
+      boardCtx.lineTo(tx, ty);
+      boardCtx.stroke();
+    }
+    boardCtx.restore();
+  }
+
+  for (var i = 0; i < n; i++) {
+    if (step.board[i] >= 0) {
+      var qx = offsetX + (step.board[i] + 0.5) * cellSize;
+      var qy = offsetY + (i + 0.5) * cellSize;
+      var r = cellSize * 0.36;
+
+      var isDone = step.action === 'done';
+      boardCtx.beginPath();
+      boardCtx.arc(qx, qy, r, 0, Math.PI * 2);
+      boardCtx.fillStyle = isDone ? DONE_FILL : QUEEN_FILL;
+      boardCtx.fill();
+      boardCtx.strokeStyle = isDone ? DONE_STROKE : QUEEN_STROKE;
+      boardCtx.lineWidth = isDone ? 3 : 2;
+      boardCtx.stroke();
+
+      boardCtx.fillStyle = QUEEN_TEXT;
+      boardCtx.font = 'bold ' + Math.round(cellSize * 0.42) + 'px serif';
+      boardCtx.textAlign = 'center';
+      boardCtx.textBaseline = 'middle';
+      boardCtx.fillText('\u265B', qx, qy + 1);
+    }
+  }
+
+  boardCtx.fillStyle = LABEL_COLOR;
+  boardCtx.font = Math.round(cellSize * 0.22) + 'px system-ui, sans-serif';
+  boardCtx.textAlign = 'center';
+  boardCtx.textBaseline = 'middle';
+  for (var i = 0; i < n; i++) {
+    boardCtx.fillText(i, offsetX + (i + 0.5) * cellSize, offsetY - labelSpace * 0.5);
+    boardCtx.fillText(i, offsetX - labelSpace * 0.5, offsetY + (i + 0.5) * cellSize);
+  }
+}
+
+function layoutTree(node, depth, xRange, positions) {
+  if (!node) return;
+  var centerX = (xRange[0] + xRange[1]) / 2;
+  var y = 30 + depth * 50;
+  positions[node.id] = { x: centerX, y: y, node: node };
+
+  if (node.children && node.children.length > 0) {
+    var childWidth = (xRange[1] - xRange[0]) / node.children.length;
+    for (var i = 0; i < node.children.length; i++) {
+      var childXRange = [xRange[0] + i * childWidth, xRange[0] + (i + 1) * childWidth];
+      layoutTree(node.children[i], depth + 1, childXRange, positions);
+    }
+  }
+}
+
+function drawTree(step) {
+  var w = treeCanvas._w || 400;
+  var h = treeCanvas._h || 300;
+  treeCtx.clearRect(0, 0, w, h);
+
+  var positions = {};
+  layoutTree(step.tree, 0, [0, w], positions);
+
+  function drawEdges(node) {
+    if (!node || !node.children) return;
+    var parentPos = positions[node.id];
+    for (var i = 0; i < node.children.length; i++) {
+      var child = node.children[i];
+      var childPos = positions[child.id];
+      if (parentPos && childPos) {
+        treeCtx.beginPath();
+        treeCtx.moveTo(parentPos.x, parentPos.y);
+        treeCtx.lineTo(childPos.x, childPos.y);
+        treeCtx.strokeStyle = TREE_EDGE_COLOR;
+        treeCtx.lineWidth = 1.5;
+        treeCtx.stroke();
+      }
+      drawEdges(child);
+    }
+  }
+  drawEdges(step.tree);
+
+  function drawNodes(node) {
+    if (!node) return;
+    var pos = positions[node.id];
+    if (!pos) return;
+
+    var r = 14;
+    var fill, stroke, lineWidth;
+    var isActive = node.id === step.currentNodeId;
+    var status = node.status;
+
+    if (status === 'root') {
+      fill = '#f3f4f6';
+      stroke = '#9ca3af';
+      lineWidth = 2;
+    } else if (isActive) {
+      fill = TREE_NODE_ACTIVE;
+      stroke = TREE_NODE_ACTIVE_STROKE;
+      lineWidth = 3;
+    } else if (status === 'done') {
+      fill = TREE_NODE_DONE;
+      stroke = TREE_NODE_DONE_STROKE;
+      lineWidth = 2;
+    } else if (status === 'backtrack' || status === 'conflict') {
+      fill = TREE_NODE_BACKTRACK;
+      stroke = TREE_NODE_BACKTRACK_STROKE;
+      lineWidth = 2;
+    } else {
+      fill = TREE_NODE_FILL;
+      stroke = TREE_NODE_STROKE;
+      lineWidth = 2;
+    }
+
+    treeCtx.beginPath();
+    treeCtx.arc(pos.x, pos.y, r, 0, Math.PI * 2);
+    treeCtx.fillStyle = fill;
+    treeCtx.fill();
+    treeCtx.strokeStyle = stroke;
+    treeCtx.lineWidth = lineWidth;
+    treeCtx.stroke();
+
+    if (node.row >= 0) {
+      treeCtx.fillStyle = TREE_TEXT;
+      treeCtx.font = '10px system-ui, sans-serif';
+      treeCtx.textAlign = 'center';
+      treeCtx.textBaseline = 'middle';
+      treeCtx.fillText(node.row + ',' + node.col, pos.x, pos.y);
+    } else {
+      treeCtx.fillStyle = TREE_TEXT;
+      treeCtx.font = '10px system-ui, sans-serif';
+      treeCtx.textAlign = 'center';
+      treeCtx.textBaseline = 'middle';
+      treeCtx.fillText('inicio', pos.x, pos.y);
+    }
+
+    if (node.children) {
+      for (var i = 0; i < node.children.length; i++) {
+        drawNodes(node.children[i]);
+      }
+    }
+  }
+  drawNodes(step.tree);
+}
+
+function renderStep(idx) {
+  if (idx < 0 || idx >= steps.length) return;
+  currentStep = idx;
+  var s = steps[idx];
+  drawBoard(s);
+  drawTree(s);
+  descEl.textContent = s.message;
+  stepCounterNum.textContent = 'Paso ' + (idx + 1) + ' / ' + steps.length;
+  codeLineTextEl.textContent = PSEUDOCODE[s.codeLine];
+  updateBtns();
+}
+
+function updateBtns() {
+  btnFirst.disabled = currentStep <= 0 || isPlaying;
+  btnPrev.disabled = currentStep <= 0 || isPlaying;
+  btnNext.disabled = currentStep >= steps.length - 1 || isPlaying;
+}
+
+function goTo(n) {
+  n = Math.max(0, Math.min(n, steps.length - 1));
+  renderStep(n);
+}
+
+function goNext() {
+  if (currentStep < steps.length - 1) goTo(currentStep + 1);
+}
+
+function goPrev() {
+  if (currentStep > 0) goTo(currentStep - 1);
+}
+
+function goFirst() {
+  goTo(0);
+}
+
+function startPlay() {
+  if (currentStep >= steps.length - 1) return;
+  isPlaying = true;
+  btnPlay.textContent = '\u23F8';
+  btnPlay.classList.add('playing');
+  updateBtns();
+  scheduleNext();
+}
+
+function stopPlay() {
+  isPlaying = false;
+  if (playTimer) { clearTimeout(playTimer); playTimer = null; }
+  btnPlay.textContent = '\u25B6\u25B6';
+  btnPlay.classList.remove('playing');
+  updateBtns();
+}
+
+function scheduleNext() {
+  if (!isPlaying) return;
+  playTimer = setTimeout(function() {
+    if (!isPlaying) return;
+    if (currentStep < steps.length - 1) {
+      goNext();
+      scheduleNext();
+    } else {
+      stopPlay();
+    }
+  }, speedVal);
+}
+
+function handlePlay() {
+  if (isPlaying) { stopPlay(); return; }
+  if (currentStep >= steps.length - 1) { goTo(0); }
+  startPlay();
+}
+
+btnFirst.addEventListener('click', function() { goFirst(); });
+btnPrev.addEventListener('click', function() { goPrev(); });
+btnNext.addEventListener('click', function() { goNext(); });
+btnPlay.addEventListener('click', handlePlay);
+
+speedSlider.addEventListener('input', function() {
+  speedVal = 2050 - parseInt(this.value);
+  speedLabel.textContent = (1000 / speedVal).toFixed(1) + ' p/s';
+  if (isPlaying) { stopPlay(); startPlay(); }
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowRight') { e.preventDefault(); if (!isPlaying) goNext(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); if (!isPlaying) goPrev(); }
+  if (e.key === 'Home') { e.preventDefault(); if (!isPlaying) goFirst(); }
+  if (e.key === ' ' || e.key === 'End') { e.preventDefault(); handlePlay(); }
+});
+
+window.addEventListener('resize', function() {
+  resizeCanvases();
+  if (steps.length > 0) {
+    drawBoard(steps[currentStep]);
+    drawTree(steps[currentStep]);
+  }
+});
+
+steps = generateSteps(N);
+resizeCanvases();
+speedLabel.textContent = (1000 / speedVal).toFixed(1) + ' p/s';
+renderStep(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 700 280"
+   version="1.1"
+   id="svg27"
+   sodipodi:docname="BacktrackingOrden_light.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview27"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.7235714"
+     inkscape:cx="314.17323"
+     inkscape:cy="29.879818"
+     inkscape:window-width="2544"
+     inkscape:window-height="1354"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg27" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">
+      .bg { fill: #f0f2f5; }
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 18px; text-anchor: middle; fill: #333333; }
+      .edge { stroke: #333333; stroke-width: 2; fill: none; }
+      .node { fill: #ffffff; stroke: #4682b4; stroke-width: 2.5; }
+      .node-text { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 16px; fill: #1a1a2e; text-anchor: middle; dominant-baseline: central; font-weight: bold; }
+      .level-label { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 13px; fill: #666666; text-anchor: middle; }
+    </style>
+  </defs>
+  <rect
+     class="bg"
+     width="100%"
+     height="100%"
+     rx="8"
+     id="rect1"
+     x="-7.4127922e-07"
+     y="-1.2713069e-05" />
+  <text
+     class="title"
+     x="350"
+     y="22"
+     id="text1">Árbol de decisión — factor de ramificación 3</text>
+  <!-- edges root → level 1 -->
+  <line
+     class="edge"
+     x1="350"
+     y1="66"
+     x2="155"
+     y2="134"
+     id="line1" />
+  <line
+     class="edge"
+     x1="350"
+     y1="66"
+     x2="350"
+     y2="134"
+     id="line2" />
+  <line
+     class="edge"
+     x1="350"
+     y1="66"
+     x2="545"
+     y2="134"
+     id="line3" />
+  <!-- edges level 1 → level 2 -->
+  <line
+     class="edge"
+     x1="155"
+     y1="166"
+     x2="85"
+     y2="234"
+     id="line4" />
+  <line
+     class="edge"
+     x1="155"
+     y1="166"
+     x2="155"
+     y2="234"
+     id="line5" />
+  <line
+     class="edge"
+     x1="155"
+     y1="166"
+     x2="225"
+     y2="234"
+     id="line6" />
+  <line
+     class="edge"
+     x1="350"
+     y1="166"
+     x2="280"
+     y2="234"
+     id="line7" />
+  <line
+     class="edge"
+     x1="350"
+     y1="166"
+     x2="350"
+     y2="234"
+     id="line8" />
+  <line
+     class="edge"
+     x1="350"
+     y1="166"
+     x2="420"
+     y2="234"
+     id="line9" />
+  <line
+     class="edge"
+     x1="545"
+     y1="166"
+     x2="475"
+     y2="234"
+     id="line10" />
+  <line
+     class="edge"
+     x1="545"
+     y1="166"
+     x2="545"
+     y2="234"
+     id="line11" />
+  <line
+     class="edge"
+     x1="545"
+     y1="166"
+     x2="615"
+     y2="234"
+     id="line12" />
+  <!-- level 0 (root) -->
+  <circle
+     class="node"
+     cx="350"
+     cy="50"
+     r="18"
+     id="circle12" />
+  <text
+     class="node-text"
+     x="350"
+     y="50"
+     id="text12">x₁</text>
+  <!-- level 1 -->
+  <circle
+     class="node"
+     cx="155"
+     cy="150"
+     r="16"
+     id="circle13" />
+  <text
+     class="node-text"
+     x="155"
+     y="150"
+     font-size="14px"
+     id="text13">x₂</text>
+  <circle
+     class="node"
+     cx="350"
+     cy="150"
+     r="16"
+     id="circle14" />
+  <text
+     class="node-text"
+     x="350"
+     y="150"
+     font-size="14px"
+     id="text14">x₂</text>
+  <circle
+     class="node"
+     cx="545"
+     cy="150"
+     r="16"
+     id="circle15" />
+  <text
+     class="node-text"
+     x="545"
+     y="150"
+     font-size="14px"
+     id="text15">x₂</text>
+  <!-- level 2 -->
+  <circle
+     class="node"
+     cx="85"
+     cy="250"
+     r="14"
+     id="circle16" />
+  <text
+     class="node-text"
+     x="85"
+     y="250"
+     font-size="12px"
+     id="text16">x₃</text>
+  <circle
+     class="node"
+     cx="155"
+     cy="250"
+     r="14"
+     id="circle17" />
+  <text
+     class="node-text"
+     x="155"
+     y="250"
+     font-size="12px"
+     id="text17">x₃</text>
+  <circle
+     class="node"
+     cx="225"
+     cy="250"
+     r="14"
+     id="circle18" />
+  <text
+     class="node-text"
+     x="225"
+     y="250"
+     font-size="12px"
+     id="text18">x₃</text>
+  <circle
+     class="node"
+     cx="280"
+     cy="250"
+     r="14"
+     id="circle19" />
+  <text
+     class="node-text"
+     x="280"
+     y="250"
+     font-size="12px"
+     id="text19">x₃</text>
+  <circle
+     class="node"
+     cx="350"
+     cy="250"
+     r="14"
+     id="circle20" />
+  <text
+     class="node-text"
+     x="350"
+     y="250"
+     font-size="12px"
+     id="text20">x₃</text>
+  <circle
+     class="node"
+     cx="420"
+     cy="250"
+     r="14"
+     id="circle21" />
+  <text
+     class="node-text"
+     x="420"
+     y="250"
+     font-size="12px"
+     id="text21">x₃</text>
+  <circle
+     class="node"
+     cx="475"
+     cy="250"
+     r="14"
+     id="circle22" />
+  <text
+     class="node-text"
+     x="475"
+     y="250"
+     font-size="12px"
+     id="text22">x₃</text>
+  <circle
+     class="node"
+     cx="545"
+     cy="250"
+     r="14"
+     id="circle23" />
+  <text
+     class="node-text"
+     x="545"
+     y="250"
+     font-size="12px"
+     id="text23">x₃</text>
+  <circle
+     class="node"
+     cx="615"
+     cy="250"
+     r="14"
+     id="circle24" />
+  <text
+     class="node-text"
+     x="615"
+     y="250"
+     font-size="12px"
+     id="text24">x₃</text>
+  <!-- level labels -->
+  <text
+     class="level-label"
+     x="398.73602"
+     y="110.5661"
+     id="text25">Nivel 0</text>
+  <text
+     class="level-label"
+     x="44.783676"
+     y="169"
+     id="text26">Nivel 1</text>
+  <text
+     class="level-label"
+     x="46.075424"
+     y="273.06134"
+     id="text27">Nivel 2</text>
+</svg>

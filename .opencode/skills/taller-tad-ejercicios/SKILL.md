@@ -34,7 +34,7 @@ NN-tema/
 ```markdown
 # Ejercicios: <Nombre del Capítulo>
 
-Antes de comenzar, implementá `<TAD>` en tu repositorio data-structures.
+Antes de comenzar, implementar `<TAD>` en tu repositorio data-structures.
 
 ---
 

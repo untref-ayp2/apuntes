@@ -63,7 +63,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 28 | `contenidos/4-diseno-de-algoritmos/4-1-recursividad.md` | ✅ Revisado | `taller-algoritmos` |
 | 29 | `contenidos/4-diseno-de-algoritmos/4-2-patrones-de-diseno.md` |  ✅ Revisado | `taller-algoritmos` |
 | 30 | `contenidos/4-diseno-de-algoritmos/4-3-algoritmos-avidos.md` | ✅ Revisado | `taller-algoritmos` |
-| 31 | `contenidos/4-diseno-de-algoritmos/4-4-backtracking.md` | ⬜ Pendiente | `taller-algoritmos` |
+| 31 | `contenidos/4-diseno-de-algoritmos/4-4-backtracking.md` | ✅ Revisado | `taller-algoritmos` |
 | 32 | `contenidos/4-diseno-de-algoritmos/4-5-programacion-dinamica.md` | ⬜ Pendiente | `taller-algoritmos` |
 | 33 | `contenidos/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos.md` | ⬜ Pendiente | `taller-algoritmos` |
 | 34 | `contenidos/4-diseno-de-algoritmos/4-7-ordenamientos-lineales.md` | ⬜ Pendiente | `taller-algoritmos` |
@@ -96,7 +96,7 @@ debe buscar recursos en estos repos para referenciar o incluir en el apunte.
 | 4-1 Recursividad | `taller-algoritmos` (`01-recursividad/ejercicios/`) | `taller-algoritmos` (`01-recursividad/ejemplos/`) |
 | 4-2 Patrones de Diseño | `taller-algoritmos` (`02-patrones-de-diseno/ejercicios/`) | — |
 | 4-3 Algoritmos Ávidos | `taller-algoritmos` (`03-algoritmos-avidos/ejercicios/`) | — |
-| 4-4 Backtracking | `taller-algoritmos` (`04-backtracking/ejercicios/`) | — |
+| 4-4 Backtracking | `taller-algoritmos` (`04-backtracking/ejercicios/`) | `taller-algoritmos` (`04-backtracking/ejemplos/nreinas/`) |
 | 4-5 Programación Dinámica | `taller-algoritmos` (`05-programacion-dinamica/ejercicios/`) | — |
 | 4-6 Ordenamientos Recursivos | `taller-algoritmos` (`06-ordenamientos-recursivos/ejercicios/`) | — |
 | 4-7 Ordenamientos Lineales | `taller-algoritmos` (`07-ordenamientos-lineales/ejercicios/`) | — |
@@ -161,7 +161,7 @@ Estado actual (main):
     1-3-analisis       ✅
     2-Taller de Go     ✅ 12 archivos
     3-Estructuras      ✅ 9 / 🔄 0 / ⬜ 3 archivos
-    4-Diseño Alg.      ✅ 1 / ⬜ 6 archivos
+    4-Diseño Alg.      ✅ 2 / ⬜ 5 archivos
     5-Taller Git       ⬜
     bibliografia       ⬜
 

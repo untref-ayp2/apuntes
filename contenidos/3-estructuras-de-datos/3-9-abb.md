@@ -244,7 +244,7 @@ FIN FUNCION
 
 ### Árbol binario de búsqueda interactivo
 
-Ingresá un valor y presioná Enter para ejecutar la operación seleccionada (insertar, buscar o eliminar). La animación avanza automáticamente paso a paso. Usá el control de velocidad para ajustar la rapidez de la animación.
+Ingresar un valor y presionar Enter para ejecutar la operación seleccionada (insertar, buscar o eliminar). La animación avanza automáticamente paso a paso. Usar el control de velocidad para ajustar la rapidez de la animación.
 
 ```{iframe} /applets/3-estructuras-de-datos/3-9-abb/operaciones-abb_light.html
 ---
@@ -478,5 +478,5 @@ En esta variante, el árbol binario subyacente provee las operaciones estructura
 Los ejercicios de este capítulo están en `09-abb/ejercicios/` del
 repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
 
-Antes de comenzar, implementá las interfaces necesarias en tu fork de
+Antes de comenzar, implementar las interfaces necesarias en tu fork de
 [data-structures](https://github.com/untref-ayp2/data-structures).

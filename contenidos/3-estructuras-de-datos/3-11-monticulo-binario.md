@@ -336,7 +336,7 @@ align: center
 
 ### Visualizador de montículo binario interactivo
 
-Seleccioná el tipo de montículo (mínimo o máximo), ingresá uno o más enteros separados por coma y presioná Enter para encolarlos. Usá **>** para procesar una operación, **>>** para procesar todas las pendientes, o **Remover cima** para eliminar la raíz. Las teclas **<** y **>** navegan entre pasos, **<<** deshace la última inserción, y Espacio inicia/pausa la reproducción automática. Solo se admiten enteros de hasta 3 cifras (±999).
+Seleccionar el tipo de montículo (mínimo o máximo), ingresar uno o más enteros separados por coma y presionar Enter para encolarlos. Usar **>** para procesar una operación, **>>** para procesar todas las pendientes, o **Remover cima** para eliminar la raíz. Las teclas **<** y **>** navegan entre pasos, **<<** deshace la última inserción, y Espacio inicia/pausa la reproducción automática. Solo se admiten enteros de hasta 3 cifras (±999).
 
 :::{iframe} /applets/3-estructuras-de-datos/3-11-monticulo-binario/heap-visualizer_light.html
 :width: 100%

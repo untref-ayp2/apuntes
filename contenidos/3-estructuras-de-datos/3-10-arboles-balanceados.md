@@ -379,7 +379,7 @@ Las rotaciones son operaciones locales que solo afectan a un pequeño número de
 
 ### Visualizador de árbol AVL interactivo
 
-Ingresá uno o más valores separados por coma y presioná Insertar. Usá "Paso a paso" para avanzar una operación a la vez, o "Reproducir" para ver la secuencia completa automáticamente. Las flechas del teclado adelantan/retroceden paso a paso, y la barra espaciadora inicia/pausa la reproducción.
+Ingresar uno o más valores separados por coma y presionar Insertar. Usar "Paso a paso" para avanzar una operación a la vez, o "Reproducir" para ver la secuencia completa automáticamente. Las flechas del teclado adelantan/retroceden paso a paso, y la barra espaciadora inicia/pausa la reproducción.
 
 <div class="only-light-mode">
 <iframe src="/applets/3-estructuras-de-datos/3-10-arboles-balanceados/avl-visualizer_light.html" width="100%" height="520px"></iframe>

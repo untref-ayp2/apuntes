@@ -171,7 +171,7 @@ func main() {
 elemento no encontrado
 ```
 
-Fijate que `ErrNotFound` se declara afuera de cualquier función, como variable del paquete. Por convención, estos errores se nombran con el prefijo `Err` (son exportados) o `err` (si son internos al paquete).
+Notar que `ErrNotFound` se declara afuera de cualquier función, como variable del paquete. Por convención, estos errores se nombran con el prefijo `Err` (son exportados) o `err` (si son internos al paquete).
 
 ## Tipos de error personalizados
 
@@ -261,7 +261,7 @@ func main() {
 el archivo del usuario no existe
 ```
 
-Fijate que el mensaje del error original (`os.ErrNotExist`) queda preservado
+Notar que el mensaje del error original (`os.ErrNotExist`) queda preservado
 dentro del error que creamos con `%w`. Por eso `errors.Is` puede
 detectarlo aunque esté envuelto en una capa con más contexto. Así podemos
 reaccionar distinto según el tipo de error que ocurrió, sin importar cuánto
@@ -273,7 +273,7 @@ Para cerrar, algunas convenciones que se ven en todo código Go:
 
 1. **El error es siempre el último valor de retorno.** Si una función devuelve un resultado y puede fallar, la firma es `(resultado, error)`.
 2. **Revisar `err != nil` inmediatamente.** Apenas recibís un error, lo *checkeás*. No lo guardás para después.
-3. **No ignorar errores.** Si una función devuelve `error` y estás seguro de que no va a fallar, usá `_ = llamada()` como señal explícita de que decidiste ignorarlo.
+3. **No ignorar errores.** Si una función devuelve `error` y estás seguro de que no va a fallar, usar `_ = llamada()` como señal explícita de que decidiste ignorarlo.
 4. **Preferir `errors.New` y `fmt.Errorf` a `panic`.** Salvo excepciones muy contadas, los errores se manejan con valores, no con `panic`.
 
 ## Manejo de errores con archivos
