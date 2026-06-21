@@ -64,26 +64,40 @@ Si deseas desarrollar y/o compilar el apunte de Algoritmos y Programación II, n
 
 El HTML generado queda en `contenidos/_build/html` y el PDF en `contenidos/exports/apunte-ayp2.pdf`.
 
+### Despliegue automático
+
+Al hacer push a `main`, un workflow de GitHub Actions compila el HTML y lo despliega en GitHub Pages. La configuración está en `.github/workflows/deploy.yml`.
+
 ## Estructura del proyecto
 
 ```text
 ├── AGENTS.md                  # Directivas para asistentes IA
+├── ESTILOS.md                 # Guía de estilo canónica
 ├── Makefile                   # Automatización de tareas
+├── requirements.txt           # Dependencias Python
 ├── scripts/build_pdf.py       # Generación del PDF (pre-procesamiento + Typst)
+├── taller-tad/                # Esqueletos de ejercicios (taller TAD)
+│   └── 07-diccionarios/
+├── .github/workflows/
+│   └── deploy.yml             # CI/CD: build + deploy a GitHub Pages
 ├── contenidos/
 │   ├── myst.yml               # Configuración de MyST
+│   ├── introduccion.md
+│   ├── bibliografia.md
+│   ├── references.bib
 │   ├── _static/
+│   │   ├── applets/           # Applets HTML/JS interactivos
 │   │   ├── figures/           # Imágenes SVG (con pares light/dark)
 │   │   ├── code/              # Código fuente Go
-│   │   └── css/custom.css     # Estilos personalizados
-│   ├── templates/             # Template Typst para PDF
-│   ├── references.bib
-│   ├── introduccion.md
+│   │   ├── css/custom.css     # Estilos personalizados
+│   │   └── js/                # JavaScript auxiliar
+│   ├── templates/
+│   │   └── plain_typst_book_ayp2/  # Template Typst para PDF
+│   ├── exports/
+│   │   └── apunte-ayp2.pdf    # PDF generado
 │   ├── 1-presentacion/
 │   ├── 2-taller-de-go/
 │   ├── 3-estructuras-de-datos/
 │   ├── 4-diseno-de-algoritmos/
-│   ├── 5-anexos/
-│   └── bibliografia.md
-└── Plan-Migracion.md          # Plan de migración a MyST/JBv2
+│   └── 5-anexos/
 ```
