@@ -105,7 +105,7 @@ site:
     - title: UNTREF
       children:
         - title: Slack
-          url: https://untref-ayp2.slack.com
+          url: https://untref-aypii.slack.com
     - title: CUDI
       children:
         - title: Slack
