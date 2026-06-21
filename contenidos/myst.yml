@@ -101,15 +101,15 @@ site:
     logo_alt: Apuntes de Algoritmos y Programación II - UNTREF
     style: _static/css/custom.css
     toggles: true
-  # nav:
-  #   - title: Slack
-  #     url: https://untref-ayp2.slack.com
-  #   - title: Guías
-  #     url: https://github.com/untref-ayp2/guias
-  #   - title: Classroom
-  #     url: https://classroom.google.com/c/...
-  #   - title: TP
-  #     url: https://github.com/untref-ayp2/...
+  nav:
+    - title: UNTREF
+      children:
+        - title: Slack
+          url: https://untref-ayp2.slack.com
+    - title: CUDI
+      children:
+        - title: Slack
+          url: https://cudi-ayp2.slack.com
   actions:
     - title: Descargar PDF
       url: exports/apunte-ayp2.pdf
