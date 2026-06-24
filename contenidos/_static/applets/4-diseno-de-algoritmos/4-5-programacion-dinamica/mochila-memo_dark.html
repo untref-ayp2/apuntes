@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root {
+  --bg: #1a1b2e; --fg: #e0e0e0; --border: #374151;
+  --btn-bg: #2d3748; --btn-hover: #374151; --btn-text: #e0e0e0;
+  --enter-fill: #1e1e1e; --enter-stroke: #f59e0b;
+  --fill-fill: #1e1e1e; --fill-stroke: #10b981;
+  --cache-fill: #1e1e1e; --cache-stroke: #06b6d4;
+  --pending-fill: #1e1e1e; --pending-stroke: #374151;
+  --node-text: #e0e0e0; --highlight: #60a5fa;
+}
+.tree-edge{stroke:var(--border);stroke-width:1.5}
+.node-text{fill:var(--node-text);font-family:monospace;font-size:16px;text-anchor:middle;dominant-baseline:central;pointer-events:none;font-weight:700}
+.node-circle{stroke-width:2.5}
+.node-circle.enter{fill:var(--enter-fill);stroke:var(--enter-stroke);stroke-width:3}
+.node-circle.fill{fill:var(--fill-fill);stroke:var(--fill-stroke)}
+.node-circle.cache{fill:var(--cache-fill);stroke:var(--cache-stroke);stroke-width:3}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+.applet{display:flex;flex-direction:column;padding:8px;gap:6px;width:100%;max-width:100%;margin:0 auto;flex:1;min-height:0;overflow:hidden}
+.header{font-size:14px;font-weight:700;text-align:center;padding:4px 12px;background:var(--btn-bg);border-radius:6px;border:1px solid var(--border);width:100%;flex-shrink:0}
+.main{display:flex;flex:1;min-height:0;gap:8px;width:100%;overflow:hidden}
+.tree-wrap{flex:1;min-width:0;display:flex;justify-content:center;align-items:center;overflow:hidden}
+.tree-wrap svg{width:100%;height:100%}
+.sidebar{display:flex;flex-direction:column;gap:6px;flex-shrink:0;width:130px;justify-content:flex-start}
+.sidebar button{width:36px;height:32px;border:1px solid var(--border);border-radius:6px;background:var(--btn-bg);color:var(--btn-text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;padding:0}
+.sidebar button:hover:not(:disabled){background:var(--btn-hover)}
+.sidebar button:disabled{opacity:.4;cursor:default}
+.sidebar button.playing{background:#f59e0b;color:#fff;border-color:#f59e0b}
+.controls{display:flex;flex-direction:row;gap:4px;flex-wrap:wrap;justify-content:center}
+.separator{height:1px;background:var(--border);margin:2px 0}
+.speed-wrap{display:flex;align-items:center;gap:3px;font-size:11px;text-align:center;justify-content:center}
+.speed-wrap input[type=range]{width:40px;height:4px;accent-color:var(--highlight)}
+.legend{font-size:10px;border:1px solid var(--border);border-radius:6px;padding:6px;display:flex;flex-direction:column;gap:3px}
+.legend-item{display:flex;align-items:center;gap:4px}
+.legend-dot{width:12px;height:12px;border-radius:3px;border:1px solid #9ca3af;flex-shrink:0}
+.legend-dot.enter{background:var(--enter-fill);border-color:var(--enter-stroke)}
+.legend-dot.fill{background:var(--fill-fill);border-color:var(--fill-stroke)}
+.legend-dot.cache{background:var(--cache-fill);border-color:var(--cache-stroke)}
+.info{padding:6px 10px;border:1px solid var(--border);border-radius:6px;width:100%;display:flex;flex-wrap:wrap;gap:3px 12px;align-items:baseline;font-size:12px;flex-shrink:0}
+.info .calc{flex:1 1 100%;font-family:monospace;font-size:13px;min-height:1.3em}
+.info .meta{display:flex;gap:12px;flex-wrap:wrap}
+.info .meta span{white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="applet">
+<div class="header">Memoizaci&#xf3;n &#x2014; &#xc1;rbol de llamadas recursivas</div>
+<div class="main">
+<div class="tree-wrap"><svg id="tree" viewBox="0 0 700 440" xmlns="http://www.w3.org/2000/svg"></svg></div>
+<div class="sidebar">
+<div class="controls">
+<button id="btnFirst" title="Ir al inicio">&#x23EE;</button>
+<button id="btnPrev" title="Paso anterior">&#x25C0;</button>
+<button id="btnNext" title="Paso siguiente">&#x25B6;</button>
+<button id="btnSkip" title="Reproducir / Pausar">&#x23E9;</button>
+</div>
+<div class="speed-wrap">
+<label for="speedSlider">Vel:</label>
+<input type="range" id="speedSlider" min="400" max="3000" value="1500" step="100">
+<span id="speedLabel">0.7 p/s</span>
+</div>
+<div class="separator"></div>
+<div class="legend">
+<div class="legend-item"><span class="legend-dot enter"></span> Descendiendo</div>
+<div class="legend-item"><span class="legend-dot fill"></span> Calculado</div>
+<div class="legend-item"><span class="legend-dot cache"></span> Cacheado</div>
+</div>
+</div>
+</div>
+<div class="info">
+<div class="calc" id="desc">Hacer clic en &#x25B6; para comenzar.</div>
+<div class="meta">
+<span id="stepCounter">Paso &#x2014; / &#x2014;</span>
+</div>
+</div>
+</div>
+<script>
+var SVG_NS='http://www.w3.org/2000/svg';
+var svg=document.getElementById('tree');
+var R=18, NODE_W=R*2;
+var SVG_W=700, W_USABLE;
+var Y_OFFSET=65, MARGIN=R+4;
+var ROOT_Y=40;
+
+// ─────── datos del problema ───────
+var obj=[{w:0,v:0},{w:3,v:2,n:'Corona'},{w:4,v:3,n:'Collar'},{w:1,v:4,n:'Diamante'},{w:2,v:2,n:'Reloj'},{w:5,v:5,n:'Bolsa'}];
+var CAP=5,N=5;
+var dp=[];
+for(var i=0;i<=N;i++){dp[i]=[];
+  for(var w=0;w<=CAP;w++){
+    if(i===0||w===0)dp[i][w]={w:0,v:0};
+    else if(obj[i].w>w)dp[i][w]={w:dp[i-1][w].w,v:dp[i-1][w].v};
+    else{var ex=dp[i-1][w],ip=dp[i-1][w-obj[i].w],iv=ip.v+obj[i].v,iw=ip.w+obj[i].w;
+      if(iv>ex.v)dp[i][w]={w:iw,v:iv,from:'incl'};else dp[i][w]={w:ex.w,v:ex.v,from:iv===ex.v?'tie':'above'};}}}
+
+// ─────── construir árbol con nodos únicos por ocurrencia ───────
+var nextId=1, maxDepth=0;
+function build(i,w,d){
+  var n={id:nextId++,i:i,w:w,lbl:'('+dp[i][w].w+','+dp[i][w].v+')',left:null,right:null,depth:d};
+  if(d>maxDepth)maxDepth=d;
+  if(i===0||w===0)return n;
+  n.left=build(i-1,w,d+1);
+  if(obj[i].w<=w)n.right=build(i-1,w-obj[i].w,d+1);
+  return n;
+}
+var root=build(N,CAP,0);
+
+// ─────── contar nodos y layout por in-orden ───────
+function countNodes(n){return n?1+countNodes(n.left)+countNodes(n.right):0;}
+var totalNodes=countNodes(root);
+W_USABLE=Math.max(SVG_W-2*MARGIN,NODE_W*totalNodes);
+var dx=totalNodes>1?W_USABLE/(totalNodes-1):0;
+function layoutInOrder(n,counter){
+  if(!n)return;
+  layoutInOrder(n.left,counter);
+  n.x=MARGIN+counter.count*dx;
+  n.y=ROOT_Y+n.depth*Y_OFFSET;
+  counter.count++;
+  layoutInOrder(n.right,counter);
+}
+layoutInOrder(root,{count:0});
+
+// ─────── pasar el SVG_W al viewBox real ───────
+var realW=MARGIN*2+totalNodes*NODE_W;
+if(realW<SVG_W)realW=SVG_W;
+svg.setAttribute('viewBox','0 0 '+realW+' '+(ROOT_Y+(maxDepth+1)*Y_OFFSET+40));
+
+// ─────── generar pasos DFS ───────
+var steps=[];
+var cache={};
+function makeStep(type,node,msg){
+  steps.push({type:type,nodeId:node?node.id:null,msg:msg});
+}
+function genDFS(n){
+  if(n.i===0||n.w===0){
+    makeStep('fill',n,'Caso base ('+n.i+','+n.w+') = '+n.lbl);
+    return;
+  }
+  var pk=n.i+'_'+n.w;
+  if(cache[pk]){
+    makeStep('cache',n,'('+n.i+','+n.w+') \u2192 cach\u00e9: '+n.lbl);
+    return;
+  }
+  makeStep('enter',n,'\u2193 ('+n.i+','+n.w+') '+obj[n.i].n+' (p='+obj[n.i].w+',v='+obj[n.i].v+') cap='+n.w+' \u2192 llamar ('+(n.i-1)+','+n.w+')'+(obj[n.i].w<=n.w?' y ('+(n.i-1)+','+(n.w-obj[n.i].w)+')':''));
+  if(n.left)genDFS(n.left);
+  if(n.right)genDFS(n.right);
+  cache[pk]=true;
+  makeStep('fill',n,'\u2191 ('+n.i+','+n.w+') = '+n.lbl+(dp[n.i][n.w].from==='above'?' [p='+obj[n.i].w+'>'+n.w+' no entra, hereda]':dp[n.i][n.w].from==='tie'?' [empate]':' [incluir '+obj[n.i].n+']'));
+}
+genDFS(root);
+steps.push({type:'done',msg:'Soluci\u00f3n \u00f3ptima: peso '+dp[N][CAP].w+', valor '+dp[N][CAP].v+'.',nodeId:null});
+
+// ─────── construir árbol visible hasta el paso idx ───────
+function buildVisible(idx){
+  var seen={};
+  for(var si=0;si<=idx&&si<steps.length;si++){var s=steps[si];if(s.nodeId!=null)seen[s.nodeId]=s.type;}
+  var idMap2={};
+  function cloneVisible(n){
+    if(!n||!seen[n.id])return null;
+    if(idMap2[n.id])return idMap2[n.id];
+    var c={id:n.id,i:n.i,w:n.w,lbl:n.lbl,x:n.x,y:n.y,left:cloneVisible(n.left),right:cloneVisible(n.right)};
+    idMap2[n.id]=c;return c;
+  }
+  return cloneVisible(root);
+}
+
+// ─────── render ───────
+function getEdges(n,arr){
+  if(!n)return;
+  if(n.left){arr.push({x1:n.x,y1:n.y+R,x2:n.left.x,y2:n.left.y-R});getEdges(n.left,arr);}
+  if(n.right){arr.push({x1:n.x,y1:n.y+R,x2:n.right.x,y2:n.right.y-R});getEdges(n.right,arr);}
+}
+function drawNode(n,hlId,stMap,isLeft){
+  if(!n)return;
+  var st=stMap[n.id]||'fill';
+  var g=document.createElementNS(SVG_NS,'g');
+  var c=document.createElementNS(SVG_NS,'circle');
+  c.setAttribute('cx',n.x);c.setAttribute('cy',n.y);c.setAttribute('r',R);
+  c.classList.add('node-circle',st);
+  if(n.id===hlId)c.setAttribute('stroke-width','3.5');
+  g.appendChild(c);
+  // solo mostrar valor si ya fue calculado (fill, cache) o es base
+  if(st==='fill'||st==='cache'){
+    var t=document.createElementNS(SVG_NS,'text');
+    t.setAttribute('x',n.x);t.setAttribute('y',n.y);
+    t.classList.add('node-text');t.setAttribute('font-weight','700');
+    t.textContent=n.lbl.substring(1,n.lbl.length-1);
+    g.appendChild(t);
+  }else if(st==='enter'){
+    var t=document.createElementNS(SVG_NS,'text');
+    t.setAttribute('x',n.x);t.setAttribute('y',n.y);
+    t.classList.add('node-text');t.setAttribute('font-size','10px');t.setAttribute('font-weight','400');
+    t.textContent=n.i+','+n.w;
+    g.appendChild(t);
+  }
+  svg.appendChild(g);
+  drawNode(n.left,hlId,stMap,true);drawNode(n.right,hlId,stMap,false);
+}
+function render(idx){
+  svg.innerHTML='';
+  if(idx<0||idx>=steps.length){document.getElementById('stepCounter').textContent='Paso \u2014 / '+steps.length;return;}
+  var s=steps[idx];
+  var tree=buildVisible(idx);
+  var edges=[];if(tree)getEdges(tree,edges);
+  edges.forEach(function(e){
+    var l=document.createElementNS(SVG_NS,'line');
+    l.setAttribute('x1',e.x1);l.setAttribute('y1',e.y1);
+    l.setAttribute('x2',e.x2);l.setAttribute('y2',e.y2);
+    l.classList.add('tree-edge');svg.appendChild(l);
+  });
+  var seen={};
+  for(var si=0;si<=idx&&si<steps.length;si++){var ss=steps[si];if(ss.nodeId!=null)seen[ss.nodeId]=ss.type;}
+  if(tree)drawNode(tree,s.nodeId,seen);
+  document.getElementById('desc').innerHTML=s.msg||'';
+  document.getElementById('stepCounter').textContent='Paso '+(idx+1)+' / '+steps.length;
+}
+
+// ─────── controles ───────
+var curStep=-1,isPlay=false,timer=null,speedVal=1500;
+var btnF,btnP,btnN,btnS;
+function updateBtns(){
+  var atS=curStep<=0,atE=curStep>=steps.length-1;
+  btnF.disabled=atS||isPlay;btnP.disabled=atS||isPlay;
+  btnN.disabled=atE||isPlay;btnS.disabled=atE;
+}
+function goTo(n){n=Math.max(0,Math.min(n,steps.length-1));curStep=n;render(n);updateBtns();}
+function goNext(){if(curStep<steps.length-1)goTo(curStep+1);}
+function goPrev(){if(curStep>0)goTo(curStep-1);}
+function goFirst(){stopPlay();goTo(0);}
+function tick(){if(!isPlay)return;if(curStep>=steps.length-1){stopPlay();return;}goNext();timer=setTimeout(tick,speedVal);}
+function startPlay(){if(curStep>=steps.length-1)goFirst();isPlay=true;btnS.textContent='\u23F8';btnS.classList.add('playing');updateBtns();timer=setTimeout(tick,speedVal);}
+function stopPlay(){isPlay=false;if(timer){clearTimeout(timer);timer=null;}btnS.textContent='\u23E9';btnS.classList.remove('playing');updateBtns();}
+function hdlSkip(){if(isPlay){stopPlay();return;}if(curStep>=steps.length-1)goFirst();startPlay();}
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'){e.preventDefault();goNext();}
+  if(e.key==='ArrowLeft'){e.preventDefault();goPrev();}
+  if(e.key==='Home'){e.preventDefault();goFirst();}
+  if(e.key===' '){e.preventDefault();hdlSkip();}
+});
+window.addEventListener('load',function(){
+  btnF=document.getElementById('btnFirst');btnP=document.getElementById('btnPrev');
+  btnN=document.getElementById('btnNext');btnS=document.getElementById('btnSkip');
+  btnF.addEventListener('click',goFirst);btnP.addEventListener('click',goPrev);
+  btnN.addEventListener('click',goNext);btnS.addEventListener('click',hdlSkip);
+  var sl=document.getElementById('speedSlider');var lb=document.getElementById('speedLabel');
+  sl.addEventListener('input',function(){speedVal=3400-parseInt(this.value);lb.textContent=(1000/speedVal).toFixed(1)+' p/s';if(isPlay){stopPlay();startPlay();}});
+  goFirst();
+});
+</script>
+</body>
+</html>

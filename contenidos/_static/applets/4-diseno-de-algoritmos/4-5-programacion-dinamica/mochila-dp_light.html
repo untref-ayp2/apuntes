@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#ffffff;color:#1a1a2e;font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+
+.applet{display:flex;flex-direction:column;padding:8px;gap:6px;width:100%;max-width:100%;margin:0 auto;flex:1;min-height:0;overflow:hidden}
+
+.header{display:flex;align-items:center;justify-content:space-between;padding:4px 8px;background:#f3f4f6;border-radius:6px;border:1px solid #d1d5db;width:100%;flex-shrink:0}
+.header span{font-size:15px;font-weight:700}
+
+.main{display:flex;flex:1;min-height:0;gap:8px;width:100%;overflow:hidden}
+
+.matrix-wrap{flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;min-width:0}
+
+.matrix{display:grid;grid-template-columns:60px repeat(6,1fr);gap:2px;font-size:13px;user-select:none}
+
+.cell{padding:6px 4px;border-radius:4px;text-align:center;font-family:menlo,consola,'DejaVu Sans Mono',monospace;font-size:12px;transition:all .2s;min-width:48px;border:1.5px solid transparent;white-space:nowrap}
+
+.hdr{background:#f3f4f6;font-weight:700;font-size:13px;color:#1a1a2e;text-align:center;border:1px solid #d1d5db}
+.row-hdr{background:#f3f4f6;font-weight:600;font-size:12px;color:#555;text-align:center;border:1px solid #d1d5db;display:flex;align-items:center;justify-content:center;padding:2px}
+
+.empty{background:#fafafa;color:#ccc;border:1px solid #e5e7eb}
+.init{background:#f0fdf4;color:#333;border:1px solid #bbf7d0}
+.filled{background:#fff;color:#1a1a2e;border:1px solid #d1d5db}
+.current{background:#fef3c7;color:#1a1a2e;border:2px solid #f59e0b;font-weight:700;z-index:1}
+.source{background:#e1f5ff;color:#1a1a2e;border:2px solid #3b82f6;z-index:1}
+.optimal{background:#d1fae5;color:#065f46;border:2px solid #10b981;font-weight:700}
+.correct{background:#d1fae5;color:#065f46;border:2px solid #10b981;font-weight:700}
+.wrong{background:#ffe1e1;color:#9b2c2c;border:2px solid #e9967a;font-weight:700}
+
+.mode-toggle{display:flex;gap:2px}
+.mode-toggle button{padding:3px 10px;border:1px solid #d1d5db;border-radius:4px;background:#fff;color:#374151;font-size:11px;cursor:pointer;font-weight:600;transition:background .15s}
+.mode-toggle button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
+
+.btn-incl{color:#2e8b57;display:none}
+.btn-incl:hover:not(:disabled){background:#e5e7eb}
+.btn-excl{color:#e9967a;display:none}
+.btn-excl:hover:not(:disabled){background:#e5e7eb}
+
+.sidebar{display:flex;flex-direction:column;gap:6px;flex-shrink:0;width:130px;justify-content:center}
+.sidebar button{width:36px;height:32px;border:1px solid #d1d5db;border-radius:6px;background:#f3f4f6;color:#374151;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;padding:0}
+.sidebar button:hover:not(:disabled){background:#e5e7eb}
+.sidebar button:disabled{opacity:.4;cursor:default}
+.sidebar button.playing{background:#e9967a;color:#fff;border-color:#e9967a}
+.controls{display:flex;flex-direction:row;gap:4px;flex-wrap:wrap;justify-content:center}
+.separator{height:1px;background:#d1d5db;margin:2px 0}
+.speed-wrap{display:flex;align-items:center;gap:3px;font-size:11px;text-align:center;justify-content:center}
+.speed-wrap input[type=range]{width:40px;height:4px;accent-color:#1d4ed8}
+.legend{font-size:10px;border:1px solid #d1d5db;border-radius:6px;padding:6px;display:flex;flex-direction:column;gap:3px}
+.leg-item{display:flex;align-items:center;gap:4px}
+.leg-swatch{width:12px;height:12px;border-radius:3px;border:1px solid #9ca3af;flex-shrink:0}
+.leg-foot{font-size:10px;color:#555;text-align:center;margin-top:2px;padding-top:3px;border-top:1px solid #d1d5db}
+
+.info{padding:6px 10px;border:1px solid #d1d5db;border-radius:6px;width:100%;display:flex;flex-wrap:wrap;gap:3px 12px;align-items:baseline;font-size:12px;flex-shrink:0}
+.info .calc{flex:1 1 100%;font-family:menlo,consola,'DejaVu Sans Mono',monospace;font-size:13px;min-height:1.3em}
+.info .meta{display:flex;gap:12px;flex-wrap:wrap}
+.info .meta span{white-space:nowrap}
+</style>
+<script>
+var obj=[
+  {id:0,name:'\u2014',w:0,v:0},
+  {id:1,name:'Corona',w:3,v:2},
+  {id:2,name:'Collar',w:4,v:3},
+  {id:3,name:'Diamante',w:1,v:4},
+  {id:4,name:'Reloj',w:2,v:2},
+  {id:5,name:'Bolsa monedas',w:5,v:5}
+];
+var CAP=5,N=5;
+var dp=[];
+function compute(){
+  for(var i=0;i<=N;i++){dp[i]=[];
+    for(var w=0;w<=CAP;w++){
+      if(i===0||w===0){dp[i][w]={w:0,v:0,from:'init'};}
+      else if(obj[i].w>w){dp[i][w]={w:dp[i-1][w].w,v:dp[i-1][w].v,from:'above'};}
+      else{var ex=dp[i-1][w],ip=dp[i-1][w-obj[i].w],iv=ip.v+obj[i].v,iw=ip.w+obj[i].w;
+        if(iv>ex.v){dp[i][w]={w:iw,v:iv,from:'incl'};}
+        else{dp[i][w]={w:ex.w,v:ex.v,from:ex.v===iv?'tie':'above'};}}}}
+}
+compute();
+
+var steps=[];
+function buildSteps(){
+  var s0={desc:'Inicializaci\u00f3n: fila 0 y columna 0 se llenan con (0,0).',hl:[],newCell:null};
+  for(var w=0;w<=CAP;w++)s0.hl.push({i:0,w:w,cls:'init'});
+  for(var i=1;i<=N;i++)s0.hl.push({i:i,w:0,cls:'init'});
+  steps.push(s0);
+  for(var i=1;i<=N;i++){for(var w=1;w<=CAP;w++){
+    var d=dp[i][w],s={desc:'',hl:[{i:i,w:w,cls:'current'}],newCell:{i:i,w:w,data:d},src:[]};
+    s.hl.push({i:i-1,w:w,cls:'source'});s.src.push({i:i-1,w:w,data:dp[i-1][w]});
+    if(d.from==='incl'||d.from==='tie'){var sw=w-obj[i].w;s.hl.push({i:i-1,w:sw,cls:'source'});s.src.push({i:i-1,w:sw,data:dp[i-1][sw]});}
+    if(d.from==='above'){s.desc='Objeto '+i+' ('+obj[i].name+', p='+obj[i].w+', v='+obj[i].v+') cap '+w+': no entra \u2192 hereda ('+d.w+','+d.v+')';}
+    else if(d.from==='tie'){var ex=dp[i-1][w];s.desc='Objeto '+i+' ('+obj[i].name+', p='+obj[i].w+', v='+obj[i].v+') cap '+w+': max(sin:('+ex.w+','+ex.v+'), con:'+obj[i].v+'+('+s.src[1].data.w+','+s.src[1].data.v+')=('+(s.src[1].data.w+obj[i].w)+','+(s.src[1].data.v+obj[i].v)+')) \u2192 empate, ('+d.w+','+d.v+')';}
+    else{s.desc='Objeto '+i+' ('+obj[i].name+', p='+obj[i].w+', v='+obj[i].v+') cap '+w+': max(sin:('+s.src[0].data.w+','+s.src[0].data.v+'), con:'+obj[i].v+'+('+s.src[1].data.w+','+s.src[1].data.v+')=('+(s.src[1].data.w+obj[i].w)+','+(s.src[1].data.v+obj[i].v)+')) = ('+d.w+','+d.v+')';}
+    steps.push(s);
+  }}
+  var opt=dp[N][CAP];
+  var last={desc:'Soluci\u00f3n \u00f3ptima: peso total '+opt.w+', valor total '+opt.v+'.',hl:[{i:N,w:CAP,cls:'optimal'}],newCell:null};
+  steps.push(last);
+}
+buildSteps();
+
+var currentStep=-1,filled={},isPlaying=false,playTimer=null,speedVal=1500;
+var mode='guided',intRow=1,intCol=1,intScore=0,intTotal=0;
+var nextBtn,prevBtn,firstBtn,skipBtn,speedSlider,speedLabel,descEl,stepEl,scoreEl,btnIncl,btnExcl,legendEl;
+
+function initDom(){
+  nextBtn=document.getElementById('btnNext');nextBtn.addEventListener('click',goNext);
+  prevBtn=document.getElementById('btnPrev');prevBtn.addEventListener('click',goPrev);
+  firstBtn=document.getElementById('btnFirst');firstBtn.addEventListener('click',goFirst);
+  skipBtn=document.getElementById('btnSkip');skipBtn.addEventListener('click',hdlSkip);
+  speedSlider=document.getElementById('speedSlider');speedLabel=document.getElementById('speedLabel');
+  speedSlider.addEventListener('input',function(){speedVal=3400-parseInt(this.value);speedLabel.textContent=(1000/speedVal).toFixed(1)+' p/s';if(isPlaying){stopPlay();startPlay();}});
+  descEl=document.getElementById('desc');stepEl=document.getElementById('stepCounter');
+  scoreEl=document.getElementById('score');
+  btnIncl=document.getElementById('btnIncl');btnIncl.addEventListener('click',function(){tryChoice('incl');});
+  btnExcl=document.getElementById('btnExcl');btnExcl.addEventListener('click',function(){tryChoice('excl');});
+  legendEl=document.getElementById('legendEl');
+  document.getElementById('btnGuided').addEventListener('click',function(){setMode('guided');});
+  document.getElementById('btnInt').addEventListener('click',function(){setMode('interactive');});
+}
+
+function updateBtns(){
+  var atS=currentStep<=0,atE=currentStep>=steps.length-1,hasS=steps.length>0;
+  firstBtn.disabled=atS||!hasS||isPlaying;
+  prevBtn.disabled=atS||!hasS||isPlaying;
+  nextBtn.disabled=(!hasS)||(atE)||isPlaying;
+  skipBtn.disabled=!hasS||atE;
+}
+
+function render(idx){
+  if(idx<0||idx>=steps.length){descEl.textContent='Inicializaci\u00f3n completada.';stepEl.textContent='Paso \u2014 / '+steps.length;updateBtns();return;}
+  var s=steps[idx];
+  document.querySelectorAll('.cell').forEach(function(el){if(el.classList.contains('hdr')||el.classList.contains('row-hdr'))return;el.className='cell';});
+  if(s.hl)s.hl.forEach(function(h){var el=document.getElementById('c'+h.i+'_'+h.w);if(el)el.classList.add(h.cls);});
+  if(s.newCell){var n=s.newCell;filled[n.i+'_'+n.w]=true;var el=document.getElementById('c'+n.i+'_'+n.w);if(el){el.textContent=n.data.w+','+n.data.v;el.classList.add('current');}}
+  Object.keys(filled).forEach(function(k){
+    if(s.newCell&&k===s.newCell.i+'_'+s.newCell.w)return;
+    var el=document.getElementById('c'+k);
+    if(el&&el.classList.contains('cell')&&el.classList.length===1&&!el.textContent){var parts=k.split('_');var d=dp[parseInt(parts[0])][parseInt(parts[1])];if(d)el.textContent=d.w+','+d.v;}
+  });
+  for(var ww=0;ww<=CAP;ww++)fillIfInit(0,ww);
+  for(var ii=1;ii<=N;ii++)fillIfInit(ii,0);
+  descEl.textContent=s.desc;stepEl.textContent='Paso '+(idx+1)+' / '+steps.length;updateBtns();
+}
+function fillIfInit(i,w){var el=document.getElementById('c'+i+'_'+w);if(!el||el.textContent)return;var d=dp[i][w];if(d&&(i===0||w===0)){el.textContent=d.w+','+d.v;el.classList.add('init');filled[i+'_'+w]=true;}}
+function goTo(n){n=Math.max(0,Math.min(n,steps.length-1));currentStep=n;render(n);}
+function goNext(){if(currentStep<steps.length-1)goTo(currentStep+1);}
+function goPrev(){if(currentStep<=0)return;var s=steps[currentStep];if(s&&s.newCell){var k=s.newCell.i+'_'+s.newCell.w;delete filled[k];var el=document.getElementById('c'+k);if(el){el.textContent='\u2014';el.className='cell empty';}}goTo(currentStep-1);}
+function goFirst(){stopPlay();if(mode==='interactive')resetInt();else resetTable();}
+function resetTable(){
+  filled={};
+  document.querySelectorAll('.cell').forEach(function(el){el.className='cell';el.textContent='';var parts=el.id.substring(1).split('_');var i=parseInt(parts[0]),w=parseInt(parts[1]);if(i===0||w===0){el.classList.add('init');el.textContent='0,0';filled[i+'_'+w]=true;}else{el.classList.add('empty');el.textContent='\u2014';}});
+  currentStep=-1;descEl.textContent='Tablero limpio. Hacer clic en \u25B6 para comenzar.';stepEl.textContent='Paso \u2014 / '+steps.length;updateBtns();
+}
+
+function setMode(m){
+  mode=m;
+  document.getElementById('btnGuided').classList.toggle('active',m==='guided');
+  document.getElementById('btnInt').classList.toggle('active',m==='interactive');
+  stopPlay();
+  var isG=(m==='guided');
+  btnIncl.style.display=isG?'none':'inline-flex';
+  btnExcl.style.display=isG?'none':'inline-flex';
+  legendEl.style.display=isG?'flex':'none';
+  document.getElementById('intLegend').style.display=isG?'none':'flex';
+  scoreEl.style.display=isG?'none':'inline';
+  speedSlider.parentElement.style.display=isG?'flex':'none';
+  skipBtn.style.display=isG?'inline-flex':'none';
+  nextBtn.style.display=isG?'inline-flex':'none';
+  prevBtn.style.display=isG?'inline-flex':'none';
+  if(isG){resetTable();}
+  else{resetInt();renderInteractive();}
+}
+
+function resetInt(){
+  filled={};
+  document.querySelectorAll('.cell').forEach(function(el){el.className='cell';el.textContent='';var parts=el.id.substring(1).split('_');var i=parseInt(parts[0]),w=parseInt(parts[1]);if(i===0||w===0){el.classList.add('init');el.textContent='0,0';filled[i+'_'+w]=true;}else{el.classList.add('empty');el.textContent='\u2014';}});
+  intRow=1;intCol=1;intScore=0;intTotal=0;scoreEl.textContent='Aciertos: 0/0';
+}
+function updateBtnsInt(){
+  var done=intRow>N||(intRow===N&&intCol>CAP);
+  nextBtn.disabled=true;prevBtn.disabled=true;firstBtn.disabled=false;
+  skipBtn.disabled=true;skipBtn.style.display='none';
+  if(done){btnIncl.style.display='none';btnExcl.style.display='none';document.getElementById('intLegend').style.display='none';}
+}
+function renderInteractive(){
+  document.querySelectorAll('.cell').forEach(function(el){if(!el.classList.contains('init')){el.className='cell';el.textContent='';}});
+  Object.keys(filled).forEach(function(k){var el=document.getElementById('c'+k);if(el&&!el.classList.contains('init')&&!el.classList.contains('current')&&!el.textContent){var parts=k.split('_');var d=dp[parseInt(parts[0])][parseInt(parts[1])];if(d)el.textContent=d.w+','+d.v;}});
+  for(var ww=0;ww<=CAP;ww++)fillIfInit(0,ww);
+  for(var ii=1;ii<=N;ii++)fillIfInit(ii,0);
+  var cel=document.getElementById('c'+intRow+'_'+intCol);if(cel){cel.classList.add('current');}
+  var o=obj[intRow];var done=intRow>N||(intRow===N&&intCol>CAP);
+  if(done){descEl.textContent='Completado. Soluci\u00f3n \u00f3ptima: ('+dp[N][CAP].w+','+dp[N][CAP].v+').';scoreEl.textContent='Aciertos: '+intScore+'/'+intTotal;}
+  else{descEl.textContent='Fila '+intRow+' (objeto: '+o.name+', p='+o.w+', v='+o.v+'), capacidad '+intCol+'. \u00bfIncluir el objeto?';}
+  updateBtnsInt();
+}
+function tryChoice(ch){
+  var d=dp[intRow][intCol];var o=obj[intRow];intTotal++;
+  var correct=(ch==='incl'&&(d.from==='incl'||d.from==='tie'))||(ch==='excl'&&(d.from==='above'||d.from==='tie'));
+  var cel=document.getElementById('c'+intRow+'_'+intCol);var k=intRow+'_'+intCol;
+  cel.textContent=d.w+','+d.v;filled[k]=true;
+  if(correct){if(d.from==='tie')descEl.textContent='Correcto, empate: ('+d.w+','+d.v+'). Ambas opciones dan igual.';else descEl.textContent='Correcto. '+(ch==='incl'?'Incluir \u2192 ':'No incluir \u2192 ')+'('+d.w+','+d.v+').';cel.className='cell correct';intScore++;}
+  else{cel.className='cell wrong';if(o.w>intCol&&ch==='incl')descEl.textContent='No puede incluir: peso '+o.w+' > capacidad '+intCol+'. Valor correcto: ('+d.w+','+d.v+').';else if(d.from==='above')descEl.textContent='No conven\u00eda incluir. Se hereda de arriba: ('+d.w+','+d.v+').';else descEl.textContent='Conven\u00eda incluir el objeto. Valor correcto: ('+d.w+','+d.v+').';}
+  scoreEl.textContent='Aciertos: '+intScore+'/'+intTotal;
+  if(intCol===CAP){intRow++;intCol=1;}else{intCol++;}
+  if(intRow<=N)setTimeout(renderInteractive,1200);else setTimeout(function(){renderInteractive();},1200);
+}
+
+function tick(){if(!isPlaying)return;if(currentStep>=steps.length-1){stopPlay();return;}goNext();playTimer=setTimeout(tick,speedVal);}
+function startPlay(){if(currentStep>=steps.length-1)goFirst();isPlaying=true;skipBtn.textContent='\u23F8';skipBtn.classList.add('playing');updateBtns();playTimer=setTimeout(tick,speedVal);}
+function stopPlay(){isPlaying=false;if(playTimer){clearTimeout(playTimer);playTimer=null;}skipBtn.textContent='>>';skipBtn.classList.remove('playing');updateBtns();}
+function hdlSkip(){if(isPlaying){stopPlay();return;}if(currentStep>=steps.length-1)goFirst();startPlay();}
+document.addEventListener('keydown',function(e){
+  if(mode==='guided'){
+    if(e.key==='ArrowRight'){e.preventDefault();goNext();}
+    if(e.key==='ArrowLeft'){e.preventDefault();goPrev();}
+    if(e.key==='Home'){e.preventDefault();goFirst();}
+    if(e.key===' '||e.key==='End'){e.preventDefault();hdlSkip();}
+  }else{
+    if(e.key==='i'||e.key==='I'){e.preventDefault();tryChoice('incl');}
+    if(e.key==='e'||e.key==='E'){e.preventDefault();tryChoice('excl');}
+    if(e.key==='Home'){e.preventDefault();goFirst();}
+  }
+});
+window.addEventListener('load',function(){
+  initDom();
+  document.querySelectorAll('.cell').forEach(function(el){var parts=el.id.substring(1).split('_');var i=parseInt(parts[0]),w=parseInt(parts[1]);if(i===0||w===0){el.classList.add('init');el.textContent='0,0';filled[i+'_'+w]=true;}else{el.classList.add('empty');el.textContent='\u2014';}});
+  goFirst();
+});
+</script>
+</head>
+<body>
+<div class="applet">
+  <div class="header">
+    <span>Mochila \u2014 Programaci\u00f3n Din\u00e1mica (Bottom-Up)</span>
+    <div class="mode-toggle">
+      <button id="btnGuided" class="active">Guiado</button>
+      <button id="btnInt">Interactivo</button>
+    </div>
+  </div>
+  <div class="main">
+    <div class="matrix-wrap">
+      <div class="matrix" id="matrix">
+        <div class="hdr">Obj \ Cap</div>
+        <div class="hdr">0</div><div class="hdr">1</div><div class="hdr">2</div><div class="hdr">3</div><div class="hdr">4</div><div class="hdr">5</div>
+        <div class="row-hdr">0</div>
+        <div class="cell" id="c0_0"></div><div class="cell" id="c0_1"></div><div class="cell" id="c0_2"></div><div class="cell" id="c0_3"></div><div class="cell" id="c0_4"></div><div class="cell" id="c0_5"></div>
+        <div class="row-hdr">1</div>
+        <div class="cell" id="c1_0"></div><div class="cell" id="c1_1"></div><div class="cell" id="c1_2"></div><div class="cell" id="c1_3"></div><div class="cell" id="c1_4"></div><div class="cell" id="c1_5"></div>
+        <div class="row-hdr">2</div>
+        <div class="cell" id="c2_0"></div><div class="cell" id="c2_1"></div><div class="cell" id="c2_2"></div><div class="cell" id="c2_3"></div><div class="cell" id="c2_4"></div><div class="cell" id="c2_5"></div>
+        <div class="row-hdr">3</div>
+        <div class="cell" id="c3_0"></div><div class="cell" id="c3_1"></div><div class="cell" id="c3_2"></div><div class="cell" id="c3_3"></div><div class="cell" id="c3_4"></div><div class="cell" id="c3_5"></div>
+        <div class="row-hdr">4</div>
+        <div class="cell" id="c4_0"></div><div class="cell" id="c4_1"></div><div class="cell" id="c4_2"></div><div class="cell" id="c4_3"></div><div class="cell" id="c4_4"></div><div class="cell" id="c4_5"></div>
+        <div class="row-hdr">5</div>
+        <div class="cell" id="c5_0"></div><div class="cell" id="c5_1"></div><div class="cell" id="c5_2"></div><div class="cell" id="c5_3"></div><div class="cell" id="c5_4"></div><div class="cell" id="c5_5"></div>
+      </div>
+    </div>
+    <div class="sidebar">
+      <div class="controls">
+        <button id="btnFirst" title="Ir al inicio">\u23EE</button>
+        <button id="btnPrev" title="Paso anterior">\u25C0</button>
+        <button id="btnNext" title="Paso siguiente">\u25B6</button>
+        <button id="btnSkip" title="Reproducir/Pausar">>></button>
+        <button class="btn-incl" id="btnIncl" title="Incluir objeto">+</button>
+        <button class="btn-excl" id="btnExcl" title="No incluir">\u2212</button>
+      </div>
+      <div class="speed-wrap">
+        <label for="speedSlider">Vel:</label>
+        <input type="range" id="speedSlider" min="400" max="3000" value="1500" step="100">
+        <span id="speedLabel">0.7 p/s</span>
+      </div>
+      <div class="separator"></div>
+      <div class="legend" id="legendEl">
+        <div class="leg-item"><span class="leg-swatch" style="background:#f0fdf4;border-color:#bbf7d0"></span> Inicial</div>
+        <div class="leg-item"><span class="leg-swatch" style="background:#fef3c7;border-color:#f59e0b"></span> Calculando</div>
+        <div class="leg-item"><span class="leg-swatch" style="background:#e1f5ff;border-color:#3b82f6"></span> Origen</div>
+        <div class="leg-item"><span class="leg-swatch" style="background:#d1fae5;border-color:#10b981"></span> \u00d3ptimo</div>
+      </div>
+      <div class="legend" id="intLegend">
+        <div class="leg-item"><span class="leg-swatch" style="background:#fef3c7;border-color:#f59e0b"></span> Celda actual</div>
+        <div class="leg-item"><span class="leg-swatch" style="background:#d1fae5;border-color:#10b981"></span> Acierto</div>
+        <div class="leg-item"><span class="leg-swatch" style="background:#ffe1e1;border-color:#e9967a"></span> Error</div>
+        <div class="leg-foot">+ Incluir &nbsp;|&nbsp; \u2212 No incluir</div>
+      </div>
+    </div>
+  </div>
+  <div class="info">
+    <div class="calc" id="desc">Hacer clic en \u25B6 para comenzar.</div>
+    <div class="meta">
+      <span id="stepCounter">Paso \u2014 / \u2014</span>
+      <span id="score" style="display:none;color:#1d4ed8;font-weight:600">Aciertos: 0/0</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

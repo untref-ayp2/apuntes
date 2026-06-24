@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg:svg
+   viewBox="0 0 566.45996 277.49719"
+   version="1.1"
+   id="svg22"
+   sodipodi:docname="mochila-problema_light.svg"
+   width="566.45996"
+   height="277.49719"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview22"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.3646154"
+     inkscape:cx="290.92446"
+     inkscape:cy="226.07102"
+     inkscape:window-width="1896"
+     inkscape:window-height="970"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg22" />
+  <svg:defs
+     id="defs1">
+    <svg:style
+       id="style1">
+      .bg { fill: #f0f2f5; }
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 18px; text-anchor: middle; fill: #333333; font-weight: 600; }
+      .subtitle { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 12px; text-anchor: middle; fill: #555555; }
+      .item-name { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 13px; fill: #333333; }
+      .item-attr { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 11px; fill: #555555; }
+      .backpack-body { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2.5; }
+      .backpack-detail { fill: #c4dff5; stroke: #4682b4; stroke-width: 1.5; }
+      .strap { fill: none; stroke: #5c4033; stroke-width: 3; stroke-linecap: round; }
+      .separator { stroke: #cccccc; stroke-width: 1; stroke-dasharray: 4,4; fill: none; }
+      .icon-crown { fill: #fff4e1; stroke: #f6ad55; stroke-width: 1.5; }
+      .icon-collar { fill: #ffe1e1; stroke: #e9967a; stroke-width: 1.5; }
+      .icon-diamond { fill: #e1f5ff; stroke: #4682b4; stroke-width: 1.5; }
+      .icon-watch { fill: #e1ffe1; stroke: #2e8b57; stroke-width: 1.5; }
+      .icon-bag { fill: #f5e1ff; stroke: #9f7aea; stroke-width: 1.5; }
+    </svg:style>
+  </svg:defs>
+  <svg:rect
+     class="bg"
+     width="99.954933%"
+     height="99.92173%"
+     rx="7.9963946"
+     id="rect1"
+     x="0"
+     y="0"
+     style="stroke-width:0.999383" />
+  <!-- ===== Mochila (lado izquierdo) ===== -->
+  <!-- Cuerpo principal -->
+  <svg:path
+     class="backpack-body"
+     d="m 35,84.197287 c 0,-13 10,-20 30,-20 h 80 c 20,0 30,7 30,20 v 89.999993 c 0,10 -10,15 -30,15 H 65 c -20,0 -30,-5 -30,-15 z"
+     id="path1" />
+  <!-- Solapa -->
+  <svg:path
+     class="backpack-body"
+     d="m 35,84.197287 c 0,-15 70,-25 70,-27 0,2 70,12 70,27 v 10 H 35 Z"
+     id="path2" />
+  <!-- Bolsillo frontal -->
+  <svg:rect
+     class="backpack-detail"
+     x="55"
+     y="124.1973"
+     width="100"
+     height="45"
+     rx="5"
+     id="rect2" />
+  <!-- Hebilla -->
+  <svg:rect
+     class="backpack-detail"
+     x="90"
+     y="104.1973"
+     width="30"
+     height="14"
+     rx="3"
+     id="rect3" />
+  <svg:rect
+     x="95"
+     y="106.1973"
+     width="8"
+     height="10"
+     rx="2"
+     fill="#4682b4"
+     id="rect4" />
+  <!-- Correas -->
+  <svg:path
+     class="strap"
+     d="m 55,67.197287 q 5,-18 10,-16"
+     id="path4" />
+  <svg:path
+     class="strap"
+     d="m 140,67.197287 q 5,-18 10,-16"
+     id="path5" />
+  <svg:text
+     class="title"
+     x="105"
+     y="214.1973"
+     font-size="14px"
+     font-weight="600"
+     id="text5">MOCHILA</svg:text>
+  <svg:text
+     class="subtitle"
+     x="105"
+     y="231.1973"
+     id="text6">Capacidad: 5</svg:text>
+  <!-- ===== Objetos (lado derecho) ===== -->
+  <svg:line
+     class="separator"
+     x1="200"
+     y1="59.197289"
+     x2="200"
+     y2="299.1973"
+     id="line6" />
+  <!-- Item 1: Corona (Peso: 3, Valor: 2) -->
+  <!-- Item 2: Collar (Peso: 4, Valor: 3) -->
+  <!-- Item 3: Diamante (Peso: 1, Valor: 4) -->
+  <!-- Item 4: Reloj (Peso: 2, Valor: 2) -->
+  <!-- Item 5: Bolsa con monedas (Peso: 5, Valor: 5) -->
+  <!-- Etiquetas de columna -->
+  <svg:g
+     id="g44"
+     transform="translate(-3.978123e-7,9.1972875)">
+    <svg:g
+       id="g39">
+      <svg:g
+         id="g38">
+        <svg:g
+           id="g37">
+          <svg:path
+             class="icon-crown"
+             d="m 218,82 v -8 l 5,4 5,-8 5,8 5,-4 v 8 z"
+             id="path6" />
+          <svg:rect
+             x="220"
+             y="78"
+             width="16"
+             height="4"
+             fill="#f6ad55"
+             id="rect6" />
+        </svg:g>
+        <svg:text
+           class="item-name"
+           x="248"
+           y="84.729004"
+           id="text7">Corona</svg:text>
+      </svg:g>
+      <svg:text
+         class="item-attr"
+         x="422"
+         y="84.725586"
+         id="text8"><svg:tspan
+           sodipodi:role="line"
+           id="tspan23"
+           x="422"
+           y="84.725586">Peso: 3 - Valor: 2</svg:tspan></svg:text>
+    </svg:g>
+    <svg:g
+       id="g40">
+      <svg:g
+         id="g27"
+         transform="translate(-5,-6.5500488)">
+        <svg:ellipse
+           class="icon-collar"
+           cx="232"
+           cy="118"
+           rx="9"
+           ry="6"
+           id="ellipse8" />
+        <svg:circle
+           cx="232"
+           cy="128"
+           r="3"
+           fill="#e9967a"
+           id="circle8" />
+        <svg:text
+           class="item-name"
+           x="252"
+           y="123"
+           id="text9">Collar</svg:text>
+      </svg:g>
+      <svg:text
+         class="item-attr"
+         x="421.89258"
+         y="124.29419"
+         id="text10">Peso: 4 - <nbsp /><nbsp />Valor: 3</svg:text>
+    </svg:g>
+    <svg:g
+       id="g41">
+      <svg:g
+         id="g28"
+         transform="translate(-3.7737188,-11.152983)">
+        <svg:polygon
+           class="icon-diamond"
+           points="12,2 22,14 12,26 2,14 "
+           id="polygon10"
+           transform="translate(220,148)" />
+        <svg:text
+           class="item-name"
+           x="252"
+           y="163"
+           id="text11">Diamante</svg:text>
+      </svg:g>
+      <svg:text
+         class="item-attr"
+         x="421.5918"
+         y="163.86279"
+         id="text12">Peso: 1 - <nbsp /><nbsp />Valor: 4</svg:text>
+    </svg:g>
+    <svg:g
+       id="g42">
+      <svg:g
+         id="g29"
+         transform="translate(-1.75,-6.1628418)">
+        <svg:circle
+           class="icon-watch"
+           cx="232"
+           cy="200"
+           r="9"
+           id="circle12" />
+        <svg:line
+           x1="232"
+           y1="191"
+           x2="232"
+           y2="188"
+           stroke="#2e8b57"
+           stroke-width="2"
+           stroke-linecap="round"
+           id="line12" />
+        <svg:line
+           x1="223"
+           y1="200"
+           x2="220"
+           y2="200"
+           stroke="#2e8b57"
+           stroke-width="2"
+           stroke-linecap="round"
+           id="line13" />
+        <svg:line
+           x1="241"
+           y1="200"
+           x2="244"
+           y2="200"
+           stroke="#2e8b57"
+           stroke-width="2"
+           stroke-linecap="round"
+           id="line14" />
+        <svg:line
+           x1="232"
+           y1="200"
+           x2="232"
+           y2="195"
+           stroke="#333333"
+           stroke-width="1"
+           id="line15" />
+        <svg:line
+           x1="232"
+           y1="200"
+           x2="236"
+           y2="200"
+           stroke="#333333"
+           stroke-width="1"
+           id="line16" />
+        <svg:text
+           class="item-name"
+           x="252"
+           y="203"
+           id="text16">Reloj</svg:text>
+      </svg:g>
+      <svg:text
+         class="item-attr"
+         x="422"
+         y="203.4314"
+         id="text17">Peso: 2 - <nbsp /><nbsp />Valor: 2</svg:text>
+    </svg:g>
+    <svg:text
+       x="232"
+       y="249"
+       font-family="ui-sans-serif, system-ui, sans-serif"
+       font-size="9px"
+       text-anchor="middle"
+       fill="#9f7aea"
+       font-weight="bold"
+       id="text18">$</svg:text>
+    <svg:g
+       id="g43">
+      <svg:g
+         id="g30"
+         transform="translate(-2,-12.42345)">
+        <svg:path
+           class="icon-bag"
+           d="m 222,234 c 0,-4 4,-6 10,-6 6,0 10,2 10,6 l 2,4 v 14 c 0,2 -12,4 -24,2 v -16 z"
+           id="path17" />
+        <svg:text
+           class="item-name"
+           x="252"
+           y="243"
+           id="text19">Bolsa con monedas</svg:text>
+      </svg:g>
+      <svg:text
+         class="item-attr"
+         x="421.94629"
+         y="243"
+         id="text20"><svg:tspan
+           sodipodi:role="line"
+           id="tspan25"
+           x="421.94629"
+           y="243">Peso: 5 - Valor: 5</svg:tspan></svg:text>
+    </svg:g>
+    <svg:text
+       class="subtitle"
+       x="252.95142"
+       y="58"
+       text-anchor="start"
+       id="text21">Objeto</svg:text>
+    <svg:text
+       class="subtitle"
+       x="485.823"
+       y="58"
+       text-anchor="end"
+       id="text22">Atributos</svg:text>
+  </svg:g>
+</svg:svg>
