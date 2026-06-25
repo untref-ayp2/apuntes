@@ -55,7 +55,7 @@ body{background:#1a1b2e;color:#e0e0e0;font-family:system-ui,-apple-system,sans-s
 .leg-foot{font-size:10px;color:#9ca3af;text-align:center;margin-top:2px;padding-top:3px;border-top:1px solid #d1d5db}
 
 .info{padding:6px 10px;border:1px solid #374151;border-radius:6px;width:100%;display:flex;flex-wrap:wrap;gap:3px 12px;align-items:baseline;font-size:12px;flex-shrink:0}
-.info .calc{flex:1 1 100%;font-family:menlo,consola,'DejaVu Sans Mono',monospace;font-size:13px;min-height:1.3em}
+.info .calc{flex:1 1 100%;font-family:system-ui,-apple-system,sans-serif;font-size:13px;min-height:1.3em}
 .info .meta{display:flex;gap:12px;flex-wrap:wrap}
 .info .meta span{white-space:nowrap}
 </style>
@@ -235,7 +235,7 @@ window.addEventListener('load',function(){
 <body>
 <div class="applet">
   <div class="header">
-    <span>Mochila \u2014 Programaci\u00f3n Din\u00e1mica (Bottom-Up)</span>
+    <span>Mochila — Programación Dinámica (Bottom-Up)</span>
     <div class="mode-toggle">
       <button id="btnGuided" class="active">Guiado</button>
       <button id="btnInt">Interactivo</button>
@@ -262,12 +262,12 @@ window.addEventListener('load',function(){
     </div>
     <div class="sidebar">
       <div class="controls">
-        <button id="btnFirst" title="Ir al inicio">\u23EE</button>
-        <button id="btnPrev" title="Paso anterior">\u25C0</button>
-        <button id="btnNext" title="Paso siguiente">\u25B6</button>
+        <button id="btnFirst" title="Ir al inicio">⏮</button>
+        <button id="btnPrev" title="Paso anterior">◀</button>
+        <button id="btnNext" title="Paso siguiente">▶</button>
         <button id="btnSkip" title="Reproducir/Pausar">>></button>
         <button class="btn-incl" id="btnIncl" title="Incluir objeto">+</button>
-        <button class="btn-excl" id="btnExcl" title="No incluir">\u2212</button>
+        <button class="btn-excl" id="btnExcl" title="No incluir">−</button>
       </div>
       <div class="speed-wrap">
         <label for="speedSlider">Vel:</label>
@@ -281,18 +281,18 @@ window.addEventListener('load',function(){
         <div class="leg-item"><span class="leg-swatch" style="background:#1e3a5f;border-color:#60a5fa"></span> Origen</div>
         <div class="leg-item"><span class="leg-swatch" style="background:#0f3a2b;border-color:#10b981"></span> \u00d3ptimo</div>
       </div>
-      <div class="legend" id="intLegend">
+      <div class="legend" id="intLegend" style="display:none">
         <div class="leg-item"><span class="leg-swatch" style="background:#5a4a00;border-color:#f59e0b"></span> Celda actual</div>
         <div class="leg-item"><span class="leg-swatch" style="background:#0f3a2b;border-color:#10b981"></span> Acierto</div>
         <div class="leg-item"><span class="leg-swatch" style="background:#5c2020;border-color:#fc8181"></span> Error</div>
-        <div class="leg-foot">+ Incluir &nbsp;|&nbsp; \u2212 No incluir</div>
+        <div class="leg-foot">+ Incluir &nbsp;|&nbsp; − No incluir</div>
       </div>
     </div>
   </div>
   <div class="info">
-    <div class="calc" id="desc">Hacer clic en \u25B6 para comenzar.</div>
+    <div class="calc" id="desc">Hacer clic en ▶ para comenzar.</div>
     <div class="meta">
-      <span id="stepCounter">Paso \u2014 / \u2014</span>
+      <span id="stepCounter">Paso — / —</span>
       <span id="score" style="display:none;color:#60a5fa;font-weight:600">Aciertos: 0/0</span>
     </div>
   </div>
