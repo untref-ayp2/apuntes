@@ -338,17 +338,13 @@ align: center
 
 Seleccionar el tipo de montículo (mínimo o máximo), ingresar uno o más enteros separados por coma y presionar Enter para encolarlos. Usar **>** para procesar una operación, **>>** para procesar todas las pendientes, o **Remover cima** para eliminar la raíz. Las teclas **<** y **>** navegan entre pasos, **<<** deshace la última inserción, y Espacio inicia/pausa la reproducción automática. Solo se admiten enteros de hasta 3 cifras (±999).
 
-:::{iframe} /applets/3-estructuras-de-datos/3-11-monticulo-binario/heap-visualizer_light.html
-:width: 100%
-:height: 680px
-:class: only-light-mode
-:::
+<div class="only-html">
 
-:::{iframe} /applets/3-estructuras-de-datos/3-11-monticulo-binario/heap-visualizer_dark.html
-:width: 100%
-:height: 680px
-:class: only-dark-mode
-:::
+<iframe src="/applets/3-estructuras-de-datos/3-11-monticulo-binario/heap-visualizer_light.html" width="100%" height="680px" class="only-light-mode"></iframe>
+
+<iframe src="/applets/3-estructuras-de-datos/3-11-monticulo-binario/heap-visualizer_dark.html" width="100%" height="680px" class="only-dark-mode"></iframe>
+
+</div>
 
 ## Ejercicios
 

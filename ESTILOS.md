@@ -368,26 +368,25 @@ Los applets solo se renderizan en HTML, no en PDF. Por eso **todo el bloque de i
 debe envolverse en `<div class="only-html">`** para que el build PDF lo elimine completamente
 (vía `strip_only_html_blocks()`).
 
+Usar `<iframe>` HTML crudo, **no** `{iframe}` de MyST. MyST v1.9.0 no preserva
+el `src` de los `{iframe}` en el AST, generando nodos vacíos.
+
 ````markdown
 <div class="only-html">
 
-```{iframe} /applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-preorden_light.html
-:width: 100%
-:height: 560px
-:class: only-light-mode
-```
+<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-preorden_light.html" width="100%" height="560px" class="only-light-mode"></iframe>
 
-```{iframe} /applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-preorden_dark.html
-:width: 100%
-:height: 560px
-:class: only-dark-mode
-```
+<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-preorden_dark.html" width="100%" height="560px" class="only-dark-mode"></iframe>
 
 </div>
 ````
 
-La ruta del `{iframe}` es absoluta desde la raíz del sitio (`/applets/...`).
+La ruta del `src` es absoluta desde la raíz del sitio (`/applets/...`).
+No usar `{iframe}` ni `:::` (MyST no lo procesa correctamente).
 No usar query strings para parametrizar el applet.
+
+Para GitHub Pages, el deploy reemplaza `/applets/` por `/apuntes/applets/` en los HTML generados
+porque MyST no aplica `BASE_URL` a URLs dentro de `<iframe>`.
 
 ### `myst.yml`
 

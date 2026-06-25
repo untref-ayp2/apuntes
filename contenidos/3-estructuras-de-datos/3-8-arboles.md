@@ -150,17 +150,9 @@ FIN FUNCION
 
 En el siguiente applet interactivo se puede seleccionar entre los tres recorridos (Preorden, Inorden, Postorden). Se puede avanzar o retroceder paso a paso, ir al inicio, o reproducir automáticamente. Cuando el nodo se pinta de amarillo significa que se llamó a la función con ese nodo y cuando se pinta de verde significa que el nodo fue procesado.
 
-```{iframe} /applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol_light.html
----
-class: only-light-mode
----
-```
+<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol_light.html" width="100%" height="520px" class="only-light-mode"></iframe>
 
-```{iframe} /applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol_dark.html
----
-class: only-dark-mode
----
-```
+<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol_dark.html" width="100%" height="520px" class="only-dark-mode"></iframe>
 
 </div>
 

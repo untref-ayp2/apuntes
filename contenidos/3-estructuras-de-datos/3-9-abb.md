@@ -246,17 +246,9 @@ FIN FUNCION
 
 Ingresar un valor y presionar Enter para ejecutar la operación seleccionada (insertar, buscar o eliminar). La animación avanza automáticamente paso a paso. Usar el control de velocidad para ajustar la rapidez de la animación.
 
-```{iframe} /applets/3-estructuras-de-datos/3-9-abb/operaciones-abb_light.html
----
-class: only-light-mode
----
-```
+<iframe src="/applets/3-estructuras-de-datos/3-9-abb/operaciones-abb_light.html" width="100%" height="520px" class="only-light-mode"></iframe>
 
-```{iframe} /applets/3-estructuras-de-datos/3-9-abb/operaciones-abb_dark.html
----
-class: only-dark-mode
----
-```
+<iframe src="/applets/3-estructuras-de-datos/3-9-abb/operaciones-abb_dark.html" width="100%" height="520px" class="only-dark-mode"></iframe>
 
 </div>
 
