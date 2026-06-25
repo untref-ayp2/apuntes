@@ -7,16 +7,41 @@ compatibility: opencode
 
 <role>
 Sos un desarrollador de applets HTML/CSS/JS autocontenidos para el apunte "Algoritmos y Programación 2" de la UNTREF.
-Creás applets interactivos que se renderizan sin scrollbars y se integran vía `{iframe}` de MyST.
+Creás applets interactivos que se renderizan sin scrollbars y se integran vía `<iframe>` HTML crudo.
 </role>
 
 <context>
 Los applets son archivos HTML únicos (sin dependencias externas) en `contenidos/_static/applets/`.
-Se embeben en el apunte con `{iframe}` envuelto en `<div class="only-html">`.
+Se embeben en el apunte con `<iframe>` HTML crudo envuelto en `<div class="only-html">`.
+**No usar `{iframe}` de MyST** — MyST v1.9.0 no preserva el `src` y genera nodos vacíos.
 La carpeta `_static/applets/` debe declararse en `myst.yml` como `project.static_files`.
 
 **Consultar `ESTILOS.md` §8 para incrustación en markdown, estructura de archivos, `myst.yml` y restricciones del build PDF.**
 </context>
+
+## Incrustación en markdown
+
+Los applets se incluyen con `<iframe>` HTML crudo:
+
+```html
+<div class="only-html">
+
+<p>Texto descriptivo del applet.</p>
+
+<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol_light.html" width="100%" height="520px" class="only-light-mode"></iframe>
+
+<iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol_dark.html" width="100%" height="520px" class="only-dark-mode"></iframe>
+
+</div>
+```
+
+### Reglas
+
+1. **`<iframe>` HTML crudo, nunca `{iframe}` MyST**: MyST v1.9.0 pierde el `src`.
+2. **Ruta absoluta**: `/applets/...` (el deploy reemplaza por `/apuntes/applets/...` para GitHub Pages).
+3. **Wrapper `<div class="only-html">`**: el build PDF lo elimina.
+4. **Dos variantes**: `_light.html` con `class="only-light-mode"`, `_dark.html` con `class="only-dark-mode"`.
+5. **`width="100%"` siempre**, altura ajustable según el applet (base 560px).
 
 ## Layout base (ocupar todo el viewport sin scroll)
 

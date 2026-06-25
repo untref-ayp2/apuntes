@@ -51,6 +51,8 @@ jobs:
           cd contenidos && myst build --html --execute --execute-parallel 2
           mkdir -p _build/html/applets
           cp -r _static/applets/. _build/html/applets/
+          # Fix applet paths for GitHub Pages: /applets/ -> /apuntes/applets/
+          find _build/html -name '*.html' -exec sed -i 's|/applets/|/apuntes/applets/|g' {} +
           touch _build/html/.nojekyll
 
       # Upload the book's HTML as an artifact

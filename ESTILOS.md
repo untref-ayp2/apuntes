@@ -371,7 +371,7 @@ debe envolverse en `<div class="only-html">`** para que el build PDF lo elimine 
 Usar `<iframe>` HTML crudo, **no** `{iframe}` de MyST. MyST v1.9.0 no preserva
 el `src` de los `{iframe}` en el AST, generando nodos vacíos.
 
-````markdown
+```markdown
 <div class="only-html">
 
 <iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-preorden_light.html" width="100%" height="560px" class="only-light-mode"></iframe>
@@ -379,7 +379,7 @@ el `src` de los `{iframe}` en el AST, generando nodos vacíos.
 <iframe src="/applets/3-estructuras-de-datos/3-8-arboles/recorridos-arbol-preorden_dark.html" width="100%" height="560px" class="only-dark-mode"></iframe>
 
 </div>
-````
+```
 
 La ruta del `src` es absoluta desde la raíz del sitio (`/applets/...`).
 No usar `{iframe}` ni `:::` (MyST no lo procesa correctamente).
