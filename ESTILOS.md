@@ -97,12 +97,16 @@ Siempre que sea posible, incluir `func main()` y la salida esperada en ```` ```o
 
 ### Pseudocódigo
 
-Usar `{code-block} text` con `:caption:` para pseudocódigo. Seguir este formato:
+Usar `{code-block} text` con `caption:` (estilo YAML) para pseudocódigo.
+
+**Formato obligatorio:**
 
 ````markdown
 ```{code-block} text
-:caption: Algoritmo de selección
-
+---
+caption: Algoritmo de selección
+linenos: true
+---
 FUNCION seleccion(arr)
     n ← LONGITUD(arr)
     PARA i ← 0 HASTA n-1 HACER
@@ -119,19 +123,40 @@ FIN FUNCION
 ```
 ````
 
+**NO usar:**
+
+````markdown
+```{code-block}
+---
+caption: Algoritmo de selección
+---
+FUNCION ...
+```
+
+```{code-block} text
+:caption: Algoritmo de selección
+FUNCION ...
+```
+
+```{code-block} text
+caption: Algoritmo de selección
+FUNCION ...
+```
+````
+
 **Convenciones de pseudocódigo:**
 
-| Elemento       | Sintaxis                                |
-| -------------- | --------------------------------------- |
-| Función        | `FUNCION` / `FIN FUNCION`               |
-| Condicional    | `SI` / `ENTONCES` / `SINO` / `FIN SI`   |
-| Bucle mientras | `MIENTRAS` / `HACER` / `FIN MIENTRAS`   |
-| Bucle para     | `PARA` / `HASTA` / `HACER` / `FIN PARA` |
-| Retorno        | `RETORNAR`                              |
-| Salida         | `SALIR`                                 |
-| Y lógico       | `Y`                                     |
-| Asignación     | `←` (U+2190)                            |
-| Indentación    | 4 espacios                              |
+| Elemento       | Sintaxis                                | NO usar          |
+| -------------- | --------------------------------------- | ---------------- |
+| Función        | `FUNCION` / `FIN FUNCION`               | `function` / `end` |
+| Condicional    | `SI` / `ENTONCES` / `SINO` / `FIN SI`   | `if` / `then` / `else` / `endif` |
+| Bucle mientras | `MIENTRAS` / `HACER` / `FIN MIENTRAS`   | `while` / `do` / `endwhile` |
+| Bucle para     | `PARA` / `HASTA` / `HACER` / `FIN PARA` | `for` / `to` / `endfor` |
+| Retorno        | `RETORNAR`                              | `return` |
+| Salida         | `SALIR`                                 | `exit` |
+| Y lógico       | `Y`                                     | `and` / `&&` |
+| Asignación     | `←` (U+2190)                            | `=` |
+| Indentación    | 4 espacios                              | tabs / 2 espacios |
 
 ______________________________________________________________________
 

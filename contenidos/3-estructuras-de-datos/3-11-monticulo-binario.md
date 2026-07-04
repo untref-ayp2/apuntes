@@ -233,11 +233,10 @@ Para preservar la propiedad de forma, se inserta el nuevo elemento al final del 
 
 Al insertar un elemento en la última posición, se pierde la propiedad de orden, ya que el nuevo elemento podría ser mayor (en un heap de máximos) que su padre. Para restaurarla se ejecuta `upHeap` desde la hoja recién insertada. Esta operación compara el elemento con su padre y, si no se cumple la propiedad de orden, los intercambia, repitiendo el proceso hacia arriba hasta que el elemento encuentra su lugar.
 
-```{code-block}
+```{code-block} text
 ---
 caption: Algoritmo de inserción en un montículo de máximos
 linenos: true
-language: text
 ---
 FUNCION Insertar(elemento)
     pos ← n                 // n es la cantidad actual de elementos
@@ -249,11 +248,10 @@ FIN FUNCION
 
 Con la siguiente función auxiliar se restablece la propiedad de orden, intercambiando el elemento con su padre hasta que cumple la condición del montículo. El padre de la posición $i$ se calcula como $\lfloor (i-1) / 2 \rfloor$.
 
-```{code-block}
+```{code-block} text
 ---
 caption: Algoritmo upHeap
 linenos: true
-language: text
 ---
 FUNCION upHeap(i)
     MIENTRAS i > 0 Y A[i] > A[padre(i)] HACER
@@ -271,11 +269,10 @@ La cima del montículo (el máximo o el mínimo) se encuentra siempre en la posi
 
 Para eliminar la cima se debe preservar la propiedad de forma: se reemplaza la raíz por la última hoja del árbol (decrementando el tamaño) y luego se ejecuta `downHeap` desde la raíz para restaurar la propiedad de orden. `downHeap` compara el nodo actual con sus dos hijos; en un heap de máximos, si el nodo es menor que alguno de sus hijos, se intercambia con el **mayor** de ellos, repitiendo el proceso hacia abajo hasta encontrar la posición correcta.
 
-```{code-block}
+```{code-block} text
 ---
 caption: Algoritmo de eliminación de la cima de un montículo de máximos
 linenos: true
-language: text
 ---
 FUNCION Eliminar()
     cima ← A[0]            // guardar la raíz
@@ -288,11 +285,10 @@ FIN FUNCION
 
 La siguiente función auxiliar busca entre los dos hijos del nodo actual cuál es el mayor. Si el nodo actual es menor que ese hijo, los intercambia y continúa hacia abajo.
 
-```{code-block}
+```{code-block} text
 ---
 caption: Algoritmo downHeap
 linenos: true
-language: text
 ---
 FUNCION downHeap(i)
     MIENTRAS verdadero HACER
