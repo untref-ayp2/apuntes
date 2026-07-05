@@ -291,6 +291,15 @@ def post_process_typst():
                     .replace("∧  ", "∧ ")
                 )
 
+                # Suppress "supplement: [Program]" in code figures (added by MyST)
+                # Setting to "none" hides the supplement text while keeping Typst happy
+                new_content = re.sub(
+                    r"^(\s+)supplement: \[Program\],\s*$",
+                    r"\1supplement: none,",
+                    new_content,
+                    flags=re.MULTILINE,
+                )
+
                 # Fix Typst raw text warnings: backtick fence followed by {
                 # without space is interpreted as a language tag
                 new_content = re.sub(
