@@ -141,14 +141,14 @@ En la línea 2 de la función `merge`, por cada mezcla que se realiza se crea un
 
 En la línea 7 de la función `merge` es fundamental que se compare por menor igual (`<=`) para garantizar la estabilidad del algoritmo, es decir, que los elementos iguales mantengan su orden relativo original.
 
+<div class="only-html">
+
 A continuación se puede visualizar paso a paso el funcionamiento de Mergesort.
 Se puede ingresar un arreglo de hasta 10 elementos separados por coma, o generar uno
 aleatorio con el botón **Generar**. Luego, usar los botones ◀ ▶ para avanzar
 paso a paso, o >> para reproducir la animación de forma automática. Se puede
 alternar entre orden ascendente y descendente con los botones **Asc** y **Desc**
 del encabezado.
-
-<div class="only-html">
 
 <iframe src="/applets/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos/mergesort-visualizer_light.html" width="100%" height="560px" class="only-light-mode"></iframe>
 
@@ -268,14 +268,14 @@ Una técnica común para mitigar este comportamiento es elegir el pivote como la
 
 Por ejemplo, si tenemos un arreglo `{...}[3, 6, 8, 10, 1, 2, 1]` la mediana de tres compara el primer elemento `3`, el último elemento `1` y el del medio `10`, y selecciona `3` como pivote, lo que ayuda a evitar un caso de peor rendimiento.
 
+<div class="only-html">
+
 A continuación se puede visualizar paso a paso el funcionamiento de Quicksort.
 Se puede ingresar un arreglo de hasta 10 elementos separados por coma, o generar uno
 aleatorio con el botón **Generar**. Luego, usar los botones ◀ ▶ para avanzar
 paso a paso, o >> para reproducir la animación de forma automática. Se puede
 alternar entre orden ascendente y descendente con los botones **Asc** y **Desc**
 del encabezado.
-
-<div class="only-html">
 
 <iframe src="/applets/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos/quicksort-visualizer_light.html" width="100%" height="360px" class="only-light-mode"></iframe>
 
@@ -358,6 +358,8 @@ FUNCION Heapsort(arreglo)
 FIN FUNCION
 ```
 
+<div class="only-html">
+
 A continuación se puede visualizar paso a paso el funcionamiento de Heapsort.
 Se puede ingresar un arreglo de hasta 10 elementos separados por coma, o generar uno
 aleatorio con el botón **Generar**. Luego, usar los botones ◀ ▶ para avanzar
@@ -366,8 +368,6 @@ muestra el arreglo y, debajo, el árbol binario que representa el _heap_. En la
 fase de _heapify_ se observa cómo cada nodo se "hunde" intercambiándose con
 sus hijos. En la fase de extracción, la última hoja se desconecta del árbol y
 la posición correspondiente del arreglo se marca como fuera del _heap_.
-
-<div class="only-html">
 
 <iframe src="/applets/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos/heapsort-visualizer_light.html" width="100%" height="620px" class="only-light-mode"></iframe>
 
