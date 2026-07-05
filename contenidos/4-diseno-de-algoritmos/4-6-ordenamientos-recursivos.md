@@ -28,7 +28,7 @@ Estabilidad
 : Un algoritmo es estable si mantiene el orden relativo de los elementos iguales después del ordenamiento. Esto es importante en situaciones donde los elementos tienen múltiples claves de ordenamiento. Por ejemplo si una clave de ordenamiento aparece repetida varias veces en una secuencia de datos desordenadas, puede ser interesante mantener el orden relativo (el primero que aparece, luego el segundo, etc.) en la secuencia ordenada.
 
 En el lugar (_In Place_)
-: Un algoritmo es "_In Place_" si requiere una cantidad constante de espacio adicional para ordenar los datos, lo que significa que puede ordenar los datos sin necesidad de estructuras auxiliares significativas. En otras palabras el espacio adicional que se necesita no depende de $n$, la cantidad de elementos a ordenar.
+: Un algoritmo es "_In Place_" si requiere una cantidad acotada de espacio adicional para ordenar los datos, lo que significa que puede ordenar los datos sin necesidad de estructuras auxiliares del tamaño del arreglo original. En otras palabras, el espacio adicional que se necesita no es proporcional a $n$, la cantidad de elementos a ordenar.
 
 En línea (_Online_)
 : Un algoritmo es "_Online_" si puede procesar los datos a medida que llegan, sin necesidad de conocer el conjunto completo de antemano. Esto es útil en aplicaciones donde los datos se generan en tiempo real y se pueden ir ordenando a medida que llegan.
@@ -55,13 +55,13 @@ En la siguiente tabla se resumen las principales características de estos algor
 | Caso Promedio              | $O(n^2)$    | $O(n^2)$   | $O(n^2)$  |
 | Mejor Caso                 | $O(n)$      | $O(n^2)$   | $O(n)$    |
 | Estable                    | Sí          | No         | Sí        |
-| _In Place_                 | Sí          | Si         | Sí        |
+| _In Place_                 | Sí          | Sí         | Sí        |
 | _Online_                   | Sí          | No         | No        |
 ```
 
 Estos algoritmos son fáciles de implementar y entender, lo que los hace ideales para introducir conceptos básicos de ordenamiento. Sin embargo, su rendimiento se degrada rápidamente a medida que el número de elementos crece, lo que los limita a conjuntos de datos pequeños o casi ordenados. Por ejemplo, el **ordenamiento por inserción** es eficiente para listas pequeñas o listas que ya están casi ordenadas, mientras que el **ordenamiento por selección** y el **ordenamiento por burbujeo** son más adecuados para fines educativos que para aplicaciones prácticas en grandes volúmenes de datos.
 
-Los tres algoritmos tienen una complejidad computacional de $O(n^2)$, donde $n$ es el número de elementos a ordenar. Esto significa que a medida que $n$ crece, el tiempo de ejecución aumenta cuadráticamente, lo que los hace imprácticos para conjuntos de datos grandes. Para superar esta limitación, se han desarrollado algoritmos de ordenamiento más avanzados, a menudo basados en el paradigma "**divide y vencerás**", que explotan la recursión para lograr eficiencias significativamente mayores. Nos centraremos en tres de los algoritmos de ordenamiento recursivo más populares: **Mergesort, Quicksort y Heapsort**, analizando en detalle su funcionamiento y su complejidad computacional.
+Los tres algoritmos tienen una complejidad computacional de $O(n^2)$, donde $n$ es el número de elementos a ordenar. Esto significa que a medida que $n$ crece, el tiempo de ejecución aumenta cuadráticamente, lo que los hace imprácticos para conjuntos de datos grandes. Para superar esta limitación, se han desarrollado algoritmos de ordenamiento más avanzados, a menudo basados en el paradigma "**divide y vencerás**", que explotan la recursión para lograr eficiencias significativamente mayores. Nos centraremos en tres de los algoritmos de ordenamiento más eficientes: **Mergesort, Quicksort y Heapsort**, analizando en detalle su funcionamiento y su complejidad computacional.
 
 ## Algoritmos de Ordenamiento Recursivo
 
@@ -82,70 +82,79 @@ Conquistar
 Combinar
 : Las sublistas ordenadas se mezclan repetidamente para producir nuevas sublistas ordenadas hasta que solo quede una sublista, que es la lista original pero ahora completamente ordenada. La operación clave aquí es la **mezcla (merge)** de dos listas ordenadas en una sola lista ordenada.
 
-```{code-block}
+```{code-block} text
 ---
 linenos: true
-name: mergesort
 caption: Mergesort (Ordenamiento por Mezcla)
 ---
-funcion Mergesort(arreglo)
-  si longitud(arreglo) <= 1 entonces // Caso base: si el arreglo tiene
-                                     // 0 o 1 elementos, ya está ordenado
-    retornar arreglo
-  fin si
+FUNCION Mergesort(arreglo)
+    SI longitud(arreglo) <= 1 ENTONCES // Caso base: si el arreglo tiene
+                                       // 0 o 1 elementos, ya está ordenado
+        RETORNAR arreglo
+    FIN SI
 
-  mitad ← longitud(arreglo) / 2
-  izquierda ← Mergesort(subarreglo desde 0 hasta mitad-1)
-  derecha ← Mergesort(subarreglo desde mitad hasta fin)
-  retornar merge(izquierda, derecha)
-fin funcion
+    mitad ← longitud(arreglo) / 2
+    izquierda ← Mergesort(subarreglo desde 0 hasta mitad-1)
+    derecha ← Mergesort(subarreglo desde mitad hasta fin)
+    RETORNAR merge(izquierda, derecha)
+FIN FUNCION
 ```
 
-```{code-block}
+```{code-block} text
 ---
 linenos: true
-name: merge
 emphasize-lines: 2, 7
 caption: Función de Mezcla (Merge)
 ---
-funcion merge(izquierda, derecha)
-  resultado ← arreglo vacío // Arreglo para almacenar la mezcla
-  i ← 0 // Índice para la sublista izquierda
-  j ← 0 // Índice para la sublista derecha
+FUNCION merge(izquierda, derecha)
+    resultado ← arreglo vacío // Arreglo para almacenar la mezcla
+    i ← 0 // Índice para la sublista izquierda
+    j ← 0 // Índice para la sublista derecha
 
-  mientras i < longitud(izquierda) y j < longitud(derecha) hacer
-    si izquierda[i] <= derecha[j] entonces
-      agregar izquierda[i] a resultado
-      i ← i + 1
-    sino
-      agregar derecha[j] a resultado
-      j ← j + 1
-    fin si
-  fin mientras
+    MIENTRAS i < longitud(izquierda) Y j < longitud(derecha) HACER
+        SI izquierda[i] <= derecha[j] ENTONCES
+            agregar izquierda[i] a resultado
+            i ← i + 1
+        SINO
+            agregar derecha[j] a resultado
+            j ← j + 1
+        FIN SI
+    FIN MIENTRAS
 
-  // Agregar los elementos restantes de izquierda, si los hay
-  mientras i < longitud(izquierda) hacer
-    agregar izquierda[i] a resultado
-    i ← i + 1
-  fin mientras
+    // Agregar los elementos restantes de izquierda, si los hay
+    MIENTRAS i < longitud(izquierda) HACER
+        agregar izquierda[i] a resultado
+        i ← i + 1
+    FIN MIENTRAS
 
-  // Agregar los elementos restantes de derecha, si los hay
-  mientras j < longitud(derecha) hacer
-    agregar derecha[j] a resultado
-    j ← j + 1
-  fin mientras
+    // Agregar los elementos restantes de derecha, si los hay
+    MIENTRAS j < longitud(derecha) HACER
+        agregar derecha[j] a resultado
+        j ← j + 1
+    FIN MIENTRAS
 
-  retornar resultado
-fin funcion
+    RETORNAR resultado
+FIN FUNCION
 ```
 
 En la línea 2 de la función `merge`, por cada mezcla que se realiza se crea un nuevo arreglo `resultado` que contendrá los elementos ordenados de las dos sublistas. Esto es necesario porque Mergesort no modifica las listas originales, sino que crea una nueva lista ordenada a partir de ellas.
 
 En la línea 7 de la función `merge` es fundamental que se compare por menor igual (`<=`) para garantizar la estabilidad del algoritmo, es decir, que los elementos iguales mantengan su orden relativo original.
 
-A continuación se puede visualizar paso a paso el funcionamiento de Mergesort:
+A continuación se puede visualizar paso a paso el funcionamiento de Mergesort.
+Se puede ingresar un arreglo de hasta 10 elementos separados por coma, o generar uno
+aleatorio con el botón **Generar**. Luego, usar los botones ◀ ▶ para avanzar
+paso a paso, o >> para reproducir la animación de forma automática. Se puede
+alternar entre orden ascendente y descendente con los botones **Asc** y **Desc**
+del encabezado.
 
-[Ver visualización: MergeSort](https://opendsa-server.cs.vt.edu/embed/mergesortAV)
+<div class="only-html">
+
+<iframe src="/applets/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos/mergesort-visualizer_light.html" width="100%" height="560px" class="only-light-mode"></iframe>
+
+<iframe src="/applets/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos/mergesort-visualizer_dark.html" width="100%" height="560px" class="only-dark-mode"></iframe>
+
+</div>
 
 #### Análisis de la Complejidad Computacional
 
@@ -162,11 +171,11 @@ En este algoritmo no hay un caso mejor o peor, ya que la división y la mezcla s
 
 ### Quicksort (Ordenamiento Rápido)
 
-**Quicksort**, como **Mergesort**, es un algoritmo de ordenamiento basado en el paradigma "divide y vencerás". Sin embargo, su enfoque es diferente y su eficiencia en la práctica lo ha convertido en uno de los algoritmos de ordenamiento más utilizados. Quicksort **no es un algoritmo de ordenamiento estable** ni _**Online**_ pero si es _**In-Place**_ y estrictamente hablando tampoco se puede asegurar que sea de división y conquista, ya que por la forma de partir el arreglo, no se puede asegurar que las sublistas resultantes sean de tamaño similar. A pesar de esto, es ampliamente considerado como uno de los algoritmos más eficientes para ordenar grandes volúmenes de datos.
+**Quicksort**, como **Mergesort**, es un algoritmo de ordenamiento basado en el paradigma "divide y vencerás". Sin embargo, su enfoque es diferente y su eficiencia en la práctica lo ha convertido en uno de los algoritmos de ordenamiento más utilizados. Quicksort **no es un algoritmo de ordenamiento estable** ni _**Online**_ pero si es _**In Place**_ y estrictamente hablando tampoco se puede asegurar que sea de división y conquista, ya que por la forma de partir el arreglo, no se puede asegurar que las sublistas resultantes sean de tamaño similar. A pesar de esto, es ampliamente considerado como uno de los algoritmos más eficientes para ordenar grandes volúmenes de datos.
 
 La idea principal detrás de Quicksort es seleccionar un elemento de la lista, llamado **pivote**, y reorganizar los elementos de tal manera que todos los elementos menores que el pivote queden a su izquierda y todos los elementos mayores queden a su derecha. Luego, se aplica recursivamente el mismo proceso a las sublistas resultantes. Los elementos a la izquierda y derecha del pivote no están necesariamente ordenados, pero el pivote estará en su posición final ordenada después de la partición.
 
-Esta técnica de partición es lo que distingue a Quicksort de otros algoritmos de ordenamiento, se conoce como **partición de 3 vías**.
+Esta técnica de partición es lo que distingue a Quicksort de otros algoritmos de ordenamiento, se conoce como **partición de 2 vías**.
 
 **Quicksort** fue creado y publicado por Tony Hoare en 1961.
 
@@ -181,75 +190,72 @@ Conquistar
 Combinar
 : No hay una fase de combinación explícita, ya que la lista se ordena "en el lugar" a medida que las sublistas se ordenan recursivamente. La lista completa queda ordenada una vez que todas las sublistas han sido procesadas.
 
-```{code-block}
+```{code-block} text
 ---
 linenos: true
-name: quicksort
 caption: Quicksort (Ordenamiento Rápido)
 ---
-funcion Quicksort(arreglo, inicio, fin)
- si inicio >= fin entonces
-    retornar // Caso base: si el subarreglo tiene 0 o 1 elementos, ya está ordenado
-  fin si
-  // Particionar el arreglo y obtener el índice del pivote
-  pivote_indice = Particionar(arreglo, inicio, fin)
-  Quicksort(arreglo, inicio, pivote_indice - 1)
-  Quicksort(arreglo, pivote_indice + 1, fin)
-fin funcion
+FUNCION Quicksort(arreglo, inicio, fin)
+    SI inicio >= fin ENTONCES
+        RETORNAR // Caso base: si el subarreglo tiene 0 o 1 elementos, ya está ordenado
+    FIN SI
+    // Particionar el arreglo y obtener el índice del pivote
+    pivote_indice ← Particionar(arreglo, inicio, fin)
+    Quicksort(arreglo, inicio, pivote_indice - 1)
+    Quicksort(arreglo, pivote_indice + 1, fin)
+FIN FUNCION
 ```
 
-```{code-block}
+```{code-block} text
 ---
 linenos: true
-name: particionar
-caption: Partición de 3 vías
+caption: Partición de 2 vías
 ---
-funcion Particionar(arreglo, inicio, fin)
-  // Elegir el elemento del medio como pivote
-  medio = (inicio + fin) / 2
-  pivote_valor = arreglo[medio]
+FUNCION Particionar(arreglo, inicio, fin)
+    // Elegir el elemento del medio como pivote
+    medio ← (inicio + fin) / 2
+    pivote_valor ← arreglo[medio]
 
-  // Mover el pivote al final para simplificar la partición
-  Intercambiar(arreglo, medio, fin)
+    // Mover el pivote al final para simplificar la partición
+    Intercambiar(arreglo, medio, fin)
 
-  i = inicio
-  j = fin - 1
+    i ← inicio
+    j ← fin - 1
 
-  mientras i <= j hacer
-    // Buscar desde la izquierda un elemento mayor que el pivote
-    mientras i <= j y arreglo[i] <= pivote_valor hacer
-      i = i + 1
-    fin mientras
+    MIENTRAS i <= j HACER
+        // Buscar desde la izquierda un elemento mayor que el pivote
+        MIENTRAS i <= j Y arreglo[i] <= pivote_valor HACER
+            i ← i + 1
+        FIN MIENTRAS
 
-    // Buscar desde la derecha un elemento menor que el pivote
-    mientras i <= j y arreglo[j] >= pivote_valor hacer
-      j = j - 1
-    fin mientras
+        // Buscar desde la derecha un elemento menor que el pivote
+        MIENTRAS i <= j Y arreglo[j] >= pivote_valor HACER
+            j ← j - 1
+        FIN MIENTRAS
 
-    // Si ambos índices no se han cruzado, intercambiar los elementos
-    si i < j entonces
-      Intercambiar(arreglo, i, j)
-    fin si
-  fin mientras
+        // Si ambos índices no se han cruzado, intercambiar los elementos
+        SI i < j ENTONCES
+            Intercambiar(arreglo, i, j)
+        FIN SI
+    FIN MIENTRAS
 
-  // Colocar el pivote en su posición final
-  Intercambiar(arreglo, i, fin)
+    // Colocar el pivote en su posición final
+    Intercambiar(arreglo, i, fin)
 
-  retornar i // Retorna el índice final del pivote
-fin funcion
+    RETORNAR i // Retorna el índice final del pivote
+FIN FUNCION
 ```
 
-```{code-block}
+```{code-block} text
 ---
 linenos: true
-name: intercambiar
 caption: Intercambio de elementos
 ---
-funcion Intercambiar(arreglo, i, j)
-  temp = arreglo[i]
-  arreglo[i] = arreglo[j]
-  arreglo[j] = temp
-fin funcion
+FUNCION Intercambiar(arreglo, i, j)
+    temp ← arreglo[i]
+    arreglo[i] ← arreglo[j]
+    arreglo[j] ← temp
+FIN FUNCION
 ```
 
 #### Pivote
@@ -262,9 +268,20 @@ Una técnica común para mitigar este comportamiento es elegir el pivote como la
 
 Por ejemplo, si tenemos un arreglo `{...}[3, 6, 8, 10, 1, 2, 1]` la mediana de tres compara el primer elemento `3`, el último elemento `1` y el del medio `10`, y selecciona `3` como pivote, lo que ayuda a evitar un caso de peor rendimiento.
 
-A continuación se puede visualizar paso a paso el funcionamiento de Quicksort:
+A continuación se puede visualizar paso a paso el funcionamiento de Quicksort.
+Se puede ingresar un arreglo de hasta 10 elementos separados por coma, o generar uno
+aleatorio con el botón **Generar**. Luego, usar los botones ◀ ▶ para avanzar
+paso a paso, o >> para reproducir la animación de forma automática. Se puede
+alternar entre orden ascendente y descendente con los botones **Asc** y **Desc**
+del encabezado.
 
-[Ver visualización: QuickSort](https://opendsa-server.cs.vt.edu/embed/quicksortAV)
+<div class="only-html">
+
+<iframe src="/applets/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos/quicksort-visualizer_light.html" width="100%" height="360px" class="only-light-mode"></iframe>
+
+<iframe src="/applets/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos/quicksort-visualizer_dark.html" width="100%" height="360px" class="only-dark-mode"></iframe>
+
+</div>
 
 ### Análisis de la Complejidad Computacional
 
@@ -286,79 +303,91 @@ Si bien Quicksort tiene un peor caso de $O(n^2)$, este escenario es raro en la p
 
 **Heapsort** es un algoritmo que no se basa en el paradigma de "división y conquista", sino que utiliza un _heap_ o montículo como estructura de datos subyacente para ordenar los elementos.
 
-**Heapsort no es estable** ni _**Onilne**_, pero si _**In Place**_ por lo que no requiere espacio adicional significativo.
+**Heapsort no es estable** ni _**Online**_, pero si _**In Place**_ por lo que no requiere espacio adicional significativo.
 
 Fue desarrollado por J. W. J. Williams en 1964 y es un algoritmo eficiente que garantiza un tiempo de ejecución de $O(n \log n)$ en todos los casos (mejor, promedio y peor).
+
+#### Representación del _heap_ en un arreglo
+
+Un _heap_ es un árbol binario completo que se representa de forma implícita en un arreglo, sin necesidad de punteros explícitos. Para un nodo en la posición $i$ del arreglo:
+
+- Su **padre** (si existe) está en la posición $\lfloor (i - 1) / 2 \rfloor$
+- Su **hijo izquierdo** (si existe) está en la posición $2i + 1$
+- Su **hijo derecho** (si existe) está en la posición $2i + 2$
+
+Esta representación es muy eficiente en términos de espacio: el árbol y el arreglo son la misma estructura vista de dos formas diferentes. Un _max-heap_ cumple la **propiedad de heap**: todo nodo padre es mayor o igual que sus hijos, lo que garantiza que la raíz contiene el máximo.
 
 #### Funcionamiento
 
 Heapsort consta de dos fases principales:
 
 Construcción del _Heap_ (_Heapify_)
-: Se transforma el arreglo de entrada en un _heap_ de máximos. Esto se hace comenzando desde el último nodo no hoja y "hundiendo (_downHeap_)" cada elemento hacia abajo en el árbol para asegurar que la propiedad de _heap_ se mantenga. Esta fase toma $O(n)$ tiempo.
-
-```{admonition} Importante
----
-class: Important
----
-Para ordenar los elementos de menor a mayor se debe construir un _heap_ de máximos, en cambio si se quieren ordenar los elementos de mayor a menor, el _heap_ debe ser de mínimos.
-```
+: Se transforma el arreglo de entrada en un _heap_ de máximos. Esto se hace comenzando desde el último nodo no hoja (índice $\lfloor n/2 \rfloor - 1$) y aplicando la operación _downHeap_ (hundir) sobre cada nodo hasta llegar a la raíz. _downHeap_ compara un nodo con sus hijos y, si es menor que alguno, lo intercambia con el mayor de ellos, repitiendo el proceso hacia abajo hasta que el nodo quede en posición correcta. Esta fase toma $O(n)$ tiempo.
 
 Extracción de Elementos (_Sort_)
-: Una vez que el arreglo es un _heap_ de máximos, el elemento más grande (la raíz del _heap_) está en la primera posición. Se intercambia el elemento raíz con el último elemento del _heap_. Se reduce el tamaño del _heap_ en uno (excluyendo el elemento que acaba de ser colocado en su posición final). Se "hunde" el nuevo elemento raíz (que era el último elemento) para restaurar la propiedad de _heap_. (Esta etapa del algoritmo es similar a **Selección**)
+: Una vez construido el _heap_, la raíz contiene el máximo. Se intercambia la raíz con la última posición del _heap_, se reduce el tamaño del _heap_ en uno (el elemento intercambiado queda en su posición final) y se aplica _downHeap_ sobre la nueva raíz para restaurar la propiedad de _heap_. Se repite este proceso hasta que el _heap_ queda con un solo elemento. Esta etapa es similar al algoritmo de **Selección**.
 
-```{code-block}
+```{admonition} Importante
+:class: important
+
+Para ordenar de menor a mayor se construye un _max-heap_ (la raíz es el mayor). Para ordenar de mayor a menor se construye un _min-heap_ (la raíz es el menor).
+```
+
+```{code-block} text
 ---
 linenos: true
 caption: Heapsort (Ordenamiento por Montículos)
 ---
-funcion Heapsort(arreglo)
-  n ← longitud(arreglo)
+FUNCION Heapsort(arreglo)
+    n ← longitud(arreglo)
 
-  // Heapify: Construir el _heap_ de máximo
-  // En un _heap_ el último nodo que no es hoja es el nodo en la posición n/2 - 1
-  // Al hundir cada nodo desde (n/2)-1 hasta 0, se asegura que todos los nodos
-  // cumplen la propiedad de heap
-  // y por lo tanto el arreglo se convierte en un _heap_ de máximos
-  para i desde (n/2)-1 hasta 0 hacer
-    downHeap(arreglo, n, i)
+    // Heapify: Construir el _heap_ de máximo
+    // En un _heap_ el último nodo que no es hoja es el nodo en la posición n/2 - 1
+    // Al hundir cada nodo desde (n/2)-1 hasta 0, se asegura que todos los nodos
+    // cumplen la propiedad de heap
+    // y por lo tanto el arreglo se convierte en un _heap_ de máximos
+    PARA i DESDE (n/2)-1 HASTA 0 HACER
+        downHeap(arreglo, n, i)
 
-  // Extraer elementos del _heap_ uno por uno
-  para i desde n - 1 hasta 1 hacer
-    Intercambiar(arreglo,0, i) //Mover el máximo (raíz del heap) al final del arreglo.
-    downHeap(arreglo, i, 0) //Restaurar la propiedad de _heap_ en el _heap_ reducido
-  fin para
-  retornar arreglo // El arreglo ahora está ordenado
-fin funcion
+    // Extraer elementos del _heap_ uno por uno
+    PARA i DESDE n - 1 HASTA 1 HACER
+        Intercambiar(arreglo, 0, i) // Mover el máximo (raíz del heap) al final del _heap_.
+        downHeap(arreglo, i, 0) // Restaurar la propiedad de _heap_ en el _heap_ reducido
+    FIN PARA
+    RETORNAR arreglo // El arreglo ahora está ordenado
+FIN FUNCION
 ```
 
-La función [Intercambiar](#intercambiar) es la misma que en Quicksort.
+A continuación se puede visualizar paso a paso el funcionamiento de Heapsort.
+Se puede ingresar un arreglo de hasta 10 elementos separados por coma, o generar uno
+aleatorio con el botón **Generar**. Luego, usar los botones ◀ ▶ para avanzar
+paso a paso, o >> para reproducir la animación de forma automática. El applet
+muestra el arreglo y, debajo, el árbol binario que representa el _heap_. En la
+fase de _heapify_ se observa cómo cada nodo se "hunde" intercambiándose con
+sus hijos. En la fase de extracción, la última hoja se desconecta del árbol y
+la posición correspondiente del arreglo se marca como fuera del _heap_.
+
+<div class="only-html">
+
+<iframe src="/applets/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos/heapsort-visualizer_light.html" width="100%" height="620px" class="only-light-mode"></iframe>
+
+<iframe src="/applets/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos/heapsort-visualizer_dark.html" width="100%" height="620px" class="only-dark-mode"></iframe>
+
+</div>
 
 #### Análisis de la Complejidad Computacional
 
-La complejidad temporal de Heapsort es **$O(n \log n)$** en todos los casos (mejor, promedio y peor). Esto se debe a que la fase de construcción del _heap_ toma $O(n)$ tiempo y la etapa de extracción de elementos toma $O(n \log n)$
+La complejidad temporal de Heapsort es **$O(n \log n)$** en todos los casos (mejor, promedio y peor). Esto se debe a que la fase de construcción del _heap_ toma $O(n)$ tiempo y la etapa de extracción de elementos toma $O(n \log n)$.
 
 ##### Heapify
 
 El proceso de heapify (construir un _heap_ a partir de un arreglo desordenado) se realiza de abajo hacia arriba, comenzando desde el último nodo no hoja (índice $\lfloor n/2 \rfloor - 1$) y subiendo hasta la raíz (índice $0$).
 
-Para cada nodo, se aplica la operación downHeap, que asegura que el subárbol con raíz en ese nodo cumpla la propiedad de heap. La operación downHeap toma un tiempo proporcional a la altura del subárbol, es decir, $O(h)$.
+Para cada nodo, se aplica la operación _downHeap_, que asegura que el subárbol con raíz en ese nodo cumpla la propiedad de _heap_. La operación _downHeap_ toma un tiempo proporcional a la altura del subárbol, es decir, $O(h)$.
 
-Aunque la altura máxima de un árbol es $\log (n)$, la mayoría de los nodos en un árbol binario completo se encuentran en los niveles inferiores (cerca de las hojas), donde la altura es pequeña (uno o dos). A medida que subimos en el árbol, hay menos nodos en cada nivel, pero la altura de sus subárboles aumenta.
+Aunque la altura máxima de un árbol es $\log_2 (n)$, la mayoría de los nodos en un árbol binario completo se encuentran en los niveles inferiores (cerca de las hojas), donde la altura es pequeña (uno o dos). A medida que subimos en el árbol, hay menos nodos en cada nivel, pero la altura de sus subárboles aumenta.
 
-Por ejemplo, en la siguiente figura se observa un arreglo como un árbol.
-
-```{figure} ../_static/figures/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos/Heapify01.svg
----
-width: 600px
-name: Heapify01
----
-Vista de un arreglo desordenado como árbol binario
-```
-
-Los nodos (69), (66) y (97) están a altura 1, los nodos (24) y (96) a altura 2 y la raíz a altura 3.
-
-La complejidad total de construir un _heap_ es la suma de los costos de downHeap para todos los nodos. Matemáticamente, esto se puede expresar como:
+La complejidad total de construir un _heap_ es la suma de los costos de _downHeap_ para todos los nodos. Matemáticamente, esto se puede expresar como:
 
 $$
 \sum_{h=0}^{\lfloor \log_2 n \rfloor} \frac{n}{2^{h+1}} \cdot h
@@ -366,21 +395,11 @@ $$
 
 Donde $h$ es la altura del nodo, y $\frac{n}{2^{h+1}}$ es el número aproximado de nodos que hay a esa altura. Esta suma se puede simplificar y se demuestra que es $O(n)$. Es decir, el tiempo requerido para convertir un arreglo desordenado en un _heap_ es lineal con el número de elementos en el arreglo.
 
-En resumen, a pesar de que una sola operación de downHeap puede tomar $O(\log n)$, la suma de todas las operaciones de downHeap en el proceso de construcción del _heap_ resulta en una complejidad de tiempo lineal $O(n)$, lo que lo hace muy eficiente.
-
-En la siguiente figura se observa el arreglo convertido en un _heap_ de máximos.
-
-```{figure} ../_static/figures/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos/Heapify02.svg
----
-width: 600px
-name: Heapify02
----
-Heap de Máximos
-```
+En resumen, a pesar de que una sola operación de _downHeap_ puede tomar $O(\log n)$, la suma de todas las operaciones de _downHeap_ en el proceso de construcción del _heap_ resulta en una complejidad de tiempo lineal $O(n)$, lo que lo hace muy eficiente.
 
 ##### Etapa de Extracción de Elementos
 
-En esta etapa el algoritmo es similar al algoritmo de selección, en el sentido que ambos algoritmos localizan el mayor elemento del arreglo y lo colocan al final del mismo. La diferencia fundamental es que en Heapsort, el mayor elemento siempre está en la posición 0, es decir, en la raíz del árbol, y por lo tanto solo tiene que intercambiarlo con el último elemento del arreglo y hacer un downHeap de la nueva raíz, lo que tiene un costo $O(log (n))$. La operación se repite $n$ veces dando como resultado un costo total de $O(n)$ del heapify, más $O(n log(n))$ de la etapa de extracción de elementos, quedando $O(n log(n))$
+En esta etapa el algoritmo es similar al algoritmo de selección, en el sentido que ambos algoritmos localizan el mayor elemento del arreglo y lo colocan al final del mismo. La diferencia fundamental es que en Heapsort, el mayor elemento siempre está en la posición 0, es decir, en la raíz del árbol, y por lo tanto solo tiene que intercambiarlo con el último elemento del _heap_ y hacer un _downHeap_ de la nueva raíz, lo que tiene un costo $O(\log n)$. La operación se repite $n$ veces dando como resultado un costo total de $O(n)$ del _heapify_, más $O(n \log n)$ de la etapa de extracción de elementos, quedando $O(n \log n)$.
 
 ## Comparación y Resumen de Complejidades
 
@@ -391,16 +410,15 @@ En esta etapa el algoritmo es similar al algoritmo de selección, en el sentido 
 | Caso Promedio | $O(n \log n)$       | $O(n \log n)$       | $O(n \log n)$       |
 | Mejor Caso    | $O(n \log n)$       | $O(n \log n)$       | $O(n \log n)$       |
 | Estable       | Sí                  | No                  | No                  |
-| _In-Place_    | No                  | Sí                  | Sí                  |
+| _In Place_    | No                  | Sí                  | Sí                  |
 | _Online_      | No                  | No                  | No                  |
 ```
 
 Como podemos observar, los algoritmos recursivos de "divide y vencerás" (Mergesort, Quicksort) y el basado en estructura de datos eficiente (Heapsort) superan significativamente a los algoritmos simples de $O(n^2)$ para grandes volúmenes de datos, llevando la complejidad a un óptimo $O(n \log n)$. La elección entre ellos dependerá de factores como la disponibilidad de memoria (Mergesort vs. Quicksort/Heapsort), la necesidad de estabilidad, y la garantía de rendimiento en el peor caso.
 
 ```{admonition} Importante
----
-class: Important
----
+:class: important
+
 Los algoritmos de ordenamiento, basados en comparaciones (es decir que deben comparar cada elemento con los restantes) realizan al menos $n \log(n)$ operaciones simples. Es decir no hay forma de obtener un algoritmo con una mejor cota temporal que $O(n \log n)$ para el peor caso o el caso promedio.
 ```
 

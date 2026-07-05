@@ -98,6 +98,8 @@ Siempre que sea posible, incluir `func main()` y la salida esperada en ```` ```o
 ### Pseudocódigo
 
 Usar `{code-block} text` con `caption:` (estilo YAML) para pseudocódigo.
+**Por defecto, todos los bloques de pseudocódigo llevan `caption`** — no usar `name:`,
+ya que `name:` es para etiquetas de figuras/referencias cruzadas, no para títulos visibles.
 
 **Formato obligatorio:**
 
@@ -142,21 +144,29 @@ FUNCION ...
 caption: Algoritmo de selección
 FUNCION ...
 ```
+
+```{code-block} text
+---
+name: seleccion
+caption: Algoritmo de selección
+---
+FUNCION ...
+```
 ````
 
 **Convenciones de pseudocódigo:**
 
-| Elemento       | Sintaxis                                | NO usar          |
-| -------------- | --------------------------------------- | ---------------- |
-| Función        | `FUNCION` / `FIN FUNCION`               | `function` / `end` |
+| Elemento       | Sintaxis                                | NO usar                          |
+| -------------- | --------------------------------------- | -------------------------------- |
+| Función        | `FUNCION` / `FIN FUNCION`               | `function` / `end`               |
 | Condicional    | `SI` / `ENTONCES` / `SINO` / `FIN SI`   | `if` / `then` / `else` / `endif` |
-| Bucle mientras | `MIENTRAS` / `HACER` / `FIN MIENTRAS`   | `while` / `do` / `endwhile` |
-| Bucle para     | `PARA` / `HASTA` / `HACER` / `FIN PARA` | `for` / `to` / `endfor` |
-| Retorno        | `RETORNAR`                              | `return` |
-| Salida         | `SALIR`                                 | `exit` |
-| Y lógico       | `Y`                                     | `and` / `&&` |
-| Asignación     | `←` (U+2190)                            | `=` |
-| Indentación    | 4 espacios                              | tabs / 2 espacios |
+| Bucle mientras | `MIENTRAS` / `HACER` / `FIN MIENTRAS`   | `while` / `do` / `endwhile`      |
+| Bucle para     | `PARA` / `HASTA` / `HACER` / `FIN PARA` | `for` / `to` / `endfor`          |
+| Retorno        | `RETORNAR`                              | `return`                         |
+| Salida         | `SALIR`                                 | `exit`                           |
+| Y lógico       | `Y`                                     | `and` / `&&`                     |
+| Asignación     | `←` (U+2190)                            | `=`                              |
+| Indentación    | 4 espacios                              | tabs / 2 espacios                |
 
 ______________________________________________________________________
 
