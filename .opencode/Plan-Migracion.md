@@ -64,8 +64,8 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 29 | `contenidos/4-diseno-de-algoritmos/4-2-patrones-de-diseno.md` |  ✅ Revisado | `taller-algoritmos` |
 | 30 | `contenidos/4-diseno-de-algoritmos/4-3-algoritmos-avidos.md` | ✅ Revisado | `taller-algoritmos` |
 | 31 | `contenidos/4-diseno-de-algoritmos/4-4-backtracking.md` | ✅ Revisado | `taller-algoritmos` |
-| 32 | `contenidos/4-diseno-de-algoritmos/4-5-programacion-dinamica.md` | ⬜ Pendiente | `taller-algoritmos` |
-| 33 | `contenidos/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos.md` | ⬜ Pendiente | `taller-algoritmos` |
+| 32 | `contenidos/4-diseno-de-algoritmos/4-5-programacion-dinamica.md` |  ✅ Revisado | `taller-algoritmos` |
+| 33 | `contenidos/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos.md` |  ✅ Revisado| `taller-algoritmos` |
 | 34 | `contenidos/4-diseno-de-algoritmos/4-7-ordenamientos-lineales.md` | ⬜ Pendiente | `taller-algoritmos` |
 | 35 | `contenidos/5-anexos/5-1-introduccion-git.md` | ⬜ Pendiente | — |
 | 36 | `contenidos/5-anexos/5-2-iteradores-abb.md` | ⬜ Pendiente | `guia-abb` |
