@@ -11,8 +11,9 @@ A diferencia de los algoritmos ávidos, que toman decisiones locales óptimas en
 El problema original se subdivide en subproblemas de menor tamaño y se almacenan sus soluciones para evitar cálculos redundantes. Esto se logra mediante la técnica de **memoización**, que almacena los resultados de los subproblemas ya resueltos, y la técnica de **tabulación**, que construye una tabla para almacenar las soluciones de los subproblemas.
 
 ```{admonition} Importante
-:class: important
-
+---
+class: important
+---
 La principal característica de la programación dinámica es que los cálculos se realizan una sola vez y se reutilizan en lugar de volver a calcularlos.
 ```
 
@@ -41,9 +42,10 @@ $$
 Una posible implementación del cálculo de la serie de Fibonacci utilizando recursión es la siguiente:
 
 ```{code-block} go
-:linenos:
-:emphasize-lines: 5
-
+---
+linenos:
+emphasize-lines: 5
+---
 func Fibonacci(n int) int {
     if n <= 1 {
         return n
@@ -55,16 +57,18 @@ func Fibonacci(n int) int {
 En la línea 5 se observa que la función `Fibonacci` se llama a sí misma dos veces, lo que provoca que se realicen cálculos redundantes. Por ejemplo, al calcular `Fibonacci(5)`, se realizan las siguientes llamadas:
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-5-programacion-dinamica/fibonacci-recursivo_light.svg
-:name: fibonacci-recursivo-light
-:class: only-light-mode
-
+---
+name: fibonacci-recursivo-light
+class: only-light-mode
+---
 Árbol de llamadas recursivas de Fibonacci(5). Los colores indican cuántas veces se repite cada cálculo.
 ```
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-5-programacion-dinamica/fibonacci-recursivo_dark.svg
-:name: fibonacci-recursivo-dark
-:class: only-dark-mode
-
+---
+name: fibonacci-recursivo-dark
+class: only-dark-mode
+---
 Árbol de llamadas recursivas de Fibonacci(5). Los colores indican cuántas veces se repite cada cálculo.
 ```
 
@@ -73,8 +77,9 @@ Se puede observar que `Fibonacci(5)` y `Fibonacci(4)` se calcularon 1 vez, `Fibo
 A continuación se muestra cómo se construyen los valores utilizando una tabla para almacenar los resultados de los subproblemas:
 
 ```{table}
-:align: center
-
+---
+align: center
+---
 | Paso | Valor calculado | Cómo se obtiene              |
 | :--: | :------------- | :--------------------------- |
 |  0   | `f(0) = 0`     | Caso base: se inicializa la tabla |
@@ -102,8 +107,9 @@ El resultado final se encuentra en la última celda de la tabla, que contiene el
 En el siguiente fragmento de código se muestra la implementación de la serie de Fibonacci utilizando tabulación:
 
 ```{code-block} go
-:linenos:
-
+---
+linenos:
+---
 func Fibonacci(n int) int {
     // Inicialización de la tabla
     fib := make([]int, n+1)
@@ -127,18 +133,20 @@ En este caso donde la tabla es en realidad un arreglo, se puede estimar la compl
 ## Problema de la mochila (_Knapsack Problem_)
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-5-programacion-dinamica/mochila-problema_light.svg
-:name: mochila-light
-:class: only-light-mode
-:width: 600px
-
+---
+name: mochila-light
+class: only-light-mode
+width: 600px
+---
 Problema de la mochila
 ```
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-5-programacion-dinamica/mochila-problema_dark.svg
-:name: mochila-dark
-:class: only-dark-mode
-:width: 600px
-
+---
+name: mochila-dark
+class: only-dark-mode
+width: 600px
+---
 Problema de la mochila
 ```
 
@@ -149,9 +157,10 @@ El problema de la mochila es un clásico en programación dinámica y se puede e
 Supongamos que tenemos una mochila de capacidad 5 y los siguientes objetos:
 
 ```{table}
-:align: center
-:width: 30%
-
+---
+align: center
+width: 30%
+---
 | Objeto | Peso | Valor |
 | :----: | :--: | :---: |
 |   1    |  3   |   2   |
@@ -185,8 +194,9 @@ Donde $p_i$ y $v_i$ son el peso y valor del objeto $i$, $w$ es la capacidad cons
 La implementación de esta estrategia utilizando tabulación es la siguiente:
 
 ```{code-block} go
-:linenos:
-
+---
+linenos:
+---
 type Item struct {
     peso  int
     valor int
@@ -257,8 +267,9 @@ La **memoización** ataca el mismo problema desde el otro extremo: en lugar de l
 Aplicada al problema de la mochila, la versión memoizada usa una matriz `memo` inicializada con `-1` para indicar «no calculado aún». La primera llamada es `Mochila(obj, n, capacidad, memo)` y a partir de ahí la recursión desciende hasta `i == 0` o `w == 0`:
 
 ```{code-block} go
-:linenos:
-
+---
+linenos:
+---
 func Mochila(obj []Item, i int, w int, memo [][]int) int {
     if i == 0 || w == 0 {
         return 0
@@ -313,8 +324,9 @@ Complejidad espacial
 Aunque las complejidades coinciden, los enfoques difieren en aspectos prácticos:
 
 ```{table}
-:align: center
-
+---
+align: center
+---
 | Característica             | Tabulación (_Bottom-Up_) | Memoización (_Top-Down_) |
 | -------------------------- | ------------------------ | ------------------------- |
 | Enfoque                    | Iterativo                | Recursivo                 |

@@ -453,39 +453,42 @@ func (l *ListaEnlazada) InsertarAlInicio(valor int) {
        actual *Nodo
    }
 
-func (i *IteradorLista) Primero() {
-    i.actual = i.lista.Primero
-}
-
-func (i *IteradorLista) Siguiente() {
-    i.actual = i.actual.Siguiente
-}
-
-func (i *IteradorLista) HaySiguiente() bool {
-    return i.actual != nil
-}
-
-func (i *IteradorLista) Actual() int {
-       return i.actual.Valor
-   }
    ```
+
+func (i \*IteradorLista) Primero() {
+i.actual = i.lista.Primero
+}
+
+func (i \*IteradorLista) Siguiente() {
+i.actual = i.actual.Siguiente
+}
+
+func (i \*IteradorLista) HaySiguiente() bool {
+return i.actual != nil
+}
+
+func (i \*IteradorLista) Actual() int {
+return i.actual.Valor
+}
+
+````
 
 4. Recorrer la **colección** con el iterador creado
 
-   ```{code-block} go
-   ---
-   linenos: true
-   ---
-   lista := &ListaEnlazada{}
-   lista.InsertarAlInicio(3)
-   lista.InsertarAlInicio(2)
-   lista.InsertarAlInicio(1)
+```{code-block} go
+---
+linenos: true
+---
+lista := &ListaEnlazada{}
+lista.InsertarAlInicio(3)
+lista.InsertarAlInicio(2)
+lista.InsertarAlInicio(1)
 
-   iterador := lista.CrearIterador()
-   for iterador.Primero(); iterador.HaySiguiente(); iterador.Siguiente() {
-       fmt.Println(iterador.Actual(), " ")
-   }
-   ```
+iterador := lista.CrearIterador()
+for iterador.Primero(); iterador.HaySiguiente(); iterador.Siguiente() {
+    fmt.Println(iterador.Actual(), " ")
+}
+````
 
 ## Ejercicios
 

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Bucket Sort — Ordenamiento por Urnas</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#ffffff;color:#1a1a2e;font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5;height:100vh;display:flex;flex-direction:column}
+html,body{overflow:hidden}
+:root{
+  --bg:#ffffff;--fg:#1a1a2e;--border:#d1d5db;--btn-bg:#f3f4f6;--btn-hover:#e5e7eb;--btn-text:#374151;
+  --highlight:#1d4ed8;--arr-fill:#e1f5ff;--arr-stroke:#4682b4;--bucket-fill:#fff4e1;--bucket-stroke:#f6ad55;
+  --sorted-fill:#d4edda;--sorted-stroke:#28a745;--highlight-fill:#fff3cd;--highlight-stroke:#ffc107;
+  --error-fill:#ffe1e1;--error-stroke:#e9967a;--slot-stroke:#9ca3af;--cell-size:44px;--cell-gap:4px;
+}
+
+.applet{display:flex;flex-direction:column;padding:8px;gap:6px;width:100%;max-width:100%;margin:0 auto;flex:1;min-height:0}
+.header{font-size:14px;font-weight:700;text-align:center;padding:4px 12px;background:var(--btn-bg);border-radius:6px;border:1px solid var(--border);width:100%;flex-shrink:0}
+.main{display:flex;flex:1;min-height:0;gap:8px;width:100%}
+
+.display-area{flex:1;display:flex;flex-direction:column;gap:8px;overflow-y:auto;padding:4px;min-height:0}
+.section-label{font-size:11px;font-weight:600;color:var(--btn-text);margin-bottom:3px;padding-left:2px}
+
+.array-row{display:flex;gap:var(--cell-gap);flex-wrap:wrap;min-height:calc(var(--cell-size) + 8px);align-items:center;padding:2px 0}
+.cell{width:var(--cell-size);height:var(--cell-size);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;font-family:'Courier New',monospace;border-radius:4px;border:2px solid;transition:all .2s;flex-shrink:0}
+.cell.arr{border-color:var(--arr-stroke);background:var(--arr-fill);color:var(--fg)}
+.cell.sorted{border-color:var(--sorted-stroke);background:var(--sorted-fill);color:var(--fg)}
+.cell.sorted.empty{border-style:dashed;opacity:.4}
+.cell.active{transform:scale(1.1);border-width:3px;border-color:var(--highlight-stroke);background:var(--highlight-fill);box-shadow:0 0 8px rgba(29,78,216,.3)}
+.cell.built{border-color:var(--sorted-stroke);background:var(--sorted-fill)}
+.cell.distributing{border-color:var(--highlight);background:var(--highlight-fill);box-shadow:0 0 8px rgba(29,78,216,.3)}
+
+.buckets-wrap{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;padding:4px 0;flex:1;min-height:80px;align-items:stretch;max-height:200px}
+.bucket{display:flex;flex-direction:column;border:2px solid var(--bucket-stroke);border-radius:6px;background:var(--bucket-fill);min-width:60px;flex:1;max-width:120px;overflow:hidden;max-height:100%}
+.bucket.active{border-color:var(--highlight);border-width:3px;box-shadow:0 0 8px rgba(29,78,216,.3)}
+.bucket .bhead{font-size:9px;font-weight:600;text-align:center;padding:2px 4px;background:var(--btn-bg);border-bottom:1px solid var(--border);color:var(--btn-text);white-space:nowrap}
+.bucket .bbody{flex:1;display:flex;flex-direction:row;flex-wrap:wrap;gap:3px;padding:6px 4px;align-items:center;justify-content:center;align-content:flex-start;min-height:60px;max-height:170px;overflow-y:auto}
+.bucket .bcell{width:38px;height:26px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:'Courier New',monospace;border-radius:3px;border:1.5px solid var(--arr-stroke);background:var(--arr-fill);color:var(--fg);transition:all .2s;flex-shrink:0}
+.bucket .bcell.active{background:var(--highlight-fill);border-color:var(--highlight-stroke);transform:scale(1.05)}
+.bucket .bcell.done{background:var(--sorted-fill);border-color:var(--sorted-stroke)}
+.bucket .bcell.sorting{background:var(--highlight-fill);border-color:var(--highlight);border-width:2px}
+.bucket .bcell.empty-cell{width:38px;height:26px;border:1.5px dashed var(--slot-stroke);border-radius:3px;opacity:.3}
+.bucket .bcell.insert-me{background:var(--highlight-fill);border-color:var(--highlight);border-width:2px;transform:scale(1.1)}
+
+.sidebar{display:flex;flex-direction:column;gap:6px;flex-shrink:0;width:140px;justify-content:center}
+
+.btn-gen{width:100%;padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:var(--btn-bg);color:var(--btn-text);font-size:12px;cursor:pointer;font-weight:600;transition:background .15s;text-align:center}
+.btn-gen:hover{background:var(--btn-hover)}
+.btn-gen.primary{background:var(--highlight);color:#fff;border-color:var(--highlight)}
+.btn-gen.primary:hover{opacity:.9}
+
+.input-group{display:flex;flex-direction:column;gap:4px;font-size:12px}
+.input-row{display:flex;align-items:center;gap:4px}
+.input-row input{flex:1;padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--fg);font-size:13px;width:100%;font-family:'Courier New',monospace}
+.enter-hint{font-size:14px;color:var(--slot-stroke);flex-shrink:0}
+
+.controls{display:flex;flex-direction:row;gap:4px;flex-wrap:wrap;justify-content:center}
+.controls button{width:36px;height:30px;border:1px solid var(--border);border-radius:6px;background:var(--btn-bg);color:var(--btn-text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;padding:0}
+.controls button:hover:not(:disabled){background:var(--btn-hover)}
+.controls button:disabled{opacity:.4;cursor:default}
+.controls button.playing{background:var(--error-stroke);color:#fff;border-color:var(--error-stroke)}
+
+.speed-wrap{display:flex;align-items:center;gap:3px;font-size:11px;flex:1 1 100%;justify-content:center;white-space:nowrap}
+.speed-wrap input[type=range]{width:48px;height:4px;accent-color:var(--highlight)}
+
+.info{padding:6px 10px;border:1px solid var(--border);border-radius:6px;width:100%;display:flex;flex-wrap:wrap;gap:3px 12px;align-items:baseline;font-size:12px;flex-shrink:0}
+.info .path{flex:1;font-size:12px;min-height:1.2em}
+.info .meta{display:flex;gap:12px;flex-wrap:wrap}
+.info .meta span{white-space:nowrap}
+
+.k-slider{display:flex;align-items:center;gap:4px;font-size:11px}
+.k-slider label{white-space:nowrap;font-weight:500}
+.k-slider input{flex:1;accent-color:var(--highlight)}
+.k-slider span{min-width:14px;text-align:center;font-weight:600;color:var(--highlight)}
+</style>
+</head>
+<body>
+<div class="applet">
+  <div class="header">Bucket Sort — Ordenamiento por Urnas</div>
+  <div class="main">
+    <div class="display-area" id="displayArea">
+      <div>
+        <div class="section-label">Arreglo original</div>
+        <div class="array-row" id="origRow"></div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;min-height:0">
+        <div class="section-label">Buckets</div>
+        <div class="buckets-wrap" id="bucketsWrap"></div>
+      </div>
+      <div>
+        <div class="section-label">Arreglo ordenado</div>
+        <div class="array-row" id="sortedRow"></div>
+      </div>
+      <div style="margin-top:2px">
+        <div class="section-label">Cantidad de buckets</div>
+        <div class="k-slider">
+          <label for="kSlider">k =</label>
+          <input type="range" id="kSlider" min="3" max="10" value="5" step="1">
+          <span id="kLabel">5</span>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar">
+      <button class="btn-gen primary" id="btnRandom">Aleatorio</button>
+      <div class="input-group">
+        <label for="valInput">Valores en [0, 1):</label>
+        <div class="input-row">
+          <input type="text" id="valInput" placeholder="Ej: 0.78,0.17,0.39 (max 10)" autofocus>
+          <span class="enter-hint">↵</span>
+        </div>
+      </div>
+      <button class="btn-gen" id="btnClear" style="border-color:var(--error-stroke);color:var(--error-stroke)">Limpiar</button>
+      <div class="separator" style="height:1px;background:var(--border);margin:2px 0"></div>
+      <div class="controls">
+        <button id="btnFirst" title="Ir al inicio" disabled>⏮</button>
+        <button id="btnPrev" title="Paso anterior" disabled>◀</button>
+        <button id="btnNext" title="Paso siguiente" disabled>▶</button>
+        <button id="btnSkip" title="Reproducir automático" disabled>>></button>
+      </div>
+      <div class="speed-wrap">
+        <label for="speedSlider">Vel:</label>
+        <input type="range" id="speedSlider" min="400" max="3000" value="1500" step="100">
+        <span id="speedLabel">0.7 p/s</span>
+      </div>
+    </div>
+  </div>
+  <div class="info">
+    <div class="path" id="desc">Ingresar valores en [0, 1) separados por coma, o generar aleatorios.</div>
+    <div class="meta">
+      <span id="stepCounter">Paso — / —</span>
+      <span id="arrInfo">—</span>
+    </div>
+  </div>
+</div>
+<script>
+var valInput=document.getElementById('valInput');
+var btnRandom=document.getElementById('btnRandom');
+var btnFirst=document.getElementById('btnFirst');
+var btnPrev=document.getElementById('btnPrev');
+var btnNext=document.getElementById('btnNext');
+var btnSkip=document.getElementById('btnSkip');
+var speedSlider=document.getElementById('speedSlider');
+var speedLabel=document.getElementById('speedLabel');
+var descEl=document.getElementById('desc');
+var stepCounterEl=document.getElementById('stepCounter');
+var arrInfoEl=document.getElementById('arrInfo');
+var origRow=document.getElementById('origRow');
+var sortedRow=document.getElementById('sortedRow');
+var bucketsWrap=document.getElementById('bucketsWrap');
+var kSlider=document.getElementById('kSlider');
+var kLabel=document.getElementById('kLabel');
+
+var k=5;
+var original=[];
+var steps=[];
+var currentStep=-1;
+var isPlaying=false;
+var playTimer=null;
+var speedVal=1500;
+
+function fmt(v){return v.toFixed(2)}
+
+kSlider.addEventListener('input',function(){
+  k=parseInt(this.value);
+  kLabel.textContent=k;
+  if(!isPlaying)regenFromCurrent();
+});
+
+function regenFromCurrent(){
+  var inp=valInput.value.trim();
+  if(inp.length>0){parseAndBuild(inp);}
+  else{generateRandom();}
+}
+
+valInput.addEventListener('keydown',function(e){
+  if(e.key==='Enter'){e.preventDefault();stopPlay();parseAndBuild(this.value);}
+});
+
+btnRandom.addEventListener('click',function(){stopPlay();generateRandom();});
+
+var btnClear=document.getElementById('btnClear');
+btnClear.addEventListener('click',function(){
+  stopPlay();
+  valInput.value='';
+  original=[];
+  var emptyBuckets=[];for(var i=0;i<k;i++)emptyBuckets.push([]);
+  steps=[{desc:'Applet limpiado. Ingresar valores o generar aleatorios.',origHL:-1,sortedHL:-1,bucketHL:-1,buckets:emptyBuckets,sortedVals:[],phase:'init',sortDetail:null}];
+  render(0);
+});
+
+function generateRandom(){
+  var n=5+Math.floor(Math.random()*4);
+  var arr=[];
+  for(var i=0;i<n;i++)arr.push(Math.round(Math.random()*100)/100);
+  valInput.value=arr.map(fmt).join(', ');
+  buildSteps(arr);
+}
+
+function parseAndBuild(inp){
+  var nums=inp.split(',').map(function(s){return s.trim()}).filter(function(s){return s.length>0})
+    .map(function(s){var v=parseFloat(s);return isNaN(v)?-1:v})
+    .filter(function(n){return n>=0&&n<1});
+  if(nums.length<2){descEl.textContent='⚠ Ingresar al menos 2 valores en [0, 1) separados por coma.';return;}
+  if(nums.length>10){descEl.textContent='⚠ Máximo 10 elementos. Se recibieron '+nums.length+'.';return;}
+  buildSteps(nums);
+}
+
+// Insertion sort that returns [original indices array, steps]
+function insertionSortSteps(arr){
+  var a=arr.slice();
+  var n=a.length;
+  var sortSteps=[];
+  for(var i=1;i<n;i++){
+    var key=a[i];
+    var j=i-1;
+    sortSteps.push({type:'pick',pos:i,key:key,arr:a.slice()});
+    while(j>=0&&a[j]>key){
+      a[j+1]=a[j];
+      sortSteps.push({type:'shift',from:j,to:j+1,arr:a.slice()});
+      j--;
+    }
+    a[j+1]=key;
+    sortSteps.push({type:'place',pos:j+1,key:key,arr:a.slice()});
+  }
+  return{a:a,steps:sortSteps};
+}
+
+function buildSteps(arr){
+  original=arr.slice();
+  var n=arr.length;
+  var sorted=new Array(n).fill(null);
+  var buckets=[];
+  for(var i=0;i<k;i++)buckets.push([]);
+  steps=[];
+
+  // Initial
+  steps.push({
+    desc:'Estado inicial. '+n+' elementos, '+k+' buckets.',
+    origHL:-1,sortedHL:-1,bucketHL:-1,buckets:buckets.map(function(b){return b.slice()}),
+    sortedVals:sorted.slice(),phase:'init',sortDetail:null
+  });
+
+  // Distribution
+  for(var i=0;i<n;i++){
+    var v=arr[i];
+    var bi=Math.min(Math.floor(v*k),k-1);
+    buckets[bi].push(v);
+    steps.push({
+      desc:'Distribuyendo: arr['+i+'] = '+fmt(v)+' → bucket '+bi+' ['+fmt(bi/k)+', '+fmt((bi+1)/k)+').',
+      origHL:i,sortedHL:-1,bucketHL:bi,
+      buckets:buckets.map(function(b){return b.slice()}),
+      sortedVals:sorted.slice(),phase:'distribute',sortDetail:null
+    });
+  }
+
+  // Sort each bucket
+  var sortedBuckets=buckets.map(function(b,idx){
+    if(b.length<=1)return{b:b.slice(),steps:[]};
+    var result=insertionSortSteps(b);
+    return{b:result.a,steps:result.steps};
+  });
+
+  // Interleaved bucket sort steps
+  // For each bucket that has >1 elements, show its sorting process
+  var bucketSortStates=buckets.map(function(b){return b.slice()});
+
+  for(var bi=0;bi<k;bi++){
+    if(bucketSortStates[bi].length<=1)continue;
+    var sbSteps=sortedBuckets[bi].steps;
+    for(var si=0;si<sbSteps.length;si++){
+      var st=sbSteps[si];
+      var displayArr=[];
+      // Build what the bucket looks like at this step
+      for(var ii=0;ii<bucketSortStates[bi].length;ii++){
+        var actual=bucketSortStates[bi][ii];
+        // Check if this position has been shifted/placed
+        displayArr.push(actual);
+      }
+      // Apply the step state
+      if(st.type==='pick'){
+        // Just highlight
+        var desc='Ordenando bucket '+bi+': tomar elemento '+fmt(st.key)+' en posición '+st.pos+'.';
+        // Show the step's arr as the bucket state
+        steps.push({
+          desc:desc,origHL:-1,sortedHL:-1,bucketHL:bi,
+          buckets:makeBucketSnap(buckets,sortedBuckets,bi,bucketSortStates,st.arr,bi),
+          sortedVals:sorted.slice(),phase:'sort',sortDetail:{bucketIdx:bi,hl:st.pos,type:'pick'}
+        });
+      }else if(st.type==='shift'){
+        var desc='Ordenando bucket '+bi+': desplazar '+fmt(st.arr[st.to])+' de '+st.from+' a '+st.to+'.';
+        steps.push({
+          desc:desc,origHL:-1,sortedHL:-1,bucketHL:bi,
+          buckets:makeBucketSnap(buckets,sortedBuckets,bi,bucketSortStates,st.arr,bi),
+          sortedVals:sorted.slice(),phase:'sort',sortDetail:{bucketIdx:bi,hl:st.to,type:'shift'}
+        });
+      }else if(st.type==='place'){
+        bucketSortStates[bi]=st.arr.slice();
+        var desc='Ordenando bucket '+bi+': insertar '+fmt(st.key)+' en posición '+st.pos+'.';
+        steps.push({
+          desc:desc,origHL:-1,sortedHL:-1,bucketHL:bi,
+          buckets:makeBucketSnapFinal(buckets,sortedBuckets,bi,bucketSortStates),
+          sortedVals:sorted.slice(),phase:'sort',sortDetail:{bucketIdx:bi,hl:st.pos,type:'place'}
+        });
+      }
+    }
+  }
+
+  // Final sorted buckets (after all sorting)
+  var finalBuckets=buckets.map(function(b,i){
+    if(b.length<=1)return b.slice();
+    return sortedBuckets[i].b.slice();
+  });
+
+  // Concatenation
+  var si=0;
+  for(var bi=0;bi<k;bi++){
+    var fb=finalBuckets[bi];
+    for(var ei=0;ei<fb.length;ei++){
+      sorted[si]=fb[ei];
+      steps.push({
+        desc:'Concatenando: tomar '+fmt(fb[ei])+' del bucket '+bi+' → ordenado['+si+'].',
+        origHL:-1,sortedHL:si,bucketHL:bi,
+        buckets:finalBuckets.map(function(b){return b.slice()}),
+        sortedVals:sorted.slice(),phase:'concat',sortDetail:null
+      });
+      si++;
+    }
+  }
+
+  // Final
+  steps.push({
+    desc:'¡Ordenado! '+n+' elementos.',origHL:-1,sortedHL:-1,bucketHL:-1,
+    buckets:finalBuckets.map(function(b){return b.slice()}),
+    sortedVals:sorted.slice(),phase:'done',sortDetail:null
+  });
+
+  render(0);
+}
+
+function makeBucketSnap(originalBuckets,sortedBuckets,activeIdx,bucketSortStates,stepArr,bi){
+  return originalBuckets.map(function(b,i){
+    if(i===activeIdx)return stepArr.slice();
+    if(b.length<=1)return b.slice();
+    return sortedBuckets[i].b.slice();
+  });
+}
+
+function makeBucketSnapFinal(originalBuckets,sortedBuckets,activeIdx,bucketSortStates){
+  return originalBuckets.map(function(b,i){
+    if(i===activeIdx)return bucketSortStates[i].slice();
+    if(b.length<=1)return b.slice();
+    return sortedBuckets[i].b.slice();
+  });
+}
+
+function render(idx){
+  currentStep=idx;
+  var s=steps[idx];
+  origRow.innerHTML='';
+  sortedRow.innerHTML='';
+  bucketsWrap.innerHTML='';
+
+  // Original array
+  for(var i=0;i<original.length;i++){
+    var c=document.createElement('div');
+    c.className='cell arr'+(i===s.origHL?' active':'');
+    c.textContent=fmt(original[i]);
+    origRow.appendChild(c);
+  }
+
+  // Buckets
+  for(var bi=0;bi<k;bi++){
+    var bucketEl=document.createElement('div');
+    bucketEl.className='bucket'+(bi===s.bucketHL?' active':'');
+    var lo=fmt(bi/k);
+    var hi=bi<k-1?fmt((bi+1)/k):'1.00';
+    bucketEl.innerHTML='<div class="bhead">'+(bi===0?'[':'(')+lo+', '+hi+(bi===k-1?']':')')+'</div><div class="bbody"></div>';
+    var bbody=bucketEl.querySelector('.bbody');
+
+    var bucketVals=s.buckets[bi];
+    if(bucketVals&&bucketVals.length>0){
+      for(var ei=0;ei<bucketVals.length;ei++){
+        var bc=document.createElement('div');
+        var cls='bcell';
+        if(s.phase==='sort'&&s.sortDetail&&s.sortDetail.bucketIdx===bi){
+          if(s.sortDetail.type==='pick'&&ei===s.sortDetail.hl)cls+=' sorting';
+          else if(s.sortDetail.type==='shift'&&ei===s.sortDetail.hl)cls+=' active';
+          else if(s.sortDetail.type==='place'&&ei===s.sortDetail.hl)cls+=' insert-me';
+        }
+        if(s.phase==='concat'||s.phase==='done')cls+=' done';
+        bc.className=cls;
+        bc.textContent=fmt(bucketVals[ei]);
+        bbody.appendChild(bc);
+      }
+    }else{
+      var ec=document.createElement('div');
+      ec.className='bcell empty-cell';
+      bbody.appendChild(ec);
+    }
+    bucketsWrap.appendChild(bucketEl);
+  }
+
+  // Sorted array
+  for(var i=0;i<original.length;i++){
+    var c=document.createElement('div');
+    var cls='cell sorted';
+    if(s.sortedVals[i]!==null){
+      cls+=' built';
+    }else{
+      cls+=' empty';
+    }
+    if(i===s.sortedHL)cls+=' active';
+    c.className=cls;
+    c.textContent=s.sortedVals[i]!==null?fmt(s.sortedVals[i]):'';
+    sortedRow.appendChild(c);
+  }
+
+  descEl.textContent=s.desc;
+  stepCounterEl.textContent='Paso '+(idx+1)+' / '+steps.length;
+  arrInfoEl.textContent=original.length+' elem'+(original.length!==1?'s':'');
+
+  updateBtns();
+}
+
+function goTo(n){
+  if(n<0||n>=steps.length)return;
+  currentStep=n;
+  render(n);
+}
+
+function goNext(){
+  if(currentStep<steps.length-1)goTo(currentStep+1);
+}
+function goPrev(){
+  if(currentStep>0)goTo(currentStep-1);
+}
+function goFirst(){goTo(0);}
+
+function updateBtns(){
+  var fs=currentStep<=0,fe=currentStep>=steps.length-1,hs=steps.length>0;
+  btnFirst.disabled=fs||!hs||isPlaying;
+  btnPrev.disabled=fs||!hs||isPlaying;
+  btnNext.disabled=fe||!hs||isPlaying;
+  btnSkip.disabled=fe||!hs;
+}
+
+function tick(){
+  if(!isPlaying)return;
+  if(currentStep<steps.length-1){goNext();playTimer=setTimeout(tick,speedVal);}
+  else stopPlay();
+}
+
+function startPlay(){
+  if(currentStep>=steps.length-1)return;
+  isPlaying=true;
+  btnSkip.textContent='⏸';
+  btnSkip.classList.add('playing');
+  updateBtns();
+  tick();
+}
+
+function stopPlay(){
+  isPlaying=false;
+  if(playTimer){clearTimeout(playTimer);playTimer=null;}
+  btnSkip.textContent='>>';
+  btnSkip.classList.remove('playing');
+  updateBtns();
+}
+
+function hdlSkip(){
+  if(isPlaying){stopPlay();return;}
+  if(currentStep>=steps.length-1)return;
+  startPlay();
+}
+
+speedSlider.addEventListener('input',function(){
+  speedVal=3400-parseInt(this.value);
+  speedLabel.textContent=(1000/speedVal).toFixed(1)+' p/s';
+  if(isPlaying){stopPlay();startPlay();}
+});
+
+btnFirst.addEventListener('click',goFirst);
+btnPrev.addEventListener('click',goPrev);
+btnNext.addEventListener('click',goNext);
+btnSkip.addEventListener('click',hdlSkip);
+
+document.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT')return;
+  if(e.key==='ArrowRight'){e.preventDefault();if(!isPlaying)goNext();}
+  if(e.key==='ArrowLeft'){e.preventDefault();if(!isPlaying)goPrev();}
+  if(e.key==='Home'){e.preventDefault();goFirst();}
+  if(e.key===' '||e.key==='End'){e.preventDefault();hdlSkip();}
+});
+
+// Initial example
+buildSteps([0.78,0.17,0.39,0.26,0.72,0.94,0.21,0.82]);
+</script>
+</body>
+</html>

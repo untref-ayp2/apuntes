@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Radix Sort — Ordenamiento de Cadenas</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#1a1b2e;color:#e0e0e0;font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5;height:100vh;display:flex;flex-direction:column}
+html,body{overflow:hidden}
+:root{
+  --bg:#1a1b2e;--fg:#e0e0e0;--border:#374151;--btn-bg:#2d3748;--btn-hover:#374151;--btn-text:#e0e0e0;
+  --highlight:#60a5fa;--arr-fill:#2d3748;--arr-stroke:#63b3ed;--pos-highlight:#5a4a00;
+  --sorted-fill:#1e3a2f;--sorted-stroke:#48c774;--highlight-fill:#5a4a00;--highlight-stroke:#ffc107;
+  --error-fill:#4a5568;--error-stroke:#fc8181;  --slot-stroke:#6b7280;--group-bg:#1e1e30;
+  --cell-size:26px;--cell-gap:1px;
+}
+.applet{display:flex;flex-direction:column;padding:8px;gap:6px;width:100%;max-width:100%;margin:0 auto;flex:1;min-height:0}
+.header{font-size:14px;font-weight:700;text-align:center;padding:4px 12px;background:var(--btn-bg);border-radius:6px;border:1px solid var(--border);width:100%;flex-shrink:0}
+.main{display:flex;flex:1;min-height:0;gap:8px;width:100%}
+
+.display-area{flex:1;display:flex;flex-direction:column;gap:4px;overflow-y:auto;padding:4px;min-height:0}
+.main-view{display:flex;flex:1;gap:8px;min-height:0;overflow:hidden}
+.strings-panel{flex-shrink:0}
+.distrib-panel{flex:1;min-width:0;overflow-y:auto;margin-left:4px}
+.section-label{font-size:11px;font-weight:600;color:var(--btn-text);margin-bottom:2px;padding-left:2px}
+
+.strings-wrap{display:flex;flex-direction:column;gap:1px;padding:2px 0;min-height:40px}
+.str-row{display:flex;gap:2px;align-items:center}
+.str-row .sidx{width:26px;font-size:10px;color:var(--slot-stroke);font-weight:600;text-align:right;padding-right:4px;flex-shrink:0}
+.str-cells{display:flex;gap:2px}
+.str-cell{width:var(--cell-size);height:var(--cell-size);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:'Courier New',monospace;border-radius:3px;border:2px solid var(--arr-stroke);background:var(--arr-fill);color:var(--fg);transition:all .15s}
+.str-cell.active-pos{background:var(--pos-highlight);border-color:var(--highlight-stroke);border-width:2.5px}
+.str-cell.done-pos{background:var(--sorted-fill);border-color:var(--sorted-stroke)}
+.str-cell.placing{background:var(--highlight-fill);border-color:var(--highlight);border-width:2.5px;transform:scale(1.05)}
+
+.distrib-wrap{display:flex;flex-direction:column;gap:2px;padding:4px;background:var(--group-bg);border:1px solid var(--border);border-radius:6px;min-height:40px}
+.distrib-group{display:flex;align-items:baseline;gap:4px;padding:1px 2px;font-size:12px;flex-wrap:wrap}
+.distrib-group .glabel{font-weight:700;font-family:'Courier New',monospace;color:var(--highlight);min-width:28px}
+.distrib-group .gitems{color:var(--fg);font-family:'Courier New',monospace;font-size:11px}
+
+.pass-badge{display:inline-block;font-size:10px;font-weight:600;color:var(--btn-text);background:var(--btn-bg);padding:2px 8px;border-radius:4px;border:1px solid var(--border)}
+
+.sidebar{display:flex;flex-direction:column;gap:6px;flex-shrink:0;width:150px;justify-content:center}
+.btn-gen{width:100%;padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:var(--btn-bg);color:var(--btn-text);font-size:12px;cursor:pointer;font-weight:600;transition:background .15s;text-align:center}
+.btn-gen:hover{background:var(--btn-hover)}
+.btn-gen.primary{background:var(--highlight);color:#1a1b2e;border-color:var(--highlight)}
+.btn-gen.primary:hover{opacity:.9}
+.input-group{display:flex;flex-direction:column;gap:4px;font-size:12px}
+.input-row{display:flex;align-items:center;gap:4px}
+.input-row input{flex:1;padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--fg);font-size:13px;width:100%;font-family:'Courier New',monospace}
+.enter-hint{font-size:14px;color:var(--slot-stroke);flex-shrink:0}
+.controls{display:flex;flex-direction:row;gap:4px;flex-wrap:wrap;justify-content:center}
+.controls button{width:36px;height:30px;border:1px solid var(--border);border-radius:6px;background:var(--btn-bg);color:var(--btn-text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;padding:0}
+.controls button:hover:not(:disabled){background:var(--btn-hover)}
+.controls button:disabled{opacity:.4;cursor:default}
+.controls button.playing{background:var(--error-stroke);color:#1a1b2e;border-color:var(--error-stroke)}
+.speed-wrap{display:flex;align-items:center;gap:3px;font-size:11px;flex:1 1 100%;justify-content:center;white-space:nowrap}
+.speed-wrap input[type=range]{width:48px;height:4px;accent-color:var(--highlight)}
+.info{padding:6px 10px;border:1px solid var(--border);border-radius:6px;width:100%;display:flex;flex-wrap:wrap;gap:3px 12px;align-items:baseline;font-size:12px;flex-shrink:0}
+.info .path{flex:1;font-size:12px;min-height:1.2em}
+.info .meta{display:flex;gap:12px;flex-wrap:wrap}
+.info .meta span{white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="applet">
+  <div class="header">Radix Sort — Ordenamiento de Cadenas (LSD)</div>
+  <div class="main">
+    <div class="display-area">
+      <div class="main-view">
+        <div class="strings-panel">
+          <div class="section-label" id="posLabel">Arreglo</div>
+          <div class="strings-wrap" id="stringsWrap"></div>
+        </div>
+        <div class="distrib-panel" id="distribSection" style="display:none">
+          <div class="section-label">Distribución por grupos</div>
+          <div class="distrib-wrap" id="distribWrap"></div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar">
+      <button class="btn-gen primary" id="btnRandom">Aleatorio</button>
+      <div class="input-group">
+        <label for="valInput">Cadenas (max 10, 6 chars):</label>
+        <div class="input-row"><input type="text" id="valInput" placeholder="OPV220,AAA202" autofocus><span class="enter-hint">↵</span></div>
+      </div>
+      <button class="btn-gen" id="btnClear" style="border-color:var(--error-stroke);color:var(--error-stroke)">Limpiar</button>
+      <div class="separator" style="height:1px;background:var(--border);margin:2px 0"></div>
+      <div class="controls">
+        <button id="btnFirst" title="Ir al inicio" disabled>⏮</button>
+        <button id="btnPrev" title="Paso anterior" disabled>◀</button>
+        <button id="btnNext" title="Paso siguiente" disabled>▶</button>
+        <button id="btnSkip" title="Reproducir automático" disabled>>></button>
+      </div>
+      <div class="speed-wrap"><label for="speedSlider">Vel:</label><input type="range" id="speedSlider" min="400" max="3000" value="1500" step="100"><span id="speedLabel">0.7 p/s</span></div>
+    </div>
+  </div>
+  <div class="info">
+    <div class="path" id="desc">Ingresar cadenas de 6 caracteres alfanuméricos mayúscula (0-9, A-Z) separadas por coma.</div>
+    <div class="meta"><span id="stepCounter">Paso — / —</span><span id="arrInfo">—</span></div>
+  </div>
+</div>
+<script>
+var valInput=document.getElementById('valInput');
+var btnRandom=document.getElementById('btnRandom');
+var btnClear=document.getElementById('btnClear');
+var btnFirst=document.getElementById('btnFirst');
+var btnPrev=document.getElementById('btnPrev');
+var btnNext=document.getElementById('btnNext');
+var btnSkip=document.getElementById('btnSkip');
+var speedSlider=document.getElementById('speedSlider');
+var speedLabel=document.getElementById('speedLabel');
+var descEl=document.getElementById('desc');
+var stepCounterEl=document.getElementById('stepCounter');
+var arrInfoEl=document.getElementById('arrInfo');
+var stringsWrap=document.getElementById('stringsWrap');
+var distribWrap=document.getElementById('distribWrap');
+var distribSection=document.getElementById('distribSection');
+var posLabel=document.getElementById('posLabel');
+
+var LEN=6;
+var DIGITS='0123456789';
+var LETTERS='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var CHAR_SET=DIGITS+LETTERS;
+var original=[];
+var steps=[];
+var currentStep=-1;
+var isPlaying=false;
+var playTimer=null;
+var speedVal=1500;
+
+function isValidString(s){return s.length===LEN&&s.split('').every(function(c){return CHAR_SET.indexOf(c)>=0})}
+
+valInput.addEventListener('keydown',function(e){
+  if(e.key==='Enter'){e.preventDefault();stopPlay();parseAndBuild(this.value);}
+});
+btnRandom.addEventListener('click',function(){stopPlay();generateRandom();});
+btnClear.addEventListener('click',function(){stopPlay();valInput.value='';original=[];
+  steps=[{desc:'Applet limpiado.',arr:[],activePos:-1,phase:'init',groups:null}];render(0);});
+
+function randomChar(){return CHAR_SET[Math.floor(Math.random()*CHAR_SET.length)]}
+function randomString(){var s='';for(var i=0;i<LEN;i++)s+=randomChar();return s}
+
+function generateRandom(){
+  var n=4+Math.floor(Math.random()*4);var arr=[];
+  for(var i=0;i<n;i++)arr.push(randomString());
+  valInput.value=arr.join(',');buildSteps(arr);
+}
+
+function parseAndBuild(inp){
+  var strs=inp.split(',').map(function(s){return s.trim().toUpperCase()}).filter(function(s){return s.length>0});
+  var inv=strs.filter(function(s){return !isValidString(s)});
+  if(inv.length>0){descEl.textContent='⚠ Inválida: "'+inv[0]+'". Debe tener 6 caracteres (0-9, A-Z).';return;}
+  if(strs.length<2){descEl.textContent='⚠ Al menos 2 cadenas.';return;}
+  if(strs.length>10){descEl.textContent='⚠ Máximo 10 cadenas.';return;}
+  buildSteps(strs);
+}
+
+function groupByChar(arr,pos){
+  var groups={};
+  for(var i=0;i<CHAR_SET.length;i++)groups[CHAR_SET[i]]=[];
+  for(var i=0;i<arr.length;i++){
+    var ch=arr[i][pos];
+    groups[ch].push(arr[i]);
+  }
+  return groups;
+}
+
+function buildSteps(arr){
+  original=arr.slice();steps=[];
+
+  // Init
+  steps.push({desc:'Estado inicial. '+arr.length+' cadenas.',arr:arr.slice(),activePos:-1,phase:'init',groups:null});
+
+  // Process each position right to left
+  var current=arr.slice();
+  for(var pos=LEN-1;pos>=0;pos--){
+    // Show current array with position highlighted
+    steps.push({
+      desc:'Pasada por posición '+pos+' (dígito '+(LEN-1-pos)+' de derecha a izquierda).',
+      arr:current.slice(),activePos:pos,phase:'current',groups:null
+    });
+
+    // Show distribution by groups
+    var groups=groupByChar(current,pos);
+    var groupList=[];
+    var nonEmpty=0;
+    for(var ci=0;ci<CHAR_SET.length;ci++){
+      var ch=CHAR_SET[ci];
+      if(groups[ch].length>0){
+        groupList.push({ch:ch,items:groups[ch].slice()});
+        nonEmpty+=groups[ch].length;
+      }
+    }
+    steps.push({
+      desc:'Distribuir las cadenas por el carácter en posición '+pos+'.',
+      arr:current.slice(),activePos:pos,phase:'distribute',groups:groupList
+    });
+
+    // Concatenate groups in order
+    var next=[];
+    for(var ci=0;ci<CHAR_SET.length;ci++){
+      var ch=CHAR_SET[ci];
+      for(var si=0;si<groups[ch].length;si++){
+        next.push(groups[ch][si]);
+      }
+    }
+    steps.push({
+      desc:'Concatenar grupos en orden: 0-9 luego A-Z. Estable — el orden dentro de cada grupo se preserva.',
+      arr:next.slice(),activePos:pos,phase:'concat',groups:null
+    });
+    current=next;
+  }
+
+  // Final
+  steps.push({
+    desc:'¡Ordenado! Todas las posiciones procesadas.',arr:current.slice(),activePos:-1,phase:'done',groups:null
+  });
+  render(0);
+}
+
+function render(idx){
+  currentStep=idx;var s=steps[idx];
+  stringsWrap.innerHTML='';distribWrap.innerHTML='';
+
+  if(s.activePos>=0)posLabel.textContent='Arreglo — pasada por posición '+s.activePos;
+  else posLabel.textContent='Arreglo';
+
+  // Show/hide distribution section
+  distribSection.style.display=(s.phase==='distribute')?'block':'none';
+
+  // Render strings
+  for(var i=0;i<s.arr.length;i++){
+    var row=document.createElement('div');row.className='str-row';
+    var idxEl=document.createElement('span');idxEl.className='sidx';idxEl.textContent=i;row.appendChild(idxEl);
+    var cells=document.createElement('div');cells.className='str-cells';
+    var str=s.arr[i];
+    for(var ci=0;ci<str.length;ci++){
+      var cell=document.createElement('div');
+      var cls='str-cell';
+      if(s.phase==='done'||s.phase==='init')cls+=' done-pos';
+      else if(ci===s.activePos){
+        if(s.phase==='concat')cls+=' placing';
+        else cls+=' active-pos';
+      }else if(ci>s.activePos)cls+=' done-pos';
+      cell.className=cls;cell.textContent=str[ci];cells.appendChild(cell);
+    }
+    row.appendChild(cells);stringsWrap.appendChild(row);
+  }
+
+  // Render distribution groups
+  if(s.phase==='distribute'&&s.groups){
+    var total=0;
+    for(var gi=0;gi<s.groups.length;gi++){
+      var g=s.groups[gi];
+      total+=g.items.length;
+      var dg=document.createElement('div');dg.className='distrib-group';
+      var lbl=document.createElement('span');lbl.className='glabel';lbl.textContent="'"+g.ch+"' ("+g.items.length+"):";dg.appendChild(lbl);
+      var its=document.createElement('span');its.className='gitems';its.textContent=g.items.join(',  ');dg.appendChild(its);
+      distribWrap.appendChild(dg);
+    }
+    if(total===0){var em=document.createElement('div');em.className='distrib-group';em.textContent='(vacío)';distribWrap.appendChild(em);}
+  }
+
+  descEl.textContent=s.desc;
+  stepCounterEl.textContent='Paso '+(idx+1)+' / '+steps.length;
+  arrInfoEl.textContent=s.arr.length+' cad'+(s.arr.length!==1?'enas':'');
+  updateBtns();
+}
+
+function goTo(n){if(n<0||n>=steps.length)return;currentStep=n;render(n);}
+function goNext(){if(currentStep<steps.length-1)goTo(currentStep+1);}
+function goPrev(){if(currentStep>0)goTo(currentStep-1);}
+function goFirst(){goTo(0);}
+function updateBtns(){
+  var fs=currentStep<=0,fe=currentStep>=steps.length-1,hs=steps.length>0;
+  btnFirst.disabled=fs||!hs||isPlaying;btnPrev.disabled=fs||!hs||isPlaying;
+  btnNext.disabled=fe||!hs||isPlaying;btnSkip.disabled=fe||!hs;
+}
+function tick(){if(!isPlaying)return;if(currentStep<steps.length-1){goNext();playTimer=setTimeout(tick,speedVal);}else stopPlay();}
+function startPlay(){if(currentStep>=steps.length-1)return;isPlaying=true;btnSkip.textContent='⏸';btnSkip.classList.add('playing');updateBtns();tick();}
+function stopPlay(){isPlaying=false;if(playTimer){clearTimeout(playTimer);playTimer=null;}btnSkip.textContent='>>';btnSkip.classList.remove('playing');updateBtns();}
+function hdlSkip(){if(isPlaying){stopPlay();return;}if(currentStep>=steps.length-1)return;startPlay();}
+speedSlider.addEventListener('input',function(){speedVal=3400-parseInt(this.value);speedLabel.textContent=(1000/speedVal).toFixed(1)+' p/s';if(isPlaying){stopPlay();startPlay();}});
+btnFirst.addEventListener('click',goFirst);btnPrev.addEventListener('click',goPrev);btnNext.addEventListener('click',goNext);btnSkip.addEventListener('click',hdlSkip);
+document.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT')return;
+  if(e.key==='ArrowRight'){e.preventDefault();if(!isPlaying)goNext();}
+  if(e.key==='ArrowLeft'){e.preventDefault();if(!isPlaying)goPrev();}
+  if(e.key==='Home'){e.preventDefault();goFirst();}
+  if(e.key===' '||e.key==='End'){e.preventDefault();hdlSkip();}
+});
+
+buildSteps(['OPV220','AAA202','ZZZ999','BCD123','WXY456','KLM789','QRS012','TUV345']);
+</script>
+</body>
+</html>

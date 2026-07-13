@@ -332,7 +332,7 @@ align: center
 
 ### Visualizador de montículo binario interactivo
 
-Seleccionar el tipo de montículo (mínimo o máximo), ingresar uno o más enteros separados por coma y presionar Enter para encolarlos. Usar **>** para procesar una operación, **>>** para procesar todas las pendientes, o **Remover cima** para eliminar la raíz. Las teclas **<** y **>** navegan entre pasos, **<<** deshace la última inserción, y Espacio inicia/pausa la reproducción automática. Solo se admiten enteros de hasta 3 cifras (±999).
+Seleccionar el tipo de montículo (mínimo o máximo), ingresar uno o más enteros separados por coma y presionar Enter para encolarlos. Usar **>** para procesar una operación, **>>** para procesar todas las pendientes, o **Remover cima** para eliminar la raíz. Las teclas **\<** y **>** navegan entre pasos, **\<<** deshace la última inserción, y Espacio inicia/pausa la reproducción automática. Solo se admiten enteros de hasta 3 cifras (±999).
 
 <div class="only-html">
 

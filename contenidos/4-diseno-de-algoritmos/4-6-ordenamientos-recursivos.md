@@ -328,8 +328,9 @@ Extracción de Elementos (_Sort_)
 : Una vez construido el _heap_, la raíz contiene el máximo. Se intercambia la raíz con la última posición del _heap_, se reduce el tamaño del _heap_ en uno (el elemento intercambiado queda en su posición final) y se aplica _downHeap_ sobre la nueva raíz para restaurar la propiedad de _heap_. Se repite este proceso hasta que el _heap_ queda con un solo elemento. Esta etapa es similar al algoritmo de **Selección**.
 
 ```{admonition} Importante
-:class: important
-
+---
+class: important
+---
 Para ordenar de menor a mayor se construye un _max-heap_ (la raíz es el mayor). Para ordenar de mayor a menor se construye un _min-heap_ (la raíz es el menor).
 ```
 
@@ -417,8 +418,9 @@ En esta etapa el algoritmo es similar al algoritmo de selección, en el sentido 
 Como podemos observar, los algoritmos recursivos de "divide y vencerás" (Mergesort, Quicksort) y el basado en estructura de datos eficiente (Heapsort) superan significativamente a los algoritmos simples de $O(n^2)$ para grandes volúmenes de datos, llevando la complejidad a un óptimo $O(n \log n)$. La elección entre ellos dependerá de factores como la disponibilidad de memoria (Mergesort vs. Quicksort/Heapsort), la necesidad de estabilidad, y la garantía de rendimiento en el peor caso.
 
 ```{admonition} Importante
-:class: important
-
+---
+class: important
+---
 Los algoritmos de ordenamiento, basados en comparaciones (es decir que deben comparar cada elemento con los restantes) realizan al menos $n \log(n)$ operaciones simples. Es decir no hay forma de obtener un algoritmo con una mejor cota temporal que $O(n \log n)$ para el peor caso o el caso promedio.
 ```
 

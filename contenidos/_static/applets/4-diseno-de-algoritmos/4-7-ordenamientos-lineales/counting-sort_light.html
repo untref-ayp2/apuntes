@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Counting Sort — Ordenamiento por Conteo</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#ffffff;color:#1a1a2e;font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5;height:100vh;display:flex;flex-direction:column}
+html,body{overflow:hidden}
+:root{
+  --bg:#ffffff;--fg:#1a1a2e;--border:#d1d5db;--btn-bg:#f3f4f6;--btn-hover:#e5e7eb;--btn-text:#374151;
+  --highlight:#1d4ed8;--arr-fill:#e1f5ff;--arr-stroke:#4682b4;--count-fill:#fff4e1;--count-stroke:#f6ad55;
+  --sorted-fill:#d4edda;--sorted-stroke:#28a745;--highlight-fill:#fff3cd;--highlight-stroke:#ffc107;
+  --error-fill:#ffe1e1;--error-stroke:#e9967a;--slot-stroke:#9ca3af;--cell-size:40px;--cell-gap:4px;
+}
+
+.applet{display:flex;flex-direction:column;padding:8px;gap:6px;width:100%;max-width:100%;margin:0 auto;flex:1;min-height:0}
+.header{font-size:14px;font-weight:700;text-align:center;padding:4px 12px;background:var(--btn-bg);border-radius:6px;border:1px solid var(--border);width:100%;flex-shrink:0}
+.main{display:flex;flex:1;min-height:0;gap:8px;width:100%}
+
+.display-area{flex:1;display:flex;flex-direction:column;gap:8px;overflow-y:auto;padding:4px;min-height:0}
+.display-area .section{margin-bottom:2px}
+.display-area .section-label{font-size:11px;font-weight:600;color:var(--btn-text);margin-bottom:3px;padding-left:2px}
+
+.array-row{display:flex;gap:var(--cell-gap);flex-wrap:wrap;min-height:calc(var(--cell-size) + 8px);align-items:center;padding:2px 0}
+.cell{width:var(--cell-size);height:var(--cell-size);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;font-family:'Courier New',monospace;border-radius:4px;border:2px solid;transition:all .2s;flex-shrink:0}
+
+.cell.arr{border-color:var(--arr-stroke);background:var(--arr-fill);color:var(--fg)}
+.cell.count{border-color:var(--count-stroke);background:var(--count-fill);color:var(--fg);font-size:14px}
+.cell.idx{border-color:transparent;background:transparent;color:var(--slot-stroke);font-size:11px;font-weight:400;border:none;cursor:default}
+.cell.sorted{border-color:var(--sorted-stroke);background:var(--sorted-fill);color:var(--fg)}
+
+.cell.active{transform:scale(1.1);border-width:3px}
+.cell.arr.active{border-color:var(--highlight-stroke);background:var(--highlight-fill);box-shadow:0 0 8px rgba(29,78,216,.3)}
+.cell.count.active{border-color:var(--highlight);background:var(--highlight-fill);box-shadow:0 0 8px rgba(29,78,216,.3)}
+.cell.count.done{border-color:var(--sorted-stroke);background:var(--sorted-fill)}
+.cell.sorted.active{border-color:var(--highlight);background:var(--highlight-fill);box-shadow:0 0 8px rgba(29,78,216,.3)}
+.cell.built{border-color:var(--sorted-stroke);background:var(--sorted-fill)}
+
+.cell.empty{border-style:dashed;opacity:.4}
+.count-group{display:flex;flex-direction:column;gap:0}
+.count-group .array-row{gap:2px}
+.count-group .cell{width:32px;height:32px;font-size:13px}
+
+.double-row{display:flex;flex-direction:column;gap:1px}
+.double-row .array-row{gap:2px;min-height:auto}
+.double-row .cell{width:32px;height:28px;font-size:12px}
+.double-row .cell.idx{height:20px;font-size:10px}
+
+.sidebar{display:flex;flex-direction:column;gap:6px;flex-shrink:0;width:140px;justify-content:center}
+
+.btn-gen{width:100%;padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:var(--btn-bg);color:var(--btn-text);font-size:12px;cursor:pointer;font-weight:600;transition:background .15s;text-align:center}
+.btn-gen:hover{background:var(--btn-hover)}
+.btn-gen.primary{background:var(--highlight);color:#fff;border-color:var(--highlight)}
+.btn-gen.primary:hover{opacity:.9}
+
+.input-group{display:flex;flex-direction:column;gap:4px;font-size:12px}
+.input-row{display:flex;align-items:center;gap:4px}
+.input-row input{flex:1;padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--fg);font-size:13px;width:100%;font-family:'Courier New',monospace}
+.enter-hint{font-size:14px;color:var(--slot-stroke);flex-shrink:0}
+
+.controls{display:flex;flex-direction:row;gap:4px;flex-wrap:wrap;justify-content:center}
+.controls button{width:36px;height:30px;border:1px solid var(--border);border-radius:6px;background:var(--btn-bg);color:var(--btn-text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;padding:0}
+.controls button:hover:not(:disabled){background:var(--btn-hover)}
+.controls button:disabled{opacity:.4;cursor:default}
+.controls button.playing{background:var(--error-stroke);color:#fff;border-color:var(--error-stroke)}
+
+.speed-wrap{display:flex;align-items:center;gap:3px;font-size:11px;flex:1 1 100%;justify-content:center;white-space:nowrap}
+.speed-wrap input[type=range]{width:48px;height:4px;accent-color:var(--highlight)}
+
+.info{padding:6px 10px;border:1px solid var(--border);border-radius:6px;width:100%;display:flex;flex-wrap:wrap;gap:3px 12px;align-items:baseline;font-size:12px;flex-shrink:0}
+.info .path{flex:1;font-size:12px;min-height:1.2em}
+.info .meta{display:flex;gap:12px;flex-wrap:wrap}
+.info .meta span{white-space:nowrap}
+
+.k-slider{display:flex;align-items:center;gap:4px;font-size:11px}
+.k-slider label{white-space:nowrap;font-weight:500}
+.k-slider input{flex:1;accent-color:var(--highlight)}
+.k-slider span{min-width:20px;text-align:center;font-weight:600;color:var(--highlight)}
+</style>
+</head>
+<body>
+<div class="applet">
+  <div class="header">Counting Sort — Ordenamiento por Conteo</div>
+  <div class="main">
+    <div class="display-area" id="displayArea">
+      <div class="section">
+        <div class="section-label">Arreglo original</div>
+        <div class="array-row" id="origRow"></div>
+      </div>
+      <div class="section">
+        <div class="section-label">Arreglo de conteo</div>
+        <div class="double-row">
+          <div class="array-row" id="countIdxRow"></div>
+          <div class="array-row" id="countRow"></div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="section-label">Arreglo ordenado</div>
+        <div class="array-row" id="sortedRow"></div>
+      </div>
+      <div class="section" style="margin-top:4px">
+        <div class="section-label">Rango k</div>
+        <div class="k-slider">
+          <label for="kSlider">k =</label>
+          <input type="range" id="kSlider" min="5" max="20" value="9" step="1">
+          <span id="kLabel">9</span>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar">
+      <button class="btn-gen primary" id="btnRandom">Aleatorio</button>
+      <div class="input-group">
+        <label for="valInput">Valores (separados por coma):</label>
+        <div class="input-row">
+          <input type="text" id="valInput" placeholder="Ej: 4,2,8,3,1 (max 10)" autofocus>
+          <span class="enter-hint">↵</span>
+        </div>
+      </div>
+      <button class="btn-gen" id="btnClear" style="border-color:var(--error-stroke);color:var(--error-stroke)">Limpiar</button>
+      <div class="separator" style="height:1px;background:var(--border);margin:2px 0"></div>
+      <div class="controls">
+        <button id="btnFirst" title="Ir al inicio" disabled>⏮</button>
+        <button id="btnPrev" title="Paso anterior" disabled>◀</button>
+        <button id="btnNext" title="Paso siguiente" disabled>▶</button>
+        <button id="btnSkip" title="Reproducir automático" disabled>>></button>
+      </div>
+      <div class="speed-wrap">
+        <label for="speedSlider">Vel:</label>
+        <input type="range" id="speedSlider" min="400" max="3000" value="1500" step="100">
+        <span id="speedLabel">0.7 p/s</span>
+      </div>
+    </div>
+  </div>
+  <div class="info">
+    <div class="path" id="desc">Ingresar valores enteros no negativos (0 a k) o generar aleatorios.</div>
+    <div class="meta">
+      <span id="stepCounter">Paso — / —</span>
+      <span id="arrInfo">—</span>
+    </div>
+  </div>
+</div>
+<script>
+var valInput=document.getElementById('valInput');
+var btnRandom=document.getElementById('btnRandom');
+var btnFirst=document.getElementById('btnFirst');
+var btnPrev=document.getElementById('btnPrev');
+var btnNext=document.getElementById('btnNext');
+var btnSkip=document.getElementById('btnSkip');
+var speedSlider=document.getElementById('speedSlider');
+var speedLabel=document.getElementById('speedLabel');
+var descEl=document.getElementById('desc');
+var stepCounterEl=document.getElementById('stepCounter');
+var arrInfoEl=document.getElementById('arrInfo');
+var origRow=document.getElementById('origRow');
+var countIdxRow=document.getElementById('countIdxRow');
+var countRow=document.getElementById('countRow');
+var sortedRow=document.getElementById('sortedRow');
+var kSlider=document.getElementById('kSlider');
+var kLabel=document.getElementById('kLabel');
+
+var k=9;
+var original=[];
+var steps=[];
+var currentStep=-1;
+var isPlaying=false;
+var playTimer=null;
+var speedVal=1500;
+
+kSlider.addEventListener('input',function(){
+  k=parseInt(this.value);
+  kLabel.textContent=k;
+  if(!isPlaying)regenFromCurrent();
+});
+
+function regenFromCurrent(){
+  var inp=valInput.value.trim();
+  if(inp.length>0){parseAndBuild(inp);}
+  else{generateRandom();}
+}
+
+valInput.addEventListener('keydown',function(e){
+  if(e.key==='Enter'){e.preventDefault();stopPlay();parseAndBuild(this.value);}
+});
+
+btnRandom.addEventListener('click',function(){stopPlay();generateRandom();});
+
+var btnClear=document.getElementById('btnClear');
+btnClear.addEventListener('click',function(){
+  stopPlay();
+  valInput.value='';
+  original=[];
+  steps=[{desc:'Applet limpiado. Ingresar valores o generar aleatorios.',origHL:-1,countHL:-1,sortedHL:-1,countVals:[],sortedVals:[],phase:'init'}];
+  render(0);
+});
+
+function generateRandom(){
+  var n=4+Math.floor(Math.random()*4);
+  var arr=[];
+  for(var i=0;i<n;i++)arr.push(Math.floor(Math.random()*(k+1)));
+  valInput.value=arr.join(',');
+  buildSteps(arr);
+}
+
+function parseAndBuild(inp){
+  var nums=inp.split(',').map(function(s){return s.trim()}).filter(function(s){return s.length>0})
+    .map(function(s){return parseInt(s,10)}).filter(function(n){return Number.isInteger(n)&&n>=0&&n<=k});
+  if(nums.length<2){descEl.textContent='⚠ Ingresar al menos 2 enteros entre 0 y '+k+' separados por coma.';return;}
+  if(nums.length>10){descEl.textContent='⚠ Máximo 10 elementos. Se recibieron '+nums.length+'.';return;}
+  buildSteps(nums);
+}
+
+function buildSteps(arr){
+  original=arr.slice();
+  var n=arr.length;
+  var count=new Array(k+1).fill(0);
+  var sorted=new Array(n).fill(null);
+  steps=[];
+
+  // Initial state
+  steps.push({
+    desc:'Estado inicial. Arreglo original con '+n+' elementos, k='+k+'.',
+    origHL:-1,countHL:-1,sortedHL:-1,countVals:count.slice(),sortedVals:sorted.slice(),phase:'init'
+  });
+
+  // Phase 1: Count
+  for(var i=0;i<n;i++){
+    var val=arr[i];
+    count[val]++;
+    steps.push({
+      desc:'Contando: elemento arr['+i+'] = '+val+'. conteo['+val+'] → '+count[val]+'.',
+      origHL:i,countHL:val,countVals:count.slice(),sortedVals:sorted.slice(),phase:'count'
+    });
+  }
+
+  // Phase 2: Reconstruct
+  var si=0;
+  for(var v=0;v<=k;v++){
+    while(count[v]>0){
+      sorted[si]=v;
+      count[v]--;
+      steps.push({
+        desc:'Reconstruyendo: colocar '+v+' en ordenado['+si+'].',
+        origHL:-1,countHL:v,countVals:count.slice(),sortedVals:sorted.slice(),sortedHL:si,phase:'reconstruct'
+      });
+      si++;
+    }
+  }
+
+  // Final state
+  steps.push({
+    desc:'¡Ordenado! Arreglo resultante de '+n+' elementos.',
+    origHL:-1,countHL:-1,countVals:count.slice(),sortedVals:sorted.slice(),phase:'done'
+  });
+
+  render(0);
+}
+
+function render(idx){
+  currentStep=idx;
+  var s=steps[idx];
+  origRow.innerHTML='';
+  countIdxRow.innerHTML='';
+  countRow.innerHTML='';
+  sortedRow.innerHTML='';
+
+  // Original array
+  for(var i=0;i<original.length;i++){
+    var c=document.createElement('div');
+    c.className='cell arr'+(i===s.origHL?' active':'');
+    c.textContent=original[i];
+    origRow.appendChild(c);
+  }
+
+  // Count array indices
+  for(var i=0;i<=k;i++){
+    var c=document.createElement('div');
+    c.className='cell idx';
+    c.textContent=i;
+    countIdxRow.appendChild(c);
+  }
+
+  // Count array values
+  for(var i=0;i<=k;i++){
+    var c=document.createElement('div');
+    var cls='cell count';
+    if(s.phase==='reconstruct'&&s.countVals[i]===0&&i<s.countHL)cls+=' done';
+    if(i===s.countHL)cls+=' active';
+    c.className=cls;
+    c.textContent=s.countVals[i];
+    countRow.appendChild(c);
+  }
+
+  // Sorted array
+  var totalSorted=0;
+  for(var i=0;i<original.length;i++){
+    var c=document.createElement('div');
+    var cls='cell sorted';
+    if(s.sortedVals[i]!==null){
+      cls+=' built';
+      totalSorted++;
+    }else{
+      cls+=' empty';
+    }
+    if(i===s.sortedHL)cls+=' active';
+    c.className=cls;
+    c.textContent=s.sortedVals[i]!==null?s.sortedVals[i]:'';
+    sortedRow.appendChild(c);
+  }
+
+  descEl.textContent=s.desc;
+  stepCounterEl.textContent='Paso '+(idx+1)+' / '+steps.length;
+  arrInfoEl.textContent=original.length+' elem'+(original.length!==1?'s':'');
+
+  updateBtns();
+}
+
+function goTo(n){
+  if(n<0||n>=steps.length)return;
+  currentStep=n;
+  render(n);
+}
+
+function goNext(){
+  if(currentStep<steps.length-1)goTo(currentStep+1);
+}
+function goPrev(){
+  if(currentStep>0)goTo(currentStep-1);
+}
+function goFirst(){goTo(0);}
+
+function updateBtns(){
+  var fs=currentStep<=0,fe=currentStep>=steps.length-1,hs=steps.length>0;
+  btnFirst.disabled=fs||!hs||isPlaying;
+  btnPrev.disabled=fs||!hs||isPlaying;
+  btnNext.disabled=fe||!hs||isPlaying;
+  btnSkip.disabled=fe||!hs;
+}
+
+function tick(){
+  if(!isPlaying)return;
+  if(currentStep<steps.length-1){goNext();playTimer=setTimeout(tick,speedVal);}
+  else stopPlay();
+}
+
+function startPlay(){
+  if(currentStep>=steps.length-1)return;
+  isPlaying=true;
+  btnSkip.textContent='⏸';
+  btnSkip.classList.add('playing');
+  updateBtns();
+  tick();
+}
+
+function stopPlay(){
+  isPlaying=false;
+  if(playTimer){clearTimeout(playTimer);playTimer=null;}
+  btnSkip.textContent='>>';
+  btnSkip.classList.remove('playing');
+  updateBtns();
+}
+
+function hdlSkip(){
+  if(isPlaying){stopPlay();return;}
+  if(currentStep>=steps.length-1)return;
+  startPlay();
+}
+
+speedSlider.addEventListener('input',function(){
+  speedVal=3400-parseInt(this.value);
+  speedLabel.textContent=(1000/speedVal).toFixed(1)+' p/s';
+  if(isPlaying){stopPlay();startPlay();}
+});
+
+btnFirst.addEventListener('click',goFirst);
+btnPrev.addEventListener('click',goPrev);
+btnNext.addEventListener('click',goNext);
+btnSkip.addEventListener('click',hdlSkip);
+
+document.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT')return;
+  if(e.key==='ArrowRight'){e.preventDefault();if(!isPlaying)goNext();}
+  if(e.key==='ArrowLeft'){e.preventDefault();if(!isPlaying)goPrev();}
+  if(e.key==='Home'){e.preventDefault();goFirst();}
+  if(e.key===' '||e.key==='End'){e.preventDefault();hdlSkip();}
+});
+
+// Initial example
+buildSteps([4,2,2,8,3,3,1]);
+</script>
+</body>
+</html>

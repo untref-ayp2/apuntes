@@ -9,8 +9,9 @@ label: recursividad
 En programación, la recursividad es una técnica donde **una función se llama a sí misma** dentro de su propia definición. Es como si la función se estuviera "descomponiendo" en versiones más pequeñas del mismo problema, hasta llegar a un **caso tan simple que se puede resolver directamente**.
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-1-recursividad/Recursion.svg
-:width: 70%
-
+---
+width: 70%
+---
 Matryoshka.
 ```
 
@@ -64,16 +65,18 @@ En la línea 6 se define el caso base, donde el factorial de 0 es 1. En la líne
 Para entender como funciona la recursión tenemos que observar la pila de ejecución. Si ejecutamos el código anterior, la pila de ejecución se verá de la siguiente manera:
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-1-recursividad/RecursionFactorial_light.svg
-:class: only-light-mode
-:width: 600px
-
+---
+class: only-light-mode
+width: 600px
+---
 Pila de Ejecución - factorial(4).
 ```
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-1-recursividad/RecursionFactorial_dark.svg
-:class: only-dark-mode
-:width: 600px
-
+---
+class: only-dark-mode
+width: 600px
+---
 Pila de Ejecución - factorial(4).
 ```
 
