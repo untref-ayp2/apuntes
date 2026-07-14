@@ -317,6 +317,7 @@ def post_process_typst():
                     .replace("angle.l", "⟨")
                     .replace("angle.r", "⟩")
                     .replace("repeat-header: true", "repeat-header: false")
+                    .replace("supplement: [Figure]", "supplement: [Figura]")
                     # Fix LaTeX math commands not converted by MyST
                     .replace("displaystyle ", "")
                     .replace("displaystyle", "")
