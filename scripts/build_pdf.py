@@ -266,6 +266,10 @@ def clean_svg_files(directory):
                 content = re.sub(r'(\s+\w+="[^"]*")\s*\1', r"\1", content)
                 # Remove font-family attributes (Typst/resvg font subsetting compat)
                 content = re.sub(r'\s*font-family="[^"]*"', "", content)
+                # Remove <switch> blocks (draw.io fallback "Text is not SVG - cannot display")
+                content = re.sub(r'<switch>.*?</switch>', "", content, flags=re.DOTALL)
+                # Remove standalone <g requiredFeatures="..."/> (from draw.io switch remnants)
+                content = re.sub(r'\s*<g\s+requiredFeatures="[^"]*"\s*/>', "", content)
                 if content != original:
                     print(f"  Cleaned {filepath}")
                     with open(filepath, "w", encoding="utf-8") as f:
