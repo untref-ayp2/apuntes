@@ -88,7 +88,6 @@ project:
       children:
         - file: 5-anexos/5-1-introduccion-git.md
         - file: 5-anexos/5-2-iteradores-abb.md
-    - file: bibliografia.md
 
 
 
