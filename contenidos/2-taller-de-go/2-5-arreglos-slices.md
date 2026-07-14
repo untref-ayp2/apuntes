@@ -233,6 +233,7 @@ invierno = [Junio Julio Agosto]
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/overlapping-slices_light.svg
 ---
 class: only-light-mode
+width: 50%
 ---
 Dos _slices_ sobre el mismo array de meses.
 ```
@@ -240,6 +241,7 @@ Dos _slices_ sobre el mismo array de meses.
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/overlapping-slices_dark.svg
 ---
 class: only-dark-mode
+width: 50%
 ---
 Dos _slices_ sobre el mismo array de meses.
 ```
@@ -326,6 +328,7 @@ y = [0 1 2 3]
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-1_light.svg
 ---
 class: only-light-mode
+width: 50%
 ---
 Slices x e y comparten el mismo arreglo subyacente.
 ```
@@ -333,6 +336,7 @@ Slices x e y comparten el mismo arreglo subyacente.
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-1_dark.svg
 ---
 class: only-dark-mode
+width: 50%
 ---
 Slices x e y comparten el mismo arreglo subyacente.
 ```
