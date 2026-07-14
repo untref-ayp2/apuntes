@@ -71,6 +71,21 @@ def fix_content_for_typst(content):
     content = re.sub(r"<video[^>]*>.*?</video>", "", content)
     content = re.sub(r"<video[^>]*/>", "", content)
 
+    # Add width: 100% to figure blocks without explicit width
+    # (prevents oversized images in PDF)
+    def add_figure_width(match):
+        block = match.group(0)
+        if "width:" not in block:
+            block = block.replace("---\n", "---\nwidth: 100%\n", 1)
+        return block
+
+    content = re.sub(
+        r"```\{figure\} .*?```",
+        add_figure_width,
+        content,
+        flags=re.DOTALL,
+    )
+
     # Inside {math} blocks, remove $ currency signs and replace \times
     # Pattern: match ```{math} ... ``` blocks
     def fix_math_block(match):
@@ -169,6 +184,19 @@ def process_file(filepath):
                             else:
                                 new_lines.extend(buffer)
 
+                        elif block_type == "tab-set":
+                            tab_item_pattern = re.compile(r"^(\s*)(:{3,})\{tab-item\}\s*(.*)$")
+                            tab_close_pattern = re.compile(r"^(\s*)(:{3,})\s*$")
+                            for line in buffer[1:-1]:
+                                m = tab_item_pattern.match(line)
+                                if m:
+                                    heading = m.group(3).strip()
+                                    new_lines.append(f"{m.group(1)}**{heading}**\n\n")
+                                elif tab_close_pattern.match(line):
+                                    continue
+                                else:
+                                    new_lines.append(line)
+
                         elif block_type == "code-cell":
                             content_str = "".join(buffer)
                             if (
@@ -207,6 +235,8 @@ def process_file(filepath):
                     block_type = "admonition"
                 elif directive == "dropdown":
                     block_type = "dropdown"
+                elif directive == "tab-set":
+                    block_type = "tab-set"
                 elif directive == "code-cell":
                     block_type = "code-cell"
                 else:

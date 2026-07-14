@@ -10,7 +10,7 @@ Go es un lenguaje de programación desarrollado por Google y lanzado oficialment
 
 ```{figure} ../_static/figures/2-taller-de-go/2-1-introduccion-go/Go-Logo_Blue.svg
 ---
-width: 200
+width: 200px
 ---
 Logo de Go.
 ```
