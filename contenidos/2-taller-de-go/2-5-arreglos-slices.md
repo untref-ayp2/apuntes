@@ -388,6 +388,7 @@ y = [0 1 2 4 4]
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-3_light.svg
 ---
 class: only-light-mode
+width: 50%
 ---
 Al superar la capacidad, y apunta a un nuevo arreglo subyacente.
 ```
@@ -395,6 +396,7 @@ Al superar la capacidad, y apunta a un nuevo arreglo subyacente.
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-3_dark.svg
 ---
 class: only-dark-mode
+width: 50%
 ---
 Al superar la capacidad, y apunta a un nuevo arreglo subyacente.
 ```
