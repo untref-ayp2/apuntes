@@ -111,7 +111,7 @@ var s []byte
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-struct_light.svg
 ---
 class: only-light-mode
-width: 50%
+width: 200px
 ---
 Estructura interna de un _slice_.
 ```
@@ -119,7 +119,7 @@ Estructura interna de un _slice_.
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-struct_dark.svg
 ---
 class: only-dark-mode
-width: 50%
+width: 200px
 ---
 Estructura interna de un _slice_.
 ```
@@ -233,7 +233,6 @@ invierno = [Junio Julio Agosto]
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/overlapping-slices_light.svg
 ---
 class: only-light-mode
-width: 50%
 ---
 Dos _slices_ sobre el mismo array de meses.
 ```
@@ -241,7 +240,6 @@ Dos _slices_ sobre el mismo array de meses.
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/overlapping-slices_dark.svg
 ---
 class: only-dark-mode
-width: 50%
 ---
 Dos _slices_ sobre el mismo array de meses.
 ```
@@ -358,6 +356,7 @@ y = [0 1 2 4]
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-2_light.svg
 ---
 class: only-light-mode
+width: 50%
 ---
 Modificar x también afecta a y al compartir el arreglo subyacente.
 ```
@@ -365,6 +364,7 @@ Modificar x también afecta a y al compartir el arreglo subyacente.
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-append-entangled-2_dark.svg
 ---
 class: only-dark-mode
+width: 50%
 ---
 Modificar x también afecta a y al compartir el arreglo subyacente.
 ```
