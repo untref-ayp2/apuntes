@@ -68,7 +68,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 33 | `contenidos/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos.md` |  ✅ Revisado| `taller-algoritmos` |
 | 34 | `contenidos/4-diseno-de-algoritmos/4-7-ordenamientos-lineales.md` | ✅ Revisado | `taller-algoritmos` |
 | 35 | `contenidos/5-anexos/5-1-introduccion-git.md` | ✅ Revisado | — |
-| 36 | `contenidos/5-anexos/5-2-iteradores-abb.md` | ⬜ Pendiente | `guia-abb` |
+| 36 | `contenidos/5-anexos/5-2-iteradores-abb.md` | ✅ Revisado | `guia-iteradores-abb` |
 | 37 | `contenidos/bibliografia.md` | ⬜ Pendiente | — |
 
 ---

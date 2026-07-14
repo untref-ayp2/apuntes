@@ -2,7 +2,7 @@
 label: iteradores-abb
 ---
 
-# Iteradores en Árboles Binarios de Busqueda (ABB)
+# Iteradores en Árboles Binarios de Búsqueda (ABB)
 
 En este anexo, vamos a implementar iteradores para un Árbol Binario de Búsqueda (ABB) en Go. Los iteradores nos permiten recorrer los nodos del árbol de manera ordenada, facilitando la obtención de los valores almacenados. Elegimos implementarlos sobre un ABB para aprovechar su estructura ordenada.
 
@@ -11,6 +11,8 @@ En este anexo, vamos a implementar iteradores para un Árbol Binario de Búsqued
 En el siguiente fragmento de código definimos la interfaz `Iterator` que contendrá los métodos necesarios para iterar cualquier colección de elementos y en particular los nodos de un ABB.
 
 ```{code-block} go
+:linenos:
+
 // La interfaz Iterator define los métodos para iterar sobre una colección
 type Iterator[T any] interface {
     HasNext() bool
@@ -32,11 +34,13 @@ En esta implementación de ABB la funcionalidad del árbol se encuentra en el á
 
 Los métodos incluidos son los mínimos y necesarios para crear un árbol, insertar elementos y obtener los distintos iteradores.
 
-El árbol es genérico del tipo `cmp.Ordered`, lo que significa que los valores deben ser comparables y ordenables, es decir deben soportar las operaciones de comparación como `<`, `<=`, `>`, `>=`, `==` y `!=`.
+El árbol usa un tipo genérico con una función de comparación, lo que permite usar cualquier tipo que provea un criterio de orden.
 
 A continuación se muestra la estructura del nodo del ABB.
 
 ```{code-block} go
+:linenos:
+
 // BinaryNode representa un nodo en el árbol binario
 type BinaryNode[T any] struct {
     value T
@@ -50,6 +54,8 @@ El tipo `BinaryNode` solo tiene los métodos necesarios para crear un nodo y obt
 En la implementación del ABB tenemos los métodos para obtener los iteradores:
 
 ```{code-block} go
+:linenos:
+
 // BinarySearchTree implementa un árbol binario de búsqueda genérico
 type BinarySearchTree[T any] struct {
     root *BinaryNode[T]
@@ -74,12 +80,12 @@ Al crear un iterador se ejecuta un setup inicial que depende de cada tipo de ite
 
 Cuando estudiamos los recorridos de árboles (inorder, preorder, postorder), la forma más intuitiva y elegante de implementarlos es usando recursión, ya que el código queda conciso, limpio y fácil de entender.
 
-Sin embargo, cuando hablamos de un iterador, la situación cambia. Un iterador, por definición (según el patrón Iterador), debe permitirnos obtener el "siguiente" elemento de la colección a demanda, sin tener que procesar el resto de la colección de antemano. Es decir, queremos que nuestro método `Next()` devuelva un único valor y luego Has`Next()` nos diga si hay más, esperando una nueva llamada a `Next()`.
+Sin embargo, cuando hablamos de un iterador, la situación cambia. Un iterador, por definición (según el patrón Iterador), debe permitirnos obtener el "siguiente" elemento de la colección a demanda, sin tener que procesar el resto de la colección de antemano. Es decir, queremos que nuestro método `Next()` devuelva un único valor y luego `HasNext()` nos diga si hay más, esperando una nueva llamada a `Next()`.
 
 Aquí es donde la recursión directa presenta un desafío:
 
-Manejo del estado:
-Una función recursiva completa su ejecución y devuelve un resultado. No "pausa" su estado para ser reanudada en el mismo punto más tarde. Cada llamada recursiva crea un nuevo stack frame (marco de pila) que se destruye al finalizar.
+Manejo del estado
+: Una función recursiva completa su ejecución y devuelve un resultado. No "pausa" su estado para ser reanudada en el mismo punto más tarde. Cada llamada recursiva crea un nuevo _stack frame_ (marco de pila) que se destruye al finalizar.
 
 Devolución de un solo elemento
 : Si intentáramos adaptar la recursión para devolver un solo elemento en cada llamada a `Next()`, nos encontraríamos con que la función recursiva ya ha avanzado en el recorrido, y sería muy difícil mantener el "punto exacto" en el que nos quedamos para la siguiente llamada.
@@ -90,9 +96,8 @@ Espacio en memoria (_stack overflow_)
 Para superar estos desafíos y crear un iterador que sea _lazy_ (bajo demanda) y eficiente en memoria, necesitamos una forma de simular la pila de llamadas recursiva de forma explícita. Y la estructura de datos perfecta para esto es, precisamente, una pila (_stack_).
 
 ```{admonition} Nota
----
-class: Note
----
+:class: note
+
 Que sea _lazy_ significa que el iterador no calcula todos los elementos de antemano, sino que los obtiene a medida que se le solicita un nuevo elemento. Esto es fundamental para manejar colecciones grandes o infinitas sin consumir demasiada memoria.
 ```
 
@@ -122,32 +127,39 @@ La estrategia para el iterador inorder es la siguiente:
 5. Una vez que no hay más nodos a la izquierda, el tope de la pila contendrá el siguiente nodo en orden.
 6. Devolvemos el elemento del nodo que acabamos de sacar de la pila.
 
-[Ver presentación: Iterador Inorder](https://docs.google.com/presentation/d/1Wf0J8QD3Whr5rY7r0xZB8Jx85kiAKKUWCHYQ0LO8ba4)
+<div class="only-html">
+
+<iframe src="/applets/5-anexos/5-2-iteradores-abb/inorder-iterador_light.html" width="100%" height="520px" class="only-light-mode"></iframe>
+
+<iframe src="/applets/5-anexos/5-2-iteradores-abb/inorder-iterador_dark.html" width="100%" height="520px" class="only-dark-mode"></iframe>
+
+</div>
 
 En el siguiente fragmento de código se puede observar la implementación del iterador Inorder
 
 El setup inicial consiste en apilar la raíz y toda la rama izquierda para iniciar. De esta forma el primer nodo que se desapila es el menor de todo el árbol
 
 ```{code-block} go
-// InorderIterator implementa un iterador inorder usando dos pilas
+:linenos:
+
+// InorderIterator implementa un iterador inorder
 type InorderIterator[T any] struct {
-    stack1 []*BinaryNode[T]  // Pila principal para traversal
-    stack2 []*BinaryNode[T]  // Pila auxiliar para postorder
+    stack []*BinaryNode[T]  // Pila principal para el recorrido
 }
 
 func (t *BinarySearchTree[T]) InorderIterator() Iterator[T] {
-    iter := &InorderIterator[T]{stack1: make([]*BinaryNode[T], 0)}
+    iter := &InorderIterator[T]{stack: make([]*BinaryNode[T], 0)}
     // Setup: apilar raíz y toda la rama izquierda
     node := t.root
     for node != nil {
-        iter.stack1 = append(iter.stack1, node)
+        iter.stack = append(iter.stack, node)
         node = node.left
     }
     return iter
 }
 
 func (iter *InorderIterator[T]) HasNext() bool {
-    return len(iter.stack1) > 0 || len(iter.stack2) > 0
+    return len(iter.stack) > 0
 }
 
 func (iter *InorderIterator[T]) Next() (T, error) {
@@ -167,13 +179,21 @@ La estrategia para el iterador preorder varía un poco, ya que lo primero que de
 4. Devolvemos el elemento del nodo que acabamos de sacar de la pila.
 5. Se repite hasta que la pila queda vacía.
 
-[Ver presentación: Iterador Preorder](https://docs.google.com/presentation/d/1dPcj7P__1Em86zUmh0GkHsv02oKRn4m5MtDB6E87zfQ)
+<div class="only-html">
+
+<iframe src="/applets/5-anexos/5-2-iteradores-abb/preorder-iterador_light.html" width="100%" height="520px" class="only-light-mode"></iframe>
+
+<iframe src="/applets/5-anexos/5-2-iteradores-abb/preorder-iterador_dark.html" width="100%" height="520px" class="only-dark-mode"></iframe>
+
+</div>
 
 En el siguiente fragmento de código se puede observar la implementación del iterador Preorder
 
 El setup inicial consiste en apilar la raíz solamente.
 
 ```{code-block} go
+:linenos:
+
 // PreorderIterator implementa un iterador preorder
 type PreorderIterator[T any] struct {
     stack []*BinaryNode[T]
@@ -220,15 +240,23 @@ Por eso, se usan dos pilas para simular el recorrido postorder de manera iterati
 
 - Cuando se llama a `Next()`, simplemente se desapila un nodo de stack2 y se devuelve su valor.
 
-- Has`Next()` verifica si stack2 aún tiene nodos.
+- `HasNext()` verifica si stack2 aún tiene nodos.
 
-[Ver presentación: Iterador Postorder](https://docs.google.com/presentation/d/1UKgXA9gn01o90VSMud5RHdnPDxas7GWhIXZg8Pl1ZWY)
+<div class="only-html">
 
-En el siguiente fragmento de código se puede observar la implementación del iterador Preorder
+<iframe src="/applets/5-anexos/5-2-iteradores-abb/postorder-iterador_light.html" width="100%" height="520px" class="only-light-mode"></iframe>
 
-El setup inicial consiste en apilar la raíz solamente.
+<iframe src="/applets/5-anexos/5-2-iteradores-abb/postorder-iterador_dark.html" width="100%" height="520px" class="only-dark-mode"></iframe>
+
+</div>
+
+En el siguiente fragmento de código se puede observar la implementación del iterador Postorder
+
+El setup inicial consiste en apilar la raíz en la primera pila y luego procesar el árbol para llenar la segunda pila en orden postorder.
 
 ```{code-block} go
+:linenos:
+
 // PostorderIterator implementa un iterador postorder usando dos pilas
 type PostorderIterator[T any] struct {
     stack1 []*BinaryNode[T]
@@ -240,17 +268,18 @@ func (t *BinarySearchTree[T]) PostorderIterator() Iterator[T] {
         stack1: make([]*BinaryNode[T], 0),
         stack2: make([]*BinaryNode[T], 0),
     }
-    // Setup: traversal para llenar stack2 en orden postorder
-    node := t.root
-    for node != nil || len(iter.stack1) > 0 {
-        if node != nil {
-            iter.stack1 = append(iter.stack1, node)
-            node = node.left
-        } else {
-            node = iter.stack1[len(iter.stack1)-1]
-            iter.stack1 = iter.stack1[:len(iter.stack1)-1]
-            iter.stack2 = append(iter.stack2, node)
-            node = node.right
+    if t.root != nil {
+        iter.stack1 = append(iter.stack1, t.root)
+    }
+    for len(iter.stack1) > 0 {
+        node := iter.stack1[len(iter.stack1)-1]
+        iter.stack1 = iter.stack1[:len(iter.stack1)-1]
+        iter.stack2 = append(iter.stack2, node)
+        if node.left != nil {
+            iter.stack1 = append(iter.stack1, node.left)
+        }
+        if node.right != nil {
+            iter.stack1 = append(iter.stack1, node.right)
         }
     }
     return iter
@@ -269,4 +298,6 @@ func (iter *PostorderIterator[T]) Next() (T, error) {
 
 ## Código completo en Go
 
-[Descargar código fuente](../_static/code.zip)
+El código completo de este anexo está disponible en el repositorio [guia-iteradores-abb](https://github.com/untref-ayp2/guia-iteradores-abb).
+
+

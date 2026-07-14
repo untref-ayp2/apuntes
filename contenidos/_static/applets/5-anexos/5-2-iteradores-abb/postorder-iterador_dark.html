@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iterador Postorder — Paso a paso</title>
+<style>
+:root {
+  --bg: #1a1b2e;
+  --fg: #e0e0e0;
+  --border: #374151;
+  --btn-bg: #2d3748;
+  --btn-hover: #374151;
+  --btn-text: #e0e0e0;
+  --highlight: #60a5fa;
+  --node-fill: #2d3748;
+  --node-stroke: #63b3ed;
+  --node-text: #e0e0e0;
+  --push-fill: #5a4a00;
+  --push-stroke: #ffc107;
+  --pop-fill: #1e3a2f;
+  --pop-stroke: #48c774;
+  --stack-bg: #1e1e30;
+  --result-bg: #1a2e1a;
+  --edge-color: #4a5568;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+.applet{display:flex;flex-direction:column;padding:6px;gap:4px;width:100%;height:100vh;flex:1;min-height:0;overflow:hidden}
+.header{font-size:13px;font-weight:700;text-align:center;padding:3px 10px;background:var(--btn-bg);border-radius:5px;border:1px solid var(--border);flex-shrink:0}
+.main{display:flex;flex:1;min-height:0;gap:6px;overflow:hidden}
+.tree-wrap{flex:1;min-width:0;position:relative;border:1px solid var(--border);border-radius:5px;overflow:hidden}
+.tree-wrap canvas{width:100%;height:100%;display:block}
+.sidebar{width:230px;flex-shrink:0;display:flex;flex-direction:column;gap:4px;overflow-y:auto}
+.input-row{display:flex;gap:3px}
+.input-row input{flex:1;padding:3px 5px;border:1px solid var(--border);border-radius:3px;background:var(--bg);color:var(--fg);font-size:12px;min-width:0}
+.input-row button{padding:3px 8px;border:1px solid var(--border);border-radius:3px;background:var(--btn-bg);color:var(--btn-text);font-size:11px;cursor:pointer;font-weight:600;white-space:nowrap}
+.input-row button:hover{background:var(--btn-hover)}
+.actions{display:flex;gap:3px}
+.actions button{flex:1;padding:3px 6px;border:1px solid var(--border);border-radius:3px;background:var(--btn-bg);color:var(--btn-text);font-size:10px;cursor:pointer;font-weight:600}
+.actions button:hover{background:var(--btn-hover)}
+.separator{height:1px;background:var(--border);margin:2px 0;flex-shrink:0}
+.panel-label{font-size:10px;font-weight:600;color:var(--btn-text);text-transform:uppercase;letter-spacing:.5px;flex-shrink:0}
+.result-box{min-height:0;flex-shrink:0}
+.result-pills{display:flex;flex-wrap:wrap;gap:2px;min-height:22px;padding:3px;background:var(--result-bg);border:1px solid var(--pop-stroke);border-radius:4px}
+.pill{display:inline-flex;align-items:center;justify-content:center;width:24px;height:22px;border-radius:3px;font-size:11px;font-weight:700;font-family:'Courier New',monospace;transition:all .2s}
+.pill-ok{background:var(--pop-fill);color:var(--fg);border:1px solid var(--pop-stroke)}
+.pill-next{background:var(--push-fill);color:var(--fg);border:2px solid var(--push-stroke);transform:scale(1.1)}
+.stack-box{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.stack-visual{flex:1;display:flex;flex-direction:column-reverse;gap:2px;padding:4px;background:var(--stack-bg);border:1px solid var(--border);border-radius:4px;overflow-y:auto;min-height:30px}
+.stack-item{text-align:center;padding:2px 6px;border-radius:3px;font-size:12px;font-weight:700;font-family:'Courier New',monospace;transition:all .2s;border:1px solid transparent}
+.stack-item.idle{background:var(--node-fill);border-color:var(--node-stroke);color:var(--fg)}
+.stack-item.s1-push{background:#3d2e5c;border-color:#9f7aea;color:var(--fg)}
+.stack-item.s2-push{background:var(--push-fill);border-color:var(--push-stroke);color:var(--fg)}
+.stack-item.s2-pop{background:var(--pop-fill);border-color:var(--pop-stroke);color:var(--fg)}
+.stacks-row{display:flex;gap:4px;flex:1;min-height:0}
+.stack-col{flex:1;display:flex;flex-direction:column;min-width:0}
+.stack-empty{text-align:center;color:var(--border);font-size:11px;font-style:italic;padding:4px}
+.stack-label{font-size:9px;font-weight:600;text-align:center;color:var(--btn-text);margin:1px 0}
+.controls{display:flex;gap:3px;justify-content:center;flex-shrink:0}
+.controls button{width:32px;height:26px;border:1px solid var(--border);border-radius:4px;background:var(--btn-bg);color:var(--btn-text);font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:background .1s}
+.controls button:hover:not(:disabled){background:var(--btn-hover)}
+.controls button:disabled{opacity:.35;cursor:default}
+.controls button.playing{background:#dc2626;color:#fff;border-color:#dc2626}
+.speed-row{display:flex;align-items:center;gap:3px;font-size:10px;flex-shrink:0;justify-content:center}
+.speed-row input[type=range]{width:48px;height:4px;accent-color:var(--highlight)}
+.footer{flex-shrink:0;padding:4px 8px;border:1px solid var(--border);border-radius:5px;background:var(--btn-bg);display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline;font-size:12px;min-height:28px}
+.footer .desc{flex:1;min-width:100px}
+.footer .meta{display:flex;gap:8px;white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="applet">
+  <div class="header">Iterador Postorder — Paso a paso (dos pilas)</div>
+  <div class="main">
+    <div class="tree-wrap"><canvas id="treeCanvas"></canvas></div>
+    <div class="sidebar">
+      <div class="input-row">
+        <input type="text" id="valInput" placeholder="Ej: 10,7,15,3,9" autofocus>
+        <button id="btnLoad">Cargar</button>
+      </div>
+      <div class="actions">
+        <button id="btnExample">Ejemplo</button>
+        <button id="btnRandom">Aleatorio</button>
+        <button id="btnClear">Limpiar</button>
+      </div>
+      <div class="separator"></div>
+      <div class="panel-label">Resultado</div>
+      <div class="result-box">
+        <div class="result-pills" id="resultPills"><span class="stack-empty" style="width:100%">—</span></div>
+      </div>
+      <div class="separator"></div>
+      <div class="stacks-row">
+        <div class="stack-col">
+          <div class="panel-label">Stack1</div>
+          <div class="stack-box">
+            <div class="stack-visual" id="stack1Visual"><span class="stack-empty">(vacía)</span></div>
+          </div>
+        </div>
+        <div class="stack-col">
+          <div class="panel-label">Stack2</div>
+          <div class="stack-box">
+            <div class="stack-visual" id="stack2Visual"><span class="stack-empty">(vacía)</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="separator"></div>
+      <div class="controls">
+        <button id="btnFirst" title="Ir al inicio">⏮</button>
+        <button id="btnPrev" title="Paso anterior">◀</button>
+        <button id="btnNext" title="Paso siguiente">▶</button>
+        <button id="btnPlay" title="Reproducir automático">▶▶</button>
+      </div>
+      <div class="speed-row">
+        <label for="speedSlider">Vel:</label>
+        <input type="range" id="speedSlider" min="400" max="3000" value="1700" step="100">
+        <span id="speedLabel">0.8 p/s</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span class="desc" id="desc">Ingresar valores o usar el ejemplo.</span>
+    <span class="meta">
+      <span id="stepCounter">Paso — / —</span>
+      <span id="treeInfo">—</span>
+    </span>
+  </div>
+</div>
+<script>
+var canvas=document.getElementById('treeCanvas');
+var ctx=canvas.getContext('2d');
+var valInput=document.getElementById('valInput');
+var btnLoad=document.getElementById('btnLoad');
+var btnExample=document.getElementById('btnExample');
+var btnRandom=document.getElementById('btnRandom');
+var btnClear=document.getElementById('btnClear');
+var btnFirst=document.getElementById('btnFirst');
+var btnPrev=document.getElementById('btnPrev');
+var btnNext=document.getElementById('btnNext');
+var btnPlay=document.getElementById('btnPlay');
+var speedSlider=document.getElementById('speedSlider');
+var speedLabel=document.getElementById('speedLabel');
+var descEl=document.getElementById('desc');
+var stepCounterEl=document.getElementById('stepCounter');
+var treeInfoEl=document.getElementById('treeInfo');
+var resultPills=document.getElementById('resultPills');
+var stack1Visual=document.getElementById('stack1Visual');
+var stack2Visual=document.getElementById('stack2Visual');
+
+var NODE_R=17;
+var LEVEL_H=58;
+var nextId=0;
+
+function cssVar(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+
+function Node(val){this.val=val;this.left=null;this.right=null;this.id=nextId++;this._x=0;this._y=0;this._in=0;this._dep=0}
+
+var treeRoot=null;
+function insertBST(root,val){
+  if(!root)return new Node(val);
+  if(val<root.val)root.left=insertBST(root.left,val);
+  else if(val>root.val)root.right=insertBST(root.right,val);
+  return root;
+}
+function buildTree(vals){
+  nextId=0;treeRoot=null;
+  vals.forEach(function(v){treeRoot=insertBST(treeRoot,v)});
+}
+
+function countN(n){return n?1+countN(n.left)+countN(n.right):0}
+function assignOrder(n,c){if(!n)return c;c=assignOrder(n.left,c);n._in=c++;return assignOrder(n.right,c)}
+function maxDepth(n){return n?1+Math.max(maxDepth(n.left),maxDepth(n.right)):0}
+
+function layoutTree(w,h){
+  if(!treeRoot)return;
+  var total=countN(treeRoot);
+  assignOrder(treeRoot,0);
+  var mD=maxDepth(treeRoot);
+  var padX=25,padY=18;
+  var availW=w-2*padX;
+  var availH=h-2*padY;
+  var sY=Math.min(LEVEL_H,availH/Math.max(mD,1));
+  (function pos(n){
+    if(!n)return;
+    n._x=padX+(total>1?(n._in/(total-1))*availW:availW/2);
+    n._y=padY+n._dep*sY;
+    pos(n.left);pos(n.right);
+  })(treeRoot);
+}
+function collectDepths(n,d){if(!n)return;n._dep=d;collectDepths(n.left,d+1);collectDepths(n.right,d+1)}
+
+function drawTree(hlId,hlType){
+  var w=canvas._w,h=canvas._h;
+  ctx.clearRect(0,0,w,h);
+  if(!treeRoot){return}
+  collectDepths(treeRoot,0);
+  layoutTree(w,h);
+  var edgeCol=cssVar('--edge-color'),nodeFill=cssVar('--node-fill'),nodeStroke=cssVar('--node-stroke'),nodeText=cssVar('--node-text');
+  (function drE(n){
+    if(!n)return;
+    ctx.beginPath();ctx.moveTo(n._x,n._y);
+    if(n.left){ctx.lineTo(n.left._x,n.left._y);ctx.strokeStyle=edgeCol;ctx.lineWidth=1.5;ctx.stroke();drE(n.left);ctx.beginPath();ctx.moveTo(n._x,n._y)}
+    if(n.right){ctx.lineTo(n.right._x,n.right._y);ctx.strokeStyle=edgeCol;ctx.lineWidth=1.5;ctx.stroke();drE(n.right)}
+  })(treeRoot);
+  (function drN(n){
+    if(!n)return;
+    var fill=nodeFill,stroke=nodeStroke,lw=1.5;
+    if(n.id===hlId){
+      if(hlType==='s1-push'||hlType==='s1-pop'){fill='#3d2e5c';stroke='#9f7aea';lw=2.5}
+      else if(hlType==='s2-push'){fill=cssVar('--push-fill');stroke=cssVar('--push-stroke');lw=2.5}
+      else if(hlType==='s2-pop'){fill=cssVar('--pop-fill');stroke=cssVar('--pop-stroke');lw=2.5}
+    }
+    ctx.beginPath();ctx.arc(n._x,n._y,NODE_R,0,Math.PI*2);
+    ctx.fillStyle=fill;ctx.fill();ctx.strokeStyle=stroke;ctx.lineWidth=lw;ctx.stroke();
+    ctx.fillStyle=nodeText;ctx.font='bold 13px "Courier New",monospace';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(n.val,n._x,n._y);
+    drN(n.left);drN(n.right);
+  })(treeRoot);
+}
+
+var steps=[];
+var currentStep=-1;
+var speedVal=1700;
+var isPlaying=false;
+var playTimer=null;
+
+function generateSteps(){
+  steps=[];
+  if(!treeRoot){steps.push({type:'done',node:null,stack1:[],stack2:[],result:[],desc:'Árbol vacío.'});return}
+  var s1=[],s2=[],result=[];
+  s1.push(treeRoot);
+  steps.push({type:'s1-push',node:treeRoot,stack1:Array.from(s1),stack2:Array.from(s2),result:Array.from(result),desc:'Apilar raíz '+treeRoot.val+' en Stack1'});
+  while(s1.length>0){
+    var node=s1.pop();
+    s2.push(node);
+    steps.push({type:'s1-pop',node:node,stack1:Array.from(s1),stack2:Array.from(s2),result:Array.from(result),desc:'Pasar '+node.val+' de Stack1 → Stack2'});
+    if(node.left){
+      s1.push(node.left);
+      steps.push({type:'s1-push',node:node.left,stack1:Array.from(s1),stack2:Array.from(s2),result:Array.from(result),desc:'Apilar hijo izquierdo '+node.left.val+' en Stack1'});
+    }
+    if(node.right){
+      s1.push(node.right);
+      steps.push({type:'s1-push',node:node.right,stack1:Array.from(s1),stack2:Array.from(s2),result:Array.from(result),desc:'Apilar hijo derecho '+node.right.val+' en Stack1'});
+    }
+  }
+  while(s2.length>0){
+    var node=s2.pop();
+    result.push(node.val);
+    steps.push({type:'s2-pop',node:node,stack1:[],stack2:Array.from(s2),result:Array.from(result),desc:'Desapilar '+node.val+' de Stack2 → agregar a resultado'});
+  }
+  steps.push({type:'done',node:null,stack1:[],stack2:[],result:result,desc:'Recorrido postorder completo.'});
+}
+
+function renderStep(idx){
+  if(idx<0||idx>=steps.length){
+    if(steps.length===0||idx<0){descEl.textContent='—';stepCounterEl.textContent='Paso — / —';updateBtns();return}
+    idx=Math.max(0,Math.min(idx,steps.length-1));
+  }
+  var s=steps[idx];currentStep=idx;
+  var hlId=(s.node?s.node.id:null);var hlType=s.type;
+  drawTree(hlId,hlType);
+  descEl.textContent=s.desc;
+  stepCounterEl.textContent='Paso '+(idx+1)+' / '+steps.length;
+  var total=treeRoot?countN(treeRoot):0;
+  treeInfoEl.textContent=total+' nodo'+(total!==1?'s':'');
+  renderStacks(s);
+  renderResult(s.result,s.node,idx);
+  updateBtns();
+}
+
+function renderStacks(s){
+  if(!s.stack1||s.stack1.length===0){stack1Visual.innerHTML='<span class="stack-empty">(vacía)</span>'}
+  else{
+    var html='';
+    for(var i=0;i<s.stack1.length;i++){
+      var n=s.stack1[i];var cls='stack-item idle';
+      if(s.node&&n.id===s.node.id&&(s.type==='s1-push'||s.type==='s1-pop'))cls=s.type==='s1-push'?'stack-item s1-push':'stack-item s1-pop';
+      html+='<div class="'+cls+'">'+n.val+'</div>';
+    }
+    stack1Visual.innerHTML=html;
+  }
+  if(!s.stack2||s.stack2.length===0){stack2Visual.innerHTML='<span class="stack-empty">(vacía)</span>'}
+  else{
+    var html='';
+    for(var i=0;i<s.stack2.length;i++){
+      var n=s.stack2[i];var cls='stack-item idle';
+      if(s.node&&n.id===s.node.id){
+        if(s.type==='s1-pop'||s.type==='s2-push')cls='stack-item s2-push';
+        else if(s.type==='s2-pop')cls='stack-item s2-pop';
+      }
+      html+='<div class="'+cls+'">'+n.val+'</div>';
+    }
+    stack2Visual.innerHTML=html;
+  }
+}
+
+function renderResult(res,node,idx){
+  if(!res||res.length===0){resultPills.innerHTML='<span class="stack-empty" style="width:100%">—</span>';return}
+  var html='';
+  for(var i=0;i<res.length;i++){
+    var cls='pill pill-ok';
+    if(node&&res[i]===node.val&&steps[idx]&&steps[idx].type==='s2-pop'&&i===res.length-1)cls='pill pill-next';
+    html+='<span class="'+cls+'">'+res[i]+'</span>';
+  }
+  resultPills.innerHTML=html;
+}
+
+function goTo(n){n=Math.max(0,Math.min(n,steps.length-1));if(steps.length===0)return;renderStep(n)}
+function goNext(){if(!steps.length)return;if(currentStep<steps.length-1)goTo(currentStep+1)}
+function goPrev(){if(currentStep>0)goTo(currentStep-1)}
+function goFirst(){goTo(0)}
+
+function updateBtns(){
+  var atS=currentStep<=0,atE=currentStep>=steps.length-1,hasS=steps.length>0;
+  btnFirst.disabled=atS||!hasS||isPlaying;
+  btnPrev.disabled=atS||!hasS||isPlaying;
+  btnNext.disabled=atE||!hasS||isPlaying;
+  btnPlay.disabled=!hasS;
+}
+
+function tick(){if(!isPlaying)return;if(currentStep>=steps.length-1){stopPlay();return}goNext();if(currentStep<steps.length-1)playTimer=setTimeout(tick,speedVal);else stopPlay()}
+function startPlay(){if(!steps.length||currentStep>=steps.length-1)return;isPlaying=true;btnPlay.textContent='⏸';btnPlay.classList.add('playing');updateBtns();if(currentStep<0)goTo(0);playTimer=setTimeout(tick,speedVal)}
+function stopPlay(){isPlaying=false;if(playTimer){clearTimeout(playTimer);playTimer=null}btnPlay.textContent='▶▶';btnPlay.classList.remove('playing');updateBtns()}
+function togglePlay(){if(isPlaying){stopPlay();return}if(currentStep>=steps.length-1)goFirst();if(currentStep<steps.length-1)startPlay()}
+function loadValues(vals){stopPlay();buildTree(vals);generateSteps();currentStep=-1;resizeCanvas();if(steps.length>0)goTo(0);else{drawTree(null,null);descEl.textContent='Ingresar valores o usar el ejemplo.';stepCounterEl.textContent='Paso — / —';treeInfoEl.textContent='—';updateBtns()}}
+btnLoad.addEventListener('click',function(){var raw=valInput.value.trim();if(!raw)return;var nums=raw.split(',').map(function(s){return s.trim()}).filter(function(s){return s.length>0}).map(function(s){return parseInt(s,10)}).filter(function(n){return Number.isInteger(n)&&n>0});if(nums.length===0){descEl.textContent='⚠ Ingresar números enteros positivos separados por coma.';return}var uniq=[];var seen={};nums.forEach(function(n){if(!seen[n]){seen[n]=true;uniq.push(n)}});if(uniq.length!==nums.length)descEl.textContent='⚠ Se ignoraron valores duplicados.';loadValues(uniq)});
+valInput.addEventListener('keydown',function(e){if(e.key==='Enter')btnLoad.click()});
+btnExample.addEventListener('click',function(){var vals=[10,7,15,3,9,12,20];valInput.value=vals.join(',');loadValues(vals)});
+btnRandom.addEventListener('click',function(){var n=5+Math.floor(Math.random()*4);var vals=[];while(vals.length<n){var v=1+Math.floor(Math.random()*99);if(vals.indexOf(v)===-1)vals.push(v)}valInput.value=vals.join(',');loadValues(vals)});
+btnClear.addEventListener('click',function(){stopPlay();treeRoot=null;steps=[];currentStep=-1;ctx.clearRect(0,0,canvas._w||400,canvas._h||300);descEl.textContent='Árbol vacío. Ingresar valores o usar el ejemplo.';stepCounterEl.textContent='Paso — / —';treeInfoEl.textContent='—';stack1Visual.innerHTML='<span class="stack-empty">(vacía)</span>';stack2Visual.innerHTML='<span class="stack-empty">(vacía)</span>';resultPills.innerHTML='<span class="stack-empty" style="width:100%">—</span>';updateBtns()});
+btnFirst.addEventListener('click',goFirst);btnPrev.addEventListener('click',goPrev);btnNext.addEventListener('click',goNext);btnPlay.addEventListener('click',togglePlay);
+speedSlider.addEventListener('input',function(){speedVal=3400-parseInt(this.value);speedLabel.textContent=(1000/speedVal).toFixed(1)+' p/s';if(isPlaying){stopPlay();startPlay()}});
+document.addEventListener('keydown',function(e){if(e.target.tagName==='INPUT')return;if(e.key==='ArrowRight'){e.preventDefault();goNext()}if(e.key==='ArrowLeft'){e.preventDefault();goPrev()}if(e.key==='Home'){e.preventDefault();goFirst()}if(e.key===' '||e.key==='End'){e.preventDefault();togglePlay()}});
+function resizeCanvas(){var rect=canvas.parentElement.getBoundingClientRect();var dpr=window.devicePixelRatio||1;canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;canvas.style.width=rect.width+'px';canvas.style.height=rect.height+'px';canvas._w=rect.width;canvas._h=rect.height;ctx.setTransform(dpr,0,0,dpr,0,0);renderStep(currentStep)}
+window.addEventListener('resize',resizeCanvas);resizeCanvas();descEl.textContent='Ingresar valores o usar el ejemplo.';updateBtns();
+</script>
+</body>
+</html>
