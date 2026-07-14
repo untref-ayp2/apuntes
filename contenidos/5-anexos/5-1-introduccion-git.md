@@ -24,7 +24,27 @@ Git es un sistema de control de versiones (SCV).
 Un sistema de control de versiones es un sistema que registra los cambios realizados en un archivo o conjunto de archivos a lo largo del tiempo, de modo que puedas recuperar versiones específicas más adelante.
 
 ```{admonition} Analogía
+:class: note
+
 Imaginemos que Git es una cámara de fotos. En este caso, la analogía es muy buena, ya que Git es la herramienta, y no "la cosa" que haremos.
+```
+
+## Configuración inicial de Git
+
+Antes de empezar a usar Git, es necesario configurar tu nombre y correo electrónico. Git los usa para firmar cada uno de tus _commits_:
+
+```{code-block} console
+~ $ git config --global user.name "Tu Nombre"
+
+~ $ git config --global user.email "tuemail@ejemplo.com"
+```
+
+Este paso se hace una sola vez. Git asocia esos datos a cada _commit_ que crees. Se puede verificar la configuración con:
+
+```{code-block} console
+~ $ git config --global --list
+user.name=Tu Nombre
+user.email=tuemail@ejemplo.com
 ```
 
 ## Creando un repositorio
@@ -51,13 +71,15 @@ No commits yet
 nothing to commit (create/copy files and use "git add" to track)
 ```
 
-```{hint} ¡Consejo!
+```{admonition} ¡Consejo!
+:class: hint
+
 Es muy importante siempre prestar atención a los mensajes que los distintos comandos de Git nos devuelven. En este caso, nos dice que no hay nada para hacer, ya que no hemos creado nada aún.
 
 En general, son comentarios útiles y nos ayudan a saber que posibilidades tenemos desde donde estamos parados.
 ```
 
-Ahora podemos empezar a trabajar en nuestro proyecto. Cuando hayamos creado una porción de códido que consideramos suficiente, debemos indicar cuales de esos cambios queremos dejar asentados en el registro de cambios de nuestro repo.
+Ahora podemos empezar a trabajar en nuestro proyecto. Cuando hayamos creado una porción de código que consideramos suficiente, debemos indicar cuáles de esos cambios queremos dejar asentados en el registro de cambios de nuestro repo.
 
 ## Registrando cambios
 
@@ -81,7 +103,7 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-Podemos ver que Git no solo nos cuenta cual es el estado de nuestros cambios, sino que también nos dice que comando deberiamos usar para agregar el archivo al registro de cambios, entonces hagamos eso mismo:
+Podemos ver que Git no solo nos cuenta cuál es el estado de nuestros cambios, sino que también nos dice qué comando deberíamos usar para agregar el archivo al registro de cambios, entonces hagamos eso mismo:
 
 ```{code-block} console
 ---
@@ -99,9 +121,9 @@ Changes to be committed:
         new file:   ejercicios.go
 ```
 
-Ahora nuestro archivo paso del grupo de los _Untracked files_ a _Changes to be committed_. Esto significa que ya está preparado para ser registrado en el repo.
+Ahora nuestro archivo pasó del grupo de los _Untracked files_ a _Changes to be committed_. Esto significa que ya está preparado para ser registrado en el repo.
 
-Estamos listos para dejar registro de nuestro primer cambio. Como lo que hacemos es registrar la historia de como nuestro código va evolucionando, debemos llevar una bitácora que nos servirá de guía para saber qué hicimos en cada momento. En este caso, la bitácora es un mensaje que describe el cambio que estamos haciendo.
+Estamos listos para dejar registro de nuestro primer cambio. Como lo que hacemos es registrar la historia de cómo nuestro código va evolucionando, debemos llevar una bitácora que nos servirá de guía para saber qué hicimos en cada momento. En este caso, la bitácora es un mensaje que describe el cambio que estamos haciendo.
 
 ```{code-block} console
 ~/ayp2-repo $ git commit -m "Primera versión de ejercicios.go"
@@ -132,7 +154,9 @@ Date:   Fri Mar 28 18:38:18 2025 -0300
     Primera versión de ejercicios.go
 ```
 
-```{note} En resumen
+```{admonition} En resumen
+:class: note
+
 Desde aquí en adelante, cada vez que hagamos un cambio en el repo, debemos seguir los mismos pasos:
 
 1. Editar el archivo
@@ -141,6 +165,22 @@ Desde aquí en adelante, cada vez que hagamos un cambio en el repo, debemos segu
 
 ... volver al principio.
 ```
+
+### Ignorando archivos
+
+No todos los archivos de un proyecto deberían estar en el repositorio. Archivos ejecutables, binarios compilados o archivos temporales del editor no forman parte del código fuente. Para indicarle a Git qué archivos ignorar, se crea un archivo `.gitignore` en la raíz del repositorio:
+
+```{code-block} text
+# Compilados
+*.exe
+*.out
+
+# Archivos temporales
+*.tmp
+*.log
+```
+
+Cada línea del `.gitignore` es un patrón de archivos que Git no va a trackear. Esto mantiene el repositorio limpio y evita subir archivos innecesarios.
 
 ## Trabajando en equipo
 
@@ -190,7 +230,7 @@ El flujo de trabajo es el mismo que comentamos al principio de este capítulo. P
 
 ### Integrando los cambios de nuestra rama
 
-Si quisiéramos incorporar la _branch_ `prueba` que creamos anteriormente, debemos utilizar el comando `git merge`.
+Si quisiéramos incorporar la _branch_ `pruebas` que creamos anteriormente, debemos utilizar el comando `git merge`.
 
 Primero debemos estar parados sobre la _branch_ donde queremos integrar los cambios. En este caso, la rama principal `main`.
 
@@ -207,25 +247,89 @@ Fast-forward
 
 ### Resolviendo conflictos
 
-Si hubiera cambios similares en dos ramas que vamos a integrar, pueden suceder que haya cambios sobre las mismas porciones de código y que Git no pueda decidir como mezclarlas. En esos casos, Git nos nos preguntará qué cambio deseamos conservar y luego podremos completar la integración.
-
-La resolución de conflictos "de merge" es una tarea que puede asustar, pero es simple si se trabaja en forma ordenada.
-
-### Compartiendo nuestro repo
-
-Para subir nuestro contenido a un repo remoto, debemos…
+Si dos ramas modifican las mismas líneas de un archivo, Git no puede decidir automáticamente qué versión conservar. En ese caso, el *merge* se pausa y Git marca el conflicto en el archivo:
 
 ```{code-block} console
-~/ayp2-repo $ git push
+~/ayp2-repo $ git merge pruebas
+Auto-merging ejercicios.go
+CONFLICT (content): Merge conflict in ejercicios.go
+Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-Y si en cambio, queremos recibir la última versión disponible, debemos…
+Al abrir el archivo conflictivo se ven marcadores que indican los cambios enfrentados:
+
+```{code-block} go
+funcion := "saludar"
+<<<<<<< HEAD
+fmt.Println("Hola")
+=======
+fmt.Println("Hello")
+>>>>>>> pruebas
+```
+
+La sección entre `<<<<<<< HEAD` y `=======` es el cambio en la rama actual. La sección entre `=======` y `>>>>>>> pruebas` es el cambio en la rama `pruebas`. Para resolver, hay que editar el archivo, quedarse con una de las versiones (o una combinación), eliminar los marcadores y luego:
+
+```{code-block} console
+~/ayp2-repo $ git add ejercicios.go
+
+~/ayp2-repo $ git commit -m "Resuelve conflicto entre main y pruebas"
+```
+
+Git registra el *commit* de *merge* con la resolución.
+
+### Clonando un repositorio existente
+
+Si ya existe un repositorio en GitHub (o cualquier otro servidor), no hace falta crearlo desde cero con `git init`. Se puede obtener una copia local completa con `git clone`:
+
+```{code-block} console
+~ $ git clone https://github.com/usuario/repositorio.git
+
+~ $ cd repositorio
+
+~/repositorio $ git status
+On branch main
+nothing to commit, working tree clean
+```
+
+Esto descarga todo el historial del proyecto y deja el repo listo para trabajar.
+
+### Configurando un repositorio remoto
+
+Para compartir un repositorio local a través de GitHub, primero hay que asociarlo con un remoto:
+
+```{code-block} console
+~/ayp2-repo $ git remote add origin https://github.com/tuusuario/ayp2-repo.git
+```
+
+El nombre `origin` es una convención que identifica al remoto principal.
+
+### Subiendo cambios
+
+Una vez configurado el remoto, se pueden enviar los *commits* locales:
+
+```{code-block} console
+~/ayp2-repo $ git push -u origin main
+```
+
+El flag `-u` (o `--set-upstream`) vincula la rama local `main` con la remota, de modo que en adelante alcance con escribir solo `git push`.
+
+### Descargando cambios
+
+Para traer los últimos cambios del remoto al repositorio local:
 
 ```{code-block} console
 ~/ayp2-repo $ git pull
 ```
 
-[Ver video: Git Pull](https://www.youtube.com/watch?v=yEs0E3PnGuI)
+`git pull` combina dos operaciones: descarga los cambios del remoto (`git fetch`) y los integra en la rama actual (`git merge`). Es el comando que se usa para mantenerse al día con el trabajo de otros miembros del equipo.
+
+## Flujo de trabajo típico
+
+1. `git status` — ver el estado actual del repositorio
+2. `git add <archivo>` — preparar los cambios para el *commit*
+3. `git commit -m "<mensaje>"` — registrar los cambios
+4. `git push` — enviar los *commits* al remoto (si existe)
+5. `git pull` — traer los cambios del remoto (si se trabaja en equipo)
 
 ## Links recomendados
 

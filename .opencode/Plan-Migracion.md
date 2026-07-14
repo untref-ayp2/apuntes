@@ -67,7 +67,7 @@ corregir errores, admonitions, figuras, y consistencia general.
 | 32 | `contenidos/4-diseno-de-algoritmos/4-5-programacion-dinamica.md` |  ✅ Revisado | `taller-algoritmos` |
 | 33 | `contenidos/4-diseno-de-algoritmos/4-6-ordenamientos-recursivos.md` |  ✅ Revisado| `taller-algoritmos` |
 | 34 | `contenidos/4-diseno-de-algoritmos/4-7-ordenamientos-lineales.md` | ✅ Revisado | `taller-algoritmos` |
-| 35 | `contenidos/5-anexos/5-1-introduccion-git.md` | ⬜ Pendiente | — |
+| 35 | `contenidos/5-anexos/5-1-introduccion-git.md` | ✅ Revisado | — |
 | 36 | `contenidos/5-anexos/5-2-iteradores-abb.md` | ⬜ Pendiente | `guia-abb` |
 | 37 | `contenidos/bibliografia.md` | ⬜ Pendiente | — |
 
@@ -162,7 +162,7 @@ Estado actual (main):
     2-Taller de Go     ✅ 12 archivos
     3-Estructuras      ✅ 9 / 🔄 0 / ⬜ 3 archivos
      4-Diseño Alg.      ✅ 7 / ⬜ 0 archivos
-    5-Taller Git       ⬜
+    5-Taller Git       ✅
     bibliografia       ⬜
 
   Admonitions          🔶 ~34 pendientes
