@@ -1,10 +1,5 @@
-black[jupyter]
-bokeh
-jupyterlab
-jupytext
-matplotlib
+black
 mdformat
 mdformat-black
 mdformat-myst
 mystmd
-tabulate

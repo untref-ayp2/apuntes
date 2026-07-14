@@ -14,27 +14,23 @@ Este apunte se compila a HTML (MyST) y PDF (Typst).
 </context>
 
 <usage>
-**Uso:** `/revisar-contenido [capítulo]`
+**Uso:** `/revisar-contenido @<archivo>`
 
-`[capítulo]` puede ser número de sección (`1-3`, `2-6`), nombre corto (`punteros`, `abb`) o nombre de archivo.
-Si se omite, se detecta automáticamente el próximo capítulo pendiente en `.opencode/Plan-Migracion.md`.
+Busca el archivo con `contenidos/**/*<archivo>*.md` y ejecuta la revisión
+completa: ortografía, conceptos, formato MyST, recursos externos e imágenes.
 </usage>
 
 <chapter-mapping>
-| Argumento | Archivo |
+| Parámetro | Archivo |
 |---|---|
-| `intro` | `contenidos/introduccion.md` |
-| `1-1` | `contenidos/1-presentacion/1-1-introduccion.md` |
-| `1-2` | `contenidos/1-presentacion/1-2-memoria.md` |
-| `1-3` | `contenidos/1-presentacion/1-3-analisis-de-algoritmos.md` |
-| `2-1` a `2-11` | `contenidos/2-taller-de-go/2-N-tema.md` |
-| `3-1` a `3-11` | `contenidos/3-estructuras-de-datos/3-N-tema.md` |
-| `4-1` a `4-7` | `contenidos/4-diseno-de-algoritmos/4-N-tema.md` |
-| `5-1` | `contenidos/5-anexos/5-1-introduccion-git.md` |
-| `5-2` | `contenidos/5-anexos/5-2-iteradores-abb.md` |
-| `biblio` | `contenidos/bibliografia.md` |
+| `@intro` | `contenidos/introduccion.md` |
+| `@1-3-analisis` | `contenidos/1-presentacion/1-3-analisis-de-algoritmos.md` |
+| `@2-7-punteros` | `contenidos/2-taller-de-go/2-7-punteros.md` |
+| `@3-9-abb` | `contenidos/3-estructuras-de-datos/3-9-abb.md` |
+| `@4-4-backtracking` | `contenidos/4-diseno-de-algoritmos/4-4-backtracking.md` |
+| `@5-1-git` | `contenidos/5-anexos/5-1-introduccion-git.md` |
 
-Sin match exacto, buscar con `contenidos/**/*${termino}*.md`.
+Sin match exacto, el agente busca con glob `contenidos/**/*${archivo}*.md`.
 </chapter-mapping>
 
 <review-instructions>
@@ -78,9 +74,6 @@ Validar contra `ESTILOS.md`:
 - Clases CSS estándar (ver `ESTILOS.md` §4)
 - Colores corresponden al theme
 
-### 6. Detección automática (sin argumento)
-
-Leer `.opencode/Plan-Migracion.md`, buscar primer capítulo ⬜ Pendiente.
 </review-instructions>
 
 <output-format>

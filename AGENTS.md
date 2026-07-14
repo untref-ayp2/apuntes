@@ -69,3 +69,43 @@ Los enunciados **NO** van inline en el apunte. Solo referenciar al repo:
 Los ejercicios de este capítulo están en `XX-tema/ejercicios/`
 del repositorio [taller-*](https://github.com/untref-ayp2/taller-*).
 ```
+
+## Revisión de contenido
+
+**Uso:** `/revisar-contenido @<archivo>`
+
+Busca el archivo con `contenidos/**/*<archivo>*.md` y ejecuta la revisión
+completa: ortografía, conceptos, formato MyST, recursos externos e imágenes.
+
+### Capítulos comunes
+
+| Parámetro | Archivo |
+|---|---|
+| `@intro` | `contenidos/introduccion.md` |
+| `@1-3-analisis` | `contenidos/1-presentacion/1-3-analisis-de-algoritmos.md` |
+| `@2-7-punteros` | `contenidos/2-taller-de-go/2-7-punteros.md` |
+| `@3-9-abb` | `contenidos/3-estructuras-de-datos/3-9-abb.md` |
+| `@4-4-backtracking` | `contenidos/4-diseno-de-algoritmos/4-4-backtracking.md` |
+| `@5-1-git` | `contenidos/5-anexos/5-1-introduccion-git.md` |
+
+Sin match exacto, el agente busca con glob `contenidos/**/*${archivo}*.md`.
+
+### Formato del reporte
+
+```markdown
+## Reporte de revisión: <archivo>
+
+### 🔤 Ortografía y gramática
+### 🧠 Conceptos
+### 📋 Formato MyST
+### 🌐 Recursos externos
+### 🖼️ Imágenes SVG
+```
+
+### Checklist de revisión
+
+1. **Ortografía y gramática**: tildes, puntuación, concordancia, extranjerismos en cursiva, artículo "el" ante "*heap*"/"*stack*"
+2. **Conceptos**: código Go compila, diagramas coherentes, consistencia interna
+3. **Formato MyST**: `{admonition}` con `:class:`, `{code-block}`, pseudocódigo en mayúsculas con `←`, pares light/dark, `{ref}` no `{numref}`, `{cite}`, frontmatter con `label:`, applets en `<div class="only-html">`
+4. **Recursos externos** (capítulos 3-x y 4-x): solo referencia a repos, verificar existencia en `github.com/untref-ayp2`
+5. **Imágenes SVG**: pares `_light.svg`/`_dark.svg`, clases CSS estándar, colores del theme

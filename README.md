@@ -76,14 +76,11 @@ Al hacer push a `main`, un workflow de GitHub Actions compila el HTML y lo despl
 ├── Makefile                   # Automatización de tareas
 ├── requirements.txt           # Dependencias Python
 ├── scripts/build_pdf.py       # Generación del PDF (pre-procesamiento + Typst)
-├── taller-tad/                # Esqueletos de ejercicios (taller TAD)
-│   └── 07-diccionarios/
 ├── .github/workflows/
 │   └── deploy.yml             # CI/CD: build + deploy a GitHub Pages
 ├── contenidos/
 │   ├── myst.yml               # Configuración de MyST
 │   ├── introduccion.md
-│   ├── bibliografia.md
 │   ├── references.bib
 │   ├── _static/
 │   │   ├── applets/           # Applets HTML/JS interactivos
