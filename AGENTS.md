@@ -45,14 +45,56 @@ make clean     # elimina build artifacts
 
 **Importante:** `contenidos/exports/apunte-ayp2.pdf` se incluye siempre en los commits.
 
+## Classroom50
+
+Usamos [Classroom50](https://classroom50.org) (de la Fifty Foundation) para
+gestionar asignaciones y entregas. Es una alternativa open-source a GitHub Classroom.
+
+### Instalación
+
+```bash
+gh extension install foundation50/gh-teacher
+gh extension install foundation50/gh-student
+```
+
+### Extensiones CLI
+
+| Comando | Rol |
+|---|---|
+| `gh teacher` | Docente: init, classroom, roster, assignment, download |
+| `gh student` | Alumno: accept, submit |
+
+### Organizaciones (sedes)
+
+| Sede | Org maestra (templates) | Org estudiantes |
+|---|---|---|
+| UNTREF | `untref-ayp2` | `untref-ayp2-estudiantes` |
+| CUDI | `untref-ayp2` (compartida) | `cudi-ayp2-estudiantes` |
+
+Flujo típico por sede:
+
+```bash
+gh teacher classroom add <org-estudiantes> <short-name> --name "<nombre>"
+gh teacher roster add <org-estudiantes> <classroom> <username>
+gh teacher assignment add <org-estudiantes> <classroom> <slug> --template untref-ayp2/<repo>
+gh teacher download <org-estudiantes> <classroom> <slug>
+```
+
+Referencia completa en el [wiki de classroom50](https://github.com/foundation50/classroom50/wiki).
+
+### Script de actualización
+
+`scripts/actualizar_repos.fish` — fetch + pull de todos los repos del monorepo
+(sirve tanto para UNTREF como para CUDI).
+
 ## Arquitectura de repositorios de apoyo
 
 Los capítulos 3-x y 4-x usan dos tipos de repositorios en `github.com/untref-ayp2`:
 
 | Tipo      | Ejemplo                       | Uso del alumno                            |
 | --------- | ----------------------------- | ----------------------------------------- |
-| Contratos | `data-structures`             | Forkea, implementa interfaces localmente  |
-| Talleres  | `taller-*` (ej: `taller-tad`) | Clona o fork, contiene esqueletos + tests |
+| Contratos | `data-structures`             | Implementa las estructuras localmente     |
+| Talleres  | `taller-*` (ej: `taller-tad`) | Contiene esqueletos + tests               |
 
 ### `go.mod replace`
 
@@ -107,5 +149,5 @@ Sin match exacto, el agente busca con glob `contenidos/**/*${archivo}*.md`.
 1. **Ortografía y gramática**: tildes, puntuación, concordancia, extranjerismos en cursiva, artículo "el" ante "*heap*"/"*stack*"
 2. **Conceptos**: código Go compila, diagramas coherentes, consistencia interna
 3. **Formato MyST**: `{admonition}` con `:class:`, `{code-block}`, pseudocódigo en mayúsculas con `←`, pares light/dark, `{ref}` no `{numref}`, `{cite}`, frontmatter con `label:`, applets en `<div class="only-html">`
-4. **Recursos externos** (capítulos 3-x y 4-x): solo referencia a repos, verificar existencia en `github.com/untref-ayp2`
+4. **Recursos externos** (capítulos 3-x y 4-x): solo referencia a repos, verificar existencia en `github.com/untref-ayp2` o `github.com/cudi-ayp2`
 5. **Imágenes SVG**: pares `_light.svg`/`_dark.svg`, clases CSS estándar, colores del theme

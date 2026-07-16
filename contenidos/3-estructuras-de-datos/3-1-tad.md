@@ -297,12 +297,6 @@ uno hay dos carpetas:
 - **`ejercicios/`**: esqueletos de código con partes incompletas para completar y tests
   automatizados para validar la solución.
 
-Para clonarlo:
-
-```{code-block} bash
-git clone https://github.com/untref-ayp2/taller-tad.git
-```
-
 Para ejecutar los tests de un ejercicio:
 
 ```{code-block} bash
@@ -315,5 +309,8 @@ go test -v
 Los ejercicios de este capítulo están en `01-tipos-abstractos-de-datos/ejercicios/` del
 repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
 
-Antes de comenzar, implementar las interfaces necesarias en tu fork de
+Este repositorio depende de las estructuras definidas en
 [data-structures](https://github.com/untref-ayp2/data-structures).
+Antes de resolver los ejercicios, asegurate de tener implementadas las estructuras
+necesarias en ese repositorio. Ambas tareas se trabajan en paralelo: primero completás
+las implementaciones en `data-structures` y después las usás acá.

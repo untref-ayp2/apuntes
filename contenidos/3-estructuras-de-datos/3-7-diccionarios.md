@@ -197,5 +197,7 @@ Este mismo patrón es el que aplicamos en el capítulo anterior con `NewHashTabl
 Los ejercicios de este capítulo están en `07-diccionarios/ejercicios/` del
 repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
 
-Antes de comenzar, implementar las interfaces necesarias en tu fork de
+Antes de comenzar, asegurate de tener implementadas las estructuras necesarias en
 [data-structures](https://github.com/untref-ayp2/data-structures).
+Ambas tareas se trabajan en paralelo: primero completás las implementaciones
+en `data-structures` y después las usás acá.
