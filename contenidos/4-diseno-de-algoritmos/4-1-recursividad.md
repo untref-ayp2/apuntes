@@ -67,7 +67,7 @@ Para entender como funciona la recursión tenemos que observar la pila de ejecuc
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-1-recursividad/RecursionFactorial_light.svg
 ---
 class: only-light-mode
-width: 600px
+width: 90%
 ---
 Pila de Ejecución - factorial(4).
 ```
@@ -75,7 +75,7 @@ Pila de Ejecución - factorial(4).
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-1-recursividad/RecursionFactorial_dark.svg
 ---
 class: only-dark-mode
-width: 600px
+width: 90%
 ---
 Pila de Ejecución - factorial(4).
 ```

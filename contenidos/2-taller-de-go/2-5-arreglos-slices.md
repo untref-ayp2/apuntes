@@ -111,7 +111,7 @@ var s []byte
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-struct_light.svg
 ---
 class: only-light-mode
-width: 200px
+width: 40%
 ---
 Estructura interna de un _slice_.
 ```
@@ -119,7 +119,7 @@ Estructura interna de un _slice_.
 ```{figure} ../_static/figures/2-taller-de-go/2-5-arreglos-slices/slice-struct_dark.svg
 ---
 class: only-dark-mode
-width: 200px
+width: 40%
 ---
 Estructura interna de un _slice_.
 ```

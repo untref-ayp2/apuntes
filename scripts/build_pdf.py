@@ -23,20 +23,12 @@ def setup_temp_dir():
 
 
 def fix_line_for_typst(line):
-    """Fix LaTeX math syntax that Typst doesn't support."""
-    # Replace \left\lfloor ... \right\rfloor with floor(...)
-    line = re.sub(r"\\left\\lfloor\s*(.*?)\s*\\right\\rfloor", r"floor(\1)", line)
-    # Replace \lfloor ... \rfloor
-    line = re.sub(r"\\lfloor\s*(.*?)\s*\\rfloor", r"floor(\1)", line)
-    # Replace standalone \lfloor / \rfloor
-    line = line.replace(r"\lfloor", "floor(")
-    line = line.replace(r"\rfloor", ")")
-    # Replace \left\lceil / \right\rceil
-    line = re.sub(r"\\left\\lceil\s*(.*?)\s*\\right\\rceil", r"ceil(\1)", line)
-    line = re.sub(r"\\lceil\s*(.*?)\s*\\rceil", r"ceil(\1)", line)
-    line = line.replace(r"\lceil", "ceil(")
-    line = line.replace(r"\rceil", ")")
-    # Remove <video> tags
+    """Fix LaTeX math syntax that Typst doesn't support on non-fenced lines.
+
+    Note: floor/ceil replacements are handled globally by fix_content_for_typst()
+    before this function runs, so they are intentionally not duplicated here.
+    """
+    # Remove <video> tags (safety net for inline occurrences)
     line = re.sub(r"<video[^>]*>.*?</video>", "", line)
     line = re.sub(r"<video[^>]*/>", "", line)
     return line
@@ -71,12 +63,13 @@ def fix_content_for_typst(content):
     content = re.sub(r"<video[^>]*>.*?</video>", "", content)
     content = re.sub(r"<video[^>]*/>", "", content)
 
-    # Add width: 100% to figure blocks without explicit width
-    # (prevents oversized images in PDF)
+    # Add default width to figure blocks without explicit width
+    # Uses 80% as a balanced default: prevents small SVGs from being oversized
+    # while keeping fig2dev diagrams readable.
     def add_figure_width(match):
         block = match.group(0)
         if "width:" not in block:
-            block = block.replace("---\n", "---\nwidth: 100%\n", 1)
+            block = block.replace("---\n", "---\nwidth: 80%\n", 1)
         return block
 
     content = re.sub(
@@ -264,7 +257,23 @@ def clean_svg_files(directory):
                 content = re.sub(r'\s+content="[^"]*"', "", content)
                 # Remove duplicate XML attributes
                 content = re.sub(r'(\s+\w+="[^"]*")\s*\1', r"\1", content)
-                # Remove font-family attributes (Typst/resvg font subsetting compat)
+                # Map font-family to Typst-compatible equivalents instead of stripping
+                # Typst/resvg has DejaVu Sans Mono and Roboto; keep those, drop the rest
+                content = re.sub(
+                    r'\s*font-family="[^"]*Menlo[^"]*"',
+                    ' font-family="DejaVu Sans Mono"',
+                    content,
+                )
+                content = re.sub(
+                    r'\s*font-family="[^"]*Consolas[^"]*"',
+                    ' font-family="DejaVu Sans Mono"',
+                    content,
+                )
+                content = re.sub(
+                    r'\s*font-family="ui-sans-serif,\s*system-ui,\s*sans-serif"',
+                    "",
+                    content,
+                )
                 content = re.sub(r'\s*font-family="[^"]*"', "", content)
                 # Remove <switch> blocks (draw.io fallback "Text is not SVG - cannot display")
                 content = re.sub(r'<switch>.*?</switch>', "", content, flags=re.DOTALL)

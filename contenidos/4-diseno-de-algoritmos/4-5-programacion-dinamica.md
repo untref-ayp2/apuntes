@@ -136,7 +136,7 @@ En este caso donde la tabla es en realidad un arreglo, se puede estimar la compl
 ---
 name: mochila-light
 class: only-light-mode
-width: 600px
+width: 85%
 ---
 Problema de la mochila
 ```
@@ -145,7 +145,7 @@ Problema de la mochila
 ---
 name: mochila-dark
 class: only-dark-mode
-width: 600px
+width: 85%
 ---
 Problema de la mochila
 ```
@@ -294,13 +294,13 @@ func Mochila(obj []Item, i int, w int, memo [][]int) int {
 
 En este caso se utiliza una matriz `memo` inicializada en `-1` para detectar si un subproblema ya fue calculado. Cuando `memo[i][w] != -1` se devuelve el valor cacheado sin expandir la recursión, evitando así repetir cálculos.
 
+<div class="only-html">
+
 En el siguiente applet se puede visualizar el árbol de llamadas recursivas con memoización. Cada nodo representa un subproblema $(i, w)$ donde $i$ es el índice del objeto que se está evaluando y $w$ la capacidad disponible. Los colores indican el estado de cada nodo:
 
 - **Amarillo**: la recursión descendió a este subproblema. El nodo muestra el par $(i, w)$ indicando qué objeto y capacidad se están evaluando. El resultado todavía no se conoce.
 - **Verde**: el subproblema ya fue resuelto. El nodo muestra el par (peso total, valor total) óptimo para esa rama.
 - **Celeste**: el subproblema ya había sido calculado previamente (cache hit). Se recupera del caché sin expandir la recursión.
-
-<div class="only-html">
 
 <div class="only-light-mode">
 <iframe src="/applets/4-diseno-de-algoritmos/4-5-programacion-dinamica/mochila-memo_light.html" width="100%" height="560px"></iframe>

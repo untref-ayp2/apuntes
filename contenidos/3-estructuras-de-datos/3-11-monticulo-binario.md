@@ -123,7 +123,7 @@ Existen diferentes tipos de montículos (binario, fibonacci, suave (_soft_), etc
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/heap-boxes_light.svg
 ---
-width: 350px
+width: 50%
 name: piramide-de-cajas
 class: only-light-mode
 ---
@@ -132,7 +132,7 @@ Pirámide de Cajas
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/heap-boxes_dark.svg
 ---
-width: 350px
+width: 50%
 name: piramide-de-cajas
 class: only-dark-mode
 ---
