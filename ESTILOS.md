@@ -332,8 +332,9 @@ del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
 
 Los ejercicios de este capítulo están en `03-listas/ejercicios/`
 del repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
-Antes de comenzar, implementar las interfaces necesarias en tu fork de
-[data-structures](https://github.com/untref-ayp2/data-structures).
+Antes de comenzar, implementar las interfaces necesarias en
+[data-structures](https://github.com/untref-ayp2/taller-tad/tree/main/data-structures),
+que está dentro del repositorio `taller-tad`.
 ```
 
 **Labels de ejercicios** (cuando se use el directive `{exercise}`):

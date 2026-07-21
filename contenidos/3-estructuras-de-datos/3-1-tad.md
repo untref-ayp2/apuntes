@@ -309,8 +309,9 @@ go test -v
 Los ejercicios de este capítulo están en `01-tipos-abstractos-de-datos/ejercicios/` del
 repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
 
-Este repositorio depende de las estructuras definidas en
-[data-structures](https://github.com/untref-ayp2/data-structures).
-Antes de resolver los ejercicios, asegurate de tener implementadas las estructuras
-necesarias en ese repositorio. Ambas tareas se trabajan en paralelo: primero completás
-las implementaciones en `data-structures` y después las usás acá.
+Este repositorio incluye las estructuras definidas en
+[data-structures](https://github.com/untref-ayp2/taller-tad/tree/main/data-structures)
+como un subdirectorio. Antes de resolver los ejercicios, asegurate de tener
+implementadas las estructuras necesarias en `data-structures/`.
+Ambas tareas se trabajan en paralelo: primero completás las implementaciones
+en `data-structures` y después las usás acá.

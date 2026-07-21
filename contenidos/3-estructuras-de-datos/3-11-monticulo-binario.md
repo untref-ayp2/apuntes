@@ -345,8 +345,8 @@ Seleccionar el tipo de montículo (mínimo o máximo), ingresar uno o más enter
 ## Ejercicios
 
 Los ejercicios de este capítulo se encuentran en el repositorio
-[taller-tad](https://github.com/untref-ayp2/taller-tad) y en el repositorio
-[data-structures](https://github.com/untref-ayp2/data-structures).
+[taller-tad](https://github.com/untref-ayp2/taller-tad), que incluye
+el módulo [data-structures](https://github.com/untref-ayp2/taller-tad/tree/main/data-structures).
 
 ### En data-structures
 

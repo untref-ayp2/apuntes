@@ -89,18 +89,20 @@ Referencia completa en el [wiki de classroom50](https://github.com/foundation50/
 
 ## Arquitectura de repositorios de apoyo
 
-Los capítulos 3-x y 4-x usan dos tipos de repositorios en `github.com/untref-ayp2`:
+Los capítulos 3-x y 4-x usan un único repositorio en `github.com/untref-ayp2`,
+`taller-tad`, que contiene tanto las implementaciones de estructuras como los
+ejercicios de aplicación:
 
-| Tipo      | Ejemplo                       | Uso del alumno                            |
-| --------- | ----------------------------- | ----------------------------------------- |
-| Contratos | `data-structures`             | Implementa las estructuras localmente     |
-| Talleres  | `taller-*` (ej: `taller-tad`) | Contiene esqueletos + tests               |
+| Subdirectorio                | Uso del alumno                                      |
+| ---------------------------- | --------------------------------------------------- |
+| `data-structures/`           | Implementa las estructuras localmente               |
+| `XX-tema/ejercicios/`        | Contiene esqueletos + tests                         |
 
 ### `go.mod replace`
 
 ```go
 require github.com/untref-ayp2/data-structures v0.0.0
-replace github.com/untref-ayp2/data-structures => ../data-structures
+replace github.com/untref-ayp2/data-structures => ./data-structures
 ```
 
 ### Repositorios como fuente única de ejercicios

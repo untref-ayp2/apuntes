@@ -156,7 +156,7 @@ Al momento de construir estructuras que satisfagan nuestra interfaz `Dictionary`
 
 ## Inyección de la estructura base por constructor
 
-En el esquema del repositorio `data-structures`, la implementación `HashMapDictionary` no crea la `HashTable` internamente, sino que la recibe ya construida a través del constructor:
+En el esquema del módulo `data-structures` (dentro de `taller-tad`), la implementación `HashMapDictionary` no crea la `HashTable` internamente, sino que la recibe ya construida a través del constructor:
 
 ```{code-block} go
 ---
@@ -198,6 +198,7 @@ Los ejercicios de este capítulo están en `07-diccionarios/ejercicios/` del
 repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
 
 Antes de comenzar, asegurate de tener implementadas las estructuras necesarias en
-[data-structures](https://github.com/untref-ayp2/data-structures).
+[data-structures](https://github.com/untref-ayp2/taller-tad/tree/main/data-structures),
+que está dentro del repositorio `taller-tad`.
 Ambas tareas se trabajan en paralelo: primero completás las implementaciones
 en `data-structures` y después las usás acá.

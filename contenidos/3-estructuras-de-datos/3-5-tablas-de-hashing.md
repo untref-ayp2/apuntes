@@ -621,11 +621,12 @@ La implementación concreta `HashTableOpenAddressing` satisface la interfaz `Has
 
 1. **Implementar tablas de hash** — Completar los esqueletos de
    `HashTableOpenAddressing` (sondeo lineal) y `HashTableChaining`
-   (encadenamiento separado) en el repositorio
-   [`data-structures`](https://github.com/untref-ayp2/data-structures),
-   paquete `hashtable/`. Al ser `K comparable`, deben implementar una función
-   de _hash_ que funcione para cualquier tipo comparable; pueden usar el
-   paquete [`hash/maphash`](https://pkg.go.dev/hash/maphash) de la biblioteca
+   (encadenamiento separado) en
+   [`data-structures`](https://github.com/untref-ayp2/taller-tad/tree/main/data-structures)
+   (dentro del repositorio `taller-tad`), paquete `hashtable/`. Al ser
+   `K comparable`, deben implementar una función de _hash_ que funcione
+   para cualquier tipo comparable; pueden usar el paquete
+   [`hash/maphash`](https://pkg.go.dev/hash/maphash) de la biblioteca
    estándar de Go.
 
 2. **Resolver ejercicios de aplicación** — Los ejercicios de este capítulo

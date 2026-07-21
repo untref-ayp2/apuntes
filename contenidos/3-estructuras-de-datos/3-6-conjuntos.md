@@ -141,10 +141,10 @@ para las claves de un mapa).
 ### Sobre una tabla de *hash*
 
 Un conjunto puede verse como una tabla de *hash* donde solo importan las claves
-y el valor asociado es irrelevante. El repositorio
-[`data-structures`](https://github.com/untref-ayp2/data-structures) provee una
-implementación genérica de `HashTable[K comparable, V any]` que puede usarse
-como base:
+y el valor asociado es irrelevante. El módulo
+[`data-structures`](https://github.com/untref-ayp2/taller-tad/tree/main/data-structures)
+(dentro del repositorio `taller-tad`) provee una implementación genérica de
+`HashTable[K comparable, V any]` que puede usarse como base:
 
 ```{code-block} go
 ---
@@ -197,7 +197,7 @@ donde se necesita consultar el próximo evento después de una fecha dada.
 mantiene ordenada en todo momento: al agregar un elemento se recorre hasta
 encontrar la posición correcta según el criterio de orden. Esto hace que
 `Add`, `Remove` y `Contains` sean $O(n)$, ya que en el peor caso hay que
-recorrer toda la lista. La `List` del repositorio `data-structures` puede
+recorrer toda la lista. La `List` del módulo `data-structures` (dentro de `taller-tad`) puede
 usarse como base.
 
 **Arreglo ordenado (_slice_)**: los elementos se mantienen en un slice
@@ -316,6 +316,7 @@ Los ejercicios de este capítulo están en `06-conjuntos/ejercicios/` del
 repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
 
 Antes de comenzar, asegurate de tener implementadas las estructuras necesarias en
-[data-structures](https://github.com/untref-ayp2/data-structures).
+[data-structures](https://github.com/untref-ayp2/taller-tad/tree/main/data-structures),
+que está dentro del repositorio `taller-tad`.
 Ambas tareas se trabajan en paralelo: primero completás las implementaciones
 en `data-structures` y después las usás acá.
