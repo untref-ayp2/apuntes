@@ -180,10 +180,9 @@ Para trabajar con Go necesitamos algunas extensiones. Desde VS Code:
 
 | Extensión | ID | Para qué sirve |
 |---|---|---|
-| **Go** | `golang.go` | Autocompletado, formato, navegación, análisis de código |
+| **Go** | `golang.go` | Autocompletado, formato, navegación, análisis de código y explorador visual de tests |
 | **Error Lens** | `usernamehw.errorlens` | Muestra los errores inline, al lado del código |
 | **GitHub Pull Requests** | `GitHub.vscode-pull-request-github` | Revisar y comentar Pull Requests (incluyendo el Feedback PR) |
-| Go Test Explorer UI | `premparihar.gotestexplorer` | Explorador visual de tests (opcional) |
 
 ## Slack
 
