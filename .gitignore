@@ -149,3 +149,6 @@ dmypy.json
 
 # Code archives (duplicates tracked source)
 contenidos/_static/code/*.zip
+
+# direnv
+.envrc
