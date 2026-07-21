@@ -286,7 +286,7 @@ Está en la pestaña **"Pull requests"** del repositorio, con el título **Feedb
    - Click en el número de línea → icono `+` → escribir comentario → **"Add single comment"**.
 5. Para hacer una consulta general:
    - Ir al final del PR, escribir en la caja de texto y click en **"Comment"**.
-6. Para **@mencionar** a un docente o ayudante:
+6. Para **\@mencionar** a un docente o ayudante:
    - Escribir `@usuario` (ej. `@martin-albarracin`).
    - Le llega una notificación por correo.
 7. Para responder a un comentario:
@@ -299,7 +299,7 @@ Está en la pestaña **"Pull requests"** del repositorio, con el título **Feedb
 2. Click en el icono de PR en la barra lateral izquierda (extensión GitHub Pull Requests).
 3. Seleccionar **"Feedback"** de la lista.
 4. Comentar una línea: click en el número de línea → icono de comentario → escribir.
-5. @mencionar y responder funciona igual que en la web.
+5. \@mencionar y responder funciona igual que en la web.
 
 ## Cómo ejecutar tests
 
