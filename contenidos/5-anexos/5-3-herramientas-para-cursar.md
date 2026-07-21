@@ -248,10 +248,10 @@ Se abre el navegador para autorizar. Completar el proceso y volver a la terminal
 ### Aceptar una tarea
 
 ```console
-$ gh student accept untref-ayp2-estudiantes <clase> <tarea>
+$ gh student accept <organizacion> <clase> <tarea>
 ```
 
-Reemplazar `<clase>` por el nombre de tu clase y `<tarea>` por el slug de la tarea (ej. `taller-go`).
+Reemplazar `<organizacion>` por `untref-ayp2-estudiantes` o `cudi-ayp2-estudiantes` según tu sede, `<clase>` por el nombre de tu clase y `<tarea>` por el slug de la tarea (ej. `taller-go`).
 
 Esto crea un repositorio propio en GitHub con el código inicial.
 
