@@ -322,7 +322,7 @@ Una misma variable concreta (`ana`) puede verse a través de distintas interface
 ## Ejercicios
 
 Los ejercicios de este capítulo están en `08-structs-interfaces/ejercicios/notificaciones/`
-del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+del repositorio taller-go.
 El directorio contiene un `README.md` con el enunciado y los esqueletos
 para resolverlo.
 

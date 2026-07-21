@@ -234,7 +234,7 @@ func (c *Contador) Cambios() int {
 class: tip
 ---
 Este ejemplo completo con tests está disponible en
-[`taller-tad/01-tipos-abstractos-de-datos/ejemplos/contador/`](https://github.com/untref-ayp2/taller-tad/tree/main/01-tipos-abstractos-de-datos/ejemplos/contador).
+`taller-tad/01-tipos-abstractos-de-datos/ejemplos/contador/`.
 ```
 
 ### 6. Verificar el invariante en cada primitiva
@@ -289,7 +289,7 @@ interfaz del TAD.
 ## Repositorio del taller de TAD
 
 Los ejemplos y ejercicios de este capítulo están en el repositorio
-[`untref-ayp2/taller-tad`](https://github.com/untref-ayp2/taller-tad). Está organizado
+`untref-ayp2/taller-tad`. Está organizado
 por capítulo (`01-tipos-abstractos-de-datos/`, `02-pilas-colas/`, etc.) y dentro de cada
 uno hay dos carpetas:
 
@@ -307,10 +307,10 @@ go test -v
 ## Ejercicios
 
 Los ejercicios de este capítulo están en `01-tipos-abstractos-de-datos/ejercicios/` del
-repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
+repositorio taller-tad.
 
 Este repositorio incluye las estructuras definidas en
-[data-structures](https://github.com/untref-ayp2/taller-tad/tree/main/data-structures)
+data-structures
 como un subdirectorio. Antes de resolver los ejercicios, asegurate de tener
 implementadas las estructuras necesarias en `data-structures/`.
 Ambas tareas se trabajan en paralelo: primero completás las implementaciones

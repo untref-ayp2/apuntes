@@ -221,9 +221,9 @@ La complejidad del **Radix Sort** es $O(n \times d)$, donde $n$ es la cantidad d
 ## Ejercicios
 
 Los ejercicios de este capítulo están en el directorio
-[`07-ordenamientos-lineales/ejercicios/`](https://github.com/untref-ayp2/taller-algoritmos/tree/main/07-ordenamientos-lineales/ejercicios)
+`07-ordenamientos-lineales/ejercicios/`
 del repositorio
-[`taller-algoritmos`](https://github.com/untref-ayp2/taller-algoritmos).
+`taller-algoritmos`.
 Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests.
 Para resolverlos, clonar el repositorio, completar las funciones y ejecutar `go test ./...`.
 

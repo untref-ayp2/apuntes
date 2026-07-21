@@ -444,4 +444,4 @@ Es decir al tener el arreglo ordenado, la búsqueda binaria necesita realizar mu
 ## Ejercicios
 
 Los ejercicios de este capítulo están en `03-analisis-de-algoritmos/ejercicios/`
-del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+del repositorio taller-go.

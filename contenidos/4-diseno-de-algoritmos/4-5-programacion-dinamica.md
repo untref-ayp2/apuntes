@@ -339,8 +339,8 @@ align: center
 ## Ejercicios
 
 Los ejercicios de este capítulo están en el directorio
-[`05-programacion-dinamica/ejercicios/`](https://github.com/untref-ayp2/taller-algoritmos/tree/main/05-programacion-dinamica/ejercicios)
+`05-programacion-dinamica/ejercicios/`
 del repositorio
-[`taller-algoritmos`](https://github.com/untref-ayp2/taller-algoritmos).
+`taller-algoritmos`.
 Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests.
 Para resolverlos, clonar el repositorio, completar las funciones y ejecutar `go test ./...`.

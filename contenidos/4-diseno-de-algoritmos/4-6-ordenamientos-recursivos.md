@@ -427,8 +427,8 @@ Los algoritmos de ordenamiento, basados en comparaciones (es decir que deben com
 ## Ejercicios
 
 Los ejercicios de este capítulo están en el directorio
-[`06-ordenamientos-recursivos/ejercicios/`](https://github.com/untref-ayp2/taller-algoritmos/tree/main/06-ordenamientos-recursivos/ejercicios)
+`06-ordenamientos-recursivos/ejercicios/`
 del repositorio
-[`taller-algoritmos`](https://github.com/untref-ayp2/taller-algoritmos).
+`taller-algoritmos`.
 Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests.
 Para resolverlos, clonar el repositorio, completar las funciones y ejecutar `go test ./...`.

@@ -130,8 +130,8 @@ Reinas en la misma diagonal
 ```
 
 El código completo de esta implementación está disponible en el repositorio
-[`taller-algoritmos`](https://github.com/untref-ayp2/taller-algoritmos), en el directorio
-[`04-backtracking/ejemplos/nreinas/`](https://github.com/untref-ayp2/taller-algoritmos/tree/main/04-backtracking/ejemplos/nreinas).
+`taller-algoritmos`, en el directorio
+`04-backtracking/ejemplos/nreinas/`.
 Allí se puede ejecutar con `go run ./04-backtracking/ejemplos/nreinas/`.
 
 ## Análisis de la complejidad computacional
@@ -196,8 +196,8 @@ La implementación de _backtracking_ puede ser sencilla y elegante, como se ha v
 ## Ejercicios
 
 Los ejercicios de este capítulo están en el directorio
-[`04-backtracking/ejercicios/`](https://github.com/untref-ayp2/taller-algoritmos/tree/main/04-backtracking/ejercicios)
+`04-backtracking/ejercicios/`
 del repositorio
-[`taller-algoritmos`](https://github.com/untref-ayp2/taller-algoritmos).
+`taller-algoritmos`.
 Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests.
 Para resolverlos, clonar el repositorio, completar las funciones y ejecutar `go test ./...`.

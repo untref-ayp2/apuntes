@@ -622,7 +622,7 @@ La implementación concreta `HashTableOpenAddressing` satisface la interfaz `Has
 1. **Implementar tablas de hash** — Completar los esqueletos de
    `HashTableOpenAddressing` (sondeo lineal) y `HashTableChaining`
    (encadenamiento separado) en
-   [`data-structures`](https://github.com/untref-ayp2/taller-tad/tree/main/data-structures)
+   `data-structures`
    (dentro del repositorio `taller-tad`), paquete `hashtable/`. Al ser
    `K comparable`, deben implementar una función de _hash_ que funcione
    para cualquier tipo comparable; pueden usar el paquete
@@ -631,7 +631,7 @@ La implementación concreta `HashTableOpenAddressing` satisface la interfaz `Has
 
 2. **Resolver ejercicios de aplicación** — Los ejercicios de este capítulo
    están en
-   [`05-hashing/ejercicios/`](https://github.com/untref-ayp2/taller-tad/tree/main/05-hashing/ejercicios)
-   del repositorio [`taller-tad`](https://github.com/untref-ayp2/taller-tad).
+   `05-hashing/ejercicios/`
+   del repositorio `taller-tad`.
 
 [^1]: En este caso se toma el tiempo promedio, bajo ciertas condiciones. Cuando se evalúa un TAD donde se insertan, buscan y remueven elementos muy frecuentemente, se acostumbra tomar el tiempo promedio de las operaciones. Sin embargo, en el peor de los casos, algunas operaciones pueden tener un orden lineal.

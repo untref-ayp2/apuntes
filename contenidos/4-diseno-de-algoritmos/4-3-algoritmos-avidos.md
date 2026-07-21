@@ -235,8 +235,8 @@ Como la lista de entrada de las tareas está ordenada por tiempo de finalizació
 ## Ejercicios
 
 Los ejercicios de este capítulo están en el directorio
-[`03-algoritmos-avidos/ejercicios/`](https://github.com/untref-ayp2/taller-algoritmos/tree/main/03-algoritmos-avidos/ejercicios)
+`03-algoritmos-avidos/ejercicios/`
 del repositorio
-[`taller-algoritmos`](https://github.com/untref-ayp2/taller-algoritmos).
+`taller-algoritmos`.
 Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests.
 Para resolverlos, clonar el repositorio, completar las funciones y ejecutar `go test ./...`.

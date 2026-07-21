@@ -345,8 +345,8 @@ Seleccionar el tipo de montículo (mínimo o máximo), ingresar uno o más enter
 ## Ejercicios
 
 Los ejercicios de este capítulo se encuentran en el repositorio
-[taller-tad](https://github.com/untref-ayp2/taller-tad), que incluye
-el módulo [data-structures](https://github.com/untref-ayp2/taller-tad/tree/main/data-structures).
+taller-tad, que incluye
+el módulo data-structures.
 
 ### En data-structures
 
@@ -363,7 +363,7 @@ el módulo [data-structures](https://github.com/untref-ayp2/taller-tad/tree/main
 ### En taller-tad
 
 Los ejercicios de aplicación están en
-[`10-monticulo-binario/ejercicios/`](https://github.com/untref-ayp2/taller-tad/tree/main/10-monticulo-binario/ejercicios):
+`10-monticulo-binario/ejercicios/`:
 
 - **01-merge-listas**: fusionar K listas ordenadas en una sola usando una
   cola de prioridad.

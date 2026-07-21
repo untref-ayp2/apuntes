@@ -242,4 +242,4 @@ Un GC concurrente mejora el rendimiento y la experiencia del usuario, ya que evi
 ## Ejercicios
 
 Los ejercicios de este capítulo están en `02-memoria/ejercicios/`
-del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+del repositorio taller-go.

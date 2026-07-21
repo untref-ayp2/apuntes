@@ -447,6 +447,6 @@ for i := 0; i < 10; i++ {
 ## Ejercicios
 
 Los ejercicios de este capítulo están en `03-elementos-basicos/ejercicios/`
-del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+del repositorio taller-go.
 Cada directorio contiene un `README.md` con el enunciado y los esqueletos
 para resolverlo.

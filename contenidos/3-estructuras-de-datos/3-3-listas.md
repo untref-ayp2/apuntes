@@ -1377,10 +1377,10 @@ La complejidad asintótica de las operaciones que requieren búsqueda es $O(n)$ 
 ## Ejercicios
 
 Los ejercicios de este capítulo están en `03-listas/ejercicios/` del
-repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
+repositorio taller-tad.
 
 Antes de comenzar, asegurate de tener implementadas las estructuras necesarias en
-[data-structures](https://github.com/untref-ayp2/taller-tad/tree/main/data-structures),
+data-structures,
 que está dentro del repositorio `taller-tad`.
 Ambas tareas se trabajan en paralelo: primero completás las implementaciones
 en `data-structures` y después las usás acá.

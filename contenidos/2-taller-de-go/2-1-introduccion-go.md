@@ -116,7 +116,7 @@ En Go no existe la herencia, pero sí existe la composición, que nos permite cr
 
 ### Ejemplos
 
-En el repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git) encontrarán código de ejemplo para empezar a sumergirnos en Go.
+En el repositorio taller-go encontrarán código de ejemplo para empezar a sumergirnos en Go.
 
 El siguiente fragmento se encuentra en el archivo `01-introduccion/ejemplos/00-hola/main.go`
 
@@ -190,22 +190,16 @@ Go ofrece un servicio *online* llamado Playground [https://go.dev/play](https://
 ## Ejercicios
 
 Los ejercicios de este capítulo están en `01-introduccion-go/ejercicios/`
-del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+del repositorio taller-go.
 
 ## Repositorio del taller de Go
 
-El siguiente [repositorio](https://github.com/untref-ayp2/taller-go.git) es el material de trabajo para este taller de Go. Está organizado por temas (intro, funciones, structs, etc.) y dentro de cada tema hay dos carpetas:
+El siguiente repositorio es el material de trabajo para este taller de Go. Está organizado por temas (intro, funciones, structs, etc.) y dentro de cada tema hay dos carpetas:
 
 - **`ejemplos/`**: programas completos y fragmentos que ilustran los conceptos explicados en el apunte. Sirven para seguir la teoría en la práctica y experimentar.
 - **`ejercicios/`**: esqueletos de código con partes incompletas que se corresponden con los ejercicios propuestos a lo largo de este taller. La idea es que completen esos archivos como práctica.
 
-Para clonarlo:
-
-```console
-git clone https://github.com/untref-ayp2/taller-go.git
-```
-
-Una vez clonado, tienen acceso a todo el contenido en su máquina local. Si se actualiza el repo pueden usar:
+El repositorio se crea automáticamente al aceptar la asignación en Classroom50. Una vez aceptada, tienen acceso a todo el contenido en su máquina local. Si se actualiza el repo pueden usar:
 
 ```console
 git pull

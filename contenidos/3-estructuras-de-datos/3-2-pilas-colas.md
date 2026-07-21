@@ -340,10 +340,10 @@ func main() {
 ## Ejercicios
 
 Los ejercicios de este capítulo están en `02-pilas-colas/ejercicios/` del
-repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
+repositorio taller-tad.
 
 Antes de resolverlos hay que tener implementados `SliceStack[T]` y `SliceQueue[T]`
-en [data-structures](https://github.com/untref-ayp2/taller-tad/tree/main/data-structures),
+en data-structures,
 que está dentro del repositorio `taller-tad` y contiene las interfaces y los esqueletos.
 Ambas tareas se trabajan en paralelo: primero completás las implementaciones en
 `data-structures` y después las usás acá.

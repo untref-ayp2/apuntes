@@ -142,7 +142,7 @@ para las claves de un mapa).
 
 Un conjunto puede verse como una tabla de *hash* donde solo importan las claves
 y el valor asociado es irrelevante. El módulo
-[`data-structures`](https://github.com/untref-ayp2/taller-tad/tree/main/data-structures)
+`data-structures`
 (dentro del repositorio `taller-tad`) provee una implementación genérica de
 `HashTable[K comparable, V any]` que puede usarse como base:
 
@@ -313,10 +313,10 @@ ordenados son útiles.
 ## Ejercicios
 
 Los ejercicios de este capítulo están en `06-conjuntos/ejercicios/` del
-repositorio [taller-tad](https://github.com/untref-ayp2/taller-tad).
+repositorio taller-tad.
 
 Antes de comenzar, asegurate de tener implementadas las estructuras necesarias en
-[data-structures](https://github.com/untref-ayp2/taller-tad/tree/main/data-structures),
+data-structures,
 que está dentro del repositorio `taller-tad`.
 Ambas tareas se trabajan en paralelo: primero completás las implementaciones
 en `data-structures` y después las usás acá.

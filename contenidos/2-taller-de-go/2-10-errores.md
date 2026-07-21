@@ -357,6 +357,6 @@ con archivos.
 ## Ejercicios
 
 Los ejercicios de este capítulo están en `10-errores/ejercicios/`
-del repositorio [taller-go](https://github.com/untref-ayp2/taller-go.git).
+del repositorio taller-go.
 Cada directorio contiene un `README.md` con el enunciado y los esqueletos
 para resolverlo.

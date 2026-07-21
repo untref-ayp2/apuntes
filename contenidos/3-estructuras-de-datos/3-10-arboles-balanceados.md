@@ -453,7 +453,7 @@ La función de comparación `cmp` permite trabajar con cualquier tipo de dato. L
 ## Ejercicios
 
 Implementar un árbol AVL en
-[`data-structures`](https://github.com/untref-ayp2/taller-tad/tree/main/data-structures)
+`data-structures`
 (dentro del repositorio `taller-tad`), paquete `avltree/`. El árbol debe mantener la altura en cada nodo y
 rebalancearse automáticamente después de cada inserción y eliminación
 mediante rotaciones simples y dobles.
