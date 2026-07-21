@@ -44,6 +44,7 @@ make clean     # elimina build artifacts
 6. Mueve PDF a `contenidos/exports/apunte-ayp2.pdf`
 
 **Importante:** `contenidos/exports/apunte-ayp2.pdf` se incluye siempre en los commits.
+**Antes de hacer commit, regenerar el PDF con `make pdf`. Si el build falla, corregir errores antes de committear.**
 
 ## Classroom50
 
