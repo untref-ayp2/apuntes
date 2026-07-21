@@ -6,7 +6,9 @@ label: herramientas
 
 En esta materia vamos a usar varias herramientas: un editor de código, un lenguaje de programación, un sistema de control de versiones y una plataforma para recibir y entregar trabajos. Este anexo explica cómo instalar y usar cada una.
 
-```{important}
+```{admonition} Importante
+:class: important
+
 La mayoría de las instrucciones asumen que empezás desde cero, sin nada instalado.
 ```
 
@@ -76,7 +78,9 @@ Los comandos básicos son los mismos en los tres sistemas:
 | `Tab` | Autocompleta comandos y rutas |
 | ⬆ ⬇ | Navega el historial de comandos |
 
-```{tip}
+```{admonition} Tip
+:class: tip
+
 En Git Bash (Windows) los comandos son los mismos que en Linux y macOS.
 No hace falta aprender comandos diferentes para cada sistema.
 ```
