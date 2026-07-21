@@ -199,11 +199,7 @@ El siguiente repositorio es el material de trabajo para este taller de Go. Está
 - **`ejemplos/`**: programas completos y fragmentos que ilustran los conceptos explicados en el apunte. Sirven para seguir la teoría en la práctica y experimentar.
 - **`ejercicios/`**: esqueletos de código con partes incompletas que se corresponden con los ejercicios propuestos a lo largo de este taller. La idea es que completen esos archivos como práctica.
 
-El repositorio se crea automáticamente al aceptar la asignación en Classroom50. Una vez aceptada, tienen acceso a todo el contenido en su máquina local. Si se actualiza el repo pueden usar:
-
-```console
-git pull
-```
+El repositorio se crea automáticamente al aceptar la asignación en Classroom50. Una vez aceptada, tienen acceso a todo el contenido en su máquina local.
 
 ## Links útiles
 
