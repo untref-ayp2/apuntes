@@ -107,10 +107,14 @@ site:
       children:
         - title: Slack
           url: https://untref-aypii.slack.com
+        - title: Classroom50
+          url: https://classroom50.org/untref-ayp2-estudiantes/
     - title: CUDI
       children:
         - title: Slack
           url: https://cudi-ayp2.slack.com
+        - title: Classroom50
+          url: https://classroom50.org/cudi-ayp2-estudiantes/
   actions:
     - title: Descargar PDF
       url: exports/apunte-ayp2.pdf
