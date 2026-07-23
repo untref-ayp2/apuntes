@@ -241,5 +241,61 @@ Un GC concurrente mejora el rendimiento y la experiencia del usuario, ya que evi
 
 ## Ejercicios
 
-Los ejercicios de este capítulo están en `02-memoria/ejercicios/`
-del repositorio taller-go.
+1. **Mapa de memoria.** Dado el siguiente código, dibujá un esquema de la
+   memoria indicando en qué segmento (datos, stack o heap) se almacena cada
+   variable y su contenido:
+
+   ```{code-block} go
+   :linenos:
+
+   var global int = 42
+
+   type Punto struct {
+       X, Y int
+   }
+
+   func main() {
+       a := 10
+       b := &a
+       c := Punto{X: 3, Y: 7}
+       d := "hola"
+   }
+   ```
+
+2. **Escape analysis.** Para cada una de las siguientes funciones, indicá si
+   la variable creada escapa al heap o se queda en el stack. Justificá:
+
+   ```{code-block} go
+   :linenos:
+
+   func f1() int {
+       x := 5
+       return x
+   }
+
+   func f2() *int {
+       x := 5
+       return &x
+   }
+
+   func f3() {
+       s := make([]int, 10)
+       s[0] = 1
+       fmt.Println(s[0])
+   }
+   ```
+
+3. **Strings en heap.** Explicá por qué el contenido de un `string` en Go
+   siempre se almacena en el heap, incluso cuando la variable que lo contiene
+   es local. ¿Qué parte de la variable queda en el stack?
+
+4. **Stack frames.** Dada la secuencia de llamadas `main()` → `calcular()` →
+   `sumar(a, b int)`, describí el contenido del stack en cada paso. Indicá
+   qué datos contiene cada stack frame (parámetros, variables locales,
+   dirección de retorno).
+
+5. **Garbage collector.** Explicá brevemente:
+   - Qué problema resuelve el garbage collector concurrente de Go.
+   - Qué significa *stop-the-world* y por qué las pausas son del orden de
+     microsegundos en Go.
+   - Qué ventaja tiene un GC concurrente frente a uno no concurrente.

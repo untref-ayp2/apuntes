@@ -443,5 +443,140 @@ Es decir al tener el arreglo ordenado, la búsqueda binaria necesita realizar mu
 
 ## Ejercicios
 
-Los ejercicios de este capítulo están en `03-analisis-de-algoritmos/ejercicios/`
-del repositorio taller-go.
+1. **Máximo entre dos números.** Dado el siguiente pseudocódigo, calculá la
+   cantidad de operaciones elementales que ejecuta y determiná su O grande:
+
+   ```{code-block} text
+   ---
+   caption: Algoritmo máximo
+   linenos: true
+   ---
+   FUNCION maximo(x, y)
+       SI x >= y ENTONCES
+           RETORNAR x
+       SINO
+           RETORNAR y
+       FIN SI
+   FIN FUNCION
+   ```
+
+2. **Potencia.** Dado el siguiente pseudocódigo, calculá la cantidad de
+   operaciones elementales y determiná su O grande:
+
+   ```{code-block} text
+   ---
+   caption: Algoritmo potencia
+   linenos: true
+   ---
+   FUNCION potencia(x, n)
+       resultado ← 1.0
+       PARA i ← 0 HASTA n-1 HACER
+           resultado ← resultado * x
+       FIN PARA
+       RETORNAR resultado
+   FIN FUNCION
+   ```
+
+3. **Recorrer un arreglo.** Dado el siguiente pseudocódigo, calculá la
+   cantidad de operaciones elementales y determiná su O grande:
+
+   ```{code-block} text
+   ---
+   caption: Algoritmo listar alumnos
+   linenos: true
+   ---
+   FUNCION listarAlumnos(a)
+       i ← 0
+       MIENTRAS i < LONGITUD(a) HACER
+           ESCRIBIR a[i].nombre + " " + a[i].apellido
+           i ← i + 1
+       FIN MIENTRAS
+       RETORNAR
+   FIN FUNCION
+   ```
+
+4. **Fragmentos de código.** Para cada uno de los siguientes fragmentos,
+   determiná el tiempo de ejecución en notación O grande:
+
+   ```{code-block} text
+   ---
+   caption: Fragmento 1
+   linenos: true
+   ---
+   PARA i ← 0 HASTA n-1 HACER
+       sum ← sum + 1
+   FIN PARA
+   ```
+
+   ```{code-block} text
+   ---
+   caption: Fragmento 2
+   linenos: true
+   ---
+   PARA i ← 0 HASTA n-1 PASO 2 HACER
+       sum ← sum + 1
+   FIN PARA
+   ```
+
+   ```{code-block} text
+   ---
+   caption: Fragmento 3
+   linenos: true
+   ---
+   PARA i ← 0 HASTA n-1 HACER
+       PARA j ← 0 HASTA n-1 HACER
+           sum ← sum + 1
+       FIN PARA
+   FIN PARA
+   ```
+
+   ```{code-block} text
+   ---
+   caption: Fragmento 4
+   linenos: true
+   ---
+   PARA i ← 0 HASTA n-1 HACER
+       sum ← sum + 1
+   FIN PARA
+   PARA j ← 0 HASTA n-1 HACER
+       sum ← sum + 1
+   FIN PARA
+   ```
+
+   ```{code-block} text
+   ---
+   caption: Fragmento 5
+   linenos: true
+   ---
+   PARA i ← 0 HASTA n-1 HACER
+       PARA j ← 0 HASTA n*n-1 HACER
+           sum ← sum + 1
+       FIN PARA
+   FIN PARA
+   ```
+
+   ```{code-block} text
+   ---
+   caption: Fragmento 6
+   linenos: true
+   ---
+   PARA i ← 0 HASTA n-1 HACER
+       PARA j ← 0 HASTA i-1 HACER
+           sum ← sum + 1
+       FIN PARA
+   FIN PARA
+   ```
+
+   ```{code-block} text
+   ---
+   caption: Fragmento 7
+   linenos: true
+   ---
+   PARA i ← 0 HASTA n-1 HACER
+       PARA j ← 0 HASTA n*n-1 HACER
+           PARA k ← 0 HASTA j-1 HACER
+               sum ← sum + 1
+           FIN PARA
+       FIN PARA
+   FIN PARA
+   ```
