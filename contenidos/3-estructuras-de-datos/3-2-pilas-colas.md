@@ -91,85 +91,59 @@ p[0] = 99
 En este fragmento se agregan elementos a la pila usando la función `append` de Go y luego se modifica un elemento arbitrariamente.
 ````
 
-A continuación se define el TAD Stack, que internamente estará implementado sobre un arreglo dinámico o *slice* de Go.
+El siguiente seudocódigo muestra una implementación del TAD Pila sobre un arreglo dinámico. El contenedor de datos `data` está encapsulado dentro del struct y su tipo depende del parámetro genérico `T`. Las operaciones `Push`, `Pop` y `Top` trabajan siempre sobre el extremo del arreglo, garantizando costo $O(1)$.
 
-```{code-block} go
+```{code-block} text
 ---
 linenos:
 ---
-import "errors"
+TIPO Stack[T] struct
+    data ← ARREGLO de T
+FIN TIPO
 
-type Stack[T any] struct {
-    data []T
-}
+FUNCION NewStack[T]() → *Stack[T]
+    RETORNAR &Stack[T]{}
+FIN FUNCION
+
+FUNCION (s *Stack[T]) IsEmpty() → bool
+    RETORNAR LONGITUD(s.data) = 0
+FIN FUNCION
+
+FUNCION (s *Stack[T]) Push(x T)
+    s.data ← AGREGAR_AL_FINAL(s.data, x)
+FIN FUNCION
+
+FUNCION (s *Stack[T]) Pop() → (T, error)
+    SI s.IsEmpty() ENTONCES
+        RETORNAR valorCero, error("pila vacía")
+    FIN SI
+    x ← s.data[LONGITUD(s.data) - 1]
+    s.data ← s.data[0 : LONGITUD(s.data) - 1]
+    RETORNAR x, nil
+FIN FUNCION
+
+FUNCION (s *Stack[T]) Top() → (T, error)
+    SI s.IsEmpty() ENTONCES
+        RETORNAR valorCero, error("pila vacía")
+    FIN SI
+    RETORNAR s.data[LONGITUD(s.data) - 1], nil
+FIN FUNCION
 ```
 
-El contenedor de datos `data` está encapsulado dentro del *struct*, y su tipo depende del parámetro `T`.
+`NewStack`
+: Crea una pila vacía. Reserva espacio en memoria para almacenar la pila y devuelve la dirección de memoria correspondiente.
 
-```{code-block} go
----
-linenos:
----
-func NewStack[T any]() *Stack[T] {
-    return &Stack[T]{}
-}
-```
+`IsEmpty`
+: Verifica si la cantidad de elementos del contenedor de datos es igual a 0.
 
-`NewStack` crea una pila vacía. Reserva espacio en memoria para almacenar la pila y devuelve la dirección de memoria correspondiente.
+`Push`
+: Agrega el elemento recibido al final del arreglo.
 
-```{code-block} go
----
-linenos:
----
-func (s *Stack[T]) IsEmpty() bool {
-    return len(s.data) == 0
-}
-```
+`Pop`
+: Si la pila está vacía devuelve el valor cero de `T` y un error. Caso contrario devuelve el elemento del tope y lo elimina de la pila, reduciendo el arreglo en una posición.
 
-`IsEmpty` chequea si la cantidad de elementos del contenedor de datos es igual a 0.
-
-```{code-block} go
----
-linenos:
----
-func (s *Stack[T]) Push(x T) {
-    s.data = append(s.data, x)
-}
-```
-
-`Push` agrega siempre al final del arreglo el elemento que recibe.
-
-```{code-block} go
----
-linenos:
----
-func (s *Stack[T]) Pop() (T, error) {
-    if s.IsEmpty() {
-        var zero T
-        return zero, errors.New("pila vacía")
-    }
-    x := s.data[len(s.data)-1]
-    s.data = s.data[:len(s.data)-1]
-    return x, nil
-}
-```
-
-`Pop` chequea si la pila está vacía. En ese caso devuelve el valor cero de `T` y un error. Caso contrario devuelve el elemento del tope y `nil`, y lo elimina de la pila.
-
-```{code-block} go
----
-linenos:
----
-func (s *Stack[T]) Top() (T, error) {
-    if s.IsEmpty() {
-        var zero T
-        return zero, errors.New("pila vacía")
-    }
-    return s.data[len(s.data)-1], nil
-}
-```
-
-`Top` es similar a `Pop` pero no elimina el tope.
+`Top`
+: Similar a `Pop` pero no elimina el tope. Si la pila está vacía devuelve error.
 
 A continuación un ejemplo de uso con `Stack[int]`:
 
@@ -269,47 +243,43 @@ type Queue[T any] interface {
 }
 ```
 
-Y su implementación sobre un *slice*:
+El siguiente seudocódigo muestra una implementación sobre un arreglo dinámico:
 
-```{code-block} go
+```{code-block} text
 ---
 linenos:
 ---
-import "errors"
+TIPO Queue[T] struct
+    data ← ARREGLO de T
+FIN TIPO
 
-type Queue[T any] struct {
-    data []T
-}
+FUNCION NewQueue[T]() → *Queue[T]
+    RETORNAR &Queue[T]{}
+FIN FUNCION
 
-func NewQueue[T any]() *Queue[T] {
-    return &Queue[T]{}
-}
+FUNCION (q *Queue[T]) Enqueue(x T)
+    q.data ← AGREGAR_AL_FINAL(q.data, x)
+FIN FUNCION
 
-func (q *Queue[T]) Enqueue(x T) {
-    q.data = append(q.data, x)
-}
+FUNCION (q *Queue[T]) Dequeue() → (T, error)
+    SI q.IsEmpty() ENTONCES
+        RETORNAR valorCero, error("cola vacía")
+    FIN SI
+    x ← q.data[0]
+    q.data ← q.data[1 : LONGITUD(q.data)]
+    RETORNAR x, nil
+FIN FUNCION
 
-func (q *Queue[T]) Dequeue() (T, error) {
-    if q.IsEmpty() {
-        var zero T
-        return zero, errors.New("cola vacía")
-    }
-    x := q.data[0]
-    q.data = q.data[1:]
-    return x, nil
-}
+FUNCION (q *Queue[T]) Front() → (T, error)
+    SI q.IsEmpty() ENTONCES
+        RETORNAR valorCero, error("cola vacía")
+    FIN SI
+    RETORNAR q.data[0], nil
+FIN FUNCION
 
-func (q *Queue[T]) Front() (T, error) {
-    if q.IsEmpty() {
-        var zero T
-        return zero, errors.New("cola vacía")
-    }
-    return q.data[0], nil
-}
-
-func (q *Queue[T]) IsEmpty() bool {
-    return len(q.data) == 0
-}
+FUNCION (q *Queue[T]) IsEmpty() → bool
+    RETORNAR LONGITUD(q.data) = 0
+FIN FUNCION
 ```
 
 Nótese que `Dequeue` remueve el primer elemento del *slice*, lo cual en Go implica desplazar todos los elementos restantes una posición hacia la izquierda. Esto hace que `Dequeue` sea $O(n)$, no $O(1)$. Más adelante veremos cómo implementar una cola con $O(1)$ en todas sus operaciones.

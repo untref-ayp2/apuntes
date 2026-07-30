@@ -186,7 +186,7 @@ tablaEncadenada := hashtable.NewHashTableChaining[string, int]()
 dict1 := NewHashMapDictionary[string, int](tablaEncadenada)
 
 // Diccionario con sondeo lineal (misma interfaz)
-tablaSondeo := hashtable.NewHashTableOpenAddressing[string, int]()
+tablaSondeo := hashtable.NewHashTableOpenAddressing[string, int](0, 0)
 dict2 := NewHashMapDictionary[string, int](tablaSondeo)
 ```
 

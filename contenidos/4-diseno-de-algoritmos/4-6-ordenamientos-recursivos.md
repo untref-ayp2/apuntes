@@ -1,8 +1,8 @@
 ---
-label: ordenamientos-recursivos
+label: ordenamientos-por-comparacion
 ---
 
-# Ordenamientos Recursivos
+# Ordenamientos por Comparación de Claves
 
 ## Introducción: La Importancia del Orden
 
@@ -58,6 +58,70 @@ En la siguiente tabla se resumen las principales características de estos algor
 | _In Place_                 | Sí          | Sí         | Sí        |
 | _Online_                   | Sí          | No         | No        |
 ```
+
+:::{dropdown} Ver implementaciones en Go
+
+```{code-block} go
+---
+linenos: true
+---
+// OrdenarInsercion ordena el slice en orden ascendente.
+// Complejidad: O(n²) peor caso, O(n) mejor caso. Estable, In Place, Online.
+func OrdenarInsercion(arr []int) {
+    for i := 1; i < len(arr); i++ {
+        clave := arr[i]
+        j := i - 1
+        for j >= 0 && arr[j] > clave {
+            arr[j+1] = arr[j]
+            j--
+        }
+        arr[j+1] = clave
+    }
+}
+```
+
+```{code-block} go
+---
+linenos: true
+---
+// OrdenarSeleccion ordena el slice en orden ascendente.
+// Complejidad: O(n²) en todos los casos. No es estable. In Place.
+func OrdenarSeleccion(arr []int) {
+    for i := 0; i < len(arr)-1; i++ {
+        minIdx := i
+        for j := i + 1; j < len(arr); j++ {
+            if arr[j] < arr[minIdx] {
+                minIdx = j
+            }
+        }
+        arr[i], arr[minIdx] = arr[minIdx], arr[i]
+    }
+}
+```
+
+```{code-block} go
+---
+linenos: true
+---
+// OrdenarBurbujeo ordena el slice en orden ascendente.
+// Complejidad: O(n²) peor caso, O(n) mejor caso. Estable, In Place.
+func OrdenarBurbujeo(arr []int) {
+    for i := 0; i < len(arr)-1; i++ {
+        intercambiado := false
+        for j := 0; j < len(arr)-i-1; j++ {
+            if arr[j] > arr[j+1] {
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+                intercambiado = true
+            }
+        }
+        if !intercambiado {
+            break
+        }
+    }
+}
+```
+
+:::
 
 Estos algoritmos son fáciles de implementar y entender, lo que los hace ideales para introducir conceptos básicos de ordenamiento. Sin embargo, su rendimiento se degrada rápidamente a medida que el número de elementos crece, lo que los limita a conjuntos de datos pequeños o casi ordenados. Por ejemplo, el **ordenamiento por inserción** es eficiente para listas pequeñas o listas que ya están casi ordenadas, mientras que el **ordenamiento por selección** y el **ordenamiento por burbujeo** son más adecuados para fines educativos que para aplicaciones prácticas en grandes volúmenes de datos.
 
@@ -427,7 +491,7 @@ Los algoritmos de ordenamiento, basados en comparaciones (es decir que deben com
 ## Ejercicios
 
 Los ejercicios de este capítulo están en el directorio
-`06-ordenamientos-recursivos/ejercicios/`
+`06-ordenamientos-por-comparacion/ejercicios/`
 del repositorio
 `taller-algoritmos`.
 Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests.

@@ -241,11 +241,9 @@ El módulo se aplica al resultado final para asegurar que el valor hash esté de
 
 ## Ejemplo de implementación de _hashing_ cerrado
 
-[Descargar código completo](https://github.com/untref-ayp2/apuntes/tree/main/contenidos/_static/code/hashtable)
-
 ### Interfaz `HashTable`
 
-:::\{dropdown} Ver código completo (`interface.go`)
+:::{dropdown} Ver código completo (`interface.go`)
 
 ```{code-block} go
 ---
@@ -289,7 +287,7 @@ type HashTable[K comparable, V any] interface {
 
 ### Tipos y operaciones públicas
 
-:::\{dropdown} Ver código completo (`hashtable.go`)
+:::{dropdown} Ver código completo (`hashtable.go`)
 
 ```{code-block} go
 ---
@@ -484,7 +482,7 @@ func (ht *HashTableOpenAddressing[K, V]) String() string {
 
 ### Funciones internas
 
-:::\{dropdown} Ver código completo (`internal.go`)
+:::{dropdown} Ver código completo (`internal.go`)
 
 ```{code-block} go
 ---
@@ -619,14 +617,12 @@ La implementación concreta `HashTableOpenAddressing` satisface la interfaz `Has
 
 ## Ejercicios
 
-1. **Implementar tablas de hash** — Completar los esqueletos de
-   `HashTableOpenAddressing` (sondeo lineal) y `HashTableChaining`
-   (encadenamiento separado) en
-   `data-structures`
-   (dentro del repositorio `taller-tad`), paquete `hashtable/`. Al ser
-   `K comparable`, deben implementar una función de _hash_ que funcione
-   para cualquier tipo comparable; pueden usar el paquete
-   [`hash/maphash`](https://pkg.go.dev/hash/maphash) de la biblioteca
+1. **Implementar tabla de hash con encadenamiento** — `HashTableOpenAddressing`
+   (sondeo lineal) ya está implementado en `data-structures/hashtable/` como
+   referencia. Completar el esqueleto de `HashTableChaining` (encadenamiento
+   separado) en el mismo paquete. Al ser `K comparable`, deben implementar una
+   función de _hash_ que funcione para cualquier tipo comparable; pueden usar el
+   paquete [`hash/maphash`](https://pkg.go.dev/hash/maphash) de la biblioteca
    estándar de Go.
 
 2. **Resolver ejercicios de aplicación** — Los ejercicios de este capítulo

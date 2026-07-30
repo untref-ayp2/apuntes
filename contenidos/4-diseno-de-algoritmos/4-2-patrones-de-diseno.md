@@ -212,7 +212,7 @@ Compuesto
 
 ### Ejemplo
 
-Supongamos que queremos modelar una estructura jerárquica de figuras, donde los elementos pueden ser rectángulos, círculos o triángulos o grupos compuestos. Queremos poder calcular el área total de la estructura, independientemente de si se trata de un rectángulo individual o de un grupo de elementos.
+Supongamos que queremos modelar un sistema de archivos. Cada elemento del sistema —ya sea un archivo individual o una carpeta que contiene otros elementos— debe poder reportar su tamaño total en bytes. Queremos calcular el tamaño de una carpeta que puede contener archivos y otras carpetas, sin tener que distinguir entre ellos.
 
 1. Definir una interfaz común para todos los elementos de la estructura (_**Componente**_).
 
@@ -220,9 +220,9 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
    ---
    linenos: true
    ---
-   // Interfaz común para todos los elementos de la estructura
-   type Figura interface {
-       Area() float64
+   // Componente define la operación común a archivos y carpetas
+   type Componente interface {
+       Tamanio() int64
    }
    ```
 
@@ -232,33 +232,14 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
    ---
    linenos: true
    ---
-    // Implementación de elementos individuales (Simple)
-   import "math"
-
-   type Rectangulo struct {
-       Base   float64
-       Altura float64
+   // Archivo representa un elemento simple (hoja) del sistema
+   type Archivo struct {
+       nombre string
+       bytes  int64
    }
 
-   func (r *Rectangulo) Area() float64 {
-       return r.Base * r.Altura
-   }
-
-   type Circulo struct {
-       Radio float64
-   }
-
-   func (c *Circulo) Area() float64 {
-       return math.Pi * c.Radio * c.Radio
-   }
-
-   type Triangulo struct {
-       Base   float64
-       Altura float64
-   }
-
-   func (t *Triangulo) Area() float64 {
-       return (t.Base * t.Altura) / 2
+   func (a *Archivo) Tamanio() int64 {
+       return a.bytes
    }
    ```
 
@@ -268,73 +249,53 @@ Supongamos que queremos modelar una estructura jerárquica de figuras, donde los
    ---
    linenos: true
    ---
-    // Implementación de elementos compuestos (Compuesto)
-   // que contienen una colección de elementos
-   type Grupo struct {
-       Figuras []Figura
+   // Carpeta representa un elemento compuesto que contiene otros componentes
+   type Carpeta struct {
+       nombre      string
+       componentes []Componente
    }
 
-   func (g *Grupo) Area() float64 {
-       var areaTotal float64
-       for _, f := range g.Figuras {
-           areaTotal += f.Area()
+   func (c *Carpeta) Tamanio() int64 {
+       var total int64
+       for _, comp := range c.componentes {
+           total += comp.Tamanio()
        }
-       return areaTotal
+       return total
    }
 
-   func (g *Grupo) Agregar(f Figura) {
-       g.Figuras = append(g.Figuras, f)
+   func (c *Carpeta) Agregar(comp Componente) {
+       c.componentes = append(c.componentes, comp)
    }
    ```
 
 4. Tratar tanto a los elementos simples como a los compuestos de manera uniforme, sin tener que distinguir entre ellos.
 
-   Por ejemplo queremos calcular el área de un tren compuesto por una locomotora y dos vagones, cada uno con su respectiva estructura de figuras.
-
-   ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronTren_light.svg
-   ---
-   class: only-light-mode
-   name: tren
-   ---
-   Ejemplo de tren compuesto por figuras
-   ```
-
-   ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronTren_dark.svg
-   ---
-   class: only-dark-mode
-   name: tren
-   ---
-   Ejemplo de tren compuesto por figuras
-   ```
+   Por ejemplo, queremos calcular el tamaño total de un directorio de proyecto que contiene archivos y subcarpetas:
 
    ```{code-block} go
    ---
    linenos: true
    ---
-   locomotora := &Grupo{}
-   locomotora.Agregar(&Rectangulo{Base: 7, Altura: 3}) //cuerpo de la locomotora
-   locomotora.Agregar(&Circulo{Radio: 1}) //rueda de la locomotora
-   locomotora.Agregar(&Circulo{Radio: 1}) //rueda de la locomotora
-   locomotora.Agregar(&Triangulo{Base: 2, Altura: 4}) //chimenea
-   locomotora.Agregar(&Rectangulo{Base: 2, Altura: 3}) //cabina
+   readme := &Archivo{nombre: "README.md", bytes: 2048}
+   licencia := &Archivo{nombre: "LICENSE", bytes: 1024}
 
-   vagon1 := &Grupo{}
-   vagon1.Agregar(&Rectangulo{Base: 7, Altura: 3}) //cuerpo del vagon
-   vagon1.Agregar(&Circulo{Radio: 1}) //rueda del vagon
-   vagon1.Agregar(&Circulo{Radio: 1}) //rueda del vagon
+   src := &Carpeta{nombre: "src"}
+   src.Agregar(&Archivo{nombre: "main.go", bytes: 4096})
+   src.Agregar(&Archivo{nombre: "utils.go", bytes: 1536})
 
-   vagon2 := &Grupo{}
-   vagon2.Agregar(&Rectangulo{Base: 7, Altura: 3}) //cuerpo del vagon
-   vagon2.Agregar(&Circulo{Radio: 1}) //rueda del vagon
-   vagon2.Agregar(&Circulo{Radio: 1}) //rueda del vagon
+   docs := &Carpeta{nombre: "docs"}
+   docs.Agregar(&Archivo{nombre: "manual.pdf", bytes: 524288})
 
-   tren := &Grupo{}
-   tren.Agregar(locomotora)
-   tren.Agregar(vagon1)
-   tren.Agregar(vagon2)
+   proyecto := &Carpeta{nombre: "mi-proyecto"}
+   proyecto.Agregar(readme)
+   proyecto.Agregar(licencia)
+   proyecto.Agregar(src)
+   proyecto.Agregar(docs)
 
-   fmt.Println("El área del tren es: ", tren.Area()) //91.84955592153875
+   fmt.Println(proyecto.Tamanio()) // 532992
    ```
+
+   `proyecto.Tamanio()` recorre recursivamente todos los componentes —archivos y carpetas— sin necesidad de saber si cada uno es simple o compuesto. El método `Agregar` recibe un `Componente`, por lo que acepta tanto `Archivo` como `Carpeta`.
 
 ## Patrón _Iterator_
 
@@ -345,156 +306,165 @@ name: iterator
 Patrón _Iterator_
 ```
 
-El patrón _Iterator_ o Iterador permite recorrer los elementos de una colección cualquiera sin exponer su estructura interna. El Iterador declara un conjunto de métodos o funciones para acceder secuencialmente a los elementos. Los métodos más comunes son:
+El patrón _Iterator_ o Iterador permite recorrer los elementos de una colección cualquiera sin exponer su estructura interna. El Iterador provee una interfaz uniforme con dos métodos:
 
-`Primero()`
-: Se posiciona el iterador en el primer elemento de la colección
+`Siguiente() bool`
+: Avanza el iterador al siguiente elemento y devuelve `true`. Si no quedan más elementos por recorrer, devuelve `false`. La primera llamada a `Siguiente()` posiciona el iterador en el primer elemento de la colección.
 
-`Siguiente()`
-: Avanza el iterador al siguiente elemento
+`Valor() int`
+: Devuelve el valor del elemento sobre el cual está posicionado el iterador. Solo debe llamarse después de que `Siguiente()` haya devuelto `true`.
 
-`HaySiguiente()`
-: Devuelve `true` si todavía quedan elementos por recorrer en la colección o `false` en caso contrario
+El patrón de uso típico en Go es:
 
-`Actual()`
-: Devuelve el elemento actual donde está el iterador
+```{code-block} go
+---
+linenos: true
+---
+it := coleccion.Iterador()
+for it.Siguiente() {
+    fmt.Println(it.Valor())
+}
+```
+
+Cada llamada a `Siguiente()` cumple dos funciones: verifica si hay un elemento disponible y avanza la posición interna. `Valor()` simplemente retorna el elemento actual sin modificar el estado del iterador.
 
 ### Cómo Proceder
 
-1. Definir el comportamiento del **Iterador**, es decir los métodos para obtener el siguiente, etc. Es posible agregar más métodos a los mencionados, por ejemplo si necesitamos un iterador que pueda avanzar y retroceder en su recorrido habrá que agregar los métodos correspondientes.
-2. Dentro de la **colección** definir un método para crear el **Iterador**
-3. Implementar el **Iterador** vinculado siempre a una única colección
-4. Recorrer la **colección** con el iterador creado
+1. Definir el comportamiento del **Iterador** con los métodos `Siguiente()` y `Valor()`. Si se necesita recorrer en ambos sentidos, se puede agregar un método `Anterior()`.
+2. Dentro de la **colección** definir un método fábrica `Iterador()` que devuelva un iterador nuevo apuntando al inicio.
+3. Implementar el **Iterador** vinculado siempre a una única colección.
+4. Recorrer la **colección** con `for it.Siguiente()`.
 
 ### Ejemplo
 
-Supongamos que tenemos una lista enlazada simple y nos interesa crear un iterador que nos permita recorrerla e imprimir cada elemento de la lista. Por simplicidad suponemos que la lista enlazada solo contiene números enteros.
+Supongamos que tenemos una lista enlazada simple y queremos recorrerla con un iterador. Por simplicidad la lista contiene solo números enteros.
+
+Primero definimos la estructura de la lista y su operación de inserción al final:
 
 ```{code-block} go
 ---
 linenos: true
 ---
 type Nodo struct {
-    Valor     int
-    Siguiente *Nodo
+    valor int
+    sig   *Nodo
 }
 
-type ListaEnlazada struct {
-    Primero *Nodo
+type Lista struct {
+    cabeza *Nodo
 }
 
-// Método para insertar un elemento al inicio de la lista
-func (l *ListaEnlazada) InsertarAlInicio(valor int) {
-    if l.Primero == nil {
-        l.Primero = &Nodo{Valor: valor}
-    } else {
-        nuevoNodo := &Nodo{Valor: valor, Siguiente: l.Primero}
-        l.Primero = nuevoNodo
+func (l *Lista) AgregarAlFinal(valor int) {
+    nuevo := &Nodo{valor: valor}
+    if l.cabeza == nil {
+        l.cabeza = nuevo
+        return
     }
+    actual := l.cabeza
+    for actual.sig != nil {
+        actual = actual.sig
+    }
+    actual.sig = nuevo
 }
 ```
 
-1. Definir el comportamiento del **Iterador**, es decir los métodos para obtener el siguiente, etc. Es posible agregar más métodos a los mencionados, por ejemplo si necesitamos un iterador que pueda avanzar y retroceder en su recorrido habrá que agregar los métodos correspondientes.
-
-   ```{code-block} go
-   ---
-   linenos: true
-   ---
-   // Interfaz del Iterador
-   // Define los métodos que debe implementar el iterador
-   type Iterador interface {
-       Primero()
-       Siguiente()
-       HaySiguiente() bool
-       Actual() int
-   }
-   ```
-
-2. Dentro de la **colección** definir un método para crear el **Iterador**
-
-   ```{code-block} go
-   ---
-   linenos: true
-   emphasize-lines: 20, 21, 22, 23
-   ---
-   type Nodo struct {
-       Valor     int
-       Siguiente *Nodo
-   }
-
-   type ListaEnlazada struct {
-       Primero *Nodo
-   }
-
-   // Método para insertar un elemento al inicio de la lista
-   func (l *ListaEnlazada) InsertarAlInicio(valor int) {
-       if l.Primero == nil {
-           l.Primero = &Nodo{Valor: valor}
-       } else {
-           nuevoNodo := &Nodo{Valor: valor, Siguiente: l.Primero}
-           l.Primero = nuevoNodo
-       }
-   }
-
-   // Método para crear un iterador de la lista
-   func (l *ListaEnlazada) CrearIterador() Iterador {
-       return &IteradorLista{lista: l, actual: l.Primero}
-   }
-   ```
-
-3. Implementar el **Iterador** vinculado siempre a una única colección
-
-   ```{code-block} go
-   ---
-   linenos: true
-   ---
-   type IteradorLista struct {
-       lista  *ListaEnlazada
-       actual *Nodo
-   }
-
-   ```
-
-func (i \*IteradorLista) Primero() {
-i.actual = i.lista.Primero
-}
-
-func (i \*IteradorLista) Siguiente() {
-i.actual = i.actual.Siguiente
-}
-
-func (i \*IteradorLista) HaySiguiente() bool {
-return i.actual != nil
-}
-
-func (i \*IteradorLista) Actual() int {
-return i.actual.Valor
-}
-
-````
-
-4. Recorrer la **colección** con el iterador creado
+El iterador se implementa como un struct que mantiene una referencia al nodo actual:
 
 ```{code-block} go
 ---
 linenos: true
 ---
-lista := &ListaEnlazada{}
-lista.InsertarAlInicio(3)
-lista.InsertarAlInicio(2)
-lista.InsertarAlInicio(1)
-
-iterador := lista.CrearIterador()
-for iterador.Primero(); iterador.HaySiguiente(); iterador.Siguiente() {
-    fmt.Println(iterador.Actual(), " ")
+type Iterador struct {
+    actual *Nodo
 }
-````
+
+func (l *Lista) Iterador() *Iterador {
+    return &Iterador{actual: l.cabeza}
+}
+
+// Siguiente avanza al próximo nodo.
+// La primera llamada posiciona el iterador en la cabeza.
+// Devuelve false cuando no hay más elementos.
+func (it *Iterador) Siguiente() bool {
+    if it.actual == nil {
+        return false
+    }
+    // La primera vez, no avanza: devuelve la cabeza.
+    // Las siguientes, avanza al nodo siguiente.
+    if it.actual != nil {
+        // guardamos el actual y avanzamos
+    }
+    return true
+}
+
+// Valor devuelve el valor del nodo actual.
+func (it *Iterador) Valor() int {
+    return it.actual.valor
+}
+```
+
+El código anterior es una simplificación. La implementación real necesita un mecanismo para distinguir la primera llamada de las siguientes. A continuación la versión completa:
+
+```{code-block} go
+---
+linenos: true
+---
+type Iterador struct {
+    actual  *Nodo
+    primera bool
+}
+
+func (l *Lista) Iterador() *Iterador {
+    return &Iterador{actual: l.cabeza, primera: true}
+}
+
+func (it *Iterador) Siguiente() bool {
+    if it.actual == nil {
+        return false
+    }
+    if !it.primera {
+        it.actual = it.actual.sig
+        if it.actual == nil {
+            return false
+        }
+    }
+    it.primera = false
+    return true
+}
+
+func (it *Iterador) Valor() int {
+    return it.actual.valor
+}
+```
+
+La bandera `primera` evita que la llamada inicial a `Siguiente()` avance más allá del primer elemento. A partir de la segunda llamada, `Siguiente()` avanza al nodo siguiente antes de verificar si hay elemento.
+
+Finalmente, el uso:
+
+```{code-block} go
+---
+linenos: true
+---
+lista := &Lista{}
+lista.AgregarAlFinal(1)
+lista.AgregarAlFinal(2)
+lista.AgregarAlFinal(3)
+
+it := lista.Iterador()
+for it.Siguiente() {
+    fmt.Println(it.Valor())
+}
+// Salida:
+// 1
+// 2
+// 3
+```
 
 ## Ejercicios
 
-Los ejercicios de este capítulo están en el directorio
+Los ejercicios de este capítulo cubren los tres patrones vistos: **Adapter**, **Composite** e **Iterator**. Están en el directorio
 `02-patrones-de-diseno/ejercicios/`
 del repositorio
 `taller-algoritmos`.
-Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests.
+Cada ejercicio tiene un esqueleto con `// Completar` y su correspondiente batería de tests.
 Para resolverlos, clonar el repositorio, completar las funciones y ejecutar `go test ./...`.
