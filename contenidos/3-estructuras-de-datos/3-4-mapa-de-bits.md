@@ -185,19 +185,14 @@ width: 50%
 Go también soporta los operadores de asignación compuesta, que combinan una operación binaria con una asignación. Estos operadores son:
 
 ```{table} Operadores de asignación compuesta en Go
----
-align: center
-width: 50%
----
-|   Símbolo   |     Operación      |     Ejemplo     |
-| :---------: | :----------------: | :-------------: |
-| `&=`  | `a = a & b`  | `a &= b`  |
-| `\|=` | `a = a \| b` | `a \|= b` |
-| `^=`  | `a = a ^ b`  | `a ^= b`  |
-| `<<=` | `a = a << b` | `a <<= b` |
-| `>>=` | `a = a >> b` | `a >>= b` |
-| `&^=` | `a = a &^ b` | `a &^= b` |
-
+| Símbolo |  Operación   |  Ejemplo  |
+| :-----: | :----------: | :-------: |
+|  `&=`   | `a = a & b`  | `a &= b`  |
+|  `\|=`  | `a = a \| b` | `a \|= b` |
+|  `^=`   | `a = a ^ b`  | `a ^= b`  |
+|  `<<=`  | `a = a << b` | `a <<= b` |
+|  `>>=`  | `a = a >> b` | `a >>= b` |
+|  `&^=`  | `a = a &^ b` | `a &^= b` |
 ```
 
 ## Ejercicios

@@ -60,17 +60,17 @@ gh extension install foundation50/gh-student
 
 ### Extensiones CLI
 
-| Comando | Rol |
-|---|---|
+| Comando      | Rol                                                    |
+| ------------ | ------------------------------------------------------ |
 | `gh teacher` | Docente: init, classroom, roster, assignment, download |
-| `gh student` | Alumno: accept, submit |
+| `gh student` | Alumno: accept, submit                                 |
 
 ### Organizaciones (sedes)
 
-| Sede | Org maestra (templates) | Org estudiantes |
-|---|---|---|
-| UNTREF | `untref-ayp2` | `untref-ayp2-estudiantes` |
-| CUDI | `untref-ayp2` (compartida) | `cudi-ayp2-estudiantes` |
+| Sede   | Org maestra (templates)    | Org estudiantes           |
+| ------ | -------------------------- | ------------------------- |
+| UNTREF | `untref-ayp2`              | `untref-ayp2-estudiantes` |
+| CUDI   | `untref-ayp2` (compartida) | `cudi-ayp2-estudiantes`   |
 
 Flujo típico por sede:
 
@@ -94,10 +94,10 @@ Los capítulos 3-x y 4-x usan un único repositorio en `github.com/untref-ayp2`,
 `taller-tad`, que contiene tanto las implementaciones de estructuras como los
 ejercicios de aplicación:
 
-| Subdirectorio                | Uso del alumno                                      |
-| ---------------------------- | --------------------------------------------------- |
-| `data-structures/`           | Implementa las estructuras localmente               |
-| `XX-tema/ejercicios/`        | Contiene esqueletos + tests                         |
+| Subdirectorio         | Uso del alumno                        |
+| --------------------- | ------------------------------------- |
+| `data-structures/`    | Implementa las estructuras localmente |
+| `XX-tema/ejercicios/` | Contiene esqueletos + tests           |
 
 ### `go.mod replace`
 
@@ -124,14 +124,14 @@ completa: ortografía, conceptos, formato MyST, recursos externos e imágenes.
 
 ### Capítulos comunes
 
-| Parámetro | Archivo |
-|---|---|
-| `@intro` | `contenidos/introduccion.md` |
-| `@1-3-analisis` | `contenidos/1-presentacion/1-3-analisis-de-algoritmos.md` |
-| `@2-7-punteros` | `contenidos/2-taller-de-go/2-7-punteros.md` |
-| `@3-9-abb` | `contenidos/3-estructuras-de-datos/3-9-abb.md` |
-| `@4-4-backtracking` | `contenidos/4-diseno-de-algoritmos/4-4-backtracking.md` |
-| `@5-1-git` | `contenidos/5-anexos/5-1-introduccion-git.md` |
+| Parámetro           | Archivo                                                   |
+| ------------------- | --------------------------------------------------------- |
+| `@intro`            | `contenidos/introduccion.md`                              |
+| `@1-3-analisis`     | `contenidos/1-presentacion/1-3-analisis-de-algoritmos.md` |
+| `@2-7-punteros`     | `contenidos/2-taller-de-go/2-7-punteros.md`               |
+| `@3-9-abb`          | `contenidos/3-estructuras-de-datos/3-9-abb.md`            |
+| `@4-4-backtracking` | `contenidos/4-diseno-de-algoritmos/4-4-backtracking.md`   |
+| `@5-1-git`          | `contenidos/5-anexos/5-1-introduccion-git.md`             |
 
 Sin match exacto, el agente busca con glob `contenidos/**/*${archivo}*.md`.
 

@@ -243,8 +243,7 @@ El módulo se aplica al resultado final para asegurar que el valor hash esté de
 
 ### Interfaz `HashTable`
 
-:::{dropdown} Ver código completo (`interface.go`)
-
+````{dropdown} Ver código completo (<code>interface.go</code>)
 ```{code-block} go
 ---
 linenos:
@@ -282,13 +281,11 @@ type HashTable[K comparable, V any] interface {
 	String() string
 }
 ```
-
-:::
+````
 
 ### Tipos y operaciones públicas
 
-:::{dropdown} Ver código completo (`hashtable.go`)
-
+````{dropdown} Ver código completo (<code>hashtable.go</code>)
 ```{code-block} go
 ---
 linenos:
@@ -477,13 +474,11 @@ func (ht *HashTableOpenAddressing[K, V]) String() string {
 	return result
 }
 ```
-
-:::
+````
 
 ### Funciones internas
 
-:::{dropdown} Ver código completo (`internal.go`)
-
+````{dropdown} Ver código completo (<code>internal.go</code>)
 ```{code-block} go
 ---
 linenos:
@@ -610,8 +605,7 @@ func isPrime(n int) bool {
 	return true
 }
 ```
-
-:::
+````
 
 La implementación concreta `HashTableOpenAddressing` satisface la interfaz `HashTable` para cualquier tipo de clave `K comparable` y valor `V any`. Al usar `K comparable`, la tabla acepta cualquier tipo que pueda usarse como clave en un `map` de Go (strings, números, structs sin slices, etc.). La función de _hash_ convierte la clave a string con `fmt.Sprintf` para aplicar el algoritmo polinómico sobre su representación.
 

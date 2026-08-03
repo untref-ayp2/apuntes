@@ -182,12 +182,18 @@ mkdir mimodulo && cd mimodulo
 Inicializamos el módulo.
 
 ```console
-$ go mod init github.com/untref-ayp2/mimodulo
+go mod init github.com/untref-ayp2/mimodulo
+```
+
+```output
 go: creating new go.mod: module github.com/untref-ayp2/mimodulo
 ```
 
 ```console
-$ cat go.mod
+cat go.mod
+```
+
+```output
 module github.com/untref-ayp2/mimodulo
 
 go 1.24.1
@@ -201,7 +207,7 @@ cat main.go
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
@@ -219,7 +225,10 @@ func main() {
 Ejecutamos nuestro programa, pero vemos que hay un error.
 
 ```console
-$ go run main.go
+go run main.go
+```
+
+```output
 main.go:5:2: no required module provides package github.com/fatih/color; to add it:
     go get github.com/fatih/color
 ```
@@ -231,8 +240,10 @@ Si bien en este ejemplo, queremos mostrar una forma alternativa de solucionar la
 Para ello usaremos `go mod tidy`, si consultamos la ayuda podemos aprender qué es lo que este comando realmente hace con nuestro módulo.
 
 ```console
-$ go help mod tidy
+go help mod tidy
+```
 
+```output
 [...]
 
 Tidy makes sure go.mod matches the source code in the module.
@@ -247,7 +258,10 @@ to go.sum and removes any unnecessary ones.
 Entonces, ya sabemos que `go mod tidy` se va a ocupar de agregar o corregir cualquier tipo de dependencia perdida en nuestro código.
 
 ```console
-$ go mod tidy
+go mod tidy
+```
+
+```output
 go: finding module for package github.com/fatih/color
 go: downloading github.com/fatih/color v1.18.0
 go: found github.com/fatih/color in github.com/fatih/color v1.18.0
@@ -258,7 +272,10 @@ go: downloading github.com/mattn/go-colorable v0.1.13
 Si ahora vemos cómo luce el archivo `go.mod` podemos comprobar que se agregó la directiva `require` donde se declaran las dependencias faltantes (pero adicionalmente `go mod tidy` también descargó esas dependencias en nuestro proyecto).
 
 ```console
-$ cat go.mod
+cat go.mod
+```
+
+```output
 module github.com/untref-ayp2/mimodulo
 
 go 1.24.1
@@ -275,7 +292,10 @@ require (
 Si ahora ejecutamos nuevamente nuestro programa, todo debería funcionar como se espera.
 
 ```console
-$ go run main.go
+go run main.go
+```
+
+```output
 ¡Texto en rojo!
 ```
 

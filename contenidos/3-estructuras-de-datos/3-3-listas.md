@@ -220,8 +220,8 @@ type List[T comparable] interface {
 
 La mayoría de las operaciones de inserción, eliminación y búsqueda dependen de un método interno `find` que recorre la lista en busca de un elemento. Este método es **privado** (en Go, minúscula inicial) porque devuelve un puntero a un nodo interno, y no debería exponerse fuera de la lista. A continuación se muestra su implementación en cada variante; las operaciones del resto de la sección lo referencian.
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -236,8 +236,8 @@ find(buscado):
     retornar nil
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -252,8 +252,8 @@ find(buscado):
     retornar nil
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -270,16 +270,16 @@ find(buscado):
     retornar nil
 ```
 
-:::
-::::
+````
+`````
 
 ### Consulta
 
 Size()
 : Devuelve la cantidad de nodos de la lista.
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -289,8 +289,8 @@ Size():
     retornar size
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -300,8 +300,8 @@ Size():
     retornar size
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -311,14 +311,14 @@ Size():
     retornar size
 ```
 
-:::
-::::
+````
+`````
 
 IsEmpty()
 : Devuelve `true` si la lista no tiene elementos.
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -328,8 +328,8 @@ IsEmpty():
     retornar size == 0
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -339,8 +339,8 @@ IsEmpty():
     retornar size == 0
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -350,14 +350,14 @@ IsEmpty():
     retornar size == 0
 ```
 
-:::
-::::
+````
+`````
 
 Contains(data T)
 : Devuelve `true` si el elemento está presente (solo la primera ocurrencia).
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -367,8 +367,8 @@ Contains(buscado):
     retornar find(buscado) != nil
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -378,8 +378,8 @@ Contains(buscado):
     retornar find(buscado) != nil
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -389,14 +389,14 @@ Contains(buscado):
     retornar find(buscado) != nil
 ```
 
-:::
-::::
+````
+`````
 
 Head()
 : Devuelve el dato del primer nodo. Si la lista está vacía devuelve el valor cero y `false`.
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -408,8 +408,8 @@ Head():
     retornar head.dato, verdadero
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -421,8 +421,8 @@ Head():
     retornar head.dato, verdadero
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -434,14 +434,14 @@ Head():
     retornar head.dato, verdadero
 ```
 
-:::
-::::
+````
+`````
 
 Tail()
 : Devuelve el dato del último nodo. En la lista circular se obtiene desde `head.prev`.
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -453,8 +453,8 @@ Tail():
     retornar tail.dato, verdadero
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -466,8 +466,8 @@ Tail():
     retornar tail.dato, verdadero
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -479,16 +479,16 @@ Tail():
     retornar head.prev.dato, verdadero
 ```
 
-:::
-::::
+````
+`````
 
 ### Inserción
 
 Prepend(data T)
 : Agrega un nodo con el dato al inicio de la lista.
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -503,8 +503,8 @@ Prepend(dato):
     tamaño++
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -521,8 +521,8 @@ Prepend(dato):
     tamaño++
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -543,8 +543,8 @@ Prepend(dato):
     tamaño++
 ```
 
-:::
-::::
+````
+`````
 
 La lista simple solo actualiza `head` y `tail` en caso de lista vacía.
 La doble además debe enlazar `prev` del `head` anterior.
@@ -553,8 +553,8 @@ La circular requiere mantener el ciclo, enlazando el nuevo nodo con `head` y con
 Append(data T)
 : Agrega un nodo con el dato al final de la lista.
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -570,8 +570,8 @@ Append(dato):
     tamaño++
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -588,8 +588,8 @@ Append(dato):
     tamaño++
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -608,14 +608,14 @@ Append(dato):
     tamaño++
 ```
 
-:::
-::::
+````
+`````
 
 InsertAfter(target, data T)
 : Busca `target` e inserta un nodo con `data` a continuación. Devuelve `false` si no encuentra `target`.
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -634,8 +634,8 @@ InsertAfter(buscado, dato):
     retornar verdadero
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -657,8 +657,8 @@ InsertAfter(buscado, dato):
     retornar verdadero
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -677,14 +677,14 @@ InsertAfter(buscado, dato):
     retornar verdadero
 ```
 
-:::
-::::
+````
+`````
 
 InsertBefore(target, data T)
 : Busca `target` e inserta un nodo con `data` antes. Devuelve `false` si no encuentra `target`.
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -708,8 +708,8 @@ InsertBefore(buscado, dato):
     retornar falso
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -731,8 +731,8 @@ InsertBefore(buscado, dato):
     retornar verdadero
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -753,8 +753,8 @@ InsertBefore(buscado, dato):
     retornar verdadero
 ```
 
-:::
-::::
+````
+`````
 
 En la lista simple `InsertBefore` requiere recorrer la lista buscando al predecesor porque no hay puntero `prev`.
 En la lista doble y circular, una vez encontrado el nodo, el reenlace es $O(1)$ gracias al puntero `prev`.
@@ -764,8 +764,8 @@ En la lista doble y circular, una vez encontrado el nodo, el reenlace es $O(1)$ 
 RemoveFirst()
 : Elimina el primer nodo. Devuelve `false` si la lista está vacía.
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -781,8 +781,8 @@ RemoveFirst():
     retornar verdadero
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -800,8 +800,8 @@ RemoveFirst():
     retornar verdadero
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -821,14 +821,14 @@ RemoveFirst():
     retornar verdadero
 ```
 
-:::
-::::
+````
+`````
 
 RemoveLast()
 : Elimina el último nodo. Devuelve `false` si la lista está vacía.
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -851,8 +851,8 @@ RemoveLast():
     retornar verdadero
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -870,8 +870,8 @@ RemoveLast():
     retornar verdadero
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -891,16 +891,16 @@ RemoveLast():
     retornar verdadero
 ```
 
-:::
-::::
+````
+`````
 
 `RemoveLast` es $O(n)$ en la lista simple porque debe recorrer hasta el anteúltimo nodo, mientras que en doble y circular es $O(1)$ gracias al puntero `prev`.
 
 Remove(data T)
 : Busca y elimina la **primera** ocurrencia del elemento. Si hay elementos duplicados, solo se elimina el primero que se encuentra. Devuelve `false` si no lo encuentra.
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -924,8 +924,8 @@ Remove(dato):
     retornar falso
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -947,8 +947,8 @@ Remove(dato):
     retornar verdadero
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -970,8 +970,8 @@ Remove(dato):
     retornar falso
 ```
 
-:::
-::::
+````
+`````
 
 La lista simple debe tratar como caso especial la eliminación de la cabeza (no hay predecesor) y la actualización de `tail`. En doble y circular, el puntero `prev` permite reenlazar simétricamente, aunque en doble aún se verifican extremos.
 
@@ -980,8 +980,8 @@ La lista simple debe tratar como caso especial la eliminación de la cabeza (no 
 Values()
 : Devuelve un slice con los datos en el orden de la lista.
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -996,8 +996,8 @@ Values():
     retornar resultado
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -1012,8 +1012,8 @@ Values():
     retornar resultado
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -1030,16 +1030,16 @@ Values():
     retornar resultado
 ```
 
-:::
-::::
+````
+`````
 
 ### Utilidad
 
 Clear()
 : Elimina todos los nodos y deja la lista vacía.
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -1051,8 +1051,8 @@ Clear():
     tamaño = 0
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -1064,8 +1064,8 @@ Clear():
     tamaño = 0
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -1076,14 +1076,14 @@ Clear():
     tamaño = 0
 ```
 
-:::
-::::
+````
+`````
 
 String()
 : Devuelve una representación textual de la lista.
 
-::::{tab-set}
-:::{tab-item} Simple
+`````{tab-set}
+````{tab-item} Simple
 
 ```{code-block} text
 ---
@@ -1094,8 +1094,8 @@ String():
     retornar "[" + elementos.join(", ") + "]"
 ```
 
-:::
-:::{tab-item} Doble
+````
+````{tab-item} Doble
 
 ```{code-block} text
 ---
@@ -1106,8 +1106,8 @@ String():
     retornar "[" + elementos.join(", ") + "]"
 ```
 
-:::
-:::{tab-item} Circular
+````
+````{tab-item} Circular
 
 ```{code-block} text
 ---
@@ -1118,8 +1118,8 @@ String():
     retornar "[" + elementos.join(", ") + "]"
 ```
 
-:::
-::::
+````
+`````
 
 ## Lista con Centinelas
 

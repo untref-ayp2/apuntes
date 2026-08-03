@@ -59,7 +59,7 @@ En la siguiente tabla se resumen las principales características de estos algor
 | _Online_                   | Sí          | No         | No        |
 ```
 
-:::{dropdown} Ver implementaciones en Go
+````{dropdown} Ver implementaciones en Go
 
 ```{code-block} go
 ---
@@ -121,7 +121,7 @@ func OrdenarBurbujeo(arr []int) {
 }
 ```
 
-:::
+````
 
 Estos algoritmos son fáciles de implementar y entender, lo que los hace ideales para introducir conceptos básicos de ordenamiento. Sin embargo, su rendimiento se degrada rápidamente a medida que el número de elementos crece, lo que los limita a conjuntos de datos pequeños o casi ordenados. Por ejemplo, el **ordenamiento por inserción** es eficiente para listas pequeñas o listas que ya están casi ordenadas, mientras que el **ordenamiento por selección** y el **ordenamiento por burbujeo** son más adecuados para fines educativos que para aplicaciones prácticas en grandes volúmenes de datos.
 

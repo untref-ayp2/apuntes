@@ -271,9 +271,4 @@ T(n) = O(\log_2{n})
 
 ## Ejercicios
 
-Los ejercicios de este capítulo están en el directorio
-`01-recursividad/ejercicios/`
-del repositorio
-`taller-algoritmos`.
-Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests.
-Para resolverlos, clonar el repositorio, completar las funciones y ejecutar `go test ./...`.
+Los ejercicios de este capítulo están en el directorio `01-recursividad/ejercicios/` del repositorio `taller-algoritmos`. Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests. Para resolverlos, clonar el repositorio, completar las funciones y ejecutar `go test ./...`.

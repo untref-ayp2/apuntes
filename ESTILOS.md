@@ -1,14 +1,13 @@
 # Guía de Estilo — Apunte AyP2
 
-Este documento es la fuente canónica de convenciones de estilo para el proyecto.
-Cualquier agente o colaborador debe consultarlo antes de escribir o modificar contenido.
+Este documento es la fuente canónica de convenciones de estilo para el proyecto. Cualquier agente o colaborador debe consultarlo antes de escribir o modificar contenido.
 
 ______________________________________________________________________
 
 ## 1. Estructura de capítulos
 
 Cada capítulo es un archivo `X-Y-tema.md` en `contenidos/`. El frontmatter YAML es **obligatorio**
-y debe incluir al menos el campo `label`, que se usa para referencias cruzadas con `{ref}`.
+y debe incluir al menos el campo `label`, que se usa para referencias cruzadas con `@`.
 
 **Formato:**
 
@@ -66,7 +65,7 @@ Contenido aquí.
 
 1. `{admonition}` se convierte automáticamente a `{note}` — todas las admonitions se ven iguales en PDF.
 2. `{dropdown}` se aplana a texto: el título se vuelve un párrafo en negrita (`**Título**`) seguido del contenido.
-3. Los bloques con `:class: only-dark-mode` se **eliminan completamente** del PDF.
+3. Los bloques con `class: only-dark-mode` se **eliminan completamente** del PDF.
 4. Los bloques `<div class="only-html">...</div>` se **eliminan completamente** del PDF. Usar este wrapper para contenido que solo funciona en HTML (applets, videos).
 
 ______________________________________________________________________

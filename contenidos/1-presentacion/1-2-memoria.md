@@ -295,6 +295,7 @@ Un GC concurrente mejora el rendimiento y la experiencia del usuario, ya que evi
    dirección de retorno).
 
 5. **Garbage collector.** Explicá brevemente:
+
    - Qué problema resuelve el garbage collector concurrente de Go.
    - Qué significa *stop-the-world* y por qué las pausas son del orden de
      microsegundos en Go.
