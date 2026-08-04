@@ -14,7 +14,7 @@ Podemos declarar un array de la siguiente forma:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var numeros [7]int
 ```
@@ -25,7 +25,7 @@ Para acceder a los elementos de un arreglo o modificarlos, utilizamos su índice
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 numeros[0] = 42
 numeros[3] = 1337
@@ -41,7 +41,7 @@ En el caso de un _array_ de 7 elementos, podremos acceder a los elementos en los
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 numeros[7]
 ```
@@ -56,7 +56,7 @@ En Go para conocer el largo de un _array_ existe la función `len`.
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 len(numeros)
 ```
@@ -69,7 +69,7 @@ Para recorrer un _array_ en Go existe la instrucción `range`, que genera un ite
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 nombres := [4]string{"Fabián", "Martín", "Valeria", "Santiago"}
 
@@ -103,7 +103,7 @@ Podemos imaginar que un _slice_ es como una ventana que podemos deslizar sobre u
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var s []byte
 ```
@@ -126,7 +126,7 @@ Estructura interna de un _slice_.
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 s = make([]byte, 5, 5)
 ```
@@ -149,7 +149,7 @@ A medida que hacemos _slicing_ de `s`, observamos los cambios en la estructura d
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 s = s[2:4]
 ```
@@ -172,7 +172,7 @@ El _slicing_ no copia los datos del _slice_. En su lugar, crea un nuevo valor de
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 s = s[:cap(s)]
 ```
@@ -195,7 +195,7 @@ Múltiples _slices_ pueden compartir el mismo array subyacente y pueden referirs
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 meses := [12]string{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
     "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}
@@ -212,7 +212,7 @@ Definamos slices superpuestos para el segundo trimestre y el invierno:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 t2 := meses[3:6]
 invierno := meses[5:8]
@@ -220,7 +220,7 @@ invierno := meses[5:8]
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 fmt.Println("t2 =", t2, "\ninvierno =", invierno)
 ```
@@ -248,7 +248,7 @@ Hacer _slicing_ más allá de `cap(s)` causa un pánico, pero hacer _slicing_ m�
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 fmt.Println(invierno[:20])
 ```
@@ -259,7 +259,7 @@ panic: runtime error: slice bounds out of range [:20] with capacity 7
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 inviernoSinFin := invierno[:5]
 fmt.Println(inviernoSinFin)
@@ -277,7 +277,7 @@ Si el _slice_ resultante entra en la capacidad actual, `append` reutiliza el mis
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 s := []int{1, 2, 3}
 fmt.Println(s, "\nlen =", len(s), "\ncap =", cap(s))
@@ -291,7 +291,7 @@ cap = 3
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 s = append(s, 4, 5)
 fmt.Println(s, "\nlen =", len(s), "\ncap =", cap(s))
@@ -307,7 +307,7 @@ Puede darse el caso en el que, si tenemos dos _slices_ sobre un mismo _array_ su
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 x := make([]int, 0, 4)
 x = append(x, 0, 1, 2)
@@ -341,7 +341,7 @@ Slices x e y comparten el mismo arreglo subyacente.
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 x = append(x, 4)
 
@@ -373,7 +373,7 @@ También si el _slice_ sobre el que agregamos el nuevo elemento no tiene más ca
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 y = append(y, 4)
 
@@ -407,7 +407,7 @@ Por eso, modificar los valores de `y` ya no afecta a `x`:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 y[3] = 3
 

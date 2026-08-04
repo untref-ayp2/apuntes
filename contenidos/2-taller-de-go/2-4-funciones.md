@@ -16,7 +16,7 @@ Los parámetros se declaran con nombre y tipo, separados por coma:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func sumar(x int, y int) int {
     return x + y
@@ -29,7 +29,7 @@ Si quisiéramos generar algo similar en Java deberíamos declarar una clase con 
 
 ```{code-block} java
 ---
-linenos:
+linenos: true
 ---
 public class Matemática {
     public static int sumar(int a, int b) {
@@ -44,7 +44,7 @@ Cuando dos o más parámetros consecutivos comparten el mismo tipo, podemos decl
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func sumar(x, y int) int {
     return x + y
@@ -57,7 +57,7 @@ Go permite definir funciones que aceptan una cantidad variable de argumentos con
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func sumar(nums ...int) int {
     total := 0
@@ -70,7 +70,7 @@ func sumar(nums ...int) int {
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 import "fmt"
 
@@ -91,7 +91,7 @@ En Go los argumentos siempre se pasan por valor. Esto significa que la función 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func duplicar(x int) {
     x = x * 2
@@ -100,7 +100,7 @@ func duplicar(x int) {
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 a := 5
 duplicar(a)
@@ -123,7 +123,7 @@ Go permite devolver múltiples valores desde una función. Esto se usa frecuente
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 import "errors"
 
@@ -144,7 +144,7 @@ Go permite asignar nombres a los valores de retorno. Estos nombres actúan como 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func division(dividendo, divisor float32) (resultado float32, err error) {
     if divisor == 0.0 {
@@ -165,7 +165,7 @@ Cuando una función devuelve múltiples valores y no necesitamos alguno de ellos
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 resultado, _ := divisionSegura(10, 2)
 ```
@@ -178,7 +178,7 @@ Al ser "ciudadanos de primera clase", las funciones se pueden asignar a variable
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 f := sumar
 fmt.Println(f(3, 4))
@@ -192,7 +192,7 @@ La variable `f` tiene tipo `func(int, int) int`. También podemos declarar el ti
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var operacion func(int, int) int
 operacion = sumar
@@ -207,7 +207,7 @@ Go soporta funciones sin nombre que se pueden definir en el lugar donde se neces
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func() {
     fmt.Println("función anónima")
@@ -218,7 +218,7 @@ Los paréntesis al final invocan la función inmediatamente (IIFE). También se 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 saludar := func(nombre string) {
     fmt.Printf("Hola, %s\n", nombre)

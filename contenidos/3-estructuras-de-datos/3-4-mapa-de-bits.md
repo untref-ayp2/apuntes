@@ -50,16 +50,12 @@ _NOT_ (Negación)
 A continuación se presenta la tabla de verdad de las operaciones lógicas booleanas sobre bits:
 
 ```{table} Tabla de verdad de las operaciones sobre bits
----
-align: center
----
 |  A  |  B  | `(A & B)` | `(A \| B)` | `(A ^ B)` | `(^A)` |
 | :-: | :-: | :-------: | :--------: | :-------: | :----: |
 |  0  |  0  |     0     |     0      |     0     |   1    |
 |  0  |  1  |     0     |     1      |     1     |   1    |
 |  1  |  0  |     0     |     1      |     1     |   0    |
 |  1  |  1  |     1     |     1      |     0     |   0    |
-
 ```
 
 ### Operadores binarios en Go
@@ -71,7 +67,7 @@ _AND_
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var a uint8 = 0b00001100 // 12
 var b uint8 = 0b00001010 // 10
@@ -85,7 +81,7 @@ _OR_
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var a uint8 = 0b00001100 // 12
 var b uint8 = 0b00001010 // 10
@@ -99,7 +95,7 @@ _XOR_
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var a uint8 = 0b00001100 // 12
 var b uint8 = 0b00001010 // 10
@@ -113,7 +109,7 @@ Desplazamiento a Izquierda o _Left Shift_
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var a uint8 = 0b00000001 // 1
 b := a << 2              // 0b00000100 (4)
@@ -126,7 +122,7 @@ Desplazamiento a Derecha o _Right Shift_
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var a uint8 = 0b00001000 // 8
 b := a >> 2              // 0b00000010 (2)
@@ -139,7 +135,7 @@ _NOT_
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var a uint8 = 0b00001100 // 12
 b := ^a                  // ^a invierte los 8 bits: 0b11110011 (243)
@@ -154,7 +150,7 @@ _AND NOT_ o _bit clear_
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var a uint8 = 0b00001100 // 12
 var b uint8 = 0b00001010 // 10
@@ -166,10 +162,6 @@ c := a &^ b              // 0b00000100 (4)
 El operador `&^` (`a &^ b`) equivale a `a & (^b)`. Podemos pensarlo como "apagar" en `a` los bits que están encendidos en `b`. El resultado `c` tiene un 1 en la posición 2 porque `a` tiene un 1 ahí y `b` tiene un 0; en cambio, los bits 1 y 3 de `a` se apagan porque `b` tiene 1 en esas posiciones.
 
 ```{table} Operaciones sobre bits en Go
----
-align: center
-width: 50%
----
 |         Operación          |  Símbolo   |    Ejemplo     |
 | :------------------------: | :--------: | :------------: |
 |            AND             | `&`  | `a & b`  |
@@ -179,7 +171,6 @@ width: 50%
 |  Desplazamiento a Derecha  | `>>` | `a >> 2` |
 |            NOT             | `^`  |   `^a`   |
 |          AND NOT           | `&^` | `a &^ b` |
-
 ```
 
 Go también soporta los operadores de asignación compuesta, que combinan una operación binaria con una asignación. Estos operadores son:

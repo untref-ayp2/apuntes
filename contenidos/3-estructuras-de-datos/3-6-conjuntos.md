@@ -81,7 +81,7 @@ Todas estas operaciones definen la interfaz del TAD Conjunto:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type Set[T comparable] interface {
     // Operaciones sobre elementos
@@ -116,7 +116,7 @@ recomendado en Go para representar conjuntos:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type setMap[T comparable] struct {
     elements map[T]struct{}
@@ -148,7 +148,7 @@ y el valor asociado es irrelevante. El módulo
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type setHash[T comparable] struct {
     table hashtable.HashTable[T, struct{}]
@@ -248,7 +248,7 @@ Go 1.21):
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 import "cmp"
 
@@ -262,7 +262,7 @@ comparación:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type SortedSetListFunc[T any] struct {
     list list.LinkedList[T]

@@ -46,7 +46,7 @@ class: note
 
 ```{code-block} text
 ---
-linenos:
+linenos: true
 ---
 PARA CADA denominacion EN billetes HACER
     SI cantidad >= denominacion ENTONCES
@@ -212,7 +212,7 @@ class: note
 
 ```{code-block} text
 ---
-linenos:
+linenos: true
 ---
 actividades_seleccionadas ← []
 actividad_actual ← actividades[0]

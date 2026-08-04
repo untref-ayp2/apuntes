@@ -78,8 +78,9 @@ Usar `{code-block}` con especificador de lenguaje. Incluir `:linenos:` para nume
 
 ````markdown
 ```{code-block} go
-:linenos:
-
+---
+linenos: true
+---
 func main() {
     fmt.Println("Hola")
 }
@@ -520,8 +521,8 @@ ______________________________________________________________________
 | Qué                        | Usar                                                                                              | NO usar                           |
 | -------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------------- |
 | Admonition                 | `{admonition}` con `:class: note`                                                                 | `{note}` (shorthand)              |
-| Código fuente              | `{code-block} go` con `:linenos:`                                                                 | `{code-file}`                     |
-| Pseudocódigo               | `{code-block} text` con `:caption:`                                                               | `{prf:algorithm}`                 |
+| Código fuente              | `{code-block} go` con `linenos: true`                                                             | `{code-file}`                     |
+| Pseudocódigo               | `{code-block} text` con `caption: `                                                               | `{prf:algorithm}`                 |
 | Figura light/dark          | `{figure}` con `:class: only-light-mode` / `only-dark-mode`                                       | Una sola figura sin par           |
 | Referencia entre capítulos | ``` {ref}``\ ```label\`\`                                                                         | ``` {numref}``\ ```label\`\`      |
 | Cita bibliográfica         | ``` {cite}``\ ```clave\`\`                                                                        | `[@clave]`                        |

@@ -88,7 +88,7 @@ El siguiente seudocódigo ilustra la implementación del recorrido preorden como
 
 ```{code-block} text
 ---
-linenos:
+linenos: true
 ---
 FUNCION Preorden(raiz)
     SI raiz ES nulo ENTONCES
@@ -114,7 +114,7 @@ El siguiente seudocódigo muestra la implementación del recorrido inorden:
 
 ```{code-block} text
 ---
-linenos:
+linenos: true
 ---
 FUNCION Inorden (raiz)
     SI raiz ES nulo ENTONCES
@@ -134,7 +134,7 @@ El seudocódigo para el recorrido postorden se presenta a continuación:
 
 ```{code-block} text
 ---
-linenos:
+linenos: true
 ---
 FUNCION Postorden (raiz)
     SI raiz ES nulo ENTONCES
@@ -162,7 +162,7 @@ A continuación se presentan las estructuras que definen un árbol binario en Go
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package tree
 
@@ -176,7 +176,7 @@ type TreeNode[T any] struct {
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package tree
 
@@ -194,7 +194,7 @@ En este enfoque, cada nodo es responsable de aplicar la operación sobre sí mis
 
 ```{code-block} text
 ---
-linenos:
+linenos: true
 ---
 FUNCION TreeNode.Inorden(resultado)
     SI this.izquierdo NO es nulo ENTONCES
@@ -234,7 +234,7 @@ En este enfoque, el árbol implementa la lógica recursiva y el nodo solo expone
 
 ```{code-block} text
 ---
-linenos:
+linenos: true
 ---
 FUNCION BinaryTree.inordenRecursivo(nodo, resultado)
     SI nodo ES nulo ENTONCES

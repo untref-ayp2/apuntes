@@ -24,8 +24,9 @@ Git es un sistema de control de versiones (SCV).
 Un sistema de control de versiones es un sistema que registra los cambios realizados en un archivo o conjunto de archivos a lo largo del tiempo, de modo que puedas recuperar versiones específicas más adelante.
 
 ```{admonition} Analogía
-:class: note
-
+---
+class: note
+---
 Imaginemos que Git es una cámara de fotos. En este caso, la analogía es muy buena, ya que Git es la herramienta, y no "la cosa" que haremos.
 ```
 
@@ -72,8 +73,9 @@ nothing to commit (create/copy files and use "git add" to track)
 ```
 
 ```{admonition} ¡Consejo!
-:class: hint
-
+---
+class: hint
+---
 Es muy importante siempre prestar atención a los mensajes que los distintos comandos de Git nos devuelven. En este caso, nos dice que no hay nada para hacer, ya que no hemos creado nada aún.
 
 En general, son comentarios útiles y nos ayudan a saber que posibilidades tenemos desde donde estamos parados.
@@ -155,8 +157,9 @@ Date:   Fri Mar 28 18:38:18 2025 -0300
 ```
 
 ```{admonition} En resumen
-:class: note
-
+---
+class: note
+---
 Desde aquí en adelante, cada vez que hagamos un cambio en el repo, debemos seguir los mismos pasos:
 
 1. Editar el archivo

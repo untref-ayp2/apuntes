@@ -51,7 +51,7 @@ Lista Enlazada Simple
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type node[T any] struct {
     data T
@@ -61,7 +61,7 @@ type node[T any] struct {
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type List[T comparable] struct {
     head *node[T]
@@ -76,7 +76,7 @@ Cuando una operación como `Head()` o `Tail()` se ejecuta sobre una lista vacía
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var zero T
 /*
@@ -119,7 +119,7 @@ Lista Enlazada Doble
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type node[T any] struct {
     data T
@@ -130,7 +130,7 @@ type node[T any] struct {
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type List[T comparable] struct {
     head *node[T]
@@ -174,7 +174,7 @@ Al ser cíclica, basta con mantener un único puntero a la cabeza: la cola se ob
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type List[T comparable] struct {
     head *node[T]  // único puntero necesario
@@ -188,7 +188,7 @@ Si bien las listas son versátiles y no existe un único comportamiento estánda
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type List[T comparable] interface {
     // Consulta
@@ -1152,7 +1152,7 @@ Lista Enlazada Doble con Centinelas
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type List[T comparable] struct {
     head *node[T]  // centinela frontal

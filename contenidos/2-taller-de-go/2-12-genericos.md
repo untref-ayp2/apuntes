@@ -12,7 +12,7 @@ Supongamos que queremos una función que busque un elemento en un slice. Para en
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func ContieneInt(arr []int, elem int) bool {
     for _, v := range arr {
@@ -28,7 +28,7 @@ Si después necesitamos lo mismo para _strings_, escribimos otra función casi i
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func ContieneString(arr []string, elem string) bool {
     for _, v := range arr {
@@ -55,7 +55,7 @@ Antes de que Go tuviera genéricos, la solución era usar el tipo vacío `interf
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func ContieneAny(arr []interface{}, elem interface{}) bool {
     for _, v := range arr {
@@ -75,7 +75,7 @@ Pero esta solución tiene problemas:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func main() {
     nums := []interface{}{10, 20, 30}
@@ -97,7 +97,7 @@ Desde Go 1.18, podemos escribir funciones que acepten cualquier tipo usando tipo
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func Contiene[T comparable](arr []T, elem T) bool {
     for _, v := range arr {
@@ -121,7 +121,7 @@ Al llamar a la función, Go infiere el tipo automáticamente:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func main() {
     numeros := []int{10, 20, 30, 40, 50}
@@ -146,7 +146,7 @@ si declaramos un slice de enteros, solo podemos buscar enteros dentro de él:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func main() {
     numeros := []int{10, 20, 30}
@@ -165,7 +165,7 @@ Al llamar a una función genérica, el compilador deduce los tipos parametrizabl
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 Contiene(numeros, 30)   // T se infiere como int
 Contiene(nombres, "Luis") // T se infiere como string
@@ -175,7 +175,7 @@ También podemos especificar el tipo explícitamente si hace falta:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 Contiene[int](numeros, 30)
 ```
@@ -206,7 +206,7 @@ Los _constraints_ definen qué operaciones puede hacer `T` dentro de la función
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func Imprimir[T any](arr []T) {
     for _, v := range arr {
@@ -223,7 +223,7 @@ Esta función solo puede usar operaciones válidas para cualquier tipo: asignar,
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func BuscarLineal[T comparable](arr []T, elem T) int {
     for i, v := range arr {
@@ -241,7 +241,7 @@ Para operaciones como `<`, `>`, `<=`, `>=`, no existe un _constraint_ predefinid
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type Ordenable interface {
     ~int | ~float64 | ~string
@@ -254,7 +254,7 @@ Ahora podemos escribir funciones que usen operadores de comparación:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func Maximo[T Ordenable](arr []T) T {
     max := arr[0]
@@ -297,7 +297,7 @@ En lugar de definir un _constraint_ personalizado, podemos pasar una función qu
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func OrdenarSeleccion[T any](arr []T, menor func(T, T) bool) {
     n := len(arr)
@@ -332,7 +332,7 @@ La función `menor` recibe dos elementos `T` y devuelve `true` si el primero deb
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type Persona struct {
     Nombre string
@@ -364,7 +364,7 @@ Los tipos parametrizables también funcionan con _structs_. Esto permite definir
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type Caja[T any] struct {
     valor T
@@ -397,7 +397,7 @@ Un tipo genérico también puede tener múltiples parámetros:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type Dicc[K comparable, V any] struct {
     datos map[K]V

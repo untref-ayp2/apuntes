@@ -11,8 +11,9 @@ En este anexo, vamos a implementar iteradores para un Árbol Binario de Búsqued
 En el siguiente fragmento de código definimos la interfaz `Iterator` que contendrá los métodos necesarios para iterar cualquier colección de elementos y en particular los nodos de un ABB.
 
 ```{code-block} go
-:linenos:
-
+---
+linenos: true
+---
 // La interfaz Iterator define los métodos para iterar sobre una colección
 type Iterator[T any] interface {
     HasNext() bool
@@ -39,8 +40,9 @@ El árbol usa un tipo genérico con una función de comparación, lo que permite
 A continuación se muestra la estructura del nodo del ABB.
 
 ```{code-block} go
-:linenos:
-
+---
+linenos: true
+---
 // BinaryNode representa un nodo en el árbol binario
 type BinaryNode[T any] struct {
     value T
@@ -54,8 +56,9 @@ El tipo `BinaryNode` solo tiene los métodos necesarios para crear un nodo y obt
 En la implementación del ABB tenemos los métodos para obtener los iteradores:
 
 ```{code-block} go
-:linenos:
-
+---
+linenos: true
+---
 // BinarySearchTree implementa un árbol binario de búsqueda genérico
 type BinarySearchTree[T any] struct {
     root *BinaryNode[T]
@@ -96,8 +99,9 @@ Espacio en memoria (_stack overflow_)
 Para superar estos desafíos y crear un iterador que sea _lazy_ (bajo demanda) y eficiente en memoria, necesitamos una forma de simular la pila de llamadas recursiva de forma explícita. Y la estructura de datos perfecta para esto es, precisamente, una pila (_stack_).
 
 ```{admonition} Nota
-:class: note
-
+---
+class: note
+---
 Que sea _lazy_ significa que el iterador no calcula todos los elementos de antemano, sino que los obtiene a medida que se le solicita un nuevo elemento. Esto es fundamental para manejar colecciones grandes o infinitas sin consumir demasiada memoria.
 ```
 
@@ -140,8 +144,9 @@ En el siguiente fragmento de código se puede observar la implementación del it
 El setup inicial consiste en apilar la raíz y toda la rama izquierda para iniciar. De esta forma el primer nodo que se desapila es el menor de todo el árbol
 
 ```{code-block} go
-:linenos:
-
+---
+linenos: true
+---
 // InorderIterator implementa un iterador inorder
 type InorderIterator[T any] struct {
     stack []*BinaryNode[T]  // Pila principal para el recorrido
@@ -192,8 +197,9 @@ En el siguiente fragmento de código se puede observar la implementación del it
 El setup inicial consiste en apilar la raíz solamente.
 
 ```{code-block} go
-:linenos:
-
+---
+linenos: true
+---
 // PreorderIterator implementa un iterador preorder
 type PreorderIterator[T any] struct {
     stack []*BinaryNode[T]
@@ -255,8 +261,9 @@ En el siguiente fragmento de código se puede observar la implementación del it
 El setup inicial consiste en apilar la raíz en la primera pila y luego procesar el árbol para llenar la segunda pila en orden postorder.
 
 ```{code-block} go
-:linenos:
-
+---
+linenos: true
+---
 // PostorderIterator implementa un iterador postorder usando dos pilas
 type PostorderIterator[T any] struct {
     stack1 []*BinaryNode[T]
@@ -299,5 +306,3 @@ func (iter *PostorderIterator[T]) Next() (T, error) {
 ## Código completo en Go
 
 El código completo de este anexo está disponible en el repositorio [guia-iteradores-abb](https://github.com/untref-ayp2/guia-iteradores-abb).
-
-

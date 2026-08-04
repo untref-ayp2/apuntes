@@ -45,7 +45,7 @@ Para formalizar este TAD dentro de nuestra biblioteca de estructuras de datos, d
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package dictionary
 
@@ -86,7 +86,7 @@ La sintaxis básica para declarar un mapa asociando claves de tipo `K` con valor
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var m map[TipoClave]TipoValor
 ```
@@ -97,7 +97,7 @@ Para poder operar con un mapa en Go es necesario inicializarlo previamente. La f
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 // Declaración e inicialización
 edades := make(map[string]int)
@@ -121,7 +121,7 @@ Para poder distinguir entre una clave que realmente tiene asociado el valor cero
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 if edad, ok := edades["Juan"]; ok {
     fmt.Printf("Juan tiene %d años\n", edad)
@@ -138,7 +138,7 @@ Para iterar sobre los pares de un mapa, utilizamos un bucle `for` combinado con 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 for nombre, edad := range edades {
     fmt.Printf("%s tiene %d años\n", nombre, edad)
@@ -160,7 +160,7 @@ En el esquema del módulo `data-structures` (dentro de `taller-tad`), la impleme
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func NewHashMapDictionary[K comparable, V any](
     table hashtable.HashTable[K, V],
@@ -179,7 +179,7 @@ La siguiente porción de código muestra cómo usaríamos el diccionario con dis
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 // Diccionario con encadenamiento separado
 tablaEncadenada := hashtable.NewHashTableChaining[string, int]()

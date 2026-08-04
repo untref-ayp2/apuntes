@@ -317,7 +317,7 @@ A continuación una implementación en Go:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func busquedaLineal(arreglo []int, objetivo int) int {
     for i := 0; i < len(arreglo); i++ {
@@ -366,7 +366,7 @@ Implementación en Go:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func busquedaBinaria(lista []int, elemento int) int {
     L := 0

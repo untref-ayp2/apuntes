@@ -90,7 +90,7 @@ Veamos un ejemplo, dado el siguiente fragmento de código:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type Direccion struct {
     calle, ciudad, provincia string
@@ -141,7 +141,7 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
 
   ```{code-block} go
   ---
-  linenos:
+  linenos: true
   ---
   var num int = 5
   ```
@@ -155,7 +155,7 @@ Vamos a analizar cada variable en el código y justificar dónde se almacena:
 
   ```{code-block} go
   ---
-  linenos:
+  linenos: true
   ---
   var p1 = Persona{"Marcelo", "Díaz", 27, Direccion{"Mariano Acosta",
                   "Gonzalez Catán", "Buenos Aires", 6420}}
@@ -170,7 +170,7 @@ ______________________________________________________________________
 
   ```{code-block} go
   ---
-  linenos:
+  linenos: true
   ---
   p2 := Persona{nombre: "Pepe", edad: 23}
   ```
@@ -184,7 +184,7 @@ ______________________________________________________________________
 
   ```{code-block} go
   ---
-  linenos:
+  linenos: true
   ---
   p3 := &p2
   ```
@@ -198,7 +198,7 @@ ______________________________________________________________________
 
   ```{code-block} go
   ---
-  linenos:
+  linenos: true
   ---
   p4 := Persona{"Juan", "Gonzalez", 34, Direccion{"Valentín Gómez",
                 "Caseros", "Buenos Aires", 742}}
@@ -246,8 +246,9 @@ Un GC concurrente mejora el rendimiento y la experiencia del usuario, ya que evi
    variable y su contenido:
 
    ```{code-block} go
-   :linenos:
-
+   ---
+   linenos: true
+   ---
    var global int = 42
 
    type Punto struct {
@@ -266,8 +267,9 @@ Un GC concurrente mejora el rendimiento y la experiencia del usuario, ya que evi
    la variable creada escapa al heap o se queda en el stack. Justificá:
 
    ```{code-block} go
-   :linenos:
-
+   ---
+   linenos: true
+   ---
    func f1() int {
        x := 5
        return x

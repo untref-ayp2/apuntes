@@ -23,7 +23,7 @@ Los tipos que se pueden usar como clave son aquellos comparables con `==`: boole
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 // Válido
 m1 := make(map[string]int)
@@ -33,7 +33,7 @@ m3 := make(map[[3]int]string) // array de 3 ints como clave
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 // Inválido: slice como clave (no compila)
 // m := make(map[[]string]int)
@@ -45,7 +45,7 @@ La función _built-in_ `make` se puede usar para reservar la memoria que usará 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 edades := make(map[string]int)
 ```
@@ -54,7 +54,7 @@ También podemos crear un _mapa literal_ para crear un nuevo mapa con algunos pa
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 edades := map[string]int{
     "alice": 31,
@@ -66,7 +66,7 @@ Esto es equivalente a
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 edades := make(map[string]int)
 edades["alice"] = 31
@@ -79,7 +79,7 @@ Cuando se conoce la cantidad aproximada de entradas, es más eficiente pre-asign
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 edades := make(map[string]int, 100) // capacidad inicial para ~100 entradas
 ```
@@ -90,7 +90,7 @@ Los valores de un mapa también pueden ser otros mapas. Por ejemplo, para asocia
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 notas := map[string]map[string]int{
     "alice": {"matematica": 8, "lengua": 9},
@@ -103,7 +103,7 @@ Si el mapa interior no está inicializado, asignar un valor produce un error. Po
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 if _, ok := notas["bob"]; !ok {
     notas["bob"] = make(map[string]int)
@@ -115,7 +115,7 @@ Los elementos de un mapa se acceden mediante la notación habitual de subíndice
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 edades["alice"] = 32
 edad := edades["alice"]
@@ -130,7 +130,7 @@ y se pueden eliminar con la función _built-in_ `delete`:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 delete(edades, "alice")
 ```
@@ -139,7 +139,7 @@ Todas estas operaciones son seguras incluso si el elemento no está en el mapa; 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 edades["bob"] = edades["bob"] + 1
 ```
@@ -148,7 +148,7 @@ Las formas abreviadas de asignación `x += y` y `x++` también funcionan para lo
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 edades["bob"] += 1
 ```
@@ -157,7 +157,7 @@ o incluso de forma más concisa como
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 edades["bob"]++
 ```
@@ -166,7 +166,7 @@ Para enumerar todos los pares clave/valor en el mapa, usamos un bucle `for` basa
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 for name, age := range edades {
     fmt.Printf("%s\t%d\n", name, age)
@@ -184,7 +184,7 @@ Para enumerar los pares clave/valor en orden, debemos ordenar las claves explíc
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 import "sort"
 
@@ -210,7 +210,7 @@ Dado que conocemos el tamaño final de `names` desde el principio, es más efici
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 names := make([]string, 0, len(edades))
 ```
@@ -221,7 +221,7 @@ El _valor cero_ para un tipo mapa es `nil`, es decir, nulo. En otras palabras el
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var edades map[string]int
 fmt.Println(edades == nil)
@@ -237,7 +237,7 @@ La mayoría de las operaciones sobre mapas, incluyendo la recuperación, `delete
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 edades["carol"] = 21
 ```
@@ -254,7 +254,7 @@ Para muchos propósitos, eso está bien, pero a veces necesitamos saber si el el
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 age, ok := edades["bob"]
 if !ok { /* "bob" no es una clave en este mapa; age == 0. */ }
@@ -264,7 +264,7 @@ Es muy común el siguiente patrón que combina las dos sentencias anteriores den
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 if age, ok := edades["bob"]; !ok { /* ... */ }
 ```
@@ -275,7 +275,7 @@ Al igual que con los _slices_, **los mapas no se pueden comparar entre sí**; la
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 x := map[string]int{"a": 1}
 y := map[string]int{"a": 1}
@@ -292,7 +292,7 @@ La forma más sencilla es usar `map[Tipo]bool`:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 conjunto := make(map[string]bool)
 conjunto["manzana"] = true
@@ -306,7 +306,7 @@ Para verificar si un elemento pertenece al conjunto, usamos la sintaxis de dos v
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 if conjunto["manzana"] {
     fmt.Println("manzana está en el conjunto")
@@ -319,7 +319,7 @@ Una variante más eficiente en memoria usa `struct{}` como tipo de valor, ya que
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 conjunto := make(map[string]struct{})
 conjunto["manzana"] = struct{}{}

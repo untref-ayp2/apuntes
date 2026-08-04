@@ -28,7 +28,7 @@ Veamos un ejemplo concreto:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 import "fmt"
 
@@ -57,7 +57,7 @@ El operador `*` también permite **modificar** el valor apuntado:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 *pa = 99                      // Cambiamos el valor en la dirección apuntada
 fmt.Printf("a ahora vale %d (se modificó a través de *pa)\n", a)
@@ -104,7 +104,7 @@ En el capítulo de funciones vimos que los argumentos en Go siempre se pasan por
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func duplicar(x int) {
     x = x * 2
@@ -125,7 +125,7 @@ Para modificar el original, necesitamos un puntero:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func duplicar(x *int) {
     *x = *x * 2
@@ -160,7 +160,7 @@ El valor cero de un puntero es `nil`. Un puntero `nil` es aquel que no tiene una
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var p *int
 fmt.Println(p)
@@ -172,7 +172,7 @@ fmt.Println(p)
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 p = nil
 fmt.Println(*p) // panic!
@@ -186,7 +186,7 @@ Siempre debemos verificar que un puntero no sea `nil` antes de desreferenciarlo:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 if p != nil {
     fmt.Println(*p)
@@ -205,7 +205,7 @@ Un arreglo en Go se pasa por valor: pasarlo a una función copia todos sus eleme
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func duplicarElementos(arr *[4]int) {
     for i := range arr {
@@ -231,7 +231,9 @@ class: tip
 En la práctica, en lugar de pasar `*[N]T` se suele usar `[]T` (un slice). El slice ya contiene internamente un puntero al arreglo subyacente, como vimos en el capítulo de arreglos y slices. De hecho, lo siguiente es equivalente al ejemplo anterior pero usando slices:
 
 ```{code-block} go
-:linenos:
+---
+linenos: true
+---
 func duplicarElementos(arr []int) {
     for i := range arr {
         arr[i] *= 2
@@ -257,7 +259,7 @@ En Go es perfectamente válido que una función devuelva la dirección de una va
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func nuevoContador(valorInicial int) *int {
     c := valorInicial

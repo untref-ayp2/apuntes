@@ -246,7 +246,8 @@ El módulo se aplica al resultado final para asegurar que el valor hash esté de
 ````{dropdown} Ver código completo (<code>interface.go</code>)
 ```{code-block} go
 ---
-linenos:
+filename: interface.go
+linenos: true
 ---
 package hashtable
 
@@ -288,7 +289,8 @@ type HashTable[K comparable, V any] interface {
 ````{dropdown} Ver código completo (<code>hashtable.go</code>)
 ```{code-block} go
 ---
-linenos:
+filename: hashtable.go
+linenos: true
 ---
 package hashtable
 
@@ -481,7 +483,8 @@ func (ht *HashTableOpenAddressing[K, V]) String() string {
 ````{dropdown} Ver código completo (<code>internal.go</code>)
 ```{code-block} go
 ---
-linenos:
+filename: internal.go
+linenos: true
 ---
 package hashtable
 

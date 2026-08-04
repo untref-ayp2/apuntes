@@ -37,9 +37,9 @@ La definición de factorial es claramente recursiva y se puede implementar en Go
 
 ```{code-block} go
 ---
-linenos:
----
+linenos: true
 emphasize-lines: 6,9
+---
 package main
 
 import "fmt"
@@ -98,9 +98,9 @@ A continuación se muestra un ejemplo de recursión indirecta, donde dos funcion
 
 ```{code-block} go
 ---
-linenos:
----
+linenos: true
 emphasize-lines: 5,12
+---
 func esPar(n int) bool {
     if n == 0 { // El 0 es par
         return true
@@ -186,9 +186,9 @@ Esta técnica permite reducir drásticamente el tiempo de ejecución, es decir e
 
 ```{code-block} go
 ---
-linenos:
----
+linenos: true
 emphasize-lines: 2,6,9,13
+---
 func busquedaBinaria(array []int, inicio int, fin int, x int) int {
     if inicio > fin {
         return -1
@@ -244,9 +244,6 @@ $c$
 El Teorema maestro establece que la solución a la ecuación de recurrencia es:
 
 ```{math}
----
-label: teorema-maestro
----
 T(n) =
 \begin{cases}
 O(n^c) & \text{si } \log_b(a) < c \\

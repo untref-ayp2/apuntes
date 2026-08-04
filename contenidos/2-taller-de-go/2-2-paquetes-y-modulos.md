@@ -14,7 +14,7 @@ Además de que todos los archivos estén en el mismo directorio, cada archivo qu
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package mipaquete
 ```
@@ -89,7 +89,7 @@ Hasta ahora hemos utilizado mayormente este tipo de módulos. También podemos u
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
@@ -106,7 +106,7 @@ Otros tipos de módulos que podemos importar son los módulos de otros programad
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
@@ -138,7 +138,7 @@ Hay varios puntos a notar:
 
   ```{code-block} go
   ---
-  linenos:
+  linenos: true
   ---
   import b "untref.edu.ar/ayp2/busqueda"
   ```

@@ -52,7 +52,7 @@ Para reservar memoria, el programador simplemente declara la variable; el compil
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var edad int                 // Reserva automática para un entero
 nombres := make([]string, 0) // Reserva dinámica para un slice
@@ -91,7 +91,7 @@ Go no es un lenguaje orientado a objetos, es decir, no hay clases ni objetos com
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type Persona struct {
     Nombre string
@@ -103,7 +103,7 @@ Define una estructura de datos llamada `Persona` con dos campos: `Nombre` de tip
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var p Persona
 p.Nombre = "Fabián"
@@ -122,7 +122,7 @@ El siguiente fragmento se encuentra en el archivo `01-introduccion/ejemplos/00-h
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
@@ -149,7 +149,7 @@ Aquí vemos un ejemplo de una función simple que recibe dos argumentos de tipo 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func sumar(a, b int) int {
     return a + b
@@ -160,7 +160,7 @@ Para utilizar dicha función solo debemos invocarla por su nombre y proporcionar
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 fmt.Println(sumar(32, 7))
 ```

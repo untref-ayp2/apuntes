@@ -65,7 +65,7 @@ Para insertar un nuevo nodo en un árbol binario de búsqueda, se sigue el sigui
 
 ```{code-block} text
 ---
-linenos:
+linenos: true
 ---
 FUNCION InsertarABB(raiz, valor)
     SI raiz ES nula ENTONCES
@@ -98,7 +98,7 @@ La búsqueda en un árbol binario de búsqueda también se realiza de manera rec
 
 ```{code-block} text
 ---
-linenos:
+linenos: true
 ---
 FUNCION BuscarABB(raiz, valor)
     SI raiz ES nula ENTONCES
@@ -193,7 +193,7 @@ A continuación se presenta el algoritmo de eliminación de un nodo en un árbol
 
 ```{code-block} text
 ---
-linenos:
+linenos: true
 ---
 FUNCION EliminarABB(raiz, valor)
     SI raiz ES nula ENTONCES
@@ -229,7 +229,7 @@ FIN FUNCION
 
 ```{code-block} text
 ---
-linenos:
+linenos: true
 ---
 FUNCION BuscarMaximo(raiz)
     SI raiz.derecho ES nula ENTONCES
@@ -340,7 +340,7 @@ Este enfoque consiste en definir un nodo binario que contenga el valor, el hijo 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package binarysearchtree
 
@@ -354,7 +354,7 @@ type BinaryNode[T any] struct {
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package binarysearchtree
 
@@ -390,7 +390,7 @@ En la implementación anterior las operaciones se manejan desde el árbol (`bst.
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func (n *BinaryNode[T]) Insert(value T, cmp func(T, T) int) *BinaryNode[T] {
     if n == nil {
@@ -413,7 +413,7 @@ El segundo enfoque consiste en construir el ABB a partir de una implementación 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package binarysearchtree
 

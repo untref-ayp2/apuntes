@@ -46,8 +46,9 @@ por el siguiente contenido:
    variable y su contenido:
 
    ```{code-block} go
-   :linenos:
-
+   ---
+   linenos: true
+   ---
    var global int = 42
 
    type Punto struct {
@@ -66,8 +67,9 @@ por el siguiente contenido:
    la variable creada escapa al heap o se queda en el stack. Justificá:
 
    ```{code-block} go
-   :linenos:
-
+   ---
+   linenos: true
+   ---
    func f1() int {
        x := 5
        return x

@@ -13,10 +13,6 @@ Si todos los elementos tienen la misma prioridad, la cola se comporta como una c
 Por ejemplo, si se tiene una cola de prioridad con los siguientes elementos y prioridades, y la posición en la tabla corresponde al orden de llegada de los elementos, es decir, se insertaron en orden alfabético y además suponemos que la prioridad 1 es la mayor, luego la 2 y así sucesivamente.
 
 ```{table} Cola de Prioridad
----
-width: 40%
-align: center
----
 | Elemento | Prioridad |
 | :------: | :-------: |
 |    A     |     3     |
@@ -315,17 +311,12 @@ FIN FUNCION
 #### Orden de las operaciones
 
 ```{table} Orden de las Operaciones
----
-width: 40%
-align: center
----
-|    Operación    |   Orden    |
-| :-------------: | :--------: |
-|   `Top`   |   $O(1)$   |
-|  `Size`   |   $O(1)$   |
+| Operación |    Orden    |
+| :-------: | :---------: |
+|   `Top`   |   $O(1)$    |
+|  `Size`   |   $O(1)$    |
 | `Insert`  | $O(\log n)$ |
 | `Remove`  | $O(\log n)$ |
-
 ```
 
 **Top** y **Size** son $O(1)$ porque solo acceden a la posición $0$ del arreglo o devuelven el tamaño almacenado, sin recorrer la estructura. **Insertar** y **Remover** son $O(\log n)$ porque en el peor caso deben recorrer la altura del árbol (que siempre es $O(\log n)$ por tratarse de un árbol completo) para reestablecer la propiedad de orden mediante `upHeap` o `downHeap`.

@@ -177,7 +177,7 @@ para que, si algo sale mal, el estado vuelva atrás.
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package contador
 

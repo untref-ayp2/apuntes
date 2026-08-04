@@ -22,7 +22,7 @@ Los tipos `int` y `uint` tienen un tamaño que depende de la arquitectura del si
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var activo bool = true
 var nombre string = "Algoritmos"
@@ -36,7 +36,7 @@ Go es un lenguaje de **tipado estático**, lo que significa que el tipo de cada 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var x int = 10
 x = "hola" // ERROR de compilación
@@ -50,7 +50,7 @@ La forma más explícita de declarar una variable es con la palabra clave `var`,
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var edad int
 var precio float64
@@ -68,7 +68,7 @@ Si no se asigna un valor inicial, la variable toma el **valor cero** de su tipo:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var edad int       // edad == 0
 var nombre string  // nombre == ""
@@ -81,7 +81,7 @@ Se puede declarar y asignar un valor inicial en la misma línea:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var edad int = 25
 var nombre string = "Martín"
@@ -91,7 +91,7 @@ Cuando el tipo se puede inferir del valor, se puede omitir:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var edad = 25       // int
 var nombre = "Martín" // string
@@ -104,7 +104,7 @@ Dentro de una función, Go ofrece una sintaxis abreviada con `:=` que declara la
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func main() {
     edad := 25
@@ -121,7 +121,7 @@ Se pueden declarar varias variables en una misma línea:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var x, y int = 10, 20
 var nombre, apellido string = "Juana", "García"
@@ -132,7 +132,7 @@ O en un bloque:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 var (
     nombre   string = "Martín"
@@ -147,7 +147,7 @@ Una vez declarada, una variable se actualiza con `=` (sin `:`):
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 edad := 25
 edad = 26 // ok
@@ -158,7 +158,7 @@ Para asignar nuevos valores a múltiples variables se puede usar:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 x, y := 1, 2
 x, y = y, x // intercambia los valores
@@ -170,7 +170,7 @@ Las constantes se declaran con `const` y, a diferencia de las variables, no se p
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 const Pi = 3.1416
 const Mensaje string = "Hola"
@@ -180,7 +180,7 @@ Al igual que con `var`, se pueden agrupar en bloques:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 const (
     StatusOK   = 200
@@ -193,7 +193,7 @@ Las constantes pueden ser **sin tipo** (sin especificar el tipo explícitamente)
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 const n = 500          // sin tipo
 const s string = "abc" // con tipo
@@ -203,7 +203,7 @@ Las constantes sin tipo tienen más flexibilidad: se pueden usar en contextos qu
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 const n = 500
 var entero int = n       // ok
@@ -212,7 +212,7 @@ var flotante float64 = n // ok
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func main() {
     const nombre = "Go"
@@ -232,7 +232,7 @@ Go utiliza `if` y `else` de forma similar a C o Java, pero sin paréntesis alred
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 if edad >= 18 {
     fmt.Println("Mayor de edad")
@@ -245,7 +245,7 @@ Se pueden encadenar varios `else if`:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 if nota >= 8 {
     fmt.Println("Promocionado")
@@ -262,7 +262,7 @@ Go permite ejecutar una instrucción antes de la condición, separada por punto 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 if err := procesar(); err != nil {
     fmt.Println("Error:", err)
@@ -275,7 +275,7 @@ Go tiene los operadores habituales: `==`, `!=`, `<`, `>`, `<=`, `>=`, `&&` (y), 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 if edad >= 18 && tienePermiso {
     fmt.Println("Acceso permitido")
@@ -292,7 +292,7 @@ El `switch` en Go tiene algunas diferencias importantes con Java:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 switch dia := time.Now().Weekday(); dia {
 case time.Saturday, time.Sunday:
@@ -304,7 +304,7 @@ default:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 hora := 15
 switch {
@@ -323,7 +323,7 @@ Si se quiere continuar al siguiente `case` (como en C), se usa la palabra clave 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 switch n := 1; n {
 case 1:
@@ -345,7 +345,7 @@ Similar a C o Java: inicialización, condición, incremento.
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 for i := 0; i < 10; i++ {
     fmt.Println(i)
@@ -360,7 +360,7 @@ Si se omite la inicialización y el incremento, queda solo la condición, compor
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 i := 0
 for i < 10 {
@@ -375,7 +375,7 @@ Si se omite también la condición, el ciclo se ejecuta indefinidamente. Se sale
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 i := 0
 for {
@@ -393,7 +393,7 @@ Go provee la palabra clave `range` para iterar sobre estructuras de datos como a
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 numeros := []int{10, 20, 30, 40, 50}
 for indice, valor := range numeros {
@@ -405,7 +405,7 @@ Si solo interesa el valor, se puede ignorar el índice con `_`:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 for _, valor := range numeros {
     fmt.Println(valor)
@@ -416,7 +416,7 @@ También se puede iterar sobre un `string`, en cuyo caso `range` itera por runas
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 for posicion, letra := range "Algoritmos" {
     fmt.Printf("%c ", letra)
@@ -430,7 +430,7 @@ for posicion, letra := range "Algoritmos" {
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 for i := 0; i < 10; i++ {
     if i%2 == 0 {

@@ -12,7 +12,7 @@ La forma más simple de leer un archivo de texto es con `os.ReadFile`, que lee t
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
@@ -39,7 +39,7 @@ Para escribir datos en un archivo, `os.WriteFile` recibe el nombre del archivo, 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
@@ -67,7 +67,7 @@ Para tener más control, podemos abrir un archivo con `os.Open` (solo lectura) u
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
@@ -97,7 +97,7 @@ Cuando el archivo es grande o queremos procesarlo línea por línea, `bufio.Scan
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
@@ -136,7 +136,7 @@ Para escribir datos formateados en un archivo, podemos usar `fmt.Fprintf`, que e
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 

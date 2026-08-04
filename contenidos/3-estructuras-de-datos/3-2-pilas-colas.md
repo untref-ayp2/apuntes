@@ -53,7 +53,7 @@ Este comportamiento define la **interfaz** del tipo Pila, es decir las operacion
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type Stack[T any] interface {
     Push(val T)
@@ -72,7 +72,9 @@ class: important
 Es fundamental ocultar la implementación para que no se pueda manipular el contenedor de datos con operaciones no permitidas. Por ejemplo, la definición:
 
 ```{code-block} go
-:linenos:
+---
+linenos: true
+---
 // Forma incorrecta de definir una pila,
 // porque no encapsula el contenedor de datos
 type Stack[T any] []T
@@ -81,7 +83,9 @@ type Stack[T any] []T
 deja expuesto el contenedor de datos y se podría manipular con operaciones propias de slices.
 
 ```{code-block} go
-:linenos:
+---
+linenos: true
+---
 var p Stack[int]
 p = append(p, 1)
 p = append(p, 2)
@@ -95,7 +99,7 @@ El siguiente seudocódigo muestra una implementación del TAD Pila sobre un arre
 
 ```{code-block} text
 ---
-linenos:
+linenos: true
 ---
 TIPO Stack[T] struct
     data ← ARREGLO de T
@@ -149,7 +153,7 @@ A continuación un ejemplo de uso con `Stack[int]`:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 import "fmt"
 
@@ -178,7 +182,7 @@ Y el mismo `Stack[T]` puede usarse con `string`:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func main() {
     pila := NewStack[string]()
@@ -233,7 +237,7 @@ Su interfaz en código es:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type Queue[T any] interface {
     Enqueue(val T)
@@ -247,7 +251,7 @@ El siguiente seudocódigo muestra una implementación sobre un arreglo dinámico
 
 ```{code-block} text
 ---
-linenos:
+linenos: true
 ---
 TIPO Queue[T] struct
     data ← ARREGLO de T
@@ -288,7 +292,7 @@ Ejemplo de uso:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func main() {
     cola := NewQueue[string]()

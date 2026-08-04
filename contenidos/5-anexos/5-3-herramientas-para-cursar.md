@@ -7,8 +7,9 @@ label: herramientas
 En esta materia vamos a usar varias herramientas: un editor de código, un lenguaje de programación, un sistema de control de versiones y una plataforma para recibir y entregar trabajos. Este anexo explica cómo instalar y usar cada una.
 
 ```{admonition} Importante
-:class: important
-
+---
+class: important
+---
 La mayoría de las instrucciones asumen que empezás desde cero, sin nada instalado.
 ```
 

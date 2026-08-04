@@ -10,7 +10,7 @@ En Go las _structs_ son colecciones de campos. A diferencia de las clases en Jav
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type Direccion struct {
     calle, ciudad, provincia string
@@ -28,7 +28,7 @@ Para acceder a un campo de una estructura se usa la notación de punto, como lo 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func main() {
     var p1 Persona
@@ -55,7 +55,7 @@ Un método es una función con un argumento especial **receptor**. El **receptor
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func (p Persona) NombreCompleto() string {
     return p.nombre + " " + p.apellido
@@ -70,7 +70,7 @@ En este ejemplo, `NombreCompleto` tiene un receptor de tipo `Persona` llamado `p
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func main() {
     p := Persona{nombre: "Ana", apellido: "López", edad: 30}
@@ -91,7 +91,7 @@ Podemos declarar una variable que sea un puntero a una estructura:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func main() {
     p := &Persona{nombre: "Laura", apellido: "Medina", edad: 25}
@@ -125,7 +125,7 @@ Go aplica azúcar sintáctico: si definimos un método con receptor puntero y lo
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func main() {
     p := Persona{nombre: "Ana", edad: 30}
@@ -146,7 +146,7 @@ Go no tiene un equivalente directo a *static* de Java ni métodos de clase. Para
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func NewPersona(nombre, apellido string, edad uint) Persona {
     return Persona{
@@ -180,7 +180,7 @@ En Go la implementación es **implícita** (o estructural): no hace falta declar
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type Caminante interface {
     Avanzar(pasos int)
@@ -200,7 +200,7 @@ Como `*Persona` implementa ambos métodos, automáticamente satisface la interfa
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func RealizarRecorrido(caminante Caminante) {
     caminante.Avanzar(5)
@@ -224,7 +224,7 @@ Veamos otro tipo que también implemente `Caminante`:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type Perro struct {
     nombre string
@@ -243,7 +243,7 @@ Tanto `*Persona` como `*Perro` implementan `Caminante`. Podemos escribir una mis
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func HacerCaminar(c Caminante) {
     c.Avanzar(10)
@@ -271,7 +271,7 @@ Un mismo tipo puede implementar varias interfaces a la vez.
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type Trabajador interface {
     Trabajar(horas int) string
@@ -299,7 +299,7 @@ Una variable declarada con un tipo interfaz puede almacenar cualquier valor que 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func main() {
     ana := Persona{nombre: "Ana", apellido: "López", edad: 30}

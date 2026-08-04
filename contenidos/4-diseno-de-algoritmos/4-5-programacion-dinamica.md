@@ -43,7 +43,7 @@ Una posible implementación del cálculo de la serie de Fibonacci utilizando rec
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 emphasize-lines: 5
 ---
 func Fibonacci(n int) int {
@@ -108,7 +108,7 @@ En el siguiente fragmento de código se muestra la implementación de la serie d
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func Fibonacci(n int) int {
     // Inicialización de la tabla
@@ -157,10 +157,6 @@ El problema de la mochila es un clásico en programación dinámica y se puede e
 Supongamos que tenemos una mochila de capacidad 5 y los siguientes objetos:
 
 ```{table}
----
-align: center
-width: 30%
----
 | Objeto | Peso | Valor |
 | :----: | :--: | :---: |
 |   1    |  3   |   2   |
@@ -195,7 +191,7 @@ La implementación de esta estrategia utilizando tabulación es la siguiente:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type Item struct {
     peso  int
@@ -268,7 +264,7 @@ Aplicada al problema de la mochila, la versión memoizada usa una matriz `memo` 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 func Mochila(obj []Item, i int, w int, memo [][]int) int {
     if i == 0 || w == 0 {

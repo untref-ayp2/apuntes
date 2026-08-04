@@ -12,7 +12,7 @@ Por eso, en Go es común que los errores sean devueltos "normalmente" desde una 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
@@ -47,7 +47,7 @@ Además, Go incluye en el paquete `fmt` la función `fmt.Errorf`, que permite cr
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
@@ -84,7 +84,7 @@ Internamente, `error` es una **interfaz** incorporada en el lenguaje:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 type error interface {
     Error() string
@@ -97,7 +97,7 @@ Si definís tu propio tipo con un método `Error() string`, también podés usar
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
@@ -138,7 +138,7 @@ Un patrón muy común en Go es definir errores como **variables globales** (llam
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
@@ -179,7 +179,7 @@ Cuando necesitás que un error lleve **más información** que solo un mensaje, 
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
@@ -225,7 +225,7 @@ Muchas veces una función llama a otra que puede fallar, y queremos **agregar co
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
@@ -284,7 +284,7 @@ Como viste en el capítulo 2-8, las funciones del paquete `os` devuelven un
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
@@ -319,7 +319,7 @@ Lo mismo al escribir:
 
 ```{code-block} go
 ---
-linenos:
+linenos: true
 ---
 package main
 
