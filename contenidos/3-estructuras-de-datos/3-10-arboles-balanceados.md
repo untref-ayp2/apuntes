@@ -53,7 +53,6 @@ Si bien la raíz está balanceada, el árbol no es AVL ya que hay varios nodos q
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVL-FB_light.svg
 ---
 class: only-light-mode
-name: AVL-FB
 ---
 Factores de balanceo de cada nodo de un ABB
 ```
@@ -61,7 +60,6 @@ Factores de balanceo de cada nodo de un ABB
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVL-FB_dark.svg
 ---
 class: only-dark-mode
-name: AVL-FB
 ---
 Factores de balanceo de cada nodo de un ABB
 ```
@@ -99,7 +97,6 @@ Supongamos que en el árbol de la {ref}`AVL` insertamos el (5) como hijo izquier
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQIZQ_light.svg
 ---
 class: only-light-mode
-name: AVLIZQIZQ
 ---
 Desbalanceo Izquierda-Izquierda: fb(20) = +2
 ```
@@ -107,7 +104,6 @@ Desbalanceo Izquierda-Izquierda: fb(20) = +2
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQIZQ_dark.svg
 ---
 class: only-dark-mode
-name: AVLIZQIZQ
 ---
 Desbalanceo Izquierda-Izquierda: fb(20) = +2
 ```
@@ -117,7 +113,6 @@ Para restaurar el equilibrio se debe realizar una **rotación simple a la derech
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLRotacionSimpleDerecha_light.svg
 ---
 class: only-light-mode
-name: AVLRSD
 ---
 Rotación simple a derecha del nodo (20)
 ```
@@ -125,7 +120,6 @@ Rotación simple a derecha del nodo (20)
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLRotacionSimpleDerecha_dark.svg
 ---
 class: only-dark-mode
-name: AVLRSD
 ---
 Rotación simple a derecha del nodo (20)
 ```
@@ -135,7 +129,6 @@ Como se ve en la figura a continuación, la rotación solo afecta a algunos poco
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLRestauradoRSD_light.svg
 ---
 class: only-light-mode
-name: AVLRestauradoRSD
 ---
 AVL restaurado luego de la rotación simple a derecha
 ```
@@ -143,7 +136,6 @@ AVL restaurado luego de la rotación simple a derecha
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLRestauradoRSD_dark.svg
 ---
 class: only-dark-mode
-name: AVLRestauradoRSD
 ---
 AVL restaurado luego de la rotación simple a derecha
 ```
@@ -157,7 +149,6 @@ Partiendo del árbol original, insertamos el (67) como hijo derecho del (66). Es
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERDER_light.svg
 ---
 class: only-light-mode
-name: AVLDERDER
 ---
 Desbalanceo Derecha-Derecha: fb(60) = -2
 ```
@@ -165,7 +156,6 @@ Desbalanceo Derecha-Derecha: fb(60) = -2
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERDER_dark.svg
 ---
 class: only-dark-mode
-name: AVLDERDER
 ---
 Desbalanceo Derecha-Derecha: fb(60) = -2
 ```
@@ -175,7 +165,6 @@ Para corregirlo se realiza una rotación simple a la izquierda del nodo (60). El
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLRotacionSimpleIzquierda_light.svg
 ---
 class: only-light-mode
-name: AVLRSI
 ---
 Rotación simple a izquierda del nodo (60)
 ```
@@ -183,7 +172,6 @@ Rotación simple a izquierda del nodo (60)
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLRotacionSimpleIzquierda_dark.svg
 ---
 class: only-dark-mode
-name: AVLRSI
 ---
 Rotación simple a izquierda del nodo (60)
 ```
@@ -193,7 +181,6 @@ Luego de la rotación el árbol vuelve a estar balanceado:
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLRestauradoRSI_light.svg
 ---
 class: only-light-mode
-name: AVLRestauradoRSI
 ---
 AVL restaurado luego de la rotación simple a izquierda
 ```
@@ -201,7 +188,6 @@ AVL restaurado luego de la rotación simple a izquierda
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLRestauradoRSI_dark.svg
 ---
 class: only-dark-mode
-name: AVLRestauradoRSI
 ---
 AVL restaurado luego de la rotación simple a izquierda
 ```
@@ -215,7 +201,6 @@ Partiendo del árbol original, insertamos el (18) como hijo derecho del (17). Es
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER_light.svg
 ---
 class: only-light-mode
-name: AVLIZQDER
 ---
 Desbalanceo Izquierda-Derecha: fb(20) = +2, fb(15) = -1
 ```
@@ -223,7 +208,6 @@ Desbalanceo Izquierda-Derecha: fb(20) = +2, fb(15) = -1
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER_dark.svg
 ---
 class: only-dark-mode
-name: AVLIZQDER
 ---
 Desbalanceo Izquierda-Derecha: fb(20) = +2, fb(15) = -1
 ```
@@ -235,7 +219,6 @@ La solución consiste en dos pasos:
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER-1_light.svg
 ---
 class: only-light-mode
-name: AVLIZQDER-1
 ---
 Rotación simple a izquierda del (15)
 ```
@@ -243,7 +226,6 @@ Rotación simple a izquierda del (15)
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER-1_dark.svg
 ---
 class: only-dark-mode
-name: AVLIZQDER-1
 ---
 Rotación simple a izquierda del (15)
 ```
@@ -253,7 +235,6 @@ Luego de esta primera rotación, el árbol queda con el (17) en la posición que
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER-2_light.svg
 ---
 class: only-light-mode
-name: AVLIZQDER-2
 ---
 Árbol luego de la rotación a izquierda del (15): fb(20) = +2
 ```
@@ -261,7 +242,6 @@ name: AVLIZQDER-2
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER-2_dark.svg
 ---
 class: only-dark-mode
-name: AVLIZQDER-2
 ---
 Árbol luego de la rotación a izquierda del (15): fb(20) = +2
 ```
@@ -271,7 +251,6 @@ name: AVLIZQDER-2
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER-3_light.svg
 ---
 class: only-light-mode
-name: AVLIZQDER-3
 ---
 Rotación simple a derecha del (20)
 ```
@@ -279,7 +258,6 @@ Rotación simple a derecha del (20)
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER-3_dark.svg
 ---
 class: only-dark-mode
-name: AVLIZQDER-3
 ---
 Rotación simple a derecha del (20)
 ```
@@ -289,7 +267,6 @@ Finalmente, el árbol recupera el equilibrio:
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER-4_light.svg
 ---
 class: only-light-mode
-name: AVLIZQDER-4
 ---
 Árbol rebalanceado luego de la rotación doble izquierda-derecha
 ```
@@ -297,7 +274,6 @@ name: AVLIZQDER-4
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER-4_dark.svg
 ---
 class: only-dark-mode
-name: AVLIZQDER-4
 ---
 Árbol rebalanceado luego de la rotación doble izquierda-derecha
 ```
@@ -311,7 +287,6 @@ Partiendo del árbol original, insertamos el (82) como hijo izquierdo del (83). 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERIZQ_light.svg
 ---
 class: only-light-mode
-name: AVLDERIZQ
 ---
 Desbalanceo Derecha-Izquierda: fb(80) = -2, fb(85) = +1
 ```
@@ -319,7 +294,6 @@ Desbalanceo Derecha-Izquierda: fb(80) = -2, fb(85) = +1
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERIZQ_dark.svg
 ---
 class: only-dark-mode
-name: AVLDERIZQ
 ---
 Desbalanceo Derecha-Izquierda: fb(80) = -2, fb(85) = +1
 ```
@@ -329,7 +303,6 @@ Para restablecer el balance se podría rotar el (85) a la derecha y luego el (80
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERIZQ-1_light.svg
 ---
 class: only-light-mode
-name: AVLDERIZQ-1
 ---
 Rotación doble derecha-izquierda en un solo paso: el (83) asciende
 ```
@@ -337,7 +310,6 @@ Rotación doble derecha-izquierda en un solo paso: el (83) asciende
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERIZQ-1_dark.svg
 ---
 class: only-dark-mode
-name: AVLDERIZQ-1
 ---
 Rotación doble derecha-izquierda en un solo paso: el (83) asciende
 ```
@@ -355,7 +327,6 @@ A continuación se muestra el árbol balanceado luego de la rotación doble:
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERIZQ-2_light.svg
 ---
 class: only-light-mode
-name: AVLDERIZQ-2
 ---
 Árbol rebalanceado luego de la rotación doble derecha-izquierda
 ```
@@ -363,7 +334,6 @@ name: AVLDERIZQ-2
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERIZQ-2_dark.svg
 ---
 class: only-dark-mode
-name: AVLDERIZQ-2
 ---
 Árbol rebalanceado luego de la rotación doble derecha-izquierda
 ```
@@ -415,7 +385,7 @@ Cuando |fb(n)| > 1, el nodo está desbalanceado y se debe aplicar la rotación c
 
 ### Actualización de alturas
 
-Cada vez que se modifica la estructura del subárbol (inserción o eliminación), se debe actualizar la altura del nodo. La altura de un nodo vacío (`nil`) es $-1$, y la de un nodo hoja recién creado es $0$, consistente con la definición de altura del capítulo {ref}`arboles`.
+Cada vez que se modifica la estructura del subárbol (inserción o eliminación), se debe actualizar la altura del nodo. La altura de un nodo vacío (`nil`) es $-1$, y la de un nodo hoja recién creado es $0$, consistente con la definición de altura del capítulo @arboles.
 
 ```text
 altura(n) = 1 + max(altura(hijo_izquierdo), altura(hijo_derecho))

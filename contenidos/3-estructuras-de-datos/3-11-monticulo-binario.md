@@ -120,7 +120,6 @@ Existen diferentes tipos de montículos (binario, fibonacci, suave (_soft_), etc
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/heap-boxes_light.svg
 ---
 width: 50%
-name: piramide-de-cajas
 class: only-light-mode
 ---
 Pirámide de Cajas
@@ -129,7 +128,6 @@ Pirámide de Cajas
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/heap-boxes_dark.svg
 ---
 width: 50%
-name: piramide-de-cajas
 class: only-dark-mode
 ---
 Pirámide de Cajas
@@ -148,7 +146,6 @@ En la siguiente figura se puede ver un heap de mínimos donde se cumplen ambas p
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/HeapMinimos_light.svg
 ---
 class: only-light-mode
-name: heap-de-minimos
 ---
 Montículo Binario de Mínimos
 ```
@@ -156,7 +153,6 @@ Montículo Binario de Mínimos
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/HeapMinimos_dark.svg
 ---
 class: only-dark-mode
-name: heap-de-minimos
 ---
 Montículo Binario de Mínimos
 ```
@@ -174,7 +170,6 @@ En la siguiente figura se observa como se puede usar un arreglo para mantener un
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/HeapMinimosRepresentacion_light.svg
 ---
 width: 100%
-name: heap-representacion
 class: only-light-mode
 ---
 Representación con arreglos de un Montículo Binario de Mínimos
@@ -183,7 +178,6 @@ Representación con arreglos de un Montículo Binario de Mínimos
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/HeapMinimosRepresentacion_dark.svg
 ---
 width: 100%
-name: heap-representacion
 class: only-dark-mode
 ---
 Representación con arreglos de un Montículo Binario de Mínimos

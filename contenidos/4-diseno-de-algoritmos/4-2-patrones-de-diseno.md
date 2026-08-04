@@ -71,7 +71,6 @@ En la figura a continuación se observan los siguientes componentes.
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronAdapter2_light.svg
 ---
-name: adapter2
 class: only-light-mode
 ---
 Diagrama de Clases del Patrón _Adapter_
@@ -79,7 +78,6 @@ Diagrama de Clases del Patrón _Adapter_
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronAdapter2_dark.svg
 ---
-name: adapter2
 class: only-dark-mode
 ---
 Diagrama de Clases del Patrón _Adapter_
@@ -180,7 +178,6 @@ El patrón _composite_ permite tratar tanto a objetos individuales como a compos
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronComposite2_light.svg
 ---
-name: composite2
 class: only-light-mode
 ---
 Diagrama de Clase del Patrón _Composite_
@@ -188,7 +185,6 @@ Diagrama de Clase del Patrón _Composite_
 
 ```{figure} ../_static/figures/4-diseno-de-algoritmos/4-2-patrones-de-diseno/PatronComposite2_dark.svg
 ---
-name: composite2
 class: only-dark-mode
 ---
 Diagrama de Clase del Patrón _Composite_
