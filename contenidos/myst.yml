@@ -3,36 +3,28 @@ version: 1
 
 project:
   id: ayp2-apuntes
-  lang: es
   title: Apuntes de Algoritmos y Programación II
   description: Apuntes de la materia Algoritmos y Programación II - UNTREF
-  proof:
-    algorithm:
-      prefix: "Algoritmo"
   keywords:
-    [
-      "algoritmos",
-      "programación",
-      "go",
-      "untref",
-      "ingeniería en computación",
-    ]
+    - algoritmos
+    - programación
+    - go
+    - untref
+    - ingeniería en computación
   authors:
     - name: Cátedra de Algoritmos y Programación II
   github: untref-ayp2/apuntes
   static_files:
     - _static/applets
-  abstract: "Apuntes de la materia Algoritmos y Programación II - UNTREF"
+  abstract: Apuntes de la materia Algoritmos y Programación II - UNTreF
   copyright: "2025"
   license: CC-BY-SA-4.0
   bibliography:
     - references.bib
-
   exports:
     - format: typst
       template: templates/plain_typst_book_ayp2
       output: exports/apunte-ayp2.pdf
-
   numbering:
     equation: true
     figure: true
@@ -94,16 +86,33 @@ project:
 
 site:
   template: book-theme
+  # Ref.: https://mystmd.org/guide/website-templates#site-options
   options:
+    # hide_toc: true
+    # hide_footer_links: true
+    # hide_outline: true
+    # hide_title_block: true
     hide_authors: true
-    folders: true
+    # hide_search: true
+    # outline_maxdepth: 6
+    # twitter: untref_edd
+    favicon: _static/figures/favicon.ico
     logo: _static/figures/untref-logo.svg
     logo_dark: _static/figures/untref-logo-white.svg
-    logo_alt: Apuntes de Algoritmos y Programación II - UNTREF
+    # logo_text: Algoritmos y Programación II - UNTreF
+    # logo_url: https://untref-ayp2.github.io/apuntes/
+    logo_alt: Algoritmos y Programación II - UNTreF
+    # analytics_google: UA-XXXXXXXXX-X
+    # analytics_plausible: untref-ayp2.github.io
+    # numbered_references: true
+    folders: true
+    # internal_domains: untref-ayp2.github.io
     style: _static/css/custom.css
+    # footer:
+    # primary_sidebar_footer:
     toggles: true
   nav:
-    - title: UNTREF
+    - title: UNTrF
       children:
         - title: Slack
           url: https://untref-aypii.slack.com
