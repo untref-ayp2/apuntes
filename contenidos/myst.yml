@@ -112,7 +112,7 @@ site:
     # primary_sidebar_footer:
     toggles: true
   nav:
-    - title: UNTrF
+    - title: UNTreF
       children:
         - title: Slack
           url: https://untref-aypii.slack.com
