@@ -227,14 +227,14 @@ Usamos Slack para la comunicación del curso: anuncios, consultas, canales por t
 
 Classroom50 es la plataforma que usamos para recibir y entregar los trabajos. Se accede por línea de comandos con `gh` (GitHub CLI) o por web.
 
-La materia se dicta en dos sedes. Cada una tiene su propia organización:
+La materia se dicta en dos sedes, todas en una misma organización con una clase por sede:
 
-| Sede   | Organización              |
-| ------ | ------------------------- |
-| UNTREF | `untref-ayp2-estudiantes` |
-| CUDI   | `cudi-ayp2-estudiantes`   |
+| Sede | Organización | Clase |
+|---|---|---|
+| UNTREF | `untref-ayp2-estudiantes` | `ayp2-untref-2026` |
+| CUDI | `untref-ayp2-estudiantes` | `ayp2-cudi-2026` |
 
-Usar la que corresponda a tu cursada en todos los comandos.
+Usar la organización `untref-ayp2-estudiantes` y la clase que corresponda a tu cursada en todos los comandos.
 
 ### Instalación de gh CLI
 
@@ -282,7 +282,7 @@ Se abre el navegador para autorizar. Completar el proceso y volver a la terminal
 gh student accept <organizacion> <clase> <tarea>
 ```
 
-Reemplazar `<organizacion>` por `untref-ayp2-estudiantes` o `cudi-ayp2-estudiantes` según tu sede, `<clase>` por el nombre de tu clase y `<tarea>` por el slug de la tarea (ej. `taller-go`).
+Reemplazar `<organizacion>` por `untref-ayp2-estudiantes`, `<clase>` por tu clase (`ayp2-untref-2026` o `ayp2-cudi-2026`) según tu sede, y `<tarea>` por el slug de la tarea (ej. `taller-go`).
 
 Esto crea un repositorio propio en GitHub con el código inicial.
 
@@ -301,7 +301,7 @@ Además de la línea de comandos, Classroom50 se puede usar desde el navegador.
 
 1. Ir a <https://classroom50.org>.
 2. Click en **"Sign in with GitHub"** y autorizar la aplicación.
-3. Seleccionar la organización (`untref-ayp2-estudiantes` o `cudi-ayp2-estudiantes`).
+3. Seleccionar la organización `untref-ayp2-estudiantes` y la clase correspondiente a tu sede.
 4. Elegir la clase correspondiente.
 5. Se ven las tareas asignadas, su estado (pendiente/entregada) y el puntaje obtenido.
 6. Desde cada tarea se puede acceder al repositorio, al Feedback PR y al detalle de la última entrega.
