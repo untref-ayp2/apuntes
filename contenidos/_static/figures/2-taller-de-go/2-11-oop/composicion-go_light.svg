@@ -1,47 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 320" width="740" height="320">
-  <defs>
-    <style>
-      .bg { fill: #f0f2f5; }
-      .class-box { fill: #ffffff; stroke: #4682b4; stroke-width: 2; }
-      .class-name { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 18px; font-weight: bold; fill: #333333; text-anchor: middle; }
-      .section-line { stroke: #4682b4; stroke-width: 1; }
-      .field { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 14px; fill: #333333; text-anchor: start; }
-      .method { font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 14px; fill: #333333; text-anchor: start; }
-      .arrow-line { stroke: #333333; stroke-width: 2; }
-      .comp-diamond { fill: #333333; stroke: #333333; stroke-width: 2; }
-      .label { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 14px; fill: #666666; text-anchor: middle; font-style: italic; }
-      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 20px; font-weight: bold; fill: #333333; text-anchor: middle; }
-    </style>
-  </defs>
-
-  <rect class="bg" width="740" height="320" rx="8" />
-
-  <text class="title" x="370" y="30">Diagrama de structs Go</text>
-
-  <!-- Estudiante -->
-  <rect class="class-box" x="20" y="80" width="280" height="150" rx="4" />
-  <text class="class-name" x="160" y="105">Estudiante</text>
-  <line class="section-line" x1="20" y1="115" x2="300" y2="115" />
-  <text class="field" x="35" y="135">- legajo</text>
-  <line class="section-line" x1="20" y1="145" x2="300" y2="145" />
-  <text class="method" x="35" y="165">+ Saludar() string</text>
-  <text class="method" x="35" y="185">+ CursarMateria(string) string</text>
-
-  <!-- Composition arrow -->
-  <line class="arrow-line" x1="314" y1="155" x2="440" y2="155" />
-  <polygon class="comp-diamond" points="300,155 307,148 314,155 307,162" />
-
-  <text class="label" x="377" y="135">está</text>
-  <text class="label" x="377" y="150">compuesto por</text>
-
-  <!-- Persona -->
-  <rect class="class-box" x="440" y="75" width="280" height="155" rx="4" />
-  <text class="class-name" x="580" y="100">Persona</text>
-  <line class="section-line" x1="440" y1="112" x2="720" y2="112" />
-  <text class="field" x="455" y="132">- nombre</text>
-  <text class="field" x="455" y="148">- direccion</text>
-  <text class="field" x="455" y="164">- dni</text>
-  <line class="section-line" x1="440" y1="176" x2="720" y2="176" />
-  <text class="method" x="455" y="196">+ Saludar() string</text>
-  <text class="method" x="455" y="212">+ Caminar() string</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="740" height="320" viewBox="0 0 740 320">
+    <defs>
+        <style>
+            .class-box{fill:#fff;stroke:#4682b4;stroke-width:2}.class-name{font-family:ui-sans-serif,system-ui,sans-serif;font-size:18px;font-weight:700;fill:#333;text-anchor:middle}.section-line{stroke:#4682b4;stroke-width:1}.field,.label,.method{font-family:menlo,consola,&quot;DejaVu Sans Mono&quot;;font-size:14px;fill:#333;text-anchor:start}.label{font-family:ui-sans-serif,system-ui,sans-serif;fill:#666;text-anchor:middle;font-style:italic}
+        </style>
+    </defs>
+    <rect width="740" height="320" rx="8" style="fill:#f0f2f5"/>
+    <text x="370" y="30" style="font-family:ui-sans-serif,system-ui,sans-serif;font-size:20px;font-weight:700;fill:#333;text-anchor:middle">Diagrama de structs Go</text>
+    <rect width="280" height="150" x="20" y="80" class="class-box" rx="4"/>
+    <text x="160" y="105" class="class-name">Estudiante</text>
+    <path d="M20 115h280" class="section-line"/>
+    <text x="35" y="135" class="field">- legajo</text>
+    <path d="M20 145h280" class="section-line"/>
+    <text x="35" y="165" class="method">+ Saludar() string</text>
+    <text x="35" y="185" class="method">+ CursarMateria(string) string</text>
+    <path d="M314 155h126" style="stroke:#333;stroke-width:2"/>
+    <path d="m300 155 7-7 7 7-7 7z" style="fill:#333;stroke:#333;stroke-width:2"/>
+    <text x="377" y="135" class="label">está</text>
+    <text x="377" y="150" class="label">compuesto por</text>
+    <rect width="280" height="155" x="440" y="75" class="class-box" rx="4"/>
+    <text x="580" y="100" class="class-name">Persona</text>
+    <path d="M440 112h280" class="section-line"/>
+    <text x="455" y="132" class="field">- nombre</text>
+    <text x="455" y="148" class="field">- direccion</text>
+    <text x="455" y="164" class="field">- dni</text>
+    <path d="M440 176h280" class="section-line"/>
+    <text x="455" y="196" class="method">+ Saludar() string</text>
+    <text x="455" y="212" class="method">+ Caminar() string</text>
 </svg>

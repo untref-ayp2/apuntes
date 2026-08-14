@@ -1,71 +1,32 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Creator: fig2dev Version 3.2.9 -->
-<!-- CreationDate: 2025-03-21 12:56:13 -->
-<!-- Magnification: 1.05 -->
-<svg	xmlns="http://www.w3.org/2000/svg"
-	xmlns:xlink="http://www.w3.org/1999/xlink"
-	width="598pt" height="597pt"
-	viewBox="4038 -12 9491 9474">
-<g fill="none">
-<!-- Line -->
-<rect x="4050" y="8100" width="5400" height="1350" fill="#2d3748"
-	stroke="#63b3ed" stroke-width="24px"/>
-<!-- Line -->
-<rect x="4050" y="7200" width="5400" height="900" fill="#2d3748"
-	stroke="#68d391" stroke-width="24px"/>
-<!-- Line -->
-<rect x="4050" y="5400" width="5400" height="1800" fill="#2d3748"
-	stroke="#f6e05e" stroke-width="24px"/>
-<!-- Line -->
-<rect x="4050" y="0" width="5400" height="1350" fill="#2d3748"
-	stroke="#fc8181" stroke-width="24px"/>
-<!-- Line -->
-<defs>
-<clipPath id="cp0">
-	<path clip-rule="evenodd" d="M 4038,-12 H 13529 V 9462 H 4038 z
-		M 6345,2513 6255,2513 6267,2733 6333,2733z"/>
-</clipPath>
-</defs>
-<polyline points=" 6300,1350 6300,2700" clip-path="url(#cp0)"
-	stroke="#e0e0e0" stroke-width="60px"/>
-<!-- Forward arrow to point 6300,2700 -->
-<polygon points=" 6255,2513 6300,2633 6345,2513 6255,2513"
-	stroke="#e0e0e0" stroke-width="45px" stroke-miterlimit="8" fill="#e0e0e0"/>
-<!-- Line -->
-<defs>
-<clipPath id="cp1">
-	<path clip-rule="evenodd" d="M 4038,-12 H 13529 V 9462 H 4038 z
-		M 7155,4237 7245,4237 7233,4017 7167,4017z"/>
-</clipPath>
-</defs>
-<polyline points=" 7200,5400 7200,4050" clip-path="url(#cp1)"
-	stroke="#e0e0e0" stroke-width="60px"/>
-<!-- Forward arrow to point 7200,4050 -->
-<polygon points=" 7245,4237 7200,4117 7155,4237 7245,4237"
-	stroke="#e0e0e0" stroke-width="45px" stroke-miterlimit="8" fill="#e0e0e0"/>
-<!-- Line -->
-<polyline points=" 4050,1350 4050,5400"
-	stroke="#e0e0e0" stroke-width="8px"/>
-<!-- Line -->
-<polyline points=" 9450,1350 9450,5400"
-	stroke="#e0e0e0" stroke-width="8px"/>
-<!-- Text -->
-<text xml:space="preserve" x="6660" y="810" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Pila (Stack)</text>
-<!-- Text -->
-<text xml:space="preserve" x="6750" y="8820" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Segmento de Código (CS)</text>
-<!-- Text -->
-<text xml:space="preserve" x="6660" y="6300" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Mem. Dinámica (Heap)</text>
-<!-- Text -->
-<text xml:space="preserve" x="9900" y="7650" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Variables globales</text>
-<!-- Text -->
-<text xml:space="preserve" x="9900" y="6300" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Datos de usuario</text>
-<!-- Text -->
-<text xml:space="preserve" x="9900" y="1350" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Variables locales</text>
-<!-- Text -->
-<text xml:space="preserve" x="9900" y="9000" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Instrucciones</text>
-<!-- Text -->
-<text xml:space="preserve" x="9900" y="900" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="normal" font-size="264" text-anchor="start">Llamadas a funciones</text>
-<!-- Text -->
-<text xml:space="preserve" x="6660" y="7740" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-style="normal" font-weight="bold" font-size="288" text-anchor="middle">Segmento de Datos (DS)</text>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" width="598pt" height="796" viewBox="4038 -12 9491 9474">
+    <g fill="none">
+        <path fill="#2d3748" stroke="#63b3ed" stroke-width="24" d="M4050 8100h5400v1350H4050z"/>
+        <path fill="#2d3748" stroke="#68d391" stroke-width="24" d="M4050 7200h5400v900H4050z"/>
+        <path fill="#2d3748" stroke="#f6e05e" stroke-width="24" d="M4050 5400h5400v1800H4050z"/>
+        <path fill="#2d3748" stroke="#fc8181" stroke-width="24" d="M4050 0h5400v1350H4050z"/>
+        <defs>
+            <clipPath id="a">
+                <path d="M4038-12h9491v9474H4038zm2307 2525h-90l12 220h66z" clip-rule="evenodd"/>
+            </clipPath>
+        </defs>
+        <path stroke="#e0e0e0" stroke-width="60" d="M6300 1350v1350" clip-path="url(#a)"/>
+        <path fill="#e0e0e0" stroke="#e0e0e0" stroke-miterlimit="8" stroke-width="45" d="m6255 2513 45 120 45-120z"/>
+        <defs>
+            <clipPath id="b">
+                <path d="M4038-12h9491v9474H4038zm3117 4249h90l-12-220h-66z" clip-rule="evenodd"/>
+            </clipPath>
+        </defs>
+        <path stroke="#e0e0e0" stroke-width="60" d="M7200 5400V4050" clip-path="url(#b)"/>
+        <path fill="#e0e0e0" stroke="#e0e0e0" stroke-miterlimit="8" stroke-width="45" d="m7245 4237-45-120-45 120z"/>
+        <path stroke="#e0e0e0" stroke-width="8" d="M4050 1350v4050M9450 1350v4050"/>
+        <text xml:space="preserve" x="6660" y="810" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="288" font-weight="bold" text-anchor="middle">Pila (Stack)</text>
+        <text xml:space="preserve" x="6750" y="8820" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="288" font-weight="bold" text-anchor="middle">Segmento de Código (CS)</text>
+        <text xml:space="preserve" x="6660" y="6300" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="288" font-weight="bold" text-anchor="middle">Mem. Dinámica (Heap)</text>
+        <text xml:space="preserve" x="9900" y="7650" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="264">Variables globales</text>
+        <text xml:space="preserve" x="9900" y="6300" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="264">Datos de usuario</text>
+        <text xml:space="preserve" x="9900" y="1350" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="264">Variables locales</text>
+        <text xml:space="preserve" x="9900" y="9000" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="264">Instrucciones</text>
+        <text xml:space="preserve" x="9900" y="900" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="264">Llamadas a funciones</text>
+        <text xml:space="preserve" x="6660" y="7740" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="288" font-weight="bold" text-anchor="middle">Segmento de Datos (DS)</text>
+    </g>
 </svg>

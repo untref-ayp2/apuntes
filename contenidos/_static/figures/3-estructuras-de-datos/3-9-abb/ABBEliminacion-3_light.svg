@@ -1,59 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 168">
-  <defs>
-    <style>
-      .bg { fill: #f0f2f5; }
-      .edge { stroke: #333333; stroke-width: 1.5; fill: none; }
-      .node-circle { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2; }
-      .node-text { fill: #333333; font-family: monospace; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
-      .highlight-circle { fill: #fff3cd; stroke: #d4a017; stroke-width: 2; }
-      .highlight-text { fill: #8b6914; font-family: monospace; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
-      .deleted-circle { fill: #ffe1e1; stroke: #e9967a; stroke-width: 2; stroke-dasharray: 4,2; }
-      .deleted-text { fill: #e9967a; font-family: monospace; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
-      .cross { stroke: #e9967a; stroke-width: 2; }
-      .label { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10px; fill: #666666; text-anchor: middle; font-style: italic; }
-      .ann { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 9px; fill: #d4a017; text-anchor: middle; font-style: italic; }
-      .arrow { stroke: #666666; stroke-width: 1.5; fill: none; }
-      .arrowhead { fill: #666666; }
-      .edge-dash { stroke: #d4a017; stroke-width: 1.5; fill: none; stroke-dasharray: 3,2; }
-    </style>
-  </defs>
-  <rect class="bg" width="400" height="168" rx="6"/>
-  <text class="label" x="88" y="12">Antes</text>
-  <text class="label" x="312" y="12">Después</text>
-  <line class="edge" x1="88" y1="32" x2="52" y2="68"/>
-  <line class="edge" x1="88" y1="32" x2="124" y2="68"/>
-  <line class="edge" x1="52" y1="68" x2="28" y2="104"/>
-  <line class="edge" x1="52" y1="68" x2="76" y2="104"/>
-  <line class="edge-dash" x1="76" y1="104" x2="92" y2="136"/>
-  <circle class="highlight-circle" cx="88" cy="32" r="16"/>
-  <text class="highlight-text" x="88" y="32">7</text>
-  <text class="ann" x="131" y="34">a eliminar</text>
-  <circle class="node-circle" cx="52" cy="68" r="16"/>
-  <text class="node-text" x="52" y="68">3</text>
-  <circle class="node-circle" cx="124" cy="68" r="16"/>
-  <text class="node-text" x="124" y="68">9</text>
-  <circle class="node-circle" cx="28" cy="104" r="16"/>
-  <text class="node-text" x="28" y="104">2</text>
-  <circle class="node-circle" cx="76" cy="104" r="16"/>
-  <text class="node-text" x="76" y="104">5</text>
-  <circle class="highlight-circle" cx="92" cy="136" r="16"/>
-  <text class="highlight-text" x="92" y="136">6</text>
-  <text class="ann" x="139" y="137">predecesor</text>
-  <line class="arrow" x1="168" y1="80" x2="216" y2="80"/>
-  <polygon class="arrowhead" points="214,75 224,80 214,85"/>
-  <line class="edge" x1="312" y1="32" x2="276" y2="68"/>
-  <line class="edge" x1="312" y1="32" x2="348" y2="68"/>
-  <line class="edge" x1="276" y1="68" x2="252" y2="104"/>
-  <line class="edge" x1="276" y1="68" x2="300" y2="104"/>
-  <circle class="node-circle" cx="312" cy="32" r="16"/>
-  <text class="node-text" x="312" y="32">6</text>
-  <circle class="node-circle" cx="276" cy="68" r="16"/>
-  <text class="node-text" x="276" y="68">3</text>
-  <circle class="node-circle" cx="348" cy="68" r="16"/>
-  <text class="node-text" x="348" y="68">9</text>
-  <circle class="node-circle" cx="252" cy="104" r="16"/>
-  <text class="node-text" x="252" y="104">2</text>
-  <circle class="node-circle" cx="300" cy="104" r="16"/>
-  <text class="node-text" x="300" y="104">5</text>
-  <text class="label" x="312" y="164">Eliminación de (7) con dos hijos usando predecesor</text>
+    <defs>
+        <style>
+            .edge{stroke:#333;stroke-width:1.5;fill:none}.node-circle{fill:#e1f5ff;stroke:#4682b4;stroke-width:2}.node-text{fill:#333;font-family:monospace;font-size:13px;font-weight:700;text-anchor:middle;dominant-baseline:central}.highlight-circle{fill:#fff3cd;stroke:#d4a017;stroke-width:2}.highlight-text{fill:#8b6914;font-family:monospace;font-size:13px;font-weight:700;text-anchor:middle;dominant-baseline:central}.ann,.label{font-family:ui-sans-serif,system-ui,sans-serif;font-size:10px;fill:#666;text-anchor:middle;font-style:italic}.ann{font-size:9px;fill:#d4a017}
+        </style>
+    </defs>
+    <rect width="400" height="168" rx="6" style="fill:#f0f2f5"/>
+    <text x="88" y="12" class="label">Antes</text>
+    <text x="312" y="12" class="label">Después</text>
+    <path d="M88 32 52 68M88 32l36 36M52 68l-24 36M52 68l24 36" class="edge"/>
+    <path d="m76 104 16 32" style="stroke:#d4a017;stroke-width:1.5;fill:none;stroke-dasharray:3,2"/>
+    <circle cx="88" cy="32" r="16" class="highlight-circle"/>
+    <text x="88" y="32" class="highlight-text">7</text>
+    <text x="131" y="34" class="ann">a eliminar</text>
+    <circle cx="52" cy="68" r="16" class="node-circle"/>
+    <text x="52" y="68" class="node-text">3</text>
+    <circle cx="124" cy="68" r="16" class="node-circle"/>
+    <text x="124" y="68" class="node-text">9</text>
+    <circle cx="28" cy="104" r="16" class="node-circle"/>
+    <text x="28" y="104" class="node-text">2</text>
+    <circle cx="76" cy="104" r="16" class="node-circle"/>
+    <text x="76" y="104" class="node-text">5</text>
+    <circle cx="92" cy="136" r="16" class="highlight-circle"/>
+    <text x="92" y="136" class="highlight-text">6</text>
+    <text x="139" y="137" class="ann">predecesor</text>
+    <path d="M168 80h48" style="stroke:#666;stroke-width:1.5;fill:none"/>
+    <path d="m214 75 10 5-10 5z" style="fill:#666"/>
+    <path d="m312 32-36 36M312 32l36 36M276 68l-24 36M276 68l24 36" class="edge"/>
+    <circle cx="312" cy="32" r="16" class="node-circle"/>
+    <text x="312" y="32" class="node-text">6</text>
+    <circle cx="276" cy="68" r="16" class="node-circle"/>
+    <text x="276" y="68" class="node-text">3</text>
+    <circle cx="348" cy="68" r="16" class="node-circle"/>
+    <text x="348" y="68" class="node-text">9</text>
+    <circle cx="252" cy="104" r="16" class="node-circle"/>
+    <text x="252" y="104" class="node-text">2</text>
+    <circle cx="300" cy="104" r="16" class="node-circle"/>
+    <text x="300" y="104" class="node-text">5</text>
+    <text x="312" y="164" class="label">Eliminación de (7) con dos hijos usando predecesor</text>
 </svg>

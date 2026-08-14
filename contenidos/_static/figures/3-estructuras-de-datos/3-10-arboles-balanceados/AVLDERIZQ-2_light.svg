@@ -1,483 +1,81 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   viewBox="0 0 700 340"
-   version="1.1"
-   id="svg61"
-   sodipodi:docname="AVLDERIZQ-2_light.svg"
-   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview61"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     showgrid="false"
-     inkscape:zoom="1.4828571"
-     inkscape:cx="475.77073"
-     inkscape:cy="170.27939"
-     inkscape:window-width="1896"
-     inkscape:window-height="994"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg61" />
-  <defs
-     id="defs1">
-    <style
-       id="style1">
-    .bg { fill: #f0f2f5; }
-    .edge { stroke: #333333; stroke-width: 2; fill: none; }
-    .node-circle { fill: #e1f5ff; stroke: #4682b4; stroke-width: 2.5; }
-    .node-text { fill: #333333; font-family: menlo, consola, 'DejaVu Sans Mono'; font-size: 14px; font-weight: bold; text-anchor: middle; dominant-baseline: central; }
-    .fb-label { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 12px; font-weight: bold; text-anchor: start; dominant-baseline: central; }
-    .fb-bal { fill: #2e8b57; }
-    .fb-unbal { fill: #c53030; }
-    .arrow-line { stroke: #333333; stroke-width: 2.5; marker-end: url(#arrowhead); }
-    .label-sub { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 13px; fill: #333333; font-weight: bold; }
-    </style>
-    <marker
-       id="arrowhead"
-       markerWidth="8"
-       markerHeight="6"
-       refX="8"
-       refY="3"
-       orient="auto">
-      <polygon
-         points="8,3 0,6 0,0"
-         fill="#333333"
-         id="polygon1" />
-    </marker>
-  </defs>
-  <line
-     class="edge"
-     x1="550"
-     y1="175"
-     x2="505"
-     y2="235"
-     id="line12" />
-  <line
-     class="edge"
-     x1="400"
-     y1="175"
-     x2="445"
-     y2="235"
-     id="line11" />
-  <line
-     class="edge"
-     x1="330"
-     y1="40"
-     x2="192"
-     y2="110"
-     id="line1" />
-  <line
-     class="edge"
-     x1="330"
-     y1="40"
-     x2="474"
-     y2="110"
-     id="line2" />
-  <line
-     class="edge"
-     x1="192"
-     y1="110"
-     x2="122"
-     y2="175"
-     id="line3" />
-  <line
-     class="edge"
-     x1="192"
-     y1="110"
-     x2="262"
-     y2="175"
-     id="line4" />
-  <line
-     class="edge"
-     x1="474"
-     y1="110"
-     x2="404"
-     y2="175"
-     id="line5" />
-  <line
-     class="edge"
-     x1="474"
-     y1="110"
-     x2="544"
-     y2="175"
-     id="line6" />
-  <line
-     class="edge"
-     x1="122"
-     y1="175"
-     x2="77"
-     y2="235"
-     id="line7" />
-  <line
-     class="edge"
-     x1="122"
-     y1="175"
-     x2="167"
-     y2="235"
-     id="line8" />
-  <line
-     class="edge"
-     x1="262"
-     y1="175"
-     x2="307"
-     y2="235"
-     id="line9" />
-  <line
-     class="edge"
-     x1="404"
-     y1="175"
-     x2="359"
-     y2="235"
-     id="line10" />
-  <line
-     class="edge"
-     x1="544"
-     y1="175"
-     x2="589"
-     y2="235"
-     id="line13" />
-  <line
-     class="edge"
-     x1="589"
-     y1="235"
-     x2="634"
-     y2="290"
-     id="line14" />
-  <line
-     class="edge"
-     x1="77"
-     y1="235"
-     x2="47"
-     y2="290"
-     id="line17" />
-  <line
-     class="edge"
-     x1="77"
-     y1="235"
-     x2="107"
-     y2="290"
-     id="line18" />
-  <line
-     class="edge"
-     x1="433"
-     y1="235"
-     x2="403"
-     y2="290"
-     id="line19" />
-  <circle
-     class="node-circle"
-     cx="47"
-     cy="290"
-     r="16"
-     id="circle20" />
-  <text
-     class="node-text"
-     x="47"
-     y="290"
-     id="text20">10</text>
-  <circle
-     class="node-circle"
-     cx="77"
-     cy="235"
-     r="16"
-     id="circle21" />
-  <text
-     class="node-text"
-     x="77"
-     y="235"
-     id="text22">15</text>
-  <circle
-     class="node-circle"
-     cx="107"
-     cy="290"
-     r="16"
-     id="circle23" />
-  <text
-     class="node-text"
-     x="107"
-     y="290"
-     id="text24">17</text>
-  <circle
-     class="node-circle"
-     cx="122"
-     cy="175"
-     r="16"
-     id="circle25" />
-  <text
-     class="node-text"
-     x="122"
-     y="175"
-     id="text26">20</text>
-  <circle
-     class="node-circle"
-     cx="167"
-     cy="235"
-     r="16"
-     id="circle27" />
-  <text
-     class="node-text"
-     x="167"
-     y="235"
-     id="text28">25</text>
-  <circle
-     class="node-circle"
-     cx="192"
-     cy="110"
-     r="16"
-     id="circle29" />
-  <text
-     class="node-text"
-     x="192"
-     y="110"
-     id="text30">30</text>
-  <circle
-     class="node-circle"
-     cx="262"
-     cy="175"
-     r="16"
-     id="circle31" />
-  <text
-     class="node-text"
-     x="262"
-     y="175"
-     id="text32">40</text>
-  <circle
-     class="node-circle"
-     cx="307"
-     cy="235"
-     r="16"
-     id="circle33" />
-  <text
-     class="node-text"
-     x="307"
-     y="235"
-     id="text34">45</text>
-  <circle
-     class="node-circle"
-     cx="330"
-     cy="40"
-     r="16"
-     id="circle35" />
-  <text
-     class="node-text"
-     x="330"
-     y="40"
-     id="text36">50</text>
-  <text
-     class="fb-label fb-bal"
-     x="352"
-     y="36"
-     id="text37">fb = 0</text>
-  <circle
-     class="node-circle"
-     cx="359"
-     cy="235"
-     r="16"
-     id="circle37" />
-  <text
-     class="node-text"
-     x="359"
-     y="235"
-     id="text38">55</text>
-  <circle
-     class="node-circle"
-     cx="404"
-     cy="175"
-     r="16"
-     id="circle39" />
-  <text
-     class="node-text"
-     x="404"
-     y="175"
-     id="text40">60</text>
-  <circle
-     class="node-circle"
-     cx="474"
-     cy="110"
-     r="16"
-     id="circle47" />
-  <text
-     class="node-text"
-     x="474"
-     y="110"
-     id="text48">70</text>
-  <text
-     class="fb-label fb-bal"
-     x="496"
-     y="106"
-     id="text49">fb = 0</text>
-  <line
-     class="edge"
-     x1="435"
-     y1="235"
-     x2="465"
-     y2="290"
-     id="line20" />
-  <circle
-     class="node-circle"
-     cx="405"
-     cy="290"
-     r="16"
-     id="circle41" />
-  <text
-     class="node-text"
-     x="405"
-     y="290"
-     id="text42">64</text>
-  <circle
-     class="node-circle"
-     cx="435"
-     cy="235"
-     r="16"
-     id="circle43" />
-  <text
-     class="node-text"
-     x="435"
-     y="235"
-     id="text44">65</text>
-  <circle
-     class="node-circle"
-     cx="455"
-     cy="290"
-     r="16"
-     id="circle49" />
-  <text
-     class="node-text"
-     x="455"
-     y="290"
-     id="text50">66</text>
-  <text
-     class="fb-label fb-bal"
-     x="477"
-     y="316"
-     id="text51">fb = 0</text>
-  <circle
-     class="node-circle"
-     cx="544"
-     cy="175"
-     r="16"
-     id="circle53"
-     style="fill:#dff2d4;fill-opacity:1;stroke:#72b446;stroke-opacity:1" />
-  <text
-     class="node-text"
-     x="544"
-     y="175"
-     id="text54">83</text>
-  <text
-     class="fb-label fb-bal"
-     x="566"
-     y="171"
-     id="text55">fb = 0</text>
-  <circle
-     class="node-circle"
-     cx="589"
-     cy="235"
-     r="16"
-     id="circle55"
-     style="fill:#dff2d4;fill-opacity:1;stroke:#72b446;stroke-opacity:1" />
-  <text
-     class="node-text"
-     x="589"
-     y="235"
-     id="text56">85</text>
-  <text
-     class="fb-label fb-bal"
-     x="611"
-     y="231"
-     id="text57">fb = -1</text>
-  <circle
-     class="node-circle"
-     cx="634"
-     cy="290"
-     r="16"
-     id="circle57"
-     style="fill:#dff2d4;fill-opacity:1;stroke:#72b446;stroke-opacity:1" />
-  <text
-     class="node-text"
-     x="634"
-     y="290"
-     id="text58">90</text>
-  <text
-     class="fb-label fb-bal"
-     x="656"
-     y="286"
-     id="text59">fb = 0</text>
-  <line
-     class="edge"
-     x1="513"
-     y1="235"
-     x2="483"
-     y2="290"
-     id="line15" />
-  <line
-     class="edge"
-     x1="513"
-     y1="235"
-     x2="543"
-     y2="290"
-     id="line16" />
-  <circle
-     class="node-circle"
-     cx="493"
-     cy="290"
-     r="16"
-     id="circle45"
-     style="fill:#dff2d4;fill-opacity:1;stroke:#72b446;stroke-opacity:1" />
-  <text
-     class="node-text"
-     x="493"
-     y="290"
-     id="text46">75</text>
-  <circle
-     class="node-circle"
-     cx="513"
-     cy="235"
-     r="16"
-     id="circle51"
-     style="fill:#dff2d4;fill-opacity:1;stroke:#72b446;stroke-opacity:1" />
-  <text
-     class="node-text"
-     x="513"
-     y="235"
-     id="text52">80</text>
-  <text
-     class="fb-label fb-bal"
-     x="468.237"
-     y="215.4894"
-     id="text53">fb = 0</text>
-  <circle
-     class="node-circle"
-     cx="543"
-     cy="290"
-     r="16"
-     id="circle59"
-     style="fill:#dff2d4;fill-opacity:1;stroke:#72b446;stroke-opacity:1" />
-  <text
-     class="node-text"
-     x="543"
-     y="290"
-     id="text60">82</text>
-  <text
-     class="fb-label fb-bal"
-     x="567"
-     y="286"
-     id="text61">fb = 0</text>
-  <text
-     xml:space="preserve"
-     style="writing-mode:lr-tb;direction:ltr;fill:#dff2d4;stroke:#72b446;stroke-width:1.5"
-     x="454.52795"
-     y="290.65512"
-     id="text1"><tspan
-       sodipodi:role="line"
-       id="tspan1"></tspan></text>
+<svg xmlns="http://www.w3.org/2000/svg" id="svg61" viewBox="0 0 700 340">
+    <defs id="defs1">
+        <marker id="arrowhead" markerHeight="6" markerWidth="8" orient="auto" refX="8" refY="3">
+            <path id="polygon1" fill="#333" d="M8 3 0 6V0z"/>
+        </marker>
+        <style id="style1">
+            .edge{stroke:#333;stroke-width:2;fill:none}.node-circle{fill:#e1f5ff;stroke:#4682b4;stroke-width:2.5}.fb-label,.node-text{font-weight:700;dominant-baseline:central}.node-text{fill:#333;font-family:menlo,consola,&quot;DejaVu Sans Mono&quot;;font-size:14px;text-anchor:middle}.fb-label{font-family:ui-sans-serif,system-ui,sans-serif;font-size:12px;text-anchor:start}.fb-bal{fill:#2e8b57}
+        </style>
+    </defs>
+    <path id="line12" d="m550 175-45 60" class="edge"/>
+    <path id="line11" d="m400 175 45 60" class="edge"/>
+    <path id="line1" d="m330 40-138 70" class="edge"/>
+    <path id="line2" d="m330 40 144 70" class="edge"/>
+    <path id="line3" d="m192 110-70 65" class="edge"/>
+    <path id="line4" d="m192 110 70 65" class="edge"/>
+    <path id="line5" d="m474 110-70 65" class="edge"/>
+    <path id="line6" d="m474 110 70 65" class="edge"/>
+    <path id="line7" d="m122 175-45 60" class="edge"/>
+    <path id="line8" d="m122 175 45 60" class="edge"/>
+    <path id="line9" d="m262 175 45 60" class="edge"/>
+    <path id="line10" d="m404 175-45 60" class="edge"/>
+    <path id="line13" d="m544 175 45 60" class="edge"/>
+    <path id="line14" d="m589 235 45 55" class="edge"/>
+    <path id="line17" d="m77 235-30 55" class="edge"/>
+    <path id="line18" d="m77 235 30 55" class="edge"/>
+    <path id="line19" d="m433 235-30 55" class="edge"/>
+    <circle id="circle20" cx="47" cy="290" r="16" class="node-circle"/>
+    <text id="text20" x="47" y="290" class="node-text">10</text>
+    <circle id="circle21" cx="77" cy="235" r="16" class="node-circle"/>
+    <text id="text22" x="77" y="235" class="node-text">15</text>
+    <circle id="circle23" cx="107" cy="290" r="16" class="node-circle"/>
+    <text id="text24" x="107" y="290" class="node-text">17</text>
+    <circle id="circle25" cx="122" cy="175" r="16" class="node-circle"/>
+    <text id="text26" x="122" y="175" class="node-text">20</text>
+    <circle id="circle27" cx="167" cy="235" r="16" class="node-circle"/>
+    <text id="text28" x="167" y="235" class="node-text">25</text>
+    <circle id="circle29" cx="192" cy="110" r="16" class="node-circle"/>
+    <text id="text30" x="192" y="110" class="node-text">30</text>
+    <circle id="circle31" cx="262" cy="175" r="16" class="node-circle"/>
+    <text id="text32" x="262" y="175" class="node-text">40</text>
+    <circle id="circle33" cx="307" cy="235" r="16" class="node-circle"/>
+    <text id="text34" x="307" y="235" class="node-text">45</text>
+    <circle id="circle35" cx="330" cy="40" r="16" class="node-circle"/>
+    <text id="text36" x="330" y="40" class="node-text">50</text>
+    <text id="text37" x="352" y="36" class="fb-label fb-bal">fb = 0</text>
+    <circle id="circle37" cx="359" cy="235" r="16" class="node-circle"/>
+    <text id="text38" x="359" y="235" class="node-text">55</text>
+    <circle id="circle39" cx="404" cy="175" r="16" class="node-circle"/>
+    <text id="text40" x="404" y="175" class="node-text">60</text>
+    <circle id="circle47" cx="474" cy="110" r="16" class="node-circle"/>
+    <text id="text48" x="474" y="110" class="node-text">70</text>
+    <text id="text49" x="496" y="106" class="fb-label fb-bal">fb = 0</text>
+    <path id="line20" d="m435 235 30 55" class="edge"/>
+    <circle id="circle41" cx="405" cy="290" r="16" class="node-circle"/>
+    <text id="text42" x="405" y="290" class="node-text">64</text>
+    <circle id="circle43" cx="435" cy="235" r="16" class="node-circle"/>
+    <text id="text44" x="435" y="235" class="node-text">65</text>
+    <circle id="circle49" cx="455" cy="290" r="16" class="node-circle"/>
+    <text id="text50" x="455" y="290" class="node-text">66</text>
+    <text id="text51" x="477" y="316" class="fb-label fb-bal">fb = 0</text>
+    <circle id="circle53" cx="544" cy="175" r="16" class="node-circle" style="fill:#dff2d4;fill-opacity:1;stroke:#72b446;stroke-opacity:1"/>
+    <text id="text54" x="544" y="175" class="node-text">83</text>
+    <text id="text55" x="566" y="171" class="fb-label fb-bal">fb = 0</text>
+    <circle id="circle55" cx="589" cy="235" r="16" class="node-circle" style="fill:#dff2d4;fill-opacity:1;stroke:#72b446;stroke-opacity:1"/>
+    <text id="text56" x="589" y="235" class="node-text">85</text>
+    <text id="text57" x="611" y="231" class="fb-label fb-bal">fb = -1</text>
+    <circle id="circle57" cx="634" cy="290" r="16" class="node-circle" style="fill:#dff2d4;fill-opacity:1;stroke:#72b446;stroke-opacity:1"/>
+    <text id="text58" x="634" y="290" class="node-text">90</text>
+    <text id="text59" x="656" y="286" class="fb-label fb-bal">fb = 0</text>
+    <path id="line15" d="m513 235-30 55" class="edge"/>
+    <path id="line16" d="m513 235 30 55" class="edge"/>
+    <circle id="circle45" cx="493" cy="290" r="16" class="node-circle" style="fill:#dff2d4;fill-opacity:1;stroke:#72b446;stroke-opacity:1"/>
+    <text id="text46" x="493" y="290" class="node-text">75</text>
+    <circle id="circle51" cx="513" cy="235" r="16" class="node-circle" style="fill:#dff2d4;fill-opacity:1;stroke:#72b446;stroke-opacity:1"/>
+    <text id="text52" x="513" y="235" class="node-text">80</text>
+    <text id="text53" x="468.237" y="215.489" class="fb-label fb-bal">fb = 0</text>
+    <circle id="circle59" cx="543" cy="290" r="16" class="node-circle" style="fill:#dff2d4;fill-opacity:1;stroke:#72b446;stroke-opacity:1"/>
+    <text id="text60" x="543" y="290" class="node-text">82</text>
+    <text id="text61" x="567" y="286" class="fb-label fb-bal">fb = 0</text>
+    <text xml:space="preserve" id="text1" x="454.528" y="290.655" style="writing-mode:lr-tb;direction:ltr;fill:#dff2d4;stroke:#72b446;stroke-width:1.5"/>
 </svg>
