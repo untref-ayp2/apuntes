@@ -19,9 +19,7 @@ def setup_temp_dir():
         shutil.rmtree(TEMP_DIR)
 
     print(f"Copying {SOURCE_DIR} to {TEMP_DIR}...")
-    shutil.copytree(
-        SOURCE_DIR, TEMP_DIR, ignore=shutil.ignore_patterns("_build", "exports")
-    )
+    shutil.copytree(SOURCE_DIR, TEMP_DIR, ignore=shutil.ignore_patterns("_build", "exports"))
 
 
 def fix_line_for_typst(line):
@@ -160,9 +158,7 @@ def process_file(filepath):
             match_end = block_end_pattern.match(line)
             if match_end:
                 closing_fence = match_end.group(2)
-                if closing_fence[0] == block_fence[0] and len(closing_fence) >= len(
-                    block_fence
-                ):
+                if closing_fence[0] == block_fence[0] and len(closing_fence) >= len(block_fence):
                     if discard_block:
                         pass
                     else:
@@ -182,9 +178,7 @@ def process_file(filepath):
                                 new_lines.extend(buffer)
 
                         elif block_type == "tab-set":
-                            tab_item_pattern = re.compile(
-                                r"^(\s*)(:{3,})\{tab-item\}\s*(.*)$"
-                            )
+                            tab_item_pattern = re.compile(r"^(\s*)(:{3,})\{tab-item\}\s*(.*)$")
                             tab_close_pattern = re.compile(r"^(\s*)(:{3,})\s*$")
                             for line in buffer[1:-1]:
                                 m = tab_item_pattern.match(line)
@@ -203,9 +197,7 @@ def process_file(filepath):
                                 or "show_bellman_ford_step_by_step" in content_str
                             ):
                                 new_lines.append(buffer[0])
-                                indent = buffer[0][
-                                    : len(buffer[0]) - len(buffer[0].lstrip())
-                                ]
+                                indent = buffer[0][: len(buffer[0]) - len(buffer[0].lstrip())]
                                 new_lines.append(f"{indent}---\n")
                                 new_lines.append(f"{indent}tags: remove-output\n")
                                 new_lines.append(f"{indent}---\n")
@@ -420,9 +412,7 @@ def main():
     env = os.environ.copy()
     orig_path = env.get("PATH", "")
     # Find and remove dirs containing typst from PATH
-    new_path = ":".join(
-        d for d in orig_path.split(":") if not os.path.exists(os.path.join(d, "typst"))
-    )
+    new_path = ":".join(d for d in orig_path.split(":") if not os.path.exists(os.path.join(d, "typst")))
     env["PATH"] = new_path
 
     cwd = TEMP_DIR
@@ -431,13 +421,9 @@ def main():
     # The typst compile is intentionally skipped here (typst is off PATH), so
     # myst logs a misleading "typst CLI must be installed" error. Keep stdout
     # streaming live but filter that expected line out of stderr.
-    result = subprocess.run(
-        cmd, cwd=cwd, env=env, check=False, stderr=subprocess.PIPE, text=True
-    )
+    result = subprocess.run(cmd, cwd=cwd, env=env, check=False, stderr=subprocess.PIPE, text=True)
     expected_error = "The typst CLI must be installed to build PDFs with typst"
-    filtered = [
-        line for line in result.stderr.splitlines() if expected_error not in line
-    ]
+    filtered = [line for line in result.stderr.splitlines() if expected_error not in line]
     if filtered:
         sys.stderr.write("\n".join(filtered) + "\n")
 
