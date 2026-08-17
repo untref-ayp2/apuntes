@@ -12,7 +12,7 @@ Memoria central o primaria
 Memoria secundaria
 : Conformada por el conjunto de memorias no volátiles. Es la memoria de persistencia de información. Ejemplos: discos rígidos, discos ópticos, memorias USB, etc. Conserva la información almacenada al interrumpirse el suministro de corriente eléctrica. Es más lenta y barata que la RAM.
 
-## Organización de la Memoria central o primaria
+## Organización de la memoria central o primaria
 
 Tanto los programas como el resto de la información que guarda la computadora se encuentran almacenados en la **memoria secundaria**.
 
@@ -20,10 +20,10 @@ Al lanzar la ejecución de un programa, las instrucciones y los datos iniciales 
 
 En tiempo de ejecución, un proceso está asociado a una porción de la memoria primaria que se divide lógicamente en 4 segmentos:
 
-Segmento de Código (*code segment*)
+Segmento de código (*code segment*)
 : Es la porción donde se localizan las instrucciones que componen nuestro programa. Su tamaño se determina al comenzar la ejecución. Asociado a este segmento se encuentra un **puntero** que indica la próxima instrucción a ejecutar.
 
-Segmento de Datos (*data segment*)
+Segmento de datos (*data segment*)
 : Almacena las variables globales y estáticas. Su tamaño también queda determinado al comenzar la ejecución.
 
 Pila (*stack segment*)
@@ -34,7 +34,7 @@ Memoria dinámica (*heap*)
 
 ## Ejecución de programas
 
-Para poder ejecutar un programa se deben seguir los siguientes pasos:
+Estos son algunos de los aspectos a tener en cuenta al momento de ejecutar un programa:
 
 1\. Compilación y almacenamiento.
 : Los programas se almacenan inicialmente en la memoria secundaria (por ejemplo, en un disco duro o SSD). En el caso de Go como se trata de un lenguaje compilado, los archivos fuentes se compilan y se genera un archivo ejecutable que se almacena en el disco.
@@ -51,27 +51,27 @@ Para poder ejecutar un programa se deben seguir los siguientes pasos:
 5\. Liberación de memoria
 : Al finalizar la ejecución, el sistema operativo libera toda la memoria asignada al programa, incluyendo los segmentos de código, datos, pila y heap.
 
-En la figura a continuación, se muestra un esquema de la memoria de un proceso en ejecución. Cada segmento de memoria tiene un tamaño y una función específica en el programa. La figura es solo a modo didáctico y no representa la organización real de la memoria en Go, que es más compleja.
+En la siguiente figura se muestra un esquema de la memoria de un proceso en ejecución. Cada segmento de memoria tiene un tamaño y una función específica en el programa. La figura es solo a modo didáctico y no representa la organización real de la memoria en Go, que es más compleja.
 
 En el diagrama el *stack* se ubica en la parte superior de la memoria y crece hacia abajo; cuando no puede crecer más se produce un error de desbordamiento de pila (*stack overflow*). El *heap* se ubica en la parte inferior de la memoria, sobre los segmentos de código y datos y crece hacia arriba.
 
 ```{figure} ../_static/figures/1-presentacion/1-2-memoria/MemoriaSegmentos_light.svg
 ---
 class: only-light-mode
-width: 50%
+width: 75%
 ---
-Segmentos de Memoria de un Proceso en Ejecución
+Segmentos de memoria de un proceso en ejecución
 ```
 
 ```{figure} ../_static/figures/1-presentacion/1-2-memoria/MemoriaSegmentos_dark.svg
 ---
 class: only-dark-mode
-width: 50%
+width: 75%
 ---
-Segmentos de Memoria de un Proceso en Ejecución
+Segmentos de memoria de un proceso en ejecución
 ```
 
-## Gestión de Memoria Dinámica en Go
+## Gestión de memoria dinámica en Go
 
 La gestión de memoria es un aspecto clave en cualquier lenguaje de programación, ya que impacta en el rendimiento, la eficiencia y la estabilidad del software.
 
@@ -79,7 +79,7 @@ En Go, las variables se almacenan en el *stack* o en el *heap* dependiendo de su
 
 El compilador de Go decide automáticamente si una variable debe almacenarse en el *stack* o en el *heap*. Esto se conoce como *Escape Analysis*. Si una variable **"escapa"** del alcance de la función, se almacena en el *heap* en lugar del *stack*.
 
-```{admonition} Consideraciones de Rendimiento
+```{admonition} Consideraciones de rendimiento
 ---
 class: note
 ---
@@ -106,6 +106,7 @@ type Persona struct {
 var num int = 5
 var p1 = Persona{"Marcelo", "Díaz", 27, Direccion{"Mariano Acosta",
                   "Gonzalez Catán", "Buenos Aires", 6420}}
+
 func main() {
     p2 := Persona{nombre: "Pepe", edad: 23}
     p3 := &p2
