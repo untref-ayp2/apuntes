@@ -58,11 +58,11 @@ miproyecto
 └── main.go
 ```
 
-### Importar módulos/paquetes
+### Importar paquetes
 
 El objetivo final de organizar nuestro código en paquetes y módulos es que podamos reusarlos en otros proyectos. Cada vez que necesitemos usar una dependencia tanto interna a nuestro módulo como externa, debemos usar la instrucción `import`, lo que nos permite acceder a las estructuras, funciones y utilidades de los distintos módulos.
 
-En Go existen distintos tipos de módulos que podemos importar, dependiendo de su procedencia. Por ejemplo, Go provee una serie de módulos que son nativos del lenguaje, como pueden ser:
+En Go existen distintos paquetes que podemos importar, dependiendo de su procedencia. Por ejemplo, Go provee una serie de paquetes que son parte de la biblioteca estándar del lenguaje, como pueden ser:
 
 `fmt`
 : entrada y salida por pantalla y teclado
@@ -85,7 +85,7 @@ En Go existen distintos tipos de módulos que podemos importar, dependiendo de s
 `strings`
 : funciones para manipular cadenas de caracteres
 
-Hasta ahora hemos utilizado mayormente este tipo de módulos. También podemos utilizar referencias a paquetes dentro de nuestro mismo módulo.
+Hasta ahora hemos utilizado mayormente este tipo de paquetes. También podemos utilizar referencias a paquetes dentro de nuestro mismo módulo.
 
 ```{code-block} go
 ---
