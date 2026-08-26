@@ -402,30 +402,34 @@ $$
 Reemplazando obtenemos:
 
 Primera vuelta del ciclo
-: \$$
+
+$$
 T(n) = T \left( \frac{2^k}{2} \right) + c = T(2^{k-1}) + c
-$\$
+$$
 
 Segunda vuelta del ciclo
-: \$$
+
+$$
 T(n) = T(2^{k-2}) + 2 \, c
-$\$
+$$
 
 $$
 \dots
 $$
 
 Vuelta $i$ del ciclo
-: \$$
+
+$$
 T(n) = T(2^{k-i}) + i \, c
-$\$
+$$
 
 entonces para $i = k$
 
 Vuelta $k$ del ciclo
-: \$$
+
+$$
 T(n) = T(1) + k \, c
-$\$
+$$
 
 $T(1)$ es cuanto cuesta si el arreglo tiene tamaño 1, es decir `L == R`, y por lo tanto solo ejecuta una iteración del bucle para determinar si el elemento es el buscado o ajustar los índices para salir. Entonces $T(1) = O(1)$
 
