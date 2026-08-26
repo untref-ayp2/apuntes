@@ -69,10 +69,10 @@ gh extension install foundation50/gh-student
 
 Una única org de estudiantes `untref-ayp2-estudiantes` con una clase por sede:
 
-| Sede | Org maestra (templates) | Classroom |
-|---|---|---|
-| UNTREF | `untref-ayp2` | `ayp2-untref-2026` |
-| CUDI | `untref-ayp2` (compartida) | `ayp2-cudi-2026` |
+| Sede   | Org maestra (templates)    | Classroom          |
+| ------ | -------------------------- | ------------------ |
+| UNTREF | `untref-ayp2`              | `ayp2-untref-2026` |
+| CUDI   | `untref-ayp2` (compartida) | `ayp2-cudi-2026`   |
 
 Flujo típico:
 

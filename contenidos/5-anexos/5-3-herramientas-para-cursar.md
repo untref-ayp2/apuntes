@@ -213,6 +213,45 @@ Para trabajar con Go necesitamos algunas extensiones. Desde VS Code:
 | **Error Lens**           | `usernamehw.errorlens`              | Muestra los errores inline, al lado del código                                       |
 | **GitHub Pull Requests** | `GitHub.vscode-pull-request-github` | Revisar y comentar Pull Requests (incluyendo el Feedback PR)                         |
 
+## GitHub Codespaces
+
+**Codespaces** es un entorno de desarrollo en la nube de GitHub: te da un VS Code completo con Git y Go ya instalados, directamente desde el navegador. Es una buena alternativa si no podés (o no querés) instalar nada en tu computadora.
+
+### Cómo abrirlo
+
+1. Ir al repositorio de la tarea en github.com.
+2. Click en el botón verde **Code**.
+3. Ir a la pestaña **Codespaces**.
+4. Click en **Create codespace on main**.
+
+Después de unos segundos se abre un VS Code en el navegador, con el repositorio ya clonado y listo para editar, correr tests y usar la terminal integrada.
+
+### Limitaciones a tener en cuenta
+
+```{admonition} Importante
+---
+class: important
+---
+Las cuentas gratuitas de GitHub incluyen **60 horas de Codespaces por mes**. El tiempo se consume mientras el codespace está activo, así que conviene **detenerlo** cuando terminás de trabajar: cerrar la pestaña del navegador no lo detiene.
+
+Para detenerlo tenés dos opciones:
+
+- **Desde adentro del codespace:** click en el menú de GitHub Codespaces abajo a la izquierda de la barra de estado (o `Ctrl+Shift+P`) → **Stop Current Codespace**.
+- **Desde github.com:** ir a <https://github.com/codespaces> y, a la derecha del codespace que esté corriendo (`Active`), click en los tres puntos (**...**) → **Stop codespace**. Esta opción solo aparece mientras el codespace está corriendo; si ya está detenido vas a ver otras opciones como **Delete** o **Rebuild container**.
+
+Si no lo detenés manualmente, se detiene solo después de 30 minutos de inactividad (configurable), pero ese tiempo sigue consumiendo horas.
+```
+
+Además, trabajar en Codespaces **no guarda nada automáticamente en GitHub**: los cambios quedan solo en el entorno en la nube. Para que impacten en el repositorio hay que hacer **commit y push** desde la terminal integrada, igual que en cualquier otro entorno:
+
+```console
+git add .
+git commit -m "mensaje"
+git push
+```
+
+Para las instancias finales recomendamos tener el entorno local instalado; Codespaces es una alternativa para la cursada diaria.
+
 ## Slack
 
 Usamos Slack para la comunicación del curso: anuncios, consultas, canales por tema.
@@ -229,10 +268,10 @@ Classroom50 es la plataforma que usamos para recibir y entregar los trabajos. Se
 
 La materia se dicta en dos sedes, todas en una misma organización con una clase por sede:
 
-| Sede | Organización | Clase |
-|---|---|---|
+| Sede   | Organización              | Clase              |
+| ------ | ------------------------- | ------------------ |
 | UNTREF | `untref-ayp2-estudiantes` | `ayp2-untref-2026` |
-| CUDI | `untref-ayp2-estudiantes` | `ayp2-cudi-2026` |
+| CUDI   | `untref-ayp2-estudiantes` | `ayp2-cudi-2026`   |
 
 Usar la organización `untref-ayp2-estudiantes` y la clase que corresponda a tu cursada en todos los comandos.
 
@@ -305,6 +344,27 @@ Además de la línea de comandos, Classroom50 se puede usar desde el navegador.
 4. Elegir la clase correspondiente.
 5. Se ven las tareas asignadas, su estado (pendiente/entregada) y el puntaje obtenido.
 6. Desde cada tarea se puede acceder al repositorio, al Feedback PR y al detalle de la última entrega.
+
+### Entregar desde la web (release)
+
+También se puede entregar directamente desde github.com, creando un **release** con el tag `submit`:
+
+1. Completar los ejercicios y hacer **commit y push** de tus cambios.
+2. Ir al repositorio de la tarea en github.com.
+3. En la barra lateral derecha, sección **Releases**, click en **Create a new release** (o **Draft a new release** si ya hay releases).
+4. En **Choose a tag**, escribir `submit` y elegir la opción **"+ Create new tag: submit on publish"** que aparece. Opcionalmente podés agregar texto después de una barra, ej.: `submit/intento-2`.
+5. Completar título y descripción (opcional).
+6. Click en **Publish release**.
+
+Eso dispara la entrega: se corren los tests automáticos y se publica el resultado, igual que con `gh student submit`.
+
+```{admonition} Importante
+---
+class: important
+---
+- Se pueden hacer **todas las entregas que quieran** hasta que se cierre la tarea; la última entrega es la que cuenta.
+- El puntaje se calcula **únicamente cuando se hace una entrega** (`gh student submit` o un release con tag `submit`). Hacer commit y push solo guarda tu trabajo en el repositorio: no genera puntaje ni feedback.
+```
 
 ## Feedback PR
 
