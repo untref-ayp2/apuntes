@@ -36,10 +36,7 @@ project:
   toc:
     - file: introduccion.md
     - title: Presentación
-      children:
-        - file: 1-presentacion/1-1-introduccion.md
-        - file: 1-presentacion/1-2-memoria.md
-        - file: 1-presentacion/1-3-analisis-de-algoritmos.md
+      file: 1-presentacion/1-1-introduccion.md
     - title: Taller de Go
       children:
         - file: 2-taller-de-go/2-1-introduccion-go.md
@@ -54,6 +51,8 @@ project:
         - file: 2-taller-de-go/2-10-errores.md
         - file: 2-taller-de-go/2-11-oop.md
         - file: 2-taller-de-go/2-12-genericos.md
+    - file: 1-presentacion/1-2-analisis-de-algoritmos.md
+    - file: 1-presentacion/1-3-memoria.md
     - title: Estructuras de Datos
       children:
         - file: 3-estructuras-de-datos/3-1-tad.md
@@ -117,7 +116,7 @@ site:
         - title: Slack
           url: https://untref-aypii.slack.com
         - title: Classroom50
-          url: https://classroom50.org/untref-ayp2-estudiantes/ayp2-untref-2026/ 
+          url: https://classroom50.org/untref-ayp2-estudiantes/ayp2-untref-2026/
     - title: CUDI
       children:
         - title: Slack
