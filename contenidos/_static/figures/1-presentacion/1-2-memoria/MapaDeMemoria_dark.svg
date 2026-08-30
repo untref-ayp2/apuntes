@@ -1,4 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1001" height="391" style="background:0 0;background-color:transparent;color-scheme:light dark" viewBox="-0.5 -0.5 1001 391">
+    <style>
+        .text {
+            fill: #e0e0e0;
+            font-family: monospace;
+            letter-spacing: -1px;
+        }
+    </style>
     <defs>
         <path id="d" d="M257.692 203.846h50V250h-50z"/>
         <path id="c" d="M292.217 257.814H510.24v101.551H292.217z"/>
@@ -46,69 +53,69 @@
     <text x="102.97" y="21.316" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Stack</text>
     <path fill="none" d="M220 0h60v30h-60z"/>
     <path fill="#2d3748" stroke="#63b3ed" stroke-width="1.885" d="M705.377 23.937h248.2v60.115h-248.2z"/>
-    <text x="565.961" y="78.646" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.991 -41.652)">calle = &quot;Av. Corrientes&quot;</text>
-    <text x="565.961" y="92.328" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.991 -41.652)">ciudad = &quot;CABA&quot;</text>
-    <text x="565.601" y="105.735" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.991 -41.652)">provincia = &quot;Buenos Aires&quot;</text>
-    <text x="565.601" y="119.141" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.991 -41.652)">numero =1050</text>
+    <text x="565.961" y="78.646" class="text" transform="translate(145.991 -41.652)">calle = &quot;Av. Corrientes&quot;</text>
+    <text x="565.961" y="92.328" class="text" transform="translate(145.991 -41.652)">ciudad = &quot;CABA&quot;</text>
+    <text x="565.601" y="105.735" class="text" transform="translate(145.991 -41.652)">provincia = &quot;Buenos Aires&quot;</text>
+    <text x="565.601" y="119.141" class="text" transform="translate(145.991 -41.652)">numero = 1050</text>
     <path fill="#2d3748" stroke="#63b3ed" stroke-width="1.885" d="M705.377 310.157h248.2v60.115h-248.2z"/>
-    <text x="565.961" y="78.646" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.991 244.568)">calle = &quot;Mariano Acosta&quot;</text>
-    <text x="565.961" y="92.328" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.991 244.568)">ciudad = &quot;Gonzalez Catán&quot;</text>
-    <text x="565.601" y="105.735" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.991 244.568)">provincia = &quot;Buenos Aires&quot;</text>
-    <text x="565.601" y="119.141" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.991 244.568)">numero =6420</text>
+    <text x="565.961" y="78.646" class="text" transform="translate(145.991 244.568)">calle = &quot;Mariano Acosta&quot;</text>
+    <text x="565.961" y="92.328" class="text" transform="translate(145.991 244.568)">ciudad = &quot;Gonzalez Catán&quot;</text>
+    <text x="565.601" y="105.735" class="text" transform="translate(145.991 244.568)">provincia = &quot;Buenos Aires&quot;</text>
+    <text x="565.601" y="119.141" class="text" transform="translate(145.991 244.568)">numero = 6420</text>
     <path fill="#2d3748" stroke="#63b3ed" stroke-width="1.885" d="M705.443 214.75h248.199v60.115h-248.2z"/>
-    <text x="565.961" y="78.646" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(146.057 149.161)">calle = &quot;Mariano Acosta&quot;</text>
-    <text x="565.961" y="92.328" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(146.057 149.161)">ciudad = &quot;Gonzalez Catán&quot;</text>
-    <text x="565.601" y="105.735" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(146.057 149.161)">provincia = &quot;Buenos Aires&quot;</text>
-    <text x="565.601" y="119.141" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(146.057 149.161)">numero =6420</text>
+    <text x="565.961" y="78.646" class="text" transform="translate(146.057 149.161)">calle = &quot;Mariano Acosta&quot;</text>
+    <text x="565.961" y="92.328" class="text" transform="translate(146.057 149.161)">ciudad = &quot;Gonzalez Catán&quot;</text>
+    <text x="565.601" y="105.735" class="text" transform="translate(146.057 149.161)">provincia = &quot;Buenos Aires&quot;</text>
+    <text x="565.601" y="119.141" class="text" transform="translate(146.057 149.161)">numero = 6420</text>
     <path fill="none" d="M850 30h80v20h-80z"/>
     <path fill="#2d3748" stroke="#63b3ed" stroke-width="1.885" d="M513.377 193.442h248.199v60.115H513.377z" style="fill:#4a5568;fill-opacity:1;stroke:#fc8181;stroke-opacity:1" transform="translate(192 -74.099)"/>
-    <text x="519.953" y="206.5" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(192 -74.099)">calle = &quot;Valentín Gomez&quot;</text>
-    <text x="519.953" y="220.182" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(192 -74.099)">ciudad &quot;Caseros&quot;</text>
-    <text x="519.593" y="233.588" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(192 -74.099)">provincia = &quot;Buenos Aires&quot;</text>
-    <text x="519.593" y="246.994" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(192 -74.099)">numero = 742</text>
+    <text x="519.953" y="206.5" class="text" transform="translate(192 -74.099)">calle = &quot;Valentín Gomez&quot;</text>
+    <text x="519.953" y="220.182" class="text" transform="translate(192 -74.099)">ciudad &quot;Caseros&quot;</text>
+    <text x="519.593" y="233.588" class="text" transform="translate(192 -74.099)">provincia = &quot;Buenos Aires&quot;</text>
+    <text x="519.593" y="246.994" class="text" transform="translate(192 -74.099)">numero = 742</text>
     <path fill="#2d3748" stroke="#63b3ed" stroke-width="1.793" d="M345.687 29.901h220.207v48.187H345.687z"/>
-    <text x="204.5" y="27" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.79 16.004)">nombre string = &quot;Pepe&quot;</text>
-    <text x="204.5" y="41" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.79 16.004)">apellido string = &quot;Martinez&quot;</text>
+    <text x="204.5" y="27" class="text" transform="translate(145.79 16.004)">nombre string = &quot;Pepe&quot;</text>
+    <text x="204.5" y="41" class="text" transform="translate(145.79 16.004)">apellido string = &quot;Martinez&quot;</text>
     <path fill="none" d="M365.79 46.004h80v20h-80z"/>
-    <text x="204.5" y="55.5" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.79 16.004)">direccion Direccion = *</text>
+    <text x="204.5" y="55.5" class="text" transform="translate(145.79 16.004)">direccion Direccion = *</text>
     <path fill="#2d3748" stroke="#63b3ed" stroke-width="1.793" d="M345.687 163.122h220.207v48.187H345.687z"/>
-    <text x="204.5" y="27" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.79 149.225)">nombre string = &quot;Juan&quot;</text>
-    <text x="204.5" y="41" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.79 149.225)">apellido string = &quot;Gonzalez&quot;</text>
+    <text x="204.5" y="27" class="text" transform="translate(145.79 149.225)">nombre string = &quot;Juan&quot;</text>
+    <text x="204.5" y="41" class="text" transform="translate(145.79 149.225)">apellido string = &quot;Gonzalez&quot;</text>
     <path fill="none" d="M365.79 179.225h80v20h-80z"/>
-    <text x="204.5" y="55.5" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.79 149.225)">direccion Direccion = *</text>
+    <text x="204.5" y="55.5" class="text" transform="translate(145.79 149.225)">direccion Direccion = *</text>
     <path fill="#2d3748" stroke="#63b3ed" stroke-width="1.793" d="M345.687 316.122h220.207v48.187H345.687z"/>
-    <text x="204.5" y="27" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.79 302.225)">nombre string = &quot;Marcelo&quot;</text>
-    <text x="204.5" y="41" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.79 302.225)">apellido string = &quot;Díaz&quot;</text>
+    <text x="204.5" y="27" class="text" transform="translate(145.79 302.225)">nombre string = &quot;Marcelo&quot;</text>
+    <text x="204.5" y="41" class="text" transform="translate(145.79 302.225)">apellido string = &quot;Díaz&quot;</text>
     <path fill="none" d="M365.79 332.225h80v20h-80z"/>
-    <text x="204.5" y="55.5" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(145.79 302.225)">direccion Direccion = *</text>
+    <text x="204.5" y="55.5" class="text" transform="translate(145.79 302.225)">direccion Direccion = *</text>
     <path fill="none" d="M384 280h80v20h-80zM20 240h80v20H20zM100 260h80v20h-80zM20 300h80v20H20zM100 320h80v20h-80zM20 10h80v20H20zM100 30h80v20h-80zM100 90h80v20h-80zM100 150h80v20h-80zM20 190h80v20H20zM100 210h80v20h-80zM664 140h80v20h-80z"/>
     <text x="103.519" y="233.597" fill="#e0e0e0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="bold" text-anchor="middle"><tspan x="103.519" y="233.597">Segmento</tspan><tspan x="103.519" y="253.597">de Datos</tspan></text>
     <text xml:space="preserve" x="158.251" y="77.839" style="writing-mode:lr-tb;direction:ltr;fill:#000"/>
     <path fill="none" d="M18.764 70h80v20h-80z"/>
     <text xml:space="preserve" x="103.13" y="57.114" style="writing-mode:lr-tb;direction:ltr;fill:#000;fill-opacity:.09;stroke:#565656;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"/>
     <path fill="none" d="M18.764 125.22h80v20h-80zM18.836 375.22h80v20h-80zM18.836 179.22h80v20h-80z"/>
-    <text x="56.047" y="264" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;;text-align:end;text-anchor:end" transform="translate(-16.727 22)">int</text>
-    <text x="50.233" y="274.739" style="text-align:center;text-anchor:middle" transform="translate(-16.727 22)"><tspan style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;">num</tspan></text>
+    <text x="46.047" y="257" style="fill:#e0e0e0;font-size:12px;" transform="translate(-16.727 22)">num</text>
+    <text x="55.233" y="267.739" class="text" style="text-align:center;text-anchor:middle" transform="translate(-16.727 22)">int</text>
     <path d="M100.5 252.5h17.823v19.067H100.5z" style="fill:#fff;fill-opacity:1;stroke:#565656;stroke-width:2;stroke-dasharray:none;stroke-opacity:1" transform="translate(20.37 22)"/>
     <text xml:space="preserve" x="109.502" y="265.975" style="text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000" transform="translate(20.37 22)"><tspan x="109.502" y="265.975" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;">5</tspan></text>
     <text xml:space="preserve" x="213.346" y="270.269" style="font-size:7.55906px;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;;writing-mode:lr-tb;direction:ltr;fill:#ffe1e1;stroke:#ea987b;stroke-width:2"/>
     <text x="22.797" y="40.308" style="fill:#e0e0e0;font-size:12px;stroke-width:.84127" transform="translate(9.945 10.318)">p2</text>
-    <text x="10.643" y="54.21" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(9.945 10.318)">Persona</text>
+    <text x="10.643" y="54.21" class="text" transform="translate(9.945 10.318)">Persona</text>
     <path d="M67.464 29.28h84.142v29.429H67.464z" style="fill:#fff;fill-opacity:1;stroke:#565656;stroke-width:2;stroke-dasharray:none;stroke-opacity:1" transform="translate(23.478 10)"/>
-    <text xml:space="preserve" x="101.451" y="41.867" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000" transform="translate(31.945 10.318)"><tspan x="101.451" y="41.867">*</tspan></text>
-    <text xml:space="preserve" x="100.93" y="39.21" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000" transform="translate(31.945 10.318)"><tspan x="100.93" y="54.21">edad = 23</tspan></text>
+    <text xml:space="preserve" x="101.451" y="41.867" class="text" style="text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000" transform="translate(31.945 10.318)"><tspan x="101.451" y="41.867">*</tspan></text>
+    <text xml:space="preserve" x="100.93" y="39.21" class="text" style="text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000" transform="translate(31.945 10.318)"><tspan x="100.93" y="54.21">edad = 23</tspan></text>
     <path d="M100.149 139.184h17.823v19.067h-17.823z" style="fill:#fff;fill-opacity:1;stroke:#565656;stroke-width:2;stroke-dasharray:none;stroke-opacity:1" transform="translate(20.721 -25.749)"/>
     <text xml:space="preserve" x="109.061" y="155.383" style="text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000" transform="translate(20.721 -25.749)"><tspan x="109.061" y="155.383" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;">*</tspan></text>
     <text x="22.797" y="40.308" style="fill:#e0e0e0;font-size:12px;stroke-width:.84127" transform="translate(9.945 74.707)">p3</text>
-    <text x="10.643" y="54.21" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(9.945 74.707)">Persona</text>
+    <text x="10.643" y="54.21" class="text" transform="translate(9.945 74.707)">Persona</text>
     <text x="18.742" y="143.846" style="fill:#e0e0e0;font-size:12px;stroke-width:.84127" transform="translate(14 40)">p4</text>
-    <text x="6.588" y="157.748" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(14 40)">Persona</text>
+    <text x="6.588" y="157.748" class="text" transform="translate(14 40)">Persona</text>
     <path d="M67.464 29.28h84.142v29.429H67.464z" style="fill:#fff;fill-opacity:1;stroke:#565656;stroke-width:2;stroke-dasharray:none;stroke-opacity:1" transform="translate(23.478 143.22)"/>
-    <text xml:space="preserve" x="101.451" y="41.867" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000" transform="translate(31.945 143.538)"><tspan x="101.451" y="41.867">*</tspan></text>
-    <text xml:space="preserve" x="100.93" y="39.21" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000" transform="translate(31.945 143.538)"><tspan x="100.93" y="54.21">edad = 34</tspan></text>
+    <text xml:space="preserve" x="101.451" y="41.867" class="text" style="text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000" transform="translate(31.945 143.538)"><tspan x="101.451" y="41.867">*</tspan></text>
+    <text xml:space="preserve" x="100.93" y="39.21" class="text" style="text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000" transform="translate(31.945 143.538)"><tspan x="100.93" y="54.21">edad = 34</tspan></text>
     <text x="18.742" y="143.846" style="fill:#e0e0e0;font-size:11.3386px;stroke-width:.84127" transform="translate(14 193)">p1</text>
-    <text x="6.588" y="157.748" style="fill:#e0e0e0;font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;" transform="translate(14 193)">Persona</text>
+    <text x="6.588" y="157.748" class="text" transform="translate(14 193)">Persona</text>
     <path d="M67.464 29.28h84.142v29.429H67.464z" style="fill:#fff;fill-opacity:1;stroke:#565656;stroke-width:2;stroke-dasharray:none;stroke-opacity:1" transform="translate(23.478 296.22)"/>
-    <text xml:space="preserve" x="101.451" y="41.867" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000" transform="translate(31.945 296.538)"><tspan x="101.451" y="41.867">*</tspan></text>
-    <text xml:space="preserve" x="100.93" y="39.21" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-family:&quot;Fira Sans Compressed&quot;;-inkscape-font-specification:&quot;Fira Sans Compressed&quot;;text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000" transform="translate(31.945 296.538)"><tspan x="100.93" y="54.21">edad = 27</tspan></text>
+    <text xml:space="preserve" x="101.451" y="41.867" class="text" style="text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000" transform="translate(31.945 296.538)"><tspan x="101.451" y="41.867">*</tspan></text>
+    <text xml:space="preserve" x="100.93" y="39.21" class="text" style="text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000" transform="translate(31.945 296.538)"><tspan x="100.93" y="54.21">edad = 27</tspan></text>
 </svg>

@@ -6,13 +6,13 @@ label: memoria
 
 En general la memoria de una computadora se puede clasificar en:
 
-Memoria central o primaria
+Memoria primaria (o central)
 : Constituida por memoria volátil, más rápida y costosa que otros medios de almacenamiento. Es la memoria de trabajo del procesador, la RAM (*Random Access Memory*) de acceso rápido, donde se encuentran los programas en ejecución y sus datos. La información que almacena la RAM se pierde al interrumpirse el suministro eléctrico.
 
 Memoria secundaria
 : Conformada por el conjunto de memorias no volátiles. Es la memoria de persistencia de información. Ejemplos: discos rígidos, discos ópticos, memorias USB, etc. Conserva la información almacenada al interrumpirse el suministro de corriente eléctrica. Es más lenta y barata que la RAM.
 
-## Organización de la memoria central o primaria
+## Organización de la memoria primaria
 
 Tanto los programas como el resto de la información que guarda la computadora se encuentran almacenados en la **memoria secundaria**.
 
@@ -27,7 +27,8 @@ Segmento de datos (*data segment*)
 : Almacena las variables globales y estáticas. Su tamaño también queda determinado al comenzar la ejecución.
 
 Pila (*stack segment*)
-: Almacenará el contenido de las variables locales en cada invocación de una función. Cada entrada en la pila constituye un **marco de datos** (*stack frame*) que representa el contexto de una función en ejecución e incluye variables locales, parámetros y valores de retorno. Se asigna como un bloque de memoria contigua. En Go, el tamaño inicial del *stack* es pequeño (generalmente 2KB) pero no es de tamaño fijo como en C, sino que tiene tamaño dinámico (el runtime lo agranda si hace falta).
+: Almacenará el contenido de las variables locales en cada invocación de una función. Cada entrada en la pila constituye un **marco de datos** (*stack frame*) que representa el contexto de una función en ejecución e incluye variables locales, parámetros y valores de retorno. Se asigna como un bloque de memoria contigua.
+: En Go, el tamaño inicial del *stack* es pequeño (generalmente 2KB) pero no es de tamaño fijo como en C, sino que tiene tamaño dinámico (el runtime lo agranda si hace falta).
 
 Memoria dinámica (*heap*)
 : Es el espacio de memoria que se utiliza para la asignación dinámica de memoria. Su tamaño no está determinado al comenzar la ejecución y se va ajustando a medida que el programa solicita más memoria para almacenar datos. No se asigna como un único bloque contiguo, sino que puede fragmentarse.
@@ -43,7 +44,8 @@ Estos son algunos de los aspectos a tener en cuenta al momento de ejecutar un pr
 : Al iniciar la ejecución, el **sistema operativo** carga el programa en la memoria central (RAM). Esto incluye las instrucciones del programa y los datos iniciales necesarios para su ejecución. La memoria asignada al programa se divide en segmentos específicos para el código, los datos, el *stack* y el *heap*. El programa en ejecución se denomina **proceso**.
 
 3\. Ejecución del programa
-: El procesador ejecuta una a una las instrucciones del programa desde el **segmento de código**. Cada vez que ejecuta una instrucción, avanza el puntero de instrucción a la siguiente instrucción. Cuando ejecuta una llamada a una función, se crea un nuevo **marco de pila** (*frame*) en el *stack* para almacenar las variables locales y los parámetros de la función. Al terminar la función, el marco de pila se elimina y el valor de retorno se transfiere al marco anterior desde donde se llamó a la función. Si durante la ejecución de una función se solicita memoria dinámica, se asigna en el *heap*. En Go, durante la ejecución del programa, el recolector de basura (*garbage collector*) se encarga de liberar la memoria no utilizada en el heap, evitando así las fugas de memoria (*memory leaks*).
+: El procesador ejecuta una a una las instrucciones del programa desde el **segmento de código**. Cada vez que ejecuta una instrucción, avanza el puntero de instrucción a la siguiente instrucción. Cuando ejecuta una llamada a una función, se crea un nuevo *frame* en el *stack* para almacenar las variables locales y los parámetros de la función. Al terminar la función, el *stack frame* se elimina y el valor de retorno se transfiere al marco anterior desde donde se llamó a la función. Si durante la ejecución de una función se solicita memoria dinámica, se asigna en el *heap*.
+: En Go, durante la ejecución del programa, el recolector de basura (*garbage collector*) se encarga de liberar la memoria no utilizada en el *heap*, evitando así las fugas de memoria (*memory leaks*).
 
 4\. Interacción con el sistema operativo
 : El sistema operativo supervisa y gestiona la memoria asignada al programa. Si el programa necesita más memoria, puede solicitarla al sistema operativo, que ajustará el tamaño del *heap* o el *stack* según sea necesario.
@@ -124,14 +126,14 @@ El **Stack**, el **Heap** y el **Segmento de Datos** presentarán el siguiente e
 
 ```{figure} ../_static/figures/1-presentacion/1-2-memoria/MapaDeMemoria_light.svg
 ---
-class: only-light-mode
+class: only-light-mode col-page-right
 ---
 Mapa de Memoria
 ```
 
 ```{figure} ../_static/figures/1-presentacion/1-2-memoria/MapaDeMemoria_dark.svg
 ---
-class: only-dark-mode
+class: only-dark-mode col-page-right
 ---
 Mapa de Memoria
 ```
@@ -220,7 +222,7 @@ ______________________________________________________________________
 | `p3`     | *Stack*                                   | Puntero local a `p2`.                            |
 | `p4`     | *Stack* (estructura) / *Heap* (cadenas)   | Variable local, contenido de cadenas en heap.    |
 
-En Go, el **compilador y el recolector de basura (GC)** optimizan el uso del *stack* y el *heap*. Las estructuras simples y de corta duración suelen estar en el stack, mientras que los datos más complejos o de mayor duración (como cadenas) se almacenan en el heap.
+En Go, el **compilador** y el **recolector de basura** (GC) optimizan el uso del *stack* y el *heap*. Las estructuras simples y de corta duración suelen estar en el stack, mientras que los datos más complejos o de mayor duración (como cadenas) se almacenan en el heap.
 
 Go utiliza un **recolector de basura concurrente** para liberar memoria automáticamente. Es concurrente porque la mayor parte del trabajo de limpieza ocurre en paralelo con la ejecución del programa. Esto permite que el programador no tenga que liberar la memoria manualmente, evitando errores comunes como el acceso a memoria inválida.
 
@@ -242,9 +244,7 @@ Un GC concurrente mejora el rendimiento y la experiencia del usuario, ya que evi
 
 ## Ejercicios
 
-1. **Mapa de memoria.** Dado el siguiente código, dibujá un esquema de la
-   memoria indicando en qué segmento (datos, stack o heap) se almacena cada
-   variable y su contenido:
+1. **Mapa de memoria.** Dado el siguiente código, dibujá un esquema de la memoria indicando en qué segmento (datos, stack o heap) se almacena cada variable y su contenido:
 
    ```{code-block} go
    ---
@@ -264,8 +264,7 @@ Un GC concurrente mejora el rendimiento y la experiencia del usuario, ya que evi
    }
    ```
 
-2. **Escape analysis.** Para cada una de las siguientes funciones, indicá si
-   la variable creada escapa al heap o se queda en el stack. Justificá:
+2. **Escape analysis.** Para cada una de las siguientes funciones, indicá si la variable creada escapa al heap o se queda en el stack. Justificá:
 
    ```{code-block} go
    ---
@@ -288,18 +287,12 @@ Un GC concurrente mejora el rendimiento y la experiencia del usuario, ya que evi
    }
    ```
 
-3. **Strings en heap.** Explicá por qué el contenido de un `string` en Go
-   siempre se almacena en el heap, incluso cuando la variable que lo contiene
-   es local. ¿Qué parte de la variable queda en el stack?
+3. **Strings en heap.** Explicá por qué el contenido de un `string` en Go siempre se almacena en el heap, incluso cuando la variable que lo contiene es local. ¿Qué parte de la variable queda en el stack?
 
-4. **Stack frames.** Dada la secuencia de llamadas `main()` → `calcular()` →
-   `sumar(a, b int)`, describí el contenido del stack en cada paso. Indicá
-   qué datos contiene cada stack frame (parámetros, variables locales,
-   dirección de retorno).
+4. **Stack frames.** Dada la secuencia de llamadas `main()` → `calcular()` → `sumar(a, b int)`, describí el contenido del stack en cada paso. Indicá qué datos contiene cada stack frame (parámetros, variables locales, dirección de retorno).
 
 5. **Garbage collector.** Explicá brevemente:
 
    - Qué problema resuelve el garbage collector concurrente de Go.
-   - Qué significa *stop-the-world* y por qué las pausas son del orden de
-     microsegundos en Go.
+   - Qué significa *stop-the-world* y por qué las pausas son del orden de microsegundos en Go.
    - Qué ventaja tiene un GC concurrente frente a uno no concurrente.
