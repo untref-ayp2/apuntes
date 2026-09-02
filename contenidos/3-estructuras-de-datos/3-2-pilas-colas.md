@@ -72,9 +72,6 @@ class: important
 Es fundamental ocultar la implementación para que no se pueda manipular el contenedor de datos con operaciones no permitidas. Por ejemplo, la definición:
 
 ```{code-block} go
----
-linenos: true
----
 // Forma incorrecta de definir una pila,
 // porque no encapsula el contenedor de datos
 type Stack[T any] []T
@@ -83,9 +80,6 @@ type Stack[T any] []T
 deja expuesto el contenedor de datos y se podría manipular con operaciones propias de slices.
 
 ```{code-block} go
----
-linenos: true
----
 var p Stack[int]
 p = append(p, 1)
 p = append(p, 2)
