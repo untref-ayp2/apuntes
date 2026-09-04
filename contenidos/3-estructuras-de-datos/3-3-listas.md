@@ -263,7 +263,7 @@ find(buscado):
     si IsEmpty():
         retornar nil
     actual := head
-    para i := 0; i < tamaño; i++:
+    para i := 0; i < Size(); i++:
         si actual.dato == buscado:
             retornar actual
         actual = actual.siguiente
@@ -404,7 +404,7 @@ caption: Head — Lista Simple
 ---
 Head():
     si IsEmpty():
-        retornar zero, falso
+        retornar zero, falso  // lista vacía: no hay primer dato
     retornar head.dato, verdadero
 ```
 
@@ -417,7 +417,7 @@ caption: Head — Lista Doble
 ---
 Head():
     si IsEmpty():
-        retornar zero, falso
+        retornar zero, falso  // lista vacía: no hay primer dato
     retornar head.dato, verdadero
 ```
 
@@ -430,7 +430,7 @@ caption: Head — Lista Circular
 ---
 Head():
     si IsEmpty():
-        retornar zero, falso
+        retornar zero, falso  // lista vacía: no hay primer dato
     retornar head.dato, verdadero
 ```
 
@@ -449,7 +449,7 @@ caption: Tail — Lista Simple
 ---
 Tail():
     si IsEmpty():
-        retornar zero, falso
+        retornar zero, falso  // lista vacía: no hay último dato
     retornar tail.dato, verdadero
 ```
 
@@ -462,7 +462,7 @@ caption: Tail — Lista Doble
 ---
 Tail():
     si IsEmpty():
-        retornar zero, falso
+        retornar zero, falso  // lista vacía: no hay último dato
     retornar tail.dato, verdadero
 ```
 
@@ -475,8 +475,8 @@ caption: Tail — Lista Circular
 ---
 Tail():
     si IsEmpty():
-        retornar zero, falso
-    retornar head.prev.dato, verdadero
+        retornar zero, falso  // lista vacía: no hay último dato
+    retornar head.prev.dato, verdadero  // en la circular la cola precede a head
 ```
 
 ````
@@ -495,11 +495,11 @@ Prepend(data T)
 caption: Prepend — Lista Simple
 ---
 Prepend(dato):
-    nuevo := NuevoNodo(dato)
-    nuevo.siguiente = head
-    head = nuevo
-    si tail == nil:
-        tail = nuevo
+    nuevo := nuevoNodo(dato)
+    nuevo.siguiente = head  // apunta al que era el primer nodo
+    head = nuevo            // el nuevo pasa a ser el primer nodo
+    si IsEmpty():
+        tail = nuevo  // si estaba vacía, el nuevo también es la cola
     tamaño++
 ```
 
@@ -511,13 +511,13 @@ Prepend(dato):
 caption: Prepend — Lista Doble
 ---
 Prepend(dato):
-    nuevo := NuevoNodo(dato)
-    nuevo.siguiente = head
-    si head != nil:
-        head.prev = nuevo
-    head = nuevo
-    si tail == nil:
-        tail = nuevo
+    nuevo := nuevoNodo(dato)
+    nuevo.siguiente = head  // apunta al que era el primer nodo
+    si IsEmpty():
+        tail = nuevo  // si estaba vacía, el nuevo también es la cola
+    sino:
+        head.prev = nuevo  // el nodo anterior enlaza su prev al nuevo
+    head = nuevo  // el nuevo pasa a ser el primer nodo
     tamaño++
 ```
 
@@ -529,16 +529,16 @@ Prepend(dato):
 caption: Prepend — Lista Circular
 ---
 Prepend(dato):
-    nuevo := NuevoNodo(dato)
+    nuevo := nuevoNodo(dato)
     si IsEmpty():
-        nuevo.siguiente = nuevo
+        nuevo.siguiente = nuevo  // lista de un solo nodo: se apunta a sí mismo
         nuevo.prev = nuevo
     sino:
         cola := head.prev
         nuevo.siguiente = head
         nuevo.prev = cola
         head.prev = nuevo
-        cola.siguiente = nuevo
+        cola.siguiente = nuevo  // cierra el ciclo entre cola y el nuevo head
     head = nuevo
     tamaño++
 ```
@@ -561,12 +561,12 @@ Append(data T)
 caption: Append — Lista Simple
 ---
 Append(dato):
-    nuevo := NuevoNodo(dato)
-    si tail != nil:
-        tail.siguiente = nuevo
-    tail = nuevo
-    si head == nil:
-        head = nuevo
+    nuevo := nuevoNodo(dato)
+    si IsEmpty():
+        head = nuevo  // el primer nodo de la lista
+    sino:
+        tail.siguiente = nuevo  // se encadena tras la cola actual
+    tail = nuevo  // en ambos casos el nuevo pasa a ser la cola
     tamaño++
 ```
 
@@ -578,13 +578,13 @@ Append(dato):
 caption: Append — Lista Doble
 ---
 Append(dato):
-    nuevo := NuevoNodo(dato)
-    nuevo.prev = tail
-    si tail != nil:
-        tail.siguiente = nuevo
-    tail = nuevo
-    si head == nil:
-        head = nuevo
+    nuevo := nuevoNodo(dato)
+    nuevo.prev = tail  // apunta al que era la cola
+    si IsEmpty():
+        head = nuevo  // el primer nodo de la lista
+    sino:
+        tail.siguiente = nuevo  // se encadena tras la cola actual
+    tail = nuevo  // en ambos casos el nuevo pasa a ser la cola
     tamaño++
 ```
 
@@ -597,14 +597,14 @@ caption: Append — Lista Circular
 ---
 Append(dato):
     si IsEmpty():
-        Prepend(dato)
+        Prepend(dato)  // reutiliza el caso de lista con un solo nodo
         retornar
     cola := head.prev
-    nuevo := NuevoNodo(dato)
-    nuevo.prev = cola
+    nuevo := nuevoNodo(dato)
+    nuevo.prev = cola  // el nuevo va entre la cola y head
     nuevo.siguiente = head
     cola.siguiente = nuevo
-    head.prev = nuevo
+    head.prev = nuevo  // queda enlazado en ambos extremos del ciclo
     tamaño++
 ```
 
@@ -624,12 +624,12 @@ caption: InsertAfter — Lista Simple
 InsertAfter(buscado, dato):
     actual := find(buscado)
     si actual == nil:
-        retornar falso
-    nuevo := NuevoNodo(dato)
-    nuevo.siguiente = actual.siguiente
-    actual.siguiente = nuevo
+        retornar falso  // target no encontrado
+    nuevo := nuevoNodo(dato)
+    nuevo.siguiente = actual.siguiente  // el nuevo apunta al sucesor de actual
+    actual.siguiente = nuevo  // actual pasa a apuntar al nuevo
     si actual == tail:
-        tail = nuevo
+        tail = nuevo  // si inserté al final, el nuevo es la nueva cola
     tamaño++
     retornar verdadero
 ```
@@ -644,15 +644,15 @@ caption: InsertAfter — Lista Doble
 InsertAfter(buscado, dato):
     actual := find(buscado)
     si actual == nil:
-        retornar falso
-    nuevo := NuevoNodo(dato)
+        retornar falso  // target no encontrado
+    nuevo := nuevoNodo(dato)
     nuevo.siguiente = actual.siguiente
     nuevo.prev = actual
-    actual.siguiente = nuevo
-    si nuevo.siguiente != nil:
-        nuevo.siguiente.prev = nuevo
+    si actual == tail:
+        tail = nuevo  // si inserté al final, el nuevo es la nueva cola
     sino:
-        tail = nuevo
+        nuevo.siguiente.prev = nuevo  // el sucesor enlaza su prev al nuevo
+    actual.siguiente = nuevo  // actual pasa a apuntar al nuevo
     tamaño++
     retornar verdadero
 ```
@@ -667,12 +667,12 @@ caption: InsertAfter — Lista Circular
 InsertAfter(buscado, dato):
     actual := find(buscado)
     si actual == nil:
-        retornar falso
-    nuevo := NuevoNodo(dato)
+        retornar falso  // target no encontrado
+    nuevo := nuevoNodo(dato)
     nuevo.siguiente = actual.siguiente
     nuevo.prev = actual
-    actual.siguiente.prev = nuevo
-    actual.siguiente = nuevo
+    actual.siguiente.prev = nuevo  // el sucesor enlaza su prev al nuevo
+    actual.siguiente = nuevo  // actual pasa a apuntar al nuevo
     tamaño++
     retornar verdadero
 ```
@@ -691,20 +691,20 @@ InsertBefore(target, data T)
 caption: InsertBefore — Lista Simple
 ---
 InsertBefore(buscado, dato):
-    si head == nil:
-        retornar falso
+    si IsEmpty():
+        retornar falso  // no hay nada ante qué insertar
     si head.dato == buscado:
-        Prepend(dato)
+        Prepend(dato)  // insertar antes del primer nodo es un prepend
         retornar verdadero
     actual := head
     mientras actual.siguiente != nil:
         si actual.siguiente.dato == buscado:
-            nuevo := NuevoNodo(dato)
-            nuevo.siguiente = actual.siguiente
-            actual.siguiente = nuevo
+            nuevo := nuevoNodo(dato)
+            nuevo.siguiente = actual.siguiente  // el nuevo apunta al target
+            actual.siguiente = nuevo  // actual pasa a apuntar al nuevo
             tamaño++
             retornar verdadero
-        actual = actual.siguiente
+        actual = actual.siguiente  // recorre buscando al predecesor del target
     retornar falso
 ```
 
@@ -718,15 +718,16 @@ caption: InsertBefore — Lista Doble
 InsertBefore(buscado, dato):
     actual := find(buscado)
     si actual == nil:
-        retornar falso
-    nuevo := NuevoNodo(dato)
+        retornar falso  // target no encontrado
+    nuevo := nuevoNodo(dato)
     nuevo.prev = actual.prev
     nuevo.siguiente = actual
-    actual.prev = nuevo
-    si nuevo.prev != nil:
-        nuevo.prev.siguiente = nuevo
+    si actual == head:
+        head = nuevo  // si inserté antes del primer nodo, el nuevo es head
     sino:
-        head = nuevo
+        // el predecesor enlaza su siguiente al nuevo
+        nuevo.prev.siguiente = nuevo
+    actual.prev = nuevo  // target pasa a apuntar al nuevo
     tamaño++
     retornar verdadero
 ```
@@ -741,14 +742,14 @@ caption: InsertBefore — Lista Circular
 InsertBefore(buscado, dato):
     actual := find(buscado)
     si actual == nil:
-        retornar falso
-    nuevo := NuevoNodo(dato)
+        retornar falso  // target no encontrado
+    nuevo := nuevoNodo(dato)
     nuevo.prev = actual.prev
     nuevo.siguiente = actual
-    actual.prev.siguiente = nuevo
-    actual.prev = nuevo
+    actual.prev.siguiente = nuevo  // el predecesor enlaza su siguiente al nuevo
+    actual.prev = nuevo  // target pasa a apuntar al nuevo
     si actual == head:
-        head = nuevo
+        head = nuevo  // si inserté antes del primer nodo, el nuevo es head
     tamaño++
     retornar verdadero
 ```
@@ -773,10 +774,11 @@ caption: RemoveFirst — Lista Simple
 ---
 RemoveFirst():
     si IsEmpty():
-        retornar falso
-    head = head.siguiente
-    si head == nil:
-        tail = nil
+        retornar falso  // nada que eliminar
+    si Size() == 1:
+        Clear()  // el único nodo: se vacía toda la lista
+        retornar verdadero
+    head = head.siguiente  // salta el primer nodo
     tamaño--
     retornar verdadero
 ```
@@ -790,12 +792,12 @@ caption: RemoveFirst — Lista Doble
 ---
 RemoveFirst():
     si IsEmpty():
-        retornar falso
-    head = head.siguiente
-    si head != nil:
-        head.prev = nil
-    sino:
-        tail = nil
+        retornar falso  // nada que eliminar
+    si Size() == 1:
+        Clear()  // el único nodo: se vacía toda la lista
+        retornar verdadero
+    head = head.siguiente  // salta el primer nodo
+    head.prev = nil  // el nuevo head ya no tiene predecesor
     tamaño--
     retornar verdadero
 ```
@@ -809,14 +811,14 @@ caption: RemoveFirst — Lista Circular
 ---
 RemoveFirst():
     si IsEmpty():
-        retornar falso
-    si tamaño == 1:
-        head = nil
-    sino:
-        cola := head.prev
-        head = head.siguiente
-        head.prev = cola
-        cola.siguiente = head
+        retornar falso  // nada que eliminar
+    si Size() == 1:
+        Clear()  // el único nodo: se vacía toda la lista
+        retornar verdadero
+    cola := head.prev  // guarda la cola antes de mover head
+    head = head.siguiente  // salta el primer nodo
+    head.prev = cola
+    cola.siguiente = head  // vuelve a cerrar el ciclo
     tamaño--
     retornar verdadero
 ```
@@ -836,17 +838,15 @@ caption: RemoveLast — Lista Simple
 ---
 RemoveLast():
     si IsEmpty():
-        retornar falso
-    si head == tail:
-        head = nil
-        tail = nil
-        tamaño = 0
+        retornar falso  // nada que eliminar
+    si Size() == 1:
+        Clear()  // el único nodo: se vacía toda la lista
         retornar verdadero
     actual := head
     mientras actual.siguiente != tail:
-        actual = actual.siguiente
-    actual.siguiente = nil
-    tail = actual
+        actual = actual.siguiente  // avanza hasta el anteúltimo nodo
+    actual.siguiente = nil  // desconecta el último nodo
+    tail = actual  // el anteúltimo pasa a ser la cola
     tamaño--
     retornar verdadero
 ```
@@ -860,12 +860,12 @@ caption: RemoveLast — Lista Doble
 ---
 RemoveLast():
     si IsEmpty():
-        retornar falso
-    tail = tail.prev
-    si tail != nil:
-        tail.siguiente = nil
-    sino:
-        head = nil
+        retornar falso  // nada que eliminar
+    si Size() == 1:
+        Clear()  // el único nodo: se vacía toda la lista
+        retornar verdadero
+    tail = tail.prev  // retrocede al anteúltimo nodo
+    tail.siguiente = nil  // desconecta el último nodo
     tamaño--
     retornar verdadero
 ```
@@ -879,14 +879,14 @@ caption: RemoveLast — Lista Circular
 ---
 RemoveLast():
     si IsEmpty():
-        retornar falso
-    si tamaño == 1:
-        head = nil
-    sino:
-        cola := head.prev
-        anteultimo := cola.prev
-        anteultimo.siguiente = head
-        head.prev = anteultimo
+        retornar falso  // nada que eliminar
+    si Size() == 1:
+        Clear()  // el único nodo: se vacía toda la lista
+        retornar verdadero
+    cola := head.prev  // cola actual
+    anteultimo := cola.prev
+    anteultimo.siguiente = head  // la nueva cola apunta a head
+    head.prev = anteultimo  // head queda enlazado con la nueva cola
     tamaño--
     retornar verdadero
 ```
@@ -908,15 +908,17 @@ caption: Remove — Lista Simple
 ---
 Remove(dato):
     si IsEmpty():
-        retornar falso
+        retornar falso  // nada que eliminar
     si head.dato == dato:
-        RemoveFirst()
+        RemoveFirst()  // el target es la cabeza: reutiliza el caso simple
         retornar verdadero
     actual := head
     mientras actual.siguiente != nil:
         si actual.siguiente.dato == dato:
+            // salta el nodo a eliminar
             actual.siguiente = actual.siguiente.siguiente
             si actual.siguiente == nil:
+                // si eliminé el último, actual pasa a ser la cola
                 tail = actual
             tamaño--
             retornar verdadero
@@ -934,15 +936,17 @@ caption: Remove — Lista Doble
 Remove(dato):
     actual := find(dato)
     si actual == nil:
-        retornar falso
-    si actual.prev != nil:
+        retornar falso  // dato no encontrado
+    si actual == head:
+        head = actual.siguiente  // el target era la cabeza
+    sino:
+        // salta hacia adelante desde el predecesor
         actual.prev.siguiente = actual.siguiente
+    si actual == tail:
+        tail = actual.prev  // el target era la cola
     sino:
-        head = actual.siguiente
-    si actual.siguiente != nil:
+        // salta hacia atrás desde el sucesor
         actual.siguiente.prev = actual.prev
-    sino:
-        tail = actual.prev
     tamaño--
     retornar verdadero
 ```
@@ -956,14 +960,20 @@ caption: Remove — Lista Circular
 ---
 Remove(dato):
     si IsEmpty():
+        retornar falso  // nada que eliminar
+    si Size() == 1:
+        si head.dato == dato:
+            Clear()  // era el único nodo
+            retornar verdadero
         retornar falso
     actual := head
-    para i := 0; i < tamaño; i++:
+    para i := 0; i < Size(); i++:
         si actual.dato == dato:
+            // salta el nodo en el ciclo
             actual.prev.siguiente = actual.siguiente
             actual.siguiente.prev = actual.prev
             si actual == head:
-                head = actual.siguiente
+                head = actual.siguiente  // si eliminé la cabeza, avanza
             tamaño--
             retornar verdadero
         actual = actual.siguiente
@@ -992,7 +1002,7 @@ Values():
     actual := head
     mientras actual != nil:
         resultado.agregar(actual.dato)
-        actual = actual.siguiente
+        actual = actual.siguiente  // avanza al siguiente nodo
     retornar resultado
 ```
 
@@ -1008,7 +1018,7 @@ Values():
     actual := head
     mientras actual != nil:
         resultado.agregar(actual.dato)
-        actual = actual.siguiente
+        actual = actual.siguiente  // avanza al siguiente nodo
     retornar resultado
 ```
 
@@ -1021,10 +1031,11 @@ caption: Values — Lista Circular
 ---
 Values():
     si IsEmpty():
-        retornar []
+        retornar []  // sin nodos, no hay nada que recorrer
     resultado := []
     actual := head
-    para i := 0; i < tamaño; i++:
+    // nunca llega a nil: recorre una vuelta completa
+    para i := 0; i < Size(); i++:
         resultado.agregar(actual.dato)
         actual = actual.siguiente
     retornar resultado
@@ -1072,7 +1083,7 @@ Clear():
 caption: Clear — Lista Circular
 ---
 Clear():
-    head = nil
+    head = nil  // en la circular solo existe head: no hay tail que resetear
     tamaño = 0
 ```
 
@@ -1168,11 +1179,13 @@ find
 
 ```{code-block} text
 ---
-caption: find — Lista Simple
+caption: find — Lista con Centinelas
 ---
 find(buscado):
-    actual := head
-    mientras actual != nil:
+    // el primer nodo real está tras el centinela frontal
+    actual := head.siguiente
+    // el centinela trasero marca el fin: nunca se llega a nil
+    mientras actual != tail:
         si actual.dato == buscado:
             retornar actual
         actual = actual.siguiente
@@ -1180,13 +1193,14 @@ find(buscado):
 ```
 
 IsEmpty
-: La lista vacía se detecta cuando `size ==0` o los centinelas se apuntan entre sí.
+: La lista vacía se detecta cuando `size == 0` o los centinelas se apuntan entre sí.
 
 ```{code-block} text
 ---
 caption: IsEmpty — Lista con Centinelas
 ---
 IsEmpty():
+    // vacía cuando los centinelas se apuntan entre sí
     retornar head.siguiente == tail
 ```
 
@@ -1199,12 +1213,14 @@ caption: Head / Tail — Lista con Centinelas
 ---
 Head():
     si IsEmpty():
-        retornar zero, falso
+        retornar zero, falso  // lista vacía
+    // el primer nodo real está tras el centinela frontal
     retornar head.siguiente.dato, verdadero
 
 Tail():
     si IsEmpty():
-        retornar zero, falso
+        retornar zero, falso  // lista vacía
+    // el último nodo real está antes del centinela trasero
     retornar tail.prev.dato, verdadero
 ```
 
@@ -1218,12 +1234,13 @@ caption: InsertBefore — Lista con Centinelas
 InsertBefore(buscado, dato):
     actual := find(buscado)
     si actual == nil:
-        retornar falso
-    nuevo := NuevoNodo(dato)
+        retornar falso  // buscado no encontrado
+    nuevo := nuevoNodo(dato)
+    // si actual es el primer nodo real, su prev es el centinela head
     nuevo.prev = actual.prev
     nuevo.siguiente = actual
-    actual.prev.siguiente = nuevo
-    actual.prev = nuevo
+    actual.prev.siguiente = nuevo  // el predecesor enlaza su siguiente al nuevo
+    actual.prev = nuevo  // actual pasa a apuntar al nuevo
     tamaño++
     retornar verdadero
 ```
@@ -1238,12 +1255,13 @@ caption: InsertAfter — Lista con Centinelas
 InsertAfter(buscado, dato):
     actual := find(buscado)
     si actual == nil:
-        retornar falso
-    nuevo := NuevoNodo(dato)
+        retornar falso  // buscado no encontrado
+    nuevo := nuevoNodo(dato)
+    // el sucesor puede ser el centinela tail: nunca es nil
     nuevo.siguiente = actual.siguiente
     nuevo.prev = actual
-    actual.siguiente.prev = nuevo
-    actual.siguiente = nuevo
+    actual.siguiente.prev = nuevo  // el sucesor enlaza su prev al nuevo
+    actual.siguiente = nuevo  // actual pasa a apuntar al nuevo
     tamaño++
     retornar verdadero
 ```
@@ -1256,11 +1274,13 @@ Prepend
 caption: Prepend — Lista con Centinelas
 ---
 Prepend(dato):
-    nuevo := NuevoNodo(dato)
+    nuevo := nuevoNodo(dato)
+    // si la lista está vacía, head.siguiente es tail: igual funciona
     nuevo.siguiente = head.siguiente
     nuevo.prev = head
+    // el primer nodo real (o el centinela tail) enlaza su prev al nuevo
     head.siguiente.prev = nuevo
-    head.siguiente = nuevo
+    head.siguiente = nuevo  // el centinela head apunta al nuevo
     tamaño++
 ```
 
@@ -1272,11 +1292,13 @@ Append
 caption: Append — Lista con Centinelas
 ---
 Append(dato):
-    nuevo := NuevoNodo(dato)
-    nuevo.siguiente = tail
+    nuevo := nuevoNodo(dato)
+    nuevo.siguiente = tail  // apunta al centinela final
+    // si la lista está vacía, tail.prev es head: igual funciona
     nuevo.prev = tail.prev
+    // el último nodo real (o el centinela head) enlaza su siguiente al nuevo
     tail.prev.siguiente = nuevo
-    tail.prev = nuevo
+    tail.prev = nuevo  // el centinela tail apunta al nuevo
     tamaño++
 ```
 
@@ -1290,9 +1312,11 @@ caption: Remove — Lista con Centinelas
 Remove(dato):
     actual := find(dato)
     si actual == nil:
-        retornar falso
-    actual.prev.siguiente = actual.siguiente
-    actual.siguiente.prev = actual.prev
+        retornar falso  // dato no encontrado
+    // sin casos de cabeza o cola: si actual es el primer o último nodo real,
+    // el vecino del otro lado es un centinela y se reenlaza igual
+    actual.prev.siguiente = actual.siguiente  // el predecesor salta al sucesor
+    actual.siguiente.prev = actual.prev  // el sucesor salta al predecesor
     tamaño--
     retornar verdadero
 ```
@@ -1306,8 +1330,10 @@ caption: RemoveFirst — Lista con Centinelas
 ---
 RemoveFirst():
     si IsEmpty():
-        retornar falso
-    head.siguiente = head.siguiente.siguiente
+        retornar falso  // nada que eliminar
+    head.siguiente = head.siguiente.siguiente  // salta el primer nodo real
+    // el nuevo head.siguiente apunta al centinela
+    // (puede ser tail si era el único nodo)
     head.siguiente.prev = head
     tamaño--
     retornar verdadero
@@ -1322,8 +1348,10 @@ caption: RemoveLast — Lista con Centinelas
 ---
 RemoveLast():
     si IsEmpty():
-        retornar falso
-    tail.prev = tail.prev.prev
+        retornar falso  // nada que eliminar
+    tail.prev = tail.prev.prev  // retrocede al anteúltimo nodo real
+    // el nuevo tail.prev apunta al centinela
+    // (puede ser head si era el único nodo)
     tail.prev.siguiente = tail
     tamaño--
     retornar verdadero
@@ -1337,7 +1365,7 @@ Clear
 caption: Clear — Lista con Centinelas
 ---
 Clear():
-    head.siguiente = tail
+    head.siguiente = tail  // reenlaza los centinelas entre sí
     tail.prev = head
     tamaño = 0
 ```

@@ -168,6 +168,28 @@ FUNCION ...
 | Asignación     | `←` (U+2190)                            | `=`                              |
 | Indentación    | 4 espacios                              | tabs / 2 espacios                |
 
+**Comentarios en pseudocódigo:**
+
+Usar `//` para comentarios explicativos. Son texto plano (el bloque es `text`, no se
+resaltan), están pensados para el alumno y deben explicar el *porqué* o el *caso
+borde* más que repetir la instrucción.
+
+- **Inline** al final de la línea (precedidos por al menos dos espacios) cuando el
+  comentario es corto y se refiere a esa línea:
+  ````
+  cabeza ← cabeza.siguiente  // descarta el primer nodo
+  ````
+- **Línea aparte** (con la misma indentación del bloque) para explicar una sección
+  o un caso particular antes de las líneas que comenta:
+  ````
+      si cabeza == nulo:
+          retornar nulo  // lista vacía o valor no encontrado
+  ````
+- Cuando un comentario de línea propia introduce una rama `SI`, se escribe encima
+  de la línea de `SI`, no dentro.
+- No comentar lo obvio (p. ej. `tamaño--` no necesita «decrementa el contador»);
+  comentar por qué se hace o cuándo aplica el caso.
+
 ______________________________________________________________________
 
 ## 4. Figuras SVG
