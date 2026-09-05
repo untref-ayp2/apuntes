@@ -280,7 +280,6 @@ FUNCION (q *Queue[T]) IsEmpty() → bool
 FIN FUNCION
 ```
 
-Nótese que `Dequeue` remueve el primer elemento del *slice*, lo cual en Go implica desplazar todos los elementos restantes una posición hacia la izquierda. Esto hace que `Dequeue` sea $O(n)$, no $O(1)$. Más adelante veremos cómo implementar una cola con $O(1)$ en todas sus operaciones.
 
 Ejemplo de uso:
 
