@@ -1132,6 +1132,56 @@ String():
 ````
 `````
 
+### Primitivas exclusivas — Lista Circular
+
+Además de las operaciones de la interfaz común, la lista circular suele incorporar primitivas propias que aprovechan su naturaleza cíclica. Las más habituales mueven el puntero a la cabeza, lo que permite modelar aplicaciones de turnos o reproducción continua: planificación *round-robin*, playlist en modo repetición, ronda de un juego multijugador o pase de turno.
+
+```{admonition} Aclaración
+:class: note
+
+Aunque la lista circular tenga más primitivas que el resto de los tipos de lista, sigue cumpliendo la interfaz `List[T]` propuesta. Por lo tanto se puede usar en cualquier lugar donde se requiera una `list.List` (por ejemplo, como parámetro de una función o campo de una estructura). En ese caso solo estarán disponibles las operaciones de la interfaz; las primitivas exclusivas de la lista circular, como `Forward` o `Backward`, no lo estarán. Para acceder a ellas hay que referenciar el tipo concreto `CircularLinkedList[T]`.
+```
+
+Forward(n)
+: Mueve el puntero a la cabeza `n` posiciones en el sentido de `next` (hacia adelante). Es decir, el elemento que pasa a ser la cabeza es el que se encontraba `n` posiciones más adelante. Si `n <= 0`, no hace nada.
+
+```{code-block} text
+---
+caption: Forward — Lista Circular
+---
+Forward(n):
+    SI n <= 0 ENTONCES
+        RETORNAR  // n no positivo: no se avanza
+    FIN SI
+    SI IsEmpty() ENTONCES
+        RETORNAR
+    FIN SI
+    n ← n MOD Size()  // un ciclo completo deja la cabeza en el mismo lugar
+    PARA i ← 1 HASTA n HACER
+        head ← head.siguiente  // avanza en el sentido de next
+    FIN PARA
+```
+
+Backward(n)
+: Mueve el puntero a la cabeza `n` posiciones en el sentido de `prev` (hacia atrás). Es la operación inversa de `Forward`: el elemento que pasa a ser la cabeza es el que se encontraba `n` posiciones más atrás. Si `n <= 0`, no hace nada.
+
+```{code-block} text
+---
+caption: Backward — Lista Circular
+---
+Backward(n):
+    SI n <= 0 ENTONCES
+        RETORNAR  // n no positivo: no se retrocede
+    FIN SI
+    SI IsEmpty() ENTONCES
+        RETORNAR
+    FIN SI
+    n ← n MOD Size()  // un ciclo completo deja la cabeza en el mismo lugar
+    PARA i ← 1 HASTA n HACER
+        head ← head.anterior  // retrocede en el sentido de prev
+    FIN PARA
+```
+
 ## Lista con Centinelas
 
 ```{admonition} Definición
