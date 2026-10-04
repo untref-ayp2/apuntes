@@ -218,7 +218,7 @@ Supongamos que queremos modelar un sistema de archivos. Cada elemento del sistem
    ---
    // Componente define la operación común a archivos y carpetas
    type Componente interface {
-       Tamanio() int64
+       Tamaño() int
    }
    ```
 
@@ -231,10 +231,10 @@ Supongamos que queremos modelar un sistema de archivos. Cada elemento del sistem
    // Archivo representa un elemento simple (hoja) del sistema
    type Archivo struct {
        nombre string
-       bytes  int64
+       bytes  int
    }
 
-   func (a *Archivo) Tamanio() int64 {
+   func (a *Archivo) Tamaño() int {
        return a.bytes
    }
    ```
@@ -251,10 +251,10 @@ Supongamos que queremos modelar un sistema de archivos. Cada elemento del sistem
        componentes []Componente
    }
 
-   func (c *Carpeta) Tamanio() int64 {
-       var total int64
+   func (c *Carpeta) Tamaño() int {
+       var total int
        for _, comp := range c.componentes {
-           total += comp.Tamanio()
+           total += comp.Tamaño()
        }
        return total
    }
@@ -288,10 +288,10 @@ Supongamos que queremos modelar un sistema de archivos. Cada elemento del sistem
    proyecto.Agregar(src)
    proyecto.Agregar(docs)
 
-   fmt.Println(proyecto.Tamanio()) // 532992
+   fmt.Println(proyecto.Tamaño()) // 532992
    ```
 
-   `proyecto.Tamanio()` recorre recursivamente todos los componentes —archivos y carpetas— sin necesidad de saber si cada uno es simple o compuesto. El método `Agregar` recibe un `Componente`, por lo que acepta tanto `Archivo` como `Carpeta`.
+   `proyecto.Tamaño()` recorre recursivamente todos los componentes —archivos y carpetas— sin necesidad de saber si cada uno es simple o compuesto. El método `Agregar` recibe un `Componente`, por lo que acepta tanto `Archivo` como `Carpeta`.
 
 ## Patrón _Iterator_
 
