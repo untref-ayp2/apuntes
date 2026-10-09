@@ -130,9 +130,9 @@ Reinas en la misma diagonal
 ```
 
 El código completo de esta implementación está disponible en el repositorio
-`taller-algoritmos`, en el directorio
-`04-backtracking/ejemplos/nreinas/`.
-Allí se puede ejecutar con `go run ./04-backtracking/ejemplos/nreinas/`.
+`untref-ayp2/examples`, en el directorio
+`backtracking/reinas/`.
+Allí se puede ejecutar con `go run ./backtracking/reinas/`.
 
 ## Análisis de la complejidad computacional
 
