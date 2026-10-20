@@ -193,6 +193,8 @@ La implementación de esta estrategia utilizando tabulación es la siguiente:
 ---
 linenos: true
 ---
+import "math"
+
 type Item struct {
     peso  int
     valor int
@@ -208,16 +210,16 @@ func Mochila(obj []Item, capacidad int) int {
     // Llenado iterativo de la tabla
     for i := 1; i <= n; i++ {
         for w := 1; w <= capacidad; w++ {
-            if obj[i-1].peso > w {
+
+            // El item actual es `i-1` porque empezamos contando desde 1.
+            pi, vi := obj[i-1].peso, obj[i-1].valor
+
+            if pi > w {
                 dp[i][w] = dp[i-1][w]
             } else {
                 sin := dp[i-1][w]
-                con := obj[i-1].valor + dp[i-1][w-obj[i-1].peso]
-                if con > sin {
-                    dp[i][w] = con
-                } else {
-                    dp[i][w] = sin
-                }
+                con := vi + dp[i-1][w-pi]
+                dp[i][w] = math.Max(con, sin)
             }
         }
     }
@@ -266,6 +268,8 @@ Aplicada al problema de la mochila, la versión memoizada usa una matriz `memo` 
 ---
 linenos: true
 ---
+import "math"
+
 func Mochila(obj []Item, i int, w int, memo [][]int) int {
     if i == 0 || w == 0 {
         return 0
@@ -273,16 +277,15 @@ func Mochila(obj []Item, i int, w int, memo [][]int) int {
     if memo[i][w] != -1 {
         return memo[i][w]
     }
-    if obj[i-1].peso > w {
+
+    pi, vi := obj[i-1].peso, obj[i-1].valor
+
+    if pi > w {
         memo[i][w] = Mochila(obj, i-1, w, memo)
     } else {
         sin := Mochila(obj, i-1, w, memo)
-        con := obj[i-1].valor + Mochila(obj, i-1, w-obj[i-1].peso, memo)
-        if con > sin {
-            memo[i][w] = con
-        } else {
-            memo[i][w] = sin
-        }
+        con := vi + Mochila(obj, i-1, w-pi, memo)
+        memo[i][w] = math.Max(con, sin)
     }
     return memo[i][w]
 }
@@ -334,9 +337,8 @@ align: center
 
 ## Ejercicios
 
-Los ejercicios de este capítulo están en el directorio
-`05-programacion-dinamica/ejercicios/`
-del repositorio
-`taller-algoritmos`.
+Los ejercicios de este capítulo están en el directorio `05-programacion-dinamica/ejercicios/` del repositorio `taller-algoritmos`.
+
 Cada ejercicio tiene un esqueleto con `// TODO` y su correspondiente batería de tests.
+
 Para resolverlos, clonar el repositorio, completar las funciones y ejecutar `go test ./...`.

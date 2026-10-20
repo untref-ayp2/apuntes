@@ -37,6 +37,13 @@ Si deseas desarrollar y/o compilar el apunte de Algoritmos y Programación II, n
      - **Fedora**: `sudo dnf install google-roboto-fonts`
      - **macOS**: `brew install --cask font-roboto`
 
+   - **Fuente Noto Color Emoji** (necesaria para emojis en el PDF):
+
+      - **Arch / CachyOS**: `sudo pacman -S ttf-noto-color-emoji`
+      - **Debian / Ubuntu**: `sudo apt install fonts-noto-color-emoji`
+      - **Fedora**: `sudo dnf install google-noto-color-emoji`
+      - **macOS**: `brew install --cask font-noto-color-emoji`
+
 4. **Instalar `make`** (opcional, pero facilita los comandos):
 
    - En sistemas Unix ya suele estar instalado.
@@ -71,30 +78,31 @@ Al hacer push a `main`, un workflow de GitHub Actions compila el HTML y lo despl
 ## Estructura del proyecto
 
 ```text
-├── AGENTS.md                  # Directivas para asistentes IA
-├── ESTILOS.md                 # Guía de estilo canónica
-├── Makefile                   # Automatización de tareas
-├── requirements.txt           # Dependencias Python
-├── scripts/build_pdf.py       # Generación del PDF (pre-procesamiento + Typst)
+/
+├── AGENTS.md                       # Directivas para asistentes IA
+├── ESTILOS.md                      # Guía de estilo canónica
+├── Makefile                        # Automatización de tareas
+├── requirements.txt                # Dependencias Python
+├── scripts/build_pdf.py            # Generación del PDF (pre-procesamiento + Typst)
 ├── .github/workflows/
-│   └── deploy.yml             # CI/CD: build + deploy a GitHub Pages
-├── contenidos/
-│   ├── myst.yml               # Configuración de MyST
-│   ├── introduccion.md
-│   ├── references.bib
-│   ├── _static/
-│   │   ├── applets/           # Applets HTML/JS interactivos
-│   │   ├── figures/           # Imágenes SVG (con pares light/dark)
-│   │   ├── code/              # Código fuente Go
-│   │   ├── css/custom.css     # Estilos personalizados
-│   │   └── js/                # JavaScript auxiliar
-│   ├── templates/
-│   │   └── plain_typst_book_ayp2/  # Template Typst para PDF
-│   ├── exports/
-│   │   └── apunte-ayp2.pdf    # PDF generado
-│   ├── 1-presentacion/
-│   ├── 2-taller-de-go/
-│   ├── 3-estructuras-de-datos/
-│   ├── 4-diseno-de-algoritmos/
-│   └── 5-anexos/
+│   └── deploy.yml                  # CI/CD: build + deploy a GitHub Pages
+└── contenidos/
+    ├── myst.yml                    # Configuración de MyST
+    ├── introduccion.md
+    ├── references.bib
+    ├── _static/
+    │   ├── applets/                # Applets HTML/JS interactivos
+    │   ├── figures/                # Imágenes SVG (con pares light/dark)
+    │   ├── code/                   # Código fuente Go
+    │   ├── css/custom.css          # Estilos personalizados
+    │   └── js/                     # JavaScript auxiliar
+    ├── templates/
+    │   └── plain_typst_book_ayp2/  # Template Typst para PDF
+    ├── exports/
+    │   └── apunte-ayp2.pdf         # PDF generado
+    ├── 1-presentacion/
+    ├── 2-taller-de-go/
+    ├── 3-estructuras-de-datos/
+    ├── 4-diseno-de-algoritmos/
+    └── 5-anexos/
 ```
