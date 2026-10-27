@@ -280,7 +280,6 @@ FUNCION (q *Queue[T]) IsEmpty() → bool
 FIN FUNCION
 ```
 
-
 Ejemplo de uso:
 
 ```{code-block} go
@@ -306,11 +305,8 @@ func main() {
 
 ## Ejercicios
 
-Los ejercicios de este capítulo están en `02-pilas-colas/ejercicios/` del
-repositorio taller-tad.
+Los ejercicios de este capítulo están en `02-pilas-colas/ejercicios/` del repositorio `taller-tad`.
 
-Antes de resolverlos hay que tener implementados `SliceStack[T]` y `SliceQueue[T]`
-en data-structures,
-que está dentro del repositorio `taller-tad` y contiene las interfaces y los esqueletos.
-Ambas tareas se trabajan en paralelo: primero completás las implementaciones en
-`data-structures` y después las usás acá.
+Antes de resolverlos hay que tener implementados `SliceStack[T]` y `SliceQueue[T]` en `data-structures`, que está dentro del repositorio `taller-tad` y contiene las interfaces y los esqueletos.
+
+Ambas tareas se trabajan en paralelo: primero completás las implementaciones en `data-structures` y después las usás acá.

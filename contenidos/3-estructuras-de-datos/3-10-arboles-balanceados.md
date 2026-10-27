@@ -98,14 +98,14 @@ Supongamos que en el árbol de la {ref}`AVL` insertamos el (5) como hijo izquier
 ---
 class: only-light-mode
 ---
-Desbalanceo Izquierda-Izquierda: fb(20) = +2
+Desbalanceo Izquierda-Izquierda: $fb(20) = +2$
 ```
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQIZQ_dark.svg
 ---
 class: only-dark-mode
 ---
-Desbalanceo Izquierda-Izquierda: fb(20) = +2
+Desbalanceo Izquierda-Izquierda: $fb(20) = +2$
 ```
 
 Para restaurar el equilibrio se debe realizar una **rotación simple a la derecha** del nodo (20). Los nodos involucrados son el (20), el (15), el (10) y el recién insertado (5). El (15) asciende a la posición del (20), y el (20) pasa a ser su hijo derecho. El nodo (17), que originalmente era hijo derecho del (15), pasa a ser hijo izquierdo del (20).
@@ -150,14 +150,14 @@ Partiendo del árbol original, insertamos el (67) como hijo derecho del (66). Es
 ---
 class: only-light-mode
 ---
-Desbalanceo Derecha-Derecha: fb(60) = -2
+Desbalanceo Derecha-Derecha: $fb(60) = -2$
 ```
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERDER_dark.svg
 ---
 class: only-dark-mode
 ---
-Desbalanceo Derecha-Derecha: fb(60) = -2
+Desbalanceo Derecha-Derecha: $fb(60) = -2$
 ```
 
 Para corregirlo se realiza una rotación simple a la izquierda del nodo (60). El (65) asciende y el (60) pasa a ser su hijo izquierdo. El (64), que originalmente era hijo izquierdo del (65), pasa a ser hijo derecho del (60).
@@ -202,14 +202,14 @@ Partiendo del árbol original, insertamos el (18) como hijo derecho del (17). Es
 ---
 class: only-light-mode
 ---
-Desbalanceo Izquierda-Derecha: fb(20) = +2, fb(15) = -1
+Desbalanceo Izquierda-Derecha: $fb(20) = +2$, $fb(15) = -1$
 ```
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER_dark.svg
 ---
 class: only-dark-mode
 ---
-Desbalanceo Izquierda-Derecha: fb(20) = +2, fb(15) = -1
+Desbalanceo Izquierda-Derecha: $fb(20) = +2$, $fb(15) = -1$
 ```
 
 La solución consiste en dos pasos:
@@ -236,14 +236,14 @@ Luego de esta primera rotación, el árbol queda con el (17) en la posición que
 ---
 class: only-light-mode
 ---
-Árbol luego de la rotación a izquierda del (15): fb(20) = +2
+Árbol luego de la rotación a izquierda del (15): $fb(20) = +2$
 ```
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLIZQDER-2_dark.svg
 ---
 class: only-dark-mode
 ---
-Árbol luego de la rotación a izquierda del (15): fb(20) = +2
+Árbol luego de la rotación a izquierda del (15): $fb(20) = +2$
 ```
 
 2. **Rotar a la derecha** el nodo desbalanceado (20). El (17) asciende, el (20) pasa a ser su hijo derecho, y el subárbol derecho del (17) (que antes era el (18)) se reubica como hijo izquierdo del (20).
@@ -288,14 +288,14 @@ Partiendo del árbol original, insertamos el (82) como hijo izquierdo del (83). 
 ---
 class: only-light-mode
 ---
-Desbalanceo Derecha-Izquierda: fb(80) = -2, fb(85) = +1
+Desbalanceo Derecha-Izquierda: $fb(80) = -2$, $fb(85) = +1$
 ```
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-10-arboles-balanceados/AVLDERIZQ_dark.svg
 ---
 class: only-dark-mode
 ---
-Desbalanceo Derecha-Izquierda: fb(80) = -2, fb(85) = +1
+Desbalanceo Derecha-Izquierda: $fb(80) = -2$, $fb(85) = +1$
 ```
 
 Para restablecer el balance se podría rotar el (85) a la derecha y luego el (80) a la izquierda, pero también puede pensarse a la rotación doble como un único movimiento: se "tira" del (83) hacia arriba para que sea la nueva raíz del subárbol.
@@ -381,7 +381,7 @@ El factor de balanceo se define como:
 fb(n) = altura(hijo_izquierdo) - altura(hijo_derecho)
 ```
 
-Cuando |fb(n)| > 1, el nodo está desbalanceado y se debe aplicar la rotación correspondiente.
+Cuando $\left| fb(n) \right| > 1$, el nodo está desbalanceado y se debe aplicar la rotación correspondiente.
 
 ### Actualización de alturas
 
@@ -422,11 +422,8 @@ La función de comparación `cmp` permite trabajar con cualquier tipo de dato. L
 
 ## Ejercicios
 
-Implementar un árbol AVL en
-`data-structures`
-(dentro del repositorio `taller-tad`), paquete `avltree/`. El árbol debe mantener la altura en cada nodo y
-rebalancearse automáticamente después de cada inserción y eliminación
-mediante rotaciones simples y dobles.
+Implementar un árbol AVL en `data-structures` (dentro del repositorio `taller-tad`), paquete `avltree/`.
 
-La implementación de la eliminación ya está completa; las rotaciones
-(`rotateRight`, `rotateLeft`) y la inserción quedan a cargo del estudiante.
+El árbol debe mantener la altura en cada nodo y rebalancearse automáticamente después de cada inserción y eliminación mediante rotaciones simples y dobles.
+
+La implementación de la eliminación ya está completa; las rotaciones (`rotateRight`, `rotateLeft`) y la inserción quedan a cargo del estudiante.

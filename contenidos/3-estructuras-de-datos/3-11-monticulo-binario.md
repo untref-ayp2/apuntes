@@ -24,7 +24,6 @@ Por ejemplo, si se tiene una cola de prioridad con los siguientes elementos y pr
 |    G     |     1     |
 |    H     |     3     |
 |    I     |     2     |
-
 ```
 
 La cola de prioridad se comportará de la siguiente forma:
@@ -43,11 +42,20 @@ En este ejemplo se puede observar que el orden de extracción combina la priorid
 
 Las operaciones que definen una cola de prioridad son:
 
-- `Enqueue`: agregar un nuevo elemento con una prioridad asociada.
-- `Dequeue`: eliminar y devolver el elemento con mayor prioridad.
-- `Peek`: obtener el elemento con mayor prioridad sin eliminarlo.
-- `IsEmpty`: consultar si la cola está vacía.
-- `Size`: obtener la cantidad de elementos.
+`Enqueue`
+: agregar un nuevo elemento con una prioridad asociada.
+
+`Dequeue`
+: eliminar y devolver el elemento con mayor prioridad.
+
+`Peek`
+: obtener el elemento con mayor prioridad sin eliminarlo.
+
+`IsEmpty`
+: consultar si la cola está vacía.
+
+`Size`
+: obtener la cantidad de elementos.
 
 ### Interfaz
 
@@ -58,18 +66,18 @@ En Go, definimos una interfaz que capture este comportamiento:
 linenos: true
 ---
 type PriorityQueue[T any] interface {
-	// Enqueue agrega un nuevo elemento a la cola.
-	Enqueue(element T)
-	// Dequeue elimina y devuelve el elemento con mayor prioridad.
-	// Error si la cola está vacía.
-	Dequeue() (T, error)
-	// Peek devuelve el elemento con mayor prioridad sin eliminarlo.
-	// Error si la cola está vacía.
-	Peek() (T, error)
-	// IsEmpty devuelve true si la cola no tiene elementos.
-	IsEmpty() bool
-	// Size devuelve la cantidad de elementos en la cola.
-	Size() int
+    // Enqueue agrega un nuevo elemento a la cola.
+    Enqueue(element T)
+    // Dequeue elimina y devuelve el elemento con mayor prioridad.
+    // Error si la cola está vacía.
+    Dequeue() (T, error)
+    // Peek devuelve el elemento con mayor prioridad sin eliminarlo.
+    // Error si la cola está vacía.
+    Peek() (T, error)
+    // IsEmpty devuelve true si la cola no tiene elementos.
+    IsEmpty() bool
+    // Size devuelve la cantidad de elementos en la cola.
+    Size() int
 }
 ```
 
@@ -119,18 +127,16 @@ Existen diferentes tipos de montículos (binario, fibonacci, suave (_soft_), etc
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/heap-boxes_light.svg
 ---
-width: 50%
 class: only-light-mode
 ---
-Pirámide de Cajas
+Pirámide de cajas
 ```
 
 ```{figure} ../_static/figures/3-estructuras-de-datos/3-11-monticulo-binario/heap-boxes_dark.svg
 ---
-width: 50%
 class: only-dark-mode
 ---
-Pirámide de Cajas
+Pirámide de cajas
 ```
 
 Un **Montículo Binario** consiste en un árbol binario que cumple con dos propiedades fundamentales.
@@ -186,11 +192,17 @@ Representación con arreglos de un Montículo Binario de Mínimos
 Con las siguientes fórmulas se puede calcular la posición en el arreglo de cualquier hijo o padre de un nodo dado.
 
 ```{card} Fórmulas
-$\displaystyle H_{izq}(i) = 2 \; i + 1$
+$$
+H_{izq}(i) = 2i + 1
+$$
 
-$\displaystyle H_{der}(i) = 2 \; i + 2$
+$$
+H_{der}(i) = 2i + 2
+$$
 
-$\displaystyle Padre(i) = \left\lfloor \frac{i-1}{2} \right\rfloor$
+$$
+Padre(i) = \left\lfloor \frac{i-1}{2} \right\rfloor
+$$
 
 Donde el símbolo $\lfloor \; \rfloor$ indica el piso, es decir la parte entera del cociente.
 
@@ -320,37 +332,23 @@ FIN FUNCION
 Seleccionar el tipo de montículo (mínimo o máximo), ingresar uno o más enteros separados por coma y presionar Enter para encolarlos. Usar **>** para procesar una operación, **>>** para procesar todas las pendientes, o **Remover cima** para eliminar la raíz. Las teclas **\<** y **>** navegan entre pasos, **\<<** deshace la última inserción, y Espacio inicia/pausa la reproducción automática. Solo se admiten enteros de hasta 3 cifras (±999).
 
 <div class="only-html">
-
 <iframe src="/applets/3-estructuras-de-datos/3-11-monticulo-binario/heap-visualizer_light.html" width="100%" height="680px" class="only-light-mode"></iframe>
-
 <iframe src="/applets/3-estructuras-de-datos/3-11-monticulo-binario/heap-visualizer_dark.html" width="100%" height="680px" class="only-dark-mode"></iframe>
-
 </div>
 
 ## Ejercicios
 
-Los ejercicios de este capítulo se encuentran en el repositorio
-taller-tad, que incluye
-el módulo data-structures.
+Los ejercicios de este capítulo se encuentran en el repositorio `taller-tad`, que incluye el módulo data-structures.
 
 ### En data-structures
 
-1. **Implementar un montículo binario genérico** (`heap/`). Crear las
-   implementaciones `SliceHeap[T]` con constructores `NewMinHeap` y
-   `NewMaxHeap` que reciben una función de comparación `func(T, T) int`.
-   El montículo debe soportar las operaciones `Insert`, `Remove`, `Top`,
-   `Size` e `IsEmpty`.
+1. **Implementar un montículo binario genérico** (`heap/`). Crear las implementaciones `SliceHeap[T]` con constructores `NewMinHeap` y `NewMaxHeap` que reciben una función de comparación `func(T, T) int`.  El montículo debe soportar las operaciones `Insert`, `Remove`, `Top`, `Size` e `IsEmpty`.
 
-2. **Implementar una cola de prioridad genérica** (`priorityqueue/`). Crear
-   `PriorityQueue[T]` que recibe un `Heap[T]` por constructor (inyección de
-   dependencia). Operaciones: `Enqueue`, `Dequeue`, `Front`, `Size`, `IsEmpty`.
+2. **Implementar una cola de prioridad genérica** (`priorityqueue/`). Crear `PriorityQueue[T]` que recibe un `Heap[T]` por constructor (inyección de dependencia). Operaciones: `Enqueue`, `Dequeue`, `Front`, `Size`, `IsEmpty`.
 
 ### En taller-tad
 
-Los ejercicios de aplicación están en
-`10-monticulo-binario/ejercicios/`:
+Los ejercicios de aplicación están en `10-monticulo-binario/ejercicios/`:
 
-- **01-merge-listas**: fusionar K listas ordenadas en una sola usando una
-  cola de prioridad.
-- **02-triage**: sistema de atención hospitalaria que ordena pacientes por
-  gravedad y orden de llegada.
+- `01-merge-listas`: fusionar $K$ listas ordenadas en una sola usando una cola de prioridad.
+- `02-triage`: sistema de atención hospitalaria que ordena pacientes por gravedad y orden de llegada.

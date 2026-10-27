@@ -194,11 +194,8 @@ Este mismo patrón es el que aplicamos en el capítulo anterior con `NewHashTabl
 
 ## Ejercicios
 
-Los ejercicios de este capítulo están en `07-diccionarios/ejercicios/` del
-repositorio taller-tad.
+Los ejercicios de este capítulo están en `07-diccionarios/ejercicios/` del repositorio `taller-tad`.
 
-Antes de comenzar, asegurate de tener implementadas las estructuras necesarias en
-data-structures,
-que está dentro del repositorio `taller-tad`.
-Ambas tareas se trabajan en paralelo: primero completás las implementaciones
-en `data-structures` y después las usás acá.
+Antes de comenzar, asegurate de tener implementadas las estructuras necesarias en `data-structures`, que está dentro del repositorio `taller-tad`.
+
+Ambas tareas se trabajan en paralelo: primero completás las implementaciones en `data-structures` y después las usás acá.

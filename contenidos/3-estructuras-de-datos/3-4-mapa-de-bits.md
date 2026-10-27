@@ -188,11 +188,8 @@ Go también soporta los operadores de asignación compuesta, que combinan una op
 
 ## Ejercicios
 
-Los ejercicios de este capítulo están en `04-mapa-de-bits/ejercicios/` del
-repositorio taller-tad.
+Los ejercicios de este capítulo están en `04-mapa-de-bits/ejercicios/` del repositorio `taller-tad`.
 
-Antes de comenzar, asegurate de tener implementadas las estructuras necesarias en
-data-structures,
-que está dentro del repositorio `taller-tad`.
-Ambas tareas se trabajan en paralelo: primero completás las implementaciones
-en `data-structures` y después las usás acá.
+Antes de comenzar, asegurate de tener implementadas las estructuras necesarias en `data-structures`, que está dentro del repositorio `taller-tad`.
+
+Ambas tareas se trabajan en paralelo: primero completás las implementaciones en `data-structures` y después las usás acá.

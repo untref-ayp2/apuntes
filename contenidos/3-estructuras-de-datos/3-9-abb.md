@@ -53,9 +53,14 @@ Dos árboles binarios de búsqueda con el mismo recorrido inorden
 
 Las operaciones más comunes en un árbol binario de búsqueda son:
 
-- **Inserción**: Agregar un nuevo nodo al árbol manteniendo la propiedad de ABB.
-- **Búsqueda**: Encontrar un nodo en el árbol.
-- **Eliminación**: Quitar un nodo del árbol manteniendo la propiedad de ABB.
+Inserción
+: Agregar un nuevo nodo al árbol manteniendo la propiedad de ABB.
+
+Búsqueda
+: Encontrar un nodo en el árbol.
+
+Eliminación
+: Quitar un nodo del árbol manteniendo la propiedad de ABB.
 
 ### Inserción
 
@@ -396,11 +401,13 @@ func (n *BinaryNode[T]) Insert(value T, cmp func(T, T) int) *BinaryNode[T] {
     if n == nil {
         return &BinaryNode[T]{Value: value}
     }
+
     if cmp(value, n.Value) < 0 {
         n.Left = n.Left.Insert(value, cmp)
     } else if cmp(value, n.Value) > 0 {
         n.Right = n.Right.Insert(value, cmp)
     }
+
     return n
 }
 ```
@@ -467,11 +474,8 @@ En esta variante, el árbol binario subyacente provee las operaciones estructura
 
 ## Ejercicios
 
-Los ejercicios de este capítulo están en `09-abb/ejercicios/` del
-repositorio taller-tad.
+Los ejercicios de este capítulo están en `09-abb/ejercicios/` del repositorio `taller-tad`.
 
-Antes de comenzar, asegurate de tener implementadas las estructuras necesarias en
-data-structures,
-que está dentro del repositorio `taller-tad`.
-Ambas tareas se trabajan en paralelo: primero completás las implementaciones
-en `data-structures` y después las usás acá.
+Antes de comenzar, asegurate de tener implementadas las estructuras necesarias en `data-structures`, que está dentro del repositorio `taller-tad`.
+
+Ambas tareas se trabajan en paralelo: primero completás las implementaciones en `data-structures` y después las usás acá.

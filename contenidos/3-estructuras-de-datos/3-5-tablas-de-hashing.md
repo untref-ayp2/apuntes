@@ -213,7 +213,7 @@ A medida que se insertan elementos, el factor de carga $\alpha = n/m$ aumenta. C
 3. Se reubican todos los elementos activos (no eliminados) en el nuevo arreglo, recalculando sus índices con la nueva capacidad.
 4. Se actualiza el umbral para la nueva capacidad usando el mismo factor de carga.
 
-Este proceso se conoce como *rehashing* y tiene un costo de $O(n)$, donde $n$ es la cantidad de elementos en la tabla. Si bien es una operación costosa, al duplicar la capacidad ocurre con poca frecuencia: se realizan $n$ inserciones de costo $O(1)$ antes de cada redimensionamiento de $O(n)$, lo que da un costo amortizado de $O(1)$ por inserción.
+Este proceso se conoce como _rehashing_ y tiene un costo de $O(n)$, donde $n$ es la cantidad de elementos en la tabla. Si bien es una operación costosa, al duplicar la capacidad ocurre con poca frecuencia: se realizan $n$ inserciones de costo $O(1)$ antes de cada redimensionamiento de $O(n)$, lo que da un costo amortizado de $O(1)$ por inserción.
 
 En el código de ejemplo, el redimensionamiento se activa automáticamente en el método `Put` cuando la cantidad de elementos alcanza el umbral (`threshold`), calculado como `capacidad × factorDeCarga`.
 
@@ -256,30 +256,30 @@ package hashtable
 // K debe ser un tipo comparable (puede usarse como clave en un map de Go).
 // V puede ser cualquier tipo.
 type HashTable[K comparable, V any] interface {
-	// Put agrega un nuevo par clave-valor. Si la clave ya existe, actualiza
-	// el valor asociado.
-	Put(key K, value V)
-	// Get devuelve el valor asociado a la clave.
-	// Error si la clave no existe.
-	Get(key K) (V, error)
-	// Delete elimina el par clave-valor asociado a la clave.
-	// Error si la clave no existe.
-	Delete(key K) error
-	// Contains devuelve true si la clave existe en la tabla.
-	Contains(key K) bool
-	// Size devuelve la cantidad de elementos en la tabla.
-	Size() int
-	// IsEmpty devuelve true si la tabla no tiene elementos.
-	IsEmpty() bool
-	// Keys devuelve una lista con todas las claves.
-	Keys() []K
-	// Values devuelve una lista con todos los valores.
-	Values() []V
-	// Clear elimina todos los elementos de la tabla.
-	Clear()
-	// String devuelve una representación en cadena estilo Python dict.
-	// Formato: {clave1: valor1, clave2: valor2}
-	String() string
+    // Put agrega un nuevo par clave-valor. Si la clave ya existe, actualiza
+    // el valor asociado.
+    Put(key K, value V)
+    // Get devuelve el valor asociado a la clave.
+    // Error si la clave no existe.
+    Get(key K) (V, error)
+    // Delete elimina el par clave-valor asociado a la clave.
+    // Error si la clave no existe.
+    Delete(key K) error
+    // Contains devuelve true si la clave existe en la tabla.
+    Contains(key K) bool
+    // Size devuelve la cantidad de elementos en la tabla.
+    Size() int
+    // IsEmpty devuelve true si la tabla no tiene elementos.
+    IsEmpty() bool
+    // Keys devuelve una lista con todas las claves.
+    Keys() []K
+    // Values devuelve una lista con todos los valores.
+    Values() []V
+    // Clear elimina todos los elementos de la tabla.
+    Clear()
+    // String devuelve una representación en cadena estilo Python dict.
+    // Formato: {clave1: valor1, clave2: valor2}
+    String() string
 }
 ```
 ````
@@ -295,8 +295,8 @@ linenos: true
 package hashtable
 
 import (
-	"errors"
-	"fmt"
+    "errors"
+    "fmt"
 )
 
 // hashTableEntry representa una entrada en la tabla hash, que contiene una
@@ -306,24 +306,24 @@ import (
 // de compactar el arreglo, se marca la entrada como eliminada para que las
 // búsquedas lineales no se interrumpan.
 type hashTableEntry[K comparable, V any] struct {
-	key     K
-	value   V
-	deleted bool
+    key     K
+    value   V
+    deleted bool
 }
 
 // HashTableOpenAddressing es una implementación de hashing cerrado con sondeo
 // lineal que utiliza un arreglo para almacenar pares clave-valor.
 type HashTableOpenAddressing[K comparable, V any] struct {
-	// arreglo de entradas de la tabla hash.
-	buckets []*hashTableEntry[K, V]
-	// size es el número de elementos en la tabla.
-	size int
-	// capacity es la capacidad de la tabla.
-	capacity int
-	// loadFactor es el factor de carga de la tabla.
-	loadFactor float32
-	// threshold es el umbral de carga para redimensionar la tabla.
-	threshold int
+    // arreglo de entradas de la tabla hash.
+    buckets []*hashTableEntry[K, V]
+    // size es el número de elementos en la tabla.
+    size int
+    // capacity es la capacidad de la tabla.
+    capacity int
+    // loadFactor es el factor de carga de la tabla.
+    loadFactor float32
+    // threshold es el umbral de carga para redimensionar la tabla.
+    threshold int
 }
 
 // NewHashTableOpenAddressing crea una nueva tabla de hash cerrada con la
@@ -337,56 +337,56 @@ type HashTableOpenAddressing[K comparable, V any] struct {
 // - Si la capacidad no es un número primo, se redimensiona a la siguiente
 // capacidad primo mayor o igual a la capacidad especificada.
 func NewHashTableOpenAddressing[K comparable, V any](capacity int, loadFactor float32) *HashTableOpenAddressing[K, V] {
-	if capacity == 0 {
-		capacity = 17
-	}
-	if loadFactor <= 0 || loadFactor > 1 {
-		loadFactor = 0.75
-	}
-	if !isPrime(capacity) {
-		capacity = nextPrime(capacity)
-	}
-	return &HashTableOpenAddressing[K, V]{
-		buckets:    make([]*hashTableEntry[K, V], capacity),
-		size:       0,
-		capacity:   capacity,
-		loadFactor: loadFactor,
-		threshold:  int(float32(capacity) * loadFactor),
-	}
+    if capacity == 0 {
+        capacity = 17
+    }
+    if loadFactor <= 0 || loadFactor > 1 {
+        loadFactor = 0.75
+    }
+    if !isPrime(capacity) {
+        capacity = nextPrime(capacity)
+    }
+    return &HashTableOpenAddressing[K, V]{
+        buckets:    make([]*hashTableEntry[K, V], capacity),
+        size:       0,
+        capacity:   capacity,
+        loadFactor: loadFactor,
+        threshold:  int(float32(capacity) * loadFactor),
+    }
 }
 
 // Put agrega un nuevo par clave-valor a la tabla de hash. Si la clave ya
 // existe, actualiza el valor asociado a la clave.
 func (ht *HashTableOpenAddressing[K, V]) Put(key K, value V) {
-	if index, esta := ht.getIndex(key); esta {
-		ht.buckets[index].value = value
-		return
-	}
+    if index, esta := ht.getIndex(key); esta {
+        ht.buckets[index].value = value
+        return
+    }
 
-	if ht.size >= ht.threshold {
-		ht.resize()
-	}
+    if ht.size >= ht.threshold {
+        ht.resize()
+    }
 
-	index := ht.hash(key) % ht.capacity
-	for {
-		if ht.buckets[index] == nil || ht.buckets[index].deleted {
-			ht.buckets[index] = &hashTableEntry[K, V]{key: key, value: value}
-			ht.size++
-			return
-		}
-		index = (index + 1) % ht.capacity
-	}
+    index := ht.hash(key) % ht.capacity
+    for {
+        if ht.buckets[index] == nil || ht.buckets[index].deleted {
+            ht.buckets[index] = &hashTableEntry[K, V]{key: key, value: value}
+            ht.size++
+            return
+        }
+        index = (index + 1) % ht.capacity
+    }
 }
 
 // Get devuelve el valor asociado a la clave y nil. Si la clave no existe,
 // devuelve el zero value de V y un error.
 func (ht *HashTableOpenAddressing[K, V]) Get(key K) (V, error) {
-	index, exists := ht.getIndex(key)
-	if !exists {
-		var zero V
-		return zero, errors.New("key not found")
-	}
-	return ht.buckets[index].value, nil
+    index, exists := ht.getIndex(key)
+    if !exists {
+        var zero V
+        return zero, errors.New("key not found")
+    }
+    return ht.buckets[index].value, nil
 }
 
 // Delete elimina el par clave-valor asociado a la clave.
@@ -397,21 +397,21 @@ func (ht *HashTableOpenAddressing[K, V]) Get(key K) (V, error) {
 // lineales: si se eliminara la entrada, las búsquedas posteriores podrían no
 // encontrar elementos que están más allá en la secuencia de sondeo.
 func (ht *HashTableOpenAddressing[K, V]) Delete(key K) error {
-	index, exists := ht.getIndex(key)
-	if !exists {
-		return errors.New("key not found")
-	}
-	ht.buckets[index].deleted = true
-	var zero V
-	ht.buckets[index].value = zero
-	ht.size--
-	return nil
+    index, exists := ht.getIndex(key)
+    if !exists {
+        return errors.New("key not found")
+    }
+    ht.buckets[index].deleted = true
+    var zero V
+    ht.buckets[index].value = zero
+    ht.size--
+    return nil
 }
 
 // Contains devuelve true si la clave existe en la tabla.
 func (ht *HashTableOpenAddressing[K, V]) Contains(key K) bool {
-	_, exists := ht.getIndex(key)
-	return exists
+    _, exists := ht.getIndex(key)
+    return exists
 }
 
 // Keys devuelve una lista de todas las claves en la tabla de hash.
@@ -419,13 +419,13 @@ func (ht *HashTableOpenAddressing[K, V]) Contains(key K) bool {
 // Pre-asigna el slice con capacidad ht.size para evitar realocaciones durante
 // los append. Solo incluye entradas activas (no eliminadas).
 func (ht *HashTableOpenAddressing[K, V]) Keys() []K {
-	keys := make([]K, 0, ht.size)
-	for _, node := range ht.buckets {
-		if node != nil && !node.deleted {
-			keys = append(keys, node.key)
-		}
-	}
-	return keys
+    keys := make([]K, 0, ht.size)
+    for _, node := range ht.buckets {
+        if node != nil && !node.deleted {
+            keys = append(keys, node.key)
+        }
+    }
+    return keys
 }
 
 // Values devuelve una lista de todos los valores en la tabla de hash.
@@ -433,29 +433,29 @@ func (ht *HashTableOpenAddressing[K, V]) Keys() []K {
 // Pre-asigna el slice con capacidad ht.size para evitar realocaciones. Solo
 // incluye valores de entradas activas (no eliminadas).
 func (ht *HashTableOpenAddressing[K, V]) Values() []V {
-	values := make([]V, 0, ht.size)
-	for _, node := range ht.buckets {
-		if node != nil && !node.deleted {
-			values = append(values, node.value)
-		}
-	}
-	return values
+    values := make([]V, 0, ht.size)
+    for _, node := range ht.buckets {
+        if node != nil && !node.deleted {
+            values = append(values, node.value)
+        }
+    }
+    return values
 }
 
 // Size devuelve el número de elementos en la tabla de hash.
 func (ht *HashTableOpenAddressing[K, V]) Size() int {
-	return ht.size
+    return ht.size
 }
 
 // IsEmpty devuelve true si la tabla de hash está vacía, false en caso contrario.
 func (ht *HashTableOpenAddressing[K, V]) IsEmpty() bool {
-	return ht.size == 0
+    return ht.size == 0
 }
 
 // Clear elimina todos los elementos de la tabla de hash.
 func (ht *HashTableOpenAddressing[K, V]) Clear() {
-	ht.buckets = make([]*hashTableEntry[K, V], ht.capacity)
-	ht.size = 0
+    ht.buckets = make([]*hashTableEntry[K, V], ht.capacity)
+    ht.size = 0
 }
 
 // String devuelve una representación en cadena de la tabla de hash.
@@ -463,17 +463,17 @@ func (ht *HashTableOpenAddressing[K, V]) Clear() {
 // Formato: {clave1: valor1, clave2: valor2}. Tras recorrer todas las entradas
 // activas se elimina la última coma y espacio para mantener el formato limpio.
 func (ht *HashTableOpenAddressing[K, V]) String() string {
-	result := "{"
-	for _, node := range ht.buckets {
-		if node != nil && !node.deleted {
-			result += fmt.Sprintf("%v: %v", node.key, node.value) + ", "
-		}
-	}
-	if len(result) > 1 {
-		result = result[:len(result)-2]
-	}
-	result += "}"
-	return result
+    result := "{"
+    for _, node := range ht.buckets {
+        if node != nil && !node.deleted {
+            result += fmt.Sprintf("%v: %v", node.key, node.value) + ", "
+        }
+    }
+    if len(result) > 1 {
+        result = result[:len(result)-2]
+    }
+    result += "}"
+    return result
 }
 ```
 ````
@@ -509,12 +509,12 @@ const a int = 11
 // este mismo valor pueda reusarse al buscar en distintas capacidades (ej.
 // durante el redimensionamiento).
 func (ht *HashTableOpenAddressing[K, V]) hash(key K) int {
-	s := fmt.Sprintf("%v", key)
-	var hash int = 0
-	for _, c := range s {
-		hash = hash*a + int(c)
-	}
-	return hash
+    s := fmt.Sprintf("%v", key)
+    var hash int = 0
+    for _, c := range s {
+        hash = hash*a + int(c)
+    }
+    return hash
 }
 
 // getIndex devuelve el índice del bucket para una clave dada y un booleano que
@@ -529,12 +529,12 @@ func (ht *HashTableOpenAddressing[K, V]) hash(key K) int {
 // Al encontrar un bucket nil detiene la búsqueda porque en hashing cerrado
 // con sondeo lineal los elementos no saltan buckets vacíos.
 func (ht *HashTableOpenAddressing[K, V]) getIndex(key K) (int, bool) {
-	for i, index := 0, ht.hash(key)%ht.capacity; i < ht.capacity && ht.buckets[index] != nil; i, index = i+1, (index+1)%ht.capacity {
-		if !ht.buckets[index].deleted && ht.buckets[index].key == key {
-			return index, true
-		}
-	}
-	return 0, false
+    for i, index := 0, ht.hash(key)%ht.capacity; i < ht.capacity && ht.buckets[index] != nil; i, index = i+1, (index+1)%ht.capacity {
+        if !ht.buckets[index].deleted && ht.buckets[index].key == key {
+            return index, true
+        }
+    }
+    return 0, false
 }
 
 // resize redimensiona la tabla de hash y reubica todos los elementos en la
@@ -551,22 +551,22 @@ func (ht *HashTableOpenAddressing[K, V]) getIndex(key K) (int, bool) {
 // loadFactor se mantiene igual. Esto asegura que la próxima vez que se alcance
 // el umbral se vuelva a redimensionar.
 func (ht *HashTableOpenAddressing[K, V]) resize() {
-	newCapacity := nextPrime(ht.capacity * 2)
-	newBuckets := make([]*hashTableEntry[K, V], newCapacity)
+    newCapacity := nextPrime(ht.capacity * 2)
+    newBuckets := make([]*hashTableEntry[K, V], newCapacity)
 
-	for _, node := range ht.buckets {
-		if node != nil && !node.deleted {
-			index := ht.hash(node.key) % newCapacity
-			for newBuckets[index] != nil {
-				index = (index + 1) % newCapacity
-			}
-			newBuckets[index] = node
-		}
-	}
+    for _, node := range ht.buckets {
+        if node != nil && !node.deleted {
+            index := ht.hash(node.key) % newCapacity
+            for newBuckets[index] != nil {
+                index = (index + 1) % newCapacity
+            }
+            newBuckets[index] = node
+        }
+    }
 
-	ht.buckets = newBuckets
-	ht.capacity = newCapacity
-	ht.threshold = int(float32(newCapacity) * ht.loadFactor)
+    ht.buckets = newBuckets
+    ht.capacity = newCapacity
+    ht.threshold = int(float32(newCapacity) * ht.loadFactor)
 }
 
 // nextPrime devuelve el siguiente número primo mayor o igual a n.
@@ -575,14 +575,14 @@ func (ht *HashTableOpenAddressing[K, V]) resize() {
 // hasta encontrar un primo. Como la frecuencia de primos es aproximadamente
 // n / ln(n), rara vez recorre muchos números.
 func nextPrime(n int) int {
-	if n <= 1 {
-		return 2
-	}
-	for i := n; ; i++ {
-		if isPrime(i) {
-			return i
-		}
-	}
+    if n <= 1 {
+        return 2
+    }
+    for i := n; ; i++ {
+        if isPrime(i) {
+            return i
+        }
+    }
 }
 
 // isPrime devuelve true si n es un número primo, false en caso contrario.
@@ -591,21 +591,21 @@ func nextPrime(n int) int {
 // Esto permite verificar divisibilidad solo con números de esa forma,
 // reduciendo las iteraciones a ~1/3 de una verificación ingenua.
 func isPrime(n int) bool {
-	if n <= 1 {
-		return false
-	}
-	if n <= 3 {
-		return true
-	}
-	if n%2 == 0 || n%3 == 0 {
-		return false
-	}
-	for i := 5; i*i <= n; i += 6 {
-		if n%i == 0 || n%(i+2) == 0 {
-			return false
-		}
-	}
-	return true
+    if n <= 1 {
+        return false
+    }
+    if n <= 3 {
+        return true
+    }
+    if n%2 == 0 || n%3 == 0 {
+        return false
+    }
+    for i := 5; i*i <= n; i += 6 {
+        if n%i == 0 || n%(i+2) == 0 {
+            return false
+        }
+    }
+    return true
 }
 ```
 ````
@@ -614,17 +614,8 @@ La implementación concreta `HashTableOpenAddressing` satisface la interfaz `Has
 
 ## Ejercicios
 
-1. **Implementar tabla de hash con encadenamiento** — `HashTableOpenAddressing`
-   (sondeo lineal) ya está implementado en `data-structures/hashtable/` como
-   referencia. Completar el esqueleto de `HashTableChaining` (encadenamiento
-   separado) en el mismo paquete. Al ser `K comparable`, deben implementar una
-   función de _hash_ que funcione para cualquier tipo comparable; pueden usar el
-   paquete [`hash/maphash`](https://pkg.go.dev/hash/maphash) de la biblioteca
-   estándar de Go.
+1. **Implementar tabla de hash con encadenamiento** — `HashTableOpenAddressing` (sondeo lineal) ya está implementado en `data-structures/hashtable/` como referencia. Completar el esqueleto de `HashTableChaining` (encadenamiento separado) en el mismo paquete. Al ser `K comparable`, deben implementar una función de _hash_ que funcione para cualquier tipo comparable; pueden usar el paquete [`hash/maphash`](https://pkg.go.dev/hash/maphash) de la biblioteca estándar de Go.
 
-2. **Resolver ejercicios de aplicación** — Los ejercicios de este capítulo
-   están en
-   `05-hashing/ejercicios/`
-   del repositorio `taller-tad`.
+2. **Resolver ejercicios de aplicación** — Los ejercicios de este capítulo están en `05-hashing/ejercicios/` del repositorio `taller-tad`.
 
 [^1]: En este caso se toma el tiempo promedio, bajo ciertas condiciones. Cuando se evalúa un TAD donde se insertan, buscan y remueven elementos muy frecuentemente, se acostumbra tomar el tiempo promedio de las operaciones. Sin embargo, en el peor de los casos, algunas operaciones pueden tener un orden lineal.
