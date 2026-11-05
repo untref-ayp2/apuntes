@@ -13,6 +13,7 @@ html,body{overflow:hidden}
   --highlight:#1d4ed8;--arr-fill:#e1f5ff;--arr-stroke:#4682b4;--count-fill:#fff4e1;--count-stroke:#f6ad55;
   --sorted-fill:#d4edda;--sorted-stroke:#28a745;--highlight-fill:#fff3cd;--highlight-stroke:#ffc107;
   --error-fill:#ffe1e1;--error-stroke:#e9967a;--slot-stroke:#9ca3af;--cell-size:40px;--cell-gap:4px;
+  --mode-active-bg:#1d4ed8;--mode-active-text:#ffffff;
 }
 
 .applet{display:flex;flex-direction:column;padding:8px;gap:6px;width:100%;max-width:100%;margin:0 auto;flex:1;min-height:0}
@@ -24,7 +25,8 @@ html,body{overflow:hidden}
 .display-area .section-label{font-size:11px;font-weight:600;color:var(--btn-text);margin-bottom:3px;padding-left:2px}
 
 .array-row{display:flex;gap:var(--cell-gap);flex-wrap:wrap;min-height:calc(var(--cell-size) + 8px);align-items:center;padding:2px 0}
-.cell{width:var(--cell-size);height:var(--cell-size);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;font-family:'Courier New',monospace;border-radius:4px;border:2px solid;transition:all .2s;flex-shrink:0}
+.cell{width:var(--cell-size);height:var(--cell-size);position:relative;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;font-family:'Courier New',monospace;border-radius:4px;border:2px solid;transition:all .2s;flex-shrink:0}
+.cell .tag{position:absolute;top:1px;right:3px;font-size:9px;font-weight:600;line-height:1;opacity:.65;font-family:system-ui,sans-serif}
 
 .cell.arr{border-color:var(--arr-stroke);background:var(--arr-fill);color:var(--fg)}
 .cell.count{border-color:var(--count-stroke);background:var(--count-fill);color:var(--fg);font-size:14px}
@@ -54,6 +56,11 @@ html,body{overflow:hidden}
 .btn-gen:hover{background:var(--btn-hover)}
 .btn-gen.primary{background:var(--highlight);color:#fff;border-color:var(--highlight)}
 .btn-gen.primary:hover{opacity:.9}
+
+.variants{display:flex;gap:2px}
+.variants .var-btn{flex:1;padding:4px 6px;border:1px solid var(--border);border-radius:4px;background:var(--btn-bg);color:var(--btn-text);font-size:11px;cursor:pointer;font-weight:600;transition:background .15s}
+.variants .var-btn.active{background:var(--mode-active-bg);color:var(--mode-active-text);border-color:var(--mode-active-bg)}
+.variants .var-btn:hover:not(.active){background:var(--btn-hover)}
 
 .input-group{display:flex;flex-direction:column;gap:4px;font-size:12px}
 .input-row{display:flex;align-items:center;gap:4px}
@@ -90,7 +97,7 @@ html,body{overflow:hidden}
         <div class="array-row" id="origRow"></div>
       </div>
       <div class="section">
-        <div class="section-label">Arreglo de conteo</div>
+        <div class="section-label" id="countLabel">Arreglo de conteo</div>
         <div class="double-row">
           <div class="array-row" id="countIdxRow"></div>
           <div class="array-row" id="countRow"></div>
@@ -104,17 +111,21 @@ html,body{overflow:hidden}
         <div class="section-label">Rango k</div>
         <div class="k-slider">
           <label for="kSlider">k =</label>
-          <input type="range" id="kSlider" min="5" max="20" value="9" step="1">
-          <span id="kLabel">9</span>
+          <input type="range" id="kSlider" min="5" max="20" value="6" step="1">
+          <span id="kLabel">6</span>
         </div>
       </div>
     </div>
     <div class="sidebar">
+      <div class="variants" id="varSelector">
+        <button class="var-btn active" data-mode="unstable">Inestable</button>
+        <button class="var-btn" data-mode="stable">Estable</button>
+      </div>
       <button class="btn-gen primary" id="btnRandom">Aleatorio</button>
       <div class="input-group">
         <label for="valInput">Valores (separados por coma):</label>
         <div class="input-row">
-          <input type="text" id="valInput" placeholder="Ej: 4,2,8,3,1 (max 10)" autofocus>
+          <input type="text" id="valInput" placeholder="Ej: 6,1,2,3,0,2,5,1,3,5 (max 10)" autofocus>
           <span class="enter-hint">↵</span>
         </div>
       </div>
@@ -159,14 +170,17 @@ var countRow=document.getElementById('countRow');
 var sortedRow=document.getElementById('sortedRow');
 var kSlider=document.getElementById('kSlider');
 var kLabel=document.getElementById('kLabel');
+var countLabel=document.getElementById('countLabel');
 
-var k=9;
+var k=6;
 var original=[];
 var steps=[];
 var currentStep=-1;
 var isPlaying=false;
 var playTimer=null;
 var speedVal=1500;
+var currentMode='unstable';
+var letters='abcdefghij';
 
 kSlider.addEventListener('input',function(){
   k=parseInt(this.value);
@@ -186,19 +200,32 @@ valInput.addEventListener('keydown',function(e){
 
 btnRandom.addEventListener('click',function(){stopPlay();generateRandom();});
 
+var varBtns=document.querySelectorAll('#varSelector button');
+varBtns.forEach(function(b){
+  b.addEventListener('click',function(){
+    stopPlay();
+    varBtns.forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    currentMode=b.dataset.mode;
+    regenFromCurrent();
+  });
+});
+
 var btnClear=document.getElementById('btnClear');
 btnClear.addEventListener('click',function(){
   stopPlay();
   valInput.value='';
   original=[];
-  steps=[{desc:'Applet limpiado. Ingresar valores o generar aleatorios.',origHL:-1,countHL:-1,sortedHL:-1,countVals:[],sortedVals:[],phase:'init'}];
+  steps=[{desc:'Applet limpiado. Ingresar valores o generar aleatorios.',origHL:-1,countHL:-1,sortedHL:-1,countVals:new Array(k+1).fill(0),sortedVals:[],sortedTags:[],phase:'init'}];
   render(0);
 });
 
 function generateRandom(){
   var n=4+Math.floor(Math.random()*4);
+  // Rango chico a propósito: así aparecen valores repetidos y se ve la estabilidad
+  var maxV=Math.min(k,5);
   var arr=[];
-  for(var i=0;i<n;i++)arr.push(Math.floor(Math.random()*(k+1)));
+  for(var i=0;i<n;i++)arr.push(Math.floor(Math.random()*(maxV+1)));
   valInput.value=arr.join(',');
   buildSteps(arr);
 }
@@ -212,46 +239,118 @@ function parseAndBuild(inp){
 }
 
 function buildSteps(arr){
+  if(currentMode==='stable')buildStepsStable(arr);
+  else buildStepsUnstable(arr);
+}
+
+function buildStepsUnstable(arr){
   original=arr.slice();
   var n=arr.length;
   var count=new Array(k+1).fill(0);
   var sorted=new Array(n).fill(null);
+  var sortedTags=new Array(n).fill('');
+  var ocurrencias=[];
+  for(var v=0;v<=k;v++)ocurrencias.push([]);
   steps=[];
 
-  // Initial state
   steps.push({
-    desc:'Estado inicial. Arreglo original con '+n+' elementos, k='+k+'.',
-    origHL:-1,countHL:-1,sortedHL:-1,countVals:count.slice(),sortedVals:sorted.slice(),phase:'init'
+    desc:'Estado inicial, versión inestable. Arreglo original con '+n+' elementos, k='+k+'.',
+    origHL:-1,countHL:-1,sortedHL:-1,countVals:count.slice(),
+    sortedVals:sorted.slice(),sortedTags:sortedTags.slice(),phase:'init'
   });
 
-  // Phase 1: Count
   for(var i=0;i<n;i++){
     var val=arr[i];
     count[val]++;
+    ocurrencias[val].push(i);
     steps.push({
-      desc:'Contando: elemento arr['+i+'] = '+val+'. conteo['+val+'] → '+count[val]+'.',
-      origHL:i,countHL:val,countVals:count.slice(),sortedVals:sorted.slice(),phase:'count'
+      desc:'Contando: arr['+i+'] = '+val+' ('+letters[i]+'). conteo['+val+'] → '+count[val]+'.',
+      origHL:i,countHL:val,countVals:count.slice(),
+      sortedVals:sorted.slice(),sortedTags:sortedTags.slice(),phase:'count'
     });
   }
 
-  // Phase 2: Reconstruct
+  // Reconstrucción: cada bloque se llena tomando las ocurrencias desde el
+  // final de la lista, para mostrar que el orden de origen no se conserva
   var si=0;
   for(var v=0;v<=k;v++){
-    while(count[v]>0){
+    while(ocurrencias[v].length>0){
+      var origen=ocurrencias[v].pop();
       sorted[si]=v;
-      count[v]--;
+      sortedTags[si]=letters[origen];
       steps.push({
-        desc:'Reconstruyendo: colocar '+v+' en ordenado['+si+'].',
-        origHL:-1,countHL:v,countVals:count.slice(),sortedVals:sorted.slice(),sortedHL:si,phase:'reconstruct'
+        desc:'Reconstruyendo: el bloque del '+v+' empieza en la posición '+si+'. Se escribe '+letters[origen]+' en ordenado['+si+']; el algoritmo básico no distingue el orden de origen.',
+        origHL:-1,countHL:v,countVals:count.slice(),
+        sortedVals:sorted.slice(),sortedTags:sortedTags.slice(),sortedHL:si,phase:'reconstruct'
       });
+      count[v]--;
       si++;
     }
   }
 
-  // Final state
   steps.push({
-    desc:'¡Ordenado! Arreglo resultante de '+n+' elementos.',
-    origHL:-1,countHL:-1,countVals:count.slice(),sortedVals:sorted.slice(),phase:'done'
+    desc:'¡Ordenado! Pero no es estable: los valores repetidos no conservan su orden de origen.',
+    origHL:-1,countHL:-1,countVals:count.slice(),
+    sortedVals:sorted.slice(),sortedTags:sortedTags.slice(),phase:'done'
+  });
+
+  render(0);
+}
+
+function buildStepsStable(arr){
+  original=arr.slice();
+  var n=arr.length;
+  var count=new Array(k+1).fill(0);
+  var sorted=new Array(n).fill(null);
+  var sortedTags=new Array(n).fill('');
+  steps=[];
+
+  steps.push({
+    desc:'Estado inicial, versión estable. Arreglo original con '+n+' elementos, k='+k+'.',
+    origHL:-1,countHL:-1,sortedHL:-1,countVals:count.slice(),
+    sortedVals:sorted.slice(),sortedTags:sortedTags.slice(),phase:'init'
+  });
+
+  for(var i=0;i<n;i++){
+    var val=arr[i];
+    count[val]++;
+    steps.push({
+      desc:'Contando: arr['+i+'] = '+val+' ('+letters[i]+'). conteo['+val+'] → '+count[val]+'.',
+      origHL:i,countHL:val,countVals:count.slice(),
+      sortedVals:sorted.slice(),sortedTags:sortedTags.slice(),phase:'count'
+    });
+  }
+
+  // Sumas prefijo: las cuentas se convierten en posiciones finales
+  for(var v=1;v<=k;v++){
+    var previo=count[v-1];
+    var antes=count[v];
+    count[v]=antes+previo;
+    steps.push({
+      desc:'Sumas prefijo: conteo['+v+'] = '+antes+' + '+previo+' = '+count[v]+'. Ahora indica la posición final del último '+v+'.',
+      origHL:-1,countHL:v,countVals:count.slice(),
+      sortedVals:sorted.slice(),sortedTags:sortedTags.slice(),phase:'prefix'
+    });
+  }
+
+  // Colocación de derecha a izquierda: así se conserva el orden de los iguales
+  for(var i=n-1;i>=0;i--){
+    var valor=arr[i];
+    var pos=count[valor]-1;
+    sorted[pos]=valor;
+    sortedTags[pos]=letters[i];
+    steps.push({
+      desc:'Colocando de derecha a izquierda: arr['+i+'] = '+valor+' ('+letters[i]+') → ordenado['+pos+']. Queda detrás de sus iguales.',
+      origHL:i,countHL:valor,countVals:count.slice(),
+      sortedVals:sorted.slice(),sortedTags:sortedTags.slice(),sortedHL:pos,phase:'place'
+    });
+    count[valor]--;
+  }
+
+  steps.push({
+    desc:'¡Ordenado y estable! Los valores repetidos conservan su orden relativo.',
+    origHL:-1,countHL:-1,countVals:count.slice(),
+    sortedVals:sorted.slice(),sortedTags:sortedTags.slice(),phase:'done'
   });
 
   render(0);
@@ -260,16 +359,21 @@ function buildSteps(arr){
 function render(idx){
   currentStep=idx;
   var s=steps[idx];
+  countLabel.textContent=currentMode==='stable'?'Arreglo de conteo (posiciones finales)':'Arreglo de conteo (frecuencias)';
   origRow.innerHTML='';
   countIdxRow.innerHTML='';
   countRow.innerHTML='';
   sortedRow.innerHTML='';
 
-  // Original array
+  // Arreglo original: valor grande + letra de origen en el vértice
   for(var i=0;i<original.length;i++){
     var c=document.createElement('div');
     c.className='cell arr'+(i===s.origHL?' active':'');
-    c.textContent=original[i];
+    c.appendChild(document.createTextNode(String(original[i])));
+    var t=document.createElement('span');
+    t.className='tag';
+    t.textContent=letters[i];
+    c.appendChild(t);
     origRow.appendChild(c);
   }
 
@@ -285,33 +389,31 @@ function render(idx){
   for(var i=0;i<=k;i++){
     var c=document.createElement('div');
     var cls='cell count';
-    if(s.phase==='reconstruct'&&s.countVals[i]===0&&i<s.countHL)cls+=' done';
+    if(s.countVals[i]===0&&i<s.countHL&&(s.phase==='reconstruct'||s.phase==='place'))cls+=' done';
     if(i===s.countHL)cls+=' active';
     c.className=cls;
     c.textContent=s.countVals[i];
     countRow.appendChild(c);
   }
 
-  // Sorted array
-  var totalSorted=0;
+  // Sorted array, con la letra de origen de cada elemento
   for(var i=0;i<original.length;i++){
+    var lleno=s.sortedVals[i]!==null;
     var c=document.createElement('div');
-    var cls='cell sorted';
-    if(s.sortedVals[i]!==null){
-      cls+=' built';
-      totalSorted++;
-    }else{
-      cls+=' empty';
+    c.className='cell sorted'+(lleno?' built':' empty')+(i===s.sortedHL?' active':'');
+    c.appendChild(document.createTextNode(lleno?String(s.sortedVals[i]):''));
+    if(lleno){
+      var t=document.createElement('span');
+      t.className='tag';
+      t.textContent=s.sortedTags[i];
+      c.appendChild(t);
     }
-    if(i===s.sortedHL)cls+=' active';
-    c.className=cls;
-    c.textContent=s.sortedVals[i]!==null?s.sortedVals[i]:'';
     sortedRow.appendChild(c);
   }
 
   descEl.textContent=s.desc;
   stepCounterEl.textContent='Paso '+(idx+1)+' / '+steps.length;
-  arrInfoEl.textContent=original.length+' elem'+(original.length!==1?'s':'');
+  arrInfoEl.textContent=original.length+' elem'+(original.length!==1?'s':'')+' · '+(currentMode==='stable'?'estable':'inestable');
 
   updateBtns();
 }
@@ -387,7 +489,9 @@ document.addEventListener('keydown',function(e){
 });
 
 // Initial example
-buildSteps([4,2,2,8,3,3,1]);
+// arreglo inicial canónico (el mismo que usa la sección del apunte)
+valInput.value='6,1,2,3,0,2,5,1,3,5';
+buildSteps([6,1,2,3,0,2,5,1,3,5]);
 </script>
 </body>
 </html>

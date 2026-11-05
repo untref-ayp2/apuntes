@@ -12,59 +12,181 @@ Vamos a estudiar tres algoritmos de ordenamiento en tiempo lineal: **Ordenamient
 
 ## Ordenamiento por Conteo (_Counting Sort_)
 
-El **Ordenamiento por Conteo** ordena elementos enteros dentro de un rango conocido $[0, k]$. En lugar de comparar elementos, cuenta cuántas veces aparece cada valor y luego reconstruye el arreglo ordenado a partir de esas cuentas. El algoritmo sigue estos pasos:
+El **Ordenamiento por Conteo** ordena elementos enteros dentro de un rango conocido $[0, k]$. En lugar de comparar elementos, cuenta cuántas veces aparece cada valor y luego reconstruye el arreglo ordenado a partir de esas cuentas.
 
-1. **Inicialización**: Crear un arreglo de conteo de tamaño $k+1$ e inicializarlo a cero.
-2. **Conteo**: Recorrer el arreglo original y para cada elemento incrementar su posición correspondiente en el arreglo de conteo.
-3. **Reconstrucción**: Recorrer el arreglo de conteo y escribir cada valor tantas veces como se contó.
+Hay dos variantes del algoritmo y conviene distinguirlas desde el principio:
+
+- La **versión básica** cuenta las apariciones y reconstruye el arreglo recorriendo el arreglo de conteo. Es la más simple, pero **no es estable**.
+- La **versión con sumas prefijo** convierte las cuentas en posiciones finales dentro del arreglo ordenado y coloca cada elemento en su lugar. **Es estable**, y por eso es la que se usa como subrutina de Radix Sort.
+
+Las dos comparten la misma idea: el valor del elemento se usa como **índice** de un arreglo auxiliar. Por eso el algoritmo necesita conocer el rango de valores de antemano.
+
+### Versión básica: contar y reconstruir
+
+El algoritmo sigue estos pasos:
+
+1. **Inicialización**: crear un arreglo de conteo de tamaño $k+1$ e inicializarlo en cero.
+2. **Conteo**: recorrer el arreglo original y, para cada elemento, incrementar la posición correspondiente del arreglo de conteo.
+3. **Reconstrucción**: recorrer el arreglo de conteo en orden creciente y escribir cada valor tantas veces como se contó.
 
 ```{code-block} text
 ---
+caption: Counting Sort básico (contar y reconstruir)
 linenos: true
-caption: Counting Sort (Ordenamiento por Conteo)
 ---
 FUNCION CountingSort(arreglo, k)
     conteo ← arreglo de tamaño k+1 inicializado en 0
     n ← longitud(arreglo)
 
     PARA i ← 0 HASTA n-1 HACER
-        valor ← arreglo[i]
-        conteo[valor] ← conteo[valor] + 1
+        conteo[arreglo[i]] ← conteo[arreglo[i]] + 1
     FIN PARA
 
+    // la reconstrucción lee solo el arreglo de conteo, por eso se puede
+    // escribir la salida sobre el mismo arreglo de entrada
     indice ← 0
-    PARA i ← 0 HASTA k HACER
-        MIENTRAS conteo[i] > 0 HACER
-            arreglo[indice] ← i
+    PARA valor ← 0 HASTA k HACER
+        PARA repeticiones ← 1 HASTA conteo[valor] HACER
+            arreglo[indice] ← valor
             indice ← indice + 1
-            conteo[i] ← conteo[i] - 1
-        FIN MIENTRAS
+        FIN PARA
     FIN PARA
 
     RETORNAR arreglo
 FIN FUNCION
 ```
 
+```{admonition} Pisar el arreglo original o devolver uno nuevo
+---
+class: note
+---
+La reconstrucción lee únicamente el arreglo de conteo, así que escribir la salida sobre el mismo arreglo de entrada es seguro: no se pisa ningún dato que todavía haga falta. Esa es la versión del pseudocódigo anterior, y tiene la ventaja de no pedir espacio adicional para la salida (más allá del arreglo de conteo, $O(k)$).
+
+La otra opción es reservar un arreglo nuevo de $n$ posiciones y escribir ahí, dejando la entrada intacta. Cuesta $O(n)$ de espacio extra, pero conserva el arreglo original: es lo que se necesita cuando no se puede modificar la entrada o cuando cada elemento tiene información asociada que hay que mantener.
+```
+
+```{admonition} La versión básica no es estable
+---
+class: important
+---
+Contar y reconstruir alcanza para ordenar, pero no para preservar el orden relativo de los elementos iguales. Si los datos llevan información asociada —una edad con su nombre, un pedido con su fecha, una palabra con su frecuencia—, esa información queda desordenada dentro de cada grupo de valores iguales.
+```
+
+#### ¿Por qué no es estable?
+
+Al contar, el algoritmo **descarta la identidad** de cada elemento: solo conserva cuántas veces aparece cada valor. Cuando dos elementos tienen el mismo valor, la reconstrucción los escribe uno detrás del otro sin ninguna información sobre cuál apareció primero. Con enteros sueltos no se nota —dos `3` son indistinguibles—, pero con datos compuestos importa.
+
+No se trata de un descuido de la implementación sino de una consecuencia del diseño: en ningún momento hay una estructura que recuerde el orden de aparición. Y como el algoritmo no compara elementos, tampoco puede desempatar mirando el dato asociado.
+
+Recordar la definición de estabilidad de {ref}`ordenamientos-por-comparacion`: un algoritmo es estable si mantiene el orden relativo de los elementos que tienen la misma clave.
+
+### Versión estable: de cuentas a posiciones
+
+Para que el ordenamiento sea estable hay que responder otra pregunta: no *cuántas veces* aparece cada valor, sino **en qué posición del arreglo ordenado termina cada elemento**. Las sumas prefijo dan esa información a partir de las cuentas.
+
+Si `conteo[v]` guarda la frecuencia de `v`, acumular hacia la derecha da la cantidad de elementos menores o iguales a `v`:
+
+$$\text{conteo}[v] \leftarrow \text{conteo}[v] + \text{conteo}[v-1]$$
+
+Después de ese recorrido, `conteo[v]` es la cantidad de elementos $\leq v$; en otras palabras, la **posición final** (contando desde 1) del último elemento que vale `v`. En un arreglo indexado desde 0, ese último elemento va en el índice `conteo[v] - 1`, y los elementos anteriores de ese mismo valor van en los índices inmediatamente anteriores. El arreglo de conteo deja de guardar cuentas y pasa a guardar **posiciones**.
+
+Por ejemplo, con el arreglo `[6, 1, 2, 3, 0, 2, 5, 1, 3, 5]` y $k = 6$:
+
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-7-ordenamientos-lineales/counting-sort-prefijos_light.svg
+---
+class: only-light-mode
+width: 100%
+---
+De cuentas a posiciones finales: las sumas prefijo indican dónde termina el bloque de cada valor y el recorrido de derecha a izquierda preserva el orden de los repetidos. La letra de cada celda identifica el elemento de origen: así se ve que los valores repetidos conservan su orden de aparición.
+```
+
+```{figure} ../_static/figures/4-diseno-de-algoritmos/4-7-ordenamientos-lineales/counting-sort-prefijos_dark.svg
+---
+class: only-dark-mode
+width: 100%
+---
+De cuentas a posiciones finales: las sumas prefijo indican dónde termina el bloque de cada valor y el recorrido de derecha a izquierda preserva el orden de los repetidos. La letra de cada celda identifica el elemento de origen: así se ve que los valores repetidos conservan su orden de aparición.
+```
+
+En la fila de sumas prefijo, `conteo[3] = 7` indica que hay 7 elementos $\leq 3$, así que el **último** `3` ocupa el índice `7 - 1 = 6`; los elementos anteriores de ese bloque van en los índices previos. Notar que `conteo[4] = 7` también, porque no hay elementos con ese valor: el bloque del valor `4` es vacío.
+
+**Cómo se reconstruye el arreglo ordenado.** Ya no hace falta recorrer el arreglo de conteo: se recorre el **arreglo original** y, para cada elemento, se calcula su posición con `conteo[valor] - 1`. Después de colocarlo se decrementa `conteo[valor]`, para que el siguiente elemento con el mismo valor use la posición libre anterior.
+
+```{table} Colocación recorriendo el arreglo original de derecha a izquierda
+|  i  | arreglo[i] | conteo[arreglo[i]] | posición | salida parcial            |
+| :-: | :--------: | :----------------: | :------: | :------------------------ |
+|  9  |     5      |         9          |    8     | `[_, _, _, _, _, _, _, _, 5, _]` |
+|  8  |     3      |         7          |    6     | `[_, _, _, _, _, _, 3, _, 5, _]` |
+|  7  |     1      |         3          |    2     | `[_, _, 1, _, _, _, 3, _, 5, _]` |
+|  6  |     5      |         8          |    7     | `[_, _, 1, _, _, _, 3, 5, 5, _]` |
+|  5  |     2      |         5          |    4     | `[_, _, 1, _, 2, _, 3, 5, 5, _]` |
+|  4  |     0      |         1          |    0     | `[0, _, 1, _, 2, _, 3, 5, 5, _]` |
+|  3  |     3      |         6          |    5     | `[0, _, 1, _, 2, 3, 3, 5, 5, _]` |
+|  2  |     2      |         4          |    3     | `[0, _, 1, 2, 2, 3, 3, 5, 5, _]` |
+|  1  |     1      |         2          |    1     | `[0, 1, 1, 2, 2, 3, 3, 5, 5, _]` |
+|  0  |     6      |         10         |    9     | `[0, 1, 1, 2, 2, 3, 3, 5, 5, 6]` |
+```
+
+Observar los dos `3`: se colocan de atrás hacia adelante (primero el de `i = 8` en el índice 6, después el de `i = 3` en el índice 5), así que el que estaba antes en la entrada queda antes en la salida. Lo mismo pasa con los `1`, los `2` y los `5`. Eso es lo que se llama estabilidad.
+
+**Por qué se recorre de atrás hacia adelante.** Con `conteo[valor] - 1` se toma siempre la **última** posición libre del bloque de ese valor. Recorriendo la entrada desde el final, el último elemento de cada grupo es el primero en colocarse (en la última posición del bloque) y los anteriores se ubican en las posiciones previas, preservando el orden de aparición. Si se recorriera de izquierda a derecha con la misma fórmula, los elementos iguales quedarían en orden inverso: el arreglo seguiría ordenado, pero dejaría de ser estable.
+
+```{code-block} text
+---
+caption: Counting Sort estable (sumas prefijo)
+linenos: true
+---
+FUNCION CountingSortEstable(arreglo, k)
+    n ← longitud(arreglo)
+    salida ← arreglo de tamaño n
+    conteo ← arreglo de tamaño k+1 inicializado en 0
+
+    // 1. Contar apariciones
+    PARA i ← 0 HASTA n-1 HACER
+        conteo[arreglo[i]] ← conteo[arreglo[i]] + 1
+    FIN PARA
+
+    // 2. Sumas prefijo: conteo[v] pasa a ser la cantidad de elementos <= v,
+    //    o sea la posición final (desde 1) del último elemento de valor v
+    PARA v ← 1 HASTA k HACER
+        conteo[v] ← conteo[v] + conteo[v-1]
+    FIN PARA
+
+    // 3. Colocar de derecha a izquierda: cada elemento entra al final de su
+    //    bloque y el contador retrocede para el siguiente elemento igual
+    PARA i ← n-1 HASTA 0 PASO -1 HACER
+        valor ← arreglo[i]
+        salida[conteo[valor] - 1] ← arreglo[i]
+        conteo[valor] ← conteo[valor] - 1
+    FIN PARA
+
+    RETORNAR salida
+FIN FUNCION
+```
+
+```{admonition} La versión estable no puede escribir sobre la entrada
+---
+class: note
+---
+La colocación lee `arreglo[i]` mientras escribe en `salida`, así que necesita un arreglo de salida propio: no se puede reutilizar la entrada como en la versión básica. El espacio extra es $O(n)$ para la salida más $O(k)$ para el arreglo de conteo.
+```
+
 <div class="only-html">
 
-A continuación se puede visualizar paso a paso el funcionamiento de Counting Sort.
-Se puede ingresar un arreglo de hasta 10 enteros no negativos separados por coma, o generar uno
-aleatorio con el botón **Generar**. Los botones ◀ ▶ permiten avanzar paso a paso,
-y >> reproduce la animación automáticamente. La vista muestra el arreglo original,
-el arreglo de conteo y la reconstrucción del arreglo ordenado.
+A continuación se puede visualizar paso a paso el funcionamiento de Counting Sort con sus dos variantes. Los botones **Inestable** y **Estable** permiten elegir cuál animar; cada elemento se muestra con una letra que identifica su posición de origen, de modo que se pueda ver qué ocurre con los valores repetidos. En el modo inestable los repetidos terminan en orden inverso al de origen (el algoritmo básico no tiene información para desempatar); en el modo estable conservan el orden de origen. Se puede ingresar un arreglo de hasta 10 enteros no negativos separados por coma, o generar uno aleatorio con el botón **Aleatorio**. Los botones ◀ ▶ permiten avanzar paso a paso, y >> reproduce la animación automáticamente. La vista muestra el arreglo original, el arreglo de conteo y el arreglo ordenado.
 
-<iframe src="/applets/4-diseno-de-algoritmos/4-7-ordenamientos-lineales/counting-sort_light.html" width="100%" height="500px" class="only-light-mode"></iframe>
+<iframe src="/applets/4-diseno-de-algoritmos/4-7-ordenamientos-lineales/counting-sort_light.html" width="100%" height="560px" class="only-light-mode"></iframe>
 
-<iframe src="/applets/4-diseno-de-algoritmos/4-7-ordenamientos-lineales/counting-sort_dark.html" width="100%" height="500px" class="only-dark-mode"></iframe>
+<iframe src="/applets/4-diseno-de-algoritmos/4-7-ordenamientos-lineales/counting-sort_dark.html" width="100%" height="560px" class="only-dark-mode"></iframe>
 
 </div>
 
 ### Complejidad
 
-La complejidad del **Ordenamiento por Conteo** es $O(n + k)$, donde $n$ es la cantidad de elementos y $k$ es el rango de valores. Es eficiente cuando $k$ es del orden de $n$ o menor. Si $k$ es mucho mayor que $n$, el arreglo de conteo se vuelve impracticable.
+Las dos variantes son $O(n + k)$: se recorre el arreglo una vez para contar, se recorre el arreglo de conteo una vez para acumular las sumas prefijo (solo en la variante estable) y se recorre el arreglo una vez más para reconstruir o colocar. Es eficiente cuando $k$ es del orden de $n$ o menor. Si $k$ es mucho mayor que $n$, el arreglo de conteo se vuelve impracticable.
 
-- **Estable**: sí, si se recorre el arreglo original de derecha a izquierda en la fase de reconstrucción (la versión presentada no es estable; la variante estable acumula sumas prefijo para determinar posiciones finales).
-- **_In Place_**: no, requiere espacio adicional $O(k)$ para el arreglo de conteo.
+- **Estable**: la variante con sumas prefijo, sí; la básica, no.
+- **_In Place_**: no. El arreglo de conteo requiere $O(k)$ en ambas variantes. La versión básica puede escribir la salida sobre la entrada y no suma espacio; la versión estable necesita un arreglo de salida de $O(n)$ porque lee la entrada mientras coloca.
 
 ## Ordenamiento por Urnas (_Bucket Sort_)
 
@@ -132,7 +254,7 @@ La complejidad del **Ordenamiento por Urnas** es $O(n + k)$ en promedio, donde $
 
 ## Radix Sort
 
-El **Radix Sort** ordena elementos procesándolos dígito por dígito, desde el menos significativo (LSD) hasta el más significativo (MSD). Utiliza un algoritmo de ordenamiento **estable** (como Counting Sort o Bucket Sort) como subrutina para ordenar por cada dígito.
+El **Radix Sort** ordena elementos procesándolos dígito por dígito, desde el menos significativo (LSD) hasta el más significativo (MSD). Utiliza un algoritmo de ordenamiento **estable** (como Counting Sort o Bucket Sort) como subrutina para ordenar por cada dígito. En la práctica se usa la variante estable de Counting Sort de la sección anterior: la que convierte las cuentas en posiciones con sumas prefijo y coloca recorriendo la entrada de derecha a izquierda.
 
 1. **Identificación del dígito menos significativo**: Comenzar con la posición de dígito $d = 0$ (unidades).
 2. **Ordenamiento estable**: Ordenar los elementos según el dígito en la posición $d$ usando un algoritmo estable.
@@ -208,14 +330,15 @@ La complejidad del **Radix Sort** es $O(n \times d)$, donde $n$ es la cantidad d
 ## Comparación
 
 ```{table} Algoritmos de Ordenamiento Lineal
-| Algoritmo      | Complejidad       | Estable | In Place | Requisito                          |
-| :------------- | :---------------: | :-----: | :------: | :--------------------------------- |
-| Counting Sort  | $O(n + k)$        | Sí*     | No       | Rango acotado $[0, k]$             |
-| Bucket Sort    | $O(n + k)$        | Sí**    | No       | Distribución uniforme              |
-| Radix Sort     | $O(n \times d)$   | Sí      | No       | Valores descomponibles en dígitos  |
+| Algoritmo                    | Complejidad     | Estable | In Place | Requisito                          |
+| :--------------------------- | :-------------: | :-----: | :------: | :--------------------------------- |
+| Counting Sort (básico)       | $O(n + k)$      | No      | No*      | Rango acotado $[0, k]$             |
+| Counting Sort (con prefijos) | $O(n + k)$      | Sí      | No       | Rango acotado $[0, k]$             |
+| Bucket Sort                  | $O(n + k)$      | Sí**    | No       | Distribución uniforme              |
+| Radix Sort                   | $O(n \times d)$ | Sí      | No       | Valores descomponibles en dígitos  |
 ```
 
-\* La variante estable requiere recorrer de derecha a izquierda con sumas prefijo.
+\* La versión básica puede escribir la salida sobre el arreglo de entrada, pero igual necesita $O(k)$ para el arreglo de conteo.
 \*\* Si el algoritmo intra-bucket es estable.
 
 ## Ejercicios
